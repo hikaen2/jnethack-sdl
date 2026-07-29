@@ -379,6 +379,21 @@ initoptions()
 	flags.pickup_types[0] = '\0';
 
 	switch_graphics(ASCII_GRAPHICS);	/* set default characters */
+#if defined(SDL_GRAPHICS) && defined(TERMLIB)
+	/*
+	 * The SDL backend translates the line-drawing bytes this selects
+	 * into Unicode box-drawing characters, so the walls come out as
+	 * real lines instead of - and |.  Unlike a terminal there is
+	 * nothing to detect and nothing that can go wrong, so it is simply
+	 * on.  Being here, before NETHACKOPTIONS is read, leaves
+	 * "!DECgraphics" available for anyone who wants the plain look.
+	 *
+	 * DEC rather than IBM because its table leaves corridors as '#',
+	 * which is the look this was asked for; IBMgraphics would make
+	 * them shaded blocks.
+	 */
+	switch_graphics(DEC_GRAPHICS);
+#endif
 #if defined(UNIX) && defined(TTY_GRAPHICS) && !defined(SDL_GRAPHICS)
 	/*
 	 * Set defaults for some options depending on what we can

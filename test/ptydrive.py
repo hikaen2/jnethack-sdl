@@ -58,7 +58,7 @@ def set_winsize(fd, rows, cols):
     fcntl.ioctl(fd, termios.TIOCSWINSZ, struct.pack("HHHH", rows, cols, 0, 0))
 
 
-def drain(fd, stream, quiet_for=0.35, hard_limit=10.0):
+def drain(fd, stream, quiet_for=0.35, hard_limit=10.0, charset="latin-1"):
     """Feed the pty's output into the emulator until it stays quiet."""
     deadline = time.time() + hard_limit
     last = time.time()
@@ -77,7 +77,7 @@ def drain(fd, stream, quiet_for=0.35, hard_limit=10.0):
             raise
         if not data:
             return False
-        stream.feed(data.decode("latin-1"))
+        stream.feed(data.decode(charset, "replace"))
         last = time.time()
     return True
 
@@ -95,6 +95,9 @@ def main():
                     help="NAME=VALUE to add to the child environment")
     ap.add_argument("--settle", type=float, default=0.35,
                     help="seconds of silence that count as 'done'")
+    ap.add_argument("--charset", default="latin-1",
+                    help="how to decode the pty stream; use cp437 when the "
+                         "game is running with IBMgraphics")
     ap.add_argument("cmd", nargs=argparse.REMAINDER)
     args = ap.parse_args()
 
@@ -115,11 +118,15 @@ def main():
 
     screen = pyte.Screen(COLS, ROWS)
     stream = pyte.Stream(screen)
+    # pyte ignores ESC(0 and SO/SI while use_utf8 is set, so DECgraphics
+    # walls would arrive as the bare letters lqkxmj.  Decoding is already
+    # done in drain(), so clearing it only affects charset handling.
+    stream.use_utf8 = False
 
     if args.trace:
         os.makedirs(args.trace, exist_ok=True)
 
-    alive = drain(fd, stream, args.settle)
+    alive = drain(fd, stream, args.settle, charset=args.charset)
     for i, key in enumerate(parse_keys(args.keys)):
         if not alive:
             break
@@ -127,7 +134,7 @@ def main():
             os.write(fd, key.encode("latin-1"))
         except OSError:
             break
-        alive = drain(fd, stream, args.settle)
+        alive = drain(fd, stream, args.settle, charset=args.charset)
         if args.trace:
             with open(os.path.join(args.trace, "%03d.txt" % i), "w") as f:
                 f.write(render(screen) + "\n")

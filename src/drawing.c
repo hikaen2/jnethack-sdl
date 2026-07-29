@@ -662,6 +662,17 @@ int gr_set_flag;
 	    iflags.DECgraphics = TRUE;
 	    iflags.IBMgraphics = FALSE;
 	    assign_graphics(dec_graphics, SIZE(dec_graphics), MAXPCHARS, 0);
+#ifdef SDL_GRAPHICS
+	    /*
+	     * dec_graphics[] gives both open doors the same byte, so the
+	     * shaded block it draws cannot say which way a door faces.
+	     * Keep the ASCII symbols, which can.  This has to sit here
+	     * rather than at the call site: toggling the option re-enters
+	     * switch_graphics(), and anything done outside it is undone.
+	     */
+	    showsyms[S_vodoor] = defsyms[S_vodoor].sym;
+	    showsyms[S_hodoor] = defsyms[S_hodoor].sym;
+#endif
 	    if (decgraphics_mode_callback) (*decgraphics_mode_callback)();
 	    break;
 #endif /* TERMLIB */

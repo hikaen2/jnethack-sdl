@@ -287,6 +287,84 @@ sdl_wrap_now()
     }
 }
 
+/* ---------------------------------------------------------------- */
+/* byte -> code point: the graphics character sets			*/
+/* ---------------------------------------------------------------- */
+
+/*
+ * The port hands the backend bytes, not characters.  What a byte in
+ * 0x80..0xff means depends on which graphics set the game has selected
+ * (see src/drawing.c): with IBMgraphics it is a code page 437 byte, with
+ * DECgraphics it is a VT100 line-drawing character that arrives with its
+ * high bit stripped between graph_on()/graph_off().
+ *
+ * A terminal resolves this by being configured for the right code page,
+ * or by switching fonts.  We resolve it by translating to Unicode here,
+ * which is why the walls can be drawn with proper box-drawing glyphs --
+ * and, since we choose the code point, with rounded corners.
+ */
+
+/* Code page 437, low half: the symbols a PC console shows for control
+   bytes.  Only reachable under IBMgraphics; the entries NetHack actually
+   uses are the card pips for rogue-level traps.  Bytes that steer the
+   cursor (BEL, BS, HT, LF, CR) are left out on purpose. */
+static const unsigned short cp437_low[32] = {
+    0x0000, 0x263A, 0x263B, 0x2665, 0x2666, 0x2663, 0x2660, 0x0007,
+    0x0008, 0x0009, 0x000A, 0x2642, 0x2640, 0x000D, 0x266B, 0x263C,
+    0x25BA, 0x25C4, 0x2195, 0x203C, 0x00B6, 0x00A7, 0x25AC, 0x21A8,
+    0x2191, 0x2193, 0x2192, 0x2190, 0x221F, 0x2194, 0x25B2, 0x25BC
+};
+
+/* Code page 437, high half. */
+static const unsigned short cp437_high[128] = {
+    0x00C7, 0x00FC, 0x00E9, 0x00E2, 0x00E4, 0x00E0, 0x00E5, 0x00E7,
+    0x00EA, 0x00EB, 0x00E8, 0x00EF, 0x00EE, 0x00EC, 0x00C4, 0x00C5,
+    0x00C9, 0x00E6, 0x00C6, 0x00F4, 0x00F6, 0x00F2, 0x00FB, 0x00F9,
+    0x00FF, 0x00D6, 0x00DC, 0x00A2, 0x00A3, 0x00A5, 0x20A7, 0x0192,
+    0x00E1, 0x00ED, 0x00F3, 0x00FA, 0x00F1, 0x00D1, 0x00AA, 0x00BA,
+    0x00BF, 0x2310, 0x00AC, 0x00BD, 0x00BC, 0x00A1, 0x00AB, 0x00BB,
+    0x2591, 0x2592, 0x2593, 0x2502, 0x2524, 0x2561, 0x2562, 0x2556,
+    0x2555, 0x2563, 0x2551, 0x2557, 0x255D, 0x255C, 0x255B, 0x2510,
+    0x2514, 0x2534, 0x252C, 0x251C, 0x2500, 0x253C, 0x255E, 0x255F,
+    0x255A, 0x2554, 0x2569, 0x2566, 0x2560, 0x2550, 0x256C, 0x2567,
+    0x2568, 0x2564, 0x2565, 0x2559, 0x2558, 0x2552, 0x2553, 0x256B,
+    0x256A, 0x2518, 0x250C, 0x2588, 0x2584, 0x258C, 0x2590, 0x2580,
+    0x03B1, 0x00DF, 0x0393, 0x03C0, 0x03A3, 0x03C3, 0x00B5, 0x03C4,
+    0x03A6, 0x0398, 0x03A9, 0x03B4, 0x221E, 0x03C6, 0x03B5, 0x2229,
+    0x2261, 0x00B1, 0x2265, 0x2264, 0x2320, 0x2321, 0x00F7, 0x2248,
+    0x00B0, 0x2219, 0x00B7, 0x221A, 0x207F, 0x00B2, 0x25A0, 0x00A0
+};
+
+/*
+ * VT100 "special graphics" set, 0x5f..0x7e, used while graph_on() is in
+ * effect.  This is what DECgraphics sends after g_putch() strips the
+ * high bit, and DECgraphics is what the SDL build selects by default.
+ *
+ * Five entries deliberately differ from the VT100 standard, marked
+ * below.  This is where the backend's look is decided: the port asked
+ * for a corner and a floor, and we choose which character goes in the
+ * cell.  Nothing else in the file knows about it, and the rounded
+ * corners do not depend on the font, because sdl_draw_box() draws them.
+ *
+ * test/walls_compare.sh applies the same five substitutions to its
+ * reference, so a change here without a change there will fail.
+ */
+static const unsigned short dec_special[32] = {
+    0x00A0, 0x25C6, 0x2592, 0x2409, 0x240C, 0x240D, 0x240A, 0x00B0,
+/*                                  j:╯     k:╮     l:╭     m:╰  <- rounded */
+    0x00B1, 0x2424, 0x240B, 0x256F, 0x256E, 0x256D, 0x2570, 0x253C,
+    0x23BA, 0x23BB, 0x2500, 0x23BC, 0x23BD, 0x251C, 0x2524, 0x2534,
+    0x252C, 0x2502, 0x2264, 0x2265, 0x03C0, 0x2260, 0x00A3, 0x002E
+/*                                                          ~:'.' not U+00B7 */
+};
+
+/* Code page 437 above stays faithful: IBMgraphics is the "as a PC
+   console would show it" option, so it keeps square corners and the
+   centred dot. */
+
+/* TRUE while the port has asked for the alternate character set. */
+static boolean alt_charset = FALSE;
+
 /*
  * How many cells does this code point occupy?
  *
@@ -467,6 +545,151 @@ sdl_open_font()
 /* painting								*/
 /* ---------------------------------------------------------------- */
 
+/*
+ * Box-drawing characters are drawn rather than rendered from the font.
+ *
+ * A font's line-drawing glyphs are cut for the font's own em, not for
+ * our cell.  With a CJK face the cell is much taller than the em (27px
+ * against 18px here), so a column of `│' comes out as a dashed line with
+ * a gap at every row boundary.  Terminal emulators hit the same problem
+ * and answer it the same way.
+ *
+ * Drawing them also means the look no longer depends on what the font
+ * happens to contain -- the rounded corners work even with a face that
+ * has no U+256D..U+2570 at all.
+ *
+ * Returns TRUE if it drew the character.
+ */
+struct boxdef {
+    long cp;
+    unsigned char up, down, left, right, round;
+};
+
+static const struct boxdef boxchars[] = {
+    { 0x2500L, 0, 0, 1, 1, 0 },		/* ─ */
+    { 0x2502L, 1, 1, 0, 0, 0 },		/* │ */
+    { 0x250CL, 0, 1, 0, 1, 0 },		/* ┌ */
+    { 0x2510L, 0, 1, 1, 0, 0 },		/* ┐ */
+    { 0x2514L, 1, 0, 0, 1, 0 },		/* └ */
+    { 0x2518L, 1, 0, 1, 0, 0 },		/* ┘ */
+    { 0x251CL, 1, 1, 0, 1, 0 },		/* ├ */
+    { 0x2524L, 1, 1, 1, 0, 0 },		/* ┤ */
+    { 0x252CL, 0, 1, 1, 1, 0 },		/* ┬ */
+    { 0x2534L, 1, 0, 1, 1, 0 },		/* ┴ */
+    { 0x253CL, 1, 1, 1, 1, 0 },		/* ┼ */
+    { 0x256DL, 0, 1, 0, 1, 1 },		/* ╭ */
+    { 0x256EL, 0, 1, 1, 0, 1 },		/* ╮ */
+    { 0x256FL, 1, 0, 1, 0, 1 },		/* ╯ */
+    { 0x2570L, 1, 0, 0, 1, 1 },		/* ╰ */
+    { 0L, 0, 0, 0, 0, 0 }
+};
+
+/* One square of the pen. */
+static void
+sdl_pen(px, py, t)
+int px, py, t;
+{
+    SDL_Rect r;
+
+    r.x = px; r.y = py; r.w = t; r.h = t;
+    SDL_RenderFillRect(sdl_ren, &r);
+}
+
+/*
+ * Quarter arc of radius rad about (ax, ay), sweeping into the quadrant
+ * given by the signs sx and sy.  Stepping both coordinates in turn keeps
+ * it gap-free without needing trigonometry.
+ */
+static void
+sdl_arc(ax, ay, rad, sx, sy, t)
+int ax, ay, rad, sx, sy, t;
+{
+    int i, j;
+
+    for (i = 0; i <= rad; i++) {
+	/* integer sqrt of rad*rad - i*i */
+	for (j = rad; j > 0 && j * j > rad * rad - i * i; j--)
+	    continue;
+	sdl_pen(ax + sx * i - t / 2, ay + sy * j - t / 2, t);
+	sdl_pen(ax + sx * j - t / 2, ay + sy * i - t / 2, t);
+    }
+}
+
+static boolean
+sdl_draw_box(cp, box, fr, fg, fb)
+long cp;
+SDL_Rect *box;
+int fr, fg, fb;
+{
+    const struct boxdef *d;
+    int t, cx, cy, rad;
+
+    for (d = boxchars; d->cp; d++)
+	if (d->cp == cp) break;
+    if (!d->cp) return FALSE;
+
+    t = cell_w / 7;
+    if (t < 1) t = 1;
+
+    /* centre line of the cell, as the top-left of a t-thick bar */
+    cx = box->x + (box->w - t) / 2;
+    cy = box->y + (box->h - t) / 2;
+
+    rad = d->round ? (box->w < box->h ? box->w : box->h) / 2 : 0;
+
+    SDL_SetRenderDrawColor(sdl_ren, (Uint8) fr, (Uint8) fg, (Uint8) fb, 255);
+
+    if (d->round) {
+	/* the two straight runs stop short of the corner ... */
+	int ax = cx + (d->left ? -rad : rad);
+	int ay = cy + (d->up ? -rad : rad);
+	SDL_Rect r;
+
+	if (d->up) {
+	    r.x = cx; r.y = box->y; r.w = t; r.h = cy - rad - box->y;
+	    if (r.h > 0) SDL_RenderFillRect(sdl_ren, &r);
+	}
+	if (d->down) {
+	    r.x = cx; r.y = cy + rad; r.w = t;
+	    r.h = box->y + box->h - r.y;
+	    if (r.h > 0) SDL_RenderFillRect(sdl_ren, &r);
+	}
+	if (d->left) {
+	    r.x = box->x; r.y = cy; r.w = cx - rad - box->x; r.h = t;
+	    if (r.w > 0) SDL_RenderFillRect(sdl_ren, &r);
+	}
+	if (d->right) {
+	    r.x = cx + rad; r.y = cy; r.w = box->x + box->w - r.x; r.h = t;
+	    if (r.w > 0) SDL_RenderFillRect(sdl_ren, &r);
+	}
+	/* ... and the arc joins them */
+	sdl_arc(ax, ay, rad, d->left ? 1 : -1, d->up ? 1 : -1, t);
+	return TRUE;
+    }
+
+    if (d->up) {
+	SDL_Rect r;
+	r.x = cx; r.y = box->y; r.w = t; r.h = cy - box->y + t;
+	SDL_RenderFillRect(sdl_ren, &r);
+    }
+    if (d->down) {
+	SDL_Rect r;
+	r.x = cx; r.y = cy; r.w = t; r.h = box->y + box->h - cy;
+	SDL_RenderFillRect(sdl_ren, &r);
+    }
+    if (d->left) {
+	SDL_Rect r;
+	r.x = box->x; r.y = cy; r.w = cx - box->x + t; r.h = t;
+	SDL_RenderFillRect(sdl_ren, &r);
+    }
+    if (d->right) {
+	SDL_Rect r;
+	r.x = cx; r.y = cy; r.w = box->x + box->w - cx; r.h = t;
+	SDL_RenderFillRect(sdl_ren, &r);
+    }
+    return TRUE;
+}
+
 static void
 sdl_draw_cell(x, y)
 int x, y;
@@ -500,7 +723,8 @@ int x, y;
 	SDL_RenderFillRect(sdl_ren, &box);
     }
 
-    if (c->ch != ' ' && c->ch != 0) {
+    if (c->ch != ' ' && c->ch != 0 &&
+	!sdl_draw_box(c->ch, &box, fr, fg, fb)) {
 	g = sdl_glyph(c->ch, (c->attr & SA_BOLD) != 0);
 	if (g->tex) {
 	    dst.x = box.x;
@@ -1011,11 +1235,38 @@ int cp;
     grid_dirty = TRUE;
 }
 
+/*
+ * Take one byte off the port, work out which character it stands for
+ * under the graphics set now in effect, and place it.
+ */
+void
+sdl_putbyte(b)
+int b;
+{
+    long cp;
+
+    b &= 0xFF;
+
+    if (alt_charset && b >= 0x5F && b <= 0x7E) {
+	cp = dec_special[b - 0x5F];
+#ifdef ASCIIGRAPH
+    } else if (iflags.IBMgraphics && b >= 0x80) {
+	cp = cp437_high[b - 0x80];
+    } else if (iflags.IBMgraphics && b < 0x20) {
+	cp = cp437_low[b];		/* leaves BEL/BS/HT/LF/CR alone */
+#endif
+    } else {
+	cp = b;
+    }
+
+    sdl_putcp((int) cp);
+}
+
 void
 xputc(c)
 char c;
 {
-    sdl_putcp((int) (unsigned char) c);
+    sdl_putbyte((int) (unsigned char) c);
 }
 
 void
@@ -1024,7 +1275,7 @@ const char *s;
 {
     /* Only ever plain text here; capability strings all died with
        termcap.c.  See SDL-POC-PLAN.md §4. */
-    while (*s) sdl_putcp((int) (unsigned char) *s++);
+    while (*s) sdl_putbyte((int) (unsigned char) *s++);
 }
 
 void
@@ -1176,22 +1427,26 @@ int color;
 
 #ifdef ASCIIGRAPH
 /*
- * These are the heart of hypothesis H3.  On a terminal, line-drawing
- * means switching the font in and out of an alternate character set and
- * hoping the terminal agrees about how wide the result is.  A cell grid
- * has no alternate set to switch to: each cell already holds a code
- * point and a width, so there is nothing to do.
+ * On a terminal these swap the font in and out of an alternate character
+ * set, and the terminal then has its own opinion about how wide the
+ * result is -- box-drawing characters are East Asian Ambiguous, so that
+ * opinion depends on the user's locale.  That is the H3 problem in
+ * miniature.
+ *
+ * Here they only record which table sdl_putbyte() should read the next
+ * bytes through.  No font is switched, and the width is a property of
+ * the resulting code point, so the ambiguity never arises.
  */
 void
 graph_on()
 {
-    return;
+    alt_charset = TRUE;
 }
 
 void
 graph_off()
 {
-    return;
+    alt_charset = FALSE;
 }
 #endif
 

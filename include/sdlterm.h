@@ -29,6 +29,16 @@
  */
 #include <signal.h>
 
+/*
+ * Two entry points, deliberately separated:
+ *
+ *   sdl_putbyte()  takes a byte off the port and decides what character
+ *                  it stands for -- which depends on whether a graphics
+ *                  set is active.  This is the layer where JNetHack will
+ *                  reassemble EUC-JP pairs.
+ *   sdl_putcp()    takes a Unicode code point and puts it in a cell.
+ */
+E void FDECL(sdl_putbyte, (int));	/* one byte from the port */
 E void FDECL(sdl_putcp, (int));		/* one code point at the cursor */
 E void FDECL(sdl_puts, (const char *));	/* string + newline */
 E void FDECL(sdl_fputs, (const char *, FILE *));
@@ -40,7 +50,7 @@ E void NDECL(sdl_width_test);		/* NH_SDL_WIDTHTEST hook (A4) */
 #ifndef SDLTERM_INTERNAL
 
 # undef putchar
-# define putchar(c)	(sdl_putcp((int)(unsigned char)(c)), (int)(c))
+# define putchar(c)	(sdl_putbyte((int)(unsigned char)(c)), (int)(c))
 # undef puts
 # define puts(s)	(sdl_puts(s), 0)
 # undef fputs

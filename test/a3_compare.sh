@@ -14,6 +14,13 @@ cd "$(dirname "$0")/.."
 work=${1:-/tmp/nh-a3}
 seed=${NETHACK_SEED:-20260729}
 
+# A3 measures whether the two backends lay the screen out identically, so
+# both sides run with the same symbol set.  The SDL build turns
+# DECgraphics on by default (its walls are Unicode box-drawing); turning
+# it off here keeps the comparison about layout rather than about which
+# glyph a wall is.  test/walls_compare.sh covers the graphics path.
+opts=color,!DECgraphics
+
 mkdir -p "$work"
 : >"$work/report.txt"
 
@@ -70,11 +77,11 @@ echo "$cases" | while IFS='|' read -r name keys; do
     ./test/mkplaydir.sh "$work/tty" >/dev/null
     ./test/mkplaydir.sh "$work/sdl" >/dev/null
 
-    NETHACK_SEED=$seed HACKDIR="$work/tty" NETHACKOPTIONS=color \
+    NETHACK_SEED=$seed HACKDIR="$work/tty" NETHACKOPTIONS=$opts \
 	python3 test/ptydrive.py --keys "$keys" --dump "$work/$name.tty" \
 	    -- src/nethack.tty -u poc >/dev/null 2>&1 || true
 
-    NETHACK_SEED=$seed HACKDIR="$work/sdl" NETHACKOPTIONS=color \
+    NETHACK_SEED=$seed HACKDIR="$work/sdl" NETHACKOPTIONS=$opts \
 	NH_SDL_KEYS="$(expand "$keys")" NH_SDL_DUMP="$work/$name.sdl" \
 	SDL_VIDEODRIVER=${SDL_VIDEODRIVER:-dummy} \
 	    timeout 60 src/nethack.sdl -u poc >/dev/null 2>&1 || true
