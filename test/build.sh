@@ -1,0 +1,71 @@
+#!/bin/sh
+# Build both backends of the SDL porting experiment from a clean tree.
+#
+#   ./test/build.sh          # everything
+#   ./test/build.sh tty      # src/nethack.tty only
+#   ./test/build.sh sdl      # src/nethack.sdl only
+#
+# Produces:
+#   src/nethack.tty   stock termcap backend (the A3 reference)
+#   src/nethack.sdl   win/tty/sdlterm.c backend
+#   dat/*.lev etc.    shared by both; they agree on VERSION_FEATURES
+#                     because SDL_GRAPHICS is not one of the feature bits
+set -e
+
+cd "$(dirname "$0")/.."
+what=${1:-all}
+
+# The stock Makefiles live under sys/unix.  sys/unix/setup.sh keys off the
+# current directory and drops them in the wrong place when run from the
+# top of the tree, so copy them by hand.
+setup_makefiles() {
+    cp -f sys/unix/Makefile.top ./Makefile
+    cp -f sys/unix/Makefile.dat dat/Makefile
+    cp -f sys/unix/Makefile.doc doc/Makefile
+    cp -f sys/unix/Makefile.src src/Makefile
+    cp -f sys/unix/Makefile.utl util/Makefile
+}
+
+# yacc/lex are not needed: 3.2.3 ships pre-generated parsers under
+# sys/share.  They are copied in rather than regenerated.
+seed_parsers() {
+    cp -f sys/share/lev_yacc.c sys/share/lev_lex.c \
+	  sys/share/dgn_yacc.c sys/share/dgn_lex.c util/
+    cp -f sys/share/lev_comp.h sys/share/dgn_comp.h include/
+    touch util/lev_yacc.c util/lev_lex.c util/dgn_yacc.c util/dgn_lex.c
+    touch include/lev_comp.h include/dgn_comp.h
+}
+
+# sys/unix/Makefile.src carries the SDLGRAPH switch and the modern-Linux
+# flags, so the working Makefiles are always regenerated from it.
+setup_makefiles
+
+# The data files carry a VERSION_FEATURES word that lev_comp and dgn_comp
+# stamp in from include/date.h.  Changing a config.h feature (TEXTCOLOR,
+# say) invalidates them, and the generated parsers hide the dependency,
+# so the utilities are rebuilt from scratch every time.
+rm -f util/*.o util/makedefs util/lev_comp util/dgn_comp util/recover util/dlb
+rm -f include/date.h
+seed_parsers
+
+if [ "$what" = all ] || [ "$what" = tty ]; then
+    echo "=== building tty backend ==="
+    rm -f src/*.o src/nethack
+    make -C util
+    make -C src
+    mv src/nethack src/nethack.tty
+fi
+
+if [ "$what" = all ] || [ "$what" = sdl ]; then
+    echo "=== building SDL backend ==="
+    rm -f src/*.o src/nethack
+    make -C src SDLGRAPH=1
+    mv src/nethack src/nethack.sdl
+fi
+
+echo "=== building data files ==="
+make -C dat spotless >/dev/null 2>&1 || true
+make -C dat
+
+rm -f src/*.o
+ls -l src/nethack.tty src/nethack.sdl 2>/dev/null || true
