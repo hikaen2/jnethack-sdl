@@ -708,7 +708,7 @@ wantdoor(x, y, distance)
 int x, y;
 genericptr_t distance;
 {
-    register ndist;
+    register int ndist;
 
     if (*(int*)distance > (ndist = distu(x, y))) {
 	gx = x;

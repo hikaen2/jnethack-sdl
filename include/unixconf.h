@@ -19,12 +19,12 @@
  */
 
 /* define exactly one of the following four choices */
-#define BSD	1	/* define for 4.n BSD  */
+/* #define BSD	1	/* define for 4.n BSD  */
 			/* also for relatives like SunOS, Linux and DG/UX */
 /* #define ULTRIX	/* define for Ultrix v3.0 or higher (but not lower) */
 			/* Use BSD for < v3.0 */
 			/* "ULTRIX" not to be confused with "ultrix" */
-/* #define SYSV		/* define for System V */
+#define SYSV		/* define for System V */
 /* #define HPUX		/* Hewlett-Packard's Unix, version 6.5 or higher */
 			/* use SYSV for < v6.5 */
 
@@ -33,8 +33,8 @@
 /* #define SVR4		/* use in addition to SYSV for System V Release 4 */
 #define NETWORK		/* if running on a networked system */
 			/* e.g. Suns sharing a playground through NFS */
-#define SUNOS4	/* SunOS 4.x */
-/* #define LINUX	/* Another Unix clone */
+/* #define SUNOS4	/* SunOS 4.x */
+#define LINUX	/* Another Unix clone */
 /* #define GENIX	/* Yet Another Unix Clone */
 /* #define HISX		/* Bull Unix for XPS Machines */
 /* #define BOS		/* Bull Open Software - Unix for DPX/2 Machines */
@@ -42,7 +42,7 @@
 /* #define AIX_31	/* In AIX 3.1 (IBM RS/6000) use BSD ioctl's to gain
 			 * job control (note that AIX is SYSV otherwise)
 			 * Also define this for AIX 3.2 */
-/* #define TEXTCOLOR	/* Use System V r3.2 terminfo color support */
+#define TEXTCOLOR	/* Use System V r3.2 terminfo color support */
 			/* and/or ANSI color support on termcap systems */
 			/* and/or X11 color */
 /* #define POSIX_JOB_CONTROL	/* use System V / POSIX job control

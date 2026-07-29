@@ -17,7 +17,9 @@ int yyleng; extern char yytext[];
 int yymorfg;
 extern char *yysptr, yysbuf[];
 int yytchar;
-FILE *yyin = {stdin}, *yyout = {stdout};
+/* glibc: stdin/stdout are not compile-time constants; init_yyin()/init_yyout()
+ * are called before first use, so a null start is safe. */
+FILE *yyin = 0, *yyout = 0;
 extern int yylineno;
 struct yysvf { 
 	struct yywork *yystoff;
@@ -2029,14 +2031,14 @@ while (*p)
 return(0);
 }
 	/* the following are only used in the lex library */
-yyinput(){
+int yyinput(){
 	return(input());
 	}
-yyoutput(c)
+void yyoutput(c)
   int c; {
 	output(c);
 	}
-yyunput(c)
+void yyunput(c)
    int c; {
 	unput(c);
 	}

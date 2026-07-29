@@ -1346,7 +1346,7 @@ schar ftyp, btyp;
 static void
 fix_stair_rooms()
 {
-    register i;
+    register int i;
     register struct mkroom *croom;
 
     if(xdnstair &&

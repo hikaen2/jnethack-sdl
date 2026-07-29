@@ -294,7 +294,7 @@ boolean
 online2(x0, y0, x1, y1) /* are two points lined up (on a straight line)? */
     int x0, y0, x1, y1;
 {
-    register dx = x0 - x1, dy = y0 - y1;
+    register int dx = x0 - x1, dy = y0 - y1;
   /*  If either delta is zero then they're on an orthogonal line,
    :  else if the deltas are equal (signs ignored) they're on a diagonal.
    */

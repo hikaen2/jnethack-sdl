@@ -124,8 +124,11 @@ SYSOBJ = ioctl.o unixmain.o unixtty.o unixunix.o
 # flags for debugging:
 # CFLAGS = -g -I../include
 
-CFLAGS = -O -I../include
-LFLAGS = 
+# flags for modern Linux + GCC (see SDL-POC-PLAN.md §2)
+#   -std=gnu89 : GCC 14 defaults to C23, where implicit declarations are errors
+#   -fcommon   : GCC 10+ defaults to -fno-common
+CFLAGS = -O -I../include -std=gnu89 -fcommon
+LFLAGS =
 
 
 # Set the WINSRC, WINOBJ, and WINLIB lines to correspond to your desired
@@ -162,8 +165,8 @@ WINOBJ = $(WINTTYOBJ)
 # WINTTYLIB = -ltermcap
 # WINTTYLIB = -lcurses
 # WINTTYLIB = -lcurses16
-# WINTTYLIB = -lncurses
-WINTTYLIB = -ltermlib
+# libtermlib no longer exists on modern Linux; ncurses provides termcap
+WINTTYLIB = -lncurses
 #
 # libraries for X11
 # If USE_XPM is defined in config.h, you will also need -lXpm here.
