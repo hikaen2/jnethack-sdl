@@ -1,0 +1,1448 @@
+/*	sdlterm.c	*/
+/* NetHack may be freely redistributed.  See license for details. */
+
+/*
+ * SDL2 cell-grid backend for the tty window port.
+ *
+ * This file is a drop-in replacement for win/tty/termcap.c.  It exports
+ * exactly the same set of symbols, but instead of emitting escape
+ * sequences it maintains an addressable grid of cells and paints that
+ * grid with SDL2 + SDL2_ttf.  wintty.c, topl.c and getline.c are used
+ * unmodified; the direct stdio calls they make are retargeted by the
+ * macros in include/sdlterm.h.
+ *
+ * The point of owning the grid is that column position stops being a
+ * property of the font or of the terminal's idea of character width.
+ * A glyph is one cell wide or two because sdl_cp_width() says so, and
+ * nothing about the user's locale can change that.  See SDL-POC-PLAN.md.
+ */
+
+#define SDLTERM_INTERNAL	/* keep the real stdio; see sdlterm.h */
+
+#include <SDL.h>
+#include <SDL_ttf.h>
+#include <locale.h>
+#include <signal.h>
+
+#include "hack.h"
+
+#if defined(TTY_GRAPHICS) && defined(SDL_GRAPHICS)
+
+#include "wintty.h"
+#include "termcap.h"
+
+#ifndef C	/* this matches src/cmd.c and win/tty/topl.c */
+#define C(c)	(0x1f & (c))
+#endif
+#define SDL_HIGHC(c)	((c) >= 'a' && (c) <= 'z' ? (c) - 'a' + 'A' : (c))
+
+/* ---------------------------------------------------------------- */
+/* configuration							*/
+/* ---------------------------------------------------------------- */
+
+#define SDL_DEF_COLS	80
+#define SDL_DEF_ROWS	24
+#define SDL_MIN_COLS	COLNO		/* wintty clips below this */
+#define SDL_MIN_ROWS	(ROWNO + 3)
+#define SDL_MAX_COLS	400
+#define SDL_MAX_ROWS	200
+#define SDL_DEF_PTSIZE	18
+
+/* Fonts tried in order when NETHACK_SDL_FONT is unset.  The first entry
+   is a genuine monospace CJK face: its CJK advance is exactly twice its
+   ASCII advance, which is what the A4 double-width test needs. */
+static const char *const font_candidates[] = {
+    "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc:5",	/* Mono CJK JP */
+    "/usr/share/fonts/opentype/ipafont-gothic/ipag.ttf",
+    "/usr/share/fonts/truetype/fonts-japanese-gothic.ttf",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf",
+    "/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf",
+    0
+};
+
+/* ---------------------------------------------------------------- */
+/* the cell grid							*/
+/* ---------------------------------------------------------------- */
+
+#define SA_BOLD		0x01
+#define SA_ULINE	0x02
+#define SA_INVERSE	0x04
+#define SA_BLINK	0x08
+
+#define SW_NARROW	0	/* ordinary one-cell glyph */
+#define SW_LEFT		1	/* left half of a two-cell glyph */
+#define SW_RIGHT	2	/* right half; ch repeats, not drawn */
+
+struct sdl_cell {
+    long ch;			/* Unicode code point */
+    unsigned char attr;
+    unsigned char color;	/* NetHack CLR_*, NO_COLOR = default */
+    unsigned char wide;		/* SW_* */
+};
+
+static struct sdl_cell *grid = 0;
+static int grid_cols = SDL_DEF_COLS;
+static int grid_rows = SDL_DEF_ROWS;
+
+#define CELL(x,y)	(grid[(y) * grid_cols + (x)])
+
+static int cur_x = 0, cur_y = 0;
+static boolean wrap_pending = FALSE;	/* xterm-style deferred wrap */
+
+static int cur_attr = 0;
+static int cur_color = NO_COLOR;
+
+static boolean sdl_up = FALSE;		/* SDL is initialized */
+static boolean grid_dirty = TRUE;
+static boolean want_quit = FALSE;
+
+/* ---------------------------------------------------------------- */
+/* SDL objects								*/
+/* ---------------------------------------------------------------- */
+
+static SDL_Window *sdl_win = 0;
+static SDL_Renderer *sdl_ren = 0;
+static TTF_Font *font_norm = 0, *font_bold = 0;
+static int cell_w = 8, cell_h = 16;
+
+/* Palette, indexed by NetHack CLR_*.  NO_COLOR (8) is the default
+   foreground rather than a real colour, so it gets the light grey the
+   rest of the screen uses. */
+static const struct { unsigned char r, g, b; } palette[CLR_MAX] = {
+    {  0,   0,   0},	/* CLR_BLACK  - lifted off pure black to stay legible */
+    {205,  49,  49},	/* CLR_RED */
+    { 13, 188, 121},	/* CLR_GREEN */
+    {180, 120,  40},	/* CLR_BROWN */
+    { 60, 100, 235},	/* CLR_BLUE */
+    {188,  63, 188},	/* CLR_MAGENTA */
+    { 17, 168, 205},	/* CLR_CYAN */
+    {190, 190, 190},	/* CLR_GRAY */
+    {190, 190, 190},	/* NO_COLOR */
+    {235, 140,  40},	/* CLR_ORANGE */
+    { 35, 209, 139},	/* CLR_BRIGHT_GREEN */
+    {229, 229,  16},	/* CLR_YELLOW */
+    { 90, 150, 255},	/* CLR_BRIGHT_BLUE */
+    {214,  112, 214},	/* CLR_BRIGHT_MAGENTA */
+    { 41, 184, 219},	/* CLR_BRIGHT_CYAN */
+    {245, 245, 245}	/* CLR_WHITE */
+};
+
+#define BG_R 0
+#define BG_G 0
+#define BG_B 0
+
+/* CLR_BLACK on a black background would be invisible; the tty port has
+   the same problem and solves it by never emitting black.  We lift it. */
+#define VIS_R(c) ((c) == CLR_BLACK ? 100 : palette[c].r)
+#define VIS_G(c) ((c) == CLR_BLACK ? 100 : palette[c].g)
+#define VIS_B(c) ((c) == CLR_BLACK ? 100 : palette[c].b)
+
+/* ---------------------------------------------------------------- */
+/* termcap-compatible globals						*/
+/* ---------------------------------------------------------------- */
+
+/*
+ * wintty.c and topl.c read CO, LI, CM and ul_hack out of these.  CM must
+ * be non-null or tty_curs() takes the "terminal has no cursor
+ * addressing" path; the string itself is never looked at, since our
+ * cmov() does not interpret it.
+ */
+struct tc_lcl_data tc_lcl_data = { 0, 0, 0, 0, 0, 0, 0, FALSE };
+
+#ifdef TEXTCOLOR
+char NEARDATA *hilites[CLR_MAX];	/* only tested for non-null */
+#endif
+
+/* `ospeed' stays where it is (sys/share/unixtty.c); nothing here uses it. */
+
+static char sdl_capname[] = "sdl";	/* placeholder for CM et al. */
+
+/* ---------------------------------------------------------------- */
+/* forward declarations							*/
+/* ---------------------------------------------------------------- */
+
+static void FDECL(sdl_die, (const char *));
+static void FDECL(sdl_alloc_grid, (int, int));
+static void NDECL(sdl_blank_grid);
+static void FDECL(sdl_clear_cell, (int, int));
+static void FDECL(sdl_scroll_up, (int));
+static void NDECL(sdl_wrap_now);
+static int FDECL(sdl_cp_width, (long));
+static void NDECL(sdl_open_font);
+static void NDECL(sdl_repaint);
+static void NDECL(sdl_pump);
+static void FDECL(sdl_queue_byte, (int));
+static void FDECL(sdl_queue_key, (SDL_Keysym *));
+static void FDECL(sdl_queue_text, (const char *));
+static void NDECL(sdl_dump_if_asked);
+static void NDECL(sdl_shot_if_asked);
+
+/* ---------------------------------------------------------------- */
+/* small helpers							*/
+/* ---------------------------------------------------------------- */
+
+static void
+sdl_die(msg)
+const char *msg;
+{
+    /* error() longjmps out through terminate(); make sure the window is
+       gone first so the message is not hidden behind it. */
+    if (sdl_win) {
+	SDL_DestroyWindow(sdl_win);
+	sdl_win = 0;
+    }
+    if (sdl_up) {
+	SDL_Quit();
+	sdl_up = FALSE;
+    }
+    error("sdlterm: %s", msg);
+}
+
+static void
+sdl_alloc_grid(cols, rows)
+int cols, rows;
+{
+    if (cols < 1) cols = 1;
+    if (rows < 1) rows = 1;
+    if (cols > SDL_MAX_COLS) cols = SDL_MAX_COLS;
+    if (rows > SDL_MAX_ROWS) rows = SDL_MAX_ROWS;
+
+    if (grid) free((genericptr_t) grid);
+    grid = (struct sdl_cell *) alloc((unsigned) (cols * rows * sizeof *grid));
+    grid_cols = cols;
+    grid_rows = rows;
+    sdl_blank_grid();
+}
+
+static void
+sdl_blank_grid()
+{
+    register int i, n = grid_cols * grid_rows;
+
+    for (i = 0; i < n; i++) {
+	grid[i].ch = ' ';
+	grid[i].attr = 0;
+	grid[i].color = NO_COLOR;
+	grid[i].wide = SW_NARROW;
+    }
+    grid_dirty = TRUE;
+}
+
+/* Blank one cell.  If it is half of a double-width glyph, blank the
+   other half too -- leaving one orphaned half behind is exactly the
+   column-drift bug the cell grid exists to prevent. */
+static void
+sdl_clear_cell(x, y)
+int x, y;
+{
+    struct sdl_cell *c;
+
+    if (x < 0 || x >= grid_cols || y < 0 || y >= grid_rows) return;
+    c = &CELL(x, y);
+    if (c->wide == SW_LEFT && x + 1 < grid_cols) {
+	struct sdl_cell *r = &CELL(x + 1, y);
+	r->ch = ' '; r->attr = 0; r->color = NO_COLOR; r->wide = SW_NARROW;
+    } else if (c->wide == SW_RIGHT && x > 0) {
+	struct sdl_cell *l = &CELL(x - 1, y);
+	l->ch = ' '; l->attr = 0; l->color = NO_COLOR; l->wide = SW_NARROW;
+    }
+    c->ch = ' '; c->attr = 0; c->color = NO_COLOR; c->wide = SW_NARROW;
+    grid_dirty = TRUE;
+}
+
+static void
+sdl_scroll_up(n)
+int n;
+{
+    int i, keep;
+
+    if (n <= 0) return;
+    if (n >= grid_rows) {
+	sdl_blank_grid();
+	return;
+    }
+    keep = (grid_rows - n) * grid_cols;
+    (void) memmove((genericptr_t) grid,
+		   (genericptr_t) (grid + n * grid_cols),
+		   keep * sizeof *grid);
+    for (i = keep; i < grid_rows * grid_cols; i++) {
+	grid[i].ch = ' ';
+	grid[i].attr = 0;
+	grid[i].color = NO_COLOR;
+	grid[i].wide = SW_NARROW;
+    }
+    grid_dirty = TRUE;
+}
+
+/* Carry out a deferred wrap: called when a printable arrives and the
+   cursor is parked on the right margin. */
+static void
+sdl_wrap_now()
+{
+    wrap_pending = FALSE;
+    cur_x = 0;
+    if (++cur_y >= grid_rows) {
+	sdl_scroll_up(cur_y - grid_rows + 1);
+	cur_y = grid_rows - 1;
+    }
+}
+
+/*
+ * How many cells does this code point occupy?
+ *
+ * This is the whole of hypothesis H3.  A terminal has to guess, and for
+ * East Asian Ambiguous characters its guess depends on the user's locale
+ * -- which is why UTF8-PLAN.md §4.1 had to contemplate telling users how
+ * to configure their terminal.  Here the answer is simply a property of
+ * the code point, decided by us, identical on every machine.
+ *
+ * The ranges are East Asian Wide (W) and Fullwidth (F) from UAX #11.
+ * Ambiguous (A) characters are deliberately treated as narrow.
+ */
+static int
+sdl_cp_width(cp)
+long cp;
+{
+    if (cp < 0x1100L) return 1;
+
+    if ((cp >= 0x1100L && cp <= 0x115FL) ||	/* Hangul Jamo init. */
+	(cp >= 0x2E80L && cp <= 0x303EL) ||	/* CJK radicals, Kangxi */
+	(cp >= 0x3041L && cp <= 0x33FFL) ||	/* kana, Hangul, CJK compat */
+	(cp >= 0x3400L && cp <= 0x4DBFL) ||	/* CJK ext A */
+	(cp >= 0x4E00L && cp <= 0x9FFFL) ||	/* CJK unified */
+	(cp >= 0xA000L && cp <= 0xA4CFL) ||	/* Yi */
+	(cp >= 0xAC00L && cp <= 0xD7A3L) ||	/* Hangul syllables */
+	(cp >= 0xF900L && cp <= 0xFAFFL) ||	/* CJK compat ideographs */
+	(cp >= 0xFE10L && cp <= 0xFE19L) ||	/* vertical forms */
+	(cp >= 0xFE30L && cp <= 0xFE6FL) ||	/* CJK compat forms */
+	(cp >= 0xFF00L && cp <= 0xFF60L) ||	/* fullwidth ASCII */
+	(cp >= 0xFFE0L && cp <= 0xFFE6L) ||	/* fullwidth signs */
+	(cp >= 0x1F300L && cp <= 0x1F64FL) ||	/* emoji */
+	(cp >= 0x1F900L && cp <= 0x1F9FFL) ||
+	(cp >= 0x20000L && cp <= 0x3FFFDL))	/* CJK ext B..  */
+	return 2;
+
+    return 1;
+}
+
+/* ---------------------------------------------------------------- */
+/* font handling and the glyph cache					*/
+/* ---------------------------------------------------------------- */
+
+/*
+ * Glyphs are rendered once, in white, and cached as textures.  Colour is
+ * applied at blit time with SDL_SetTextureColorMod, so a colour change
+ * costs nothing.
+ */
+#define GLYPH_HASH 1021
+
+struct glyph_ent {
+    long ch;
+    int bold;
+    SDL_Texture *tex;
+    int w, h;
+    struct glyph_ent *next;
+};
+
+static struct glyph_ent *glyph_tab[GLYPH_HASH];
+
+static void
+sdl_free_glyphs()
+{
+    int i;
+    struct glyph_ent *g, *nx;
+
+    for (i = 0; i < GLYPH_HASH; i++) {
+	for (g = glyph_tab[i]; g; g = nx) {
+	    nx = g->next;
+	    if (g->tex) SDL_DestroyTexture(g->tex);
+	    free((genericptr_t) g);
+	}
+	glyph_tab[i] = 0;
+    }
+}
+
+static struct glyph_ent *
+sdl_glyph(ch, bold)
+long ch;
+int bold;
+{
+    unsigned h = (unsigned) ((ch * 2 + bold) % GLYPH_HASH);
+    struct glyph_ent *g;
+    SDL_Surface *surf;
+    TTF_Font *f;
+
+    for (g = glyph_tab[h]; g; g = g->next)
+	if (g->ch == ch && g->bold == bold) return g;
+
+    g = (struct glyph_ent *) alloc((unsigned) sizeof *g);
+    g->ch = ch;
+    g->bold = bold;
+    g->tex = 0;
+    g->w = g->h = 0;
+    g->next = glyph_tab[h];
+    glyph_tab[h] = g;
+
+    f = (bold && font_bold) ? font_bold : font_norm;
+    if (f && TTF_GlyphIsProvided32(f, (Uint32) ch)) {
+	SDL_Color white;
+	white.r = white.g = white.b = white.a = 255;
+	surf = TTF_RenderGlyph32_Blended(f, (Uint32) ch, white);
+	if (surf) {
+	    g->tex = SDL_CreateTextureFromSurface(sdl_ren, surf);
+	    g->w = surf->w;
+	    g->h = surf->h;
+	    SDL_FreeSurface(surf);
+	}
+    }
+    return g;
+}
+
+/* "path" or "path:index" */
+static TTF_Font *
+sdl_try_font(spec, ptsize)
+const char *spec;
+int ptsize;
+{
+    char buf[BUFSZ];
+    char *colon;
+    long idx = 0;
+
+    (void) strncpy(buf, spec, sizeof buf - 1);
+    buf[sizeof buf - 1] = '\0';
+    colon = strrchr(buf, ':');
+    if (colon && colon[1] >= '0' && colon[1] <= '9') {
+	idx = atol(colon + 1);
+	*colon = '\0';
+    }
+    return TTF_OpenFontIndex(buf, ptsize, idx);
+}
+
+static void
+sdl_open_font()
+{
+    const char *spec = getenv("NETHACK_SDL_FONT");
+    const char *szs = getenv("NETHACK_SDL_FONTSIZE");
+    int ptsize = szs ? atoi(szs) : SDL_DEF_PTSIZE;
+    int minx, maxx, miny, maxy, adv;
+    int i;
+
+    if (ptsize < 6) ptsize = SDL_DEF_PTSIZE;
+
+    if (spec && *spec) {
+	font_norm = sdl_try_font(spec, ptsize);
+	if (!font_norm) sdl_die("cannot open the font named by NETHACK_SDL_FONT");
+    } else {
+	for (i = 0; font_candidates[i] && !font_norm; i++)
+	    font_norm = sdl_try_font(font_candidates[i], ptsize);
+	if (!font_norm) sdl_die("no usable monospace font found");
+    }
+
+    /*
+     * Bold is synthesised rather than loaded from a second file: it only
+     * has to be distinguishable, and a separate face risks a different
+     * advance width, which would break the grid.
+     */
+    if (spec && *spec)
+	font_bold = sdl_try_font(spec, ptsize);
+    else
+	for (i = 0; font_candidates[i] && !font_bold; i++)
+	    font_bold = sdl_try_font(font_candidates[i], ptsize);
+    if (font_bold) TTF_SetFontStyle(font_bold, TTF_STYLE_BOLD);
+
+    /* The cell is sized from an ASCII advance.  Everything else on screen
+       is placed as a multiple of it, so glyph metrics never influence
+       where a character lands. */
+    if (TTF_GlyphMetrics32(font_norm, (Uint32) 'M',
+			   &minx, &maxx, &miny, &maxy, &adv) == 0 && adv > 0)
+	cell_w = adv;
+    else
+	cell_w = TTF_FontHeight(font_norm) / 2;
+    cell_h = TTF_FontHeight(font_norm);
+    if (cell_w < 1) cell_w = 1;
+    if (cell_h < 1) cell_h = 1;
+}
+
+/* ---------------------------------------------------------------- */
+/* painting								*/
+/* ---------------------------------------------------------------- */
+
+static void
+sdl_draw_cell(x, y)
+int x, y;
+{
+    struct sdl_cell *c = &CELL(x, y);
+    struct glyph_ent *g;
+    SDL_Rect dst, box;
+    int span, fr, fg, fb, br, bg, bb;
+
+    if (c->wide == SW_RIGHT) return;	/* drawn with its left half */
+
+    span = (c->wide == SW_LEFT) ? 2 : 1;
+
+    fr = VIS_R(c->color); fg = VIS_G(c->color); fb = VIS_B(c->color);
+    br = BG_R; bg = BG_G; bb = BG_B;
+
+    if (c->attr & SA_INVERSE) {
+	int t;
+	t = fr; fr = br; br = t;
+	t = fg; fg = bg; bg = t;
+	t = fb; fb = bb; bb = t;
+    }
+
+    box.x = x * cell_w;
+    box.y = y * cell_h;
+    box.w = cell_w * span;
+    box.h = cell_h;
+
+    if (br != BG_R || bg != BG_G || bb != BG_B) {
+	SDL_SetRenderDrawColor(sdl_ren, (Uint8) br, (Uint8) bg, (Uint8) bb, 255);
+	SDL_RenderFillRect(sdl_ren, &box);
+    }
+
+    if (c->ch != ' ' && c->ch != 0) {
+	g = sdl_glyph(c->ch, (c->attr & SA_BOLD) != 0);
+	if (g->tex) {
+	    dst.x = box.x;
+	    dst.y = box.y;
+	    dst.w = g->w;
+	    dst.h = g->h;
+	    /* A glyph wider than the cells it was given is squeezed rather
+	       than allowed to bleed into the next column. */
+	    if (dst.w > box.w) dst.w = box.w;
+	    SDL_SetTextureColorMod(g->tex, (Uint8) fr, (Uint8) fg, (Uint8) fb);
+	    SDL_RenderCopy(sdl_ren, g->tex, (SDL_Rect *) 0, &dst);
+	}
+    }
+
+    if (c->attr & SA_ULINE) {
+	SDL_SetRenderDrawColor(sdl_ren, (Uint8) fr, (Uint8) fg, (Uint8) fb, 255);
+	SDL_RenderDrawLine(sdl_ren, box.x, box.y + cell_h - 1,
+			   box.x + box.w - 1, box.y + cell_h - 1);
+    }
+}
+
+static void
+sdl_repaint()
+{
+    int x, y;
+    SDL_Rect cur;
+
+    if (!sdl_ren) return;
+
+    SDL_SetRenderDrawColor(sdl_ren, BG_R, BG_G, BG_B, 255);
+    SDL_RenderClear(sdl_ren);
+
+    for (y = 0; y < grid_rows; y++)
+	for (x = 0; x < grid_cols; x++)
+	    sdl_draw_cell(x, y);
+
+    if (cur_x >= 0 && cur_x < grid_cols && cur_y >= 0 && cur_y < grid_rows) {
+	cur.x = cur_x * cell_w;
+	cur.y = cur_y * cell_h + cell_h - 2;
+	cur.w = cell_w;
+	cur.h = 2;
+	SDL_SetRenderDrawColor(sdl_ren, 220, 220, 100, 255);
+	SDL_RenderFillRect(sdl_ren, &cur);
+    }
+
+    sdl_shot_if_asked();
+    SDL_RenderPresent(sdl_ren);
+    grid_dirty = FALSE;
+}
+
+/* ---------------------------------------------------------------- */
+/* input								*/
+/* ---------------------------------------------------------------- */
+
+#define KQ_SIZE 256
+static unsigned char kq[KQ_SIZE];
+static int kq_head = 0, kq_tail = 0;
+
+/* A scripted key stream, for the headless A3/A4 harnesses. */
+static char *script = 0;
+static int script_pos = 0, script_len = 0;
+
+static void
+sdl_queue_byte(b)
+int b;
+{
+    int nxt = (kq_tail + 1) % KQ_SIZE;
+
+    if (nxt == kq_head) return;		/* full; drop, as a tty would */
+    kq[kq_tail] = (unsigned char) b;
+    kq_tail = nxt;
+}
+
+static void
+sdl_queue_text(s)
+const char *s;
+{
+    /* SDL hands us UTF-8.  Stock NetHack is a byte-per-character game,
+       so anything outside Latin-1 has nowhere to go and is dropped. */
+    const unsigned char *p = (const unsigned char *) s;
+
+    while (*p) {
+	if (*p < 0x80) {
+	    sdl_queue_byte(*p);
+	    p++;
+	} else if ((p[0] & 0xE0) == 0xC0 && p[1]) {
+	    long cp = ((long) (p[0] & 0x1F) << 6) | (p[1] & 0x3F);
+	    if (cp < 0x100L) sdl_queue_byte((int) cp);
+	    p += 2;
+	} else {
+	    while (*p && (*p & 0xC0) == 0x80) p++;
+	    if (*p) p++;
+	}
+    }
+}
+
+/* Direction keys.  Stock 3.2.3 has no escape-sequence decoder, so arrows
+   are translated here into the movement letters the game already knows. */
+static int
+sdl_dirkey(sym, numpad)
+int sym;
+boolean numpad;
+{
+    switch (sym) {
+    case SDLK_LEFT:	case SDLK_KP_4:	return numpad ? '4' : 'h';
+    case SDLK_RIGHT:	case SDLK_KP_6:	return numpad ? '6' : 'l';
+    case SDLK_UP:	case SDLK_KP_8:	return numpad ? '8' : 'k';
+    case SDLK_DOWN:	case SDLK_KP_2:	return numpad ? '2' : 'j';
+    case SDLK_HOME:	case SDLK_KP_7:	return numpad ? '7' : 'y';
+    case SDLK_PAGEUP:	case SDLK_KP_9:	return numpad ? '9' : 'u';
+    case SDLK_END:	case SDLK_KP_1:	return numpad ? '1' : 'b';
+    case SDLK_PAGEDOWN:	case SDLK_KP_3:	return numpad ? '3' : 'n';
+    case SDLK_KP_5:				return numpad ? '5' : '.';
+    }
+    return 0;
+}
+
+static void
+sdl_queue_key(ks)
+SDL_Keysym *ks;
+{
+    int sym = ks->sym;
+    int mod = ks->mod;
+    int d;
+
+    /*
+     * Only keys that do not also produce an SDL_TEXTINPUT event are
+     * handled here; otherwise every letter would arrive twice.
+     */
+    switch (sym) {
+    case SDLK_ESCAPE:		sdl_queue_byte('\033'); return;
+    case SDLK_RETURN:
+    case SDLK_KP_ENTER:		sdl_queue_byte('\n'); return;
+    case SDLK_BACKSPACE:	sdl_queue_byte('\b'); return;
+    case SDLK_DELETE:		sdl_queue_byte('\177'); return;
+    case SDLK_TAB:		sdl_queue_byte('\t'); return;
+    }
+
+    d = sdl_dirkey(sym, (boolean) (iflags.num_pad != 0));
+    if (d) {
+	/* shift/ctrl on a direction means "run"/"rush", as in the tty port */
+	if (!iflags.num_pad && (mod & KMOD_SHIFT)) d = SDL_HIGHC(d);
+	else if (!iflags.num_pad && (mod & KMOD_CTRL)) d = C(d);
+	sdl_queue_byte(d);
+	return;
+    }
+
+    if ((mod & KMOD_CTRL) && sym >= SDLK_a && sym <= SDLK_z) {
+	sdl_queue_byte(C(sym));
+	return;
+    }
+    if ((mod & KMOD_CTRL) && sym == SDLK_LEFTBRACKET) {
+	sdl_queue_byte('\033');
+	return;
+    }
+}
+
+static void
+sdl_resize(w, h)
+int w, h;
+{
+    int cols = w / cell_w;
+    int rows = h / cell_h;
+
+    if (cols < SDL_MIN_COLS) cols = SDL_MIN_COLS;
+    if (rows < SDL_MIN_ROWS) rows = SDL_MIN_ROWS;
+    if (getenv("NH_SDL_DEBUG"))
+	fprintf(stderr, "sdl_resize %dx%d px -> %dx%d cells (was %dx%d) ttyDisplay=%p\n",
+		w, h, cols, rows, grid_cols, grid_rows, (void*)ttyDisplay);
+    if (cols == grid_cols && rows == grid_rows) return;
+
+    /* Keep whatever is still on screen, the way a terminal emulator does.
+       Without this the window goes blank until the game next repaints,
+       which for a game waiting on a keypress can be a long time. */
+    {
+	struct sdl_cell *old = grid;
+	int oldc = grid_cols, oldr = grid_rows;
+	int x, y, ncols, nrows;
+
+	grid = 0;
+	sdl_alloc_grid(cols, rows);
+	ncols = (oldc < grid_cols) ? oldc : grid_cols;
+	nrows = (oldr < grid_rows) ? oldr : grid_rows;
+	for (y = 0; y < nrows; y++)
+	    for (x = 0; x < ncols; x++)
+		CELL(x, y) = old[y * oldc + x];
+	free((genericptr_t) old);
+    }
+
+    if (cur_x >= grid_cols) cur_x = grid_cols - 1;
+    if (cur_y >= grid_rows) cur_y = grid_rows - 1;
+    wrap_pending = FALSE;
+
+    /*
+     * Deliberately leave CO and LI alone here.  wintty.c's winch() saves
+     * them, calls getwindowsz() to refresh them, and only re-lays-out if
+     * they changed -- so publishing the new size early would make it
+     * decide nothing had happened.  getwindowsz() reaches get_scr_size()
+     * below, which is where the new size becomes visible.
+     */
+#if defined(SIGWINCH) && defined(CLIPPING)
+    if (ttyDisplay) (void) raise(SIGWINCH);
+    else { CO = grid_cols; LI = grid_rows; }
+#else
+    CO = grid_cols;
+    LI = grid_rows;
+#endif
+}
+
+static void
+sdl_pump()
+{
+    SDL_Event ev;
+
+    if (!sdl_up) return;
+    while (SDL_PollEvent(&ev)) {
+	switch (ev.type) {
+	case SDL_QUIT:
+	    want_quit = TRUE;
+	    break;
+	case SDL_TEXTINPUT:
+	    sdl_queue_text(ev.text.text);
+	    break;
+	case SDL_KEYDOWN:
+	    sdl_queue_key(&ev.key.keysym);
+	    break;
+	case SDL_WINDOWEVENT:
+	    if (ev.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
+		sdl_resize(ev.window.data1, ev.window.data2);
+	    else if (ev.window.event == SDL_WINDOWEVENT_EXPOSED)
+		grid_dirty = TRUE;
+	    break;
+	}
+    }
+    if (want_quit) {
+	want_quit = FALSE;
+	/* Same contract as losing the terminal: save and get out. */
+	(void) raise(SIGHUP);
+    }
+}
+
+int
+sdl_getch()
+{
+    int c;
+
+    sdl_dump_if_asked();
+    if (grid_dirty) sdl_repaint();
+
+    if (script) {
+	if (script_pos < script_len)
+	    return (unsigned char) script[script_pos++];
+	/* Scripted run finished.  The harness wants the screen as it
+	   stands, so record it and leave without disturbing anything. */
+	sdl_repaint();
+	sdl_dump_grid();
+	_exit(0);
+    }
+
+    for (;;) {
+	sdl_pump();
+	if (kq_head != kq_tail) {
+	    c = kq[kq_head];
+	    kq_head = (kq_head + 1) % KQ_SIZE;
+	    return c;
+	}
+	if (grid_dirty) sdl_repaint();
+	SDL_WaitEventTimeout((SDL_Event *) 0, 20);
+    }
+}
+
+/* ---------------------------------------------------------------- */
+/* the tty backend interface						*/
+/* ---------------------------------------------------------------- */
+
+void
+tty_startup(wid, hgt)
+int *wid, *hgt;
+{
+    const char *env;
+    int cols = SDL_DEF_COLS, rows = SDL_DEF_ROWS;
+
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) sdl_die(SDL_GetError());
+    sdl_up = TRUE;
+    if (TTF_Init() != 0) sdl_die(TTF_GetError());
+
+    sdl_open_font();
+
+    if ((env = getenv("NETHACK_SDL_COLS")) != 0 && atoi(env) > 0)
+	cols = atoi(env);
+    if ((env = getenv("NETHACK_SDL_ROWS")) != 0 && atoi(env) > 0)
+	rows = atoi(env);
+    if (cols < SDL_MIN_COLS) cols = SDL_MIN_COLS;
+    if (rows < SDL_MIN_ROWS) rows = SDL_MIN_ROWS;
+
+    sdl_win = SDL_CreateWindow("NetHack 3.2.3 (SDL)",
+			       SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+			       cols * cell_w, rows * cell_h,
+			       SDL_WINDOW_RESIZABLE);
+    if (!sdl_win) sdl_die(SDL_GetError());
+
+    sdl_ren = SDL_CreateRenderer(sdl_win, -1, SDL_RENDERER_ACCELERATED);
+    if (!sdl_ren) sdl_ren = SDL_CreateRenderer(sdl_win, -1, 0);
+    if (!sdl_ren) sdl_die(SDL_GetError());
+    SDL_SetRenderDrawBlendMode(sdl_ren, SDL_BLENDMODE_BLEND);
+
+    sdl_alloc_grid(cols, rows);
+
+    /* Load the scripted key stream, if the harness asked for one. */
+    if ((env = getenv("NH_SDL_KEYS")) != 0) {
+	script_len = (int) strlen(env);
+	script = (char *) alloc((unsigned) (script_len + 1));
+	Strcpy(script, env);
+	script_pos = 0;
+    }
+
+    CO = grid_cols;
+    LI = grid_rows;
+    /* Non-null so tty_curs() uses cmov(); the contents are never read. */
+    CM = sdl_capname;
+    ND = CD = sdl_capname;
+    HI = HE = US = UE = sdl_capname;
+    ul_hack = FALSE;
+    AS = AE = (char *) 0;		/* no alternate character set: H3 */
+
+#ifdef TEXTCOLOR
+    {
+	int c;
+	for (c = 0; c < CLR_MAX; c++) hilites[c] = sdl_capname;
+    }
+#endif
+
+    SDL_StartTextInput();
+
+    *wid = grid_cols;
+    *hgt = grid_rows;
+
+    /* A4 runs instead of the game: it needs the grid and the font, but
+       nothing else NetHack sets up afterwards. */
+    if ((env = getenv("NH_SDL_WIDTHTEST")) != 0 && *env) {
+	sdl_width_test();
+	if (atoi(env) > 1) SDL_Delay(atoi(env));
+	tty_shutdown();
+	_exit(0);
+    }
+}
+
+void
+tty_shutdown()
+{
+    sdl_dump_if_asked();
+    sdl_free_glyphs();
+    if (font_bold) { TTF_CloseFont(font_bold); font_bold = 0; }
+    if (font_norm) { TTF_CloseFont(font_norm); font_norm = 0; }
+    if (sdl_ren) { SDL_DestroyRenderer(sdl_ren); sdl_ren = 0; }
+    if (sdl_win) { SDL_DestroyWindow(sdl_win); sdl_win = 0; }
+    if (sdl_up) {
+	TTF_Quit();
+	SDL_Quit();
+	sdl_up = FALSE;
+    }
+}
+
+/*ARGSUSED*/
+void
+tty_number_pad(state)
+int state;
+{
+    /* The keypad is decoded in sdl_dirkey() straight from iflags.num_pad,
+       so there is no terminal mode to switch. */
+    return;
+}
+
+void
+tty_start_screen()
+{
+    /* No TI/VS to emit: the window is ours from tty_startup() onward. */
+    return;
+}
+
+void
+tty_end_screen()
+{
+    clear_screen();
+    sdl_repaint();
+}
+
+/* ---- cursor ---------------------------------------------------- */
+
+void
+cmov(x, y)
+register int x, y;
+{
+    if (x < 0) x = 0;
+    if (y < 0) y = 0;
+    if (x >= grid_cols) x = grid_cols - 1;
+    if (y >= grid_rows) y = grid_rows - 1;
+    cur_x = x;
+    cur_y = y;
+    wrap_pending = FALSE;
+    /* ttyDisplay is not allocated until after tty_startup() returns, and
+       the A4 hook runs inside it. */
+    if (ttyDisplay) {
+	ttyDisplay->curx = x;
+	ttyDisplay->cury = y;
+    }
+    grid_dirty = TRUE;
+}
+
+void
+nocmov(x, y)
+int x, y;
+{
+    /* With direct addressing there is nothing "no-cm" about it. */
+    cmov(x, y);
+}
+
+void
+home()
+{
+    cmov(0, 0);
+}
+
+void
+backsp()
+{
+    wrap_pending = FALSE;
+    if (cur_x > 0) cur_x--;
+    grid_dirty = TRUE;
+}
+
+/* ---- output ---------------------------------------------------- */
+
+/*
+ * Place one code point at the cursor.  Control characters are given the
+ * meaning a terminal in ONLCR mode would give them, because that is what
+ * wintty.c was written against.
+ */
+void
+sdl_putcp(cp)
+int cp;
+{
+    int w, x;
+
+    if (!grid) return;
+
+    switch (cp) {
+    case '\n':
+	wrap_pending = FALSE;
+	cur_x = 0;
+	if (++cur_y >= grid_rows) {
+	    sdl_scroll_up(cur_y - grid_rows + 1);
+	    cur_y = grid_rows - 1;
+	}
+	grid_dirty = TRUE;
+	return;
+    case '\r':
+	wrap_pending = FALSE;
+	cur_x = 0;
+	grid_dirty = TRUE;
+	return;
+    case '\b':
+	backsp();
+	return;
+    case '\t':
+	wrap_pending = FALSE;
+	cur_x = (cur_x + 8) & ~7;
+	if (cur_x >= grid_cols) cur_x = grid_cols - 1;
+	grid_dirty = TRUE;
+	return;
+    case '\007':
+	tty_nhbell();
+	return;
+    case '\0':
+	return;
+    }
+
+    if (wrap_pending) sdl_wrap_now();
+
+    w = sdl_cp_width((long) cp);
+    if (cur_x + w > grid_cols) {
+	/* A double-width glyph never straddles the right margin: it moves
+	   to the next line whole.  The cell it would have half-filled is
+	   left blank rather than becoming a stray half glyph. */
+	sdl_wrap_now();
+    }
+
+    x = cur_x;
+    sdl_clear_cell(x, cur_y);		/* evict whatever was here */
+    if (w == 2) sdl_clear_cell(x + 1, cur_y);
+
+    CELL(x, cur_y).ch = cp;
+    CELL(x, cur_y).attr = (unsigned char) cur_attr;
+    CELL(x, cur_y).color = (unsigned char) cur_color;
+    CELL(x, cur_y).wide = (w == 2) ? SW_LEFT : SW_NARROW;
+    if (w == 2) {
+	CELL(x + 1, cur_y).ch = cp;
+	CELL(x + 1, cur_y).attr = (unsigned char) cur_attr;
+	CELL(x + 1, cur_y).color = (unsigned char) cur_color;
+	CELL(x + 1, cur_y).wide = SW_RIGHT;
+    }
+
+    cur_x += w;
+    if (cur_x >= grid_cols) {
+	cur_x = grid_cols - 1;
+	wrap_pending = TRUE;
+    }
+    grid_dirty = TRUE;
+}
+
+void
+xputc(c)
+char c;
+{
+    sdl_putcp((int) (unsigned char) c);
+}
+
+void
+xputs(s)
+const char *s;
+{
+    /* Only ever plain text here; capability strings all died with
+       termcap.c.  See SDL-POC-PLAN.md §4. */
+    while (*s) sdl_putcp((int) (unsigned char) *s++);
+}
+
+void
+sdl_puts(s)
+const char *s;
+{
+    xputs(s);
+    sdl_putcp('\n');
+}
+
+/*ARGSUSED*/
+void
+sdl_fputs(s, fp)
+const char *s;
+FILE *fp;
+{
+    if (fp == stdout || fp == stderr) xputs(s);
+    else (void) fputs(s, fp);
+}
+
+int
+sdl_fflush(fp)
+FILE *fp;
+{
+    if (fp == stdout || fp == (FILE *) 0) {
+	sdl_pump();
+	sdl_dump_if_asked();
+	if (grid_dirty) sdl_repaint();
+	return 0;
+    }
+    return fflush(fp);
+}
+
+/* ---- erasing --------------------------------------------------- */
+
+void
+cl_end()
+{
+    int x;
+
+    for (x = cur_x; x < grid_cols; x++) sdl_clear_cell(x, cur_y);
+    /* Clearing the right half of a double-width glyph that starts to the
+       left of the cursor would leave its left half orphaned; sdl_clear_cell
+       removes both, which is the behaviour A4 case 2 checks for. */
+    wrap_pending = FALSE;
+    grid_dirty = TRUE;
+}
+
+void
+cl_eos()
+{
+    int x, y;
+
+    for (x = cur_x; x < grid_cols; x++) sdl_clear_cell(x, cur_y);
+    for (y = cur_y + 1; y < grid_rows; y++)
+	for (x = 0; x < grid_cols; x++) sdl_clear_cell(x, y);
+    wrap_pending = FALSE;
+    grid_dirty = TRUE;
+}
+
+void
+clear_screen()
+{
+    sdl_blank_grid();
+    cur_x = cur_y = 0;
+    wrap_pending = FALSE;
+    if (ttyDisplay) {
+	ttyDisplay->curx = 0;
+	ttyDisplay->cury = 0;
+    }
+}
+
+/* ---- attributes ------------------------------------------------ */
+
+void
+standoutbeg()
+{
+    cur_attr |= SA_INVERSE;
+}
+
+void
+standoutend()
+{
+    cur_attr &= ~SA_INVERSE;
+}
+
+void
+term_start_attr(attr)
+int attr;
+{
+    switch (attr) {
+    case ATR_ULINE:	cur_attr |= SA_ULINE; break;
+    case ATR_BOLD:	cur_attr |= SA_BOLD; break;
+    case ATR_BLINK:	cur_attr |= SA_BLINK; break;
+    case ATR_INVERSE:	cur_attr |= SA_INVERSE; break;
+    case ATR_DIM:	break;
+    }
+}
+
+void
+term_end_attr(attr)
+int attr;
+{
+    switch (attr) {
+    case ATR_ULINE:	cur_attr &= ~SA_ULINE; break;
+    case ATR_BOLD:	cur_attr &= ~SA_BOLD; break;
+    case ATR_BLINK:	cur_attr &= ~SA_BLINK; break;
+    case ATR_INVERSE:	cur_attr &= ~SA_INVERSE; break;
+    case ATR_DIM:	break;
+    }
+}
+
+void
+term_start_raw_bold()
+{
+    cur_attr |= SA_BOLD;
+}
+
+void
+term_end_raw_bold()
+{
+    cur_attr &= ~SA_BOLD;
+}
+
+#ifdef TEXTCOLOR
+void
+term_start_color(color)
+int color;
+{
+    cur_color = (color >= 0 && color < CLR_MAX) ? color : NO_COLOR;
+}
+
+void
+term_end_color()
+{
+    cur_color = NO_COLOR;
+}
+
+/*ARGSUSED*/
+int
+has_color(color)
+int color;
+{
+    return 1;		/* every colour is available: it is our palette */
+}
+#endif /* TEXTCOLOR */
+
+/* ---- alternate character set ----------------------------------- */
+
+#ifdef ASCIIGRAPH
+/*
+ * These are the heart of hypothesis H3.  On a terminal, line-drawing
+ * means switching the font in and out of an alternate character set and
+ * hoping the terminal agrees about how wide the result is.  A cell grid
+ * has no alternate set to switch to: each cell already holds a code
+ * point and a width, so there is nothing to do.
+ */
+void
+graph_on()
+{
+    return;
+}
+
+void
+graph_off()
+{
+    return;
+}
+#endif
+
+/* ---- misc ------------------------------------------------------ */
+
+void
+tty_nhbell()
+{
+    if (flags.silent) return;
+    /* No audio device is opened for the experiment; flash instead. */
+    if (sdl_ren) {
+	SDL_SetRenderDrawColor(sdl_ren, 90, 90, 90, 255);
+	SDL_RenderClear(sdl_ren);
+	SDL_RenderPresent(sdl_ren);
+	SDL_Delay(20);
+	grid_dirty = TRUE;
+	sdl_repaint();
+    }
+}
+
+void
+tty_delay_output()
+{
+    if (grid_dirty) sdl_repaint();
+    sdl_pump();
+    if (!script) SDL_Delay(50);
+}
+
+/*
+ * sys/share/ioctl.c leaves getwindowsz() empty under SYSV, so this is
+ * the only place the port can learn the screen size.  It is also called
+ * by wintty.c's SIGWINCH handler, which sdl_resize() raises.
+ */
+void
+get_scr_size()
+{
+    CO = grid_cols;
+    LI = grid_rows;
+    if (getenv("NH_SDL_DEBUG"))
+	fprintf(stderr, "get_scr_size -> CO=%d LI=%d\n", CO, LI);
+}
+
+/* ---------------------------------------------------------------- */
+/* experiment hooks (SDL-POC-PLAN.md §7)				*/
+/* ---------------------------------------------------------------- */
+
+/*
+ * A3: dump the cell grid as text so it can be diffed against the tty
+ * version's screen.  Written on every flush, so the file always holds
+ * what is on screen right now.
+ */
+void
+sdl_dump_grid()
+{
+    const char *path = getenv("NH_SDL_DUMP");
+    FILE *fp;
+    int x, y, last;
+
+    if (!path || !*path || !grid) return;
+    if (!(fp = fopen(path, "w"))) return;
+
+    for (y = 0; y < grid_rows; y++) {
+	for (last = grid_cols - 1; last >= 0 && CELL(last, y).ch == ' '; last--)
+	    continue;
+	for (x = 0; x <= last; x++) {
+	    long ch = CELL(x, y).ch;
+	    if (CELL(x, y).wide == SW_RIGHT) continue;	/* already emitted */
+	    if (ch < 0x80L) {
+		(void) fputc((int) ch, fp);
+	    } else if (ch < 0x800L) {
+		(void) fputc((int) (0xC0 | (ch >> 6)), fp);
+		(void) fputc((int) (0x80 | (ch & 0x3F)), fp);
+	    } else {
+		(void) fputc((int) (0xE0 | (ch >> 12)), fp);
+		(void) fputc((int) (0x80 | ((ch >> 6) & 0x3F)), fp);
+		(void) fputc((int) (0x80 | (ch & 0x3F)), fp);
+	    }
+	}
+	(void) fputc('\n', fp);
+    }
+    (void) fclose(fp);
+}
+
+/* Save what is on screen as a BMP.  Works under the dummy video driver
+   too, so a headless run can still be inspected. */
+static void
+sdl_shot_if_asked()
+{
+    const char *path = getenv("NH_SDL_SHOT");
+    SDL_Surface *shot;
+    int w, h;
+
+    if (!path || !*path || !sdl_ren) return;
+    SDL_GetRendererOutputSize(sdl_ren, &w, &h);
+    shot = SDL_CreateRGBSurfaceWithFormat(0, w, h, 32, SDL_PIXELFORMAT_ARGB8888);
+    if (!shot) return;
+    if (SDL_RenderReadPixels(sdl_ren, (SDL_Rect *) 0, SDL_PIXELFORMAT_ARGB8888,
+			     shot->pixels, shot->pitch) == 0)
+	(void) SDL_SaveBMP(shot, path);
+    SDL_FreeSurface(shot);
+}
+
+static void
+sdl_dump_if_asked()
+{
+    static int asked = -1;
+
+    if (asked < 0) {
+	const char *p = getenv("NH_SDL_DUMP");
+	asked = (p && *p) ? 1 : 0;
+    }
+    if (asked) sdl_dump_grid();
+}
+
+/*
+ * A4: the double-width drawing test.  Runs instead of the game when
+ * NH_SDL_WIDTHTEST is set, and writes its verdict to stdout.
+ *
+ * The three cases come straight from SDL-POC-PLAN.md §7 A4:
+ *   1. a two-cell glyph at column x occupies x and x+1, and x+2 onward
+ *      is undisturbed;
+ *   2. writing a one-cell character over the right half of a two-cell
+ *      glyph does not leave a stray left half behind;
+ *   3. the result does not depend on LANG.
+ */
+void
+sdl_width_test()
+{
+    static const long kanji[] = { 0x65E5L, 0x672CL, 0x8A9EL, 0x6F22L, 0x5B57L };
+    int i, x, fail = 0;
+    const char *lang = getenv("LANG");
+
+    (void) printf("A4: double-width cell test (LANG=%s)\n",
+		  lang ? lang : "<unset>");
+    (void) printf("    cell = %dx%d px, grid = %dx%d\n",
+		  cell_w, cell_h, grid_cols, grid_rows);
+
+    /* --- case 1: occupancy and no drift ------------------------- */
+    clear_screen();
+    cmov(0, 0);
+    xputs("[");
+    for (i = 0; i < 5; i++) sdl_putcp((int) kanji[i]);
+    xputs("]END");
+
+    /* '[' at 0, five 2-cell glyphs at 1..10, ']' at 11, "END" at 12..14 */
+    for (i = 0; i < 5; i++) {
+	x = 1 + i * 2;
+	if (CELL(x, 0).ch != kanji[i] || CELL(x, 0).wide != SW_LEFT) {
+	    (void) printf("    FAIL: glyph %d not at column %d as left half\n",
+			  i, x);
+	    fail++;
+	}
+	if (CELL(x + 1, 0).wide != SW_RIGHT) {
+	    (void) printf("    FAIL: column %d is not the right half\n", x + 1);
+	    fail++;
+	}
+    }
+    if (CELL(11, 0).ch != ']') {
+	(void) printf("    FAIL: ']' landed at some column other than 11\n");
+	fail++;
+    }
+    if (CELL(12, 0).ch != 'E' || CELL(13, 0).ch != 'N' ||
+	CELL(14, 0).ch != 'D') {
+	(void) printf("    FAIL: text after the wide run drifted\n");
+	fail++;
+    }
+    if (!fail) (void) printf("    case 1 (occupancy, no drift): PASS\n");
+
+    /* --- case 2: overwriting a half ----------------------------- */
+    {
+	int before = fail;
+
+	cmov(4, 0);		/* right half of the second kanji */
+	xputc('X');
+	if (CELL(4, 0).ch != 'X' || CELL(4, 0).wide != SW_NARROW) {
+	    (void) printf("    FAIL: 'X' did not take column 4 cleanly\n");
+	    fail++;
+	}
+	if (CELL(3, 0).ch != ' ' || CELL(3, 0).wide != SW_NARROW) {
+	    (void) printf("    FAIL: orphaned left half left at column 3\n");
+	    fail++;
+	}
+
+	/* and the same via cl_end(), which is how wintty.c erases */
+	cmov(6, 0);
+	xputc('Y');		/* splits the third kanji at 5..6 */
+	cmov(6, 0);
+	cl_end();
+	for (x = 6; x < grid_cols; x++)
+	    if (CELL(x, 0).ch != ' ') {
+		(void) printf("    FAIL: cl_end left column %d dirty\n", x);
+		fail++;
+		break;
+	    }
+	if (CELL(5, 0).wide == SW_LEFT) {
+	    (void) printf("    FAIL: cl_end left a dangling left half at 5\n");
+	    fail++;
+	}
+	if (fail == before)
+	    (void) printf("    case 2 (half overwrite, cl_end): PASS\n");
+    }
+
+    /* --- case 3: locale independence ---------------------------- */
+    {
+	int before = fail;
+	static const char *const langs[] = {
+	    "C", "en_US.UTF-8", "ja_JP.UTF-8", "ja_JP.eucJP", "zh_CN.UTF-8", 0
+	};
+	int saved[8], n, k;
+
+	clear_screen();
+	cmov(0, 0);
+	for (i = 0; i < 4; i++) sdl_putcp((int) kanji[i]);
+	for (n = 0; n < 8; n++) saved[n] = (int) CELL(n, 0).wide;
+
+	for (k = 0; langs[k]; k++) {
+	    (void) setlocale(LC_ALL, langs[k]);
+	    clear_screen();
+	    cmov(0, 0);
+	    for (i = 0; i < 4; i++) sdl_putcp((int) kanji[i]);
+	    for (n = 0; n < 8; n++)
+		if ((int) CELL(n, 0).wide != saved[n]) {
+		    (void) printf("    FAIL: layout changed under LANG=%s\n",
+				  langs[k]);
+		    fail++;
+		    break;
+		}
+	}
+	(void) setlocale(LC_ALL, "C");
+	if (fail == before)
+	    (void) printf("    case 3 (locale independence): PASS\n");
+    }
+
+    /* leave something on screen for the screenshot */
+    clear_screen();
+    cmov(0, 0);
+    xputs("A4: |");
+    for (i = 0; i < 5; i++) sdl_putcp((int) kanji[i]);
+    xputs("|<- columns 1..10");
+    cmov(0, 1);
+    xputs("....+....1....+....2");
+    cmov(0, 2);
+    xputs("ASCII row for comparison");
+    sdl_dump_grid();
+    sdl_repaint();
+
+    (void) printf("A4: %s (%d failure%s)\n", fail ? "FAIL" : "PASS",
+		  fail, fail == 1 ? "" : "s");
+    (void) fflush(stdout);
+}
+
+#endif /* TTY_GRAPHICS && SDL_GRAPHICS */
+
+/*sdlterm.c*/

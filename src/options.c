@@ -51,7 +51,9 @@ static struct Bool_Opt
 	{"checkpoint", (boolean *)0, FALSE},
 #endif
 #ifdef TEXTCOLOR
-# ifdef MICRO
+# if defined(MICRO) || defined(SDL_GRAPHICS)
+	/* SDL draws into its own window, so the "the terminal might be
+	   monochrome" caveat below does not apply. */
 	{"color", &iflags.use_color, TRUE},
 # else	/* systems that support multiple terminals, many monochrome */
 	{"color", &iflags.use_color, FALSE},
@@ -377,16 +379,19 @@ initoptions()
 	flags.pickup_types[0] = '\0';
 
 	switch_graphics(ASCII_GRAPHICS);	/* set default characters */
-#if defined(UNIX) && defined(TTY_GRAPHICS)
+#if defined(UNIX) && defined(TTY_GRAPHICS) && !defined(SDL_GRAPHICS)
 	/*
 	 * Set defaults for some options depending on what we can
 	 * detect about the environment's capabilities.
 	 * This has to be done after the global initialization above
 	 * and before reading user-specific initialization via
 	 * config file/environment variable below.
+	 *
+	 * Skipped for SDL_GRAPHICS: $TERM describes the terminal the game
+	 * was launched from, which is not where it draws.
 	 */
 	/* this detects the IBM-compatible console on most 386 boxes */
-	if (!strncmp(getenv("TERM"), "AT", 2)) {
+	if (getenv("TERM") && !strncmp(getenv("TERM"), "AT", 2)) {
 		switch_graphics(IBM_GRAPHICS);
 # ifdef TEXTCOLOR
 		iflags.use_color = TRUE;
@@ -394,9 +399,9 @@ initoptions()
 	}
 #endif /* UNIX && TTY_GRAPHICS */
 #if defined(UNIX) || defined(VMS)
-# ifdef TTY_GRAPHICS
+# if defined(TTY_GRAPHICS) && !defined(SDL_GRAPHICS)
 	/* detect whether a "vt" terminal can handle alternate charsets */
-	if (!strncmpi(getenv("TERM"), "vt", 2) && (AS && AE) &&
+	if (getenv("TERM") && !strncmpi(getenv("TERM"), "vt", 2) && (AS && AE) &&
 	    index(AS, '\016') && index(AE, '\017')) {
 		switch_graphics(DEC_GRAPHICS);
 	}

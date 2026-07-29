@@ -246,7 +246,13 @@
 #ifndef REDO
 #define Getchar nhgetch
 #endif
+#ifdef SDL_GRAPHICS
+/* The whole of hypothesis H4: one #define is the entire input hook. */
+extern int sdl_getch(void);
+#define tgetch sdl_getch
+#else
 #define tgetch getchar
+#endif
 
 #define SHELL		/* do not delete the '!' command */
 

@@ -130,6 +130,13 @@ SYSOBJ = ioctl.o unixmain.o unixtty.o unixunix.o
 CFLAGS = -O -I../include -std=gnu89 -fcommon
 LFLAGS =
 
+# Set SDLGRAPH=1 to build the SDL2 cell-grid backend in place of termcap.
+# See SDL-POC-PLAN.md.  Requires SDL2 and SDL2_ttf.
+SDLGRAPH =
+ifeq ($(SDLGRAPH),1)
+CFLAGS += -DSDL_GRAPHICS $(shell pkg-config --cflags sdl2 SDL2_ttf)
+endif
+
 
 # Set the WINSRC, WINOBJ, and WINLIB lines to correspond to your desired
 # combination of windowing systems.  Also set windowing systems in config.h.
@@ -138,6 +145,11 @@ LFLAGS =
 WINTTYSRC = ../win/tty/getline.c ../win/tty/termcap.c ../win/tty/topl.c \
 	../win/tty/wintty.c
 WINTTYOBJ = getline.o termcap.o topl.o wintty.o
+#
+# the same tty port with termcap.c swapped for the SDL2 cell-grid backend
+WINSDLSRC = ../win/tty/getline.c ../win/tty/sdlterm.c ../win/tty/topl.c \
+	../win/tty/wintty.c
+WINSDLOBJ = getline.o sdlterm.o topl.o wintty.o
 #
 # files for an X11 port
 # (weird format for tile.c is for "make depend"'s benefit)
@@ -149,8 +161,13 @@ WINX11OBJ = Window.o dialogs.o winX.o winmap.o winmenu.o winmesg.o \
 	winmisc.o winstat.o wintext.o winval.o tile.o
 #
 # 
+ifeq ($(SDLGRAPH),1)
+WINSRC = $(WINSDLSRC)
+WINOBJ = $(WINSDLOBJ)
+else
 WINSRC = $(WINTTYSRC)
 WINOBJ = $(WINTTYOBJ)
+endif
 
 # on some systems the termcap library is in -ltermcap or -lcurses
 # on 386 Xenix, the -ltermlib tputs() seems not to work; use -lcurses instead
@@ -167,6 +184,7 @@ WINOBJ = $(WINTTYOBJ)
 # WINTTYLIB = -lcurses16
 # libtermlib no longer exists on modern Linux; ncurses provides termcap
 WINTTYLIB = -lncurses
+WINSDLLIB = $(shell pkg-config --libs sdl2 SDL2_ttf)
 #
 # libraries for X11
 # If USE_XPM is defined in config.h, you will also need -lXpm here.
@@ -176,7 +194,11 @@ WINX11LIB = -lXaw -lXmu -lXext -lXt -lX11
 # WINX11LIB = -lXaw -lXmu -lXpm -lXext -lXt -lX11 -lSM -lICE -lm # BSD/OS 2.0
 #
 #
+ifeq ($(SDLGRAPH),1)
+WINLIB = $(WINSDLLIB)
+else
 WINLIB = $(WINTTYLIB)
+endif
 
 # any other strange libraries your system needs (for Sysunix only -- the more
 # specialized targets should already be right)
@@ -522,6 +544,9 @@ getline.o: ../win/tty/getline.c  ../include/hack.h ../include/wintty.h \
 termcap.o: ../win/tty/termcap.c  ../include/hack.h ../include/wintty.h \
 		../include/termcap.h
 	$(CC) $(CFLAGS) -c ../win/tty/termcap.c
+sdlterm.o: ../win/tty/sdlterm.c  ../include/hack.h ../include/wintty.h \
+		../include/termcap.h
+	$(CC) $(CFLAGS) -c ../win/tty/sdlterm.c
 topl.o: ../win/tty/topl.c  ../include/hack.h ../include/termcap.h \
 		../include/wintty.h
 	$(CC) $(CFLAGS) -c ../win/tty/topl.c

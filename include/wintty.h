@@ -246,6 +246,12 @@ E void FDECL(video_update_positionbar, (char *));
 # endif/*MSDOS*/
 #endif/*NO_TERMS*/
 
+#ifdef SDL_GRAPHICS
+/* Same idea as the MSDOS/WIN32CON block above: the backend owns the screen,
+   so the port's direct stdio calls have to be routed to it.  See sdlterm.h. */
+#include "sdlterm.h"
+#endif
+
 #undef E
 
 #endif /* WINTTY_H */
