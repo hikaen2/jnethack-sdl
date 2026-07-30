@@ -63,6 +63,7 @@ UTF-8 化すると常に 0（EUC 扱い）になるため、この仕組み自�
 | `doc/jGuidebook.txt` | 24,932 |
 | 生成物 | `include/jdata.h`(6,934) ← `dat/jtrnsobj.dat`(4,646) + `dat/jtrnsmon.dat`(2,324) から `makedefs` が生成 |
 | **バイト長ベタ書きの危険箇所** | **85 行** |
+| **日本語APIの呼び出し箇所** | **98 箇所 / 34 ファイル**（下表） |
 
 バイト長ベタ書きの内訳（`strncmp(bp, "の", 2)` のような「日本語1文字＝2バイト」前提。機械変換では直らない）:
 
@@ -76,6 +77,40 @@ UTF-8 化すると常に 0（EUC 扱い）になるため、この仕組み自�
 | `src/invent.c` | 4 |
 | `src/trap.c` | 2 |
 | `src/mon.c` | 1 |
+
+### 2.1 計測に関する注意 ― `grep` は使えない
+
+この環境の `grep` は **ugrep 7.5.0** で、**不正な UTF-8 を含むファイルを丸ごと黙ってスキップする**。
+EUC-JP のソースはすべてこれに当たるため、`grep` の結果は無言でゼロ件になる。ASCII だけの
+パターンでも同じで、`grep -c doengrave src/engrave.c` すら 0 件を返す。`LC_ALL=C` では
+回避できない。
+
+**必ず `grep -U` を付けるか、perl / `rg --no-require-git -a` を使うこと。**
+
+この計画書の初版はこの罠にかかっており、`is_kanji1`/`is_kanji2` や `jconj` の呼び出し箇所を
+「ほとんど無い」と誤って記録していた。下の表は `grep -U` と perl で取り直した値である。
+
+### 2.2 日本語APIの呼び出し箇所（`grep -U` 実測）
+
+| 関数 | 箇所数 | 主な呼び出し元 |
+|---|---|---|
+| `jconj_adj` | 32 | `seffects`(8), `chwepon`(3), `dodip`(3), `movemon`(2), `pleased`(2) ほか |
+| `jconj` | 29 | `doengrave`(3), `getobj`(3), `m_dowear_type`(3), `dotrap`(2) ほか |
+| `is_kanji2` | 9 | `engrave.c`(3), `do_name.c`(2), `wintty.c`, `getline.c`, `topten.c` |
+| `isspace_8` | 6 | `engrave.c`(2), `files.c`(2), `options.c`(2) |
+| `is_kanji1` | 5 | `engrave.c`(2), `botl.c`, `topten.c` |
+| `split_japanese` | 5 | `topl.c`, `topten.c`, `winmesg.c`, `wintext.c` |
+| `str2ic` | 5 | `files.c`, `options.c`, `wintty.c`, `getline.c` |
+| `jrndm_replace` | 2 | `engrave.c`(2) — 刻文の劣化 |
+| `jpast` | 2 | `on_msg`, `off_msg` |
+| `setkcode` | 2 | `options.c`, `unixmain.c` |
+| `jcan` | 1 | `ggetobj` |
+| `jcannot` | 0 | 宣言のみ。未使用 |
+
+合計 98 箇所、34 ファイル。最も集中するのは `src/engrave.c`（5種類のAPI）。
+
+**`jconj` 系だけで 64 箇所ある。** 初版が「未使用かもしれない」と読み違えていた部分で、
+Phase 1 で最も慎重を要するのはここという判断は変わらない（むしろ強まった）。
 
 ## 3. 既存リテラルは3バイト上限が保証される
 
