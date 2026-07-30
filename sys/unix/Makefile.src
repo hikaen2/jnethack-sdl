@@ -63,8 +63,8 @@ endif
 
 #JP by issei(93/11/10)
 JSRC = ../japanese/jconj.c ../japanese/jtrns.c ../japanese/jlib.c \
-	../japanese/utf8.c
-JOBJ = jconj.o jtrns.o jlib.o utf8.o
+	../japanese/utf8.c ../japanese/mbchar.c
+JOBJ = jconj.o jtrns.o jlib.o utf8.o mbchar.o
 
 #NH extension by issei(99/11/10)
 EXTSRC = ../extension/nhbuf.c ../extension/nhinet.c \
@@ -729,8 +729,11 @@ winval.o: ../win/X11/winval.c  ../include/hack.h ../include/winX.h
 	$(CC) $(CFLAGS) -c ../win/X11/winval.c
 tile.o: ../src/./tile.c  ../include/hack.h
 	$(CC) $(CFLAGS) -c ../src/./tile.c
-jconj.o: ../japanese/jconj.c  ../include/hack.h
+jconj.o: ../japanese/jconj.c  ../include/hack.h ../include/mbchar.h
 	$(CC) $(CFLAGS) -c ../japanese/jconj.c
+mbchar.o: ../japanese/mbchar.c  ../include/hack.h ../include/mbchar.h \
+		../include/utf8.h
+	$(CC) $(CFLAGS) -c ../japanese/mbchar.c
 jtrns.o: ../japanese/jtrns.c  ../include/hack.h ../include/jdata.h
 	$(CC) $(CFLAGS) -c ../japanese/jtrns.c
 jlib.o: ../japanese/jlib.c  ../include/hack.h ../include/sdlterm.h

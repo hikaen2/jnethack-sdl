@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include "hack.h"
+#include "mbchar.h"
 
 #define EUC	0
 #define SJIS	1
@@ -37,22 +38,32 @@
 #define J_BA	(13*5)
 #define J_PA	(14*5)
 
-static unsigned char hira_tab[][2]={
-  {0xa4, 0xa2}, {0xa4, 0xa4}, {0xa4, 0xa6}, {0xa4, 0xa8}, {0xa4, 0xaa}, 
-  {0xa4, 0xab}, {0xa4, 0xad}, {0xa4, 0xaf}, {0xa4, 0xb1}, {0xa4, 0xb3}, 
-  {0xa4, 0xb5}, {0xa4, 0xb7}, {0xa4, 0xb9}, {0xa4, 0xbb}, {0xa4, 0xbd}, 
-  {0xa4, 0xbf}, {0xa4, 0xc1}, {0xa4, 0xc4}, {0xa4, 0xc6}, {0xa4, 0xc8}, 
-  {0xa4, 0xca}, {0xa4, 0xcb}, {0xa4, 0xcc}, {0xa4, 0xcd}, {0xa4, 0xce}, 
-  {0xa4, 0xcf}, {0xa4, 0xd2}, {0xa4, 0xd5}, {0xa4, 0xd8}, {0xa4, 0xdb}, 
-  {0xa4, 0xde}, {0xa4, 0xdf}, {0xa4, 0xe0}, {0xa4, 0xe1}, {0xa4, 0xe2}, 
-  {0xa4, 0xe4}, {0xa4, 0xa4}, {0xa4, 0xe6}, {0xa4, 0xa8}, {0xa4, 0xe8}, 
-  {0xa4, 0xe9}, {0xa4, 0xea}, {0xa4, 0xeb}, {0xa4, 0xec}, {0xa4, 0xed}, 
-  {0xa4, 0xef}, {0xa4, 0xa4}, {0xa4, 0xa6}, {0xa4, 0xa8}, {0xa4, 0xaa}, 
-  {0xa4, 0xac}, {0xa4, 0xae}, {0xa4, 0xb0}, {0xa4, 0xb2}, {0xa4, 0xb4}, 
-  {0xa4, 0xb6}, {0xa4, 0xb8}, {0xa4, 0xba}, {0xa4, 0xbc}, {0xa4, 0xbe}, 
-  {0xa4, 0xc0}, {0xa4, 0xc2}, {0xa4, 0xc5}, {0xa4, 0xc7}, {0xa4, 0xc9}, 
-  {0xa4, 0xd0}, {0xa4, 0xd3}, {0xa4, 0xd6}, {0xa4, 0xd9}, {0xa4, 0xdc}, 
-  {0xa4, 0xd1}, {0xa4, 0xd4}, {0xa4, 0xd7}, {0xa4, 0xda}, {0xa4, 0xdd},
+/*
+**      The five columns of each hiragana row: MIZEN, RENYO, SHUUSHI, KATEI,
+**      MEIREI.  jconjsub() indexes this as tab->column + n.
+**
+**      Strings rather than the byte pairs this used to hold.  The old table
+**      was {0xa4, 0xa2} and the code assigned p[1] alone, keeping the 0xa4 --
+**      which is EUC-JP's lead byte for hiragana and nothing else's.  As
+**      literals they convert with the rest of the tree in Phase 3 of
+**      UTF8-PLAN.md and no arithmetic here has to know how wide they are.
+*/
+static const char *const hira_tab[]={
+  "あ", "い", "う", "え", "お",
+  "か", "き", "く", "け", "こ",
+  "さ", "し", "す", "せ", "そ",
+  "た", "ち", "つ", "て", "と",
+  "な", "に", "ぬ", "ね", "の",
+  "は", "ひ", "ふ", "へ", "ほ",
+  "ま", "み", "む", "め", "も",
+  "や", "い", "ゆ", "え", "よ",
+  "ら", "り", "る", "れ", "ろ",
+  "わ", "い", "う", "え", "お",
+  "が", "ぎ", "ぐ", "げ", "ご",
+  "ざ", "じ", "ず", "ぜ", "ぞ",
+  "だ", "ぢ", "づ", "で", "ど",
+  "ば", "び", "ぶ", "べ", "ぼ",
+  "ぱ", "ぴ", "ぷ", "ぺ", "ぽ",
 };
 
 #define FIFTH	0
@@ -62,6 +73,18 @@ static unsigned char hira_tab[][2]={
 #define KAHEN	4
 #define NAHEN	5
 
+/*
+**      Onbin (euphonic change) applied before the TA/TE suffixes.
+**
+**      Note that SOKUON and HATSUON are swapped with respect to what they
+**      produce: the SOKUON branch writes N and the HATSUON branch writes the
+**      small TSU, which is the other way round from the terms' meanings.
+**      The names are left alone because they are only ever compared against
+**      the table above, and renaming them would silently reclassify all
+**      sixty-four verbs if one entry were missed.  The output is right --
+**      YOMU gives YONDA, UTSU gives UTTA -- which is what the golden file in
+**      test/jconj.golden pins down.
+*/
 #define NORMAL	0
 #define SOKUON	1
 #define HATSUON	2	
@@ -142,8 +165,72 @@ struct _jconj_tab {
   {(void*)0, 0, 0, 0},
 };
 
-extern unsigned char *e2sj(unsigned char *s);
-extern unsigned char *sj2e(unsigned char *s);
+
+/*
+**      The last character of s, and the one n characters from the end.
+**
+**      These replace "tmp + (len - 2)" and "tmp + (len - 4)".  Two bytes was
+**      one character only while the encoding was EUC-JP; mb_prev() asks the
+**      question the code actually meant.  See include/mbchar.h.
+*/
+static char *
+jbackup( s, n )
+     char *s;
+     int n;
+{
+  char *p = s + strlen(s);
+
+  while( n-- > 0 && p > s )
+    p = (char *)mb_prev(s, p);
+
+  return p;
+}
+
+/*
+**      Replace the character at p with the string c, keeping whatever
+**      followed p.  Returns the end of what was written, so the caller can
+**      append there without knowing how wide c was.
+*/
+static char *
+jputchar_at( p, c )
+     char *p;
+     const char *c;
+{
+  int n = strlen(c);
+
+  strcpy(p, c);
+  return p + n;
+}
+
+/*
+**      Voice the first character of the suffix: TA -> DA, TE -> DE.
+**
+**      This was "++p[3]", which incremented the low byte of the suffix's
+**      first character.  It worked because EUC-JP puts TA at A4BF and DA at
+**      A4C0, adjacent -- an accident of that encoding that UTF-8 does not
+**      repeat.  Only TA and TE ever reach here: the branch is guarded by the
+**      suffix starting with one of them.
+*/
+static void
+jdakuten( p )
+     char *p;
+{
+  static const char *const from[] = { "た", "て", 0 };
+  static const char *const to[]   = { "だ", "で" };
+  int i;
+
+  for( i=0 ; from[i] ; ++i )
+    if(!strncmp(p, from[i], strlen(from[i]))){
+      /* In place, and only this character: "たら" must come back as
+         "だら" and not lose its tail.  Voiced and unvoiced kana are the
+         same width in either encoding, so the copy cannot shift what follows. */
+      memcpy(p, to[i], strlen(to[i]));
+      return;
+    }
+}
+
+/*      Does the suffix begin with the literal c?       */
+#define SFX_IS(sfx,c)   (!strncmp((sfx), (c), sizeof(c)-1))
 
 /*
 **	conjection verb word
@@ -157,124 +244,93 @@ extern unsigned char *sj2e(unsigned char *s);
 static char *
 jconjsub( tab, jverb, sfx )
      struct _jconj_tab *tab;
-     char *jverb;
-     char *sfx;
+     const char *jverb;
+     const char *sfx;
 {
-  int len;
-  unsigned char *p;
-  static unsigned char tmp[1024];
+  char *p, *q;
+  static char tmp[1024];
 
-  len = strlen(jverb);
-  strcpy((char *)tmp, jverb );
+  strcpy(tmp, jverb);
 
-  if(!strncmp(sfx, "と", 2)){
-    strcat((char *)tmp, sfx);
-    return (char *)tmp;
+  if(SFX_IS(sfx, "と")){
+    strcat(tmp, sfx);
+    return tmp;
   }
 
   switch( tab->katsuyo_type ){
   case FIFTH:
-    p = tmp+(len-2);
-    if(!strncmp(sfx, "な", 2)){
-      if(!IC){
-	p[0]= 0xa4;
-	p[1]= hira_tab[tab->column][1];
-      }
-      else
-	memcpy(p, e2sj(hira_tab[tab->column]), 2);
-
-      strcpy((char *)p+2, sfx);
+    p = jbackup(tmp, 1);
+    if(SFX_IS(sfx, "な")){
+      q = jputchar_at(p, hira_tab[tab->column]);
+      strcpy(q, sfx);
       break;
     }
-    else if(!strncmp(sfx, "た", 2) || !strncmp(sfx, "て", 2)){
+    else if(SFX_IS(sfx, "た") || SFX_IS(sfx, "て")){
       switch( tab->onbin_type ){
       case NORMAL:
-	if(!IC)
-	  p[1]=hira_tab[tab->column+1][1];
-	else
-	  memcpy(p, e2sj(hira_tab[tab->column+1]), 2);
+	q = jputchar_at(p, hira_tab[tab->column+1]);
 	break;
       case SOKUON:
-	if(!IC)
-	  p[1]= 0xf3;
-	else
-	  memcpy(p, "ん", 2);
+        q = jputchar_at(p, "ん");
 	break;
       case HATSUON:
-	if(!IC)
-	  p[1]= 0xc3;
-	else
-	  memcpy(p, "っ", 2);
+        q = jputchar_at(p, "っ");
 	break;
       case ION:
-	if(!IC)
-	  p[1]= 0xa4;
-	else
-	  memcpy(p, "い", 2);
+        q = jputchar_at(p, "い");
+        break;
+      default:
+        q = p;
 	break;
       }
-      strcpy((char *)p+2, sfx);
-      if(tab->onbin_type==SOKUON || (tab->onbin_type==ION &&tab->column>=J_GA)){
-	if(!IC)
-	  ++p[3];
-	else
-	  ++p[3];
-/*	  memcpy(p+2, e2sj(sj2e(p+2)+1), 2);*//* sj2e() returns ptr to char* */
-      }
+      strcpy(q, sfx);
+      if(tab->onbin_type==SOKUON || (tab->onbin_type==ION && tab->column>=J_GA))
+        jdakuten(q);
       break;
     }
-    else if(!strncmp(sfx, "ば", 2)){
-      if(!IC)
-	p[1]=hira_tab[tab->column+3][1];
-      else
-	memcpy(p, e2sj(hira_tab[tab->column+3]), 2);
-      strcpy((char *)p+2, sfx);
+    else if(SFX_IS(sfx, "ば")){
+      q = jputchar_at(p, hira_tab[tab->column+3]);
+      strcpy(q, sfx);
     }
-    else if(!strncmp(sfx, "れ", 2)){
-      if(!IC)
-	p[1]=hira_tab[tab->column+3][1];
-      else
-	memcpy(p, e2sj(hira_tab[tab->column+3]), 2);
-
-      strcpy((char *)p+2, sfx+2);
+    else if(SFX_IS(sfx, "れ")){
+      q = jputchar_at(p, hira_tab[tab->column+3]);
+      /* "れば" conjugates as the KATEI form plus "ば": drop the leading
+         "れ" the caller supplied, because the stem already ends in one. */
+      strcpy(q, sfx + strlen("れ"));
     }
-    else if(!strncmp(sfx, "ま", 2)) {
-      if(!IC)
-	p[1]=hira_tab[tab->column+1][1];
-
-      else
-	memcpy(p, e2sj(hira_tab[tab->column+1]), 2);
-      strcpy((char *)p+2, sfx);
+    else if(SFX_IS(sfx, "ま")) {
+      q = jputchar_at(p, hira_tab[tab->column+1]);
+      strcpy(q, sfx);
       break;
     }
     break;
   case LOWER:
   case UPPER:
   case KAHEN:
-    p = tmp+(len-2);
-    if(!strncmp(sfx, "ば", 2)){
-      strcpy((char *)p, "れ");
-      strcpy((char *)p+2, sfx);
+    p = jbackup(tmp, 1);
+    if(SFX_IS(sfx, "ば")){
+      q = jputchar_at(p, "れ");
+      strcpy(q, sfx);
     }
-    else if(!strncmp(sfx, "れ", 2) && tab->katsuyo_type == LOWER){
-      strcpy((char *)p, "ら");
-      strcpy((char *)p+2, sfx);
+    else if(SFX_IS(sfx, "れ") && tab->katsuyo_type == LOWER){
+      q = jputchar_at(p, "ら");
+      strcpy(q, sfx);
     }
     else
-      strcpy((char *)p, sfx);
+      strcpy(p, sfx);
     break;
   case SAHEN:
-    p = tmp+(len-4);
-    if(!strncmp(sfx, "な", 2)||!strncmp(sfx, "ま", 2)||!strncmp(sfx, "た", 2)||!strncmp(sfx, "て", 2)){
-      strcpy((char *)p, "し");
-      strcpy((char *)p+2, sfx);
+    p = jbackup(tmp, 2);
+    if(SFX_IS(sfx, "な")||SFX_IS(sfx, "ま")||SFX_IS(sfx, "た")||SFX_IS(sfx, "て")){
+      q = jputchar_at(p, "し");
+      strcpy(q, sfx);
     }
-    else if(!strncmp(sfx, "ば", 2)||!strncmp(sfx, "れば", 4)){
-      strcpy((char *)p, "すれば");
+    else if(SFX_IS(sfx, "ば")||SFX_IS(sfx, "れば")){
+      strcpy(p, "すれば");
     }
     break;
   }
-  return (char *)tmp;
+  return tmp;
 }
 const char *
 jconj( jverb, sfx )
@@ -291,43 +347,63 @@ jconj( jverb, sfx )
     }
 
   for( tab=jconj_tab ; tab->main!=(void*)0 ;++tab )
-    if(len-strlen(tab->main)>0&&!strcmp(jverb+(len-strlen(tab->main)), tab->main))
+    if(len-(int)strlen(tab->main)>0&&!strcmp(jverb+(len-strlen(tab->main)), tab->main))
       return jconjsub( tab, jverb, sfx );
 
 #ifdef JAPANESETEST
-  fprintf( stderr, "I don't know such word \"%s\"\n");
+  fprintf( stderr, "I don't know such word \"%s\"\n", jverb);
 #endif
   return jverb;
+}
+
+/*
+**      Does jverb end in "する"?  If so, *cut is where that begins.
+**
+**      This used to be "!strcmp(jverb + len - 4, ...)" with 4 for the two
+**      EUC-JP characters, which read before the start of the string for any
+**      verb shorter than that.  No table entry is that short, but jconj() is
+**      also reached with names the player typed.
+*/
+static boolean
+jsuru( jverb, cut )
+     const char *jverb;
+     int *cut;
+{
+  int len = strlen(jverb);
+  int n = sizeof("する")-1;
+
+  if( len < n || strcmp(jverb + len - n, "する") )
+    return FALSE;
+
+  *cut = len - n;
+  return TRUE;
 }
 
 const char *
 jcan(jverb)
      const char *jverb;
 {
-  const char *ret;
-  static unsigned char tmp[1024];
+  static char tmp[1024];
+  int cut;
 
-  int len = strlen(jverb);
-  if(!strcmp(jverb + len - 4, "する")){
-    strncpy(tmp, jverb, len-4);
-    strcpy(tmp + len-4, "できる");
+  if(jsuru(jverb, &cut)){
+    memcpy(tmp, jverb, cut);
+    strcpy(tmp + cut, "できる");
     return tmp;
   }
   else
-    ret = jconj(jverb, "れる");
-
-  return ret;
+    return jconj(jverb, "れる");
 }
 const char *
 jcannot(jverb)
      const char *jverb;
 {
-  static unsigned char tmp[1024];
+  static char tmp[1024];
+  int cut;
 
-  int len = strlen(jverb);
-  if(!strcmp(jverb + len - 4, "する")){
-    strncpy(tmp, jverb, len-4);
-    strcpy(tmp +len-4, "できない");
+  if(jsuru(jverb, &cut)){
+    memcpy(tmp, jverb, cut);
+    strcpy(tmp + cut, "できない");
     return tmp;
   }
   else
@@ -346,30 +422,32 @@ jpast(jverb)
 **
 **	Example:
 **
-**	形容詞的用法	   副詞的用法
+**      連体形             連用形
 **
 **	赤い		-> 赤く		(形容詞)
-**	綺麗な		-> 綺麗に	(形容動詞)
-**	綺麗だ		-> 綺麗に	(形容動詞)
+**	静かだ		-> 静かに	(形容動詞)
+**
+**      The example lines that used to sit here described verbs -- ぶつ to
+**      ぶち and so on -- which is not what the code does and never was.
 */
 const char *
 jconj_adj( jadj )
      const char *jadj;
 {
-  int len;
-  static unsigned char tmp[1024];
+  char *p;
+  static char tmp[1024];
 
-  strcpy((char *)tmp, jadj);
-  len = strlen((char *)tmp);
+  strcpy(tmp, jadj);
+  p = jbackup(tmp, 1);
 
-  if(!strcmp((char *)tmp+len-2, "い"))
-    strcpy((char *)tmp+len-2, "く");
-  else if(!strcmp((char *)tmp+len-2, "だ")||
-	  !strcmp((char *)tmp+len-2, "な")||
-	  !strcmp((char *)tmp+len-2, "の"))
-    strcpy((char *)tmp+len-2, "に");
+  if(!strcmp(p, "い"))
+    strcpy(p, "く");
+  else if(!strcmp(p, "だ")||
+	  !strcmp(p, "な")||
+	  !strcmp(p, "の"))
+    strcpy(p, "に");
 
-  return (char *)tmp;
+  return tmp;
 }
 
 
