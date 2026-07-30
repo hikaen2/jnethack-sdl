@@ -175,11 +175,10 @@ width test の case 6 が `sdl_queue_text("日本語")` の UTF-8 を入れて�
 
 ---
 
-## 5. 見つかった不具合 3 件
+## 5. 見つかった不具合 4 件
 
-いずれも「実験では踏まなかったが JNetHack では踏む」ものである。
-5-1 と 5-2 は `test/compare.sh` が、5-3 は実際に 100% CPU で
-張り付いたプロセスを調べて見つけた。
+5-1 と 5-2 は `test/compare.sh` が、5-3 は実際に 100% CPU で張り付いた
+プロセスを調べて、5-4 は利用者からの報告で見つけた。
 
 ### 5-1. `putchar` マクロの二重評価
 
@@ -290,6 +289,64 @@ stdin は `/dev/null` になるので、普通の利用者が普通に踏む。
 > 別のディレクトリで再実行したら通ったのでそのまま先に進んでしまい、
 > **28 分間 CPU を焼き続けるプロセスを残した。**
 > タイムアウトそのものが調べるべき兆候だった。
+
+---
+
+### 5-4. SDL の既定がデスクトップ全体に手を出していた
+
+起動すると **KDE のコンポジタが切れる。** ウィンドウのプロパティを見れば一目である:
+
+```sh
+$ xprop -name 'JNetHack (SDL)' | grep -i bypass
+_NET_WM_BYPASS_COMPOSITOR(CARDINAL) = 1
+```
+
+SDL2 は X11 でこれを**既定で 1 にする**（`SDL_VIDEO_X11_NET_WM_BYPASS_COMPOSITOR`）。
+コンポジット型のウィンドウマネージャはこれを尊重して、
+そのウィンドウが出ている間コンポジットを止める。
+
+同じ理由で SDL は**スクリーンセーバも既定で抑止する**
+（`XScreenSaverSuspend` と `org.freedesktop.ScreenSaver` の D-Bus 経由。
+`SDL_VIDEO_ALLOW_SCREENSAVER` で制御される）。
+
+```sh
+$ strings /lib/x86_64-linux-gnu/libSDL2-2.0.so.0 | grep -iE 'bypass_compositor|allow_screensaver|ScreenSaverSuspend|org.freedesktop.ScreenSaver'
+_NET_WM_BYPASS_COMPOSITOR
+/org/freedesktop/ScreenSaver
+org.freedesktop.ScreenSaver
+SDL_VIDEO_ALLOW_SCREENSAVER
+SDL_VIDEO_X11_NET_WM_BYPASS_COMPOSITOR
+XScreenSaverSuspend
+```
+
+**どちらも全画面のアクションゲーム向けの既定**で、端末の代わりを務めるものには
+まったく合わない。フレーム遅延のために利用者のデスクトップを差し出す取引を
+ターン制のゲームがする理由はないし、NetHack はほぼ常時キー入力を待っているので、
+席を離れた利用者が戻ってきたら画面がロックされていない、というのも困る。
+
+`tty_startup()` で `SDL_CreateWindow()` の前に両方とも切った:
+
+```c
+    (void) SDL_SetHint(SDL_HINT_VIDEO_X11_NET_WM_BYPASS_COMPOSITOR, "0");
+    (void) SDL_SetHint(SDL_HINT_VIDEO_ALLOW_SCREENSAVER, "1");
+```
+
+`SDL_SetHint()`（`SDL_HINT_OVERRIDE` ではない）なので**環境変数が優先される**。
+SDL の既定に戻したい人は `SDL_VIDEO_X11_NET_WM_BYPASS_COMPOSITOR=1` /
+`SDL_VIDEO_ALLOW_SCREENSAVER=0` を設定すればよい。確認済み:
+
+```sh
+$ xprop -name 'JNetHack (SDL)' | grep -i bypass          # 既定
+（プロパティなし）
+$ SDL_VIDEO_X11_NET_WM_BYPASS_COMPOSITOR=1 ...           # 上書き
+_NET_WM_BYPASS_COMPOSITOR(CARDINAL) = 1
+```
+
+> スクリーンセーバ側は**この環境では動作を観測できていない。**
+> X の screensaver timeout が元から 0 で、KDE のロックは
+> 自前の idle サービスが握っているため、変化が見えない。
+> 上記のとおり SDL 側の既定が抑止であることは確認したので、
+> 明示的に切るのが正しいと判断した。
 
 ---
 

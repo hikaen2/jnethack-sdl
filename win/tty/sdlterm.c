@@ -1137,6 +1137,35 @@ int *wid, *hgt;
     const char *env;
     int cols = SDL_DEF_COLS, rows = SDL_DEF_ROWS;
 
+    /*
+     * Both of these have to be set before SDL_CreateWindow(), which is
+     * where SDL acts on them.
+     *
+     * SDL's defaults are tuned for a full-screen action game, and both are
+     * wrong for something standing in for a terminal:
+     *
+     *   - By default SDL puts _NET_WM_BYPASS_COMPOSITOR=1 on its window,
+     *     and a compositing window manager honours that by suspending
+     *     compositing for as long as the window is up.  On KDE the whole
+     *     desktop visibly loses its compositing the moment the game
+     *     starts.  Trading the user's desktop for frame latency is not a
+     *     bargain a turn-based game should be making.
+     *
+     *   - By default SDL also inhibits the screen saver, through
+     *     XScreenSaverSuspend and the org.freedesktop.ScreenSaver D-Bus
+     *     interface.  NetHack spends nearly all of its time waiting for a
+     *     keypress, so a player who walks away would come back to an
+     *     unlocked screen.
+     *
+     * Plain SDL_SetHint() leaves both overridable from the environment
+     * (SDL_GetHint() prefers the environment unless the priority is
+     * SDL_HINT_OVERRIDE), so anyone who wants SDL's defaults back can set
+     * SDL_VIDEO_X11_NET_WM_BYPASS_COMPOSITOR=1 or
+     * SDL_VIDEO_ALLOW_SCREENSAVER=0.
+     */
+    (void) SDL_SetHint(SDL_HINT_VIDEO_X11_NET_WM_BYPASS_COMPOSITOR, "0");
+    (void) SDL_SetHint(SDL_HINT_VIDEO_ALLOW_SCREENSAVER, "1");
+
     if (SDL_Init(SDL_INIT_VIDEO) != 0) sdl_die(SDL_GetError());
     sdl_up = TRUE;
     if (TTF_Init() != 0) sdl_die(TTF_GetError());
