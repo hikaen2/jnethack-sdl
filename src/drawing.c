@@ -392,7 +392,12 @@ static uchar ibm_graphics[MAXPCHARS] = {
 #endif
 #endif  /* ASCIIGRAPH */
 
-#ifdef TERMLIB
+/* SDL_GRAPHICS wants the DEC line-drawing table too, and not as a terminal
+   feature: win/tty/sdlterm.c maps the bytes dec_graphics[] selects to
+   Unicode box-drawing characters and draws them itself.  The Windows
+   build has no TERMLIB -- include/ntconf.h sets NO_TERMS -- so gating on
+   TERMLIB alone would leave its map walls as plain - and |. */
+#if defined(TERMLIB) || defined(SDL_GRAPHICS)
 void NDECL((*decgraphics_mode_callback)) = 0;  /* set in tty_start_screen() */
 
 static uchar dec_graphics[MAXPCHARS] = {
@@ -486,7 +491,7 @@ static uchar dec_graphics[MAXPCHARS] = {
 	0xf3,	/* S_explode8:	meta-s, low horizontal line */
 	g_FILLER(S_explode9)
 };
-#endif  /* TERMLIB */
+#endif  /* TERMLIB || SDL_GRAPHICS */
 
 #ifdef MAC_GRAPHICS_ENV
 static uchar mac_graphics[MAXPCHARS] = {
@@ -657,7 +662,7 @@ int gr_set_flag;
 #endif
 	    break;
 #endif /* ASCIIGRAPH */
-#ifdef TERMLIB
+#if defined(TERMLIB) || defined(SDL_GRAPHICS)
 	case DEC_GRAPHICS:
 /*
  * Use the VT100 line drawing character set.
@@ -680,7 +685,7 @@ int gr_set_flag;
 #endif
 	    if (decgraphics_mode_callback) (*decgraphics_mode_callback)();
 	    break;
-#endif /* TERMLIB */
+#endif /* TERMLIB || SDL_GRAPHICS */
 #ifdef MAC_GRAPHICS_ENV
 	case MAC_GRAPHICS:
 	    assign_graphics(mac_graphics, SIZE(mac_graphics), MAXPCHARS, 0);

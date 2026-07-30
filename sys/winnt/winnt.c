@@ -10,11 +10,15 @@
  */
 
 #define NEED_VARARGS
+/* win32api.h ahead of hack.h: <windows.h> has parameters named
+   Protection, Warning and Confusion, which include/youprop.h turns into
+   u.uprops[...] expressions.  See the same note in extension/nhbuf.c. */
+#include "win32api.h"
+#undef TRUE             /* include/global.h defines its own, unguarded */
+#undef FALSE
 #include "hack.h"
-#include <dos.h>
 #include <direct.h>
 #include <ctype.h>
-#include "win32api.h"
 
 #ifdef WIN32
 
@@ -160,13 +164,31 @@ void
 nt_regularize(s)	/* normalize file name */
 register char *s;
 {
-	register char *lp;
+/*JP	register char *lp;*/
+	register unsigned char *lp;
 
-	for (lp = s; *lp; lp++)
+	for (lp = (unsigned char *)s; *lp; lp++) {
+/*JP
+ * Two-byte characters have to survive: this runs over the player name on
+ * its way to the save and lock file names, and the stock loop below maps
+ * every byte over 127 to '_', which would collapse all Japanese names to
+ * the same file.  sys/share/pcunix.c does the same thing for the non-WIN32
+ * PC ports; the only reason that copy is not used here is that it sits
+ * inside a "#ifndef WIN32".
+ *
+ * The resulting name is not valid CP932 on an NTFS volume, but neither is
+ * it on the Unix side, and the bytes are preserved either way, which is
+ * all the caller needs.
+ */
+            if (is_kanji(*lp) && lp[1]) {
+                lp++;
+                continue;
+            }
 	    if ( *lp == '?' || *lp == '"' || *lp == '\\' ||
 		 *lp == '/' || *lp == '>' || *lp == '<'  ||
 		 *lp == '*' || *lp == '|' || *lp == ':' || (*lp > 127))
 			*lp = '_';
+        }
 }
 
 

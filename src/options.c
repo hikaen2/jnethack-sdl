@@ -69,7 +69,12 @@ static struct Bool_Opt
 	{"color", (boolean *)0, FALSE},
 #endif
 	{"confirm",&flags.confirm, TRUE},
-#ifdef TERMLIB
+/* SDL_GRAPHICS wants the DEC line-drawing table too, and not as a terminal
+   feature: win/tty/sdlterm.c maps the bytes dec_graphics[] selects to
+   Unicode box-drawing characters and draws them itself.  The Windows
+   build has no TERMLIB -- include/ntconf.h sets NO_TERMS -- so gating on
+   TERMLIB alone would leave its map walls as plain - and |. */
+#if defined(TERMLIB) || defined(SDL_GRAPHICS)
 	{"DECgraphics", &iflags.DECgraphics, FALSE},
 #else
 	{"DECgraphics", (boolean *)0, FALSE},
@@ -451,7 +456,7 @@ initoptions()
 	flags.pickup_types[0] = '\0';
 
 	switch_graphics(ASCII_GRAPHICS);	/* set default characters */
-#if defined(SDL_GRAPHICS) && defined(TERMLIB)
+#ifdef SDL_GRAPHICS
         /*
          * The SDL backend translates the line-drawing bytes this selects
          * into Unicode box-drawing characters and draws them itself, so the
@@ -1451,9 +1456,9 @@ goodfruit:
 
 			*(boolopt[i].addr) = !negated;
 
-#if defined(TERMLIB) || defined(ASCIIGRAPH) || defined(MAC_GRAPHICS_ENV)
+#if defined(TERMLIB) || defined(SDL_GRAPHICS) || defined(ASCIIGRAPH) || defined(MAC_GRAPHICS_ENV)
 			if (FALSE
-# ifdef TERMLIB
+# if defined(TERMLIB) || defined(SDL_GRAPHICS)
 				 || (boolopt[i].addr) == &iflags.DECgraphics
 # endif
 # ifdef ASCIIGRAPH
@@ -1468,7 +1473,7 @@ goodfruit:
 				assign_rogue_graphics(FALSE);
 # endif
 			    need_redraw = TRUE;
-# ifdef TERMLIB
+# if defined(TERMLIB) || defined(SDL_GRAPHICS)
 			    if ((boolopt[i].addr) == &iflags.DECgraphics)
 				switch_graphics(iflags.DECgraphics ?
 						DEC_GRAPHICS : ASCII_GRAPHICS);
@@ -1488,7 +1493,7 @@ goodfruit:
 				assign_rogue_graphics(TRUE);
 # endif
 			}
-#endif /* TERMLIB || ASCIIGRAPH || MAC_GRAPHICS_ENV */
+#endif /* TERMLIB || SDL_GRAPHICS || ASCIIGRAPH || MAC_GRAPHICS_ENV */
 
 			/* only do processing below if setting with doset() */
 			if (initial) return;

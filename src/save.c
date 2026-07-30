@@ -50,7 +50,7 @@ static long nulls[10];
 #define nulls nul
 #endif
 
-#if defined(UNIX) || defined(VMS)
+#if defined(UNIX) || defined(VMS) || defined(SDL_GRAPHICS)
 #define HUP	if (!program_state.done_hup)
 #else
 #define HUP
@@ -68,7 +68,7 @@ dosave()
 		clear_nhwindow(WIN_MESSAGE);
 /*JP		pline("Saving...");*/
 		pline("保存中．．．");
-#if defined(UNIX) || defined(VMS)
+#if defined(UNIX) || defined(VMS) || defined(SDL_GRAPHICS)
 		program_state.done_hup = 0;
 #endif
 		if(dosave0()) {
@@ -83,7 +83,11 @@ dosave()
 }
 
 
-#if defined(UNIX) || defined(VMS)
+/* SDL_GRAPHICS: the backend calls this directly when the window is closed.
+   On Unix it does so through raise(SIGHUP), but Windows has no SIGHUP and
+   no signal() handler to install it on, so the function itself has to
+   exist there too.  See sdl_pump() in win/tty/sdlterm.c. */
+#if defined(UNIX) || defined(VMS) || defined(SDL_GRAPHICS)
 /*ARGSUSED*/
 void
 hangup(sig_unused)  /* called as signal() handler, so sent at least one arg */

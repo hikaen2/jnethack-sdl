@@ -9,6 +9,18 @@
 
 #define E extern
 
+/*
+ * Everything this file hand-declares for MICRO ports dates from compilers
+ * that had no usable headers of their own.  MinGW-w64 does, and where the
+ * two disagree the CRT wins: its <time.h> makes time() and localtime()
+ * static inlines, which an earlier extern declaration turns into an error,
+ * and its size_t is 64 bits where the MICRO typedef below says int.
+ * NHSYS_CRT_HEADERS marks the declarations to leave to the system.
+ */
+#ifdef __MINGW32__
+#define NHSYS_CRT_HEADERS
+#endif
+
 /* some old <sys/types.h> may not define off_t and size_t; if your system is
  * one of these, define them by hand below
  */
@@ -20,7 +32,8 @@
 # endif
 #endif
 
-#if (defined(MICRO) && !defined(TOS)) || defined(ANCIENT_VAXC)
+#if ((defined(MICRO) && !defined(TOS)) || defined(ANCIENT_VAXC)) \
+        && !defined(NHSYS_CRT_HEADERS)
 # if !defined(_SIZE_T) && !defined(__size_t) /* __size_t for CSet/2 */
 #  define _SIZE_T
 #  if !((defined(MSDOS) || defined(OS2)) && defined(_SIZE_T_DEFINED)) /* MSC 5.1 */
@@ -202,7 +215,7 @@ E int FDECL(dup2, (int, int));
 E int FDECL(setmode, (int,int));
 E int NDECL(kbhit);
 # if !defined(_DCC)
-#  if defined(__TURBOC__)
+#  if defined(__TURBOC__) || defined(NHSYS_CRT_HEADERS)
 E int FDECL(chdir, (const char *));
 #  else
 E int FDECL(chdir, (char *));
@@ -373,16 +386,20 @@ E int FDECL(setuid, (int));
 /*# string(s).h #*/
 #ifndef _XtIntrinsic_h	/* <X11/Intrinsic.h> #includes <string[s].h> */
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(WIN32)
 /*
  * On glibc the header is both correct and complete, and it covers the
  * functions this file does not declare at all -- memset, memcpy, strstr,
  * strncasecmp -- which otherwise compile as implicit declarations.  (The
  * mem* prototypes further up were already commented out because they
  * disagreed with the system's.)
+ *
+ * MinGW-w64's <string.h> is the same story; it just has no <strings.h>.
  */
 #include <string.h>
+#ifndef WIN32
 #include <strings.h>
+#endif
 #else
 #if (defined(ULTRIX) || defined(NeXT)) && defined(__GNUC__)
 #include <strings.h>
@@ -515,6 +532,7 @@ E genericptr_t FDECL(malloc, (size_t));
 
 /* time functions */
 
+#ifndef NHSYS_CRT_HEADERS
 # ifndef LATTICE
 #  if !(defined(ULTRIX_PROTO) && defined(__GNUC__))
 E struct tm *FDECL(localtime, (const time_t *));
@@ -526,6 +544,7 @@ E time_t FDECL(time, (time_t *));
 # else
 E long FDECL(time, (time_t *));
 # endif /* ULTRIX */
+#endif /* NHSYS_CRT_HEADERS */
 
 #ifdef VMS
 	/* used in makedefs.c, but missing from gcc-vms's <time.h> */

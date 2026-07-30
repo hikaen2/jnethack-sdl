@@ -10,6 +10,22 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <ctype.h>
+#if defined(WIN32) || defined(_WIN32)   /* config.h has not been read yet */
+/*
+ * Ahead of hack.h on purpose.  <windows.h> has parameters named
+ * Protection, Warning and Confusion, and include/youprop.h turns those
+ * identifiers into u.uprops[...] expressions, so the Windows headers have
+ * to be parsed while they still mean what they say.  WIN32_LEAN_AND_MEAN
+ * additionally keeps out <rpcndr.h>, which typedefs boolean.
+ */
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+#include <winsock.h>
+#undef TRUE             /* include/global.h defines its own, unguarded */
+#undef FALSE
+#endif
+
 #include "hack.h"
 
 #ifndef WIN32
@@ -21,8 +37,6 @@
 
 #include <setjmp.h>
 #include <signal.h>
-#else
-#include <winsock.h>
 #endif
 
 static char	*errstr;

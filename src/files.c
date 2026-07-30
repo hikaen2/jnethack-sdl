@@ -26,7 +26,9 @@ extern int errno;
 #endif
 
 #if defined(MSDOS) || defined(OS2) || defined(TOS) || defined(WIN32)
-# ifndef GNUDOS
+/* MinGW-w64 takes the portable spelling, and the backslash form does not
+   survive a cross build on a case-sensitive host filesystem anyway. */
+# if !defined(GNUDOS) && !defined(__MINGW32__)
 #include <sys\stat.h>
 # else
 #include <sys/stat.h>

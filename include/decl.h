@@ -135,7 +135,10 @@ E struct linfo level_info[MAXLINFO];
 
 E NEARDATA struct sinfo {
 	int stopprint;		/* game over, inhibit further disclosure */
-#if defined(UNIX) || defined(VMS)
+/* SDL_GRAPHICS: the backend calls hangup() itself when the window is
+   closed, so this flag is needed wherever that build runs -- including
+   Windows, which has no SIGHUP.  See sdl_pump() in win/tty/sdlterm.c. */
+#if defined(UNIX) || defined(VMS) || defined(SDL_GRAPHICS)
 	int done_hup;		/* SIGHUP or moral equivalent received
 				 * -- no more screen output */
 #endif

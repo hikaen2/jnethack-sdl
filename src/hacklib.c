@@ -443,7 +443,7 @@ setrandom()
 # if defined(BSD) || defined(ULTRIX)
                 srandom((int) s);
 # else
-#  ifdef UNIX
+#  if defined(UNIX) || defined(WIN32)   /* WIN32: sys/share/rand48.c */
                 srand48(s);
 #  else
                 srand((int) s);
@@ -470,7 +470,7 @@ setrandom()
 		srandom((int) time((time_t *)0));
 #  endif
 # else
-#  ifdef UNIX	/* system srand48() */
+#  if defined(UNIX) || defined(WIN32)   /* srand48(); sys/share/rand48.c on WIN32 */
 	srand48((long) time((time_t *)0));
 #  else		/* poor quality system routine */
 	srand((int) time((time_t *)0));

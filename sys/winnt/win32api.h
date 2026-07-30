@@ -15,6 +15,17 @@
 # pragma pack(8)
 # endif
 
+/*
+ * Without this, <windows.h> drags in <rpc.h>, whose <rpcndr.h> does an
+ * unguarded "typedef unsigned char boolean" -- and NetHack has had its own
+ * boolean since 1985.  Nothing here needs RPC, OLE, or the shell API, and
+ * leaving them out also keeps youprop.h's Protection/Warning/Confusion
+ * macros from colliding with the parameter names in those headers.
+ */
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+
 #include <windows.h>
 
 # if defined(_MSC_VER)

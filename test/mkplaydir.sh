@@ -1,7 +1,11 @@
 #!/bin/sh
 # Build a throwaway HACKDIR from the compiled dat/ directory.
 #
-#   ./test/mkplaydir.sh /path/to/playdir
+#   ./test/mkplaydir.sh /path/to/playdir            # from dat/
+#   ./test/mkplaydir.sh /path/to/playdir datwin/dat # for src/jnethack.exe
+#
+# The Windows binary needs the second form: its level files are laid out
+# for LLP64 and dat/ holds LP64 ones.  See sys/unix/Makefile.dat.
 #
 # Safe to re-run: it wipes saves and stale lock files, so a run killed
 # mid-game does not leave the next one waiting on perm_lock.
@@ -11,13 +15,14 @@
 # copied under those names and not renamed.
 set -e
 
-dir=${1:?usage: mkplaydir.sh DIR}
+dir=${1:?usage: mkplaydir.sh DIR [datdir]}
+srcdat=${2:-dat}
 here=$(cd "$(dirname "$0")/.." && pwd)
 
 mkdir -p "$dir/save"
 rm -f "$dir"/*_lock "$dir"/save/* "$dir"/[0-9]*
 
-cd "$here/dat"
+cd "$here/$srcdat"
 cp -f *.lev data joracles options quest.dat jrumors license \
       jhelp jhh jcmdhelp jhistory jopthelp jwizhelp jjj dungeon "$dir/"
 

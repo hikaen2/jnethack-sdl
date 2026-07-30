@@ -41,6 +41,17 @@ SYSSRC = ../sys/share/ioctl.c ../sys/share/unixtty.c ../sys/unix/unixmain.c \
 	../sys/unix/unixunix.c
 SYSOBJ = ioctl.o unixmain.o unixtty.o unixunix.o
 #
+# for Windows via MinGW-w64 (MINGW=1).  unixmain.c wants <pwd.h>, getuid()
+# and signal(SIGHUP); unixtty.c and ioctl.c include <termios.h> outside
+# their #ifdefs.  The PC main is the supported route, and sys/winnt/nttty.c
+# is not in the list because sdlterm.c already provides everything it would
+# (gettty, settty, setftty, get_scr_size, xputc, xputs, tgetch).
+ifeq ($(MINGW),1)
+SYSSRC = ../sys/share/pcmain.c ../sys/share/pcsys.c ../sys/share/pcunix.c \
+	../sys/winnt/winnt.c
+SYSOBJ = pcmain.o pcsys.o pcunix.o winnt.o
+endif
+#
 # for Systos
 # SYSSRC = ../sys/atari/tos.c ../sys/share/pcmain.c ../sys/share/pcsys.c \
 #	../sys/share/pctty.c ../sys/share/pcunix.c
@@ -142,11 +153,44 @@ CC = gcc
 CFLAGS = -O2 -Wall -I../include -std=gnu89 -fcommon
 LFLAGS = -O2
 
+# Set MINGW=1 to cross-compile the SDL backend for Windows with MinGW-w64.
+# Implies SDLGRAPH=1.  See SDL-WINDOWS-PLAN.md.
+#
+# The toolchain is selected inside this file rather than on the make command
+# line because a command-line CC= propagates through MAKEFLAGS into the
+# ../util sub-makes.  MINGW=1 is meant to propagate -- ../util/Makefile has
+# a matching switch and its products are then run under wine -- but which
+# compiler each directory uses has to stay that directory's decision.
+#
+# SDLROOT is where the MinGW SDL2 and SDL2_ttf development packages from
+# libsdl.org were unpacked (they are not in apt).  Override on the command
+# line if yours are elsewhere.
+MINGW =
+SDLROOT = $(HOME)/opt/mingw-sdl2
+MINGW_PREFIX = x86_64-w64-mingw32-
+X =
+RUN =
+ifeq ($(MINGW),1)
+SDLGRAPH = 1
+CC = $(MINGW_PREFIX)gcc
+# ../util is crossed too and its products run under wine; see Makefile.utl.
+X = .exe
+RUN = wine
+# -DWIN32 is belt and braces: include/config.h derives it from _WIN32 now,
+# but makedefs is not rebuilt for this target and other tools may not.
+# -I../sys/winnt is for win32api.h, which the PC sources include by name.
+CFLAGS += -DWIN32 -I../sys/winnt -I$(SDLROOT)/include -I$(SDLROOT)/include/SDL2
+endif
+
 # Set SDLGRAPH=1 to build the SDL2 cell-grid backend in place of termcap.
 # Requires SDL2 and SDL2_ttf.  See SDL-PORT.md.
-SDLGRAPH =
+# (?=, not =: the MINGW block above has already turned it on.)
+SDLGRAPH ?=
 ifeq ($(SDLGRAPH),1)
-CFLAGS += -DSDL_GRAPHICS $(shell pkg-config --cflags sdl2 SDL2_ttf)
+CFLAGS += -DSDL_GRAPHICS
+ifneq ($(MINGW),1)
+CFLAGS += $(shell pkg-config --cflags sdl2 SDL2_ttf)
+endif
 endif
 
 # Set the WINSRC, WINOBJ, and WINLIB lines to correspond to your desired
@@ -203,6 +247,12 @@ endif
 # libtermlib no longer exists on modern Linux; ncurses provides termcap
 WINTTYLIB = -lncurses
 WINSDLLIB = $(shell pkg-config --libs sdl2 SDL2_ttf)
+ifeq ($(MINGW),1)
+# No -lSDL2main and no -mwindows: sdlterm.c defines SDL_MAIN_HANDLED so that
+# main() stays the one in sys/share/pcmain.c, and a console subsystem binary
+# keeps raw_print()/panic()/NH_SDL_DEBUG output visible.
+WINSDLLIB = -L$(SDLROOT)/lib -lSDL2_ttf -lSDL2
+endif
 #
 # libraries for X11
 # If USE_XPM is defined in config.h, you will also need -lXpm here.
@@ -248,6 +298,11 @@ endif
 #
 LIBS =
 
+ifeq ($(MINGW),1)
+# extension/nhinet.c reports scores over <winsock.h>
+LIBS = -lwsock32
+endif
+
 # make NetHack
 #JP by issei(96/5/27)
 #GAME     = nethack
@@ -258,6 +313,13 @@ GAME     = jnethack
 # RANDOBJ = random.o
 RANDOBJ =
 
+ifeq ($(MINGW),1)
+GAME = jnethack.exe
+# Not sys/share/random.c: include/ntconf.h leaves RANDOM undefined so that
+# Rand() is lrand48() as it is on Unix, which MinGW's CRT lacks.
+RANDOBJ = rand48.o
+endif
+
 
 
 # ----------------------------------------
@@ -267,7 +329,7 @@ RANDOBJ =
 # Other things that have to be reconfigured are in config.h,
 # {unixconf.h, pcconf.h, tosconf.h}, and possibly system.h
 
-MAKEDEFS = ../util/makedefs
+MAKEDEFS = ../util/makedefs$(X)
 
 # all .c that are part of the main NetHack program and are not operating- or
 # windowing-system specific
@@ -401,20 +463,31 @@ all:	$(GAME)
 
 # special rules, to force update of makedefs, real dependencies should be
 # below in the 'make depend' output.
+#
+# ../util/makedefs links monst.o and objects.o, so rebuilding either of them
+# has to invalidate it.  Not when cross-compiling: monst.o is then a Windows
+# object that the host makedefs cannot link, and everything makedefs
+# generates (onames.h, pm.h, monstr.c, vis_tab.c, jdata.h, date.h) is an
+# input to this build, produced by the host build that has to run first.
+MAKEDEFS_STALE = rm -f $(MAKEDEFS)
+ifeq ($(MINGW),1)
+MAKEDEFS_STALE = :
+endif
+
 monst.o:
 	$(CC) $(CFLAGS) -c monst.c
-	@rm -f $(MAKEDEFS)
+	@$(MAKEDEFS_STALE)
 
 objects.o:
 	$(CC) $(CFLAGS) -c objects.c
-	@rm -f $(MAKEDEFS)
+	@$(MAKEDEFS_STALE)
 
 $(MAKEDEFS): ../util/makedefs.c  ../include/config.h ../include/permonst.h \
 		../include/objclass.h ../include/monsym.h \
 		../include/artilist.h ../include/dungeon.h ../include/obj.h \
 		../include/monst.h ../include/you.h ../include/flag.h \
 		../include/dlb.h ../include/patchlevel.h ../include/qtext.h
-	@( cd ../util ; $(MAKE) makedefs)
+	@( cd ../util ; $(MAKE) makedefs$(X))
 
 ../include/onames.h: $(MAKEDEFS)
 	@( cd ../util ; $(MAKE) ../include/onames.h )
@@ -441,7 +514,7 @@ vis_tab.c: $(MAKEDEFS)
 #	hack.h depends on makedefs' output, so we know makedefs will be
 #	up to date before being executed
 ../include/date.h:	$(VERSOURCES) ../include/hack.h
-	../util/makedefs -v
+	$(RUN) $(MAKEDEFS) -v
 
 
 lint:
@@ -587,8 +660,12 @@ pctty.o: ../sys/share/pctty.c  ../include/hack.h ../include/wintty.h
 	$(CC) $(CFLAGS) -c ../sys/share/pctty.c
 pcunix.o: ../sys/share/pcunix.c  ../include/hack.h
 	$(CC) $(CFLAGS) -c ../sys/share/pcunix.c
+winnt.o: ../sys/winnt/winnt.c  ../include/hack.h ../sys/winnt/win32api.h
+	$(CC) $(CFLAGS) -c ../sys/winnt/winnt.c
 random.o: ../sys/share/random.c  ../include/hack.h
 	$(CC) $(CFLAGS) -c ../sys/share/random.c
+rand48.o: ../sys/share/rand48.c  ../include/config.h
+	$(CC) $(CFLAGS) -c ../sys/share/rand48.c
 ioctl.o: ../sys/share/ioctl.c  ../include/hack.h ../include/termcap.h
 	$(CC) $(CFLAGS) -c ../sys/share/ioctl.c
 unixtty.o: ../sys/share/unixtty.c  ../include/hack.h

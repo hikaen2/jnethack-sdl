@@ -8,7 +8,11 @@
 extern int NDECL(rand);
 #define RND(x)	(rand() % x)
 #else /* LINT */
-# if defined(UNIX) || defined(RANDOM)
+/* WIN32 belongs with UNIX here: include/ntconf.h leaves RANDOM undefined so
+   that Rand() is lrand48() (sys/share/rand48.c), the same generator Unix
+   uses, and taking the bits differently would undo that -- NETHACK_SEED has
+   to build the same dungeon on both, for test/wincompare.sh. */
+# if defined(UNIX) || defined(RANDOM) || defined(WIN32)
 #define RND(x)	(int)(Rand() % (long)(x))
 # else
 /* Good luck: the bottom order bits are cyclic. */

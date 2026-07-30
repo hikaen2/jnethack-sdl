@@ -37,6 +37,11 @@ int NDECL(yylex);
 #   define VOIDYYPUT
 #  endif
 # endif
+/* MinGW-w64 does not go through unixconf.h, so POSIX_TYPES is not set for
+   it, but the bodies further down are still the void ones. */
+# if !defined(VOIDYYPUT) && defined(__MINGW32__)
+#  define VOIDYYPUT
+# endif
 # if !defined(VOIDYYPUT) && defined(WEIRD_LEX)
 #  if defined(SUNOS4) && defined(__STDC__) && (WEIRD_LEX > 1)
 #   define VOIDYYPUT

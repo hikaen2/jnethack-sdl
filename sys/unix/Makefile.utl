@@ -83,6 +83,24 @@ CC = gcc
 # tentative definitions of `newbie' across three translation units.
 CFLAGS = -O2 -I../include -std=gnu89 -fcommon
 LFLAGS =
+
+# Set MINGW=1 to cross-compile the utilities for Windows with MinGW-w64.
+# They have to be crossed rather than reused because what lev_comp and
+# dgn_comp emit is raw struct dumps, and Windows is LLP64 where Linux is
+# LP64: sizeof(long) is 4 against 8, which makes struct you 784 bytes
+# instead of 1008.  src/version.c compares those sizes and rejects the
+# mismatch with "Configuration incompatability for file ...".  The
+# cross-built utilities are then run under wine ($(RUN)).
+MINGW =
+MINGW_PREFIX = x86_64-w64-mingw32-
+X =
+RUN =
+ifeq ($(MINGW),1)
+CC = $(MINGW_PREFIX)gcc
+CFLAGS += -DWIN32 -I../sys/winnt
+X = .exe
+RUN = wine
+endif
  
 
 # yacc/lex programs to use to generate *_comp.h, *_lex.c, and *_yacc.c.
@@ -144,8 +162,8 @@ YACCDIST =
 
 #	dependencies for makedefs
 #
-makedefs:	$(MAKEOBJS)
-	$(CC) $(LFLAGS) -o makedefs $(MAKEOBJS)
+makedefs$(X):	$(MAKEOBJS)
+	$(CC) $(LFLAGS) -o makedefs$(X) $(MAKEOBJS)
 
 makedefs.o: makedefs.c  ../include/config.h ../include/permonst.h \
 		../include/objclass.h ../include/monsym.h \
@@ -153,18 +171,18 @@ makedefs.o: makedefs.c  ../include/config.h ../include/permonst.h \
 		../include/monst.h ../include/you.h ../include/flag.h \
 		../include/patchlevel.h ../include/qtext.h
 
-../include/onames.h: makedefs
-	./makedefs -o
-../include/pm.h: makedefs
-	./makedefs -p
-../src/monstr.c: makedefs
-	./makedefs -m
-../include/vis_tab.h: makedefs
-	./makedefs -z
-../src/vis_tab.c: makedefs
-	./makedefs -z
-../include/jdata.h: makedefs
-	./makedefs -j
+../include/onames.h: makedefs$(X)
+	$(RUN) ./makedefs$(X) -o
+../include/pm.h: makedefs$(X)
+	$(RUN) ./makedefs$(X) -p
+../src/monstr.c: makedefs$(X)
+	$(RUN) ./makedefs$(X) -m
+../include/vis_tab.h: makedefs$(X)
+	$(RUN) ./makedefs$(X) -z
+../src/vis_tab.c: makedefs$(X)
+	$(RUN) ./makedefs$(X) -z
+../include/jdata.h: makedefs$(X)
+	$(RUN) ./makedefs$(X) -j
 
 lintdefs:
 	@lint -axbh -I../include -DLINT $(MAKESRC) ../src/monst.c ../src/objects.c | sed '/_flsbuf/d'
@@ -178,8 +196,8 @@ lintdefs:
 
 #	dependencies for lev_comp
 #
-lev_comp:  $(SPLEVOBJS)
-	$(CC) $(LFLAGS) -o lev_comp $(SPLEVOBJS)
+lev_comp$(X):  $(SPLEVOBJS)
+	$(CC) $(LFLAGS) -o lev_comp$(X) $(SPLEVOBJS)
 
 lev_yacc.o:  ../include/hack.h ../include/sp_lev.h
 lev_main.o:  ../include/hack.h ../include/sp_lev.h ../include/termcap.h \
@@ -212,8 +230,8 @@ lintlev:
 
 #	dependencies for dgn_comp
 #
-dgn_comp:  $(DGNCOMPOBJS)
-	$(CC) $(LFLAGS) -o dgn_comp $(DGNCOMPOBJS)
+dgn_comp$(X):  $(DGNCOMPOBJS)
+	$(CC) $(LFLAGS) -o dgn_comp$(X) $(DGNCOMPOBJS)
 
 dgn_yacc.o:  ../include/config.h ../include/dgn_file.h ../include/date.h
 dgn_main.o:  ../include/config.h
@@ -243,8 +261,8 @@ lintdgn:
 
 #	dependencies for recover
 #
-recover: $(RECOVOBJS)
-	$(CC) $(LFLAGS) -o recover $(RECOVOBJS)
+recover$(X): $(RECOVOBJS)
+	$(CC) $(LFLAGS) -o recover$(X) $(RECOVOBJS)
 
 recover.o: ../include/config.h
 

@@ -23,6 +23,14 @@
  */
 
 #define SDLTERM_KEEP_STDIO      /* keep the real stdio; see sdlterm.h */
+#define NEED_VARARGS            /* for error() under WIN32, below */
+
+#ifdef WIN32
+/* The port's entry point is main() in sys/share/pcmain.c.  Without this
+   SDL2 renames it to SDL_main and supplies its own, which would bypass
+   every bit of NetHack's startup. */
+#define SDL_MAIN_HANDLED
+#endif
 
 #include <SDL.h>
 #include <SDL_ttf.h>
@@ -58,6 +66,16 @@
    is a genuine monospace CJK face: its CJK advance is exactly twice its
    ASCII advance, which is what the double-width test needs. */
 static const char *const font_candidates[] = {
+#ifdef WIN32
+    /* MS Gothic is the one face every Japanese Windows has had since NT:
+       its CJK advance is exactly twice its ASCII advance.  Meiryo and Yu
+       Gothic are proportional for ASCII, so they are last-ditch only. */
+    "C:\\Windows\\Fonts\\msgothic.ttc:0",       /* MS Gothic */
+    "C:\\Windows\\Fonts\\MSGOTHIC.TTC:0",
+    "C:\\Windows\\Fonts\\YuGothM.ttc:0",
+    "C:\\Windows\\Fonts\\meiryo.ttc:0",
+    "C:\\Windows\\Fonts\\consola.ttf",          /* ASCII only, but monospace */
+#endif
     "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc:5", /* Mono CJK JP */
     "/usr/share/fonts/opentype/ipafont-gothic/ipag.ttf",
     "/usr/share/fonts/truetype/fonts-japanese-gothic.ttf",
@@ -1091,7 +1109,14 @@ sdl_pump()
     if (want_quit) {
         want_quit = FALSE;
         /* Same contract as losing the terminal: save and get out. */
+#ifdef SIGHUP
         (void) raise(SIGHUP);
+#else
+        /* Windows has no SIGHUP.  hangup() is the handler that raise()
+           would have reached anyway -- src/save.c defines it for us -- so
+           call it directly rather than inventing a second save path. */
+        hangup(0);
+#endif
     }
 }
 
@@ -1166,6 +1191,9 @@ int *wid, *hgt;
     (void) SDL_SetHint(SDL_HINT_VIDEO_X11_NET_WM_BYPASS_COMPOSITOR, "0");
     (void) SDL_SetHint(SDL_HINT_VIDEO_ALLOW_SCREENSAVER, "1");
 
+#ifdef SDL_MAIN_HANDLED
+    SDL_SetMainReady();         /* we kept our own main(); see the top of this file */
+#endif
     if (SDL_Init(SDL_INIT_VIDEO) != 0) sdl_die(SDL_GetError());
     sdl_up = TRUE;
     if (TTF_Init() != 0) sdl_die(TTF_GetError());
@@ -1182,7 +1210,18 @@ int *wid, *hgt;
     sdl_win = SDL_CreateWindow("JNetHack (SDL)",
                                SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
                                cols * cell_w, rows * cell_h,
-                               SDL_WINDOW_RESIZABLE);
+                               /* A resize has to reach wintty.c's winch() to
+                                  re-lay-out, and winch() is compiled only
+                                  #if defined(SIGWINCH) && defined(CLIPPING).
+                                  Where there is no SIGWINCH there is no way
+                                  to ask for the re-layout, so do not offer
+                                  the resize either. */
+#if defined(SIGWINCH) && defined(CLIPPING)
+                               SDL_WINDOW_RESIZABLE
+#else
+                               0
+#endif
+                               );
     if (!sdl_win) sdl_die(SDL_GetError());
 
     sdl_ren = SDL_CreateRenderer(sdl_win, -1, SDL_RENDERER_ACCELERATED);
@@ -1246,6 +1285,68 @@ tty_shutdown()
         sdl_up = FALSE;
     }
 }
+
+#ifdef WIN32
+/* ---- the tty-state entry points -------------------------------- */
+/*
+ * On Unix these come from sys/share/unixtty.c, whose SDL_GRAPHICS branches
+ * are the same four lines as below; that file cannot be built here because
+ * its <termios.h> and <unistd.h> includes sit outside every #ifdef.  The
+ * other Windows candidates are out too: sys/winnt/nttty.c drives the Win32
+ * console, and sys/share/pctty.c calls disable_ctrlP(), which no WIN32
+ * source defines (sys/share/pcsys.c:493 skips it for the same reason).  So
+ * the backend that owns the screen supplies them itself.
+ */
+char erase_char, kill_char;
+
+void
+gettty()
+{
+    /* No terminal to interrogate.  getline.c and topl.c want the editing
+       characters, so supply the conventional ones. */
+    erase_char = '\b';
+    kill_char = '\025';         /* ^U */
+    iflags.cbreak = TRUE;
+}
+
+/* reset terminal to original state */
+void
+settty(s)
+const char *s;
+{
+    end_screen();
+    if (s) raw_print(s);
+    iflags.echo = OFF;
+    iflags.cbreak = ON;
+}
+
+/* called by init_nhwindows() and resume_nhwindows() */
+void
+setftty()
+{
+    start_screen();
+}
+
+/*
+ * Fatal startup errors.  sys/share/pctty.c's version writes through
+ * putchar(), which include/sdlterm.h redirects into the grid; that is the
+ * wrong place for these, since the grid is often the thing that failed and
+ * the process is about to exit.  This file keeps the real stdio
+ * (SDLTERM_KEEP_STDIO at the top), so send them to the console instead.
+ */
+void
+error VA_DECL(const char *, s)
+    VA_START(s);
+    VA_INIT(s, const char *);
+    if (iflags.window_inited) end_screen();
+    (void) fputc('\n', stderr);
+    Vfprintf(stderr, s, VA_ARGS);
+    (void) fputc('\n', stderr);
+    (void) fflush(stderr);
+    VA_END();
+    exit(EXIT_FAILURE);
+}
+#endif /* WIN32 */
 
 /*ARGSUSED*/
 void
@@ -1766,7 +1867,9 @@ sdl_dump_grid()
     int x, y, last;
 
     if (!path || !*path || !grid) return;
-    if (!(fp = fopen(path, "w"))) return;
+    /* Binary: the harness diffs this against a dump taken on the tty side,
+       so the line endings have to stay LF even on Windows. */
+    if (!(fp = fopen(path, "wb"))) return;
 
     for (y = 0; y < grid_rows; y++) {
         for (last = grid_cols - 1; last >= 0 && CELL(last, y).ch == ' '; last--)
@@ -1936,7 +2039,14 @@ sdl_width_test()
     {
         int before = fail;
         static const char *const langs[] = {
+#ifdef WIN32
+            /* the POSIX names below are all rejected by the Windows CRT,
+               which would make this case pass without proving anything */
+            "C", "English_United States.1252", "Japanese_Japan.932",
+            "Japanese_Japan.utf8", "Chinese_China.936", 0
+#else
             "C", "en_US.UTF-8", "ja_JP.UTF-8", "ja_JP.eucJP", "zh_CN.UTF-8", 0
+#endif
         };
         int saved[12], n, k;
 
