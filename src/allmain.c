@@ -33,6 +33,16 @@ moveloop()
 	int moverate = 0;
 	boolean didmove = 0;
 
+        /*
+         * Nothing in 3.2 ever set this, so the test in save.c's hangup() was
+         * always false and losing the terminal -- or, for the SDL backend,
+         * closing the window -- silently did nothing at all: no save, and no
+         * exit either, since hangup() falls straight through.  By here the
+         * game state exists and has been either created or restored, which
+         * is exactly the condition the flag is named for.
+         */
+        program_state.something_worth_saving = 1;
+
 	flags.moonphase = phase_of_the_moon();
 	if(flags.moonphase == FULL_MOON) {
 /*JP		You("are lucky!  Full moon tonight.");*/
