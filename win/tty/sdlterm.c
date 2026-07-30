@@ -44,6 +44,7 @@
 #include "wintty.h"
 #include "termcap.h"
 #include "jis0208.h"
+#include "utf8.h"
 
 #ifndef C       /* this matches src/cmd.c and win/tty/topl.c */
 #define C(c)    (0x1f & (c))
@@ -982,6 +983,34 @@ int x, y;
             if (dst.w > box.w) dst.w = box.w;
             SDL_SetTextureColorMod(g->tex, (Uint8) fr, (Uint8) fg, (Uint8) fb);
             SDL_RenderCopy(sdl_ren, g->tex, (SDL_Rect *) 0, &dst);
+        } else {
+            /*
+             * The font has no glyph for this code point.  Draw a hollow box
+             * rather than leaving the cell blank.
+             *
+             * This mattered less while EUC-JP was the internal encoding,
+             * because sdl_ucs_to_euc() refused anything outside JIS X 0208
+             * at the input boundary and an unrenderable character could not
+             * be stored in the first place.  UTF8-PLAN.md picks option B --
+             * the whole of Unicode is accepted -- so from Phase 2 onwards a
+             * player can put a character in a name that the font cannot
+             * draw.  Showing nothing would make it look as though the game
+             * had silently dropped what they typed, when in fact it is
+             * stored and will come back out of the save file intact.
+             */
+            int inset = cell_w / 6;
+            SDL_Rect hole;
+
+            if (inset < 1) inset = 1;
+            hole.x = box.x + inset;
+            hole.y = box.y + inset;
+            hole.w = box.w - 2 * inset;
+            hole.h = box.h - 2 * inset;
+            if (hole.w > 0 && hole.h > 0) {
+                SDL_SetRenderDrawColor(sdl_ren, (Uint8) fr, (Uint8) fg,
+                                       (Uint8) fb, 255);
+                SDL_RenderDrawRect(sdl_ren, &hole);
+            }
         }
     }
 
@@ -1127,10 +1156,27 @@ const char *s;
      * character: getline.c's backspace handling calls is_kanji2() on what
      * it has collected so far and deletes two bytes when it sees a pair,
      * so a lone lead byte in the queue would desynchronise it.
+     *
+     * Decoding is utf8_decode()'s job now.  The loop this replaced had a
+     * two-byte branch and a three-byte one and nothing else, so every
+     * four-byte sequence fell through to the else that skips silently: a
+     * character outside the BMP, committed by an IME, vanished without so
+     * much as a beep.  It now comes out as one rejection, below.
+     *
+     * It was not reading past its buffer, though at a glance it looks as
+     * if it might have been: && short-circuits, so p[2] was reached only
+     * once p[1] had proved to be a continuation byte, and p[1] itself read
+     * the terminating NUL at worst.  The overread is in the vendored
+     * utf8codepoint(), which is why include/utf8.h says not to hand that
+     * one unvalidated bytes.
+     *
+     * The EUC-JP bottleneck is still here, and still the reason a code
+     * point outside JIS X 0208 cannot be entered.  Removing it is Phase 2
+     * of UTF8-PLAN.md, not this change.
      */
-    const unsigned char *p = (const unsigned char *) s;
+    const char *p = s;
     long cp;
-    int b1, b2;
+    int n, b1, b2;
 
     if (meta_pending) {
         meta_pending = FALSE;
@@ -1146,29 +1192,12 @@ const char *s;
         }
     }
 
-    while (*p) {
-        if (*p < 0x80) {
-            sdl_queue_byte(*p);
-            p++;
-            continue;
-        }
+    while ((n = utf8_decode(p, &cp)) > 0) {
+        p += n;
 
-        if ((p[0] & 0xE0) == 0xC0 && (p[1] & 0xC0) == 0x80) {
-            cp = ((long) (p[0] & 0x1F) << 6) | (p[1] & 0x3F);
-            p += 2;
-        } else if ((p[0] & 0xF0) == 0xE0 && (p[1] & 0xC0) == 0x80 &&
-                   (p[2] & 0xC0) == 0x80) {
-            cp = ((long) (p[0] & 0x0F) << 12) |
-                 ((long) (p[1] & 0x3F) << 6) | (p[2] & 0x3F);
-            p += 3;
-        } else {
-            /* malformed or beyond the BMP: skip the whole sequence */
-            p++;
-            while (*p && (*p & 0xC0) == 0x80) p++;
-            continue;
-        }
-
-        if (sdl_ucs_to_euc(cp, &b1, &b2)) {
+        if (cp < 0x80L) {
+            sdl_queue_byte((int) cp);
+        } else if (sdl_ucs_to_euc(cp, &b1, &b2)) {
             sdl_queue_byte(b1);
             sdl_queue_byte(b2);
         } else {
@@ -2119,17 +2148,19 @@ sdl_dump_grid()
             continue;
         for (x = 0; x <= last; x++) {
             long ch = CELL(x, y).ch;
+            char seq[UTF8_MAXBYTES];
+            int n, i;
+
             if (CELL(x, y).wide == SW_RIGHT) continue;  /* already emitted */
-            if (ch < 0x80L) {
-                (void) fputc((int) ch, fp);
-            } else if (ch < 0x800L) {
-                (void) fputc((int) (0xC0 | (ch >> 6)), fp);
-                (void) fputc((int) (0x80 | (ch & 0x3F)), fp);
-            } else {
-                (void) fputc((int) (0xE0 | (ch >> 12)), fp);
-                (void) fputc((int) (0x80 | ((ch >> 6) & 0x3F)), fp);
-                (void) fputc((int) (0x80 | (ch & 0x3F)), fp);
-            }
+            /* The hand-rolled encoder this replaced had three branches, so
+               its last one shifted the top bits off anything at U+10000 or
+               above: U+20B9F came out as a different character entirely.
+               The dump is what test/wincompare.sh diffs, so a wrong byte
+               here would have shown up as a screen mismatch with no visible
+               cause. */
+            n = utf8_encode(ch, seq, (int) sizeof seq);
+            for (i = 0; i < n; i++)
+                (void) fputc((int) (unsigned char) seq[i], fp);
         }
         (void) fputc('\n', fp);
     }

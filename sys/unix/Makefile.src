@@ -62,8 +62,9 @@ endif
 #SYSOBJ = bemain.o unixtty.o ioctl.o
 
 #JP by issei(93/11/10)
-JSRC = ../japanese/jconj.c ../japanese/jtrns.c ../japanese/jlib.c
-JOBJ = jconj.o jtrns.o jlib.o
+JSRC = ../japanese/jconj.c ../japanese/jtrns.c ../japanese/jlib.c \
+	../japanese/utf8.c
+JOBJ = jconj.o jtrns.o jlib.o utf8.o
 
 #NH extension by issei(99/11/10)
 EXTSRC = ../extension/nhbuf.c ../extension/nhinet.c \
@@ -690,7 +691,8 @@ termcap.o: ../win/tty/termcap.c  ../include/hack.h ../include/wintty.h \
 		../include/termcap.h
 	$(CC) $(CFLAGS) -c ../win/tty/termcap.c
 sdlterm.o: ../win/tty/sdlterm.c  ../include/hack.h ../include/wintty.h \
-		../include/termcap.h ../include/sdlterm.h ../include/jis0208.h
+		../include/termcap.h ../include/sdlterm.h ../include/jis0208.h \
+		../include/utf8.h
 	$(CC) $(CFLAGS) -c ../win/tty/sdlterm.c
 topl.o: ../win/tty/topl.c  ../include/hack.h ../include/termcap.h \
 		../include/wintty.h ../include/sdlterm.h
@@ -733,6 +735,8 @@ jtrns.o: ../japanese/jtrns.c  ../include/hack.h ../include/jdata.h
 	$(CC) $(CFLAGS) -c ../japanese/jtrns.c
 jlib.o: ../japanese/jlib.c  ../include/hack.h ../include/sdlterm.h
 	$(CC) $(CFLAGS) -c ../japanese/jlib.c
+utf8.o: ../japanese/utf8.c  ../include/hack.h ../include/utf8.h
+	$(CC) $(CFLAGS) -c ../japanese/utf8.c
 #report.o: ../japanese/report.c  ../include/hack.h
 #	$(CC) $(CFLAGS) -c ../japanese/report.c
 nhbuf.o: ../extension/nhbuf.c  ../include/hack.h
