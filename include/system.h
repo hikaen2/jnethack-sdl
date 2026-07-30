@@ -373,6 +373,17 @@ E int FDECL(setuid, (int));
 /*# string(s).h #*/
 #ifndef _XtIntrinsic_h	/* <X11/Intrinsic.h> #includes <string[s].h> */
 
+#if defined(LINUX)
+/*
+ * On glibc the header is both correct and complete, and it covers the
+ * functions this file does not declare at all -- memset, memcpy, strstr,
+ * strncasecmp -- which otherwise compile as implicit declarations.  (The
+ * mem* prototypes further up were already commented out because they
+ * disagreed with the system's.)
+ */
+#include <string.h>
+#include <strings.h>
+#else
 #if (defined(ULTRIX) || defined(NeXT)) && defined(__GNUC__)
 #include <strings.h>
 #else
@@ -404,6 +415,7 @@ E int	FDECL(strlen, (const char *));
 #  endif /* HPUX */
 # endif /* MICRO */
 #endif /* ULTRIX */
+#endif /* LINUX */
 
 #endif	/* !_XtIntrinsic_h_ */
 

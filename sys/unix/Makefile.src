@@ -135,8 +135,12 @@ CC = gcc
 #CFLAGS = -O -I../include
 #LFLAGS = -O
 
-CFLAGS = -O3 -Wall -I../include -I/usr/X11R6/include `gtk-config --cflags`
-LFLAGS = -O3 -L/usr/X11R6/lib `gtk-config --libs`
+# flags for modern Linux + GCC.
+#   -std=gnu89 : GCC 14 defaults to C23, where the K&R function definitions
+#                this tree is written in are a syntax error
+#   -fcommon   : GCC 10+ defaults to -fno-common
+CFLAGS = -O2 -Wall -I../include -std=gnu89 -fcommon
+LFLAGS = -O2
 
 # Set the WINSRC, WINOBJ, and WINLIB lines to correspond to your desired
 # combination of windowing systems.  Also set windowing systems in config.h.
@@ -163,8 +167,8 @@ WINGTKOBJ = gtk.o gtkgetlin.o gtkstatus.o gtkmenu.o gtkyn.o gtkmap.o \
 	gtkmessage.o gtkmisc.o xshmmap.o xshm.o
 #
 # 
-WINSRC = $(WINTTYSRC) $(WINX11SRC) $(WINGTKSRC)
-WINOBJ = $(WINTTYOBJ) $(WINX11OBJ) $(WINGTKOBJ)
+WINSRC = $(WINTTYSRC)
+WINOBJ = $(WINTTYOBJ)
 
 # on some systems the termcap library is in -ltermcap or -lcurses
 # on 386 Xenix, the -ltermlib tputs() seems not to work; use -lcurses instead
@@ -179,8 +183,8 @@ WINOBJ = $(WINTTYOBJ) $(WINX11OBJ) $(WINGTKOBJ)
 # WINTTYLIB = -ltermcap
 # WINTTYLIB = -lcurses
 # WINTTYLIB = -lcurses16
-# WINTTYLIB = -lncurses
-WINTTYLIB = -ltermlib
+# libtermlib no longer exists on modern Linux; ncurses provides termcap
+WINTTYLIB = -lncurses
 #
 # libraries for X11
 # If USE_XPM is defined in config.h, you will also need -lXpm here.
@@ -192,7 +196,7 @@ WINX11LIB = -lXaw -lXmu -lXext -lXt -lXpm -lX11 -lm -lSM -lICE -lxpg4
 # WINX11LIB = -lXaw -lXmu -lXpm -lXext -lXt -lX11 -lSM -lICE -lm # BSD/OS 2.0
 #
 #
-WINLIB = $(WINTTYLIB) $(WINX11LIB) $(WINGTKLIB)
+WINLIB = $(WINTTYLIB)
 
 # any other strange libraries your system needs (for Sysunix only -- the more
 # specialized targets should already be right)

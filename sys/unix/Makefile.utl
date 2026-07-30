@@ -78,7 +78,10 @@ CC = gcc
 # flags for debugging:
 # CFLAGS = -g -I../include
 
-CFLAGS = -O -I../include
+# -std=gnu89 and -fcommon for the same reasons as in Makefile.src.  Without
+# -fcommon the pre-generated lex/yacc parsers fail to link: they share
+# tentative definitions of `newbie' across three translation units.
+CFLAGS = -O2 -I../include -std=gnu89 -fcommon
 LFLAGS =
  
 

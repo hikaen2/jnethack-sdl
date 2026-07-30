@@ -671,6 +671,7 @@ E char *FDECL(strstri, (const char *,const char *));
 E void NDECL(setrandom);
 E int NDECL(getyear);
 E char *FDECL(yymmdd, (time_t));
+E long FDECL(yyyymmdd, (time_t));
 E int NDECL(phase_of_the_moon);
 E boolean NDECL(friday_13th);
 E int NDECL(night);

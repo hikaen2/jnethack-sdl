@@ -211,8 +211,12 @@
  * Some combinations make no sense.  See the installation document.
  */
 #define TTY_GRAPHICS	/* good old tty based graphics */
-#define X11_GRAPHICS	/* X11 interface */
-#define GTK_GRAPHICS	/* GTK interface */
+/* The X11 and GTK ports are written against X11R6/Xaw and GTK+ 1.x, neither
+ * of which is installable now.  The SDL backend (SDL-PORT.md) replaces the
+ * terminal underneath TTY_GRAPHICS rather than adding a window port, so it
+ * needs neither of them. */
+/* #define X11_GRAPHICS	*//* X11 interface */
+/* #define GTK_GRAPHICS	*//* GTK interface */
 
 /*  Only unix supports X11_GRAPHICS and GTK_GRAPHICS */
 #ifndef UNIX
