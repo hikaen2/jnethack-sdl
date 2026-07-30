@@ -521,8 +521,10 @@ face index 5）。ASCII の advance が 9px、CJK が 18px で正確に 1:2。
 
 - **実 IME での日本語入力**（§4）
 - **タイル描画** — セルにビットマップを置く拡張は自明だが手を付けていない
-- **Windows / macOS** — Linux + SDL2 のみ。`SDL-WINDOWS-PLAN.md` は
-  素の 3.2.3 を対象に書かれたもので、本移植では検証していない
+- **macOS** — 手を付けていない
+- **Windows** — 移植した。[`SDL-WINDOWS.md`](SDL-WINDOWS.md) を参照。
+  MinGW-w64 クロスビルド + wine で検証済みで、`wintty.c` は無改造のまま
+  （H1 が Windows でも成立した）。リサイズと `-u 日本語名` は未対応
 - **X11 / GTK ポート** — `config.h` で無効化した。ビルドできる状態に戻すのは
   この移植の範囲外
 - **音** — `tty_nhbell()` はウィンドウのフラッシュで代用
