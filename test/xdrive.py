@@ -2,6 +2,7 @@
 """Drive the SDL build's real window with genuine X key events.
 
     ./test/xdrive.py --keys 'n V y SPACE SPACE i' -- src/jnethack.sdl -u poc
+    ./test/xdrive.py --keys 'n V y SPACE SPACE' --close -- src/jnethack.sdl -u poc
 
 test/compare.sh fills the key queue directly through NH_SDL_KEYS, which is
 deliberately headless but therefore never exercises SDL's own event path.
@@ -11,6 +12,14 @@ the arrow-key translation are all actually used.
 Needs a running X display and python3-xlib.  Writes a screenshot at the end
 if --shot is given (via the game's own NH_SDL_SHOT, so it is the renderer's
 output and not a compositor's idea of the window).
+
+--close ends by asking the window manager to close the window instead of
+terminating the process, and reports the exit status.  That is the only way
+to reach the SDL_QUIT path: on Unix sdl_pump() answers it with
+raise(SIGHUP), and on Windows -- which has no SIGHUP and nothing to install
+a handler on -- with a direct call to hangup().  Both have to save the game.
+--cwd runs the command from another directory, which the Windows binary
+needs because it takes HACKDIR from the .exe's own location.
 """
 
 import argparse
@@ -21,6 +30,7 @@ import time
 
 from Xlib import X, XK, display
 from Xlib.ext import xtest
+from Xlib.protocol import event
 
 NAMED = {
     "SPACE": "space",
@@ -50,14 +60,29 @@ def tokens(spec):
                            "#": "numbersign"}.get(ch, ch), False
 
 
-def find_window(dpy, pid_title):
-    """Locate the game's window by name, from the root downwards."""
+def find_window(dpy, pid_title, pid=None):
+    """Locate the game's window by name, from the root downwards.
+
+    The title alone is not enough: the terminal the build was started from
+    often has the game's name in its own title, and an abandoned window
+    from an earlier run answers to it too.  When _NET_WM_PID is available
+    it has to belong to the process just started.
+    """
+    net_wm_pid = dpy.intern_atom("_NET_WM_PID")
+
+    def owner(win):
+        try:
+            prop = win.get_full_property(net_wm_pid, X.AnyPropertyType)
+        except Exception:
+            return None
+        return prop.value[0] if prop else None
+
     def walk(win):
         try:
             name = win.get_wm_name()
         except Exception:
             name = None
-        if name and pid_title in name:
+        if name and pid_title in name and (pid is None or owner(win) == pid):
             return win
         try:
             children = win.query_tree().children
@@ -89,12 +114,31 @@ def send(dpy, win, keyname, mod):
     dpy.sync()
 
 
+def close(dpy, win):
+    """Ask the window manager to close the window; SDL reports SDL_QUIT."""
+    wm_protocols = dpy.intern_atom("WM_PROTOCOLS")
+    wm_delete = dpy.intern_atom("WM_DELETE_WINDOW")
+    msg = event.ClientMessage(window=win, client_type=wm_protocols,
+                              data=(32, [wm_delete, X.CurrentTime, 0, 0, 0]))
+    win.send_event(msg)
+    dpy.sync()
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--keys", default="")
     ap.add_argument("--shot")
-    ap.add_argument("--title", default="JNetHack")
+    # The exact title win/tty/sdlterm.c gives the window.  A looser match
+    # such as "JNetHack" also finds the terminal the build was started
+    # from, whose title tends to contain the same word.
+    ap.add_argument("--title", default="JNetHack (SDL)")
     ap.add_argument("--delay", type=float, default=0.25)
+    ap.add_argument("--cwd")
+    ap.add_argument("--close", action="store_true",
+                    help="close the window via the WM instead of killing the "
+                         "process, and wait for it to exit")
+    ap.add_argument("--wait", type=float, default=60.0,
+                    help="seconds to allow for the exit after --close")
     ap.add_argument("cmd", nargs=argparse.REMAINDER)
     args = ap.parse_args()
 
@@ -106,14 +150,20 @@ def main():
     if args.shot:
         env["NH_SDL_SHOT"] = args.shot
 
-    proc = subprocess.Popen(cmd, env=env)
+    proc = subprocess.Popen(cmd, env=env, cwd=args.cwd)
     dpy = display.Display()
 
     win = None
-    for _ in range(60):
-        win = find_window(dpy, args.title)
+    for _ in range(120):
+        # Prefer the window this process owns; fall back to the title alone
+        # for the wine case, where the X client is a different process.
+        win = find_window(dpy, args.title, proc.pid)
+        if not win:
+            win = find_window(dpy, args.title)
         if win:
             break
+        if proc.poll() is not None:
+            sys.exit("xdrive: the game exited before a window appeared")
         time.sleep(0.25)
     if not win:
         proc.kill()
@@ -136,6 +186,18 @@ def main():
         time.sleep(args.delay)
 
     time.sleep(0.5)
+
+    if args.close:
+        close(dpy, win)
+        try:
+            rc = proc.wait(timeout=args.wait)
+        except subprocess.TimeoutExpired:
+            proc.kill()
+            sys.exit("xdrive: still running %gs after WM_DELETE_WINDOW"
+                     % args.wait)
+        print("xdrive: closed, exit %d" % rc)
+        return
+
     proc.terminate()
     try:
         proc.wait(timeout=5)
