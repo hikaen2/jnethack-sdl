@@ -10,9 +10,6 @@
 # Safe to re-run: it wipes saves and stale lock files, so a run killed
 # mid-game does not leave the next one waiting on perm_lock.
 #
-# The Japanese data files keep their 'j' names at run time -- see the
-# HELP/RUMORFILE/ORACLEFILE defines in include/global.h -- so they are
-# copied under those names and not renamed.
 set -e
 
 dir=${1:?usage: mkplaydir.sh DIR [datdir]}
@@ -23,8 +20,10 @@ mkdir -p "$dir/save"
 rm -f "$dir"/*_lock "$dir"/save/* "$dir"/[0-9]*
 
 cd "$here/$srcdat"
-cp -f *.lev data joracles options quest.dat jrumors license \
-      jhelp jhh jcmdhelp jhistory jopthelp jwizhelp jjj dungeon "$dir/"
+# include/config.h defines DLB, so everything but the licence lives in
+# nhdat.  Copying the loose files as well would not help if it were
+# missing: dlb_fopen() returns nothing at all once dlb_init() has failed.
+cp -f nhdat license "$dir/"
 
 : >"$dir/perm"
 [ -f "$dir/record" ] || : >"$dir/record"

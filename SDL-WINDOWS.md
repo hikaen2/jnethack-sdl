@@ -29,7 +29,8 @@ src/jnethack.exe   src/jnethack.sdl   src/jnethack.tty
 | Linux 側の退行（`compare.sh` / `walls.sh` / `stalelock.sh` / `closesave.sh`） | **すべて PASS** |
 
 実ウィンドウ（wine の windows ドライバ）でも日本語・色・罫線が正しく出ることを
-スクリーンショットで確認した。
+スクリーンショットで確認した。**実機 Windows 11 でも起動とフォント解決
+（MS ゴシック）を確認済み**（§8）。
 
 前身の調査文書（`experimental/sdl-nethack` の `SDL-WINDOWS-PLAN.md`、素の
 NetHack 3.2.3 対象）の見立ては概ね当たっていたが、**外していた点が 3 つあった**。
@@ -361,9 +362,13 @@ wine  : getenv: 3f 3f 3f 3f   argv[1]: 3f 3f 3f 3f
   `SDL2-devel-*-mingw.tar.gz` / `SDL2_ttf-devel-*-mingw.tar.gz` を展開しておく。
   apt には無い。**SDL2_ttf 2.0.18 以降が必須**（`TTF_GlyphMetrics32` 等を使う）。
   実行時は `SDL2.dll` / `SDL2_ttf.dll` を `.exe` の隣に置く。
-- コンソールサブシステムでリンクする（`-mwindows` を付けない）。`SDL_MAIN_HANDLED`
-  なので `-lSDL2main` も不要。`raw_print()` / `panic()` / `NH_SDL_DEBUG` の
-  出力が見えるほうが今は有用という判断。
+- **GUI サブシステムでリンクする**（`-mwindows -Wl,-emainCRTStartup`）。
+  そうしないと Windows がゲームのウィンドウとは別にコンソールを開く。
+  `-e` でエントリポイントを通常の C のものに留めるので、`main()` は
+  `pcmain.c` のままで `SDL2main` も要らない（`SDL_MAIN_HANDLED` の前提）。
+  代わりに stderr の行き先が無くなるので、致命的エラーは `error()` の
+  メッセージボックスで知らせる。なお wine は GUI サブシステムでも親の
+  ハンドルを渡すので、`NH_SDL_WIDTHTEST` の出力はテストからは見える。
 - **Windows フェーズは必ず最後**。`util/makedefs` と `util/lev_comp` は
   `src/*.o` をリンクするので、`src/*.o` と `util/*.o` は一度に一方のターゲットの
   ものしか置けない。`test/build.sh` はこれを順序で保証し、先頭で `src/*.o` を消す。
@@ -413,12 +418,15 @@ diff は表示したうえで FAIL にはしない扱いにした。
   `str2ic()` は argv には掛かっていない（`options.c:523` は環境変数のみ）。
   設定ファイル経由と、ゲーム内の名前入力（`getline.c:151` が `str2ic()` を通す）は
   正しく動く。wine では §5-4 のため検証そのものができない。
-- **実機 Windows での確認** — wine のみ。とくにフォント探索
-  （`C:\Windows\Fonts\msgothic.ttc`）は wine の Fonts が空なので、
-  代替フォントを置いて**探索経路が動くこと**（セル寸法が変わる）だけを確認した。
-  MS ゴシックの ASCII:漢字が 1:2 であること自体は未検証。
-- **配布形** — フォント同梱、`HACKDIR` の決め方、インストーラ。リポジトリ直下の
-  `MPLUS1Code-Regular.ttf` はまだコードから参照されていない。
+- **実機 Windows での網羅的な確認** — 利用者が Windows 11 (build 26100) で
+  起動し、`C:\Windows\Fonts\msgothic.ttc` が見つかって日本語が正しく出ることを
+  スクリーンショットで確認した。それ以外（長時間のプレイ、セーブ／ロード、
+  IME、二重起動）は wine でしか見ていない。
+- **フォントの同梱** — `C:\Windows\Fonts\msgothic.ttc` に頼っている。
+  リポジトリ直下の `MPLUS1Code-Regular.ttf` はまだコードから参照されておらず、
+  同梱するならライセンス文（OFL）も要る。
+- **`recover.exe`** — クラッシュ後のレベルファイル復旧ユーティリティ。
+  `util/Makefile` に `recover` ターゲットがあるのでクロスは容易だが未同梱。
 - **実 IME での日本語入力** — `SDL-PORT.md` §4 / §10 のまま未了。Windows で
   配ることを目的にするなら、これは本移植より優先度が高い。
 - **多重起動の検出** — `pcmain.c` に `getlock()` 相当が無い（§2）。
@@ -427,7 +435,49 @@ diff は表示したうえで FAIL にはしない扱いにした。
 
 ---
 
-## 9. ついでに直したもの
+## 9. 配布
+
+`./sys/winnt/mkdist.sh` が `dist/jnethack-<ver>-sdl-win64.zip` を作る。展開して
+`jnethack.exe` を起動するだけで動く（`pcmain.c` が `HACKDIR` を
+`exepath(argv[0])` から取るのでフラット配置でよい）。中身は 12 ファイル:
+
+```
+jnethack.exe  SDL2.dll  SDL2_ttf.dll
+nhdat  license  NetHack.cnf
+README.txt  NetHack.txt  jGuidebook.txt
+record  logfile  save/
+```
+
+**この移植で `include/config.h` の `DLB` を有効にした。** 従来この木では
+無効で、データファイルが 112 個そのまま並ぶことになる。原版の
+`JNH115.LZH` も現行の JNetHack 3.6.7 Windows 版も 1 個の `nhdat` に
+まとめており、そちらに合わせた。
+
+注意点が 2 つある。
+
+- `src/dlb.c` の `dlb_fopen()` は `dlb_init()` が失敗すると**何も返さない**。
+  ばらのファイルへのフォールバックは無いので、`nhdat` は HACKDIR に必須。
+  `test/mkplaydir.sh` もばら置きから `nhdat` + `license` に変えた。
+- `nhdat` の中身は `.lev` なので **LP64 と LLP64 で別物**（§1-2）。
+  `util/dlb` も MinGW でクロスし、`datwin/dat` 用を wine で作る。
+
+同梱する `NetHack.cnf` は原版のもの（この木の `sys/winnt/winnt.cnf` と同一）
+だが、`OPTIONS=IBMgraphics` の 1 行だけコメントアウトしてある。この移植は
+DECgraphics を既定で使って罫線を自前で描くし、そもそも CP437 と EUC-JP は
+両立しない（0x80 以上のマップバイトが 2 バイト文字の 1 バイト目と解釈される）。
+
+`doc/jGuidebook.txt` はこの木では EUC-JP なので、UTF-8 + BOM + CRLF に変換して
+入れる（原版は Shift_JIS だった）。`NetHack.cnf` は原版どおり ASCII のみに
+してある — 日本語コメントを入れると EUC-JP で保存する必要があり、Windows の
+テキストエディタでは書き戻せなくなるため。
+
+libsdl.org の `SDL2_ttf.dll` は 68MB（FreeType と HarfBuzz を静的リンクした
+うえでシンボル未除去）なので、ステージング先のコピーだけ strip する。
+zip 全体で 2.7MB。
+
+---
+
+## 10. ついでに直したもの
 
 移植の副産物として、Linux 側にも効く修正が 2 件ある。
 

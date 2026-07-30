@@ -26,7 +26,11 @@ DGN_COMP = $(RUN) ../util/dgn_comp$(X)
 #VARDAT = data rumors quest.dat oracles options
 VARDAT = data jrumors quest.dat joracles options
 
-all:	$(VARDAT) spec_levs quest_levs dungeon
+# The help files are shipped as-is rather than built, but they still go
+# into the library.  Same list as DATHELP in sys/unix/Makefile.top.
+DATHELP = jhelp jhh jcmdhelp jhistory jopthelp jwizhelp jjj
+
+all:	$(VARDAT) spec_levs quest_levs dungeon nhdat
 
 ../util/makedefs$(X):
 	(cd ../util ; $(MAKE) makedefs$(X))
@@ -36,6 +40,9 @@ all:	$(VARDAT) spec_levs quest_levs dungeon
 
 ../util/lev_comp$(X):
 	(cd ../util ; $(MAKE) lev_comp$(X))
+
+../util/dlb$(X):
+	(cd ../util ; $(MAKE) dlb$(X))
 
 ../util/tile2x11$(X):
 	(cd ../util ; $(MAKE) tile2x11$(X))
@@ -108,5 +115,11 @@ dungeon: dungeon.def ../util/makedefs$(X) ../util/dgn_comp$(X)
 	$(MAKEDEFS) -e
 	$(DGN_COMP) dungeon.pdf
 
+# include/config.h defines DLB, so this is what the game actually reads;
+# with it missing dlb_fopen() finds nothing at all, loose copies of the
+# same files included.
+nhdat:	$(VARDAT) spec_levs quest_levs dungeon $(DATHELP) ../util/dlb$(X)
+	$(RUN) ../util/dlb$(X) cf nhdat $(DATHELP) dungeon $(VARDAT) *.lev
+
 spotless:
-	-rm -f spec_levs quest_levs *.lev $(VARDAT) dungeon dungeon.pdf
+	-rm -f spec_levs quest_levs *.lev $(VARDAT) dungeon dungeon.pdf nhdat

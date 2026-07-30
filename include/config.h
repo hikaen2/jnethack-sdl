@@ -394,7 +394,14 @@
  *	a tar-like file, thus making a neater installation.  See *conf.h
  *	for detailed configuration.
  */
-/* #define DLB */	/* not supported on all platforms */
+/*
+ * Enabled: the Windows zip ships one nhdat instead of 112 loose files,
+ * which is what every released JNetHack has done.  Note that dlb_fopen()
+ * gives up entirely when nhdat is missing -- it does not fall back to
+ * loose files -- so nhdat has to be in HACKDIR.  See sys/unix/Makefile.dat
+ * and test/mkplaydir.sh.
+ */
+#define DLB		/* not supported on all platforms */
 
 /*
  *	Defining INSURANCE slows down level changes, but allows games that

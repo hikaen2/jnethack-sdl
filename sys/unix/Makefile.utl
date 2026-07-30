@@ -269,8 +269,8 @@ recover.o: ../include/config.h
 
 #	dependencies for dlb
 #
-dlb:	dlb_main.o ../src/dlb.o ../src/alloc.o panic.o
-	$(CC) $(LFLAGS) -o dlb dlb_main.o ../src/dlb.o ../src/alloc.o panic.o
+dlb$(X):	dlb_main.o ../src/dlb.o ../src/alloc.o panic.o
+	$(CC) $(LFLAGS) -o dlb$(X) dlb_main.o ../src/dlb.o ../src/alloc.o panic.o
 
 dlb_main.o: dlb_main.c ../include/config.h ../include/dlb.h
 	$(CC) $(CFLAGS) -c dlb_main.c

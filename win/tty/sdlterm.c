@@ -1336,13 +1336,22 @@ setftty()
  */
 void
 error VA_DECL(const char *, s)
+    char buf[BUFSZ];
+
     VA_START(s);
     VA_INIT(s, const char *);
     if (iflags.window_inited) end_screen();
-    (void) fputc('\n', stderr);
-    Vfprintf(stderr, s, VA_ARGS);
-    (void) fputc('\n', stderr);
+    Vsprintf(buf, s, VA_ARGS);
+    (void) fprintf(stderr, "\n%s\n", buf);
     (void) fflush(stderr);
+    /*
+     * Also in a box.  A player who started the game from Explorer has
+     * nowhere to read stderr, and the most likely message here is
+     * "no usable monospace font found" -- which would otherwise look
+     * like the game simply not starting.
+     */
+    (void) SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "JNetHack",
+                                    buf, (SDL_Window *) 0);
     VA_END();
     exit(EXIT_FAILURE);
 }

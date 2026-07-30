@@ -180,6 +180,13 @@ RUN = wine
 # but makedefs is not rebuilt for this target and other tools may not.
 # -I../sys/winnt is for win32api.h, which the PC sources include by name.
 CFLAGS += -DWIN32 -I../sys/winnt -I$(SDLROOT)/include -I$(SDLROOT)/include/SDL2
+# A GUI-subsystem binary, so that Windows does not open a console window
+# beside the game's own.  -e keeps the entry point at the ordinary C one:
+# main() stays the one in sys/share/pcmain.c and SDL2main is not linked,
+# which is what SDL_MAIN_HANDLED in win/tty/sdlterm.c assumes.  Fatal
+# errors reach the player through the message box in error() instead of
+# through stderr, which a GUI binary has nowhere to write to.
+LFLAGS += -mwindows -Wl,-emainCRTStartup
 endif
 
 # Set SDLGRAPH=1 to build the SDL2 cell-grid backend in place of termcap.

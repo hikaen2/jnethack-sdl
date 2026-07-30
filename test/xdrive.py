@@ -60,7 +60,43 @@ def tokens(spec):
                            "#": "numbersign"}.get(ch, ch), False
 
 
-def find_window(dpy, pid_title, pid=None):
+def descends_from(pid, ancestor):
+    """Is `pid` the process `ancestor`, or one of its descendants?
+
+    wine does not put its own pid on the window: the .exe runs as a child
+    of the launcher, so the X client is a descendant rather than the
+    process Popen returned.
+    """
+    for _ in range(64):
+        if pid == ancestor:
+            return True
+        if pid is None or pid <= 1:
+            return False
+        try:
+            with open("/proc/%d/stat" % pid) as f:
+                stat = f.read()
+            # comm sits in parentheses and may contain spaces; ppid is the
+            # second field after it.
+            pid = int(stat[stat.rindex(")") + 2:].split()[1])
+        except Exception:
+            return False
+    return False
+
+
+def same_cwd(pid, want):
+    """Does `pid` run in the directory the game was started in?
+
+    Needed for wine: the .exe ends up reparented away from the launcher,
+    so process ancestry does not identify it, but its working directory
+    is the playdir this run was given and nothing else's.
+    """
+    try:
+        return os.path.realpath("/proc/%d/cwd" % pid) == want
+    except Exception:
+        return False
+
+
+def find_window(dpy, pid_title, pid=None, cwd=None):
     """Locate the game's window by name, from the root downwards.
 
     The title alone is not enough: the terminal the build was started from
@@ -82,8 +118,12 @@ def find_window(dpy, pid_title, pid=None):
             name = win.get_wm_name()
         except Exception:
             name = None
-        if name and pid_title in name and (pid is None or owner(win) == pid):
-            return win
+        if name and pid_title in name:
+            who = owner(win)
+            if (pid is None
+                    or descends_from(who, pid)
+                    or (cwd is not None and same_cwd(who, cwd))):
+                return win
         try:
             children = win.query_tree().children
         except Exception:
@@ -153,13 +193,10 @@ def main():
     proc = subprocess.Popen(cmd, env=env, cwd=args.cwd)
     dpy = display.Display()
 
+    want_cwd = os.path.realpath(args.cwd or os.getcwd())
     win = None
-    for _ in range(120):
-        # Prefer the window this process owns; fall back to the title alone
-        # for the wine case, where the X client is a different process.
-        win = find_window(dpy, args.title, proc.pid)
-        if not win:
-            win = find_window(dpy, args.title)
+    for _ in range(240):
+        win = find_window(dpy, args.title, proc.pid, want_cwd)
         if win:
             break
         if proc.poll() is not None:
