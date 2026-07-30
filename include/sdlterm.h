@@ -55,6 +55,7 @@ extern void FDECL(sdl_fputs, (const char *, FILE *));
 extern int FDECL(sdl_fputc, (int, FILE *));
 extern int FDECL(sdl_fflush, (FILE *));
 extern int NDECL(sdl_getch);
+extern int FDECL(sdl_yn, (const char *));
 extern void NDECL(sdl_dump_grid);       /* NH_SDL_DUMP hook */
 extern void NDECL(sdl_width_test);      /* NH_SDL_WIDTHTEST hook */
 

@@ -27,6 +27,7 @@ HACKDIR=~/jnhdir ./src/jnethack.sdl -u あなたの名前
 | `test/compare.sh`（termcap 版と SDL 版の画面一致、17 ケース） | **17/17 PASS** |
 | `NH_SDL_WIDTHTEST=1`（2 セル幅・幅の由来・往復変換、6 ケース） | **6/6 PASS** |
 | `test/walls.sh`（罫線の壁） | **PASS** |
+| `test/stalelock.sh`（古いロックの扱い、stdin なし） | **3/3 PASS** |
 | `test/xdrive.py`（本物の X キーイベントでの操作・セーブ・リストア） | **動作確認済み** |
 
 ---
@@ -174,10 +175,11 @@ width test の case 6 が `sdl_queue_text("日本語")` の UTF-8 を入れて�
 
 ---
 
-## 5. 見つかった不具合 2 件
+## 5. 見つかった不具合 3 件
 
-どちらも「実験では踏まなかったが JNetHack では踏む」もので、
-移植の過程で `test/compare.sh` が捕まえた。
+いずれも「実験では踏まなかったが JNetHack では踏む」ものである。
+5-1 と 5-2 は `test/compare.sh` が、5-3 は実際に 100% CPU で
+張り付いたプロセスを調べて見つけた。
 
 ### 5-1. `putchar` マクロの二重評価
 
@@ -230,6 +232,66 @@ SDL 版は DECgraphics を既定にしたので毎回発火し、
 端末に出なければならない。`SDLTERM_KEEP_STDIO` を定義して本物の stdio を残した。
 放置すると、起動時のエラーメッセージが**まだ存在しないグリッド**に
 書かれて消える。
+
+### 5-3. `isatty(0)` チェックを外したことで `getlock()` が無限ループになった
+
+**これが一番たちが悪い。** stdin が `/dev/null` のとき、
+古いロックファイルがあると **100% CPU で永久に張り付く。**
+
+`sys/unix/unixunix.c` の `getlock()` は、ロックファイルを見つけると
+「破棄しますか？」と尋ねる。ところがこれは `init_nhwindows()` の**後**・
+`WIN_MESSAGE` 生成の**前**に走るので、`iflags.window_inited` はまだ偽であり、
+`yn()` は使えない。素の実装はそこで fd 0 を読む:
+
+```c
+	    c = getchar();
+	    (void) putchar(c);
+	    while (getchar() != '\n') ;	/* eat rest of line and newline */
+```
+
+stdin が `/dev/null` だと `getchar()` は **EOF を返し続ける**（FILE の EOF
+フラグは粘着する）ので、最後の行が終わらない。しかも EOF 以降は
+**システムコールを 1 つも出さない**ため、症状はこうなる:
+
+```
+$ awk '{print "utime="$14" stime="$15}' /proc/<pid>/stat
+utime=172968 stime=5          # user 1729 秒、system 0.05 秒
+$ strace -p <pid>
+（何も出ない）
+```
+
+ウィンドウには何も出ず、メッセージも出ず、strace も無言。
+**utime が巨大で stime がほぼ 0** という形が目印である。
+
+素の JNetHack ではこの経路に到達しない。`getlock()` の手前に
+`if (!isatty(0)) error("You must play from a terminal.")` があって弾かれるからだ。
+SDL 版はこのチェックを外している（fd 0 から入力を取らないので当然）ため、
+**外したことで既存の無限ループが露出した。**
+
+テスト環境だけの問題ではない。デスクトップのランチャから起動すれば
+stdin は `/dev/null` になるので、普通の利用者が普通に踏む。
+
+対処は 2 つ:
+
+1. **SDL では窓で訊く。** `getlock()` の時点で SDL のウィンドウは既にあり
+   （`tty_startup()` が `init_nhwindows()` から走っている）、グリッドも確保済みで、
+   足りないのは `WIN_MESSAGE` だけである。そこで `sdl_yn()` を足した ——
+   グリッドに直接プロンプトを書き、`sdl_getch()` で 1 キー読む 20 行の関数で、
+   ESC は 'n'（破棄しない）扱いにしてある。
+2. **素の経路も EOF で抜けるようにした。** tty ビルドでは `isatty(0)` が
+   守っているので到達しないが、地雷を残す理由がない。
+
+`test/stalelock.sh` が回帰テストである。修正前のバイナリで走らせると
+3 ケースすべてが `FAIL (killed after 15s -- it is spinning)` になることを
+確認済み。
+
+> **反省**: この 100% CPU プロセスは、移植中に私が
+> 「スクリーンショットの実行が 2 分でタイムアウトした」と報告したその実行である。
+> 別のディレクトリで再実行したら通ったのでそのまま先に進んでしまい、
+> **28 分間 CPU を焼き続けるプロセスを残した。**
+> タイムアウトそのものが調べるべき兆候だった。
+
+---
 
 ---
 
@@ -328,6 +390,20 @@ walls: PASS (4 rounded corners, DEC mapping agrees with pyte)
                                                      ╰──────────────╯
 Poc 見習い             強:16 早:13 耐:18 知:10 賢:7 魅:11  中立
 ```
+
+### `test/stalelock.sh` —— 古いロックの扱い（§5-3 の回帰テスト）
+
+stdin を閉じ、ロックファイルを置いた状態で 3 ケース。
+
+```
+stalelock prompt: PASS (asked on the grid, not on fd 0)
+stalelock decline: PASS (exited in 0s, old game kept)
+stalelock accept: PASS (exited in 0s, game started)
+```
+
+`NH_SDL_KEYS` を空にすると `sdl_getch()` が最初の入力要求で画面を
+ダンプして抜けるので、`prompt` ケースは「利用者が実際に見る画面」を
+そのまま検証できる。
 
 ### `test/xdrive.py` —— 本物のウィンドウ
 

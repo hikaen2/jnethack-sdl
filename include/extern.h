@@ -1199,9 +1199,11 @@ E int NDECL(tgetch);
 /* ### sdlterm.c ### */
 
 #ifdef SDL_GRAPHICS
-/* The rest of the backend's interface is in include/sdlterm.h; this one is
-   here because sys/share/ioctl.c calls it and does not include that. */
+/* The rest of the backend's interface is in include/sdlterm.h; these two are
+   here because sys/share/ioctl.c and sys/unix/unixunix.c call them and do
+   not include that header. */
 E void NDECL(get_scr_size);
+E int FDECL(sdl_yn, (const char *));
 #endif
 
 /* ### o_init.c ### */

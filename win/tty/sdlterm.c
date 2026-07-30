@@ -1663,6 +1663,41 @@ tty_nhbell()
     }
 }
 
+/*
+ * A yes/no question asked directly on the grid.
+ *
+ * This exists for the one prompt that happens before there is a window
+ * system to ask through: getlock() in sys/unix/unixunix.c runs after
+ * init_nhwindows() -- so the SDL window is up and the grid is allocated --
+ * but before WIN_MESSAGE is created, so yn() would panic.  The stock code
+ * falls back to reading fd 0 there, which this build must not do.
+ *
+ * Returns 'y' or 'n'; ESC counts as 'n', since every caller is asking
+ * about destroying something.
+ */
+int
+sdl_yn(prompt)
+const char *prompt;
+{
+    int c;
+
+    clear_screen();
+    cmov(0, 0);
+    xputs(prompt);
+    sdl_repaint();
+
+    for (;;) {
+        c = sdl_getch();
+        if (c == 'y' || c == 'Y') { c = 'y'; break; }
+        if (c == 'n' || c == 'N' || c == '\033') { c = 'n'; break; }
+        tty_nhbell();
+    }
+
+    clear_screen();
+    sdl_repaint();
+    return c;
+}
+
 void
 tty_delay_output()
 {

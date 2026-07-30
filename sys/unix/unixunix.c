@@ -228,15 +228,45 @@ getlock()
 /*JP
 		    c = yn("There is already a game in progress under your name.  Destroy old game?");
 */
-		} else {
+                }
+#ifdef SDL_GRAPHICS
+		else {
+                    /*
+                     * The SDL window is already up -- tty_startup() ran from
+                     * init_nhwindows() -- but WIN_MESSAGE does not exist yet,
+                     * so yn() above would panic.  Ask on the cell grid.
+                     *
+                     * Reading fd 0 the way the #else branch does is not an
+                     * option here.  It is not where this build takes its input,
+                     * and when it is /dev/null -- a desktop launcher, or any
+                     * run with stdin redirected -- getchar() returns a sticky
+                     * EOF and the "eat rest of line" loop below spins at 100%
+                     * CPU forever, making no syscalls.  The stock isatty(0)
+                     * check further up used to make that unreachable; this
+                     * build has to skip that check, so it needs this instead.
+                     */
+                    c = sdl_yn("あなたの名前で不正終了したゲームが残っています．破棄しますか？[yn] ");
+                }
+#else
+		else {
 		    (void) printf("\nThere is already a game in progress under your name.");
 		    (void) printf("  Destroy old game? [yn] ");
 		    (void) fflush(stdout);
 		    c = getchar();
-		    (void) putchar(c);
-		    (void) fflush(stdout);
-		    while (getchar() != '\n') ; /* eat rest of line and newline */
+                    if (c == EOF) {
+                        /* Nothing on stdin to answer with.  Fall through with
+                           c == EOF, which is not 'y', so the old game stands. */
+			(void) fflush(stdout);
+                    } else {
+                        int rest;
+			(void) putchar(c);
+			(void) fflush(stdout);
+                        /* eat rest of line and newline; EOF ends it too, or this
+                           loop never terminates on a closed stdin */
+                        while ((rest = getchar()) != '\n' && rest != EOF) ;
+                    }
 		}
+#endif
 		if(c == 'y' || c == 'Y')
 			if(eraseoldlocks())
 				goto gotlock;
