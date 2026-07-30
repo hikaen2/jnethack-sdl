@@ -1,12 +1,19 @@
 #!/bin/sh
-# Build JNetHack from a clean tree.
+# Build both backends of the JNetHack SDL port from a clean tree.
+#
+#   ./test/build.sh          # everything
+#   ./test/build.sh tty      # src/jnethack.tty only
+#   ./test/build.sh sdl      # src/jnethack.sdl only
 #
 # Produces:
-#   src/jnethack.tty   the termcap backend
-#   dat/*.lev etc.     the compiled data files
+#   src/jnethack.tty   stock termcap backend (the screen-comparison reference)
+#   src/jnethack.sdl   win/tty/sdlterm.c backend
+#   dat/*.lev etc.     shared by both; they agree on VERSION_FEATURES because
+#                      SDL_GRAPHICS is not one of makedefs' feature bits
 set -e
 
 cd "$(dirname "$0")/.."
+what=${1:-all}
 
 # The stock Makefiles live under sys/unix.  sys/unix/setup.sh keys off the
 # current directory and drops them in the wrong place when run from the top
@@ -42,14 +49,23 @@ seed_parsers
 echo "=== building utilities ==="
 make -C util
 
-echo "=== building tty backend ==="
-rm -f src/*.o src/jnethack
-make -C src
-mv src/jnethack src/jnethack.tty
+if [ "$what" = all ] || [ "$what" = tty ]; then
+    echo "=== building tty backend ==="
+    rm -f src/*.o src/jnethack
+    make -C src
+    mv src/jnethack src/jnethack.tty
+fi
+
+if [ "$what" = all ] || [ "$what" = sdl ]; then
+    echo "=== building SDL backend ==="
+    rm -f src/*.o src/jnethack
+    make -C src SDLGRAPH=1
+    mv src/jnethack src/jnethack.sdl
+fi
 
 echo "=== building data files ==="
 make -C dat spotless >/dev/null 2>&1 || true
 make -C dat
 
 rm -f src/*.o
-ls -l src/jnethack.tty
+ls -l src/jnethack.tty src/jnethack.sdl 2>/dev/null || true

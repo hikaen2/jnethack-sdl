@@ -85,6 +85,13 @@ catch_stp()
 void
 getwindowsz()
 {
+#ifdef SDL_GRAPHICS
+    /* The SDL backend owns the window, so its size comes from there and
+       not from whatever tty this process happens to have been started on.
+       Under SYSV this function is otherwise empty, which would leave the
+       port with no way to hear about a resize at all. */
+    get_scr_size();
+#endif
 #ifdef USE_WIN_IOCTL
     /*
      * ttysize is found on Suns and BSD

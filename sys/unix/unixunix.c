@@ -171,9 +171,14 @@ getlock()
 	 * also incidentally prevents development of any hack-o-matic programs
 	 */
 	/* added check for window-system type -dlc */
+# ifndef SDL_GRAPHICS
+        /* The SDL backend takes its input from the window, not from fd 0, so
+           this test would only be asking whether the shell that launched the
+           game happened to have a terminal. */
 	if (!strcmp(windowprocs.name, "tty"))
 	    if (!isatty(0))
 		error("You must play from a terminal.");
+# endif
 #endif
 
 	/* we ignore QUIT and INT at this point */

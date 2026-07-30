@@ -132,7 +132,7 @@ unsigned
 static boolean settty_needed = FALSE;
 struct termstruct inittyb, curttyb;
 
-#ifdef POSIX_TYPES
+#if defined(POSIX_TYPES) && !defined(SDL_GRAPHICS)
 static int
 speednum(speed)
 speed_t speed;
@@ -160,12 +160,16 @@ speed_t speed;
 }
 #endif
 
+#ifndef SDL_GRAPHICS
+/* Every caller is inside a !SDL_GRAPHICS branch; the SDL build never
+   reconfigures the terminal it was launched from. */
 static void
 setctty()
 {
 	if(STTY(&curttyb) < 0 || STTY2(&curttyb2) < 0)
 		perror("NetHack (setctty)");
 }
+#endif
 
 /*
  * Get initial state of terminal, set ospeed (for termcap routines)
@@ -175,6 +179,21 @@ setctty()
 void
 gettty()
 {
+#ifdef SDL_GRAPHICS
+        /*
+         * The SDL backend draws into its own window, so the terminal this
+         * process was started from is not the game's display and must not
+         * be reconfigured -- touching its modes breaks a run started from a
+         * pipe ("Inappropriate ioctl for device") and disturbs the user's
+         * shell besides.  getline.c and topl.c still want the editing
+         * characters, so supply the conventional ones.
+         */
+        erase_char = '\b';
+        kill_char = '\025';             /* ^U */
+        intr_char = '\003';             /* ^C */
+        settty_needed = TRUE;
+        return;
+#else
 	if(GTTY(&inittyb) < 0 || GTTY2(&inittyb2) < 0)
 		perror("NetHack (gettty)");
 	curttyb = inittyb;
@@ -191,6 +210,7 @@ gettty()
 		setctty();
 	}
 	settty_needed = TRUE;
+#endif /* SDL_GRAPHICS */
 }
 
 /* reset terminal to original state */
@@ -200,23 +220,34 @@ const char *s;
 {
 	end_screen();
 	if(s) raw_print(s);
+#ifdef SDL_GRAPHICS
+        iflags.echo = OFF;
+        iflags.cbreak = ON;
+#else
 	if(STTY(&inittyb) < 0 || STTY2(&inittyb2) < 0)
 		perror("NetHack (settty)");
 	iflags.echo = (inittyb.echoflgs & ECHO) ? ON : OFF;
 	iflags.cbreak = (CBRKON(inittyb.cbrkflgs & CBRKMASK)) ? ON : OFF;
 	curttyb.inputflags |= STRIPHI;
 	setioctls();
+#endif
 }
 
 void
 setftty()
 {
-register int ef = 0;			/* desired value of flags & ECHO */
-#ifdef LINT	/* cf = CBRKON(CBRKMASK); const expr to initialize is ok */
-register int cf = 0;
+#ifdef SDL_GRAPHICS
+        /* No terminal modes to set: sdl_getch() delivers one key at a time
+           and nothing is echoed unless the game echoes it. */
+        iflags.cbreak = ON;
+        iflags.echo = OFF;
 #else
+register int ef = 0;			/* desired value of flags & ECHO */
+# ifdef LINT	/* cf = CBRKON(CBRKMASK); const expr to initialize is ok */
+register int cf = 0;
+# else
 register int cf = CBRKON(CBRKMASK);	/* desired value of flags & CBREAK */
-#endif
+# endif
 register int change = 0;
 	iflags.cbreak = ON;
 	iflags.echo = OFF;
@@ -273,13 +304,14 @@ register int change = 0;
 	}
 
 	if(change) setctty();
+#endif /* SDL_GRAPHICS */
 	start_screen();
 }
 
 void
 intron()		/* enable kbd interupts if enabled when game started */
 {
-#ifdef TTY_GRAPHICS
+#if defined(TTY_GRAPHICS) && !defined(SDL_GRAPHICS)
 	/* Ugly hack to keep from changing tty modes for non-tty games -dlc */
 	if (!strcmp(windowprocs.name, "tty") &&
 	    intr_char != nonesuch && curttyb2.intr_sym != '\003') {
@@ -292,7 +324,7 @@ intron()		/* enable kbd interupts if enabled when game started */
 void
 introff()		/* disable kbd interrupts if required*/
 {
-#ifdef TTY_GRAPHICS
+#if defined(TTY_GRAPHICS) && !defined(SDL_GRAPHICS)
 	/* Ugly hack to keep from changing tty modes for non-tty games -dlc */
 	if (!strcmp(windowprocs.name, "tty") &&
 	   curttyb2.intr_sym != nonesuch) {

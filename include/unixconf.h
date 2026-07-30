@@ -259,7 +259,13 @@
 #ifndef REDO
 #define Getchar nhgetch
 #endif
+#ifdef SDL_GRAPHICS
+/* The entire input hook: keys come from the window, not from fd 0. */
+extern int sdl_getch(void);
+#define tgetch sdl_getch
+#else
 #define tgetch getchar
+#endif
 
 #define SHELL		/* do not delete the '!' command */
 

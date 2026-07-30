@@ -427,6 +427,33 @@ static struct tm *NDECL(getlt);
 void
 setrandom()
 {
+        /*
+         * A fixed seed makes two runs produce the same dungeon, which is
+         * what test/compare.sh needs in order to diff a termcap screen
+         * against an SDL one.  See SDL-PORT.md.
+         */
+        {
+            const char *seed = getenv("NETHACK_SEED");
+
+            if (seed && *seed) {
+                long s = atol(seed);
+#ifdef RANDOM
+                srandom((unsigned int) s);
+#else
+# if defined(BSD) || defined(ULTRIX)
+                srandom((int) s);
+# else
+#  ifdef UNIX
+                srand48(s);
+#  else
+                srand((int) s);
+#  endif
+# endif
+#endif
+                return;
+            }
+        }
+
 	/* the types are different enough here that sweeping the different
 	 * routine names into one via #defines is even more confusing
 	 */

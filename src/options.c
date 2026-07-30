@@ -58,7 +58,9 @@ static struct Bool_Opt
 	{"checkpoint", (boolean *)0, FALSE},
 #endif
 #ifdef TEXTCOLOR
-# ifdef MICRO
+# if defined(MICRO) || defined(SDL_GRAPHICS)
+        /* SDL draws into its own window with its own palette, so the "the
+           terminal might be monochrome" caveat below does not apply. */
 	{"color", &iflags.use_color, TRUE},
 # else	/* systems that support multiple terminals, many monochrome */
 	{"color", &iflags.use_color, FALSE},
@@ -449,13 +451,34 @@ initoptions()
 	flags.pickup_types[0] = '\0';
 
 	switch_graphics(ASCII_GRAPHICS);	/* set default characters */
-#if defined(UNIX) && defined(TTY_GRAPHICS)
+#if defined(SDL_GRAPHICS) && defined(TERMLIB)
+        /*
+         * The SDL backend translates the line-drawing bytes this selects
+         * into Unicode box-drawing characters and draws them itself, so the
+         * walls come out as real lines instead of - and |.  Unlike on a
+         * terminal there is nothing to detect and nothing that can go
+         * wrong, so it is simply on.  Being here, before NETHACKOPTIONS is
+         * read, leaves "!DECgraphics" available to anyone who wants the
+         * plain look.
+         *
+         * DEC rather than IBM because dec_graphics[] leaves corridors as
+         * '#'; ibm_graphics[] would make them shaded blocks.  It also keeps
+         * the bytes below 0x80, which matters here: jlib.c's cbuffer()
+         * treats any byte with the high bit set as the first half of an
+         * EUC-JP pair, so a code page 437 map byte would be swallowed.
+         */
+        switch_graphics(DEC_GRAPHICS);
+#endif
+#if defined(UNIX) && defined(TTY_GRAPHICS) && !defined(SDL_GRAPHICS)
 	/*
 	 * Set defaults for some options depending on what we can
 	 * detect about the environment's capabilities.
 	 * This has to be done after the global initialization above
 	 * and before reading user-specific initialization via
 	 * config file/environment variable below.
+         *
+         * Skipped for SDL_GRAPHICS: $TERM describes the terminal the game
+         * was launched from, which is not where it draws.
 	 */
 	/* this detects the IBM-compatible console on most 386 boxes */
 /*JP	if (!strncmp(getenv("TERM"), "AT", 2)) {*/
@@ -467,7 +490,7 @@ initoptions()
 	}
 #endif /* UNIX && TTY_GRAPHICS */
 #if defined(UNIX) || defined(VMS)
-# ifdef TTY_GRAPHICS
+# if defined(TTY_GRAPHICS) && !defined(SDL_GRAPHICS)
 	/* detect whether a "vt" terminal can handle alternate charsets */
 /*JP	if (!strncmpi(getenv("TERM"), "vt", 2) && (AS && AE) &&
 	    index(AS, '\016') && index(AE, '\017')) {*/

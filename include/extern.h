@@ -1196,6 +1196,14 @@ E void NDECL(nttty_rubout);
 E int NDECL(tgetch);
 #endif
 
+/* ### sdlterm.c ### */
+
+#ifdef SDL_GRAPHICS
+/* The rest of the backend's interface is in include/sdlterm.h; this one is
+   here because sys/share/ioctl.c calls it and does not include that. */
+E void NDECL(get_scr_size);
+#endif
+
 /* ### o_init.c ### */
 
 E void NDECL(init_objects);
