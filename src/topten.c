@@ -47,8 +47,31 @@ static long final_fpos;
 
 #define newttentry() (struct toptenentry *) alloc(sizeof(struct toptenentry))
 #define dealloc_ttentry(ttent) free((genericptr_t) (ttent))
-#define NAMSZ	10
-#define DTHSZ	60
+#define NAMSZ	10		/* the name field, in *columns* */
+#define DTHSZ	60		/* the death field, in bytes */
+/*JP
+ *      NAMSZ was a byte count as well as a column count while a kanji was
+ *      two of each.  It is a column count -- that is what the score table's
+ *      alignment depends on -- and the buffer has to be wide enough to hold
+ *      that many columns of the widest characters there are.
+ *
+ *      DTHSZ stays a byte count: nothing lines up against it, and the
+ *      writer spends it in bytes.
+ */
+/*
+ *      Spelled as a number rather than as NAMSZ * MB_MAXBYTES, because the
+ *      fscanf() widths below are built by stringifying it and "(10 * 4)" is
+ *      not a width.  The typedef underneath fails to compile if the two ever
+ *      stop agreeing.
+ */
+#define NAMBYTES        40
+
+typedef char tt_nambytes_matches
+                [(NAMBYTES == NAMSZ * MB_MAXBYTES) ? 1 : -1];
+
+/* stringified for the fscanf() widths below, so the two cannot drift */
+#define TT_STR_(x)      #x
+#define TT_STR(x)       TT_STR_(x)
 #define PERSMAX	 3		/* entries per name/uid per char. allowed */
 #define POINTSMIN	1	/* must be > 0 */
 #define ENTRYMAX	100	/* must be >= 10 */
@@ -69,7 +92,7 @@ struct toptenentry {
 	int uid;
 	char plchar;
 	char sex;
-	char name[NAMSZ+1];
+	char name[NAMBYTES+1];
 	char death[DTHSZ+1];
 } *tt_head;
 
@@ -152,9 +175,18 @@ FILE *rfile;
 struct toptenentry *tt;
 {
 #ifdef NO_SCAN_BRACK
-	static char *fmt = "%d %d %d %ld %d %d %d %d %d %d %ld %ld %d%*c%c%c %s %s%*c";
+	static char *fmt = "%d %d %d %ld %d %d %d %d %d %d %ld %ld %d%*c%c%c "
+                           "%" TT_STR(NAMBYTES) "s %" TT_STR(DTHSZ) "s%*c";
 #else
-	static char *fmt = "%d.%d.%d %ld %d %d %d %d %d %d %ld %ld %d %c%c %[^,],%[^\n]%*c";
+/*JP
+ *      Widths on the two string fields.  They had none, so a record file
+ *      with a long line -- one written by a build with different sizes, or
+ *      simply edited -- wrote past the end of tt->name and tt->death.  That
+ *      was true before this work as well; it is fixed here because this is
+ *      the commit that decides how wide those fields are.
+ */
+	static char *fmt = "%d.%d.%d %ld %d %d %d %d %d %d %ld %ld %d %c%c "
+                           "%" TT_STR(NAMBYTES) "[^,],%" TT_STR(DTHSZ) "[^\n]%*c";
 #endif
 
 #ifdef UPDATE_RECORD_IN_PLACE
@@ -293,15 +325,15 @@ int how;
         {
             int cut;
 
-            (void) strncpy(t0->name, plname, NAMSZ);
-            t0->name[NAMSZ] = '\0';
+            (void) strncpy(t0->name, plname, NAMBYTES);
+            t0->name[NAMBYTES] = '\0';
             cut = mb_trunc_cols(t0->name, NAMSZ);
             if (t0->name[cut]) {
                 int w;
 
                 t0->name[cut] = '\0';
                 w = mb_colwidth(t0->name);
-                while (w < NAMSZ && cut < NAMSZ) {
+                while (w < NAMSZ && cut < NAMBYTES) {
                     t0->name[cut++] = '_';
                     t0->name[cut] = '\0';
                     w++;
@@ -309,26 +341,39 @@ int how;
             }
         }
 	t0->death[0] = '\0';
+/*JP
+ *      The English original puts the phrase first and the killer after it,
+ *      so filling the field to DTHSZ was the end of the matter.  Japanese
+ *      puts the killer first, and this used to fill the field with it and
+ *      then strcat() the phrase on the end -- past the end, for a killer
+ *      long enough, and Strcat is plain strcat with no bound.  Eighteen
+ *      bytes of overrun at worst, for "溶岩に溶けた" and its like.
+ *
+ *      Reachable: killer is a monster's name, and a monster the player has
+ *      named carries that name, which may be PL_NSIZ bytes.  It was
+ *      reachable under EUC-JP too, twelve bytes rather than eighteen.
+ *
+ *      So the phrase's room is reserved first, and the killer is cut back
+ *      to a character boundary rather than to a byte.
+ */
 	switch (killer_format) {
 		default: impossible("bad killer format?");
 		case KILLED_BY_AN:
-/*JP			Strcat(t0->death, killed_by_prefix[how]);
-			(void) strncat(t0->death, an(killer),
-						DTHSZ-strlen(t0->death));*/
-			(void) strncat(t0->death, an(killer),
-						DTHSZ-strlen(t0->death));
-			Strcat(t0->death, killed_by_prefix[how]);
-			break;
-		case KILLED_BY:
-/*JP			Strcat(t0->death, killed_by_prefix[how]);
-			(void) strncat(t0->death, killer,
-						DTHSZ-strlen(t0->death));*/
-			(void) strncat(t0->death, killer,
-						DTHSZ-strlen(t0->death));
-			Strcat(t0->death, killed_by_prefix[how]);
-			break;
+                case KILLED_BY: {
+                    const char *sfx = killed_by_prefix[how];
+                    const char *who = (killer_format == KILLED_BY_AN)
+                                      ? an(killer) : killer;
+                    int room = DTHSZ - (int) strlen(sfx);
+
+                    if (room < 0) room = 0;
+                    (void) strncat(t0->death, who,
+                                   (size_t) mb_trunc_bytes(who, room));
+                    Strcat(t0->death, sfx);
+                    break;
+                }
 		case NO_KILLER_PREFIX:
-			(void) strncat(t0->death, killer, DTHSZ);
+			(void) strncat(t0->death, killer,
+				       (size_t) mb_trunc_bytes(killer, DTHSZ));
 			break;
 	}
 	t0->birthdate = yyyymmdd(u.ubirthday);
@@ -412,7 +457,7 @@ int how;
 #ifdef PERS_IS_UID
 		t1->uid == t0->uid &&
 #else
-		strncmp(t1->name, t0->name, NAMSZ) == 0 &&
+		strncmp(t1->name, t0->name, NAMBYTES) == 0 &&
 #endif
 		t1->plchar == t0->plchar && --occ_cnt <= 0) {
 		    if(rank0 < 0) {
@@ -490,7 +535,7 @@ int how;
 #ifdef PERS_IS_UID
 					t1->uid != t0->uid
 #else
-					strncmp(t1->name, t0->name, NAMSZ)
+					strncmp(t1->name, t0->name, NAMBYTES)
 #endif
 		)) continue;
 	    if (rank == rank0 - flags.end_around &&
@@ -830,7 +875,7 @@ int uid;
 
 	for (i = 0; i < playerct; i++) {
 		if (strcmp(players[i], "all") == 0 ||
-		    strncmp(t1->name, players[i], NAMSZ) == 0 ||
+		    strncmp(t1->name, players[i], NAMBYTES) == 0 ||
 		    (players[i][0] == '-' &&
 		     players[i][1] == t1->plchar &&
 		     players[i][2] == 0) ||
