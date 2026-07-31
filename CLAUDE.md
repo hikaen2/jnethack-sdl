@@ -1,0 +1,7 @@
+JNetHackをSDLにポーティングするプロジェクト
+
+- Keep it simple stupid
+- 動作環境はLinuxとWindows
+- 新規作成するコードのインデント: スペース4桁
+- タブ幅: 8
+- 1行の最大文字数: 200文字程度
