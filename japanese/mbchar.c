@@ -8,6 +8,7 @@
 #include "hack.h"
 #include "mbchar.h"
 #include "utf8.h"
+#include "jiscode.h"
 
 /*
  * Define JP_INTERNAL_UTF8 (Phase 3) to switch the bodies below.  Only this
@@ -86,6 +87,24 @@ const char *s;
     return 2;
 }
 
+long
+mb_decode(s)
+const char *s;
+{
+    int n;
+
+    return euc_to_ucs(s, &n);
+}
+
+int
+mb_encode(cp, buf, n)
+long cp;
+char *buf;
+int n;
+{
+    return ucs_to_euc(cp, buf, n);
+}
+
 #else /* JP_INTERNAL_UTF8 */
 
 int
@@ -119,6 +138,28 @@ const char *s;
     if (!*s) return 0;
     (void) utf8_decode(s, &cp);
     return utf8_cpwidth(cp);
+}
+
+long
+mb_decode(s)
+const char *s;
+{
+    long cp;
+    int n;
+
+    if (!*s) return 0L;
+    n = utf8_decode(s, &cp);
+    if (n == 1 && cp == UTF8_REPLACEMENT) return 0L;
+    return cp;
+}
+
+int
+mb_encode(cp, buf, n)
+long cp;
+char *buf;
+int n;
+{
+    return utf8_encode(cp, buf, n);
 }
 
 #endif /* JP_INTERNAL_UTF8 */
@@ -208,6 +249,22 @@ int cols;
         i += n;
     }
     return i;
+}
+
+int
+mb_replace(buf, pos, rep)
+char *buf;
+int pos;
+const char *rep;
+{
+    int n = mb_seqlen(buf + pos);
+    int r = (int) strlen(rep);
+
+    if (n != r)
+        (void) memmove(buf + pos + r, buf + pos + n,
+                       strlen(buf + pos + n) + 1);
+    (void) memcpy(buf + pos, rep, r);
+    return r;
 }
 
 const char *

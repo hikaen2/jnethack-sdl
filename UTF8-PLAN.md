@@ -10,7 +10,7 @@ JNetHack の内部文字コードを EUC-JP から UTF-8 へ移行するため�
 | 書記素クラスタの扱い | **B-1: 幅0の文字はグリッドに置かないが、ゲーム内部文字列には保持する** | 「受理・保存・比較は完全、表示のみ基底文字」。データを失う制約ではないので、後から B-2（セル合成描画）へ進む道を塞がない |
 | UTF-8 処理の実装 | **`include/utf8.h` + `japanese/utf8.c` を新設。sheredom/utf8.h を `include/sheredom_utf8.h` に vendoring し、文字列操作のみ委譲** | 下記 §1 参照 |
 
-進捗: **Phase 0 完了**（§8）。Phase 1 以降は未着手。
+進捗: **Phase 0 / Phase 1 完了、Phase 2 着手中**（§8）。
 
 ## 1. `utf8.h` について
 
@@ -268,6 +268,16 @@ Phase 4 でどのみち版を上げるため実害はないが、「プレイヤ
 **回帰テストを先に用意すること。** `jconj.c` の活用形処理だけは純粋な機械変換が効かず日本語文法の理解が要る。動詞63語 × 活用形の出力を Phase 1 の前後で全パターン比較する。
 
 ### Phase 2 — 入出力の境界
+
+**2a（リテラルは EUC のまま）— 完了**
+
+- ✅ `include/jiscode.h` + `japanese/jiscode.c` を新設。JIS X 0208 ↔ Unicode、EUC-JP ↔ Unicode。逆引きは初回使用時に構築するソート済み索引＋二分探索で、`sdlterm.c` にあった 8836 件の線形走査を置き換え
+- ✅ `jis0208.h` は `jiscode.c` だけが include する。ヘッダ内 `static const` 配列なので、include するファイルごとに 17KB の複製ができていた
+- ✅ `mbchar` に `mb_decode` / `mb_encode` / `mb_replace` を追加。符号点を介するので、符号化を知らずに「この文字は JIS の何区か」を問える
+- ✅ `jrndm_replace()` を区・点ベースに書き換え（Phase 1 からの持ち越し）。署名が `(char *)` から `(char *, int)` になったのは、置換後の長さが変わりうるため
+- ✅ `test/jiscodetest.sh` を新設。全 8836 位置の往復と、BMP 全域に対する索引の過不足検査
+
+**2b（リテラル変換と同時 — Phase 3 と一体）**
 
 9. `japanese/jlib.c:31` の `IC` マクロを廃止し、内部コードを UTF-8 固定に。`output_kcode`/`input_kcode` は「外部との変換先」の意味に純化
 10. `sdl_queue_text()` は**変換ではなく検証のみ**に。不正バイト列だけ弾き、コードポイントの範囲では絞らない（方針B）

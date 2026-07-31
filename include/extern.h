@@ -2118,7 +2118,7 @@ E  int FDECL(is_kanji2, (const char *,int));
 E  int FDECL(isspace_8, (const int));
 /*E  void FDECL(zen2han, (char *));*/
 E  void FDECL(split_japanese, (char *,char *,char *,int));
-E  void FDECL(jrndm_replace, (char *));
+E  void FDECL(jrndm_replace, (char *,int));
 E  int FDECL(jnumeral, (const char *,int *));
 E  int FDECL(jcounter, (const char *));
 

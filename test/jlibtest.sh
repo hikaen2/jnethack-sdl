@@ -65,6 +65,8 @@ cat > "$work/chars.utf8" <<'EOF'
 蓮
 堯
 、
+ａ
+±
 EOF
 
 # Words for jnumeral()/jcounter(): each numeral, each counter word, the
@@ -123,7 +125,7 @@ gen() {
 # --- build and run ---------------------------------------------------------
 $CC $CFLAGS -I"$top/include" -I"$work" \
     "$top/test/jlibtest.c" "$top/japanese/jlib.c" \
-    "$top/japanese/mbchar.c" "$top/japanese/utf8.c" \
+    "$top/japanese/mbchar.c" "$top/japanese/utf8.c" "$top/japanese/jiscode.c" \
     -o "$work/jlibtest"
 
 "$work/jlibtest" | iconv -f "$srcenc" -t UTF-8 > "$work/out.utf8"
@@ -135,6 +137,13 @@ lines=`wc -l < "$work/out.utf8"`
 if grep -Uq '^LOSSY' "$work/out.utf8"; then
     echo "jlibtest: FAIL -- split_japanese did not preserve its input"
     grep -U '^LOSSY' "$work/out.utf8" | head -20
+    exit 1
+fi
+
+# jrndm_replace() must never leave something that is not a character.
+if grep -Uq '^NOTACHAR' "$work/out.utf8"; then
+    echo "jlibtest: FAIL -- jrndm_replace produced a non-character"
+    grep -U '^NOTACHAR' "$work/out.utf8" | head -10
     exit 1
 fi
 

@@ -175,6 +175,84 @@ main()
     ok(mb_trunc_cols(mixed, 3) == 1 + KANJI_BYTES,
        "a + one kanji is three columns");
 
+    /* --- code points, and replacement ------------------------------ */
+    /*
+     * These are what let jrndm_replace() ask "which JIS row is this in"
+     * without knowing how the character is spelled.  The expectations are
+     * the same in both modes, which is the whole point.
+     */
+    ok(mb_decode(kanji) == 0x6F22L, "mb_decode of U+6F22");
+    ok(mb_decode(kanji + KANJI_BYTES) == 0x5B57L, "mb_decode of U+5B57");
+    ok(mb_decode("a") == 0x61L, "mb_decode of ASCII");
+    ok(mb_decode("") == 0L, "mb_decode at the NUL");
+    ok(mb_decode(HANKAKU) == 0xFF71L, "mb_decode of halfwidth katakana");
+
+    {
+        char out[MB_MAXBYTES + 1];
+        int n;
+
+        n = mb_encode(0x6F22L, out, MB_MAXBYTES);
+        ok(n == KANJI_BYTES, "mb_encode length of U+6F22");
+        out[n] = '\0';
+        ok(memcmp(out, kanji, (size_t) n) == 0, "mb_encode bytes of U+6F22");
+        ok(mb_decode(out) == 0x6F22L, "code point round trip");
+
+        ok(mb_encode(0x6F22L, out, 1) == 0, "no room is reported, not truncated");
+
+        /*
+         * The one place the two encodings genuinely differ, and must:
+         * option B accepts the whole of Unicode, but EUC-JP cannot spell
+         * most of it.  mb_encode() says so rather than inventing bytes.
+         */
+#ifdef JP_INTERNAL_UTF8
+        ok(mb_encode(0x20B9FL, out, MB_MAXBYTES) == 4,
+           "UTF-8 must encode a code point beyond the BMP");
+        ok(mb_encode(0x1F344L, out, MB_MAXBYTES) == 4, "UTF-8 must encode emoji");
+#else
+        ok(mb_encode(0x20B9FL, out, MB_MAXBYTES) == 0,
+           "EUC-JP has no form for a code point beyond the BMP");
+        ok(mb_encode(0x1F344L, out, MB_MAXBYTES) == 0,
+           "EUC-JP has no form for an emoji");
+#endif
+    }
+
+    /*
+     * mb_replace must move the tail when the lengths differ.  KANJI is two
+     * characters, so the second of them is at KANJI + KANJI_BYTES and the
+     * expectations are built from that rather than written out.
+     */
+    {
+        char work[64], want[64];
+
+        /* wide -> narrower: the tail moves left */
+        (void) strcpy(work, KANJI "tail");
+        (void) strcpy(want, "xy");
+        (void) strcat(want, KANJI + KANJI_BYTES);       /* the second kanji */
+        (void) strcat(want, "tail");
+        ok(mb_replace(work, 0, "xy") == 2,
+           "mb_replace returned the replacement length");
+        ok(strcmp(work, want) == 0, "mb_replace shrank and kept the tail");
+
+        /* same length: nothing moves */
+        (void) strcpy(work, "a" KANJI "b");
+        (void) strcpy(want, "a" KANJI "b");
+        ok(mb_replace(work, 1, KANJI) == 2 * KANJI_BYTES,
+           "replacing one character with two reports both");
+        ok(strlen(work) == strlen(want) + KANJI_BYTES,
+           "mb_replace grew the string by one character");
+        ok(mb_chars(work) == 5, "a + three kanji + b");
+
+        /* the engrave.c case: a wide character blanked with two spaces */
+        (void) strcpy(work, "ab" KANJI);
+        (void) strcpy(want, "ab  ");
+        (void) strcat(want, KANJI + KANJI_BYTES);
+        ok(mb_replace(work, 2, "  ") == 2, "blanking returns two");
+        ok(strcmp(work, want) == 0,
+           "blanking a wide character kept what followed it");
+        ok(mb_colwidth(work) == 6,
+           "two spaces occupy the two columns the kanji did");
+    }
+
     /* --- stepping back --------------------------------------------- */
     {
         const char *end = kanji + 2 * KANJI_BYTES;

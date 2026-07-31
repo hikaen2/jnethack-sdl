@@ -118,8 +118,29 @@ dump_rndm()
         /* several draws each, since the replacement is random */
         for (j = 0; j < 4; j++) {
             (void) strcpy(buf, jlib_chars[i]);
-            jrndm_replace(buf);
+            jrndm_replace(buf, 0);
             (void) printf("rndm\t%d\t%d\t[%s]\n", i, j, buf);
+        }
+
+        /*
+         * Property, not baseline: whatever comes out has to be a character.
+         *
+         * The old body picked a random cell within the row and wrote it out
+         * without asking whether the standard assigns anything there.  1957
+         * of the 8836 positions are unassigned, so an engraving could end up
+         * holding a byte pair that stands for nothing -- and from there it
+         * reached the screen and topten.c's record file.  Checked over
+         * enough draws to hit the gaps in row 1, which is the sparsest of
+         * the rows the function treats specially.
+         */
+        for (j = 0; j < 500; j++) {
+            int n;
+
+            (void) strcpy(buf, jlib_chars[i]);
+            jrndm_replace(buf, 0);
+            n = mb_seqlen(buf);
+            if (!mb_decode(buf) || n != (int) strlen(buf))
+                (void) printf("NOTACHAR\t%d\t%d\n", i, j);
         }
     }
 }

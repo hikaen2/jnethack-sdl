@@ -102,6 +102,33 @@ extern int FDECL(mb_trunc_bytes, (const char *, int));
 extern int FDECL(mb_trunc_cols, (const char *, int));
 
 /*
+ * The character at s as a Unicode code point, and the reverse.
+ *
+ * These are what let code work on characters rather than bytes without
+ * knowing the encoding at all -- jrndm_replace() needs to ask "which JIS
+ * row is this in", which is a question about the character, not its bytes.
+ *
+ * mb_decode() returns 0 at the terminating NUL and for a sequence that is
+ * not a character.  mb_encode() writes up to n bytes and returns how many,
+ * or 0 if the code point has no form in the current encoding -- which under
+ * EUC-JP is most of Unicode, and under UTF-8 is nothing.
+ */
+extern long FDECL(mb_decode, (const char *));
+extern int FDECL(mb_encode, (long, char *, int));
+
+/*
+ * Replace the character at buf[pos] with rep, moving the rest of the string
+ * if the two are not the same number of bytes.  Returns the length of what
+ * was written.
+ *
+ * The move is the part that is easy to forget.  Under EUC-JP every
+ * substitution the game makes happened to be two bytes for two, so the
+ * callers wrote memcpy() and were right; under UTF-8 a kanji is three bytes
+ * and the two spaces that blank it are two.
+ */
+extern int FDECL(mb_replace, (char *, int, const char *));
+
+/*
  * Step back one character from p.  Under UTF-8 this skips a run of
  * zero-width code points along with the base character they hang off, per
  * UTF8-PLAN.md option B-1, so a backspace cannot leave an orphaned

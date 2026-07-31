@@ -26,7 +26,7 @@ for mode in euc utf8; do
 
     $CC $CFLAGS $def -I"$top/include" \
         "$top/test/mbchartest.c" "$top/japanese/mbchar.c" \
-        "$top/japanese/utf8.c" \
+        "$top/japanese/utf8.c" "$top/japanese/jiscode.c" \
         -o "$out.$mode"
 
     "$out.$mode" || rc=1

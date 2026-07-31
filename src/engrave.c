@@ -74,28 +74,6 @@ static const struct {
 };
 /*JP*/
 
-/*JP
-**      Replace the character at engr[nxt] with rep, shifting the rest of the
-**      string if the two are not the same number of bytes.  Under EUC-JP a
-**      kanji and the fullwidth "？" that rubs it out are both two bytes and
-**      the move never happens; under UTF-8 they are both three, but the two
-**      spaces that blank an already-rubbed "？" are not.
-*/
-static void
-jrub_replace(engr, nxt, rep)
-        char *engr;
-        int nxt;
-        const char *rep;
-{
-        int n = mb_seqlen(engr + nxt);
-        int r = (int) strlen(rep);
-
-        if (n != r)
-                (void) memmove(engr + nxt + r, engr + nxt + n,
-                               strlen(engr + nxt + n) + 1);
-        (void) memcpy(engr + nxt, rep, r);
-}
-
 void
 wipeout_text(engr, cnt, seed)
 char *engr;
@@ -143,11 +121,11 @@ unsigned seed;		/* for semi-controlled randomization */
                   if(!strncmp(&engr[nxt], "？", sizeof("？")-1)){
                     /* already rubbed out once: blank it, one space per
                        column rather than one per byte */
-                    jrub_replace(engr, nxt, "  ");
+                    mb_replace(engr, nxt, "  ");
 		    continue;
 		  }
 		  else{
-                    jrub_replace(engr, nxt, "？");
+                    mb_replace(engr, nxt, "？");
 		    continue;
 		  }
 		}
@@ -1089,9 +1067,10 @@ doengrave()
 	      	if(!mb_is_boundary(ebuf, sp-ebuf))
                   /* sp landed inside a character; act on the whole of it.
                      This was "sp-1", right only for a two-byte one. */
-                  jrndm_replace((char *)mb_prev(ebuf, sp));
+                  jrndm_replace(ebuf,
+                                (int)((char *)mb_prev(ebuf, sp) - ebuf));
                 else if(mb_seqlen(sp) > 1)
-		  jrndm_replace(sp);
+		  jrndm_replace(ebuf, (int)(sp - ebuf));
 		else
 		  *sp = '!' + rn2(93); /* ASCII-code only */
 	    }

@@ -87,7 +87,7 @@ iconv -f UTF-8 -t "$srcenc" < "$work/sfx.utf8" | perl -ne '
 # --- build and run ---------------------------------------------------------
 $CC $CFLAGS -I"$top/include" -I"$work" \
     "$top/test/jconjtest.c" "$top/japanese/jconj.c" \
-    "$top/japanese/mbchar.c" "$top/japanese/utf8.c" \
+    "$top/japanese/mbchar.c" "$top/japanese/utf8.c" "$top/japanese/jiscode.c" \
     -o "$work/jconjtest"
 
 "$work/jconjtest" | iconv -f "$srcenc" -t UTF-8 > "$work/out.utf8"

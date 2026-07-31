@@ -11,6 +11,7 @@
 #include <ctype.h>
 #include "hack.h"
 #include "mbchar.h"
+#include "jiscode.h"
 
 #ifdef SDL_GRAPHICS
 /*
@@ -809,67 +810,112 @@ jcounter(s)
   return 0;
 }
 
-void 
-jrndm_replace(c)
-     char *c;
+/*
+**      Degrade one character of an engraving into another from the same
+**      part of JIS X 0208, so that a kanji stays a kanji and a hiragana
+**      stays a hiragana.
+**
+**      Rewritten for Phase 2 of UTF8-PLAN.md.  The logic is the same, but
+**      it is now expressed in row and cell rather than in the bytes of an
+**      EUC-JP pair, so it works whatever the internal encoding is.  The old
+**      body masked 0x80 off both bytes to get the JIS values, adjusted the
+**      low one, and put the bit back -- which is only how EUC-JP spells a
+**      JIS position, not how UTF-8 does.
+**
+**      Takes the buffer and an offset rather than a pointer at the
+**      character, because the replacement is not always the same number of
+**      bytes: JIS X 0208 row 1 holds both U+00B1 and U+3000, two bytes and
+**      three of UTF-8.  mb_replace() moves the rest of the string.
+**
+**      Two things about the original worth recording:
+**
+**        The lowercase branch for row 3 tested cc[2], which was never
+**        assigned -- an uninitialised read of the third byte of a two-byte
+**        buffer.  It is cell here, which is plainly what was meant, and is
+**        not a behaviour change that can be preserved: the old one had none
+**        to preserve.  A fullwidth lowercase letter now degrades into
+**        another one instead of into whatever the stack happened to hold.
+**
+**        The default branch tests "cell <= 84" where the shape of every
+**        other test, and the fact that rows 16 to 84 are the kanji, suggest
+**        "row <= 84" was meant.  Left as it was, because it is a live
+**        condition with defined behaviour and changing it would alter which
+**        characters degrade.
+*/
+static int
+jrndm_cell(row, cell)
+     int row;
+     int cell;
 {
-  unsigned char cc[3];
-
-  if(IC==SJIS)
-    memcpy(cc, (char *)sj2e(c), 2);
-  else
-    memcpy(cc, c, 2);
-
-  cc[0] &= 0x7f;
-  cc[1] &= 0x7f;
-
-  switch(cc[0]){
-  case 0x21:
-    cc[1] = rn2(94) + 0x21;
-    break;
-  case 0x23:
-    if(cc[1] <= 0x39) /* £°¡Á£¹ */
-      cc[1] = rn2(10) + 0x30;
-    else if(cc[1] <= 0x5A) /* £Á¡Á£Ú */
-      cc[1] = rn2(26) + 0x41;
-    else if(cc[2] <= 0x7A) /* £á¡Á£ú */
-      cc[1] = rn2(26) + 0x61;
-    break;
-  case 0x24:
-  case 0x25:
-    cc[1] = rn2(83) + 0x21; /* ¤¢¡Á¤ó or ¥¢¡Á¥ó */
-    break;
-  case 0x26:
-    if(cc[1] <= 0x30)
-      cc[1] = rn2(24) + 0x21; /* ¦¡¡Á¦¸ ¥®¥ê¥·¥ãÊ¸»ú */
+  switch(row){
+  case 1:
+    return rn2(94) + 1;
+  case 3:
+    if(cell <= 25)              /* fullwidth 0-9 */
+      return rn2(10) + 16;
+    else if(cell <= 58)         /* fullwidth A-Z */
+      return rn2(26) + 33;
+    else if(cell <= 90)         /* fullwidth a-z; was cc[2], uninitialised */
+      return rn2(26) + 65;
+    return cell;
+  case 4:
+  case 5:
+    return rn2(83) + 1;         /* hiragana or katakana */
+  case 6:
+    if(cell <= 16)
+      return rn2(24) + 1;       /* Greek capitals */
     else
-      cc[1] = rn2(24) + 0x41; /* ¦Á¡Á¦Ø ¥®¥ê¥·¥ãÊ¸»ú */
-    break;
-  case 0x27:
-    if(cc[1] <= 0x40)
-      cc[1] = rn2(33) + 0x21; /* §¡¡Á§Á ¥í¥·¥¢Ê¸»ú */
+      return rn2(24) + 33;      /* Greek small letters */
+  case 7:
+    if(cell <= 32)
+      return rn2(33) + 1;       /* Cyrillic capitals */
     else
-      cc[1] = rn2(33) + 0x51; /* §Ñ¡Á§ñ ¥í¥·¥¢Ê¸»ú */
-    break;
-  case 0x4f:
-    cc[1] = rn2(51) + 0x21; /* Ï¡¡Á ÏÓ */
-    break;
-  case 0x74:
-    cc[1] = rn2(4) + 0x21; /* ô¡ ô¢ ô£ ô¤ ¤Î4Ê¸»ú*/
-    break;
+      return rn2(33) + 49;      /* Cyrillic small letters */
+  case 47:
+    return rn2(51) + 1;
+  case 84:
+    return rn2(4) + 1;
   default:
-    if(cc[0] >= 0x30 && cc[1] <= 0x74)
-      cc[1] = rn2(94) + 0x21;
-    break;
+    if(row >= 16 && cell <= 84)
+      return rn2(94) + 1;
+    return cell;
   }
+}
 
-  cc[0] |= 0x80;
-  cc[1] |= 0x80;
+void 
+jrndm_replace(buf, pos)
+     char *buf;
+     int pos;
+{
+  long cp;
+  int row, cell, n;
+  char rep[MB_MAXBYTES + 1];
 
-  if(IC==SJIS)
-    memcpy(c, (char *)e2sj(cc), 2);
-  else
-    memcpy(c, cc, 2);
+  cp = mb_decode(buf + pos);
+  if(!cp || !ucs_to_jis(cp, &row, &cell))
+    return;                     /* not a JIS X 0208 character: leave it */
+
+  cell = jrndm_cell(row, cell);
+
+  cp = jis_to_ucs(row, cell);
+  if(!cp)
+    return;                     /*
+                                ** Defensive only.  Every range above was
+                                ** chosen to stay inside the assigned cells
+                                ** of its row -- checked against the table,
+                                ** all twelve of them -- which is why row 47
+                                ** draws from 51 cells and row 84 from 4
+                                ** rather than both from 94.  Should the
+                                ** table or a range ever change, this stops
+                                ** an unassigned position reaching the
+                                ** engraving instead of writing it out.
+                                */
+
+  n = mb_encode(cp, rep, MB_MAXBYTES);
+  if(!n)
+    return;
+  rep[n] = '\0';
+  (void) mb_replace(buf, pos, rep);
 }
 
 const char *

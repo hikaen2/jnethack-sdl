@@ -43,7 +43,7 @@
 
 #include "wintty.h"
 #include "termcap.h"
-#include "jis0208.h"
+#include "jiscode.h"
 #include "utf8.h"
 
 #ifndef C       /* this matches src/cmd.c and win/tty/topl.c */
@@ -479,7 +479,8 @@ long cp;
  * collected the two bytes of a character before this is reached (see
  * jbuffer() there).  All that is left is to name the code point.
  *
- * The table comes from japanese/mkjis0208.py, so nothing here depends on
+ * The table comes from japanese/mkjis0208.py by way of japanese/jiscode.c,
+ * so nothing here depends on
  * iconv, on a locale being installed, or on what the C library thinks
  * EUC-JP means.
  */
@@ -487,34 +488,14 @@ static long
 sdl_euc_to_ucs(b1, b2)
 int b1, b2;
 {
-    int row, cell;
+    char pair[3];
+    int n;
 
-    b1 &= 0xFF;
-    b2 &= 0xFF;
+    pair[0] = (char) b1;
+    pair[1] = (char) b2;
+    pair[2] = '\0';
 
-    /* SS2: JIS X 0201 half-width katakana, 0xA1..0xDF -> U+FF61..U+FF9F. */
-    if (b1 == 0x8E) {
-        if (b2 >= 0xA1 && b2 <= 0xDF) return 0xFF61L + (b2 - 0xA1);
-        return 0xFFFDL;
-    }
-
-    /*
-     * SS3 introduces JIS X 0212, which is a three-byte sequence in EUC-JP.
-     * jlib.c's two-byte accumulator cannot deliver one, and JNetHack's own
-     * data contains none, so there is nothing to translate.
-     */
-    if (b1 == 0x8F) return 0xFFFDL;
-
-    row = (b1 & 0x7F) - 0x20;
-    cell = (b2 & 0x7F) - 0x20;
-    if (row < 1 || row > JIS0208_ROWS || cell < 1 || cell > JIS0208_CELLS)
-        return 0xFFFDL;
-
-    {
-        unsigned short u = jis0208_to_ucs[(row - 1) * JIS0208_CELLS
-                                          + (cell - 1)];
-        return u ? (long) u : 0xFFFDL;
-    }
+    return euc_to_ucs(pair, &n);
 }
 
 /* ---------------------------------------------------------------- */
@@ -1128,22 +1109,13 @@ sdl_ucs_to_euc(cp, b1, b2)
 long cp;
 int *b1, *b2;
 {
-    int i;
+    char buf[4];
 
-    if (cp >= 0xFF61L && cp <= 0xFF9FL) {       /* half-width katakana */
-        *b1 = 0x8E;
-        *b2 = 0xA1 + (int) (cp - 0xFF61L);
-        return 1;
-    }
-    if (cp <= 0L || cp > 0xFFFFL) return 0;
+    if (ucs_to_euc(cp, buf, (int) sizeof buf) != 2) return 0;
 
-    for (i = 0; i < JIS0208_ROWS * JIS0208_CELLS; i++)
-        if ((long) jis0208_to_ucs[i] == cp) {
-            *b1 = 0xA1 + i / JIS0208_CELLS;
-            *b2 = 0xA1 + i % JIS0208_CELLS;
-            return 1;
-        }
-    return 0;
+    *b1 = (unsigned char) buf[0];
+    *b2 = (unsigned char) buf[1];
+    return 1;
 }
 
 static void
@@ -2389,11 +2361,11 @@ sdl_width_test()
     {
         int before = fail, b1, b2, row, cell, checked = 0;
 
-        for (row = 1; row <= JIS0208_ROWS; row++)
-            for (cell = 1; cell <= JIS0208_CELLS; cell++) {
+        for (row = 1; row <= JIS_ROWS; row++)
+            for (cell = 1; cell <= JIS_CELLS; cell++) {
                 long cp;
 
-                if (!jis0208_to_ucs[(row - 1) * JIS0208_CELLS + (cell - 1)])
+                if (!jis_to_ucs(row, cell))
                     continue;
                 cp = sdl_euc_to_ucs(0xA0 + row, 0xA0 + cell);
                 checked++;

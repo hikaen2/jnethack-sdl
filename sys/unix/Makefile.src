@@ -63,8 +63,8 @@ endif
 
 #JP by issei(93/11/10)
 JSRC = ../japanese/jconj.c ../japanese/jtrns.c ../japanese/jlib.c \
-	../japanese/utf8.c ../japanese/mbchar.c
-JOBJ = jconj.o jtrns.o jlib.o utf8.o mbchar.o
+	../japanese/utf8.c ../japanese/mbchar.c ../japanese/jiscode.c
+JOBJ = jconj.o jtrns.o jlib.o utf8.o mbchar.o jiscode.o
 
 #NH extension by issei(99/11/10)
 EXTSRC = ../extension/nhbuf.c ../extension/nhinet.c \
@@ -692,7 +692,7 @@ termcap.o: ../win/tty/termcap.c  ../include/hack.h ../include/wintty.h \
 		../include/termcap.h
 	$(CC) $(CFLAGS) -c ../win/tty/termcap.c
 sdlterm.o: ../win/tty/sdlterm.c  ../include/hack.h ../include/wintty.h \
-		../include/termcap.h ../include/sdlterm.h ../include/jis0208.h \
+		../include/termcap.h ../include/sdlterm.h ../include/jiscode.h \
 		../include/utf8.h
 	$(CC) $(CFLAGS) -c ../win/tty/sdlterm.c
 topl.o: ../win/tty/topl.c  ../include/hack.h ../include/termcap.h \
@@ -734,11 +734,15 @@ tile.o: ../src/./tile.c  ../include/hack.h
 jconj.o: ../japanese/jconj.c  ../include/hack.h ../include/mbchar.h
 	$(CC) $(CFLAGS) -c ../japanese/jconj.c
 mbchar.o: ../japanese/mbchar.c  ../include/hack.h ../include/mbchar.h \
-		../include/utf8.h
+		../include/utf8.h ../include/jiscode.h
 	$(CC) $(CFLAGS) -c ../japanese/mbchar.c
+jiscode.o: ../japanese/jiscode.c  ../include/hack.h ../include/jiscode.h \
+		../include/jis0208.h
+	$(CC) $(CFLAGS) -c ../japanese/jiscode.c
 jtrns.o: ../japanese/jtrns.c  ../include/hack.h ../include/jdata.h
 	$(CC) $(CFLAGS) -c ../japanese/jtrns.c
-jlib.o: ../japanese/jlib.c  ../include/hack.h ../include/sdlterm.h
+jlib.o: ../japanese/jlib.c  ../include/hack.h ../include/sdlterm.h \
+		../include/mbchar.h ../include/jiscode.h
 	$(CC) $(CFLAGS) -c ../japanese/jlib.c
 utf8.o: ../japanese/utf8.c  ../include/hack.h ../include/utf8.h
 	$(CC) $(CFLAGS) -c ../japanese/utf8.c
