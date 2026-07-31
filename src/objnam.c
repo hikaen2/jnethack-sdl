@@ -3,6 +3,21 @@
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include "hack.h"
+#include "mbchar.h"
+
+/*JP
+ *      The prefix xname() puts in front of a poisoned weapon, and that
+ *      readobjnam() has to take off again.  Named so that the two agree,
+ *      and so that its length comes from the literal rather than from a 12
+ *      written in by hand next to a 9 left over from the English.
+ */
+#define JP_POISONED     "毒の塗られた"
+
+/*JP
+ *      The infix xname() uses for a named object, and that readobjnam()
+ *      moves past.  Same reason as JP_POISONED above.
+ */
+#define JP_NAMED        "名づけられた"
 
 /*
 **	Japanese version Copyright
@@ -707,9 +722,9 @@ register struct obj *obj;
 	 * combining both into one function taking a parameter.
 	 */
 /*JP	if (!strncmp(bp, "poisoned ", 9)) {*/
-	if (!strncmp(bp, "毒の塗られた",12)) {
+	if (!strncmp(bp, JP_POISONED, sizeof(JP_POISONED)-1)) {
 /*JP		bp += 9;*/
-		bp += 12;
+		bp += sizeof(JP_POISONED)-1;
 		ispoisoned = TRUE;
 	}
 	/* JP
@@ -717,8 +732,8 @@ register struct obj *obj;
 	 *  のほうが自然である．
          */
 	preprefix[0]='\0';
-	if((tp = strstri(bp,"名づけられた"))!= NULL){
-	  tp += 12;
+	if((tp = strstri(bp,JP_NAMED))!= NULL){
+	  tp += sizeof(JP_NAMED)-1;
 	  strncpy(preprefix,bp,tp-bp);
 	  preprefix[tp-bp]='\0';
 	  bp = tp;
@@ -2045,62 +2060,40 @@ register char *bp;
 			cnt = atoi_8(bp);
 			while(digit_8(*bp)) bp++;
 			while(*bp == ' ') bp++;
-			l = 0;
 /* 後に数詞があるときは削除 */
-			if(!strncmp(bp, "冊の", l = 4) ||
-			   !strncmp(bp, "本の", l = 4) ||
-			   !strncmp(bp, "着の", l = 4) ||
-			   !strncmp(bp, "個の", l = 4) ||
-			   !strncmp(bp, "枚の", l = 4) ||
-			   !strncmp(bp, "つの", l = 4) ||
-			   !strncmp(bp, "の", l = 2))
-			  ;
-			else
-			  l = 0;
+                        l = jcounter(bp);       /* 0 if there is none */
 #if 1
  /*
 漢字で数字を指定するときは数詞が必要
 */
-		} else if(!cnt && 
-			  (!strncmp(bp + 2, "冊の", l = 4) ||
-			   !strncmp(bp + 2, "本の", l = 4) ||
-			   !strncmp(bp + 2, "着の", l = 4) ||
-			   !strncmp(bp + 2, "個の", l = 4) ||
-			   !strncmp(bp + 2, "枚の", l = 4) ||
-			   !strncmp(bp + 2, "つの", l = 4) ||
-			   !strncmp(bp + 2, "の", l = 2))){
-		  if(!strncmp(bp, "一", 2)){
-		    cnt = 1;
-		  }
-		  else if(!strncmp(bp, "二", 2)){
-		    cnt = 2;
-		  }
-		  else if(!strncmp(bp, "三", 2)){
-		    cnt = 3;
-		  }
-		  else if(!strncmp(bp, "四", 2)){
-		    cnt = 4;
-		  }
-		  else if(!strncmp(bp, "五", 2)){
-		    cnt = 5;
-		  }
-		  else if(!strncmp(bp, "六", 2)){
-		    cnt = 6;
-		  }
-		  else if(!strncmp(bp, "七", 2)){
-		    cnt = 7;
-		  }
-		  else if(!strncmp(bp, "八", 2)){
-		    cnt = 8;
-		  }
-		  else if(!strncmp(bp, "九", 2)){
-		    cnt = 9;
-		  }
-		  else if(!strncmp(bp, "十", 2)){
-		    cnt = 10;
-		  }
+		} else if(!cnt && mb_seqlen(bp) > 1 &&
+                          (l = jcounter(bp + mb_seqlen(bp))) != 0){
+		  int nl = 0;
+
+                  /*
+                   * "counter word follows the first character".  That was
+                   * "bp + 2", which is this exactly whenever the first
+                   * character is a wide one -- the case the branch is for.
+                   *
+                   * The mb_seqlen() > 1 guard is new, and is the one place
+                   * in this file where the rewrite is not byte-for-byte the
+                   * old behaviour: "ab<counter>..." used to reach here,
+                   * because bp + 2 landed on the counter by accident, and
+                   * set cnt to 1 while consuming nothing.  The loop then
+                   * matched no further branch and broke, and cnt would have
+                   * been defaulted to 1 four lines below regardless, so the
+                   * outcome was the same.  No input that a later branch
+                   * would have claimed can reach it either: those all begin
+                   * with an ASCII word long enough that bp + 2 is still
+                   * inside it.
+                   *
+                   * The numeral may still be one jnumeral() does not know
+                   * ("hyaku" and up), in which case the original consumed
+                   * nothing and assumed one.  That part is preserved.
+                   */
+		  cnt = jnumeral(bp, &nl);
 		  if(cnt)
-		    l += 2;
+		    l += nl;
 		  else{
 		    l = 0;
 		    cnt = 1;
@@ -2195,35 +2188,14 @@ register char *bp;
 /*
 天邪鬼のために 1から10まではサポート．
 */
-	if(!strncmp(bp, "一", 2)){
-	  spe = 1; bp += 2;
-	}
-	else if(!strncmp(bp, "二", 2)){
-	  spe = 2; bp += 2;
-	}
-	else if(!strncmp(bp, "三", 2)){
-	  spe = 3; bp += 2;
-	}
-	else if(!strncmp(bp, "四", 2)){
-	  spe = 4; bp += 2;
-	}
-	else if(!strncmp(bp, "五", 2)){
-	  spe = 5; bp += 2;
-	}
-	else if(!strncmp(bp, "六", 2)){
-	  spe = 6; bp += 2;
-	}
-	else if(!strncmp(bp, "七", 2)){
-	  spe = 7; bp += 2;
-	}
-	else if(!strncmp(bp, "八", 2)){
-	  spe = 8; bp += 2;
-	}
-	else if(!strncmp(bp, "九", 2)){
-	  spe = 9; bp += 2;
-	}
-	else if(!strncmp(bp, "十", 2)){
-	  spe = 10; bp += 2;
+        {
+          int nl = 0;
+          int n = jnumeral(bp, &nl);
+
+          if(n){
+	    spe = n;
+            bp += nl;
+	  }
 	}
 
 	while(*bp == ' ')

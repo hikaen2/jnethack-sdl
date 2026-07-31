@@ -590,12 +590,12 @@ register const char *let,*word;
 	const char *joshi = "を";
 	const char *what = "どれ";
 
-	if(!strncmp(word, "に", 2)){
-	  word += 2;
+	if(!strncmp(word, "に", sizeof("に")-1)){
+	  word += sizeof("に")-1;
 	  joshi = "に";
 	}
-	else if(!strncmp(word, "の", 2)){
-	  word += 2;
+	else if(!strncmp(word, "の", sizeof("の")-1)){
+	  word += sizeof("の")-1;
 	  joshi = "の";
 	  what = "ど";
 	}
@@ -921,12 +921,12 @@ boolean combo;		/* combination menu flag */
 /*JP*/
 	const char *joshi = "を";
 
-	if(!strncmp(word, "に", 2)){
-	  word += 2;
+	if(!strncmp(word, "に", sizeof("に")-1)){
+	  word += sizeof("に")-1;
 	  joshi = "に";
 	}
-	else if(!strncmp(word, "の", 2)){
-	  word += 2;
+	else if(!strncmp(word, "の", sizeof("の")-1)){
+	  word += sizeof("の")-1;
 	  joshi = "の";
 	}
 

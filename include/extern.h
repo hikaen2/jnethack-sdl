@@ -2119,6 +2119,8 @@ E  int FDECL(isspace_8, (const int));
 /*E  void FDECL(zen2han, (char *));*/
 E  void FDECL(split_japanese, (char *,char *,char *,int));
 E  void FDECL(jrndm_replace, (char *));
+E  int FDECL(jnumeral, (const char *,int *));
+E  int FDECL(jcounter, (const char *));
 
 E  unsigned char *FDECL(e2sj, (unsigned char *));
 E  unsigned char *FDECL(sj2e, (unsigned char *));

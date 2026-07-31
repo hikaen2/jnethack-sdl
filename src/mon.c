@@ -1584,7 +1584,7 @@ register int  typ, fatal;
 {
 	register int i, plural;
 /*JP	boolean thrown_weapon = !strncmp(string, "poison", 6);*/
-	boolean thrown_weapon = !strncmp(string, "poison", 6) || !strncmp(string, "ÆÇ", 2);
+	boolean thrown_weapon = !strncmp(string, "poison", 6) || !strncmp(string, "ÆÇ", sizeof("ÆÇ")-1);
 
 		/* admittedly a kludge... */
 

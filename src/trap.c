@@ -3161,8 +3161,8 @@ unconscious()
 */
 	return((boolean)(multi < 0 && (!nomovemsg ||
 		u.usleep ||
-		!strncmp(nomovemsg,"あなたは正気づいた", 18) ||
-		!strncmp(nomovemsg,"あなたはまた正気づ", 18) ||
+		!strncmp(nomovemsg,"あなたは正気づいた", sizeof("あなたは正気づいた")-1) ||
+		!strncmp(nomovemsg,"あなたはまた正気づ", sizeof("あなたはまた正気づ")-1) ||
 		!strncmp(nomovemsg,"You regain con", 15) ||
 		!strncmp(nomovemsg,"You are consci", 15))));
 }

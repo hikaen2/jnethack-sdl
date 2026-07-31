@@ -575,22 +575,36 @@ boolean re;
 		t1->sex == 'F' ? "女" : "男");
 /*JP*/
 	jdeath = t1->death;
-	if (!strncmp(jdeath, "魔除けを手に", 12))
-	    jdeath += 12;
-	else if (!strncmp(jdeath, "天上で恥辱を受け", 16))
-	    jdeath += 16;
-	else if (!strncmp(jdeath, "偽物の魔除けを掴まされ", 24))
-	    jdeath += 24;
+	if (!strncmp(jdeath, "魔除けを手に", sizeof("魔除けを手に")-1))
+	    jdeath += sizeof("魔除けを手に")-1;
+	else if (!strncmp(jdeath, "天上で恥辱を受け", sizeof("天上で恥辱を受け")-1))
+	    jdeath += sizeof("天上で恥辱を受け")-1;
+        /*JP
+         * 24 here, where the literal is 22 bytes.  end.c builds the string
+         * as "偽物の魔除けを掴まされ" + "脱出した", so strncmp() reached the
+         * literal's terminator at byte 22, found 脱 in jdeath instead, and
+         * reported a difference: this branch never fired.  The prefix was
+         * therefore never stripped, "脱出した" below never matched, and an
+         * escape with the fake Amulet was listed as a death rather than as
+         * an escape.
+         *
+         * The two branches above are the same shape and have the right
+         * lengths, which is why they work; taking the length from the
+         * literal removes the chance of a fourth one getting it wrong.
+         */
+	else if (!strncmp(jdeath, "偽物の魔除けを掴まされ",
+			  sizeof("偽物の魔除けを掴まされ")-1))
+	    jdeath += sizeof("偽物の魔除けを掴まされ")-1;
 
 /*JP	if (!strncmp("escaped", t1->death, 7)) {*/
-	if (!strncmp("脱出した", jdeath, 8)
+	if (!strncmp("脱出した", jdeath, sizeof("脱出した")-1)
 	    || !strncmp("escaped", jdeath, 7)) {
 #if 0 /*JP*/
 	    Sprintf(eos(linebuf), "escaped the dungeon %s[max level %d]",
 		    !strncmp(" (", t1->death + 7, 2) ? t1->death + 7 + 2 : "",
 		    t1->maxlvl);*/
 	    Sprintf(action, "%s迷宮から脱出した[最大地下%d階]",
-		    !strncmp("魔除けを手に", t1->death, 12) ?
+		    !strncmp("魔除けを手に", t1->death, sizeof("魔除けを手に")-1) ?
 		    "魔除けを手に" : "",
 		    t1->maxlvl);
 	    /* fixup for closing paren in "escaped... with...Amulet)[max..." */
@@ -604,7 +618,7 @@ boolean re;
 		    jbuf, t1->maxlvl);
 	    second_line = FALSE;
 /*JP	} else if (!strncmp("ascended", t1->death, 8)) {*/
-	} else if (!strncmp("昇天した", jdeath, 8)
+	} else if (!strncmp("昇天した", jdeath, sizeof("昇天した")-1)
 		   || !strncmp("ascended", jdeath, 8)) {
 /*JP	    Sprintf(eos(linebuf), "ascended to demigod%s-hood",
 		    (t1->sex == 'F') ? "dess" : "");*/
@@ -613,7 +627,12 @@ boolean re;
 	    second_line = FALSE;
 	} else {
 /*JP	    if (!strncmp(t1->death, "quit", 4)) {*/
-	    if (!strncmp(jdeath, "抜けた", 4)
+            /*JP
+             * Was 4, which stopped in the middle of た and so matched
+             * "抜け" followed by any kana.  end.c's ends[] has exactly
+             * "抜けた", so comparing all of it is the same test.
+             */
+	    if (!strncmp(jdeath, "抜けた", sizeof("抜けた")-1)
 		|| !strncmp(jdeath, "quit", 4)) {
 /*JP		Strcat(linebuf, "quit");*/
 		Strcat(action, t1->death);

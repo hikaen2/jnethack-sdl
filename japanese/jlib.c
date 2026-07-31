@@ -744,6 +744,71 @@ split_japanese( str, str1, str2, pos )
   *(pnstr++) = '\0';
 }
 
+/*
+**      Kanji numerals and the counter words that follow them.
+**
+**      These live here rather than in src/objnam.c, where readobjnam() used
+**      to spell them out as twenty-odd strncmp() calls with the byte length
+**      written in by hand.  They are facts about Japanese, not about object
+**      naming, and down here they can be tested: japanese/jlib.c links
+**      standalone against four stubs, which src/objnam.c does not.
+**
+**      Every length comes from the literal itself, so Phase 3 of
+**      UTF8-PLAN.md converts the table and nothing else has to change.
+*/
+static const char *const jnumeral_tab[] = {
+  "一", "二", "三", "四", "五", "六", "七", "八", "九", "十", 0
+};
+
+/*
+**      Counter words, in the order readobjnam() tested them.  "の" is last
+**      because it is the bare particle -- the fallback when no counter is
+**      given -- and the others all end in it.
+*/
+static const char *const jcounter_tab[] = {
+  "冊の", "本の", "着の", "個の", "枚の", "つの", "の", 0
+};
+
+/*
+**      If a kanji numeral from 1 to 10 starts at s, return its value and put
+**      its length in bytes in *len.  Otherwise return 0 and leave *len alone.
+*/
+int
+jnumeral(s, len)
+     const char *s;
+     int *len;
+{
+  int i;
+
+  for( i=0 ; jnumeral_tab[i] ; ++i ){
+    int n = strlen(jnumeral_tab[i]);
+
+    if(!strncmp(s, jnumeral_tab[i], n)){
+      *len = n;
+      return i+1;
+    }
+  }
+  return 0;
+}
+
+/*
+**      Length in bytes of the counter word at s, or 0 if there is none.
+*/
+int
+jcounter(s)
+     const char *s;
+{
+  int i;
+
+  for( i=0 ; jcounter_tab[i] ; ++i ){
+    int n = strlen(jcounter_tab[i]);
+
+    if(!strncmp(s, jcounter_tab[i], n))
+      return n;
+  }
+  return 0;
+}
+
 void 
 jrndm_replace(c)
      char *c;

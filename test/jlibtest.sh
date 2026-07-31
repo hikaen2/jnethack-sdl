@@ -67,6 +67,41 @@ cat > "$work/chars.utf8" <<'EOF'
 、
 EOF
 
+# Words for jnumeral()/jcounter(): each numeral, each counter word, the
+# combinations readobjnam() actually parses, and things that must not match.
+cat > "$work/words.utf8" <<'EOF'
+一
+二
+三
+四
+五
+六
+七
+八
+九
+十
+一冊の
+三本の
+五着の
+七個の
+九枚の
+十つの
+二の
+冊の
+本の
+着の
+個の
+枚の
+つの
+の
+百
+壱
+a
+あ
+漢
+一a
+EOF
+
 gen() {
     var=$1; file=$2
     iconv -f UTF-8 -t "$srcenc" < "$file" | perl -ne '
@@ -82,6 +117,7 @@ gen() {
 {
     gen jlib_strings "$work/strings.utf8"
     gen jlib_chars "$work/chars.utf8"
+    gen jlib_words "$work/words.utf8"
 } > "$work/jlib_strings.h"
 
 # --- build and run ---------------------------------------------------------
@@ -99,6 +135,13 @@ lines=`wc -l < "$work/out.utf8"`
 if grep -Uq '^LOSSY' "$work/out.utf8"; then
     echo "jlibtest: FAIL -- split_japanese did not preserve its input"
     grep -U '^LOSSY' "$work/out.utf8" | head -20
+    exit 1
+fi
+
+# jnumeral()/jcounter() must report real character lengths, not a fixed 2.
+if grep -Uq '^BADLEN\|^BADCOUNTER' "$work/out.utf8"; then
+    echo "jlibtest: FAIL -- a numeral or counter length is not a character length"
+    grep -U '^BADLEN\|^BADCOUNTER' "$work/out.utf8" | head -20
     exit 1
 fi
 

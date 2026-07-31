@@ -829,7 +829,7 @@ music.o:  ../include/hack.h # interp.c
 o_init.o:  ../include/hack.h ../include/lev.h
 objects.o:  ../include/config.h ../include/obj.h ../include/objclass.h \
 	../include/prop.h ../include/color.h objects.c
-objnam.o:  ../include/hack.h
+objnam.o:  ../include/hack.h ../include/mbchar.h
 options.o:  ../include/config.h ../include/objclass.h ../include/flag.h \
 	../include/hack.h ../include/termcap.h
 pager.o:  ../include/hack.h ../include/dlb.h
