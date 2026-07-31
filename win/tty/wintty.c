@@ -699,9 +699,16 @@ tty_create_nhwindow(type)
 	newwin->datlen =
 		(short *) alloc(sizeof(short) * (unsigned)newwin->maxrow);
 	if(newwin->maxcol) {
+/*JP
+ *      maxcol counts columns; this buffer holds bytes.  One row of the
+ *      status line can be eighty columns of Japanese, which is eighty bytes
+ *      of EUC-JP and up to MB_MAXBYTES times that of UTF-8.
+ */
+            unsigned sz = (unsigned)newwin->maxcol * MB_MAXBYTES + 1;
+
 	    for (i = 0; i < newwin->maxrow; i++) {
-		newwin->data[i] = (char *) alloc((unsigned)newwin->maxcol);
-		newwin->datlen[i] = newwin->maxcol;
+		newwin->data[i] = (char *) alloc(sz);
+		newwin->datlen[i] = (short) sz;
 	    }
 	} else {
 	    for (i = 0; i < newwin->maxrow; i++) {
@@ -1582,7 +1589,14 @@ const char *str;
 {
 	static char cbuf[BUFSZ];
 	/* compress in case line too long */
-	if((int)strlen(str) >= CO) {
+/*JP
+ *      Columns.  This asks whether the line is too wide for the screen, and
+ *      strlen() answered it only while a kanji was two bytes and two
+ *      columns.  Under UTF-8 a 63-column line of dat/quest.txt is 93 bytes,
+ *      so the runs of spaces in text that fitted perfectly well were
+ *      squeezed out and the quest introduction lost its indentation.
+ */
+	if(mb_colwidth(str) >= CO) {
 		register const char *bp0 = str;
 		register char *bp1 = cbuf;
 
@@ -1699,8 +1713,14 @@ tty_putstr(window, attr, str)
 	    }
 	}
 
-	(void) strncpy(&cw->data[cw->cury][j], str, cw->cols - j - 1);
-	cw->data[cw->cury][cw->cols-1] = '\0'; /* null terminate */
+/*JP    cw->cols is a column count; datlen is the buffer's size in bytes. */
+        {
+            int room = (int)cw->datlen[cw->cury] - j - 1;
+
+            if (room < 0) room = 0;
+	    (void) strncpy(&cw->data[cw->cury][j], str, (size_t) room);
+	    cw->data[cw->cury][j + room] = '\0'; /* null terminate */
+        }
 	cw->cury = (cw->cury+1) % 2;
 	cw->curx = 0;
 	break;
@@ -1782,19 +1802,37 @@ tty_putstr(window, attr, str)
 	*ob++ = (char)(attr + 1);	/* avoid nuls, for convenience */
 	Strcpy(ob, str);
 
-	if(n0 > cw->maxcol)
-	    cw->maxcol = n0;
-	if(++cw->cury > cw->maxrow)
-	    cw->maxrow = cw->cury;
-	if(n0 > CO) {
-	    /* attempt to break the line */
-	    for(i = CO-1; i && str[i] != ' ';)
-		i--;
-	    if(i) {
-		cw->data[cw->cury-1][++i] = '\0';
-		tty_putstr(window, attr, &str[i]);
-	    }
+/*JP
+ *      Both of these ask about width, and n0 is a byte count.  They agreed
+ *      while a kanji was two bytes and two columns; under UTF-8 a 63-column
+ *      line of dat/quest.txt is 93 bytes, so a line that fitted the screen
+ *      perfectly well was declared too long and broken.
+ *
+ *      Worse than merely broken: the break looks backwards from CO-1 for a
+ *      space, and the only spaces in those lines are the three that indent
+ *      them, so it split off the indentation as a line of its own and left
+ *      the text flush against the left margin.  That is what the quest
+ *      introduction was doing.
+ *
+ *      maxcol is a column count as well -- tty_display_nhwindow() places
+ *      the window from it -- so it takes the width too.
+ */
+        {
+            int w = mb_colwidth(str);
 
+	    if(w + 1 > cw->maxcol)
+		cw->maxcol = w + 1;
+	    if(++cw->cury > cw->maxrow)
+		cw->maxrow = cw->cury;
+	    if(w > CO) {
+		/* attempt to break the line, at the last space that fits */
+		for(i = mb_trunc_cols(str, CO-1); i && str[i] != ' ';)
+		    i--;
+		if(i) {
+		    cw->data[cw->cury-1][++i] = '\0';
+		    tty_putstr(window, attr, &str[i]);
+                }
+	    }
 	}
 	break;
     }

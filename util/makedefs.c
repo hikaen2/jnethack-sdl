@@ -1652,7 +1652,16 @@ do_questtxt(void)
 	qt_line = 0;
 	in_msg = FALSE;
 
-	while (fgets(in_line, 80, ifp) != 0) {
+/*JP
+ *      sizeof in_line, not 80.  Everything else in this file already reads
+ *      whole lines; these two did not, and dat/quest.txt reaches 117 bytes
+ *      now that it is UTF-8 -- 63 columns, which was 63 bytes of EUC-JP.
+ *      So the compiler was cutting 620 of its lines at eighty and writing
+ *      the pieces into quest.dat as separate lines, and the quest text came
+ *      out of the game broken mid-sentence with the remainder against the
+ *      left margin.
+ */
+	while (fgets(in_line, (int) sizeof in_line, ifp) != 0) {
 	    SpinCursor (3);
 
 	    qt_line++;
@@ -1665,7 +1674,7 @@ do_questtxt(void)
 	in_msg = FALSE;
 	adjust_qt_hdrs();
 	put_qt_hdrs();
-	while (fgets(in_line, 80, ifp) != 0) {
+	while (fgets(in_line, (int) sizeof in_line, ifp) != 0) {
 
 		if(qt_control(in_line)) {
 		    in_msg = (in_line[1] == 'C');

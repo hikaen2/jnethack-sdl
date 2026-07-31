@@ -224,7 +224,13 @@ static void
 outoracle(special)
 boolean special;
 {
-	char	line[COLNO];
+/*JP
+ *      COLNO is a column count, and this is a byte buffer.  The two were
+ *      interchangeable while a kanji was two of each; dat/joracles.txt
+ *      reaches 93 bytes now, so an oracle came out cut at eighty and the
+ *      remainder on a line of its own.  See the same fix in questpgr.c.
+ */
+	char	line[BUFSZ];
 	char	*endp;
 	dlb	*oracles;
 	int oracle_idx;
@@ -258,7 +264,8 @@ boolean special;
 		      "賢者はしばらく冥想し，詠唱した：");
 		putstr(tmpwin, 0, "");
 
-		while(dlb_fgets(line, COLNO, oracles) && strcmp(line,"---\n")) {
+		while(dlb_fgets(line, (int) sizeof line, oracles) &&
+		      strcmp(line,"---\n")) {
 			if ((endp = index(line, '\n')) != 0) *endp = 0;
 			putstr(tmpwin, 0, xcrypt(line, xbuf));
 		}

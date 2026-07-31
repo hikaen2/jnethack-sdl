@@ -38,7 +38,26 @@ static void NDECL(convert_line);
 static void FDECL(deliver_by_pline, (struct qtmsg *));
 static void FDECL(deliver_by_window, (struct qtmsg *,int));
 
-static char	in_line[80], cvt_buf[64], out_line[128];
+/*JP
+ *      These are byte counts, and every one of them was too small once the
+ *      text became UTF-8.
+ *
+ *      in_line was 80 while the longest line of dat/quest.txt was 63
+ *      columns -- 63 bytes of EUC-JP, and 93 of UTF-8.  620 of the file's
+ *      lines are over 80 bytes now, so dlb_fgets() was returning the first
+ *      80 and the rest as a second line: the quest text came out broken
+ *      mid-sentence with the remainder flush against the left margin.  It
+ *      was not being wrapped, it was being read in pieces.
+ *
+ *      cvt_buf holds whatever %p and friends expand to, and convert_arg()
+ *      ends in an unbounded Strcpy() into it.  One of those is plname,
+ *      which is PL_NSIZ, so 64 stopped being enough the moment PL_NSIZ
+ *      went to 128 for UTF-8.
+ *
+ *      out_line is in_line with those expansions substituted, so it has to
+ *      be able to exceed either.
+ */
+static char	in_line[BUFSZ], cvt_buf[BUFSZ], out_line[BUFSZ * 2];
 static struct	qtlists	qt_list;
 static dlb	*msg_file;
 /* used by ldrname() and neminame(), then copied into cvt_buf */
@@ -641,7 +660,7 @@ struct qtmsg *qt_msg;
 	long	size;
 
 	for (size = 0; size < qt_msg->size; size += (long)strlen(in_line)) {
-	    (void) dlb_fgets(in_line, 80, msg_file);
+	    (void) dlb_fgets(in_line, (int) sizeof in_line, msg_file);
 	    convert_line();
 	    pline(out_line);
 	}
@@ -657,7 +676,7 @@ int how;
 	winid datawin = create_nhwindow(how);
 
 	for (size = 0; size < qt_msg->size; size += (long)strlen(in_line)) {
-	    (void) dlb_fgets(in_line, 80, msg_file);
+	    (void) dlb_fgets(in_line, (int) sizeof in_line, msg_file);
 	    convert_line();
 	    putstr(datawin, 0, out_line);
 	}
