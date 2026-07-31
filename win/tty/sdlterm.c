@@ -877,6 +877,14 @@ static int kq_head = 0, kq_tail = 0;
 static char *script = 0;
 static int script_pos = 0, script_len = 0;
 
+/*
+ * Alt held on the SDL_KEYDOWN just seen: the meta prefix, waiting for the
+ * SDL_TEXTINPUT that says which character it belongs to.  meta_fallback is
+ * what to send if no text arrives at all.  See sdl_queue_key().
+ */
+static boolean meta_pending = FALSE;
+static int meta_fallback = 0;
+
 static void
 sdl_queue_byte(b)
 int b;
@@ -936,6 +944,20 @@ const char *s;
     const unsigned char *p = (const unsigned char *) s;
     long cp;
     int b1, b2;
+
+    if (meta_pending) {
+        meta_pending = FALSE;
+        /*
+         * One printable ASCII character, delivered while Alt was down: the
+         * meta byte src/cmd.c is waiting for.  Anything else -- a kanji an
+         * IME committed, a multi-character commit -- cannot be a meta
+         * command, so it falls through and is converted as it stands.
+         */
+        if (s[0] >= ' ' && (unsigned char) s[0] < 0x7f && s[1] == '\0') {
+            sdl_queue_byte(0x80 | s[0]);
+            return;
+        }
+    }
 
     while (*p) {
         if (*p < 0x80) {
@@ -1027,6 +1049,31 @@ SDL_Keysym *ks;
         sdl_queue_byte('\033');
         return;
     }
+
+    /*
+     * Alt is the meta prefix.  src/cmd.c holds its meta commands as
+     * M(c) == 0x80|c -- #name is M('n'), #pray is M('p') -- and nothing
+     * between here and rhack() decodes an ESC prefix the way a terminal
+     * would, so the high bit is the only way to reach them.  Without this
+     * the letter still arrived, as itself, and the game answered "Unknown
+     * command 'n'".
+     *
+     * Which character Alt was pressed with is a question for the keyboard
+     * layout, not for us: M('?') is Alt+Shift+/ on a US layout and
+     * somewhere else on a Japanese one.  SDL has already answered it in
+     * the SDL_TEXTINPUT it pushes alongside this event -- both come out of
+     * one key press, so sdl_pump() sees them in the same drain -- so only
+     * note the prefix here and let sdl_queue_text() put the two together.
+     *
+     * meta_fallback is for the case where no text follows: a layout or a
+     * window manager that swallows Alt combinations still leaves us the
+     * keysym, which is the unshifted ASCII character for these keys.
+     */
+    if ((mod & KMOD_ALT) && !(mod & KMOD_CTRL)
+        && sym >= SDLK_SPACE && sym <= SDLK_z) {
+        meta_pending = TRUE;
+        meta_fallback = (mod & KMOD_SHIFT) ? SDL_HIGHC(sym) : sym;
+    }
 }
 
 static void
@@ -1105,6 +1152,14 @@ sdl_pump()
                 grid_dirty = TRUE;
             break;
         }
+    }
+    /* An Alt press with no text behind it: send what the keysym said.
+       Done after the drain, so that the SDL_TEXTINPUT belonging to the
+       same key press -- which SDL queues immediately after the
+       SDL_KEYDOWN -- has already had its chance to claim the prefix. */
+    if (meta_pending) {
+        meta_pending = FALSE;
+        if (meta_fallback) sdl_queue_byte(0x80 | meta_fallback);
     }
     if (want_quit) {
         want_quit = FALSE;

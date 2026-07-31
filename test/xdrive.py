@@ -2,6 +2,7 @@
 """Drive the SDL build's real window with genuine X key events.
 
     ./test/xdrive.py --keys 'n V y SPACE SPACE i' -- src/jnethack.sdl -u poc
+    ./test/xdrive.py --keys 'n V y SPACE SPACE M-n' -- src/jnethack.sdl -u poc
     ./test/xdrive.py --keys 'n V y SPACE SPACE' --close -- src/jnethack.sdl -u poc
 
 test/compare.sh fills the key queue directly through NH_SDL_KEYS, which is
@@ -45,19 +46,36 @@ NAMED = {
 }
 
 
+MODS = {"shift": "Shift_L", "ctrl": "Control_L", "alt": "Alt_L"}
+
+# Characters that live on the shifted level of a key.  Naming their keysym
+# alone is not enough: XTEST sends a keycode, and the server reads the
+# modifiers that are actually held, so an unshifted "question" arrives as
+# the "/" it shares a key with.
+SHIFTED = {"?": "slash", "#": "3", "!": "1", "$": "4", "*": "8", "+": "equal"}
+
+
 def tokens(spec):
+    """'n V ^x M-n M-?' -> (keysym name, list of modifiers) pairs."""
     for tok in spec.split():
+        mods = []
+        # M- is meta.  src/cmd.c's meta commands are M(c) == 0x80|c, and
+        # win/tty/sdlterm.c builds that byte out of the Alt modifier.
+        while len(tok) > 2 and tok[:2] == "M-":
+            mods.append("alt")
+            tok = tok[2:]
         if tok in NAMED:
-            yield NAMED[tok], False
+            yield NAMED[tok], mods
         elif len(tok) == 2 and tok[0] == "^":
-            yield tok[1].lower(), "ctrl"
+            yield tok[1].lower(), mods + ["ctrl"]
         else:
             for ch in tok:
                 if ch.isupper():
-                    yield ch.lower(), "shift"
+                    yield ch.lower(), mods + ["shift"]
+                elif ch in SHIFTED:
+                    yield SHIFTED[ch], mods + ["shift"]
                 else:
-                    yield {" ": "space", "?": "question",
-                           "#": "numbersign"}.get(ch, ch), False
+                    yield {" ": "space"}.get(ch, ch), list(mods)
 
 
 def descends_from(pid, ancestor):
@@ -137,19 +155,19 @@ def find_window(dpy, pid_title, pid=None, cwd=None):
     return walk(dpy.screen().root)
 
 
-def send(dpy, win, keyname, mod):
+def send(dpy, win, keyname, mods):
     keysym = XK.string_to_keysym(keyname)
     if keysym == 0:
         print("xdrive: no keysym for %r" % keyname, file=sys.stderr)
         return
     code = dpy.keysym_to_keycode(keysym)
-    mods = {"shift": "Shift_L", "ctrl": "Control_L"}
-    if mod:
-        mcode = dpy.keysym_to_keycode(XK.string_to_keysym(mods[mod]))
+    mcodes = [dpy.keysym_to_keycode(XK.string_to_keysym(MODS[m]))
+              for m in mods]
+    for mcode in mcodes:
         xtest.fake_input(dpy, X.KeyPress, mcode)
     xtest.fake_input(dpy, X.KeyPress, code)
     xtest.fake_input(dpy, X.KeyRelease, code)
-    if mod:
+    for mcode in reversed(mcodes):
         xtest.fake_input(dpy, X.KeyRelease, mcode)
     dpy.sync()
 
@@ -218,8 +236,8 @@ def main():
             time.sleep(0.25)
     time.sleep(0.5)
 
-    for keyname, mod in tokens(args.keys):
-        send(dpy, win, keyname, mod)
+    for keyname, mods in tokens(args.keys):
+        send(dpy, win, keyname, mods)
         time.sleep(args.delay)
 
     time.sleep(0.5)
