@@ -696,7 +696,8 @@ sdlterm.o: ../win/tty/sdlterm.c  ../include/hack.h ../include/wintty.h \
 		../include/utf8.h ../include/mbchar.h
 	$(CC) $(CFLAGS) -c ../win/tty/sdlterm.c
 topl.o: ../win/tty/topl.c  ../include/hack.h ../include/termcap.h \
-		../include/wintty.h ../include/sdlterm.h
+		../include/wintty.h ../include/sdlterm.h \
+		../include/mbchar.h
 	$(CC) $(CFLAGS) -c ../win/tty/topl.c
 wintty.o: ../win/tty/wintty.c  ../include/hack.h ../include/dlb.h  \
 		../include/patchlevel.h ../include/termcap.h ../include/wintty.h \

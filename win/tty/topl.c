@@ -9,6 +9,7 @@
 */
 
 #include "hack.h"
+#include "mbchar.h"
 
 #ifdef TTY_GRAPHICS
 
@@ -100,7 +101,8 @@ const char *s;
     register struct WinDesc *cw = wins[WIN_MESSAGE];
 
     tty_curs(BASE_WINDOW,cw->curx+1,cw->cury);
-    if(cw->curx + (int)strlen(s) >= CO) topl_putsym('\n');
+/*JP*/  /* columns, not bytes -- see topl_putsym() */
+    if(cw->curx + mb_colwidth(s) >= CO) topl_putsym('\n');
     putsyms(s);
     cl_end();
     ttyDisplay->toplin = 1;
@@ -147,17 +149,26 @@ more()
     ttyDisplay->inmore = 0;
 }
 /*JP*/
+/*
+**      Fold a message to cols columns.
+**
+**      The argument is a column budget; split_japanese() wants a byte
+**      offset to search back from, so it is converted for each line.  They
+**      were the same number while a kanji was two bytes and two columns.
+*/
 static char *
-folding_japanese( str, pos )
+folding_japanese( str, cols )
      char *str;
-     int pos;
+     int cols;
 {
   char ss[1024],s1[1024],s2[1024];
   static char newstr[1024];		/* may be enough */
+  int pos;
 
   newstr[0] = '\0';
   Strcpy(ss, str);
   while(1){
+    pos = mb_trunc_cols(ss, cols);
     split_japanese(ss, s1, s2, pos);
     Strcat(newstr, s1);
     if(!*s2)
@@ -179,7 +190,13 @@ update_topl(bp)
 
 	/* If there is room on the line, print message on same line */
 	/* But messages like "You die..." deserve their own line */
-	n0 = strlen(bp);
+/*JP
+ *      Columns.  This was strlen(), and the two agreed while a kanji was
+ *      two bytes and two columns.  Under UTF-8 a 58-column prompt is 80
+ *      bytes, so "shall I pick a character for you? [ynq]" was folded and
+ *      its closing bracket left alone on the next line.
+ */
+	n0 = mb_colwidth(bp);
 	if(ttyDisplay->toplin == 1 && cw->cury == 0 &&
 	    n0 + (int)strlen(toplines) + 3 < CO-8 &&  /* room for --More-- */
 	    (notdied = strncmp(bp, "You die", 7))) {
@@ -200,7 +217,7 @@ update_topl(bp)
 	if( n0<CO )
 	  Strcpy(toplines, bp);
 	else
-	  Strcpy(toplines,folding_japanese(bp, CO-2));
+	  Strcpy(toplines,folding_japanese(bp, CO-2));	/* CO-2 columns */
 #if 0
 	for(tl = toplines; n0 >= CO; ){
 	    otl = tl;
@@ -298,15 +315,47 @@ topl_putsym(c)
 	cw->cury = ttyDisplay->cury;
 	break;
     default:
-	if(ttyDisplay->curx == CO-1)
-	    topl_putsym('\n'); /* 1 <= curx <= CO; avoid CO */
-	cw->curx = ttyDisplay->curx;
+/*JP
+ *      Collect a whole character before deciding anything.
+ *
+ *      This is fed one byte at a time by putsyms(), and used to wrap and
+ *      advance the cursor once per byte -- which was the same as once per
+ *      column only while a kanji was two of each.  Under UTF-8 it is three
+ *      bytes and two columns, so the topline believed it had reached the
+ *      right margin a third of the way early, and a character could be
+ *      split across the wrap.
+ *
+ *      jputchar() does its own accumulating for the sake of the output
+ *      encoding; this one is about the cursor, which is why there are two.
+ */
+        {
+            static char mbuf[MB_MAXBYTES + 1];
+            static int want = 0, have = 0;
+            int i, w;
 
-	if(cw->curx == 0) cl_end();
-/*JP*/
-	(void) jputchar((unsigned char)uc);
-	++cw->curx;
-	ttyDisplay->curx++;
+            if(!want){
+                want = mb_lead_len((int)uc);
+                have = 0;
+            }
+            mbuf[have++] = (char)uc;
+            if(--want)
+                return;                 /* more bytes to come */
+
+            mbuf[have] = '\0';
+            w = mb_width(mbuf);
+
+	    if(ttyDisplay->curx + w > CO-1)
+                topl_putsym('\n'); /* 1 <= curx <= CO; avoid CO */
+	    cw->curx = ttyDisplay->curx;
+
+	    if(cw->curx == 0) cl_end();
+
+            for(i = 0; i < have; ++i)
+		(void) jputchar((unsigned char)mbuf[i]);
+	    cw->curx += w;
+	    ttyDisplay->curx += w;
+            have = 0;
+        }
     }
 }
 

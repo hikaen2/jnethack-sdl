@@ -571,8 +571,12 @@ jbuffer(
      void (*f2)(unsigned int, unsigned int))
 {
   static unsigned int ibuf[JBUF_SIZE];
-  char in[MB_MAXBYTES + 1], out[MB_MAXBYTES + 1];
-  int i, n, m;
+  char in[MB_MAXBYTES + 1];
+  int i, n;
+#ifndef SDL_GRAPHICS
+  char out[MB_MAXBYTES + 1];
+  int m;
+#endif
 
   if(!buf) buf = ibuf;
   if(!reset) reset = tty_reset;

@@ -1610,7 +1610,6 @@ tty_putstr(window, attr, str)
     register const char *nb;
     register int i, j, n0;
 /*JP*/
-    int kchar2 = 0;		/* if 1, kanji 2nd byte */
 /*  unsigned char uc;*/
 
     /* Assume there's a real problem if the window is missing --
@@ -1647,55 +1646,57 @@ tty_putstr(window, attr, str)
 		str = nb - 2;
 	}
 	nb = str;
-	for(i = cw->curx+1, n0 = cw->cols; i < n0; i++, nb++) {
-	    if(!*nb) {
-		if(*ob || flags.botlx) {
-		    /* last char printed may be in middle of line */
-		    tty_curs(WIN_STATUS, i, cw->cury);
-		    cl_end();
+/*JP
+ *      Walk characters, and keep the column separate from the byte offset.
+ *
+ *      What was here compared byte pairs: on a high bit it looked one byte
+ *      ahead, wrote the two if they differed, and moved on.  That is a
+ *      kanji only in EUC-JP.  Under UTF-8 the third byte of a character
+ *      also has its high bit set, so it was taken for the start of a new
+ *      one and everything after it on the line was compared against the
+ *      wrong place -- visible whenever the Japanese part of the status
+ *      line changed, which is what happens on gaining a rank.
+ *
+ *      A character is written by positioning once and then handing every
+ *      byte to jputchar(), which is buffering them for the output encoding
+ *      anyway.  tty_putsym() cannot be used for this: it positions on each
+ *      call and advances the cursor by one, which is a column only for a
+ *      single-byte character.
+ */
+        {
+            int col = cw->curx + 1;
+
+	    n0 = cw->cols;
+            while (col < n0) {
+                int nlen, olen, w, k;
+
+		if (!*nb) {
+		    if (*ob || flags.botlx) {
+			/* last char printed may be in middle of line */
+			tty_curs(WIN_STATUS, col, cw->cury);
+			cl_end();
+                    }
+                    break;
 		}
-		break;
+
+                nlen = mb_seqlen(nb);
+                w = mb_width(nb);
+                if (col + w > n0) break;
+
+                olen = *ob ? mb_seqlen(ob) : 0;
+
+                if (olen != nlen || memcmp(nb, ob, (size_t) nlen) != 0) {
+                    tty_curs(WIN_STATUS, col, cw->cury);
+                    for (k = 0; k < nlen; k++)
+                        (void) jputchar((unsigned char) nb[k]);
+                    ttyDisplay->curx = col - 1 + w;
+                    cw->curx = ttyDisplay->curx;
+                }
+
+                if (*ob) ob += olen;
+                nb += nlen;
+                col += w;
 	    }
-#if 0	/* this code updates all status line at any time */
-/*JP	    if(*ob != *nb)		*/
-/* check 2-bytes character for Japanese	*/
-/* by issei 93/12/2 			*/
-	    uc = *((unsigned char *)nb);
-	    if((!(uc & 0x80) && *ob != *nb) || kflg){
-	      tty_putsym(WIN_STATUS, i, cw->cury, *nb);
-	    }
-	    else{
-	      if(*ob != *nb || *(ob+1)!= *(nb+1)){
-		tty_putsym(WIN_STATUS, i, cw->cury, *nb);
-		kflg = 1;
-	      }
-	    }
-#endif	/* 0 */
-#define ismbchar(c)	(((unsigned char)(c)) & 0x80)
-#define KANJI2	1
-#define KUPDATE	2
-	    if (kchar2)			/* kanji 2nd byte */
-	    {
-		if (kchar2 & KUPDATE)
-		    tty_putsym(WIN_STATUS, i, cw->cury, *nb);
-	    	kchar2 = 0;
-	    }
-	    else if (ismbchar(*nb))	/* kanji 1st byte */
-	    {
-		kchar2 = KANJI2;
-		/* Kanji char must be checked as 2-bytes pair. */
-		/* check i to prevent putting only kanji 1st byte at last. */
-		if ((*nb != *ob || *(nb+1) != *(ob+1)) && i < n0-1)
-		{
-		    tty_putsym(WIN_STATUS, i, cw->cury, *nb);
-		    kchar2 |= KUPDATE;	/* must do update */
-		}
-		/* else nb is the same char as old, so need not to update */
-	    }
-	    /* not kanji char */
-	    else if (*nb != *ob)
-		tty_putsym(WIN_STATUS, i, cw->cury, *nb);
-	    if(*ob) ob++;
 	}
 
 	(void) strncpy(&cw->data[cw->cury][j], str, cw->cols - j - 1);
@@ -1719,16 +1720,28 @@ tty_putstr(window, attr, str)
     case NHW_BASE:
 	tty_curs(window, cw->curx+1, cw->cury);
 	term_start_attr(attr);
+/*JP
+ *      A character at a time, wrapping on columns.
+ *
+ *      This walked bytes and counted each as a column, which came to the
+ *      same thing while a kanji was two of each.  Under UTF-8 the startup
+ *      prompt "shall I pick a character for you? [ynq]" is 58 columns and
+ *      80 bytes, so it wrapped after the 79th byte and left its closing
+ *      bracket alone on the next line.
+ */
 	while (*str) {
-	    if ((int) ttyDisplay->curx >= (int) ttyDisplay->cols-1) {
+            int len = mb_seqlen(str), w = mb_width(str), k;
+
+	    if ((int) ttyDisplay->curx + w > (int) ttyDisplay->cols-1) {
 		cw->curx = 0;
 		cw->cury++;
 		tty_curs(window, cw->curx+1, cw->cury);
 	    }
-/*JP	    (void) putchar(*str);*/
-	    (void) jputchar(*str);
-	    str++;
-	    ttyDisplay->curx++;
+            for (k = 0; k < len; k++)
+/*JP	    (void) putchar(str[k]);*/
+		(void) jputchar(str[k]);
+            str += len;
+	    ttyDisplay->curx += w;
 	}
 	cw->curx = 0;
 	cw->cury++;
