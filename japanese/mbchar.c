@@ -55,6 +55,19 @@ const char *s;
 }
 
 int
+mb_lead_len(c)
+int c;
+{
+    unsigned int b = (unsigned int) c & 0xFF;
+
+    if (b < 0x80) return 1;
+    if (b == 0x8E) return 2;            /* SS2 */
+    if (b == 0x8F) return 3;            /* SS3 */
+    if (b >= 0xA1 && b <= 0xFE) return 2;
+    return 1;                           /* 0x80..0xA0: not EUC-JP */
+}
+
+int
 mb_complete(s)
 const char *s;
 {
@@ -112,6 +125,19 @@ mb_seqlen(s)
 const char *s;
 {
     return utf8_seqlen(s);
+}
+
+int
+mb_lead_len(c)
+int c;
+{
+    unsigned int b = (unsigned int) c & 0xFF;
+
+    if (b < 0x80) return 1;
+    if ((b & 0xE0) == 0xC0) return 2;
+    if ((b & 0xF0) == 0xE0) return 3;
+    if ((b & 0xF8) == 0xF0) return 4;
+    return 1;                           /* continuation byte, or F8..FF */
 }
 
 int

@@ -14,6 +14,7 @@
 #define VIDEO_TEXT
 
 #include "hack.h"
+#include "mbchar.h"     /* JBUF_SIZE */
 #include "pcvideo.h"
 #include "wintty.h"
 
@@ -438,7 +439,7 @@ txt_xputs(s,col,row)
 const char *s;
 int col,row;
 {
-  unsigned int buf[2];
+  unsigned int buf[JBUF_SIZE];	/* was 2: a character can be longer now */
 
   if(s){
     while(*s){

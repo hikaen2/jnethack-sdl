@@ -382,7 +382,116 @@ tty_jputc2(unsigned int c, unsigned int c2)
 }
 
 /*
-**  japanese buffersing function
+**  japanese buffering function
+*/
+
+/*
+**      Convert one character from the internal code to output_kcode.
+**      Returns how many bytes were written, or 0 if it has no form there.
+**
+**      Under EUC-JP internal this is the byte fiddling the old jbuffer()
+**      did inline -- strip the high bits for JIS, e2sj() for Shift-JIS.
+**      Under UTF-8 internal there is nothing to fiddle, so it goes through
+**      the code point: that is the only representation the two families
+**      have in common.
+*/
+static int
+jconv_out(in, n, out)
+     const char *in;
+     int n;
+     char *out;
+{
+  unsigned char uc[2], *p;
+
+  if(output_kcode == IC){               /* nothing to do */
+    memcpy(out, in, n);
+    return n;
+  }
+
+#ifdef JP_INTERNAL_UTF8
+  {
+    long cp = mb_decode(in);
+    int m;
+
+    if(!cp)
+      return 0;
+    m = ucs_to_euc(cp, out, MB_MAXBYTES);
+    if(m != 2)
+      return m;                         /* ASCII, or no EUC-JP form */
+    /* now in EUC-JP; the rest is the same two conversions as ever */
+    uc[0] = (unsigned char)out[0];
+    uc[1] = (unsigned char)out[1];
+    switch(output_kcode){
+    case EUC:
+      return 2;
+    case JIS:
+      out[0] = (char)(uc[0] & 0x7f);
+      out[1] = (char)(uc[1] & 0x7f);
+      return 2;
+    case SJIS:
+      p = e2sj(uc);
+      out[0] = (char)p[0];
+      out[1] = (char)p[1];
+      return 2;
+    default:
+      impossible("Unknown kcode!");
+      return 0;
+    }
+  }
+#else
+  if(n != 2){                           /* ASCII, or SS2/SS3 we cannot map */
+    memcpy(out, in, n);
+    return n;
+  }
+  uc[0] = (unsigned char)in[0];
+  uc[1] = (unsigned char)in[1];
+
+  if(IC == EUC){
+    switch(output_kcode){
+    case JIS:
+      out[0] = (char)(uc[0] & 0x7f);
+      out[1] = (char)(uc[1] & 0x7f);
+      return 2;
+    case SJIS:
+      p = e2sj(uc);
+      out[0] = (char)p[0];
+      out[1] = (char)p[1];
+      return 2;
+    default:
+      impossible("Unknown kcode!");
+      return 0;
+    }
+  }
+  else {                                /* IC == SJIS */
+    p = sj2e(uc);
+    switch(output_kcode){
+    case JIS:
+      out[0] = (char)(p[0] & 0x7f);
+      out[1] = (char)(p[1] & 0x7f);
+      return 2;
+    case EUC:
+      out[0] = (char)p[0];
+      out[1] = (char)p[1];
+      return 2;
+    default:
+      impossible("Unknown kcode!");
+      return 0;
+    }
+  }
+#endif
+}
+
+/*
+**      Feed one byte of the internal code; emit whole characters.
+**
+**      buf holds the partial character between calls: buf[0] is how many
+**      bytes are in hand, buf[1] how many the lead byte says to expect, and
+**      buf[2..] the bytes themselves.  It needs JBUF_SIZE elements -- it
+**      used to need two, because a character was a byte or a pair of them
+**      and nothing else was possible.
+**
+**      Returns 0 while a character is incomplete, its length in bytes when
+**      one is emitted, and -1 for the flush that c == 0 asks for.
 */
 int
 jbuffer(
@@ -392,73 +501,76 @@ jbuffer(
      void (*f1)(unsigned int),
      void (*f2)(unsigned int, unsigned int))
 {
-  static unsigned int ibuf[2];
-  unsigned int c1, c2;
-  unsigned char uc[2];
-  unsigned char *p;
+  static unsigned int ibuf[JBUF_SIZE];
+  char in[MB_MAXBYTES + 1], out[MB_MAXBYTES + 1];
+  int i, n, m;
 
   if(!buf) buf = ibuf;
   if(!reset) reset = tty_reset;
   if(!f1) f1 = tty_jputc;
   if(!f2) f2 = tty_jputc2;
 
-  if(!(buf[0]) && (is_kanji(c))){
-    buf[1] = c;
+  if(buf[0]){                           /* part way through a character */
+    buf[2 + buf[0]] = c;
     ++buf[0];
-    return 0;
-  }
-  else if(buf[0]){
-    c1 = buf[1];
-    c2 = c;
-
-    if(IC == output_kcode)
-      ;
-    else if(IC == EUC){
-      switch(output_kcode){
-      case JIS:
-	c1 &= 0x7f;
-	c2 &= 0x7f;
-	break;
-      case SJIS:
-	uc[0] = c1;
-	uc[1] = c2;
-	p = e2sj(uc);
-	c1 = p[0];
-	c2 = p[1];
-	break;
-      default:
-	impossible("Unknown kcode!");
-	break;
-      }
-    }
-    else if(IC == SJIS){
-      uc[0] = c1;
-      uc[1] = c2;
-      p = sj2e(uc);
-      switch(output_kcode){
-      case JIS:
-	c1 &= 0x7f;
-	c2 &= 0x7f;
-	break;
-      case EUC:
-	break;
-      default:
-	impossible("Unknown kcode!");
-	break;
-      }
-    }
-    f2(c1, c2);
-    buf[0] = 0;
-    return 2;
+    if(buf[0] < buf[1])
+      return 0;
   }
   else if(c){
+    int need = mb_lead_len((int)c);
+
+    if(need > 1){
+      buf[0] = 1;
+      buf[1] = (unsigned int)need;
+      buf[2] = c;
+      return 0;
+    }
     f1(c);
     return 1;
   }
-  reset();
-  return -1;
+  else{
+    reset();
+    return -1;
+  }
+
+  n = (int)buf[0];
+  for(i = 0; i < n; ++i)
+    in[i] = (char)buf[2 + i];
+  in[n] = '\0';
+  buf[0] = 0;
+
+#ifdef SDL_GRAPHICS
+  /*
+  ** The backend takes characters, not bytes: it puts a code point in a
+  ** cell and takes the width from mb_cpwidth().  setkcode() pinned
+  ** output_kcode to the internal code, so nothing is converted on the way.
+  **
+  ** This replaces a call to sdl_puteuc(), which decided the width from the
+  ** fact that two bytes had arrived.  That was right for kanji and wrong
+  ** for the SS2 half-width katakana, which are two bytes of EUC-JP and one
+  ** column -- the tty side has always drawn them in one, so the two
+  ** backends disagreed.  Going through the code point settles it.
+  */
+  sdl_putcp((int) mb_decode(in));
+  return n;
+#else
+  m = jconv_out(in, n, out);
+  if(m == 2)
+    f2((unsigned int)(unsigned char)out[0],
+       (unsigned int)(unsigned char)out[1]);
+  else
+    for(i = 0; i < m; ++i)
+      f1((unsigned int)(unsigned char)out[i]);
+  return n;
+#endif
 }
 
+/*
+**      As jbuffer(), but with no conversion: the bytes go out in the
+**      internal code whatever output_kcode says.  Used for text the game
+**      has already put in the right form, and for the graphics character
+**      sets, where a byte is a line and not a letter.
+*/
 int
 cbuffer(
      unsigned int c,
@@ -467,41 +579,58 @@ cbuffer(
      void (*f1)(unsigned int),
      void (*f2)(unsigned int, unsigned int))
 {
-  static unsigned int ibuf[2];
+  static unsigned int ibuf[JBUF_SIZE];
+  int i, n;
 
   if(!buf) buf = ibuf;
   if(!reset) reset = tty_reset;
   if(!f1) f1 = tty_cputc;
   if(!f2) f2 = tty_cputc2;
 
-  if(!(buf[0]) && is_kanji(c)){
-    buf[1] = c;
+  if(buf[0]){
+    buf[2 + buf[0]] = c;
     ++buf[0];
-    return 0;
-  }
-  else if(buf[0]){
-    f2(buf[1], c);
-    buf[0] = 0;
-    return 2;
+    if(buf[0] < buf[1])
+      return 0;
   }
   else if(c){
+    int need = mb_lead_len((int)c);
+
+    if(need > 1){
+      buf[0] = 1;
+      buf[1] = (unsigned int)need;
+      buf[2] = c;
+      return 0;
+    }
     f1(c);
     return 1;
   }
-  reset();
-  return -1;
+  else{
+    reset();
+    return -1;
+  }
+
+  n = (int)buf[0];
+  buf[0] = 0;
+
+  if(n == 2)
+    f2(buf[2], buf[3]);
+  else
+    for(i = 0; i < n; ++i)
+      f1(buf[2 + i]);
+  return n;
 }
 
 void
 jputchar(int c)
 {
-  static unsigned int buf[2];
+  static unsigned int buf[JBUF_SIZE];
   jbuffer((unsigned int)c, buf, NULL, NULL, NULL);
 }
 void
 cputchar(int c)
 {
-  static unsigned int buf[2];
+  static unsigned int buf[JBUF_SIZE];
   cbuffer((unsigned int)c, buf, NULL, NULL, NULL);
 }
 

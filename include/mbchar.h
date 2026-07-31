@@ -43,6 +43,24 @@
  */
 #define MB_MAXBYTES     4
 
+/*
+ * How many bytes the character beginning with byte c occupies, from that
+ * byte alone: 1 for ASCII, 2 for an EUC-JP lead, 1 to 4 for a UTF-8 one.
+ *
+ * For an accumulator that is handed one byte at a time and has to know how
+ * many more to wait for -- which is jlib.c's jbuffer(), the whole of the
+ * game's output path.  It used to ask is_kanji(), meaning "is the high bit
+ * set", and then take exactly one more byte.
+ *
+ * A byte that cannot start a character answers 1, so a caller stepping by
+ * this value always makes progress.
+ */
+extern int FDECL(mb_lead_len, (int));
+
+/* Number of elements a jbuffer()-style accumulator needs: the byte count,
+   the expected length, and the bytes themselves. */
+#define JBUF_SIZE       (MB_MAXBYTES + 2)
+
 /* Bytes occupied by the character starting at s.  0 at the terminating
    NUL, so "while ((n = mb_seqlen(s)) > 0)" walks a string.  Never returns
    more bytes than the string actually holds. */
