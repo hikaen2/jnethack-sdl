@@ -11,6 +11,7 @@
 
 
 #include "hack.h"
+#include "mbchar.h"
 
 #ifdef OVLB
 
@@ -189,18 +190,26 @@ const char *name;
 	/* dogname & catname are PL_PSIZ arrays; object names have same limit */
 	lth = *name ? (int)(strlen(name) + 1) : 0;
 	if(lth > PL_PSIZ){
-		lth = PL_PSIZ;
-		name = strncpy(buf, name, PL_PSIZ - 1);
-		buf[PL_PSIZ - 1] = '\0';
+/*JP
+ *      Cut on a character boundary.  This was a plain strncpy() to
+ *      PL_PSIZ - 1 followed by "if (is_kanji2(name, lth - 1)) --lth", which
+ *      dropped the orphaned byte only because the old is_kanji2() walked two
+ *      at a time and overshot on a lead byte with nothing after it.
+ *      mb_trunc_bytes() asks for that directly, and is right for a character
+ *      of any width.
+ */
+		int cut = mb_trunc_bytes(name, PL_PSIZ - 1);
+
+                (void) memcpy(buf, name, cut);
+		buf[cut] = '\0';
+		name = buf;
+		lth = cut + 1;
 	}
 	if (lth == mtmp->mnamelth) {
 		/* don't need to allocate a new monst struct */
 		if (lth) Strcpy(NAME(mtmp), name);
 		return mtmp;
 	}
-/*JP*/
-	if(is_kanji2(name,lth-1))
-	  --lth;
 
 	mtmp2 = newmonst(mtmp->mxlth + lth);
 	*mtmp2 = *mtmp;
@@ -428,13 +437,18 @@ const char *name;
 
 	lth = *name ? (int)(strlen(name) + 1) : 0;
 	if (lth > PL_PSIZ) {
-/*JP*/
-	if(is_kanji2(buf,lth-1))
-	  --lth;
+/*JP
+ *      As christen_monst() above.  The guard that used to be here read buf
+ *      before anything had been copied into it, and then had its result
+ *      overwritten by "lth = PL_PSIZ" on the next line, so it did nothing
+ *      but examine uninitialised stack.
+ */
+                int cut = mb_trunc_bytes(name, PL_PSIZ - 1);
 
-		lth = PL_PSIZ;
-		name = strncpy(buf, name, PL_PSIZ - 1);
-		buf[PL_PSIZ - 1] = '\0';
+                (void) memcpy(buf, name, cut);
+		buf[cut] = '\0';
+		name = buf;
+		lth = cut + 1;
 	}
 	/* If named artifact exists in the game, do not create another.
 	 * Also trying to create an artifact shouldn't de-artifact

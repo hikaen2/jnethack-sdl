@@ -48,6 +48,19 @@
    more bytes than the string actually holds. */
 extern int FDECL(mb_seqlen, (const char *));
 
+/*
+ * Bytes of a *complete* character at s: 0 at the terminating NUL, and 0
+ * for a sequence the string is too short to hold or that is not a
+ * character at all.
+ *
+ * The other answer to the same question.  mb_seqlen() reports 1 for a lead
+ * byte with nothing after it, so that a scan always makes progress and
+ * never reads past the terminator.  Truncation needs to know the byte is
+ * not a character, because keeping it is how a name ends up half a
+ * character long -- which is what christen_monst() was guarding against.
+ */
+extern int FDECL(mb_complete, (const char *));
+
 /* Display width of the character at s, in terminal columns: 0, 1 or 2. */
 extern int FDECL(mb_width, (const char *));
 
@@ -69,6 +82,10 @@ extern int FDECL(mb_is_boundary, (const char *, int));
 /*
  * Largest byte length not exceeding max that ends on a character boundary.
  * What every "truncate a name to fit the field" site wants.
+ *
+ * An incomplete character at the end is dropped rather than kept, so the
+ * result is always a whole string: cutting a 63-byte buffer at 62 in the
+ * middle of a kanji yields 61, not 62.
  */
 extern int FDECL(mb_trunc_bytes, (const char *, int));
 

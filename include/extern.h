@@ -2122,6 +2122,9 @@ E  void FDECL(jrndm_replace, (char *));
 E  int FDECL(jnumeral, (const char *,int *));
 E  int FDECL(jcounter, (const char *));
 
+/* ### mbchar.c ### */
+E  int FDECL(mb_complete, (const char *));
+
 E  unsigned char *FDECL(e2sj, (unsigned char *));
 E  unsigned char *FDECL(sj2e, (unsigned char *));
 

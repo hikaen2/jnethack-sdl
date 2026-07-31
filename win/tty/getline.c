@@ -3,6 +3,7 @@
 /* NetHack may be freely redistributed.  See license for details. */
 
 #include "hack.h"
+#include "mbchar.h"
 
 #ifdef TTY_GRAPHICS
 
@@ -101,14 +102,25 @@ Thu Jul 21 22:36:34 JST 1994 by ISSEI
 		    addtopl(obufp);
 		}
 		if(c == erase_char || c == '\b') {
-		moreback:
 			if(bufp != obufp) {
-				bufp--;
-				putsyms("\b \b");/* putsym converts \b */
+/*JP
+ *      One character back, and as many cells as it occupied.  This was a
+ *      goto loop that stepped a single byte and erased a single cell each
+ *      time round, repeating while the position was not a character
+ *      boundary.  That is the same thing only while a kanji is two bytes
+ *      and two columns; under UTF-8 it is three bytes and still two
+ *      columns, and the loop would rub out one cell too many.
+ */
+                                char *prev = (char *) mb_prev(obufp, bufp);
+                                char *q;
+                                int w = 0;
+
+                                for (q = prev; q < bufp; q += mb_seqlen(q))
+                                        w += mb_width(q);
+                                bufp = prev;
+                                while (w-- > 0)
+					putsyms("\b \b");/* putsym converts \b */
 			} else	tty_nhbell();
-/*JP*/
-			if(is_kanji2(tmp, bufp-tmp))
-			  goto moreback;
 #if defined(apollo)
 		} else if(c == '\n' || c == '\r') {
 #else
@@ -135,9 +147,16 @@ Thu Jul 21 22:36:34 JST 1994 by ISSEI
 			}
 		} else if(c == kill_char || c == '\177') { /* Robert Viduya */
 				/* this test last - @ might be the kill_char */
-			while(bufp != obufp) {
-				bufp--;
-				putsyms("\b \b");
+/*JP*/
+                        {       /* cells, not bytes -- as above */
+                                char *q;
+                                int w = 0;
+
+                                for (q = obufp; q < bufp; q += mb_seqlen(q))
+                                        w += mb_width(q);
+				bufp = obufp;
+                                while (w-- > 0)
+					putsyms("\b \b");
 			}
 		} else
 			tty_nhbell();

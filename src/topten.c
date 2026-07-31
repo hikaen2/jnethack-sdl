@@ -15,6 +15,7 @@
  */
 
 #include "hack.h"
+#include "mbchar.h"
 #include "dlb.h"
 #ifdef SHORT_FILENAMES
 #include "patchlev.h"
@@ -284,10 +285,29 @@ int how;
 	t0->uid = uid;
 	t0->plchar = pl_character[0];
 	t0->sex = (flags.female ? 'F' : 'M');
-	(void) strncpy(t0->name, plname, NAMSZ);
-	if( is_kanji1(t0->name, NAMSZ-1) )	/* JP */
-		t0->name[NAMSZ-1] = '_';
-	t0->name[NAMSZ] = '\0';
+/*JP
+ *      NAMSZ columns of the score line, not NAMSZ bytes -- see the same
+ *      change in botl.c's bot1().  The '_' keeps the column count when a
+ *      wide character had to be dropped; a name that fits is left alone.
+ */
+        {
+            int cut;
+
+            (void) strncpy(t0->name, plname, NAMSZ);
+            t0->name[NAMSZ] = '\0';
+            cut = mb_trunc_cols(t0->name, NAMSZ);
+            if (t0->name[cut]) {
+                int w;
+
+                t0->name[cut] = '\0';
+                w = mb_colwidth(t0->name);
+                while (w < NAMSZ && cut < NAMSZ) {
+                    t0->name[cut++] = '_';
+                    t0->name[cut] = '\0';
+                    w++;
+                }
+            }
+        }
 	t0->death[0] = '\0';
 	switch (killer_format) {
 		default: impossible("bad killer format?");

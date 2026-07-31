@@ -10,6 +10,7 @@
 */
 
 #include "hack.h"
+#include "mbchar.h"
 
 #ifdef OVL0
 extern const char *hu_stat[];	/* defined in eat.c */
@@ -492,9 +493,38 @@ bot1()
 
 	Strcpy(newbot1, plname);
 	if('a' <= newbot1[0] && newbot1[0] <= 'z') newbot1[0] += 'A'-'a';
-	if( is_kanji1(newbot1, 9) )	/*JP*/
-		newbot1[9] = '_';
-	newbot1[10] = 0;
+/*JP
+ *      Ten columns of the status line, not ten bytes.  The two were the same
+ *      number under EUC-JP, where a kanji is two of each, and stop being so
+ *      under UTF-8, where it is three bytes and still two columns.  The old
+ *      code cut at ten bytes and blanked byte nine if a wide character
+ *      started there, so that no half character was left; mb_trunc_cols()
+ *      is that intent stated once.
+ *
+ *      The field is still padded to ten columns, because everything after it
+ *      on the line is positioned by counting.
+ */
+        {
+                int cut = mb_trunc_cols(newbot1, 10);
+
+                if (newbot1[cut]) {     /* only when it did not already fit */
+                        int w;
+
+			newbot1[cut] = 0;
+                        w = mb_colwidth(newbot1);
+                        /*
+                         *      The old code blanked byte nine to '_' when a
+                         *      wide character started there, which kept the
+                         *      field ten columns wide.  A name that fits is
+                         *      left alone, then as now -- it is not padded.
+                         */
+                        while (w < 10 && cut < (int)sizeof newbot1 - 1) {
+				newbot1[cut++] = '_';
+				newbot1[cut] = 0;
+                                w++;
+                        }
+                }
+        }
 /*JP
 	Sprintf(nb = eos(newbot1)," the ");
 */

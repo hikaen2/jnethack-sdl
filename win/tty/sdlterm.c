@@ -1153,9 +1153,8 @@ const char *s;
     /*
      * SDL hands us UTF-8, from the keyboard or from an IME's committed
      * text.  JNetHack wants EUC-JP bytes, and it wants both bytes of a
-     * character: getline.c's backspace handling calls is_kanji2() on what
-     * it has collected so far and deletes two bytes when it sees a pair,
-     * so a lone lead byte in the queue would desynchronise it.
+     * character: getline.c's backspace steps back one whole character with
+     * mb_prev(), so a lone lead byte in the queue would desynchronise it.
      *
      * Decoding is utf8_decode()'s job now.  The loop this replaced had a
      * two-byte branch and a three-byte one and nothing else, so every
@@ -1775,9 +1774,9 @@ int cp;
  * (multiplication), U+2212 (minus), U+00A7 (section) and a good many
  * more.  On a terminal, whether each of those takes one column or two is
  * decided by the user's locale, and JNetHack's layout code has already
- * decided it takes two: is_kanji1()/is_kanji2() and split_japanese() in
- * japanese/jlib.c count every byte of a pair, and topl.c folds message
- * lines on that basis.  Consulting sdl_cp_width() here would make the
+ * decided it takes two: the multibyte layer in include/mbchar.h reports
+ * two columns for it and split_japanese() in japanese/jlib.c breaks lines
+ * on that basis, as topl.c folds them.  Consulting sdl_cp_width() here would make the
  * backend disagree with the port about where the next column is, which is
  * exactly the drift the cell grid exists to prevent.
  *

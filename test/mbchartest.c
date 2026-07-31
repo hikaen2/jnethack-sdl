@@ -91,6 +91,42 @@ main()
            "mb_seqlen claimed a continuation byte past the NUL");
     }
 
+    /* --- mb_complete, and truncation of a malformed tail ----------- */
+    /*
+     * The case that made this function necessary.  christen_monst() cuts a
+     * pet's name to PL_PSIZ bytes; if the cut lands inside a kanji the
+     * buffer ends in a lead byte with nothing after it.  mb_seqlen() calls
+     * that one byte, so that scanning always makes progress and never
+     * reads past the terminator -- but truncation must not keep it, or the
+     * name is stored half a character long.
+     */
+    {
+        char orphan[8];
+        int i;
+
+        (void) memset(orphan, 0, sizeof orphan);
+        orphan[0] = 'A';
+        orphan[1] = 'B';
+        orphan[2] = kanji[0];           /* lead byte, then the terminator */
+
+        ok(mb_seqlen(orphan + 2) == 1,
+           "mb_seqlen must still make progress over a lone lead byte");
+        ok(mb_complete(orphan + 2) == 0,
+           "mb_complete must reject a character the string cannot hold");
+        ok(mb_trunc_bytes(orphan, 99) == 2,
+           "truncation kept an incomplete trailing character");
+        ok(mb_trunc_cols(orphan, 99) == 2,
+           "column truncation kept an incomplete trailing character");
+
+        /* well-formed input must be unaffected */
+        ok(mb_complete(kanji) == KANJI_BYTES, "mb_complete of a whole kanji");
+        ok(mb_complete("a") == 1, "mb_complete of ASCII");
+        ok(mb_complete("") == 0, "mb_complete at the NUL");
+        for (i = 0; i < 2; i++)
+            ok(mb_complete(kanji + i * KANJI_BYTES) == KANJI_BYTES,
+               "mb_complete disagreed with mb_seqlen on valid input");
+    }
+
     /* --- counting -------------------------------------------------- */
     ok(mb_chars(kanji) == 2, "mb_chars of two kanji");
     ok(mb_chars(mixed) == 4, "mb_chars of a mixed string");

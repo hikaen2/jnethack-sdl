@@ -54,6 +54,27 @@ const char *s;
 }
 
 int
+mb_complete(s)
+const char *s;
+{
+    const unsigned char *p = (const unsigned char *) s;
+
+    if (!p[0]) return 0;
+    if (p[0] < 0x80) return 1;
+
+    if (p[0] == 0x8E)
+        return (p[1] >= 0xA1 && p[1] <= 0xDF) ? 2 : 0;
+
+    if (p[0] == 0x8F)
+        return (p[1] >= 0xA1 && p[2] >= 0xA1) ? 3 : 0;
+
+    if (p[0] >= 0xA1 && p[0] <= 0xFE)
+        return (p[1] >= 0xA1 && p[1] <= 0xFE) ? 2 : 0;
+
+    return 0;                           /* 0x80..0xA0: not EUC-JP at all */
+}
+
+int
 mb_width(s)
 const char *s;
 {
@@ -72,6 +93,21 @@ mb_seqlen(s)
 const char *s;
 {
     return utf8_seqlen(s);
+}
+
+int
+mb_complete(s)
+const char *s;
+{
+    long cp;
+    int n;
+
+    if (!*s) return 0;
+    n = utf8_decode(s, &cp);
+    /* utf8_decode() reports a malformed or truncated sequence as one byte
+       of U+FFFD; a real U+FFFD in the text comes back as three. */
+    if (n == 1 && cp == UTF8_REPLACEMENT) return 0;
+    return n;
 }
 
 int
@@ -148,7 +184,7 @@ int max;
 
     if (max <= 0) return 0;
 
-    while ((n = mb_seqlen(s + i)) > 0) {
+    while ((n = mb_complete(s + i)) > 0) {
         if (i + n > max) break;
         i += n;
     }
@@ -164,7 +200,7 @@ int cols;
 
     if (cols <= 0) return 0;
 
-    while ((n = mb_seqlen(s + i)) > 0) {
+    while ((n = mb_complete(s + i)) > 0) {
         int cw = mb_width(s + i);
 
         if (w + cw > cols) break;

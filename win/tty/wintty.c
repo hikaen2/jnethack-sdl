@@ -14,6 +14,7 @@
 */
 
 #include "hack.h"
+#include "mbchar.h"
 #include "dlb.h"
 #ifdef SHORT_FILENAMES
 #include "patchlev.h"
@@ -460,9 +461,25 @@ tty_askname()
 		if (c == '\033') { ct = 0; break; }  /* continue outer loop */
 		/* some people get confused when their erase char is not ^H */
 		if (c == '\b' || c == '\177') {
-		moreback:
 			if(ct) {
-				ct--;
+/*JP
+ *      Back up one character and rub out the cells it occupied.  This was a
+ *      goto loop that dropped one byte and erased one cell each time round,
+ *      repeating while the position was not a character boundary -- correct
+ *      only while a kanji is two bytes and two columns.  See the same change
+ *      in win/tty/getline.c.
+ */
+                                int prev = (int)((char *)mb_prev(ptmpname,
+                                                ptmpname + ct) - ptmpname);
+                                int w = 0, i;
+                                char *q;
+
+                                for (q = ptmpname + prev; q < ptmpname + ct;
+                                     q += mb_seqlen(q))
+                                        w += mb_width(q);
+                                ct = prev;
+
+                                for (i = 0; i < w; i++) {
 #ifdef MICRO
 # if defined(WIN32CON)
 				backsp();       /* \b is visible on NT */
@@ -484,10 +501,8 @@ tty_askname()
 				(void) putchar(' ');
 				(void) putchar('\b');
 #endif
+                                }
 			}
-/*JP*/
-			if(is_kanji2(ptmpname, ct))
-			  goto moreback;
 			continue;
 		}
 #if defined(UNIX) || defined(VMS)

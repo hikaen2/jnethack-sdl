@@ -685,7 +685,8 @@ unixunix.o: ../sys/unix/unixunix.c  ../include/hack.h
 bemain.o: ../sys/be/bemain.c  ../include/hack.h ../include/dlb.h
 	$(CC) $(CFLAGS) -c ../sys/be/bemain.c
 getline.o: ../win/tty/getline.c  ../include/hack.h ../include/wintty.h \
-		../include/func_tab.h ../include/sdlterm.h
+		../include/func_tab.h ../include/sdlterm.h \
+		../include/mbchar.h
 	$(CC) $(CFLAGS) -c ../win/tty/getline.c
 termcap.o: ../win/tty/termcap.c  ../include/hack.h ../include/wintty.h \
 		../include/termcap.h
@@ -699,7 +700,8 @@ topl.o: ../win/tty/topl.c  ../include/hack.h ../include/termcap.h \
 	$(CC) $(CFLAGS) -c ../win/tty/topl.c
 wintty.o: ../win/tty/wintty.c  ../include/hack.h ../include/dlb.h  \
 		../include/patchlevel.h ../include/termcap.h ../include/wintty.h \
-		../include/sdlterm.h
+		../include/sdlterm.h \
+		../include/mbchar.h
 	$(CC) $(CFLAGS) -c ../win/tty/wintty.c
 Window.o: ../win/X11/Window.c  ../include/WindowP.h ../include/config.h
 	$(CC) $(CFLAGS) -c ../win/X11/Window.c
@@ -775,7 +777,7 @@ artifact.o:  ../include/hack.h ../include/artifact.h ../include/artilist.h
 attrib.o:  ../include/hack.h ../include/artifact.h
 ball.o:  ../include/hack.h
 bones.o:  ../include/hack.h ../include/lev.h
-botl.o:  ../include/hack.h
+botl.o:  ../include/hack.h ../include/mbchar.h
 cmd.o:  ../include/hack.h ../include/func_tab.h
 dbridge.o:  ../include/hack.h
 decl.o:  ../include/hack.h ../include/quest.h
@@ -784,7 +786,7 @@ dig.o:  ../include/hack.h ../include/edog.h
 display.o:  ../include/hack.h
 dlb.o:  ../include/config.h ../include/dlb.h
 do.o:  ../include/hack.h ../include/lev.h
-do_name.o:  ../include/hack.h
+do_name.o:  ../include/hack.h ../include/mbchar.h
 do_wear.o:  ../include/hack.h
 dog.o:  ../include/hack.h ../include/edog.h
 dogmove.o:  ../include/hack.h ../include/mfndpos.h ../include/edog.h
@@ -794,7 +796,7 @@ drawing.o:  ../include/hack.h ../include/termcap.h
 dungeon.o:  ../include/hack.h ../include/dgn_file.h ../include/dlb.h ../include/../japanese/emalloc.h
 eat.o:  ../include/hack.h
 end.o:  ../include/hack.h ../include/eshk.h ../include/dlb.h
-engrave.o:  ../include/hack.h ../include/lev.h
+engrave.o:  ../include/hack.h ../include/lev.h ../include/mbchar.h
 exper.o:  ../include/hack.h
 explode.o:  ../include/hack.h
 extralev.o:  ../include/hack.h
@@ -860,7 +862,7 @@ spell.o:  ../include/hack.h
 steal.o:  ../include/hack.h
 teleport.o:  ../include/hack.h
 timeout.o:  ../include/hack.h ../include/lev.h
-topten.o:  ../include/hack.h ../include/dlb.h  ../include/patchlevel.h
+topten.o:  ../include/hack.h ../include/dlb.h  ../include/patchlevel.h ../include/mbchar.h
 track.o:  ../include/hack.h
 trap.o:  ../include/hack.h
 u_init.o:  ../include/hack.h
