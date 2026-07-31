@@ -410,4 +410,6 @@ Phase 0 のコミットメッセージと `win/tty/sdlterm.c` のコメントに
 overread を実測したのは vendored の `utf8codepoint()` の方で、そちらは
 `include/utf8.h` に正しく記録してある（§1.1）。
 
-ソース側のコメント（`win/tty/sdlterm.c`、`sdl_queue_text()` の直上）は未訂正。
+訂正済み。Phase 0 のコミット（`e412d70` → 訂正後 `ae1b9bc`）そのものを書き換え、
+`win/tty/sdlterm.c` のコメントとコミットメッセージの両方を直した。以降の17コミットは
+競合なく載り直しており、ツリーの差分はこのコメントだけである。
