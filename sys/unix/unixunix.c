@@ -5,6 +5,7 @@
 /* This file collects some Unix dependencies */
 
 #include "hack.h"	/* mainly for index() which depends on BSD */
+#include "mbchar.h"
 
 #include <errno.h>
 #include <sys/stat.h>
@@ -300,6 +301,21 @@ void
 regularize(s)	/* normalize file name - we don't like .'s, /'s, spaces */
 register char *s;
 {
+/*JP
+ *      The truncations below are for the fourteen-character file name limit
+ *      System V had, and they are byte counts -- rightly, since that is what
+ *      the limit was.  They must not land inside a character, though: a save
+ *      file called "1000" plus half an emoji is not a name the game can show
+ *      the player, and under EUC-JP the same cut fell mid-kanji for any name
+ *      of four or more of them.  mb_trunc_bytes() moves it back to a
+ *      boundary.
+ *
+ *      Note that eleven bytes leaves room for about two kanji of the
+ *      player's name where EUC-JP left three, so two players whose names
+ *      share an opening are likelier to share a save file than they were.
+ *      That is the limit's fault rather than the encoding's, and lifting it
+ *      is a decision about which systems the tree still targets.
+ */
 	register char *lp;
 #if defined(SYSV) && !defined(AIX_31) && defined(COMPRESS)
 	int i;
@@ -318,11 +334,11 @@ register char *s;
 	i = 10;		/* should never happen... */
 #  endif
 	if(strlen(s) > i)
-		s[i] = '\0';
+                s[mb_trunc_bytes(s, i)] = '\0';
 # else
 	if(strlen(s) > 11)
 		/* leave room for .nn appended to level files */
-		s[11] = '\0';
+                s[mb_trunc_bytes(s, 11)] = '\0';
 # endif
 #endif
 }

@@ -310,7 +310,7 @@ Phase 4 でどのみち版を上げるため実害はないが、「プレイヤ
 ### Phase 5 — 検証
 
 20. `test/compare.sh` / `test/wincompare.sh` で tty と SDL の画面一致を確認
-21. `test/winjname.sh` に**非BMP文字を含むプレイヤ名**のケースを追加。**これが方針Bの受け入れ条件そのもの**
+21. ✅ `test/nonbmp.sh` を新設。**方針Bの受け入れ条件**。U+20B9F（CJK拡張B、4バイト）、絵文字、U+00E9 を名前に入れ、画面・ダンプ・セーブファイルの3経路で通ることを確認
 22. `sdl_width_test`（`NH_SDL_WIDTHTEST`, `sdlterm.c:1940-2130`）の case 5「EUC→Unicode→EUC 往復」を「UTF-8→コードポイント→UTF-8 往復」に書き換え。非BMP と幅0のケースを追加
 
 ## 9. リスク

@@ -680,7 +680,7 @@ unixtty.o: ../sys/share/unixtty.c  ../include/hack.h
 	$(CC) $(CFLAGS) -c ../sys/share/unixtty.c
 unixmain.o: ../sys/unix/unixmain.c  ../include/hack.h ../include/dlb.h
 	$(CC) $(CFLAGS) -c ../sys/unix/unixmain.c
-unixunix.o: ../sys/unix/unixunix.c  ../include/hack.h
+unixunix.o: ../sys/unix/unixunix.c  ../include/hack.h ../include/mbchar.h
 	$(CC) $(CFLAGS) -c ../sys/unix/unixunix.c
 bemain.o: ../sys/be/bemain.c  ../include/hack.h ../include/dlb.h
 	$(CC) $(CFLAGS) -c ../sys/be/bemain.c
