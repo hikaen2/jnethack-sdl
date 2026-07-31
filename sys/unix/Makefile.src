@@ -743,7 +743,7 @@ jiscode.o: ../japanese/jiscode.c  ../include/hack.h ../include/jiscode.h \
 jtrns.o: ../japanese/jtrns.c  ../include/hack.h ../include/jdata.h
 	$(CC) $(CFLAGS) -c ../japanese/jtrns.c
 jlib.o: ../japanese/jlib.c  ../include/hack.h ../include/sdlterm.h \
-		../include/mbchar.h ../include/jiscode.h
+		../include/mbchar.h ../include/jiscode.h ../include/utf8.h
 	$(CC) $(CFLAGS) -c ../japanese/jlib.c
 utf8.o: ../japanese/utf8.c  ../include/hack.h ../include/utf8.h
 	$(CC) $(CFLAGS) -c ../japanese/utf8.c
@@ -853,7 +853,7 @@ read.o:  ../include/hack.h
 rect.o:  ../include/hack.h
 restore.o:  ../include/hack.h ../include/lev.h ../include/termcap.h \
 	../include/quest.h
-rip.o:  ../include/hack.h
+rip.o:  ../include/hack.h ../include/mbchar.h
 rnd.o:  ../include/hack.h
 rumors.o:  ../include/hack.h ../include/lev.h ../include/dlb.h
 save.o:  ../include/hack.h ../include/lev.h ../include/quest.h

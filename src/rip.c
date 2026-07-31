@@ -10,6 +10,7 @@
 */
 
 #include "hack.h"
+#include "mbchar.h"
 
 static void FDECL(center, (int, char *));
 
@@ -107,39 +108,35 @@ int how;
 	for (line=DEATH_LINE, dpx = buf; line<YEAR_LINE; line++) {
 		register int i,i0;
 		char tmpchar;
-/*JP		*/
-		unsigned char *uc;
-		int jstone_line;
+/*JP
+ *      The stone is STONE_LINE_LEN *columns* wide, and jstone_line divides
+ *      a long epitaph evenly over the lines available rather than filling
+ *      the first and leaving a stub.  Both were counted in bytes, which was
+ *      the same number while a kanji was two of each; under UTF-8 a kanji
+ *      is three bytes and two columns, so the lines came out two thirds the
+ *      width they should be -- and the loop that advanced to a character
+ *      boundary stepped two bytes at a time, so it could stop inside one.
+ */
+		int jstone_line, w = mb_colwidth(dpx);
 
-		if ((i0=strlen(dpx))<= STONE_LINE_LEN)
+		if (w <= STONE_LINE_LEN)
 		  jstone_line = STONE_LINE_LEN;
-		else if (i0/2 <= STONE_LINE_LEN )
-		  jstone_line = ((i0+3)/4)*2;
-		else if (i0/3 <= STONE_LINE_LEN )
-		  jstone_line = ((i0+5)/6)*2;
+		else if (w/2 <= STONE_LINE_LEN )
+		  jstone_line = ((w+3)/4)*2;
+		else if (w/3 <= STONE_LINE_LEN )
+		  jstone_line = ((w+5)/6)*2;
 		else
-		  jstone_line = ((i0+7)/8)*2;
+		  jstone_line = ((w+7)/8)*2;
 
-/*JP		if ( (i0=strlen(dpx)) > STONE_LINE_LEN) {
-				for(i = STONE_LINE_LEN;
-				    ((i0 > STONE_LINE_LEN) && i); i--)*/
-		if ( i0 > jstone_line) {
-				for(i = jstone_line;
-				    ((i0 > jstone_line) && i); i--)
-					if(dpx[i] == ' ') i0 = i;
-/*JP*/
-/*				if(!i) i0 = STONE_LINE_LEN;*/
-				if(!i){
-				  i0=0;
-/*JP				  while(i0<STONE_LINE_LEN){*/
-				  while(i0<jstone_line){
-				    uc = (unsigned char *)(dpx+i0);
-				    if(*uc <128)
-				      ++i0;
-				    else
-				      i0+=2;
-				  }
-				}
+                /* the most that fits, on a character boundary */
+                i0 = mb_trunc_cols(dpx, jstone_line);
+                if (!i0 && *dpx)
+                  i0 = mb_seqlen(dpx);  /* one character, however wide */
+
+                if (dpx[i0]) {
+                        /* prefer the last space at or before that point */
+			for(i = i0; i > 0; i--)
+				if(dpx[i] == ' ') { i0 = i; break; }
 		}
 		tmpchar = dpx[i0];
 		dpx[i0] = 0;

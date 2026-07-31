@@ -198,7 +198,7 @@ update_topl(bp)
  */
 	n0 = mb_colwidth(bp);
 	if(ttyDisplay->toplin == 1 && cw->cury == 0 &&
-	    n0 + (int)strlen(toplines) + 3 < CO-8 &&  /* room for --More-- */
+	    n0 + mb_colwidth(toplines) + 3 < CO-8 &&  /*JP columns, not bytes */
 	    (notdied = strncmp(bp, "You die", 7))) {
 		Strcat(toplines, "  ");
 		Strcat(toplines, bp);

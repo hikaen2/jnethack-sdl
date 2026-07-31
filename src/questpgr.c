@@ -56,6 +56,17 @@ static void FDECL(deliver_by_window, (struct qtmsg *,int));
  *
  *      out_line is in_line with those expansions substituted, so it has to
  *      be able to exceed either.
+ *
+ *      Note that how much this reads at a time has to match how much
+ *      util/makedefs.c wrote at a time, and the failure if they disagree is
+ *      not "old text" but garbled text.  dat/quest.dat is xcrypt()ed, and
+ *      xcrypt() rotates its bitmask once per byte starting from 1 at every
+ *      call -- so it is applied per line.  Decrypt a line that was
+ *      encrypted as two, or the other way round, and the second half comes
+ *      out with the mask out of phase: readable-looking Japanese, but the
+ *      wrong characters.  Rebuilding src without rebuilding dat, or running
+ *      against a play directory whose nhdat was copied before the change,
+ *      looks exactly like a display bug.
  */
 static char	in_line[BUFSZ], cvt_buf[BUFSZ], out_line[BUFSZ * 2];
 static struct	qtlists	qt_list;

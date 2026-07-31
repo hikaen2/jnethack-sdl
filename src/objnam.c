@@ -1771,10 +1771,11 @@ substitute(buf, str1, str2)
       *(p++) = '\0';
       return buf;
     }
-    if(*p >= 0x80)
-      p += 2;
-    else
-      ++p;
+/*JP    Step one character.  This was "two bytes on a high bit", which is a
+        character only in EUC-JP; under UTF-8 it lands inside the next one,
+        and the search can then match str1 at a position that is not a
+        character boundary. */
+    p += mb_seqlen((const char *)p);
   }
 
   return (char *)0;
@@ -1808,10 +1809,11 @@ transpose(buf, str)
       *(ppp++) = '\0';
       return buf;
     }
-    if(*p >= 0x80)
-      p += 2;
-    else
-      ++p;
+/*JP    Step one character.  This was "two bytes on a high bit", which is a
+        character only in EUC-JP; under UTF-8 it lands inside the next one,
+        and the search can then match str1 at a position that is not a
+        character boundary. */
+    p += mb_seqlen((const char *)p);
   }
 
   return (char *)0;

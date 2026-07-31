@@ -1660,6 +1660,14 @@ do_questtxt(void)
  *      the pieces into quest.dat as separate lines, and the quest text came
  *      out of the game broken mid-sentence with the remainder against the
  *      left margin.
+ *
+ *      How much this reads has to match how much src/questpgr.c reads:
+ *      xcrypt() restarts its rotating bitmask on every call, so it is
+ *      applied per line, and a line encrypted as one but decrypted as two
+ *      comes back out of phase -- plausible Japanese made of the wrong
+ *      characters rather than an obvious error.  dat/Makefile knows that
+ *      quest.dat depends on this file, so the tree rebuilds it; a play
+ *      directory holding an nhdat copied earlier does not.
  */
 	while (fgets(in_line, (int) sizeof in_line, ifp) != 0) {
 	    SpinCursor (3);
@@ -2271,10 +2279,8 @@ do_japanese(void)
       while(*p!=':')
         if(!*p)
           goto Next1;
-        else if(*p<128)
-          ++p;
         else
-          p+=2;
+          ++p;
       *p='\0';
       ++p;
       while(isspace(*p))
@@ -2283,13 +2289,26 @@ do_japanese(void)
         else
           ++p;
       val = p;
+/*JP
+ *      A plain byte scan, as the jtrnsobj half below has always done.
+ *
+ *      This used to step two bytes on anything with the high bit set, which
+ *      was a character in EUC-JP.  Every Japanese value was therefore an
+ *      even number of bytes and the scan landed exactly on the colon.  In
+ *      UTF-8 a kana is three bytes, so a value of an odd number of them --
+ *      "オーディン" is fifteen -- stepped straight over the colon, ran to
+ *      the end of the line and took the "goto Next1" that throws the entry
+ *      away.  235 of the 480 monster and deity translations were being
+ *      dropped, which is why Odin was still Odin.
+ *
+ *      Stepping bytes is safe in both encodings: ':' is 0x3A, and neither
+ *      EUC-JP nor UTF-8 ever uses a byte below 0x80 inside a character.
+ */
       while(*p!=':')
         if(!*p)
           goto Next1;
-        else if(*p<128)
-          ++p;
         else
-          p+=2;
+          ++p;
       *p='\0';
 
       hval = hash_val(key);

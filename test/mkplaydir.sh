@@ -10,6 +10,12 @@
 # Safe to re-run: it wipes saves and stale lock files, so a run killed
 # mid-game does not leave the next one waiting on perm_lock.
 #
+# Re-run it after rebuilding dat/, too.  The playdir gets a *copy* of
+# nhdat, and a stale one against a current binary does not fail loudly:
+# quest.dat is xcrypt()ed per line, so if the two disagree about where the
+# lines are the text decrypts out of phase and comes out as plausible
+# Japanese made of the wrong characters.
+#
 set -e
 
 dir=${1:?usage: mkplaydir.sh DIR [datdir]}
