@@ -153,10 +153,10 @@ boolean devour;
 		  devour ? "devours" : "eats",
 		  (obj->oclass == FOOD_CLASS) ?
 			singular(obj, doname) : doname(obj));*/
-	    pline("%s¤Ï%s¤ò%s¡¥", Monnam(mtmp),
+	    pline("%sã¯%sã‚’%sï¼", Monnam(mtmp),
 		  (obj->oclass == FOOD_CLASS) ?
 			singular(obj, doname) : doname(obj),
-		  devour ? "°û¤ß¹ş¤ó¤Ç¤¤¤ë" : "¿©¤Ù¤Æ¤¤¤ë");
+		  devour ? "é£²ã¿è¾¼ã‚“ã§ã„ã‚‹" : "é£Ÿã¹ã¦ã„ã‚‹");
 	/* It's a reward if it's DOGFOOD and the player dropped/threw it. */
 	/* We know the player had it if invlet is set -dlc */
 	if(dogfood(mtmp,obj) == DOGFOOD && obj->invlet)
@@ -185,7 +185,7 @@ boolean devour;
 		uchar save_mnamelth = mtmp->mnamelth;
 		mtmp->mnamelth = 0;
 /*JP		pline("%s turns into %s!", oldpet, a_monnam(mtmp));*/
-		pline("%s¤Ï%s¤Ë¤Ê¤Ã¤¿¡ª", oldpet, a_monnam(mtmp));
+		pline("%sã¯%sã«ãªã£ãŸï¼", oldpet, a_monnam(mtmp));
 		mtmp->mnamelth = save_mnamelth;
 	    }
 	}
@@ -218,7 +218,7 @@ register struct edog *edog;
 		if (mtmp->mhp < 1) goto dog_died;
 		if (cansee(mtmp->mx, mtmp->my))
 /*JP		    pline("%s is confused from hunger.", Monnam(mtmp));*/
-		    pline("%s¤Ï¶õÊ¢¤Î¤¿¤áº®Íğ¤·¤Æ¤¤¤ë¡¥", Monnam(mtmp));
+		    pline("%sã¯ç©ºè…¹ã®ãŸã‚æ··ä¹±ã—ã¦ã„ã‚‹ï¼", Monnam(mtmp));
 		else if (couldsee(mtmp->mx, mtmp->my))
 		    beg(mtmp);
 		else {
@@ -229,7 +229,7 @@ register struct edog *edog;
 			NAME(mtmp) : strcat(buf, Hallucination
 			? rndmonnam() : mtmp->data->mname));*/
 		    Strcpy(buf, "");
-		    You("%s¤¬¿´ÇÛ¤Ë¤Ê¤Ã¤¿¡¥", mtmp->mnamelth ?
+		    You("%sãŒå¿ƒé…ã«ãªã£ãŸï¼", mtmp->mnamelth ?
 			NAME(mtmp) : strcat(buf, Hallucination
 			? rndmonnam() : jtrns_mon(mtmp->data->mname, mtmp->female)));
 		}
@@ -237,17 +237,17 @@ register struct edog *edog;
 	    dog_died:
 		if (mtmp->mleashed)
 /*JP		    Your("leash goes slack.");*/
-		    Your("É³¤Ï¤¿¤ë¤ó¤À¡¥");
+		    Your("ç´ã¯ãŸã‚‹ã‚“ã ï¼");
 		else if (cansee(mtmp->mx, mtmp->my))
 /*JP		    pline("%s dies%s.", Monnam(mtmp),
 			    (mtmp->mhp >= 1) ? "" : " from hunger");*/
-		    pline("%s¤Ï%s»à¤ó¤À¡¥", Monnam(mtmp),
-			    (mtmp->mhp >= 1) ? "" : "¶õÊ¢¤Î¤¿¤á");
+		    pline("%sã¯%sæ­»ã‚“ã ï¼", Monnam(mtmp),
+			    (mtmp->mhp >= 1) ? "" : "ç©ºè…¹ã®ãŸã‚");
 		else
 /*JP		    You_feel("%s for a moment.",
 			Hallucination ? "bummed" : "sad");*/
-		    You("%sµ¤Ê¬¤Ë¤ª¤½¤ï¤ì¤¿¡¥",
-			Hallucination ? "¤¬¤Ã¤«¤ê¤·¤¿" : "Èá¤·¤¤");
+		    You("%sæ°—åˆ†ã«ãŠãã‚ã‚ŒãŸï¼",
+			Hallucination ? "ãŒã£ã‹ã‚Šã—ãŸ" : "æ‚²ã—ã„");
 		mondied(mtmp);
 		return(TRUE);
 	    }
@@ -296,7 +296,7 @@ int udist;
 			if (rn2(udist) || !rn2(edog->apport)) {
 			    if (cansee(omx, omy) && flags.verbose)
 /*JP				pline("%s picks up %s.", Monnam(mtmp),*/
-				pline("%s¤Ï%s¤ò½¦¤Ã¤¿¡¥", Monnam(mtmp),
+				pline("%sã¯%sã‚’æ‹¾ã£ãŸï¼", Monnam(mtmp),
 				    distant_name(obj, doname));
 			    obj_extract_self(obj);
 			    newsym(omx,omy);
@@ -515,9 +515,9 @@ register int after;	/* this is extra fast monster movement */
 		 */
 		if (canspotmon(mtmp)) {
 /*JP		    pline("%s rebukes you, saying:", Monnam(mtmp));*/
-		    pline("%s¤Ï¤¢¤Ê¤¿¤òÈóÆñ¤·¤¿¡§", Monnam(mtmp));
+		    pline("%sã¯ã‚ãªãŸã‚’éé›£ã—ãŸï¼š", Monnam(mtmp));
 /*JP		    verbalize("Since you desire conflict, have some more!");*/
-		    verbalize("ÏÀÁè¤òË¾¤ó¤Ç¤¤¤ë¤è¤¦¤À¤«¤é¡¤¤â¤Ã¤ÈÍ¿¤¨¤Æ¤ä¤í¤¦¡ª");
+		    verbalize("è«–äº‰ã‚’æœ›ã‚“ã§ã„ã‚‹ã‚ˆã†ã ã‹ã‚‰ï¼Œã‚‚ã£ã¨ä¸ãˆã¦ã‚„ã‚ã†ï¼");
 		}
 		mongone(mtmp);
 		i = rnd(4);
@@ -671,7 +671,7 @@ newdogpos:
 		if (info[chi] & ALLOW_U) {
 			if (mtmp->mleashed) { /* play it safe */
 /*JP				pline("%s breaks loose of %s leash!",*/
-				pline("%s¤Ï%s¤ÎÉ³¤Ç¼«Í³¤òÃ¥¤ï¤ì¤¿¡ª",
+				pline("%sã¯%sã®ç´ã§è‡ªç”±ã‚’å¥ªã‚ã‚ŒãŸï¼",
 				      Monnam(mtmp), his[pronoun_gender(mtmp)]);
 				m_unleash(mtmp);
 			}
@@ -683,7 +683,7 @@ newdogpos:
 		place_monster(mtmp, nix, niy);
 		if (cursemsg[chi] && (cansee(omx,omy) || cansee(nix,niy)))
 /*JP			pline("%s moves only reluctantly.", Monnam(mtmp));*/
-			pline("%s¤Ï¤¤¤ä¤¤¤äÆ°¤¤¤¿¡¥", Monnam(mtmp));
+			pline("%sã¯ã„ã‚„ã„ã‚„å‹•ã„ãŸï¼", Monnam(mtmp));
 		for (j=MTSZ-1; j>0; j--) mtmp->mtrack[j] = mtmp->mtrack[j-1];
 		mtmp->mtrack[0].x = omx;
 		mtmp->mtrack[0].y = omy;

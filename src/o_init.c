@@ -371,7 +371,7 @@ dodiscovered()				/* free after Robert Viduya */
 
     tmpwin = create_nhwindow(NHW_MENU);
 /*JP    putstr(tmpwin, 0, "Discoveries");*/
-    putstr(tmpwin, 0, "È¯¸«Êª°ìÍ÷");
+    putstr(tmpwin, 0, "ç™ºè¦‹ç‰©ä¸€è¦§");
     putstr(tmpwin, 0, "");
 
     /* several classes are omitted from packorder; one is of interest here */
@@ -402,7 +402,7 @@ dodiscovered()				/* free after Robert Viduya */
     }
     if (ct == 0) {
 /*JP	You("haven't discovered anything yet...");*/
-	You("¤Ş¤À²¿¤âÈ¯¸«¤·¤Æ¤¤¤Ê¤¤¡¥¡¥¡¥");
+	You("ã¾ã ä½•ã‚‚ç™ºè¦‹ã—ã¦ã„ãªã„ï¼ï¼ï¼");
     } else
 	display_nhwindow(tmpwin, TRUE);
     destroy_nhwindow(tmpwin);

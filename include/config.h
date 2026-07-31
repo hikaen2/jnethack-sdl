@@ -6,6 +6,22 @@
 #define CONFIG_H
 
 /*
+ * JP: the game's internal character encoding is UTF-8.
+ *
+ * Phase 3 of UTF8-PLAN.md.  Every literal in the tree was converted from
+ * EUC-JP in the same commit that defined this, and japanese/mbchar.c
+ * switches on it -- that file is the only one that has to know, because
+ * Phase 1 rewrote every caller in terms of characters rather than bytes.
+ *
+ * Undefining it does not take the tree back to EUC-JP by itself: the
+ * literals would have to be converted back too.  It is here so that
+ * mbchar.c's EUC-JP half stays compiled and tested (test/mbchartest.sh
+ * builds both), and so that the conversion has one name rather than being
+ * spelled out at each of the places that care.
+ */
+#define JP_INTERNAL_UTF8
+
+/*
  * Section 1:	OS selection.
  *		Select the version of the OS you are using.
  *		For "UNIX" select BSD, ULTRIX, SYSV, or HPUX in unixconf.h.

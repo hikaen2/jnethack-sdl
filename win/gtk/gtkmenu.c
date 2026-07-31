@@ -190,7 +190,7 @@ GTK_start_menu(winid id)
 
 #ifdef JNETHACK
      b = w->button[5] = nh_gtk_new_and_pack(
-	 gtk_button_new_with_label("ÊÄ¤¸¤ë"), w->hbox3, "",
+	 gtk_button_new_with_label("é–‰ã˜ã‚‹"), w->hbox3, "",
 	 TRUE, FALSE, 0);
 #else
      b = w->button[5] = nh_gtk_new_and_pack(

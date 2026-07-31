@@ -46,16 +46,16 @@ moveloop()
 	flags.moonphase = phase_of_the_moon();
 	if(flags.moonphase == FULL_MOON) {
 /*JP		You("are lucky!  Full moon tonight.");*/
-	        pline("¥é¥Ã¥­¡¼¡ªº£ÈÕ¤ÏËş·î¤À¡¥");
+	        pline("ãƒ©ãƒƒã‚­ãƒ¼ï¼ä»Šæ™©ã¯æº€æœˆã ï¼");
 		change_luck(1);
 	} else if(flags.moonphase == NEW_MOON) {
 /*JP		pline("Be careful!  New moon tonight.");*/
-	        pline("Ãí°Õ¤·¤í¡ªº£ÈÕ¤Ï¿··î¤À¡¥");
+	        pline("æ³¨æ„ã—ã‚ï¼ä»Šæ™©ã¯æ–°æœˆã ï¼");
 	}
 	flags.friday13 = friday_13th();
 	if (flags.friday13) {
 /*JP		pline("Watch out!  Bad things can happen on Friday the 13th.");*/
-	        pline("ÍÑ¿´¤·¤í¡ª£±£³Æü¤Î¶âÍËÆü¤Ë¤Ï¤è¤¯¤Ê¤¤¤³¤È¤¬¤¢¤ë¡¥") ;
+	        pline("ç”¨å¿ƒã—ã‚ï¼ï¼‘ï¼“æ—¥ã®é‡‘æ›œæ—¥ã«ã¯ã‚ˆããªã„ã“ã¨ãŒã‚ã‚‹ï¼") ;
 		change_luck(-1);
 	}
 
@@ -191,7 +191,7 @@ moveloop()
 				u.uhp--;
 			    } else {
 /*JP				You("pass out from exertion!");*/
-				pline("ÈèÏ«¤Ç°Õ¼±¤ò¼º¤Ã¤¿¡ª");
+				pline("ç–²åŠ´ã§æ„è­˜ã‚’å¤±ã£ãŸï¼");
 				exercise(A_CON, FALSE);
 				fall_asleep(-10, FALSE);
 			    }
@@ -340,12 +340,12 @@ moveloop()
 			    killer_format = KILLED_BY;
 /*JP			    killer = "molten lava";*/
 /*JP			    You("sink below the surface and die.");*/
-			    killer = "¤É¤í¤É¤í¤ÎÍÏ´ä¤Ç";
-			    You("ÍÏ´ä¤Ë¿¼¤¯ÄÀ¤ß¡¤ÍÏ¤±¤¿¡¥");
+			    killer = "ã©ã‚ã©ã‚ã®æº¶å²©ã§";
+			    You("æº¶å²©ã«æ·±ãæ²ˆã¿ï¼Œæº¶ã‘ãŸï¼");
 			    done(DISSOLVED);
 			} else if(didmove && !u.umoved) {
 /*JP			    Norep("You sink deeper into the lava.");*/
-			    Norep("ÍÏ´ä¤Ë¿¼¤¯ÄÀ¤ó¤À¡¥");
+			    Norep("æº¶å²©ã«æ·±ãæ²ˆã‚“ã ï¼");
 			    u.utrap += rnd(4);
 			}
 		    }
@@ -393,7 +393,7 @@ stop_occupation()
 {
 	if(occupation) {
 /*JP		You("stop %s.", occtxt);*/
-		You("%s¤Î¤òÃæÃÇ¤·¤¿¡¥", occtxt);
+		You("%sã®ã‚’ä¸­æ–­ã—ãŸï¼", occtxt);
 		occupation = 0;
 /* fainting stops your occupation, there's no reason to sync.
 		sync_hunger();

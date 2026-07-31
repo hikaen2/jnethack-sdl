@@ -10,7 +10,7 @@ JNetHack の内部文字コードを EUC-JP から UTF-8 へ移行するため�
 | 書記素クラスタの扱い | **B-1: 幅0の文字はグリッドに置かないが、ゲーム内部文字列には保持する** | 「受理・保存・比較は完全、表示のみ基底文字」。データを失う制約ではないので、後から B-2（セル合成描画）へ進む道を塞がない |
 | UTF-8 処理の実装 | **`include/utf8.h` + `japanese/utf8.c` を新設。sheredom/utf8.h を `include/sheredom_utf8.h` に vendoring し、文字列操作のみ委譲** | 下記 §1 参照 |
 
-進捗: **Phase 0 / Phase 1 完了、Phase 2 着手中**（§8）。
+進捗: **Phase 0 / 1 / 2 / 3 完了**（§8）。内部コードは UTF-8。残るは Phase 4 の一部と Phase 5 の追加検証。
 
 ## 1. `utf8.h` について
 
@@ -277,7 +277,17 @@ Phase 4 でどのみち版を上げるため実害はないが、「プレイヤ
 - ✅ `jrndm_replace()` を区・点ベースに書き換え（Phase 1 からの持ち越し）。署名が `(char *)` から `(char *, int)` になったのは、置換後の長さが変わりうるため
 - ✅ `test/jiscodetest.sh` を新設。全 8836 位置の往復と、BMP 全域に対する索引の過不足検査
 
-**2b（リテラル変換と同時 — Phase 3 と一体）**
+**2b + Phase 3（フラグデー）— 完了**
+
+- ✅ 追跡下の 123 ファイルを EUC-JP → UTF-8 に変換（`.c` 100、`dat/` テキスト、`doc/`、`.des`）
+- ✅ `include/config.h` に `JP_INTERNAL_UTF8` を定義。`IC` はソース自身のバイトを見る方式をやめ、ビルドが決める
+- ✅ 入出力の既定符号化を内部コードに。`-kU` で UTF-8 出力を明示指定可
+- ✅ `str2ic` を EUC 経由の2段変換に（SJIS/JIS は EUC への写像しか持たないため）
+- ✅ `jbuffer`/`cbuffer` を1文字単位に、SDL 経路は `sdl_putcp()` へ
+- ✅ バッファ拡大: `BUFSZ` 512、`QBUFSZ` 256、`PL_NSIZ` 128、`PL_FSIZ` 96、`PL_PSIZ` 191
+- ✅ `EDITLEVEL` 1、`VERSION_COMPATIBILITY` 0x03020301L — 旧セーブ/ボーンを拒否
+- ✅ 生成物を再生成: `jdata.h`、`dat/*`、`nhdat`、`*.lev`
+
 
 9. `japanese/jlib.c:31` の `IC` マクロを廃止し、内部コードを UTF-8 固定に。`output_kcode`/`input_kcode` は「外部との変換先」の意味に純化
 10. `sdl_queue_text()` は**変換ではなく検証のみ**に。不正バイト列だけ弾き、コードポイントの範囲では絞らない（方針B）

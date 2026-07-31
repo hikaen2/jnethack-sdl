@@ -13,7 +13,13 @@
  * Incrementing EDITLEVEL can be used to force invalidation of old bones
  * and save files.
  */
-#define EDITLEVEL	0
+/*JP
+ * 1: the internal character encoding became UTF-8 (UTF8-PLAN.md Phase 3).
+ * Names, engravings and shopkeeper names in an older save or bones file
+ * are EUC-JP bytes, and the buffer sizes around them changed as well, so
+ * they have to be refused rather than read as if nothing had happened.
+ */
+#define EDITLEVEL	1
 
 #define COPYRIGHT_BANNER_A \
 "NetHack, Copyright 1985-1999"
@@ -34,7 +40,7 @@
  * PP = patch level, ee = edit level, L = literal suffix "L",
  * with all four numbers specified as two hexadecimal digits.
  */
-#define VERSION_COMPATIBILITY 0x03020200L
+#define VERSION_COMPATIBILITY 0x03020301L	/*JP: was 0x03020200L */
 #endif
 
 /*****************************************************************************/

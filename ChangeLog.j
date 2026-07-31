@@ -1,510 +1,510 @@
 
 Mon Feb  12 2000	Issei Numata  <issei@guru.gr.jp>
-	* JNetHack-1.1.5 ��꡼��
+	* JNetHack-1.1.5 リリース
 
 Mon Feb  7 2000		Issei Numata  <issei@guru.gr.jp>
-	* JNetHack-1.1.4 ��꡼��
+	* JNetHack-1.1.4 リリース
 
 Mon Feb  7 2000		Issei Numata  <issei@guru.gr.jp>
-	* NetHack-3.2.3���б�
+	* NetHack-3.2.3に対応
 
 Wed Dec  1 1999		Issei Numata  <issei@guru.gr.jp>
-	* JNetHack-1.1.3 ��꡼��
+	* JNetHack-1.1.3 リリース
 
 Sun Nov 21 1999		Issei Numata  <issei@guru.gr.jp>
-	* �ץ������򥪥ץ����ǻ���Ǥ���褦�ѹ�
+	* プロキシをオプションで指定できるよう変更
 
 Thu Nov 19 1999		Issei Numata  <issei@guru.gr.jp>
-	* 3D�ޥå��б�
+	* 3Dマップ対応
 
 Wed Nov 17 1999		Issei Numata  <issei@guru.gr.jp>
-	* bones�����ƥ�Ƴ��
+	* bonesシステム導入
 
 Tue Nov 9 1999		Issei Numata  <issei@guru.gr.jp>
-	* JNetHack-1.1.2 ��꡼��
+	* JNetHack-1.1.2 リリース
 
 Tue Nov 9 1999		Issei Numata  <issei@guru.gr.jp>
-	* proxy��Ȥ���褦���ѹ�
-	* �٤����Х�����
+	* proxyを使えるように変更
+	* 細かいバグ修正
 
 Mon Nov 8 1999		Issei Numata  <issei@guru.gr.jp>
-	* http�ǥ�������ž���Ǥ���褦���ѹ�
+	* httpでスコアを転送できるように変更
 
 Tue Nov 2 1999		Issei Numata  <issei@guru.gr.jp>
-	* JNetHack-1.1.1 ��꡼��
+	* JNetHack-1.1.1 リリース
 
 Mon Nov 1 1999		Issei Numata  <issei@guru.gr.jp>
-	* ����2000ǯ������н�
-	* menu�� HP/MP bar���ɲ�
-	* �٤����Х�����
+	* 西暦2000年問題に対処
+	* menuに HP/MP barを追加
+	* 細かいバグ修正
 
 Thu Oct 28 1999		Issei Numata  <issei@guru.gr.jp>
-	* monster detection�ʤɤǲ��̤��ߤޤ�ʤ��������
-	* ����Ūʸ���⡼�ɤ������ǽ��
+	* monster detectionなどで画面が止まらない問題を修正
+	* 伝統的文字モードを選択可能に
 
 Mon Oct 24 1999		Issei Numata  <issei@guru.gr.jp>
-	* JNetHack-1.1.0 ��꡼��
-	* �٤����Х�����
+	* JNetHack-1.1.0 リリース
+	* 細かいバグ修正
 
 Sat Oct 23 1999		Issei Numata  <issei@guru.gr.jp>
-	* credit�����ɲ�
+	* credit画像追加
 
 Thu Oct 21 1999		Issei Numata  <issei@guru.gr.jp>
-	* JNetHack-1.0.7.19991021��꡼��
+	* JNetHack-1.0.7.19991021リリース
 
 Tue Oct 19 1999		Issei Numata  <issei@guru.gr.jp>
-	* JNetHack-1.0.7.19991019��꡼��
+	* JNetHack-1.0.7.19991019リリース
 
 Sat Oct 16 1999		Issei Numata  <issei@guru.gr.jp>
-	* warning�򸺤餹
-	* �٤����Х�����
+	* warningを減らす
+	* 細かいバグ修正
 
 Sat Oct 9 1999		Issei Numata  <issei@guru.gr.jp>
-	* newbie�⡼���ɲ�
+	* newbieモード追加
 
 Sat Oct 9 1999		Issei Numata  <issei@guru.gr.jp>
-	* jnethack-1.0.6.3����
+	* jnethack-1.0.6.3公開
 
 Fri Oct 8 1999		Issei Numata  <issei@guru.gr.jp>
-	* ���������Ѥ��ʤ��Ȥ���radar����ɽ���ˤ���褦�˽���
-	* radar�ξ�� ESC�򲡤�������ɽ���˽���
-	* option�� radar�� on/off�����ؤ��ɲ�
-	* �����������Ф���³����Ȥ�20�äǥ����ॢ���Ȥ���褦�ѹ�
-	* ����¾�٤��Х�����
+	* タイルを使用しないときはradarを非表示にするように修正
+	* radarの上で ESCを押したら非表示に修正
+	* optionに radarの on/offの切替を追加
+	* スコアサーバに接続するとき20秒でタイムアウトするよう変更
+	* その他細いバグを修正
 
 Fri Oct 8 1999		Kazuhiro Fujieda <fujieda@jaist.ac.jp>
-	* ������ɽ���ΥХ�����
+	* スコア表示のバグを修正
 
 Tue Oct 7 1999		ITAKURA Mitsuhiro <ita@gold.koma.jaeri.go.jp>	
-	* Ʃ���ԥå����ޥåפι�®��
+	* 透明ピックスマップの高速化
 
 Tue Oct 7 1999		Issei Numata  <issei@guru.gr.jp>
-	* option�� homeurl���ɲ�
-	* �ǥե���ȤΥ��ץ�����ѹ�
+	* optionに homeurlを追加
+	* デフォルトのオプション変更
 	  perm_invent -> off
-	  TEXT_COLOR��ǥե���Ȥ� #define
+	  TEXT_COLORをデフォルトで #define
 
 Tue Oct 7 1999		Issei Numata  <issei@guru.gr.jp>
-	* Ʃ���ԥå����ޥåפ��б�
-	* JNetHack.ad �� HACKDIR���֤���褦���ѹ�
+	* 透明ピックスマップに対応
+	* JNetHack.ad を HACKDIRに置けるように変更
 
 Tue Oct 6 1999		Issei Numata  <issei@guru.gr.jp>
-	* jnethack-1.0.6.1����
+	* jnethack-1.0.6.1公開
 
 Tue Oct 6 1999		Issei Numata  <issei@guru.gr.jp>
-	* Linux�Ǥ��ñ�˥���ѥ���Ǥ���褦����
-	* rip��colormap�����������ꤵ��ʤ��������
-	* �졼�����ξ�Ǥ⥭��������Ĥ���褦����
-	* X�Ǥϥ��ץ�����̵ͭ�ˤ�����餺��number pad���ư��
-	  �Ȥ���褦�˽���
+	* Linuxでも簡単にコンパイルできるよう修正
+	* ripのcolormapが正しく設定されない問題を修正
+	* レーダーの上でもキーを受けつけるよう修正
+	* X版はオプションの有無にかかわらず、number padを移動に
+	  使えるように修正
 
 Tue Oct 5 1999		Issei Numata  <issei@guru.gr.jp>
-	* jnethack-1.0.6����
+	* jnethack-1.0.6公開
 
 Mon Oct 4 1999		Issei Numata  <issei@guru.gr.jp>
-	* �ǥե���ȤΥ��ץ�������ѹ�
+	* デフォルトのオプション値変更
 	  autopickup -> off
 	  perm_invent -> on
 	  mail -> off
 	  windowtype 'tty' -> 'x11'
 
 Sun Oct 3 1999		Issei Numata  <issei@guru.gr.jp>
-	* �졼����ɽ���ɲ�
-	* ���������ʤ���˥��Ǥ�ư���褦�ѹ�
+	* レーダー表示追加
+	* 色数が少ないモニタでも動作するよう変更
 
 Thu Oct 1 1999		Issei Numata  <issei@guru.gr.jp>
-	* ɸ�ॿ�����32x32�Τ�Τ��ѹ�
-	* ������ɽ�����ѹ�
+	* 標準タイルを32x32のものに変更
+	* スコア表示を変更
 
 Wed Sep 30 1999		Issei Numata  <issei@guru.gr.jp>
-	* ��������ۥ��Ȥ�ž�����륷���ƥ����
+	* スコアをホストに転送するシステム作成
 
 Wed Sep 24 1997		Issei Numata  <issei@nna.so-net.or.jp>
-	* class̾�� NetHack���� JNetHack���ѹ�
+	* class名を NetHackから JNetHackへ変更
 
 Mon Sep 8 1997		uchidak@creo.co.jp
 Mon Aug 25 1997
-	* ��å������ν���
+	* メッセージの修正
 
 Tue Jul 22 1997		KIHARA Hideto <kihara@shiratori.riec.tohoku.ac.jp>
-	* ��å������ν���
+	* メッセージの修正
 
 Thu Jul 3 1997		Kentaro Shirakata <shira@kdel.info.eng.osaka-cu.ac.jp>
-	* nethack-3.2.2�١�����jnethack�γ�ȯ�����
-	* quest.txt�����콤����
+	* nethack-3.2.2ベースのjnethackの開発に着手
+	* quest.txtの訳語修正．
 
 Tue Dec 24 1996		Issei Numata  <issei@nna.so-net.or.jp>
 	* jnethack-1.0.5.4.1 release
-	* ���̽���K�����֤�P�ˤʤäƤ��ޤ��Х��������˽�����
+	* 性別女でKを選ぶとPになってしまうバグを本当に修正．
 
 Sat Nov 23 1996		Issei Numata  <issei@nna.so-net.or.jp>
 	* jnethack-1.0.5.4 release
-	* �ɥ�����Ȥν���(�ȤƤ⤳����̾���Ͻ��ڤ�ޤ���)
-	* ��å������ν���(�ȤƤ⤳����̾���Ͻ��ڤ�ޤ���)
+	* ドキュメントの修正(とてもここに名前は書き切れません)
+	* メッセージの修正(とてもここに名前は書き切れません)
 
 Fri Sep  6 1996		Issei Numata  <issei@jaist.ac.jp>
 	* jnethack-1.0.5.2 release
 
 Fri Aug 23 1996		Issei Numata  <issei@jaist.ac.jp>
-	* �Ƥλ��Τ�ͩ���ξ��˸����ʤ�����ν�����
+	* Ｆの死体や幽霊が例の場所に現われない問題の修正．
 
 Thu Aug 22 1996		Issei Numata  <issei@jaist.ac.jp>
-	* X11�� perminvent�򥪥ץ����ǻ��ꤹ��ȥ����ƥ�򽦤ä��Ȥ���
-	  ���������ν���
-	* �桼�ƥ���ƥ�recover�ǲ����Ǥ��ʤ�����ν����� (NetHack�ΥХ�) 
-	* Class Genocide�����Ȥ��Υ�å��������Ѹ�ν����� 
-	* ����(�����ƥ��ե�����)���äƼ��Ԥ����Ȥ��Υ�å��������Ѹ졥 
+	* X11で perminventをオプションで指定するとアイテムを拾ったときに
+	  落ちる問題の修正
+	* ユーティリティrecoverで回復できない問題の修正． (NetHackのバグ) 
+	* Class Genocideしたときのメッセージが英語の修正． 
+	* 聖器(アーティファクト)を願って失敗したときのメッセージが英語． 
 
 Wed Aug 21 1996		Issei Numata  <issei@jaist.ac.jp>
-	* japanese/jlib.c �� is_kanji1�ν���
-	* ���� F�� Quest�Ǥ� Guard�Υ�å���������
-	* ���� F�� Neutral�ο����Ѹ�
-	* �������塼�����ˤʤ�Ȥ��Υ�å�������
-	* �Ǥι���򿩤äƻ�̤Ȳ�ʪ��̾����
-	* ���ޤ˥ޥåפ�ʸ����������(�Ȥ��� jis��ͷ��Ǥ����)���ꡥ
-	* ����(�����ƥ��ե�����)�˿���ƻ����Ȥ��λ�����Ѹ�
-	* ����ʸ����������
+	* japanese/jlib.c の is_kanji1の修正
+	* 職業 Fの Questでの Guardのメッセージが変
+	* 職業 Fで Neutralの神が英語
+	* 薬がジュースや水になるときのメッセージ．
+	* 毒の攻撃を食って死ぬと怪物の名前．
+	* たまにマップの文字が化ける(とくに jisで遊んでいる時)問題．
+	* 聖器(アーティファクト)に触れて死んだときの死因が英語
+	* 落書の文字が化ける
 
 Mon Aug 19 1996		Issei Numata  <issei@jaist.ac.jp>
 	* jnethack-1.0.5.1 release
 
 Mon Aug 19 1996		Issei Numata  <issei@jaist.ac.jp>
-	* �����Ĥ������ܸ�ط���ɽ���ΥХ�����
+	* いくつかの日本語関係の表示のバグを解決
 
 Fri Aug 16 1996		Issei Numata  <issei@jaist.ac.jp>
 	* jnethack-1.0.5 release
 
 Thu Aug 15 1996		Issei Numata  <issei@jaist.ac.jp>
-	* û���ե�����͡���Υ����ƥ���б��Ǥ���褦��jtrns_*.c���̾
+	* 短いファイルネームのシステムに対応できるよう，jtrns_*.cを改名
 
 Wed Aug 14 1996		Issei Numata  <issei@jaist.ac.jp>
-	* DOS/V�� tileɽ�����ǽ�ˡ�
+	* DOS/Vで tile表示を可能に．
 
 Thu Aug  8 1996		Issei Numata  <issei@jaist.ac.jp>
-	* J�����Υ��ꥸ�ʥ뿦��(F)���ɲ�
+	* Jだけのオリジナル職業(F)を追加
 
 Fri Aug  2 1996		juan@super.win.or.jp (Kenji Gotoh)
-	* sjis�� wishing����Ȥ��ݤ������ʤ����Ȥ������������
+	* sjisで wishingするとき旨くいかないことがある問題を修正
 
 Wed Jul 31 1996		Satoh Yoshiyuki <yo-satou@system.hitachi.co.jp>
-	* �����Ĥ��Υ�å������δְ㤤����
+	* いくつかのメッセージの間違いを修正
 
-Tue Jul 30 1996		Hiramoto Kouji (ʿ�ܸ��� ) <hiramoto@Nurse.Angel.nanako.or.jp>
-	* PC�ǥ������Ȼ��˱Ѹ�Υ�å��������Ф�����ν���
+Tue Jul 30 1996		Hiramoto Kouji (平本光二 ) <hiramoto@Nurse.Angel.nanako.or.jp>
+	* PCでスタート時に英語のメッセージが出る問題の修正
 
 Mon Jul 29 1996		Hideto KIHARA <kihara@shiratori.riec.tohoku.ac.jp>
-	* �����Ĥ��Υ�å������δְ㤤����
+	* いくつかのメッセージの間違いを修正
 
 Thu Jul 25 1996		fukui@nm.nmcc.co.jp (Terushige Fukui)
-	* ¸�ߤ��ʤ���Τ� wish�����Ȥ���������������
+	* 存在しないものを wishしたときに落ちる問題を修正
 
 Thu Jul 25 1996		Issei Numata  <issei@jaist.ac.jp>
-	* ���ܸ�ˤ�� wishing�������ǽ��
+	* 日本語による wishingを一部可能に
 
 Wed Jul 24 1996		Hideto KIHARA <kihara@shiratori.riec.tohoku.ac.jp>
-	* jtrns_mon�������Ѥ��������
+	* jtrns_monの副作用の問題を修正
 
 Tue Jul 23 1996		juan@super.win.or.jp (Kenji Gotoh)
-	* ���ơ�����������ƽ񤭴����Ƥ��ޤ��������
+	* ステータス欄を全て書き換えてしまう問題を修正
 
 Mon Jul 22 1996		Naoki Hamada <nao@sbl.cl.nec.co.jp>
-	* DEC graphics �Ǵ������������������
+	* DEC graphics で漢字が化ける問題を修正
 
 Mon Jul 22 1996		Hideto KIHARA <kihara@shiratori.riec.tohoku.ac.jp>
-	* ��å������Τޤ���������
-	* jconj�ΥХ��ν���
-	* �֤��ȴ�����դν���
+	* メッセージのまちがいを修正
+	* jconjのバグの修正
+	* 「ら」抜き言葉の修正
 
 Sat Jul 20 1996		shira@kdel.info.eng.osaka-cu.ac.jp (Kentaro Shirakata)
-	* PC�ǥ���ѥ��륨�顼���Ф�Τ���
+	* PCでコンパイルエラーが出るのを修正
 
 Fri Jul 19 1996		Issei Numata  <issei@jaist.ac.jp>
-	* �����Ĥ��� Warning����
-	* format�δְ㤤����
+	* いくつかの Warningを削除
+	* formatの間違いを修整
 
 Thu Jul 18 1996		Issei Numata  <issei@jaist.ac.jp>
-	* ����⡼�ɤ����ؤ����ޤ������ʤ��Τ���
+	* 言語モードの切替がうまくいかないのを修整
 
 Thu Jul 18 1996		Issei Numata  <issei@jaist.ac.jp>
 	* jnethack-1.0.4-alpha release
 
 Fry Jun 21 1996		Issei Numata  <issei@jaist.ac.jp>
-	* nethack-3.2.1�١�����jnethack�γ�ȯ�����
+	* nethack-3.2.1ベースのjnethackの開発に着手
 
 Thu May  2 1996		Issei Numata  <issei@jaist.ac.jp>
-	* nethack-3.2.0�١�����jnethack�γ�ȯ�����
+	* nethack-3.2.0ベースのjnethackの開発に着手
 
 Sun Jun  4 1995		Issei Numata <issei@jaist.ac.jp>
 	* jnethack-1.0.3 release
 
 Sun Jun  4 1995		nishi@bsd1.kb.nec.co.jp
-	* nh14.bdf��ѥå��������ɲ�
+	* nh14.bdfをパッケージに追加
 
 Fri Jun  2 1995		Issei Numata <issei@jaist.ac.jp>
-	* �������ꥹ�ȤΥ�å������ΥХ�������
-	* �ɥ�����Ȥδְ㤤������
+	* スコアリストのメッセージのバグを修整．
+	* ドキュメントの間違いを修整．
 
-Thu Feb 23 1995		Hiramoto Kouji (ʿ�ܸ��� ) <hiramoto@kubota.co.jp>
-	* resotre.c ��å�����������
+Thu Feb 23 1995		Hiramoto Kouji (平本光二 ) <hiramoto@kubota.co.jp>
+	* resotre.c メッセージを修整．
 
-Thu Feb 21 1995		Hiramoto Kouji (ʿ�ܸ��� ) <hiramoto@kubota.co.jp>
-	* cmd.c �֤��ʤ��ϡפ���ʣ����Τ�����
+Thu Feb 21 1995		Hiramoto Kouji (平本光二 ) <hiramoto@kubota.co.jp>
+	* cmd.c 「あなたは」が重複するのを修整．
 
 Thu Jan 5  1995		asami@cs.berkeley.edu
-	* ����Ū�˥�å������θ���������
+	* 全般的にメッセージの誤訳を修整．
 
-Tue Dec 27 1994		ƣ�� �¹� (FUJIEDA Kazuhiro) <fujieda@jaist.ac.jp>
-	* fountain.c ή����ο�����������ФƤ����Ȥ��Υ�å���������
+Tue Dec 27 1994		藤枝 和宏 (FUJIEDA Kazuhiro) <fujieda@jaist.ac.jp>
+	* fountain.c 流し台の水を飲んで薬が出てきたときのメッセージを修整
 
 Tue Dec 20 1994		Issei Numata <issei@jaist.ac.jp>
 	* jnethack-1.0.2 release
 
 Thu Oct 27 1994		narusawa@nsis.cl.nec.co.jp (Masaru Narusawa)
-	* NEWOS�ѤΥѥå��ɲá�
+	* NEWOS用のパッチ追加．
 
 Fri Oct 14 1994		Issei Numata <issei@jaist.ac.jp>
-	* X11�Ǥ�Ĺ����å��������Ф��Ȥ���panic�ˤʤ����������
-	* ��ʬ���Ȥ�genocide�����Ȥ��Υ�å�����������
+	* X11版で長いメッセージが出たときにpanicになる問題を修正．
+	* 自分自身をgenocideしたときのメッセージを修正．
 
 Mon Sep 19 1994		Kentaro Shirakata <shira@kdel.info.osaka-cu.ac.jp>
-	* mhitm.c �˥�դ�¾�Υ�󥹥����򹶷⤷���Ȥ���code���Ǥ������
-	  ������
+	* mhitm.c ニンフが他のモンスターを攻撃したときにcodeを吐く問題を
+	  修正．
 
 Mon Sep 12 1994		Issei Numata <issei@jaist.ac.jp>
-	* ���ꥸ�ʥ�⡼�ɤǻ����Ȥ��������ե����뤬��̾�ˤʤ�Τ�����
-	* ��ʪ�ι�����µ��ˤʤä��Ȥ��Υ�å�����������
-	* help�˱�̾-��̾���Ѵ��ơ��֥��ɲá�
+	* オリジナルモードで死んだときスコアファイルが英名になるのを修正．
+	* 怪物の攻撃で病気になったときのメッセージを修正．
+	* helpに英名-和名の変換テーブル追加．
 
 Thu Sep  8 1994		Issei Numata <issei@jaist.ac.jp>
-	* �����ȥꥹ�λ��Τǻ����Ȥ��Υ�å�����������
-	* ��ǥ塼�����в������Ȥ��Υ�å�����������
-	* �µܤ���æ�Ф����Ȥ��Υ�å�����������
-	* ��������θ���������������
-	* quest.txt��������
-	* jis�⡼�ɤΤȤ� \033$@, \033$J��ͭ���ˤʤ�褦�˽�����
+	* コカトリスの死体で死んだときのメッセージを修正．
+	* メデューサで石化したときのメッセージを修正．
+	* 迷宮から脱出したときのメッセージを修正．
+	* たくさんの誤訳，誤字を修正．
+	* quest.txtを整形．
+	* jisモードのとき \033$@, \033$Jも有効になるように修正．
 
 Mon Aug 29 1994		Issei Numata <issei@jaist.ac.jp>
-	* �Ķ��ѿ�������ե�����ξ�������ꤷ�����Υ��顼������
+	* 環境変数と設定ファイル両方を設定した場合のエラーを修正．
 
 Mon Aug 29 1994		Issei Numata <issei@jaist.ac.jp>
 	* jnethack-1.0.1 release
 
 Tue Aug 23 1994		Issei Numata <issei@jaist.ac.jp>
-	* vorpale blade������ڤ�����Ȥ��Υ�å�������������ɽ������
- 	  �褦������
+	* vorpale bladeが首を切り落したときのメッセージを正しく表示する
+ 	  よう修正．
 
 Sat Aug 20 1994		Issei Numata <issei@jaist.ac.jp>
-	* �٤���å������ν�����
+	* 細いメッセージの修正．
 
 Fri Aug 19 1994		Kentaro Shirakata <shira@kdel.info.osaka-cu.ac.jp>
-	* data.base������
+	* data.base改訂．
 
 Wed Aug 17 1994		Masayuki Koba <masa-k@sag.hitachi-sk.co.jp>
-	* NetHack.ad 16�ɥåȥե���Ȥ�ǥե���ȤǻȤ��褦������
+	* NetHack.ad 16ドットフォントをデフォルトで使うよう修正．
 
 Sat Aug 13 1994		Yasuhito Futatsuki <futatuki@jaist.ac.jp>
-	* �µܤ���ȴ�����Ȥ��Υ�å��������Զ�������
+	* 迷宮から抜けたときのメッセージの不具合を修正．
 
 Sun Aug  7 1994		Kentaro Shirakata <shira@kdel.info.osaka-cu.ac.jp>
-	* DJGPP�ǥѥå������ɲá�
+	* DJGPP版パッケージ追加．
 
-Sun Aug  7 1994		���ġ����� <HAE00146@niftyserve.or.jp>
-	* MSC�ǥѥå������ɲá�
+Sun Aug  7 1994		高田　幸治 <HAE00146@niftyserve.or.jp>
+	* MSC版パッケージ追加．
 
 Thu Aug  4 1994		Yoshiki Ogino <azrael@cosmos.ces.kyutech.ac.jp>
-	* questpgr.c ���饤����ɽ���ΥХ�������
+	* questpgr.c アライメント表示のバグを修正．
  
 Thu Aug  4 1994		Kazuhiro Fujieda <fujieda@jaist.ac.jp>
-	* mk_artifact�ʳ��ǡ�artifact�������Ȥ���������������ʤ��Τ�����
-	* class genocide�ǻ������Ȥ��Ǥ��ʤ��ä���󥹥�����̾����������
-	  ɽ���Ǥ���褦������
+	* mk_artifact以外で，artifactを得たとき正しく作成されないのを修正．
+	* class genocideで殺すことができなかったモンスターの名前を正しく
+	  表示できるよう修正．
 
 Mon Aug  1 1994		Issei Numata <issei@jaist.ac.jp>
 	* jnethack-1.0.0 release
 
 Mon Aug  1 1994		Issei Numata <issei@jaist.ac.jp>
-	* �٤�����å������ν�����
+	* 細かいメッセージの修正．
 
 Sun Jul 31 1994		Kentaro Shirakata <shira@kdel.info.osaka-cu.ac.jp>
-	* �ϤΤʤ����ǹ��⤵�줿�Ȥ��Υ�å�����������
+	* 刃のない武器で攻撃されたときのメッセージを修正．
 
 Mon Jul 25 1994		Kazuhiro Fujieda <fujieda@jaist.ac.jp>
-	* magicbane�ط��Υ�å�����������
+	* magicbane関係のメッセージを修正．
 
 Mon Jul 25 1994		Issei Numata <issei@jaist.ac.jp>
 	* jnethack-0.3.1 beta test starts
 
 Sut Jul 23 1994		Kazuhiro Fujieda <fujieda@jaist.ac.jp>
-	* artifact.c magicbane����������
+	* artifact.c magicbaneの訳を修正．
 
 Mon Jul 25 1994		Issei Numata <issei@jaist.ac.jp>
-	* topl.c Ĺ��ʸ����Υե�����ǥ��󥰤�����
-	* Ĺ��̾����Ĥ����ݤ�ʸ����������Τ�����
+	* topl.c 長い文字列のフォールディングを修正．
+	* 長い名前をつけた際に文字化けするのを修正．
 
 Sut Jul 23 1994		Kazuhiro Fujieda <fujieda@jaist.ac.jp>
-	* jtrns_{obj,mon}.dat �٤�����δְ㤤������
+	* jtrns_{obj,mon}.dat 細い訳語の間違いを修正．
 
 Sut Jul 23 1994		Issei Numata <issei@jaist.ac.jp>
-	* jGuideBook.txt�� JNetHack�ˤ��碌������
+	* jGuideBook.txtを JNetHackにあわせ修正．
 
 Fri Jul 22 1994		shira@kdel.info.osaka-cu.ac.jp (Kentaro Shirakata)
-	* jGuideBook.txt��ѥå��������ɲá�
+	* jGuideBook.txtをパッケージに追加．
 
 Thu Jul 21 1994		Issei Numata <issei@jaist.ac.jp>
-	* jtrns_obj.dat ���򶯤����봬ʪ->������ˡ�򤫤��봬ʪ���ѹ���
-	* getline.c kinput2������������ϤǤ���褦���ѹ���
+	* jtrns_obj.dat 武器を強くする巻物->武器に魔法をかける巻物へ変更．
+	* getline.c kinput2から漢字を入力できるように変更．
 
 Thu Jul 21 1994		Yoshiaki KASAHARA <kasahara@csce.kyushu-u.ac.jp>
-	* ����->�������ѹ���
+	* 麻痺->眩暈に変更．
 
 Thu Jul 21 1994		Issei Numata <issei@jaist.ac.jp>
-	* objnam.c nemesis�λ���̾��������ɽ�������褦������
+	* objnam.c nemesisの死体名が正しく表示されるよう修正．
 
 Thu Jul 21 1994		Issei Numata <issei@jaist.ac.jp>
 	* jnethack-0.3.0 beta test starts	
 
 Tue Jul 19 1994		s92458km@sfc.keio.ac.jp (the kunedog)
-	* quest.txt Turist �������ɲ�
+	* quest.txt Turist の翻訳追加
 
 Fri Jul 15 1994		Issei Numata <issei@jaist.ac.jp>
-	* priest.c ŷ�Ȥ�̾����������ɽ�������褦������
-	* end.c topten.c �����Ȥ��Υ�å��������Զ�������
-	* objnam.c Ĺ��̾����ʸ����core���Ǥ����������
+	* priest.c 天使の名前が正しく表示されるよう修正．
+	* end.c topten.c 死んだときのメッセージの不具合を修正．
+	* objnam.c 長い名前の文字でcoreを吐く問題を修正．
 
 Thu Jul 14 1994		Issei Numata <issei@jaist.ac.jp>
-	* jconj.c jtrns_obj.dat �����̾����������ɽ������ʤ��Τ�����
+	* jconj.c jtrns_obj.dat 聖器の名前が正しく表示されないのを修正．
 
 Thu Jul 14 1994		Issei Numata <issei@jaist.ac.jp>
 	* jnethack-0.2.4 beta test starts
 
 Thu Jul 14 1994		Issei Numata <issei@jaist.ac.jp>
-	* termcap.c -dec��ʸ����������Τ�����
-	* �����������̾��Ϳ������
+	* termcap.c -decで文字が化けるのを修正．
+	* 聖器に全部和名を与えた．
 
 Wed Jul 13 1994		Issei Numata <issei@jaist.ac.jp>
-	* jtrns_{obj,dat}�򥽡�������ᤳ�ߡ�makedefs���б�����褦������
-	* warning�򸺤餷����
+	* jtrns_{obj,dat}をソースに埋めこみ，makedefsで対応するよう修正．
+	* warningを減らした．
 
 Tue Jul 12 1994		Hideharu Miyazaki <hideha-m@ascii.co.jp>
-	* printf�Ϥΰ����δְ㤤����
-	* extern.h locomotion2�Υץ��ȥ����פ��ɲ�
-	* �����ȥ����ȤΥߥ�����
+	* printf系の引数の間違いを修正
+	* extern.h locomotion2のプロトタイプを追加
+	* コメントアウトのミスを修正
 
 Sun Jul 10 1994		Issei Numata <issei@jaist.ac.jp>
-	* eat.c �����ȥꥹ���в������Ȥ��Υ�å��������Զ�������
+	* eat.c コカトリスで石化したときのメッセージの不具合を修正．
 
 Thu Jul 7 1994		<mya@jaist.ac.jp
-	* quest.txt Knight �������ɲ�
+	* quest.txt Knight の翻訳追加
 
 Thu Jul 7 1994		<nishi@aries.bsd1.kb.nec.co.jp>
-	* options.c malloc��0���ꥢ���ʤ��������
+	* options.c mallocが0クリアしない問題を修正
 
 Wed Jul 6 1994		Yoshiaki KASAHARA <kasahara@csce.kyushu-u.ac.jp>
-	* config.h ���Զ�����
+	* config.h の不具合を修正
 
 Tue Jul 5 1994		Issei Numata <issei@jaist.ac.jp>
-	* invent.c ȯ���Ѥ����Ф�������ɽ�������褦�˽���
-	* objnam.c ̾�Ť���줿�����ƥब���ܸ�餷���ʤ�褦����
-	* end.c �ڥåȤ˻����줿�Ȥ������ФΥ�å���������
-	* wintty.c -dec�ǥ��󥸥�󤬤��ޤ�ʸ����������Τ���
-	* ��å������䥢���ƥ�κ٤�����
+	* invent.c 発見済み宝石が正しく表示されるように修正
+	* objnam.c 名づけられたアイテムが日本語らしくなるよう修正
+	* end.c ペットに殺されたときの墓石のメッセージを修正
+	* wintty.c -decでダンジョンがたまに文字化けするのを修正
+	* メッセージやアイテムの細い修正
 
 Sun Jul 2 1994		Issei Numata <issei@jaist.ac.jp>
 	* jnethack-0.2.3 beta test starts
 
 Sun Jul 2 1994		Issei Numata <issei@jaist.ac.jp>
-	* ��å������䥢���ƥ�κ٤�����
+	* メッセージやアイテムの細い修正
 
 Tue Jun 28 1994		Kazuhiro Fujieda <fujieda@jaist.ac.jp>
-	* quest.txt Elf�������ɲ�
+	* quest.txt Elfの翻訳追加
 
 Mon Jun 27 1994		Issei Numata <issei@jaist.ac.jp>
-	* quest.txt Rogue�������ɲ�
+	* quest.txt Rogueの翻訳追加
 
 Sun Jun 26 1994		Issei Numata <issei@jaist.ac.jp>
-	* �ǥե���ȤΥץ������̾�� nethack -> jnethack���ѹ�
+	* デフォルトのプログラム名を nethack -> jnethackへ変更
 
 Sun Jun 26 1994		HAMADA Naoki <nao@jaist.ac.jp>
-	* dialog.c Ctrl-m �����������ɲ�
+	* dialog.c Ctrl-m アクションを追加
 
 Thu Jun 23 1994		Issei Numata <issei@jaist.ac.jp>
 	* jnethack-0.2.2 beta test starts
 
 Thu Jun 23 1994		<hideki@bsd1.kb.nec.co.jp>
-	* win/X11/winmesg.c X11R6�ǥ������Ǥ����������
+	* win/X11/winmesg.c X11R6でコアを吐く問題を修正．
 
 Thu Jun 23 1994		Issei Numata <issei@jaist.ac.jp>
-	* win/X11/*.c �꥽�����˽񤫤ʤ��Ƥ��ݲ����б�����褦������
+	* win/X11/*.c リソースに書かなくても国際化に対応するよう修正．
 
 Wed Jun 22 1994		Kazuhiro Fujieda <fujieda@jaist.ac.jp>
-	* files.c .jnethackrc����˸���褦�ˤ�����
-	* pager.c 櫤�̾�����������Ф�褦���ѹ���
-	* jtrns_obj.dat	����
-	* pray.c �ָ��夹��פ�������ɽ�������褦�ѹ���
+	* files.c .jnethackrcを先に見るようにした．
+	* pager.c 罠の名前が正しく出るように変更．
+	* jtrns_obj.dat	訂正
+	* pray.c 「献上する」を正しく表示されるよう変更．
 	
 Tue Jun 21 1994		Yasuhito Futatsuki <futatuki@jaist.ac.jp>
-	* shk.c Ź�Τʤ��Ǥ�Τ�������Ȥ���core���Ǥ��Τ���
+	* shk.c 店のなかでものを壊したときにcoreを吐くのを修正
 
 Mon Jun 16 1994		Issei Numata <issei@jaist.ac.jp>
-	* data.base���������
+	* data.baseの翻訳着手
 
 Mon Jun 16 1994		Issei Numata <issei@jaist.ac.jp>
-	* do_name.c hallucination����bogus monster��������ɽ������褦����
-	* sys/unixmain.c -s���ץ�������ʸ����������Τ����
+	* do_name.c hallucination時のbogus monsterを正しく表示するよう修正
+	* sys/unixmain.c -sオプション時に文字化けするのを回避
 
 Mon Jun 15 1994		Issei Numata <issei@jaist.ac.jp>
-	* jconj.c ���߷��������ѤǤ���褦��jconj_adj ����
+	* jconj.c 終止形からも活用できるようにjconj_adj 修正
 
 Mon Jun 14 1994		Issei Numata <issei@jaist.ac.jp>
-	* jconj.c isspace_8 ����
+	* jconj.c isspace_8 修正
 
 Mon Jun 14 1994		Koji Kishi <kis@rqa.sony.co.jp>
-	* engrave.c jconj.c sony news��iskanji2������������������
+	* engrave.c jconj.c sony newsでiskanji2がかちあう問題を回避
 
 Mon Jun 14 1994		Issei Numata <issei@jaist.ac.jp>
 	* jnethack-0.2.1 beta test starts
 
 Tue Jun 14 1994		Issei Numata <issei@jaist.ac.jp>
-	* end.c ��λ����core���Ǥ��Τ���
+	* end.c 終了時にcoreを吐くのを修正
 
 Tue Jun 14 1994		HAMADA Naoki <nao@jaist.ac.jp>
-	* shk.c shopkeeper�Υ���ս���
+	* shk.c shopkeeperのセリフ修正
 
 Mon Jun 14 1994		Yasuhito Futatsuki <futatuki@jaist.ac.jp>
-	* dokick.c ʪ�򽳤äƻ����Ȥ��Υ�å���������
+	* dokick.c 物を蹴って死んだときのメッセージ訂正
 
 Mon Jun 13 1994		Issei Numata <issei@jaist.ac.jp>
-	* -s���ץ����Ǵ��������ɤ�������ǧ������褦�˲���
-	* ��λ���˲��̤�����Τ���
+	* -sオプションで漢字コードを正しく認識するように改良
+	* 終了時に画面が乱れるのを修正
 
 Mon Jun 13 1994		Issei Numata <issei@jaist.ac.jp>
 	* jnethack-0.2.0 beta test starts
 
 Mon Jun 13 1994		Yasuhito Futatsuki <futatuki@jaist.ac.jp>
-	* dotogglelang������ͤ� 0������
+	* dotogglelangの戻り値を 0に設定
 
 Mon Jun 13 1994		Issei Numata <issei@jaist.ac.jp>
-	* JIS/SJISü����ɽ�����Ǥ���褦�˲���
-	* .nethackrc�Ǵ��������ɤ�����Ǥ���褦�˲���
+	* JIS/SJIS端末で表示ができるように改良
+	* .nethackrcで漢字コードを選択できるように改良
 
 Sun Jun 12 1994		Issei Numata <issei@jaist.ac.jp>
-	* quest.txt �� Caveman�������ɲ�
+	* quest.txt に Cavemanの翻訳追加
 
 Sat Jun 11 1994		Issei Numata <issei@jaist.ac.jp>
 	* JNetHack-0.1.9 test starts.
 
 Sat Jun 11 1994		Issei Numata <issei@jaist.ac.jp>	
-	* quest.txt �� Barbarian�������ɲ�
-	* �����ƥ�̾����ʪ̾ �����ʥ�<->���ܸ���ڤ��ؤ����ݡ���
-	* jtrns_obj.dat���� 
+	* quest.txt に Barbarianの翻訳追加
+	* アイテム名，怪物名 オジナル<->日本語の切り替えサポート
+	* jtrns_obj.dat改訂 
 
 Fri Jun 10 1994		Issei Numata <issei@jaist.ac.jp>
-	* ȯ���Ѥߥ����ƥ�α�̾/��̾ʻ��
-	* �ֿ������->�ֿ��,�֥ե롼�ĥ��塼��������->�֥ե롼�ĥ��塼����
-	* rumor.fal����
+	* 発見済みアイテムの英名/和名併記
+	* 「水の薬」->「水」,「フルーツジュースの薬」->「フルーツジュース」
+	* rumor.fal改訂
 
 Thu Jun  9 1994		Tomoyuki Shiraishi <tshira@mtl.t.u-tokyo.ac.jp>
-	* quest.txt �� Healer�������ɲ�
+	* quest.txt に Healerの翻訳追加
 
 Tue Jun  7 1994		Issei Numata <issei@jaist.ac.jp>
 	* JNetHack-0.1.8 test starts.

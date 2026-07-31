@@ -264,7 +264,7 @@ savebones()
 		newsym(u.ux, u.uy);
 /*JP		Your("body rises from the dead as %s...",
 			an(mons[u.ugrave_arise].mname));*/
-		Your("ÂÎ¤Ï%s¤È¤·¤Æ»àÂÎ¤«¤éÁÉ¤Ã¤¿¡¥¡¥¡¥",
+		Your("ä½“ã¯%sã¨ã—ã¦æ­»ä½“ã‹ã‚‰è˜‡ã£ãŸï¼Žï¼Žï¼Ž",
 			jtrns_mon(mons[u.ugrave_arise].mname, mtmp->female));
 		display_nhwindow(WIN_MESSAGE, FALSE);
 		drop_upon_death(mtmp, (struct obj *)0);

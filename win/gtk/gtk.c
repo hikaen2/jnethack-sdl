@@ -139,127 +139,127 @@ struct window_procs GTK_procs = {
 
 #ifdef JNETHACK
 static GtkItemFactoryEntry menu_items[] = {
-    {"/¥²¡¼¥à",			NULL,		NULL,		0,	"<Branch>"},
-    {"/¥²¡¼¥à/Í·¤Ö",		NULL,		NULL,		0,	"<Branch>"},
-    {"/¥²¡¼¥à/Í·¤Ö/¹Í¸Å³Ø¼Ô",	"F1",		select_player,	'A',	NULL},
-    {"/¥²¡¼¥à/Í·¤Ö/ÌîÈÚ¿Í",	"F2",		select_player,	'B',	NULL},
-    {"/¥²¡¼¥à/Í·¤Ö/Æ¶·¢¿Í",	"F3",		select_player,	'C',	NULL},
-    {"/¥²¡¼¥à/Í·¤Ö/¥¨¥ë¥Õ",	"F4",		select_player,	'E',	NULL},
+    {"/ã‚²ãƒ¼ãƒ ",			NULL,		NULL,		0,	"<Branch>"},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶",		NULL,		NULL,		0,	"<Branch>"},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/è€ƒå¤å­¦è€…",	"F1",		select_player,	'A',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/é‡è›®äºº",	"F2",		select_player,	'B',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/æ´çªŸäºº",	"F3",		select_player,	'C',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/ã‚¨ãƒ«ãƒ•",	"F4",		select_player,	'E',	NULL},
 #ifdef FIGHTER
-    {"/¥²¡¼¥à/Í·¤Ö/Àï»Î",	"F5",		select_player,	'F',	NULL},
-    {"/¥²¡¼¥à/Í·¤Ö/Ìô»Õ",	"F6",		select_player,	'H',	NULL},
-    {"/¥²¡¼¥à/Í·¤Ö/µ³»Î",	"F7",		select_player,	'K',	NULL},
-    {"/¥²¡¼¥à/Í·¤Ö/ÁÎÎ·",	"F8",		select_player,	'P',	NULL},
-    {"/¥²¡¼¥à/Í·¤Ö/ÅğÂ±",		"F9",		select_player,	'R',	NULL},
-    {"/¥²¡¼¥à/Í·¤Ö/»ø",		"F10",		select_player,	'S',	NULL},
-    {"/¥²¡¼¥à/Í·¤Ö/Î¹¹Ô¼Ô",	"F11",		select_player,	'T',	NULL},
-    {"/¥²¡¼¥à/Í·¤Ö/¥ï¥ë¥­¥å¡¼¥ì", "F12",		select_player,	'V',	NULL},
-    {"/¥²¡¼¥à/Í·¤Ö/ËâË¡»È¤¤",	"<shift>F1",	select_player,	'W',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/æˆ¦å£«",	"F5",		select_player,	'F',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/è–¬å¸«",	"F6",		select_player,	'H',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/é¨å£«",	"F7",		select_player,	'K',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/åƒ§ä¾¶",	"F8",		select_player,	'P',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/ç›—è³Š",		"F9",		select_player,	'R',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/ä¾",		"F10",		select_player,	'S',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/æ—…è¡Œè€…",	"F11",		select_player,	'T',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/ãƒ¯ãƒ«ã‚­ãƒ¥ãƒ¼ãƒ¬", "F12",		select_player,	'V',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/é­”æ³•ä½¿ã„",	"<shift>F1",	select_player,	'W',	NULL},
 #else
-    {"/¥²¡¼¥à/Í·¤Ö/Ìô»Õ",	"F5",		select_player,	'H',	NULL},
-    {"/¥²¡¼¥à/Í·¤Ö/µ³»Î",	"F6",		select_player,	'K',	NULL},
-    {"/¥²¡¼¥à/Í·¤Ö/ÁÎÎ·",	"F7",		select_player,	'P',	NULL},
-    {"/¥²¡¼¥à/Í·¤Ö/ÅğÂ±",	"F8",		select_player,	'R',	NULL},
-    {"/¥²¡¼¥à/Í·¤Ö/»ø",		"F9",		select_player,	'S',	NULL},
-    {"/¥²¡¼¥à/Í·¤Ö/Î¹¹Ô¼Ô",	"F10",		select_player,	'T',	NULL},
-    {"/¥²¡¼¥à/Í·¤Ö/¥ï¥ë¥­¥å¡¼¥ì", "F11",		select_player,	'V',	NULL},
-    {"/¥²¡¼¥à/Í·¤Ö/ËâË¡»È¤¤",	"F12",		select_player,	'W',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/è–¬å¸«",	"F5",		select_player,	'H',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/é¨å£«",	"F6",		select_player,	'K',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/åƒ§ä¾¶",	"F7",		select_player,	'P',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/ç›—è³Š",	"F8",		select_player,	'R',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/ä¾",		"F9",		select_player,	'S',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/æ—…è¡Œè€…",	"F10",		select_player,	'T',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/ãƒ¯ãƒ«ã‚­ãƒ¥ãƒ¼ãƒ¬", "F11",		select_player,	'V',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/é­”æ³•ä½¿ã„",	"F12",		select_player,	'W',	NULL},
 #endif
-    {"/¥²¡¼¥à/Í·¤Ö/GPsep1",	NULL,		NULL,		0,	"<Separator>"},
-    {"/¥²¡¼¥à/Í·¤Ö/¥é¥ó¥À¥à",	"<shift>F2",	select_player,	'Y',	NULL},
-    {"/¥²¡¼¥à/Gsep1",		NULL,		NULL,		0,	"<Separator>"},
-    {"/¥²¡¼¥à/ÊİÂ¸",		"<shift>S",	key_command,	'S',	NULL},
-    {"/¥²¡¼¥à/¥ª¥×¥·¥ç¥ó",	"<shift>O",	game_option,	'O',    NULL},
-    {"/¥²¡¼¥à/¥¹¥³¥¢",		NULL,		game_topten,	0,	NULL},
-    {"/¥²¡¼¥à/Gsep2",		NULL,		NULL,		0,	"<Separator>"},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/GPsep1",	NULL,		NULL,		0,	"<Separator>"},
+    {"/ã‚²ãƒ¼ãƒ /éŠã¶/ãƒ©ãƒ³ãƒ€ãƒ ",	"<shift>F2",	select_player,	'Y',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /Gsep1",		NULL,		NULL,		0,	"<Separator>"},
+    {"/ã‚²ãƒ¼ãƒ /ä¿å­˜",		"<shift>S",	key_command,	'S',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /ã‚ªãƒ—ã‚·ãƒ§ãƒ³",	"<shift>O",	game_option,	'O',    NULL},
+    {"/ã‚²ãƒ¼ãƒ /ã‚¹ã‚³ã‚¢",		NULL,		game_topten,	0,	NULL},
+    {"/ã‚²ãƒ¼ãƒ /Gsep2",		NULL,		NULL,		0,	"<Separator>"},
 
-    {"/¥²¡¼¥à/½ªÎ»",		NULL,		select_player,	'Q',	NULL},
+    {"/ã‚²ãƒ¼ãƒ /çµ‚äº†",		NULL,		select_player,	'Q',	NULL},
 };
 
 static GtkItemFactoryEntry helpmenu_items[] = {
-    {"/¥Ø¥ë¥×",			NULL,		NULL,		0,	"<LastBranch>"},
-    {"/¥Ø¥ë¥×/¥³¥Ş¥ó¥É¥Ø¥ë¥×",	NULL,		help_help,	0,	NULL},
-    {"/¥Ø¥ë¥×/¥­¡¼¥Ø¥ë¥×",	NULL,		help_shelp,	0,	NULL},
-    {"/¥Ø¥ë¥×/¥ª¥×¥·¥ç¥ó¥Ø¥ë¥×", NULL,		help_option,	0,	NULL},
-    {"/¥Ø¥ë¥×/sep3",		NULL,		NULL,		0,	"<Separator>"},
-    {"/¥Ø¥ë¥×/ÆüËÜ¸ì<->±Ñ¸ì",	NULL,		help_je,	0,	NULL},
-    {"/¥Ø¥ë¥×/sep3",		NULL,		NULL,		0,	"<Separator>"},
-    {"/¥Ø¥ë¥×/Îò»Ë",		NULL,		help_history,	0,	NULL},
-    {"/¥Ø¥ë¥×/¥é¥¤¥»¥ó¥¹",	NULL,		help_license,	0,	NULL},
+    {"/ãƒ˜ãƒ«ãƒ—",			NULL,		NULL,		0,	"<LastBranch>"},
+    {"/ãƒ˜ãƒ«ãƒ—/ã‚³ãƒãƒ³ãƒ‰ãƒ˜ãƒ«ãƒ—",	NULL,		help_help,	0,	NULL},
+    {"/ãƒ˜ãƒ«ãƒ—/ã‚­ãƒ¼ãƒ˜ãƒ«ãƒ—",	NULL,		help_shelp,	0,	NULL},
+    {"/ãƒ˜ãƒ«ãƒ—/ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒ˜ãƒ«ãƒ—", NULL,		help_option,	0,	NULL},
+    {"/ãƒ˜ãƒ«ãƒ—/sep3",		NULL,		NULL,		0,	"<Separator>"},
+    {"/ãƒ˜ãƒ«ãƒ—/æ—¥æœ¬èª<->è‹±èª",	NULL,		help_je,	0,	NULL},
+    {"/ãƒ˜ãƒ«ãƒ—/sep3",		NULL,		NULL,		0,	"<Separator>"},
+    {"/ãƒ˜ãƒ«ãƒ—/æ­´å²",		NULL,		help_history,	0,	NULL},
+    {"/ãƒ˜ãƒ«ãƒ—/ãƒ©ã‚¤ã‚»ãƒ³ã‚¹",	NULL,		help_license,	0,	NULL},
 };
 
 static GtkItemFactoryEntry playmenu_items[] = {
-    {"/°ÜÆ°",			NULL,		NULL,		0,	"<Branch>"},
-    {"/°ÜÆ°/ËÌ",		"k",		key_command,	'k',	NULL},
-    {"/°ÜÆ°/Åì",		"h",		key_command,	'h',	NULL},
-    {"/°ÜÆ°/Æî",		"j",		key_command,	'j',	NULL},
-    {"/°ÜÆ°/À¾",		"l",		key_command,	'l',	NULL},
-    {"/°ÜÆ°/ËÌÅì",		"u",		key_command,	'u',	NULL},
-    {"/°ÜÆ°/ËÌÀ¾",		"y",		key_command,	'y',	NULL},
-    {"/°ÜÆ°/ÆîÅì",		"n",		key_command,	'n',	NULL},
-    {"/°ÜÆ°/ÆîÀ¾",		"b",		key_command,	'b',	NULL},
-    {"/°ÜÆ°/²¼",		"greater",	key_command,	'>',	NULL},
-    {"/°ÜÆ°/¾å",		"less",		key_command,	'<',	NULL},
-    {"/Ä´ºº",			NULL,		NULL,		0,	"<Branch>"},
-    {"/Ä´ºº/Â­¸µ¤òÄ´ºº",	"colon",	key_command,	':',	NULL},
-    {"/Ä´ºº/±ó¤¯¤Î¸µ¤òÄ´ºº",	"semicolon",	key_command,	';',	NULL},
-    {"/Ä´ºº/æ«¤òÄ´ºº",		"asciicircum",	key_command,	'^',	NULL},
-    {"/ÁõÈ÷/¼ê¤Ë¤¹¤ë",		"w",		key_command,	'w',	NULL},	
-    {"/ÁõÈ÷/³»¤ò¿È¤Ë¤Ä¤±¤ë",	"<shift>w",	key_command,	'W',	NULL},	
-    {"/ÁõÈ÷/³»¤ò¤Ï¤º¤¹",	"<shift>T",	key_command,	'T',	NULL},	
-    {"/ÁõÈ÷/»ØÎØ¤äËâ½ü¤±¤ò¤Ä¤±¤ë", "<shift>p",	key_command,	'P',	NULL},	
-    {"/ÁõÈ÷/»ØÎØ¤äËâ½ü¤±¤ò¤Ï¤º¤¹", "<shift>r",	key_command,	'R',	NULL},	
-    {"/¤¢¤Ê¤¿¼«¿È",		NULL,		NULL,		0,	"<Branch>"},
-    {"/¤¢¤Ê¤¿¼«¿È/»ı¤ÁÊª°ìÍ÷",	"i",		key_command,	'i',	NULL},
-    {"/¤¢¤Ê¤¿¼«¿È/ÁõÈ÷Éğ´ï",	"parenright",	key_command,	')',	NULL},	
-    {"/¤¢¤Ê¤¿¼«¿È/ÁõÈ÷³»",	"bracketleft",	key_command,	'[',	NULL},	
-    {"/¤¢¤Ê¤¿¼«¿È/¿È¤Ë¤Ä¤±¤¤¤ë»ØÎØ", "equal",	key_command,	'=',	NULL},	
-    {"/¤¢¤Ê¤¿¼«¿È/¿È¤Ë¤Ä¤±¤Æ¤¤¤ëËâ½ü¤±",	"quotedbl",	key_command,	'"',	NULL},	
-    {"/¤¢¤Ê¤¿¼«¿È/»È¤Ã¤Æ¤¤¤ëÆ»¶ñ", "parenleft",	key_command,	'(',	NULL},	
-    {"/¤¢¤Ê¤¿¼«¿È/ËâË¡°ìÍ÷",	"x",		key_command,	'x',	NULL},	
-    {"/¤¢¤Ê¤¿¼«¿È/¼±ÊÌºÑ¥¢¥¤¥Æ¥à","backslash",	key_command,	'\\',	NULL},	
-    {"/ËÁ¸±",			NULL,		NULL,		0,	"<Branch>"},
-    {"/ËÁ¸±/¥¢¥¤¥Æ¥à¤ËÌ¾Á°¤ò¤Ä¤±¤ë","<alt>n",	key_command,	'n' | 0x80,	NULL},
-    {"/ËÁ¸±/À¸¤­Êª¤ËÌ¾Á°¤ò¤Ä¤±¤ë","<shift>C",	key_command,	'C',	NULL},
-    {"/ËÁ¸±/ÌÜÏ¿Ê¸»úÊÑ¹¹",	"<alt>a",	key_command,	'a' | 0x80,	NULL},
-    {"/¹ÔÆ°",			NULL,		NULL,		0,	"<Branch>"},
-    {"/¹ÔÆ°/µÙ¤à",		"period",	key_command,	'.',	NULL},
-    {"/¹ÔÆ°/Ãµº÷",		"s",		key_command,	's',	NULL},
-    {"/¹ÔÆ°/¿©¤Ù¤ë",		"e",		key_command,	'e',	NULL},
-    {"/¹ÔÆ°/Asep1",		NULL,		NULL,		0,	"<Separator>"},
-    {"/¹ÔÆ°/³«¤±¤ë",		"o",		key_command,	'o',	NULL},
-    {"/¹ÔÆ°/ÊÄ¤á¤ë",		"c",		key_command,	'c',	NULL},
-    {"/¹ÔÆ°/Asep2",		NULL,		NULL,		0,	"<Separator>"},
-    {"/¹ÔÆ°/½¦¤¦",		"comma",	key_command,	',',	NULL},
-    {"/¹ÔÆ°/ÃÖ¤¯",		"<shift>d",	key_command,	'D',	NULL},
-    {"/¹ÔÆ°/È¢¤«¤é¼è¤ë",	"<alt>l",	key_command,	'l' | 0x80, NULL},
-    {"/¹ÔÆ°/Æ»¶ñ¤ò»È¤¦",	"a",		key_command,	'a',	NULL},
-    {"/¹ÔÆ°/½³¤ë",		"<control>D",	key_command,	'\04',	NULL},
-    {"/¹ÔÆ°/Åê¤²¤ë",		"t",		key_command,	't',	NULL},
-    {"/¹ÔÆ°/Asep3",		NULL,		NULL,		0,	"<Separator>"},
-    {"/¹ÔÆ°/°û¤à",		"q",		key_command,	'q',	NULL},
-    {"/¹ÔÆ°/ÆÉ¤à",		"r",		key_command,	'r',	NULL},
-    {"/¹ÔÆ°/ËâË¡¤ò¾§¤¨¤ë",	"<shift>Z",	key_command,	'Z',	NULL},
-    {"/¹ÔÆ°/¾ó¤ò¿¶¤ë",		"z",		key_command,	'z',	NULL},
-    {"/¹ÔÆ°/¿å¤Ë¿»¤¹",		"<alt>d",	key_command,	'd' | 0x80,	NULL},
-    {"/¹ÔÆ°/ºÂ¤ë",		"<alt>s",	key_command,	's' | 0x80,	NULL},
-    {"/¿®¶Ä",			NULL,		NULL, 0, "<Branch>"},
-    {"/¿®¶Ä/µ§¤ë",		"<alt>p",	key_command,	'p' | 0x80,	NULL},
-    {"/¿®¶Ä/»àÂÎ¤òÊû¤²¤ë",	"<alt>o",	key_command,	'o' | 0x80,	NULL},
-    {"/ÆÃ¼ì",			NULL,		NULL, 0, "<Branch>"},
-    {"/ÆÃ¼ì/¾²¤Ë¹ï¤à",		"<shift>E",	key_command,	'E',		NULL},
-    {"/ÆÃ¼ì/´ªÄê¤òÊ§¤¦",	"p",		key_command,	'p',		NULL},
-    {"/ÆÃ¼ì/²ñÏÃ¤ò¤¹¤ë",	"<alt>c",	key_command,	'c' | 0x80,	NULL},
-    {"/ÆÃ¼ì/Ç½ÎÏ¤ò¹â¤á¤ë",	"<alt>e",	key_command,	'e' | 0x80,	NULL},
-    {"/ÆÃ¼ì/¤³¤¸¤¢¤±¤ë",	"<alt>f",	key_command,	'f' | 0x80,	NULL},
-    {"/ÆÃ¼ì/Æ»¶ñ¤ÎÆÃ¼ìÇ½ÎÏ¤ò»ÈÍÑ¤¹¤ë","<alt>i",	key_command,	'i' | 0x80,	NULL},
-    {"/ÆÃ¼ì/ËâÊª¤ÎÆÃ¼ìÇ½ÎÏ¤ò»ÈÍÑ¤¹¤ë","<alt>m",	key_command,	'm' | 0x80,	NULL},
-    {"/ÆÃ¼ì/»¤¤ë",		"<alt>r",	key_command,	'r' | 0x80,	NULL},
-    {"/ÆÃ¼ì/¿¡¤­¤È¤ë",		"<alt>w",	key_command,	'w' | 0x80,	NULL},
-    {"/ÆÃ¼ì/¥Æ¥ì¥İ¡¼¥È",	"<control>t",	key_command,	'',	NULL},
-    {"/ÆÃ¼ì/ÅÚ¤ËÊÖ¤¹",		"<alt>t",	key_command,	't' | 0x80,	NULL},
-    {"/ÆÃ¼ì/æ«²ò½ü",		"<alt>u",	key_command,	'u' | 0x80,	NULL},
-    {"/ÆÃ¼ì/¥¸¥ã¥ó¥×",		"<alt>j",	key_command,	'j' | 0x80,	NULL},
+    {"/ç§»å‹•",			NULL,		NULL,		0,	"<Branch>"},
+    {"/ç§»å‹•/åŒ—",		"k",		key_command,	'k',	NULL},
+    {"/ç§»å‹•/æ±",		"h",		key_command,	'h',	NULL},
+    {"/ç§»å‹•/å—",		"j",		key_command,	'j',	NULL},
+    {"/ç§»å‹•/è¥¿",		"l",		key_command,	'l',	NULL},
+    {"/ç§»å‹•/åŒ—æ±",		"u",		key_command,	'u',	NULL},
+    {"/ç§»å‹•/åŒ—è¥¿",		"y",		key_command,	'y',	NULL},
+    {"/ç§»å‹•/å—æ±",		"n",		key_command,	'n',	NULL},
+    {"/ç§»å‹•/å—è¥¿",		"b",		key_command,	'b',	NULL},
+    {"/ç§»å‹•/ä¸‹",		"greater",	key_command,	'>',	NULL},
+    {"/ç§»å‹•/ä¸Š",		"less",		key_command,	'<',	NULL},
+    {"/èª¿æŸ»",			NULL,		NULL,		0,	"<Branch>"},
+    {"/èª¿æŸ»/è¶³å…ƒã‚’èª¿æŸ»",	"colon",	key_command,	':',	NULL},
+    {"/èª¿æŸ»/é ãã®å…ƒã‚’èª¿æŸ»",	"semicolon",	key_command,	';',	NULL},
+    {"/èª¿æŸ»/ç½ ã‚’èª¿æŸ»",		"asciicircum",	key_command,	'^',	NULL},
+    {"/è£…å‚™/æ‰‹ã«ã™ã‚‹",		"w",		key_command,	'w',	NULL},	
+    {"/è£…å‚™/é§ã‚’èº«ã«ã¤ã‘ã‚‹",	"<shift>w",	key_command,	'W',	NULL},	
+    {"/è£…å‚™/é§ã‚’ã¯ãšã™",	"<shift>T",	key_command,	'T',	NULL},	
+    {"/è£…å‚™/æŒ‡è¼ªã‚„é­”é™¤ã‘ã‚’ã¤ã‘ã‚‹", "<shift>p",	key_command,	'P',	NULL},	
+    {"/è£…å‚™/æŒ‡è¼ªã‚„é­”é™¤ã‘ã‚’ã¯ãšã™", "<shift>r",	key_command,	'R',	NULL},	
+    {"/ã‚ãªãŸè‡ªèº«",		NULL,		NULL,		0,	"<Branch>"},
+    {"/ã‚ãªãŸè‡ªèº«/æŒã¡ç‰©ä¸€è¦§",	"i",		key_command,	'i',	NULL},
+    {"/ã‚ãªãŸè‡ªèº«/è£…å‚™æ­¦å™¨",	"parenright",	key_command,	')',	NULL},	
+    {"/ã‚ãªãŸè‡ªèº«/è£…å‚™é§",	"bracketleft",	key_command,	'[',	NULL},	
+    {"/ã‚ãªãŸè‡ªèº«/èº«ã«ã¤ã‘ã„ã‚‹æŒ‡è¼ª", "equal",	key_command,	'=',	NULL},	
+    {"/ã‚ãªãŸè‡ªèº«/èº«ã«ã¤ã‘ã¦ã„ã‚‹é­”é™¤ã‘",	"quotedbl",	key_command,	'"',	NULL},	
+    {"/ã‚ãªãŸè‡ªèº«/ä½¿ã£ã¦ã„ã‚‹é“å…·", "parenleft",	key_command,	'(',	NULL},	
+    {"/ã‚ãªãŸè‡ªèº«/é­”æ³•ä¸€è¦§",	"x",		key_command,	'x',	NULL},	
+    {"/ã‚ãªãŸè‡ªèº«/è­˜åˆ¥æ¸ˆã‚¢ã‚¤ãƒ†ãƒ ","backslash",	key_command,	'\\',	NULL},	
+    {"/å†’é™º",			NULL,		NULL,		0,	"<Branch>"},
+    {"/å†’é™º/ã‚¢ã‚¤ãƒ†ãƒ ã«åå‰ã‚’ã¤ã‘ã‚‹","<alt>n",	key_command,	'n' | 0x80,	NULL},
+    {"/å†’é™º/ç”Ÿãç‰©ã«åå‰ã‚’ã¤ã‘ã‚‹","<shift>C",	key_command,	'C',	NULL},
+    {"/å†’é™º/ç›®éŒ²æ–‡å­—å¤‰æ›´",	"<alt>a",	key_command,	'a' | 0x80,	NULL},
+    {"/è¡Œå‹•",			NULL,		NULL,		0,	"<Branch>"},
+    {"/è¡Œå‹•/ä¼‘ã‚€",		"period",	key_command,	'.',	NULL},
+    {"/è¡Œå‹•/æ¢ç´¢",		"s",		key_command,	's',	NULL},
+    {"/è¡Œå‹•/é£Ÿã¹ã‚‹",		"e",		key_command,	'e',	NULL},
+    {"/è¡Œå‹•/Asep1",		NULL,		NULL,		0,	"<Separator>"},
+    {"/è¡Œå‹•/é–‹ã‘ã‚‹",		"o",		key_command,	'o',	NULL},
+    {"/è¡Œå‹•/é–‰ã‚ã‚‹",		"c",		key_command,	'c',	NULL},
+    {"/è¡Œå‹•/Asep2",		NULL,		NULL,		0,	"<Separator>"},
+    {"/è¡Œå‹•/æ‹¾ã†",		"comma",	key_command,	',',	NULL},
+    {"/è¡Œå‹•/ç½®ã",		"<shift>d",	key_command,	'D',	NULL},
+    {"/è¡Œå‹•/ç®±ã‹ã‚‰å–ã‚‹",	"<alt>l",	key_command,	'l' | 0x80, NULL},
+    {"/è¡Œå‹•/é“å…·ã‚’ä½¿ã†",	"a",		key_command,	'a',	NULL},
+    {"/è¡Œå‹•/è¹´ã‚‹",		"<control>D",	key_command,	'\04',	NULL},
+    {"/è¡Œå‹•/æŠ•ã’ã‚‹",		"t",		key_command,	't',	NULL},
+    {"/è¡Œå‹•/Asep3",		NULL,		NULL,		0,	"<Separator>"},
+    {"/è¡Œå‹•/é£²ã‚€",		"q",		key_command,	'q',	NULL},
+    {"/è¡Œå‹•/èª­ã‚€",		"r",		key_command,	'r',	NULL},
+    {"/è¡Œå‹•/é­”æ³•ã‚’å”±ãˆã‚‹",	"<shift>Z",	key_command,	'Z',	NULL},
+    {"/è¡Œå‹•/æ–ã‚’æŒ¯ã‚‹",		"z",		key_command,	'z',	NULL},
+    {"/è¡Œå‹•/æ°´ã«æµ¸ã™",		"<alt>d",	key_command,	'd' | 0x80,	NULL},
+    {"/è¡Œå‹•/åº§ã‚‹",		"<alt>s",	key_command,	's' | 0x80,	NULL},
+    {"/ä¿¡ä»°",			NULL,		NULL, 0, "<Branch>"},
+    {"/ä¿¡ä»°/ç¥ˆã‚‹",		"<alt>p",	key_command,	'p' | 0x80,	NULL},
+    {"/ä¿¡ä»°/æ­»ä½“ã‚’æ§ã’ã‚‹",	"<alt>o",	key_command,	'o' | 0x80,	NULL},
+    {"/ç‰¹æ®Š",			NULL,		NULL, 0, "<Branch>"},
+    {"/ç‰¹æ®Š/åºŠã«åˆ»ã‚€",		"<shift>E",	key_command,	'E',		NULL},
+    {"/ç‰¹æ®Š/å‹˜å®šã‚’æ‰•ã†",	"p",		key_command,	'p',		NULL},
+    {"/ç‰¹æ®Š/ä¼šè©±ã‚’ã™ã‚‹",	"<alt>c",	key_command,	'c' | 0x80,	NULL},
+    {"/ç‰¹æ®Š/èƒ½åŠ›ã‚’é«˜ã‚ã‚‹",	"<alt>e",	key_command,	'e' | 0x80,	NULL},
+    {"/ç‰¹æ®Š/ã“ã˜ã‚ã‘ã‚‹",	"<alt>f",	key_command,	'f' | 0x80,	NULL},
+    {"/ç‰¹æ®Š/é“å…·ã®ç‰¹æ®Šèƒ½åŠ›ã‚’ä½¿ç”¨ã™ã‚‹","<alt>i",	key_command,	'i' | 0x80,	NULL},
+    {"/ç‰¹æ®Š/é­”ç‰©ã®ç‰¹æ®Šèƒ½åŠ›ã‚’ä½¿ç”¨ã™ã‚‹","<alt>m",	key_command,	'm' | 0x80,	NULL},
+    {"/ç‰¹æ®Š/æ“¦ã‚‹",		"<alt>r",	key_command,	'r' | 0x80,	NULL},
+    {"/ç‰¹æ®Š/æ‹­ãã¨ã‚‹",		"<alt>w",	key_command,	'w' | 0x80,	NULL},
+    {"/ç‰¹æ®Š/ãƒ†ãƒ¬ãƒãƒ¼ãƒˆ",	"<control>t",	key_command,	'',	NULL},
+    {"/ç‰¹æ®Š/åœŸã«è¿”ã™",		"<alt>t",	key_command,	't' | 0x80,	NULL},
+    {"/ç‰¹æ®Š/ç½ è§£é™¤",		"<alt>u",	key_command,	'u' | 0x80,	NULL},
+    {"/ç‰¹æ®Š/ã‚¸ãƒ£ãƒ³ãƒ—",		"<alt>j",	key_command,	'j' | 0x80,	NULL},
 };
 #else
 static GtkItemFactoryEntry menu_items[] = {
@@ -861,18 +861,18 @@ GTK_init_nhwindows(int *argc, char **argv)
 	gtk_item_factory_get_widget(main_item_factory, "<main>"), main_vbox, "",
 	FALSE, FALSE, 0);
 #ifdef JNETHACK
-    nh_menu_sensitive("/¥²¡¼¥à/ÊİÂ¸", FALSE);
+    nh_menu_sensitive("/ã‚²ãƒ¼ãƒ /ä¿å­˜", FALSE);
 /*
-  nh_menu_sensitive("/¥²¡¼¥à/¥ª¥×¥·¥ç¥ó", FALSE);
+  nh_menu_sensitive("/ã‚²ãƒ¼ãƒ /ã‚ªãƒ—ã‚·ãƒ§ãƒ³", FALSE);
 */
-    nh_menu_sensitive("/°ÜÆ°", FALSE);
-    nh_menu_sensitive("/Ä´ºº", FALSE);
-    nh_menu_sensitive("/ÁõÈ÷", FALSE);
-    nh_menu_sensitive("/¤¢¤Ê¤¿¼«¿È", FALSE);
-    nh_menu_sensitive("/ËÁ¸±", FALSE);
-    nh_menu_sensitive("/¹ÔÆ°", FALSE);
-    nh_menu_sensitive("/¿®¶Ä", FALSE);
-    nh_menu_sensitive("/ÆÃ¼ì", FALSE);
+    nh_menu_sensitive("/ç§»å‹•", FALSE);
+    nh_menu_sensitive("/èª¿æŸ»", FALSE);
+    nh_menu_sensitive("/è£…å‚™", FALSE);
+    nh_menu_sensitive("/ã‚ãªãŸè‡ªèº«", FALSE);
+    nh_menu_sensitive("/å†’é™º", FALSE);
+    nh_menu_sensitive("/è¡Œå‹•", FALSE);
+    nh_menu_sensitive("/ä¿¡ä»°", FALSE);
+    nh_menu_sensitive("/ç‰¹æ®Š", FALSE);
 #else
     nh_menu_sensitive("/Game/Save", FALSE);
 /*
@@ -934,18 +934,18 @@ GTK_init_nhwindows2()
     if(initialized2)
 	return;
 #ifdef JNETHACK
-    nh_menu_sensitive("/¥²¡¼¥à/Í·¤Ö", FALSE);
-    nh_menu_sensitive("/¥²¡¼¥à/ÊİÂ¸", TRUE);
-    nh_menu_sensitive("/¥²¡¼¥à/¥ª¥×¥·¥ç¥ó", TRUE);
+    nh_menu_sensitive("/ã‚²ãƒ¼ãƒ /éŠã¶", FALSE);
+    nh_menu_sensitive("/ã‚²ãƒ¼ãƒ /ä¿å­˜", TRUE);
+    nh_menu_sensitive("/ã‚²ãƒ¼ãƒ /ã‚ªãƒ—ã‚·ãƒ§ãƒ³", TRUE);
 
-    nh_menu_sensitive("/°ÜÆ°", TRUE);
-    nh_menu_sensitive("/Ä´ºº", TRUE);
-    nh_menu_sensitive("/ÁõÈ÷", TRUE);
-    nh_menu_sensitive("/¤¢¤Ê¤¿¼«¿È", TRUE);
-    nh_menu_sensitive("/ËÁ¸±", TRUE);
-    nh_menu_sensitive("/¹ÔÆ°", TRUE);
-    nh_menu_sensitive("/¿®¶Ä", TRUE);
-    nh_menu_sensitive("/ÆÃ¼ì", TRUE);
+    nh_menu_sensitive("/ç§»å‹•", TRUE);
+    nh_menu_sensitive("/èª¿æŸ»", TRUE);
+    nh_menu_sensitive("/è£…å‚™", TRUE);
+    nh_menu_sensitive("/ã‚ãªãŸè‡ªèº«", TRUE);
+    nh_menu_sensitive("/å†’é™º", TRUE);
+    nh_menu_sensitive("/è¡Œå‹•", TRUE);
+    nh_menu_sensitive("/ä¿¡ä»°", TRUE);
+    nh_menu_sensitive("/ç‰¹æ®Š", TRUE);
 #else
     nh_menu_sensitive("/Game/Play", FALSE);
     nh_menu_sensitive("/Game/Save", TRUE);
@@ -1123,7 +1123,7 @@ GTK_putstr(winid id, int attr, const char *str)
 
 #ifdef JNETHACK
 	w->button[0] = nh_gtk_new_and_pack(
-	    gtk_button_new_with_label("ÊÄ¤¸¤ë"), w->hbox2, "",
+	    gtk_button_new_with_label("é–‰ã˜ã‚‹"), w->hbox2, "",
 	    TRUE, FALSE, 0);
 #else
 	w->button[0] = nh_gtk_new_and_pack(
@@ -1256,7 +1256,7 @@ GTK_display_file(const char *fname, BOOLEAN_P complain)
 
 #ifdef JNETHACK
     button = nh_gtk_new_and_pack(
-	gtk_button_new_with_label("ÊÄ¤¸¤ë"), hbox2, "",
+	gtk_button_new_with_label("é–‰ã˜ã‚‹"), hbox2, "",
 	TRUE, FALSE, NH_PAD);
 #else
     button = nh_gtk_new_and_pack(

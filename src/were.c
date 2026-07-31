@@ -31,13 +31,13 @@ register struct monst *mon;
 		    switch (monsndx(mon->data)) {
 /*JP		    case PM_HUMAN_WEREWOLF:	  howler = "wolf";    break;
 		    case PM_HUMAN_WEREJACKAL: howler = "jackal";  break;*/
-		    case PM_HUMAN_WEREWOLF:	  howler = "Ïµ";    break;
-		    case PM_HUMAN_WEREJACKAL: howler = "¥¸¥ã¥Ã¥«¥ë";  break;
+		    case PM_HUMAN_WEREWOLF:	  howler = "ç‹¼";    break;
+		    case PM_HUMAN_WEREJACKAL: howler = "ã‚¸ãƒ£ãƒƒã‚«ãƒ«";  break;
 		    default:		  howler = (char *)0; break;
 		    }
 		    if (howler)
 /*JP			You_hear("a %s howling at the moon.", howler);*/
-			You_hear("·îÌë¤Ë%s¤¬ËÊ¤¨¤ëÀ¼¤òÊ¹¤¤¤¿¡¥", howler);
+			You_hear("æœˆå¤œã«%sãŒå ãˆã‚‹å£°ã‚’èã„ãŸï¼", howler);
 		}
 	    }
 	} else if (!rn2(30) || Protection_from_shape_changers) {
@@ -82,9 +82,9 @@ register struct monst *mon;
 			Hallucination ? rndmonnam() :
 			is_human(&mons[pm]) ? "human" :
 			mons[pm].mname+4);*/
-	    pline("%s¤Ï%s¤Î»Ñ¤Ë¤Ê¤Ã¤¿¡¥", Monnam(mon),
+	    pline("%sã¯%sã®å§¿ã«ãªã£ãŸï¼", Monnam(mon),
 			Hallucination ? rndmonnam() :
-			is_human(&mons[pm]) ? "¿Í´Ö" :
+			is_human(&mons[pm]) ? "äººé–“" :
 			jtrns_mon(mons[pm].mname+4, mon->female));
 
 	set_mon_data(mon, &mons[pm], 0);
@@ -147,7 +147,7 @@ you_were()
 	if(Polymorph_control) {
 	    /* `+4' => skip "were" prefix to get name of beast */
 /*JP	    Sprintf(qbuf,"Do you want to change into a %s? ",*/
-	    Sprintf(qbuf,"%s¤ËÊÑ²½¤·¤Ş¤¹¤«¡©",
+	    Sprintf(qbuf,"%sã«å¤‰åŒ–ã—ã¾ã™ã‹ï¼Ÿ",
 		jtrns_mon(mons[u.ulycn].mname+4, -1));
 	    if(yn(qbuf) == 'n') return;
 	}
@@ -162,14 +162,14 @@ boolean purify;
 /*JP
 	    You_feel("purified.");
 */
-	    You("¾ô¤á¤é¤ì¤¿¤è¤¦¤Êµ¤¤¬¤·¤¿¡¥");
+	    You("æµ„ã‚ã‚‰ã‚ŒãŸã‚ˆã†ãªæ°—ãŒã—ãŸï¼");
 	    u.ulycn = NON_PM;	/* cure lycanthropy */
 	}
 	if (is_were(uasmon) &&
 /*JP
 		(!Polymorph_control || yn("Remain in beast form?") == 'n'))
 */
-		(!Polymorph_control || yn("¸µ¤Î»Ñ¤ËÌá¤ë¡©") == 'y'))
+		(!Polymorph_control || yn("å…ƒã®å§¿ã«æˆ»ã‚‹ï¼Ÿ") == 'y'))
 	    rehumanize();
 }
 

@@ -24,18 +24,18 @@ register struct obj *otmp;
 	return (
 #ifdef TOURIST
 /*JP		(otmp == uarmu) ? "shirt" :*/
-		(otmp == uarmu) ? "¥·¥ã¥Ä" :
+		(otmp == uarmu) ? "ã‚·ãƒ£ãƒ„" :
 #endif
 /*JP		(otmp == uarmf) ? "boots" :
 		(otmp == uarms) ? "shield" :
 		(otmp == uarmg) ? "gloves" :
 		(otmp == uarmc) ? "cloak" :
 		(otmp == uarmh) ? "helmet" : "armor");*/
-		(otmp == uarmf) ? "·¤" :
-		(otmp == uarms) ? "½â" :
-		(otmp == uarmg) ? "¾®¼ê" :
-		(otmp == uarmc) ? "¥¯¥í¡¼¥¯" :
-		(otmp == uarmh) ? "³õ" : "³»");
+		(otmp == uarmf) ? "é´" :
+		(otmp == uarms) ? "ç›¾" :
+		(otmp == uarmg) ? "å°æ‰‹" :
+		(otmp == uarmc) ? "ã‚¯ãƒ­ãƒ¼ã‚¯" :
+		(otmp == uarmh) ? "å…œ" : "éŽ§");
 }
 
 long		/* actually returns something that fits in an int */
@@ -61,7 +61,7 @@ register struct monst *mtmp;
 	    delobj(gold);
 	    newsym(u.ux, u.uy);
 /*JP	    pline("%s quickly snatches some gold from between your %s!",*/
-	    pline("%s¤ÏÁÇÁá¤¯¤¢¤Ê¤¿¤Î%s¸µ¤«¤é¶â¤ò¤Ò¤Ã¤¿¤¯¤Ã¤¿¡ª",
+	    pline("%sã¯ç´ æ—©ãã‚ãªãŸã®%så…ƒã‹ã‚‰é‡‘ã‚’ã²ã£ãŸãã£ãŸï¼",
 		    Monnam(mtmp), makeplural(body_part(FOOT)));
 	    if(!u.ugold || !rn2(5)) {
 		if (!tele_restrict(mtmp)) rloc(mtmp);
@@ -70,7 +70,7 @@ register struct monst *mtmp;
 	} else if(u.ugold) {
 	    u.ugold -= (tmp = somegold());
 /*JP	    Your("purse feels lighter.");*/
-	    Your("ºâÉÛ¤Ï·Ú¤¯¤Ê¤Ã¤¿¡¥");
+	    Your("è²¡å¸ƒã¯è»½ããªã£ãŸï¼Ž");
 	    mtmp->mgold += tmp;
 	    if (!tele_restrict(mtmp)) rloc(mtmp);
 	    mtmp->mflee = 1;
@@ -98,7 +98,7 @@ stealarm()
 			    subfrombill(otmp, shop_keeper(*u.ushops));
 			freeinv(otmp);
 /*JP			pline("%s steals %s!", Monnam(mtmp), doname(otmp));*/
-			pline("%s¤Ï%s¤òÅð¤ó¤À¡ª", Monnam(mtmp), doname(otmp));
+			pline("%sã¯%sã‚’ç›—ã‚“ã ï¼", Monnam(mtmp), doname(otmp));
 			mpickobj(mtmp,otmp);
 			mtmp->mflee = 1;
 			if (!tele_restrict(mtmp)) rloc(mtmp);
@@ -167,10 +167,10 @@ struct monst *mtmp;
 	    /* Not even a thousand men in armor can strip a naked man. */
 	    if(Blind)
 /*JP	      pline("Somebody tries to rob you, but finds nothing to steal.");*/
-	      pline("Ã¯¤«¤¬¤¢¤Ê¤¿¤«¤éÅð¤â¤¦¤È¤·¤¿¤¬¡¤Åð¤à¤â¤Î¤¬¤Ê¤¤¤³¤È¤Ëµ¤¤¬¤Ä¤¤¤¿¡¥");
+	      pline("èª°ã‹ãŒã‚ãªãŸã‹ã‚‰ç›—ã‚‚ã†ã¨ã—ãŸãŒï¼Œç›—ã‚€ã‚‚ã®ãŒãªã„ã“ã¨ã«æ°—ãŒã¤ã„ãŸï¼Ž");
 	    else
 /*JP	      pline("%s tries to rob you, but she finds nothing to steal!",*/
-	      pline("%s¤Ï¤¢¤Ê¤¿¤«¤éÅð¤â¤¦¤È¤·¤¿¤¬¡¤Åð¤à¤â¤Î¤¬¤Ê¤¤¤³¤È¤Ëµ¤¤¬¤Ä¤¤¤¿¡ª",
+	      pline("%sã¯ã‚ãªãŸã‹ã‚‰ç›—ã‚‚ã†ã¨ã—ãŸãŒï¼Œç›—ã‚€ã‚‚ã®ãŒãªã„ã“ã¨ã«æ°—ãŒã¤ã„ãŸï¼",
 		Monnam(mtmp));
 	    return(1);	/* let her flee */
 	}
@@ -233,20 +233,20 @@ gotobj:
 				  Blind ? "She" : Monnam(mtmp),
 				  curssv ? "let her take" : "hand over",
 				  equipname(otmp));*/
-			    pline("%s¤Ï¤¢¤Ê¤¿¤òÌ¥Î»¤·¤¿¡¥¤¢¤Ê¤¿¤Ï¤è¤í¤³¤ó¤Ç%s¤ò%s¡¥",
-				  Blind ? "Èà½÷" : Monnam(mtmp),
+			    pline("%sã¯ã‚ãªãŸã‚’é­…äº†ã—ãŸï¼Žã‚ãªãŸã¯ã‚ˆã‚ã“ã‚“ã§%sã‚’%sï¼Ž",
+				  Blind ? "å½¼å¥³" : Monnam(mtmp),
 				  equipname(otmp),
-				  curssv ? "¤¢¤²¤¿" : "¼êÅÏ¤·¤¿");
+				  curssv ? "ã‚ã’ãŸ" : "æ‰‹æ¸¡ã—ãŸ");
 			else
 /*JP			    pline("%s seduces you and %s off your %s.",
 				  Blind ? "It" : Adjmonnam(mtmp, "beautiful"),
 				  curssv ? "helps you to take" :
 	(objects[otmp->otyp].oc_delay > 1) ? "you start taking" : "you take",
 				  equipname(otmp));*/
-			    pline("%s¤Ï¤¢¤Ê¤¿¤òÍ¶ÏÇ¤·¤¿¡¥¤¢¤Ê¤¿¤Ï%s¤ò%s¡¥",
-				  Blind ? "²¿¼Ô¤«" : Adjmonnam(mtmp, "Èþ¤·¤¤"),
+			    pline("%sã¯ã‚ãªãŸã‚’èª˜æƒ‘ã—ãŸï¼Žã‚ãªãŸã¯%sã‚’%sï¼Ž",
+				  Blind ? "ä½•è€…ã‹" : Adjmonnam(mtmp, "ç¾Žã—ã„"),
 				  equipname(otmp),
-				  (objects[otmp->otyp].oc_delay > 1) ? "¤Ï¤º¤·»Ï¤á¤¿" : "¤Ï¤º¤·¤¿");
+				  (objects[otmp->otyp].oc_delay > 1) ? "ã¯ãšã—å§‹ã‚ãŸ" : "ã¯ãšã—ãŸ");
 			named++;
 			/* the following is to set multi for later on */
 			nomul(-objects[otmp->otyp].oc_delay);
@@ -275,7 +275,7 @@ gotobj:
 
 	freeinv(otmp);
 /*JP	pline("%s stole %s.", named ? "She" : Monnam(mtmp), doname(otmp));*/
-	pline("%s¤Ï%s¤òÅð¤ó¤À¡¥", named ? "Èà½÷" : Monnam(mtmp), doname(otmp));
+	pline("%sã¯%sã‚’ç›—ã‚“ã ï¼Ž", named ? "å½¼å¥³" : Monnam(mtmp), doname(otmp));
 	mpickobj(mtmp,otmp);
 	if (otmp->otyp == CORPSE && otmp->corpsenm == PM_COCKATRICE &&
 		!(mtmp->misc_worn_check & W_ARMG)) {
@@ -308,7 +308,7 @@ register struct obj *otmp;
 	    if (u.uswallow && mtmp == u.ustuck && !Blind)
 /*JP		pline("%s go%s out.", The(xname(otmp)),
 		      otmp->quan == 1L ? "es" : "");*/
-		pline("%s¤ÏÈô¤Ó¤À¤·¤¿¡¥", The(xname(otmp)));
+		pline("%sã¯é£›ã³ã ã—ãŸï¼Ž", The(xname(otmp)));
 	    snuff_otmp = TRUE;
 	}
 	/* add_to_minv() might free otmp [if merged with something else],
@@ -358,7 +358,7 @@ snatch_it:
 		freeinv(otmp);
 		mpickobj(mtmp,otmp);
 /*JP		pline("%s stole %s!", Monnam(mtmp), doname(otmp));*/
-		pline("%s¤Ï%s¤òÅð¤ó¤À¡ª", Monnam(mtmp), doname(otmp));
+		pline("%sã¯%sã‚’ç›—ã‚“ã ï¼", Monnam(mtmp), doname(otmp));
 		if (can_teleport(mtmp->data) && !tele_restrict(mtmp))
 			rloc(mtmp);
 		return;
@@ -408,10 +408,10 @@ boolean is_pet;		/* If true, pet should keep wielded/worn items */
 		}
 		if (is_pet && cansee(omx, omy) && flags.verbose)
 /*JP			pline("%s drops %s.", Monnam(mtmp),*/
-			pline("%s¤Ï%s¤òÃÖ¤¤¤¿¡¥", Monnam(mtmp),
+			pline("%sã¯%sã‚’ç½®ã„ãŸï¼Ž", Monnam(mtmp),
 					distant_name(otmp, doname));
 /*JP		if (flooreffects(otmp, omx, omy, "fall")) continue;*/
-		if (flooreffects(otmp, omx, omy, "Íî¤Á¤ë")) continue;
+		if (flooreffects(otmp, omx, omy, "è½ã¡ã‚‹")) continue;
 		place_object(otmp, omx, omy);
 		stackobj(otmp);
 	}
@@ -427,7 +427,7 @@ boolean is_pet;		/* If true, pet should keep wielded/worn items */
 		if (is_pet && cansee(omx, omy) && flags.verbose)
 /*JP			pline("%s drops %ld gold piece%s.", Monnam(mtmp),
 				g, plur(g));*/
-			pline("%s¤Ï%ld¤Î¶â²ô¤òÃÖ¤¤¤¿¡¥", Monnam(mtmp),g);
+			pline("%sã¯%ldã®é‡‘å¡Šã‚’ç½®ã„ãŸï¼Ž", Monnam(mtmp),g);
 		mtmp->mgold = 0L;
 	}
 	if (show & cansee(omx, omy))

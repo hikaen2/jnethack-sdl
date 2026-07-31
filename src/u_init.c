@@ -462,7 +462,7 @@ u_init()
 	i = role_index(pc);
 	if (random_role) {
 /*JP	    pline("This game you will be %s.", an(roles[i]));*/
-	    pline("¤³¤Î¥²¡¼¥à¤Ç¤Ï¤¢¤Ê¤¿¤Ï%s¤Ç¤¹¡¥", jtrns_mon(roles[i], -1));
+	    pline("ã“ã®ã‚²ãƒ¼ãƒ ã§ã¯ã‚ãªãŸã¯%sã§ã™ï¼", jtrns_mon(roles[i], -1));
 	    display_nhwindow(WIN_MESSAGE, TRUE);
 	}
 

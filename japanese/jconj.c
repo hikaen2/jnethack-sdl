@@ -12,14 +12,12 @@
 #include "hack.h"
 #include "mbchar.h"
 
-#define EUC	0
-#define SJIS	1
-#define JIS	2
-
-/* internal kcode */
-/* IC=0 EUC */
-/* IC=1 SJIS */
-#define IC ((unsigned char)("´Á"[0])==0x8a)
+/*
+**      The kcode constants and the IC macro that used to sit here went
+**      unused once jconjsub() stopped taking characters apart by hand.
+**      They are declared in japanese/jlib.c, which is where the encoding
+**      is actually decided.
+*/
 
 #define J_A	0
 #define J_KA	(1*5)
@@ -49,21 +47,21 @@
 **      UTF8-PLAN.md and no arithmetic here has to know how wide they are.
 */
 static const char *const hira_tab[]={
-  "¤¢", "¤¤", "¤¦", "¤¨", "¤ª",
-  "¤«", "¤­", "¤¯", "¤±", "¤³",
-  "¤µ", "¤·", "¤¹", "¤»", "¤½",
-  "¤¿", "¤Á", "¤Ä", "¤Æ", "¤È",
-  "¤Ê", "¤Ë", "¤Ì", "¤Í", "¤Î",
-  "¤Ï", "¤Ò", "¤Õ", "¤Ø", "¤Û",
-  "¤Ş", "¤ß", "¤à", "¤á", "¤â",
-  "¤ä", "¤¤", "¤æ", "¤¨", "¤è",
-  "¤é", "¤ê", "¤ë", "¤ì", "¤í",
-  "¤ï", "¤¤", "¤¦", "¤¨", "¤ª",
-  "¤¬", "¤®", "¤°", "¤²", "¤´",
-  "¤¶", "¤¸", "¤º", "¤¼", "¤¾",
-  "¤À", "¤Â", "¤Å", "¤Ç", "¤É",
-  "¤Ğ", "¤Ó", "¤Ö", "¤Ù", "¤Ü",
-  "¤Ñ", "¤Ô", "¤×", "¤Ú", "¤İ",
+  "ã‚", "ã„", "ã†", "ãˆ", "ãŠ",
+  "ã‹", "ã", "ã", "ã‘", "ã“",
+  "ã•", "ã—", "ã™", "ã›", "ã",
+  "ãŸ", "ã¡", "ã¤", "ã¦", "ã¨",
+  "ãª", "ã«", "ã¬", "ã­", "ã®",
+  "ã¯", "ã²", "ãµ", "ã¸", "ã»",
+  "ã¾", "ã¿", "ã‚€", "ã‚", "ã‚‚",
+  "ã‚„", "ã„", "ã‚†", "ãˆ", "ã‚ˆ",
+  "ã‚‰", "ã‚Š", "ã‚‹", "ã‚Œ", "ã‚",
+  "ã‚", "ã„", "ã†", "ãˆ", "ãŠ",
+  "ãŒ", "ã", "ã", "ã’", "ã”",
+  "ã–", "ã˜", "ãš", "ãœ", "ã",
+  "ã ", "ã¢", "ã¥", "ã§", "ã©",
+  "ã°", "ã³", "ã¶", "ã¹", "ã¼",
+  "ã±", "ã´", "ã·", "ãº", "ã½",
 };
 
 #define FIFTH	0
@@ -98,70 +96,70 @@ struct _jconj_tab {
 /* 0: normal 1: sokuon 2: hatson 3: ion */
   int onbin_type;
 } jconj_tab[] = {
-  {"Íè¤ë", J_KA, KAHEN, NORMAL}, 
-  {"¤¹¤ë", J_SA, SAHEN, NORMAL}, 
-  {"¿©¤Ù¤ë", J_HA, LOWER, NORMAL}, 
-  {"ÆÉ¤à", J_MA, FIFTH, SOKUON},
-  {"Ã¦¤°", J_GA, FIFTH, ION},
-  {"Ãå¤ë", J_KA, UPPER, NORMAL},
-  {"¿È¤Ë¤Ä¤±¤ë", J_KA, LOWER, NORMAL},
-  {"¤Ï¤º¤¹", J_SA, FIFTH, NORMAL},
-  {"³°¤¹", J_SA, FIFTH, NORMAL},
-  {"Êû¤²¤ë", J_KA, LOWER, NORMAL},
-  {"½ñ¤¯", J_KA, FIFTH, ION},
-  {"¤³¤¹¤ë", J_RA, FIFTH, HATSUON},
-  {"Åê¤²¤ë", J_GA, LOWER, NORMAL},
-  {"Íî¤¹", J_SA, FIFTH, NORMAL},
-  {"ÃÖ¤¯", J_KA, FIFTH, ION},
-  {"»¦¤¹", J_SA, FIFTH, NORMAL},
-  {"»à¤Ì", J_NA, FIFTH, SOKUON},
-  {"Íî¤Á¤ë", J_TA, UPPER, NORMAL},
-  {"Æş¤ì¤ë", J_RA, LOWER, NORMAL},
-  {"¤¤¤ì¤ë", J_RA, LOWER, NORMAL},
-  {"½Ğ¤¹", J_SA, FIFTH, NORMAL},
-  {"½¦¤¦", J_WA, FIFTH, HATSUON},
-  {"°û¤à", J_MA, FIFTH, SOKUON},
-  {"»¬¤Ó¤ë", J_BA, UPPER, NORMAL},
-  {"Ç¨¤é¤¹", J_SA, FIFTH, NORMAL},
-  {"¿»¤¹", J_SA, FIFTH, NORMAL},
-  {"»È¤¦", J_WA, FIFTH, HATSUON},
-  {"ÂÇ¤Ä", J_TA, FIFTH, HATSUON},
-  {"Éâ¤¯", J_KA, FIFTH, ION},
-  {"Èô¤Ö", J_BA, FIFTH, SOKUON},
-  {"³ê¤ë", J_RA, FIFTH, HATSUON},
-  {"½Ğ¤ë", J_NA, LOWER, NORMAL},
-  {"¤Ï¤¤¤º¤ë", J_RA, FIFTH, HATSUON},
-  {"Æ§¤à", J_MA, FIFTH, SOKUON},
-  {"¤Ä¤Ş¤º¤¯", J_KA, FIFTH, ION},
-  {"¤«¤±¤ë", J_KA, UPPER, NORMAL},
-  {"¤¢¤±¤ë", J_KA, LOWER, NORMAL},
-  {"³«¤±¤ë", J_KA, LOWER, NORMAL},
-  {"ÅÉ¤ë", J_RA, FIFTH, HATSUON},
-  {"²Ã¤¨¤ë", J_A, LOWER, NORMAL},
-  {"¹ï¤à", J_MA, FIFTH, SOKUON},
-  {"¤³¤Ş¤¹", J_SA, FIFTH, NORMAL},
-  {"Ì¾¤Å¤±¤ë", J_KA, LOWER, NORMAL},
-  {"¸Æ¤Ö", J_BA, FIFTH, SOKUON},
-  {"¾Æ¤¯", J_KA, FIFTH, ION},
-  {"¤Ä¤±¤ë", J_KA, LOWER, NORMAL},
-  {"²õ¤¹", J_SA, FIFTH, NORMAL},
-  {"¤Ï¤á¤ë", J_MA, UPPER, NORMAL},
-  {"¤«¤Ö¤ë", J_RA, FIFTH, HATSUON},
-  {"¹½¤¨¤ë", J_A, LOWER, NORMAL},
-  {"Ç¼¤á¤ë", J_MA, LOWER, NORMAL},
-  {"¼è¤ë", J_RA, FIFTH, HATSUON},
-  {"¼é¤ë", J_RA, FIFTH, HATSUON},
-  {"²ò¤¯", J_KA, FIFTH, ION},
-  {"¹ş¤à", J_MA, FIFTH, SOKUON},
-  {"¤È¤Ğ¤¹", J_SA, FIFTH, NORMAL},
-  {"²ó¤¹", J_SA, FIFTH, NORMAL},
-  {"°®¤ë", J_RA, FIFTH, HATSUON},
-  {"¤Ò¤Ã¤«¤±¤ë", J_KA, LOWER, NORMAL},
-  {"¤Ï¤µ¤à", J_MA, FIFTH, SOKUON},
-  {"»ı¤Ä", J_TA, FIFTH, HATSUON},
-  {"´¬¤¯", J_KA, FIFTH, ION},
-  {"Íú¤¯", J_KA, FIFTH, ION},
-  {"³ú¤ß¤Ä¤¯", J_KA, FIFTH, ION},
+  {"æ¥ã‚‹", J_KA, KAHEN, NORMAL}, 
+  {"ã™ã‚‹", J_SA, SAHEN, NORMAL}, 
+  {"é£Ÿã¹ã‚‹", J_HA, LOWER, NORMAL}, 
+  {"èª­ã‚€", J_MA, FIFTH, SOKUON},
+  {"è„±ã", J_GA, FIFTH, ION},
+  {"ç€ã‚‹", J_KA, UPPER, NORMAL},
+  {"èº«ã«ã¤ã‘ã‚‹", J_KA, LOWER, NORMAL},
+  {"ã¯ãšã™", J_SA, FIFTH, NORMAL},
+  {"å¤–ã™", J_SA, FIFTH, NORMAL},
+  {"æ§ã’ã‚‹", J_KA, LOWER, NORMAL},
+  {"æ›¸ã", J_KA, FIFTH, ION},
+  {"ã“ã™ã‚‹", J_RA, FIFTH, HATSUON},
+  {"æŠ•ã’ã‚‹", J_GA, LOWER, NORMAL},
+  {"è½ã™", J_SA, FIFTH, NORMAL},
+  {"ç½®ã", J_KA, FIFTH, ION},
+  {"æ®ºã™", J_SA, FIFTH, NORMAL},
+  {"æ­»ã¬", J_NA, FIFTH, SOKUON},
+  {"è½ã¡ã‚‹", J_TA, UPPER, NORMAL},
+  {"å…¥ã‚Œã‚‹", J_RA, LOWER, NORMAL},
+  {"ã„ã‚Œã‚‹", J_RA, LOWER, NORMAL},
+  {"å‡ºã™", J_SA, FIFTH, NORMAL},
+  {"æ‹¾ã†", J_WA, FIFTH, HATSUON},
+  {"é£²ã‚€", J_MA, FIFTH, SOKUON},
+  {"éŒ†ã³ã‚‹", J_BA, UPPER, NORMAL},
+  {"æ¿¡ã‚‰ã™", J_SA, FIFTH, NORMAL},
+  {"æµ¸ã™", J_SA, FIFTH, NORMAL},
+  {"ä½¿ã†", J_WA, FIFTH, HATSUON},
+  {"æ‰“ã¤", J_TA, FIFTH, HATSUON},
+  {"æµ®ã", J_KA, FIFTH, ION},
+  {"é£›ã¶", J_BA, FIFTH, SOKUON},
+  {"æ»‘ã‚‹", J_RA, FIFTH, HATSUON},
+  {"å‡ºã‚‹", J_NA, LOWER, NORMAL},
+  {"ã¯ã„ãšã‚‹", J_RA, FIFTH, HATSUON},
+  {"è¸ã‚€", J_MA, FIFTH, SOKUON},
+  {"ã¤ã¾ãšã", J_KA, FIFTH, ION},
+  {"ã‹ã‘ã‚‹", J_KA, UPPER, NORMAL},
+  {"ã‚ã‘ã‚‹", J_KA, LOWER, NORMAL},
+  {"é–‹ã‘ã‚‹", J_KA, LOWER, NORMAL},
+  {"å¡—ã‚‹", J_RA, FIFTH, HATSUON},
+  {"åŠ ãˆã‚‹", J_A, LOWER, NORMAL},
+  {"åˆ»ã‚€", J_MA, FIFTH, SOKUON},
+  {"ã“ã¾ã™", J_SA, FIFTH, NORMAL},
+  {"åã¥ã‘ã‚‹", J_KA, LOWER, NORMAL},
+  {"å‘¼ã¶", J_BA, FIFTH, SOKUON},
+  {"ç„¼ã", J_KA, FIFTH, ION},
+  {"ã¤ã‘ã‚‹", J_KA, LOWER, NORMAL},
+  {"å£Šã™", J_SA, FIFTH, NORMAL},
+  {"ã¯ã‚ã‚‹", J_MA, UPPER, NORMAL},
+  {"ã‹ã¶ã‚‹", J_RA, FIFTH, HATSUON},
+  {"æ§‹ãˆã‚‹", J_A, LOWER, NORMAL},
+  {"ç´ã‚ã‚‹", J_MA, LOWER, NORMAL},
+  {"å–ã‚‹", J_RA, FIFTH, HATSUON},
+  {"å®ˆã‚‹", J_RA, FIFTH, HATSUON},
+  {"è§£ã", J_KA, FIFTH, ION},
+  {"è¾¼ã‚€", J_MA, FIFTH, SOKUON},
+  {"ã¨ã°ã™", J_SA, FIFTH, NORMAL},
+  {"å›ã™", J_SA, FIFTH, NORMAL},
+  {"æ¡ã‚‹", J_RA, FIFTH, HATSUON},
+  {"ã²ã£ã‹ã‘ã‚‹", J_KA, LOWER, NORMAL},
+  {"ã¯ã•ã‚€", J_MA, FIFTH, SOKUON},
+  {"æŒã¤", J_TA, FIFTH, HATSUON},
+  {"å·»ã", J_KA, FIFTH, ION},
+  {"å±¥ã", J_KA, FIFTH, ION},
+  {"å™›ã¿ã¤ã", J_KA, FIFTH, ION},
   {(void*)0, 0, 0, 0},
 };
 
@@ -215,14 +213,14 @@ static void
 jdakuten( p )
      char *p;
 {
-  static const char *const from[] = { "¤¿", "¤Æ", 0 };
-  static const char *const to[]   = { "¤À", "¤Ç" };
+  static const char *const from[] = { "ãŸ", "ã¦", 0 };
+  static const char *const to[]   = { "ã ", "ã§" };
   int i;
 
   for( i=0 ; from[i] ; ++i )
     if(!strncmp(p, from[i], strlen(from[i]))){
-      /* In place, and only this character: "¤¿¤é" must come back as
-         "¤À¤é" and not lose its tail.  Voiced and unvoiced kana are the
+      /* In place, and only this character: "ãŸã‚‰" must come back as
+         "ã ã‚‰" and not lose its tail.  Voiced and unvoiced kana are the
          same width in either encoding, so the copy cannot shift what follows. */
       memcpy(p, to[i], strlen(to[i]));
       return;
@@ -237,8 +235,8 @@ jdakuten( p )
 **
 **	Example
 **	arg1	arg2	result
-**	Ã¦¤°	¤Ê¤¤	Ã¦¤¬¤Ê¤¤
-**	Ã¦¤°	¤¿	Ã¦¤¤¤À
+**	è„±ã	ãªã„	è„±ãŒãªã„
+**	è„±ã	ãŸ	è„±ã„ã 
 **
 */
 static char *
@@ -252,7 +250,7 @@ jconjsub( tab, jverb, sfx )
 
   strcpy(tmp, jverb);
 
-  if(SFX_IS(sfx, "¤È")){
+  if(SFX_IS(sfx, "ã¨")){
     strcat(tmp, sfx);
     return tmp;
   }
@@ -260,24 +258,24 @@ jconjsub( tab, jverb, sfx )
   switch( tab->katsuyo_type ){
   case FIFTH:
     p = jbackup(tmp, 1);
-    if(SFX_IS(sfx, "¤Ê")){
+    if(SFX_IS(sfx, "ãª")){
       q = jputchar_at(p, hira_tab[tab->column]);
       strcpy(q, sfx);
       break;
     }
-    else if(SFX_IS(sfx, "¤¿") || SFX_IS(sfx, "¤Æ")){
+    else if(SFX_IS(sfx, "ãŸ") || SFX_IS(sfx, "ã¦")){
       switch( tab->onbin_type ){
       case NORMAL:
 	q = jputchar_at(p, hira_tab[tab->column+1]);
 	break;
       case SOKUON:
-        q = jputchar_at(p, "¤ó");
+        q = jputchar_at(p, "ã‚“");
 	break;
       case HATSUON:
-        q = jputchar_at(p, "¤Ã");
+        q = jputchar_at(p, "ã£");
 	break;
       case ION:
-        q = jputchar_at(p, "¤¤");
+        q = jputchar_at(p, "ã„");
         break;
       default:
         q = p;
@@ -288,17 +286,17 @@ jconjsub( tab, jverb, sfx )
         jdakuten(q);
       break;
     }
-    else if(SFX_IS(sfx, "¤Ğ")){
+    else if(SFX_IS(sfx, "ã°")){
       q = jputchar_at(p, hira_tab[tab->column+3]);
       strcpy(q, sfx);
     }
-    else if(SFX_IS(sfx, "¤ì")){
+    else if(SFX_IS(sfx, "ã‚Œ")){
       q = jputchar_at(p, hira_tab[tab->column+3]);
-      /* "¤ì¤Ğ" conjugates as the KATEI form plus "¤Ğ": drop the leading
-         "¤ì" the caller supplied, because the stem already ends in one. */
-      strcpy(q, sfx + strlen("¤ì"));
+      /* "ã‚Œã°" conjugates as the KATEI form plus "ã°": drop the leading
+         "ã‚Œ" the caller supplied, because the stem already ends in one. */
+      strcpy(q, sfx + strlen("ã‚Œ"));
     }
-    else if(SFX_IS(sfx, "¤Ş")) {
+    else if(SFX_IS(sfx, "ã¾")) {
       q = jputchar_at(p, hira_tab[tab->column+1]);
       strcpy(q, sfx);
       break;
@@ -308,12 +306,12 @@ jconjsub( tab, jverb, sfx )
   case UPPER:
   case KAHEN:
     p = jbackup(tmp, 1);
-    if(SFX_IS(sfx, "¤Ğ")){
-      q = jputchar_at(p, "¤ì");
+    if(SFX_IS(sfx, "ã°")){
+      q = jputchar_at(p, "ã‚Œ");
       strcpy(q, sfx);
     }
-    else if(SFX_IS(sfx, "¤ì") && tab->katsuyo_type == LOWER){
-      q = jputchar_at(p, "¤é");
+    else if(SFX_IS(sfx, "ã‚Œ") && tab->katsuyo_type == LOWER){
+      q = jputchar_at(p, "ã‚‰");
       strcpy(q, sfx);
     }
     else
@@ -321,12 +319,12 @@ jconjsub( tab, jverb, sfx )
     break;
   case SAHEN:
     p = jbackup(tmp, 2);
-    if(SFX_IS(sfx, "¤Ê")||SFX_IS(sfx, "¤Ş")||SFX_IS(sfx, "¤¿")||SFX_IS(sfx, "¤Æ")){
-      q = jputchar_at(p, "¤·");
+    if(SFX_IS(sfx, "ãª")||SFX_IS(sfx, "ã¾")||SFX_IS(sfx, "ãŸ")||SFX_IS(sfx, "ã¦")){
+      q = jputchar_at(p, "ã—");
       strcpy(q, sfx);
     }
-    else if(SFX_IS(sfx, "¤Ğ")||SFX_IS(sfx, "¤ì¤Ğ")){
-      strcpy(p, "¤¹¤ì¤Ğ");
+    else if(SFX_IS(sfx, "ã°")||SFX_IS(sfx, "ã‚Œã°")){
+      strcpy(p, "ã™ã‚Œã°");
     }
     break;
   }
@@ -357,7 +355,7 @@ jconj( jverb, sfx )
 }
 
 /*
-**      Does jverb end in "¤¹¤ë"?  If so, *cut is where that begins.
+**      Does jverb end in "ã™ã‚‹"?  If so, *cut is where that begins.
 **
 **      This used to be "!strcmp(jverb + len - 4, ...)" with 4 for the two
 **      EUC-JP characters, which read before the start of the string for any
@@ -370,9 +368,9 @@ jsuru( jverb, cut )
      int *cut;
 {
   int len = strlen(jverb);
-  int n = sizeof("¤¹¤ë")-1;
+  int n = sizeof("ã™ã‚‹")-1;
 
-  if( len < n || strcmp(jverb + len - n, "¤¹¤ë") )
+  if( len < n || strcmp(jverb + len - n, "ã™ã‚‹") )
     return FALSE;
 
   *cut = len - n;
@@ -388,11 +386,11 @@ jcan(jverb)
 
   if(jsuru(jverb, &cut)){
     memcpy(tmp, jverb, cut);
-    strcpy(tmp + cut, "¤Ç¤­¤ë");
+    strcpy(tmp + cut, "ã§ãã‚‹");
     return tmp;
   }
   else
-    return jconj(jverb, "¤ì¤ë");
+    return jconj(jverb, "ã‚Œã‚‹");
 }
 const char *
 jcannot(jverb)
@@ -403,17 +401,17 @@ jcannot(jverb)
 
   if(jsuru(jverb, &cut)){
     memcpy(tmp, jverb, cut);
-    strcpy(tmp + cut, "¤Ç¤­¤Ê¤¤");
+    strcpy(tmp + cut, "ã§ããªã„");
     return tmp;
   }
   else
-    return jconj(jverb, "¤ì¤Ê¤¤");
+    return jconj(jverb, "ã‚Œãªã„");
 }
 const char *
 jpast(jverb)
      const char *jverb;
 {
-  return jconj(jverb, "¤¿");
+  return jconj(jverb, "ãŸ");
 }
 
 
@@ -422,13 +420,13 @@ jpast(jverb)
 **
 **	Example:
 **
-**      Ï¢ÂÎ·Á             Ï¢ÍÑ·Á
+**      é€£ä½“å½¢             é€£ç”¨å½¢
 **
-**	ÀÖ¤¤		-> ÀÖ¤¯		(·ÁÍÆ»ì)
-**	ÀÅ¤«¤À		-> ÀÅ¤«¤Ë	(·ÁÍÆÆ°»ì)
+**	èµ¤ã„		-> èµ¤ã		(å½¢å®¹è©)
+**	é™ã‹ã 		-> é™ã‹ã«	(å½¢å®¹å‹•è©)
 **
-**      The example lines that used to sit here described verbs -- ¤Ö¤Ä to
-**      ¤Ö¤Á and so on -- which is not what the code does and never was.
+**      The example lines that used to sit here described verbs -- ã¶ã¤ to
+**      ã¶ã¡ and so on -- which is not what the code does and never was.
 */
 const char *
 jconj_adj( jadj )
@@ -440,12 +438,12 @@ jconj_adj( jadj )
   strcpy(tmp, jadj);
   p = jbackup(tmp, 1);
 
-  if(!strcmp(p, "¤¤"))
-    strcpy(p, "¤¯");
-  else if(!strcmp(p, "¤À")||
-	  !strcmp(p, "¤Ê")||
-	  !strcmp(p, "¤Î"))
-    strcpy(p, "¤Ë");
+  if(!strcmp(p, "ã„"))
+    strcpy(p, "ã");
+  else if(!strcmp(p, "ã ")||
+	  !strcmp(p, "ãª")||
+	  !strcmp(p, "ã®"))
+    strcpy(p, "ã«");
 
   return tmp;
 }
@@ -457,18 +455,18 @@ main()
   struct _jconj_tab *tab;
 
   for( tab=jconj_tab ; tab->main!=(void*)0 ;++tab ){
-    printf("%s %s\n", tab->main, jconj(tab->main, "¤Ê¤¤"));
-    printf("%s %s\n", tab->main, jconj(tab->main, "¤Ş¤¹"));
-    printf("%s %s\n", tab->main, jconj(tab->main, "¤¿"));
-    printf("%s %s\n", tab->main, jconj(tab->main, "¤ì¤Ğ"));
-    printf("%s %s\n", tab->main, jconj(tab->main, "¤È¤­"));
+    printf("%s %s\n", tab->main, jconj(tab->main, "ãªã„"));
+    printf("%s %s\n", tab->main, jconj(tab->main, "ã¾ã™"));
+    printf("%s %s\n", tab->main, jconj(tab->main, "ãŸ"));
+    printf("%s %s\n", tab->main, jconj(tab->main, "ã‚Œã°"));
+    printf("%s %s\n", tab->main, jconj(tab->main, "ã¨ã"));
     printf("%s %s\n", tab->main, jcan(tab->main));
     printf("%s %s\n", tab->main, jcannot(tab->main));
   }
-  printf("%s\n", jconj("Å°Ìë¤Çnethack¤ÎËİÌõ¤ò¤¹¤ë", "¤Ê¤¤"));
-  printf("%s\n", jconj("Å°Ìë¤Çnethack¤ÎËİÌõ¤ò¤¹¤ë", "¤Ş¤¹"));
-  printf("%s\n", jconj("Å°Ìë¤Çnethack¤ÎËİÌõ¤ò¤¹¤ë", "¤¿"));
-  printf("%s\n", jconj("Å°Ìë¤Çnethack¤ÎËİÌõ¤ò¤¹¤ë", "¤ì¤Ğ"));
-  printf("%s\n", jconj("Å°Ìë¤Çnethack¤ÎËİÌõ¤ò¤¹¤ë", "¤È¤­"));
+  printf("%s\n", jconj("å¾¹å¤œã§nethackã®ç¿»è¨³ã‚’ã™ã‚‹", "ãªã„"));
+  printf("%s\n", jconj("å¾¹å¤œã§nethackã®ç¿»è¨³ã‚’ã™ã‚‹", "ã¾ã™"));
+  printf("%s\n", jconj("å¾¹å¤œã§nethackã®ç¿»è¨³ã‚’ã™ã‚‹", "ãŸ"));
+  printf("%s\n", jconj("å¾¹å¤œã§nethackã®ç¿»è¨³ã‚’ã™ã‚‹", "ã‚Œã°"));
+  printf("%s\n", jconj("å¾¹å¤œã§nethackã®ç¿»è¨³ã‚’ã™ã‚‹", "ã¨ã"));
 }
 #endif

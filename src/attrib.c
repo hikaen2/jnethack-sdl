@@ -23,11 +23,11 @@
 static
 const char	*plusattr[] = {
 /*JP	"strong", "smart", "wise", "agile", "tough", "charismatic"*/
-	"¶¯¤¤","¸­ÌÀ¤À","¸­¤¤","µ¡ÉÒ¤À","´è¾æ¤À","Ì¥ÎÏÅª¤À"
+	"å¼·ã„","è³¢æ˜ã ","è³¢ã„","æ©Ÿæ•ã ","é ‘ä¸ˆã ","é­…åŠ›çš„ã "
 },
 		*minusattr[] = {
 /*JP	"weak", "stupid", "foolish", "clumsy", "vulnerable", "ugly"*/
-	"¼å¤¤","¶ò¤«¤À","´ÖÈ´¤±¤À","ÉÔ´ïÍÑ¤À","¤Ò¼å¤À","½¹¤¤"
+	"å¼±ã„","æ„šã‹ã ","é–“æŠœã‘ã ","ä¸å™¨ç”¨ã ","ã²å¼±ã ","é†œã„"
 };
 
 	/* maximum and minimum values for the attributes */
@@ -46,20 +46,20 @@ const struct innate {
 }	a_abil[] = { {	 1, &(Stealth), "", "" },
 		     {   1, &(Fast), "", "" },
 /*JP		     {  10, &(Searching), "perceptive", "" },*/
-		     {  10, &(Searching), "ÃÎ³ĞÎÏ¤òÆÀ¤¿", "ÃÎ³ĞÎÏ¤ò¼º¤Ã¤¿" },
+		     {  10, &(Searching), "çŸ¥è¦šåŠ›ã‚’å¾—ãŸ", "çŸ¥è¦šåŠ›ã‚’å¤±ã£ãŸ" },
 		     {	 0, 0, 0, 0 } },
 
 	b_abil[] = { {	 1, &(HPoison_resistance), "", "" },
 /*JP		     {   7, &(Fast), "quick", "slow" },
 		     {  15, &(Stealth), "stealthy", "" },*/
-		     {   7, &(Fast), "ÁÇÁá¤µ¤òÆÀ¤¿", "ÃÙ¤¯¤Ê¤Ã¤¿" },
-		     {  15, &(Stealth), "¿ÍÌÜ¤òÅğ¤àÎÏ¤òÆÀ¤¿", "¿ÍÌÜ¤òÅğ¤àÎÏ¤ò¼º¤Ã¤¿" },
+		     {   7, &(Fast), "ç´ æ—©ã•ã‚’å¾—ãŸ", "é…ããªã£ãŸ" },
+		     {  15, &(Stealth), "äººç›®ã‚’ç›—ã‚€åŠ›ã‚’å¾—ãŸ", "äººç›®ã‚’ç›—ã‚€åŠ›ã‚’å¤±ã£ãŸ" },
 		     {	 0, 0, 0, 0 } },
 
 /*JP	c_abil[] = { {	 7, &(Fast), "quick", "slow" },
 		     {	15, &(Warning), "sensitive", "" },*/
-	c_abil[] = { {	 7, &(Fast), "ÁÇÁá¤µ¤òÆÀ¤¿", "ÃÙ¤¯¤Ê¤Ã¤¿" },
-		     {	15, &(Warning), "ÉÒ´¶¤Ë¤Ê¤Ã¤¿", "Æß´¶¤Ë¤Ê¤Ã¤¿" },
+	c_abil[] = { {	 7, &(Fast), "ç´ æ—©ã•ã‚’å¾—ãŸ", "é…ããªã£ãŸ" },
+		     {	15, &(Warning), "æ•æ„Ÿã«ãªã£ãŸ", "éˆæ„Ÿã«ãªã£ãŸ" },
 		     {	 0, 0, 0, 0 } },
 
 	e_abil[] = { {   1, &(Fast), "", "" },
@@ -68,51 +68,51 @@ const struct innate {
 		     {	 1, &(HSleep_resistance), "", "" },
 		     {	 0, 0, 0, 0 } },
 #ifdef FIGHTER
-	f_abil[] = { {	 7, &(Fast), "ÁÇÁá¤µ¤òÆÀ¤¿", "ÃÙ¤¯¤Ê¤Ã¤¿" },
+	f_abil[] = { {	 7, &(Fast), "ç´ æ—©ã•ã‚’å¾—ãŸ", "é…ããªã£ãŸ" },
 		     {	 0, 0, 0, 0 } },
 #endif
 
 	h_abil[] = { {	 1, &(HPoison_resistance), "", "" },
 /*JP		     {	15, &(Warning), "sensitive", "" },*/
-		     {	15, &(Warning), "ÉÒ´¶¤Ë¤Ê¤Ã¤¿", "Æß´¶¤Ë¤Ê¤Ã¤¿" },
+		     {	15, &(Warning), "æ•æ„Ÿã«ãªã£ãŸ", "éˆæ„Ÿã«ãªã£ãŸ" },
 		     {	 0, 0, 0, 0 } },
 
 /*JP	k_abil[] = { {	 7, &(Fast), "quick", "slow" },*/
-	k_abil[] = { {	 7, &(Fast), "ÁÇÁá¤µ¤òÆÀ¤¿", "ÃÙ¤¯¤Ê¤Ã¤¿" },
+	k_abil[] = { {	 7, &(Fast), "ç´ æ—©ã•ã‚’å¾—ãŸ", "é…ããªã£ãŸ" },
 		     {	 0, 0, 0, 0 } },
 
 /*JP	p_abil[] = { {	15, &(Warning), "sensitive", "" },*/
-	p_abil[] = { {	15, &(Warning), "ÉÒ´¶¤Ë¤Ê¤Ã¤¿", "Æß´¶¤Ë¤Ê¤Ã¤¿" },
+	p_abil[] = { {	15, &(Warning), "æ•æ„Ÿã«ãªã£ãŸ", "éˆæ„Ÿã«ãªã£ãŸ" },
 /*JP		     {  20, &(HFire_resistance), "cool", "warmer" },*/
-		     {  20, &(HFire_resistance), "Îä¤¿¤¯¤Ê¤Ã¤¿", "ÃÈ¤«¤¯¤Ê¤Ã¤¿" },
+		     {  20, &(HFire_resistance), "å†·ãŸããªã£ãŸ", "æš–ã‹ããªã£ãŸ" },
 		     {	 0, 0, 0, 0 } },
 
 	r_abil[] = { {	 1, &(Stealth), "", ""  },
 /*JP		     {  10, &(Searching), "perceptive", "" },*/
-		     {  10, &(Searching), "ÃÎ³ĞÎÏ¤òÆÀ¤¿", "ÃÎ³ĞÎÏ¤ò¼º¤Ã¤¿" },
+		     {  10, &(Searching), "çŸ¥è¦šåŠ›ã‚’å¾—ãŸ", "çŸ¥è¦šåŠ›ã‚’å¤±ã£ãŸ" },
 		     {	 0, 0, 0, 0 } },
 
 	s_abil[] = { {	 1, &(Fast), "", "" },
 /*JP		     {  15, &(Stealth), "stealthy", "" },*/
-		     {  15, &(Stealth), "¿ÍÌÜ¤òÅğ¤àÎÏ¤òÆÀ¤¿", "¿ÍÌÜ¤òÅğ¤àÎÏ¤ò¼º¤Ã¤¿" },
+		     {  15, &(Stealth), "äººç›®ã‚’ç›—ã‚€åŠ›ã‚’å¾—ãŸ", "äººç›®ã‚’ç›—ã‚€åŠ›ã‚’å¤±ã£ãŸ" },
 		     {	 0, 0, 0, 0 } },
 
 /*JP	t_abil[] = { {	10, &(Searching), "perceptive", "" },*/
-	t_abil[] = { {	10, &(Searching), "ÃÎ³ĞÎÏ¤òÆÀ¤¿", "ÃÎ³ĞÎÏ¤ò¼º¤Ã¤¿" },
+	t_abil[] = { {	10, &(Searching), "çŸ¥è¦šåŠ›ã‚’å¾—ãŸ", "çŸ¥è¦šåŠ›ã‚’å¤±ã£ãŸ" },
 /*JP		     {	20, &(HPoison_resistance), "hardy", "" },*/
-		     {	20, &(HPoison_resistance), "ÌÈ±ÖÎÏ¤òÆÀ¤¿", "ÌÈ±ÖÎÏ¤ò¼º¤Ã¤¿" },
+		     {	20, &(HPoison_resistance), "å…ç–«åŠ›ã‚’å¾—ãŸ", "å…ç–«åŠ›ã‚’å¤±ã£ãŸ" },
 		     {	 0, 0, 0, 0 } },
 
 	v_abil[] = { {	 1, &(HCold_resistance), "", "" },
 		     {	 1, &(Stealth), "", "" },
 /*JP		     {   7, &(Fast), "quick", "slow" },*/
-		     {   7, &(Fast), "ÁÇÁá¤µ¤òÆÀ¤¿", "ÃÙ¤¯¤Ê¤Ã¤¿" },
+		     {   7, &(Fast), "ç´ æ—©ã•ã‚’å¾—ãŸ", "é…ããªã£ãŸ" },
 		     {	 0, 0, 0, 0 } },
 
 /*JP	w_abil[] = { {	15, &(Warning), "sensitive", "" },*/
-	w_abil[] = { {	15, &(Warning), "ÉÒ´¶¤Ë¤Ê¤Ã¤¿", "Æß´¶¤Ë¤Ê¤Ã¤¿" },
+	w_abil[] = { {	15, &(Warning), "æ•æ„Ÿã«ãªã£ãŸ", "éˆæ„Ÿã«ãªã£ãŸ" },
 /*JP		     {  17, &(HTeleport_control), "controlled","uncontrolled" },*/
-		     {  17, &(HTeleport_control), "À©¸æÎÏ¤òÆÀ¤¿","À©¸æÎÏ¤ò¼º¤Ã¤¿" },
+		     {  17, &(HTeleport_control), "åˆ¶å¾¡åŠ›ã‚’å¾—ãŸ","åˆ¶å¾¡åŠ›ã‚’å¤±ã£ãŸ" },
 		     {	 0, 0, 0, 0 } };
 
 static
@@ -203,7 +203,7 @@ adjattrib(ndx, incr, msgflg)
 				&& uarmh && uarmh->otyp == DUNCE_CAP) {
 		if (msgflg == 0)
 /*JP		    Your("cap constricts briefly, then relaxes again.");*/
-		    Your("Ë¹»Ò¤¬¥­¥å¤Ã¤ÈÄù¤á¤Ä¤±¤¿¡¥¤Õ¡¼¡¤¤Ş¤¿¥ê¥é¥Ã¥¯¥¹¤Ç¤­¤ë¡¥");
+		    Your("å¸½å­ãŒã‚­ãƒ¥ã£ã¨ç· ã‚ã¤ã‘ãŸï¼ãµãƒ¼ï¼Œã¾ãŸãƒªãƒ©ãƒƒã‚¯ã‚¹ã§ãã‚‹ï¼");
 		return FALSE;
 	}
 
@@ -211,7 +211,7 @@ adjattrib(ndx, incr, msgflg)
 	    if ((AMAX(ndx) >= ATTRMAX(ndx)) && (ACURR(ndx) >= AMAX(ndx))) {
 		if (msgflg == 0 && flags.verbose)
 /*JP		    pline("You're already as %s as you can get.",*/
-		    You("¤â¤¦½½Ê¬¤Ë%s¡¥",
+		    You("ã‚‚ã†ååˆ†ã«%sï¼",
 			  plusattr[ndx]);
 		ABASE(ndx) = AMAX(ndx) = ATTRMAX(ndx); /* just in case */
 		return FALSE;
@@ -229,7 +229,7 @@ adjattrib(ndx, incr, msgflg)
 	    if (ABASE(ndx) <= ATTRMIN(ndx)) {
 		if (msgflg == 0 && flags.verbose)
 /*JP		    pline("You're already as %s as you can get.",*/
-		    You("¤â¤¦½½Ê¬%s¡¥",
+		    You("ã‚‚ã†ååˆ†%sï¼",
 			  minusattr[ndx]);
 		ABASE(ndx) = ATTRMIN(ndx); /* just in case */
 		return FALSE;
@@ -248,8 +248,8 @@ adjattrib(ndx, incr, msgflg)
 /*JP	    You_feel("%s%s!",
 		  (incr > 1 || incr < -1) ? "very ": "",
 		  (incr > 0) ? plusattr[ndx] : minusattr[ndx]);*/
-	    You("%s%s¤Ê¤Ã¤¿¤è¤¦¤Êµ¤¤¬¤·¤¿¡ª",
-		  (incr > 1 || incr < -1) ? "¤È¤Æ¤â ": "",
+	    You("%s%sãªã£ãŸã‚ˆã†ãªæ°—ãŒã—ãŸï¼",
+		  (incr > 1 || incr < -1) ? "ã¨ã¦ã‚‚ ": "",
 		  jconj_adj((incr > 0) ? plusattr[ndx] : minusattr[ndx]));
 	flags.botl = 1;
 	if (moves > 0 && (ndx == A_STR || ndx == A_CON))
@@ -505,26 +505,26 @@ exerchk()
 		    case A_STR: You((mod_val >0) ?
 /*JP				    "must have been exercising." :
 				    "must have been abusing your body.");*/
-				    "±¿Æ°¤·¤¿¤Ë°ã¤¤¤Ê¤¤¡¥" :
-				    "ÂÎ¤ò¹ó»È¤·¤¿¤Ë°ã¤¤¤Ê¤¤¡¥");
+				    "é‹å‹•ã—ãŸã«é•ã„ãªã„ï¼" :
+				    "ä½“ã‚’é…·ä½¿ã—ãŸã«é•ã„ãªã„ï¼");
 				break;
 		    case A_WIS: You((mod_val >0) ?
 /*JP				    "must have been very observant." :
 				    "haven't been paying attention.");*/
-				    "¿µ½Å¤Ë¹ÔÆ°¤·¤Æ¤¿¤Ë°ã¤¤¤Ê¤¤¡¥" :
-				    "Ãí°ÕÉÔÂ­¤À¤Ã¤¿¤Ë°ã¤¤¤Ê¤¤¡¥");
+				    "æ…é‡ã«è¡Œå‹•ã—ã¦ãŸã«é•ã„ãªã„ï¼" :
+				    "æ³¨æ„ä¸è¶³ã ã£ãŸã«é•ã„ãªã„ï¼");
 				break;
 		    case A_DEX: You((mod_val >0) ?
 /*JP				    "must have been working on your reflexes." :
 				    "haven't been working on reflexes lately.");*/
-				    "È¿¼Í¿À·Ğ¤ò»È¤Ã¤¿¤Ë°ã¤¤¤Ê¤¤¡¥" :
-				    "ºÇ¶áÈ¿¼Í¿À·Ğ¤ò»È¤Ã¤Æ¤Ê¤«¤Ã¤¿¤Ë°ã¤¤¤Ê¤¤¡¥");
+				    "åå°„ç¥çµŒã‚’ä½¿ã£ãŸã«é•ã„ãªã„ï¼" :
+				    "æœ€è¿‘åå°„ç¥çµŒã‚’ä½¿ã£ã¦ãªã‹ã£ãŸã«é•ã„ãªã„ï¼");
 				break;
 		    case A_CON: You((mod_val >0) ?
 /*JP				    "must be leading a healthy life-style." :
 				    "haven't been watching your health.");*/
-				    "·ò¹¯Åª¤ÊÀ¸³è¤ò¤·¤Æ¤¤¤¿¤Ë°ã¤¤¤Ê¤¤¡¥" :
-				    "·ò¹¯´ÉÍı¤òÂÕ¤Ã¤Æ¤¤¤¿¤Ë°ã¤¤¤Ê¤¤¡¥");
+				    "å¥åº·çš„ãªç”Ÿæ´»ã‚’ã—ã¦ã„ãŸã«é•ã„ãªã„ï¼" :
+				    "å¥åº·ç®¡ç†ã‚’æ€ ã£ã¦ã„ãŸã«é•ã„ãªã„ï¼");
 				break;
 		    }
 		}
@@ -697,16 +697,16 @@ int oldlevel, newlevel;
 			if(!(*(abil->ability) & FROMOUTSIDE)) {
 			    if(*(abil->gainstr))
 /*JP				You_feel("%s!", abil->gainstr);*/
-				You("%s¤è¤¦¤Êµ¤¤¬¤·¤¿¡ª", abil->gainstr);
+				You("%sã‚ˆã†ãªæ°—ãŒã—ãŸï¼", abil->gainstr);
 			}
 		} else if (oldlevel >= abil->ulevel && newlevel < abil->ulevel) {
 			*(abil->ability) &= ~FROMEXPER;
 			if((*(abil->ability) & INTRINSIC)) {
 			    if(*(abil->losestr))
 /*JP				You_feel("%s!", abil->losestr);*/
-				You("%s¤è¤¦¤Êµ¤¤¬¤·¤¿¡ª", abil->losestr);
+				You("%sã‚ˆã†ãªæ°—ãŒã—ãŸï¼", abil->losestr);
 /*
-**	¤³¤Î¾ò·ï¤ÏËş¤µ¤Ê¤¤¤Ï¤º¡¥
+**	ã“ã®æ¡ä»¶ã¯æº€ã•ãªã„ã¯ãšï¼
 */
 			    else if(*(abil->gainstr))
 				You_feel("less %s!", abil->gainstr);

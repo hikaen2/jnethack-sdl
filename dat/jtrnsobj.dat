@@ -6,954 +6,954 @@
 #
 #	missiles
 #
-)arrow:			Ìğ:
-)elven arrow:		¥¨¥ë¥Õ¤ÎÌğ:
-)runed arrow:		¿ÀÈëÅª¤ÊÌğ:
-)orcish arrow:		¥ª¡¼¥¯¤ÎÌğ:
-)crude arrow:		ÁÆËö¤ÊÌğ:
-)silver arrow:		¶ä¤ÎÌğ:
-)crossbow bolt:		¥¯¥í¥¹¥Ü¥¥¥Ü¥ë¥È:
-)bamboo arrow:		Ãİ¤ÎÌğ:
-)dart:			Åê¤²Ìğ:
-)shuriken:		¼êÎ¢·õ:
-)throwing star:		À±·¿¤ÎÅê¤²¤ë¤â¤Î:
-)boomerang:		¥Ö¡¼¥á¥é¥ó:
-)spear:			Áä:
-)elven spear:		¥¨¥ë¥Õ¤ÎÁä:
-)runed spear:		¿ÀÈëÅª¤ÊÁä:
-)orcish spear:		¥ª¡¼¥¯¤ÎÁä:
-)crude spear:		ÁÆËö¤ÊÁä:
-)dwarvish spear:	¥É¥ï¡¼¥Õ¤ÎÁä:
-)stout spear:		¾æÉ×¤ÊÁä:
-)javelin:		¥¸¥ã¥Ù¥ê¥ó:
-)throwing spear:	Åê¤²Áä:
-)trident:		¥È¥é¥¤¥Ç¥ó¥È:
-)lance:			¥é¥ó¥¹:
-)dagger:		Ã»·õ:
-)elven dagger:		¥¨¥ë¥Õ¤ÎÃ»·õ:
-)runed dagger:		¿ÀÈëÅª¤ÊÃ»·õ:
-)orcish dagger:		¥ª¡¼¥¯¤ÎÃ»·õ:
-)crude dagger:		ÁÆËö¤ÊÃ»·õ:
-)athame:		¥¢¥µ¥á:	
-)scalpel:		¥á¥¹:
-)knife:			¥Ê¥¤¥Õ:
-)stiletto:		¥¹¥Æ¥£¥ì¥Ã¥È:
-)worm tooth:		¥ï¡¼¥à¤Î»õ:
-)crysknife:		¥¯¥ê¥¹¥Ê¥¤¥Õ:
-)dwarvish mattock:	¥É¥ï¡¼¥Õ¤Î¤Ä¤ë¤Ï¤·:
-)broad pick:		Éı¹­¤Î¤Ä¤ë¤Ï¤·:
-)heavy pick:		½Å¤¤¤Ä¤ë¤Ï¤·:
-)axe:			Éà:
-)battle-axe:		ÀïÉà:
-)double-headed axe:	Î¾¿Ï¤ÎÉà:
-)short sword:		¾®·õ:
-)elven short sword:	¥¨¥ë¥Õ¤Î¾®·õ:
-)runed short sword:	¿ÀÈëÅª¤Ê¾®·õ:
-)orcish short sword:	¥ª¡¼¥¯¤Î¾®·õ:
-)crude short sword:	ÁÆËö¤Ê¾®·õ:
-)dwarvish short sword:	¥É¥ï¡¼¥Õ¤Î¾®·õ:
-)broad short sword:	Éı¹­¤Î¾®·õ:
-)scimitar:		»°Æü·îÅá:
-)curved sword:		¶Ê¤Ã¤¿·õ:
-)silver saber:		¶ä¤Î¥µ¡¼¥Ù¥ë:
-)broadsword:		Éı¹­¤Î·õ:
-)elven broadsword:	¥¨¥ë¥Õ¤ÎÉı¹­¤Î·õ:
-)runed broadsword:	¿ÀÈëÅª¤ÊÉı¹­¤Î·õ:
-)long sword:		Ä¹·õ:
-)two-handed sword:	Î¾¼ê»ı¤Á¤Î·õ:
-)katana:		Åá:
-)samurai sword:		»ø¤Î·õ:
-)tsurugi:		·õ:
-)long samurai sword:	»ø¤ÎÄ¹·õ:
-)runesword:		¥ë¡¼¥ó¤Î·õ:
-)runed broadsword:	¿ÀÈëÅª¤ÊÉı¹­¤Î·õ:
-)partisan:		¥Ñ¥ë¥Á¥¶¥ó:
-)vulgar polearm:	Ä¹Éà:	
-)ranseur:		¥é¥ó¥µ¡¼:
-)hilted polearm:	ÊÁÉÕ¤ÎÄ¹Éà:	
-)spetum:		¥¹¥Ú¥¿¥à:
-)forked polearm:	¥Õ¥©¡¼¥¯ÉÕ¤­Ä¹Éà:	
-)glaive:		¥°¥ì¥¤¥Ö:
-)single-edged polearm:	ÊÒ¿ÏÄ¹Éà:
-)halberd:		¥Ï¥ë¥Ğ¡¼¥É:
-)angled poleaxe:	¶Ê¤Ã¤¿¤Ş¤µ¤«¤ê:
-)bardiche:		¥Ğ¡¼¥Ç¥£¥Ã¥¯:
-)long poleaxe:		Ä¹¤¤¤Ş¤µ¤«¤ê:
-)voulge:		¥Ü¥ë¥²:	
-)pole cleaver:		ÆùÀÚ¤êÊñÃú:
-)fauchard:		Áä·õ:
-)pole sickle:		¤«¤Ş:
-)guisarme:		¥®¥¶¥ë¥à:
-)pruning hook:		´¢¤ê¹ş¤ß¤¬¤Ş:
-)bill-guisarme:		¥Ó¥ë¡¦¥®¥¶¥ë¥à:
-)hooked polearm:	³ÃÉÕ¤ÎÄ¹Éà:	
-)lucern hammer:		¥ë¥Ã¥Ä¥§¥ë¥ó¥Ï¥ó¥Ş¡¼:
-)pronged polearm:	Æó¸Ô¤ÎÄ¹Éà:	
-)bec de corbin:		¥Ù¥Ã¥¯¡¦¥É¡¦¥³¥ë¥Ğ¥ó:
-)beaked polearm:	Áä¤Ä¤­¤ÎÄ¹Éà:
-)mace:			¥á¥¤¥¹:
-)morning star:		¥â¡¼¥Ë¥ó¥°¥¹¥¿¡¼:
-)war hammer:		¥¦¥©¡¼¥Ï¥ó¥Ş¡¼:
-)club:			¤³¤óËÀ:
-)rubber hose:		¥´¥à¥Û¡¼¥¹:
-)quarterstaff:		Ï»¼ÜËÀ:
-)staff:			ËÀ:
-)aklys:			¥¢¥­¥ê¥¹:
-)thonged club:		É³ÉÕ¤Î¤³¤óËÀ:
-)flail:			¥Õ¥ì¥¤¥ë:
-)bullwhip:		ÊÜ:
+)arrow:			çŸ¢:
+)elven arrow:		ã‚¨ãƒ«ãƒ•ã®çŸ¢:
+)runed arrow:		ç¥ç§˜çš„ãªçŸ¢:
+)orcish arrow:		ã‚ªãƒ¼ã‚¯ã®çŸ¢:
+)crude arrow:		ç²—æœ«ãªçŸ¢:
+)silver arrow:		éŠ€ã®çŸ¢:
+)crossbow bolt:		ã‚¯ãƒ­ã‚¹ãƒœã‚¥ãƒœãƒ«ãƒˆ:
+)bamboo arrow:		ç«¹ã®çŸ¢:
+)dart:			æŠ•ã’çŸ¢:
+)shuriken:		æ‰‹è£å‰£:
+)throwing star:		æ˜Ÿå‹ã®æŠ•ã’ã‚‹ã‚‚ã®:
+)boomerang:		ãƒ–ãƒ¼ãƒ¡ãƒ©ãƒ³:
+)spear:			æ§:
+)elven spear:		ã‚¨ãƒ«ãƒ•ã®æ§:
+)runed spear:		ç¥ç§˜çš„ãªæ§:
+)orcish spear:		ã‚ªãƒ¼ã‚¯ã®æ§:
+)crude spear:		ç²—æœ«ãªæ§:
+)dwarvish spear:	ãƒ‰ãƒ¯ãƒ¼ãƒ•ã®æ§:
+)stout spear:		ä¸ˆå¤«ãªæ§:
+)javelin:		ã‚¸ãƒ£ãƒ™ãƒªãƒ³:
+)throwing spear:	æŠ•ã’æ§:
+)trident:		ãƒˆãƒ©ã‚¤ãƒ‡ãƒ³ãƒˆ:
+)lance:			ãƒ©ãƒ³ã‚¹:
+)dagger:		çŸ­å‰£:
+)elven dagger:		ã‚¨ãƒ«ãƒ•ã®çŸ­å‰£:
+)runed dagger:		ç¥ç§˜çš„ãªçŸ­å‰£:
+)orcish dagger:		ã‚ªãƒ¼ã‚¯ã®çŸ­å‰£:
+)crude dagger:		ç²—æœ«ãªçŸ­å‰£:
+)athame:		ã‚¢ã‚µãƒ¡:	
+)scalpel:		ãƒ¡ã‚¹:
+)knife:			ãƒŠã‚¤ãƒ•:
+)stiletto:		ã‚¹ãƒ†ã‚£ãƒ¬ãƒƒãƒˆ:
+)worm tooth:		ãƒ¯ãƒ¼ãƒ ã®æ­¯:
+)crysknife:		ã‚¯ãƒªã‚¹ãƒŠã‚¤ãƒ•:
+)dwarvish mattock:	ãƒ‰ãƒ¯ãƒ¼ãƒ•ã®ã¤ã‚‹ã¯ã—:
+)broad pick:		å¹…åºƒã®ã¤ã‚‹ã¯ã—:
+)heavy pick:		é‡ã„ã¤ã‚‹ã¯ã—:
+)axe:			æ–§:
+)battle-axe:		æˆ¦æ–§:
+)double-headed axe:	ä¸¡åˆƒã®æ–§:
+)short sword:		å°å‰£:
+)elven short sword:	ã‚¨ãƒ«ãƒ•ã®å°å‰£:
+)runed short sword:	ç¥ç§˜çš„ãªå°å‰£:
+)orcish short sword:	ã‚ªãƒ¼ã‚¯ã®å°å‰£:
+)crude short sword:	ç²—æœ«ãªå°å‰£:
+)dwarvish short sword:	ãƒ‰ãƒ¯ãƒ¼ãƒ•ã®å°å‰£:
+)broad short sword:	å¹…åºƒã®å°å‰£:
+)scimitar:		ä¸‰æ—¥æœˆåˆ€:
+)curved sword:		æ›²ã£ãŸå‰£:
+)silver saber:		éŠ€ã®ã‚µãƒ¼ãƒ™ãƒ«:
+)broadsword:		å¹…åºƒã®å‰£:
+)elven broadsword:	ã‚¨ãƒ«ãƒ•ã®å¹…åºƒã®å‰£:
+)runed broadsword:	ç¥ç§˜çš„ãªå¹…åºƒã®å‰£:
+)long sword:		é•·å‰£:
+)two-handed sword:	ä¸¡æ‰‹æŒã¡ã®å‰£:
+)katana:		åˆ€:
+)samurai sword:		ä¾ã®å‰£:
+)tsurugi:		å‰£:
+)long samurai sword:	ä¾ã®é•·å‰£:
+)runesword:		ãƒ«ãƒ¼ãƒ³ã®å‰£:
+)runed broadsword:	ç¥ç§˜çš„ãªå¹…åºƒã®å‰£:
+)partisan:		ãƒ‘ãƒ«ãƒã‚¶ãƒ³:
+)vulgar polearm:	é•·æ–§:	
+)ranseur:		ãƒ©ãƒ³ã‚µãƒ¼:
+)hilted polearm:	æŸ„ä»˜ã®é•·æ–§:	
+)spetum:		ã‚¹ãƒšã‚¿ãƒ :
+)forked polearm:	ãƒ•ã‚©ãƒ¼ã‚¯ä»˜ãé•·æ–§:	
+)glaive:		ã‚°ãƒ¬ã‚¤ãƒ–:
+)single-edged polearm:	ç‰‡åˆƒé•·æ–§:
+)halberd:		ãƒãƒ«ãƒãƒ¼ãƒ‰:
+)angled poleaxe:	æ›²ã£ãŸã¾ã•ã‹ã‚Š:
+)bardiche:		ãƒãƒ¼ãƒ‡ã‚£ãƒƒã‚¯:
+)long poleaxe:		é•·ã„ã¾ã•ã‹ã‚Š:
+)voulge:		ãƒœãƒ«ã‚²:	
+)pole cleaver:		è‚‰åˆ‡ã‚ŠåŒ…ä¸:
+)fauchard:		æ§å‰£:
+)pole sickle:		ã‹ã¾:
+)guisarme:		ã‚®ã‚¶ãƒ«ãƒ :
+)pruning hook:		åˆˆã‚Šè¾¼ã¿ãŒã¾:
+)bill-guisarme:		ãƒ“ãƒ«ãƒ»ã‚®ã‚¶ãƒ«ãƒ :
+)hooked polearm:	éˆä»˜ã®é•·æ–§:	
+)lucern hammer:		ãƒ«ãƒƒãƒ„ã‚§ãƒ«ãƒ³ãƒãƒ³ãƒãƒ¼:
+)pronged polearm:	äºŒè‚¡ã®é•·æ–§:	
+)bec de corbin:		ãƒ™ãƒƒã‚¯ãƒ»ãƒ‰ãƒ»ã‚³ãƒ«ãƒãƒ³:
+)beaked polearm:	æ§ã¤ãã®é•·æ–§:
+)mace:			ãƒ¡ã‚¤ã‚¹:
+)morning star:		ãƒ¢ãƒ¼ãƒ‹ãƒ³ã‚°ã‚¹ã‚¿ãƒ¼:
+)war hammer:		ã‚¦ã‚©ãƒ¼ãƒãƒ³ãƒãƒ¼:
+)club:			ã“ã‚“æ£’:
+)rubber hose:		ã‚´ãƒ ãƒ›ãƒ¼ã‚¹:
+)quarterstaff:		å…­å°ºæ£’:
+)staff:			æ£’:
+)aklys:			ã‚¢ã‚­ãƒªã‚¹:
+)thonged club:		ç´ä»˜ã®ã“ã‚“æ£’:
+)flail:			ãƒ•ãƒ¬ã‚¤ãƒ«:
+)bullwhip:		é­:
 #
 #	bows
 #
-)bow:		µİ:
-)elven bow:	¥¨¥ë¥Õ¤Îµİ:
-)runed bow:	¿ÀÈëÅª¤Êµİ:
-)orcish bow:	¥ª¡¼¥¯¤Îµİ:
-)crude bow:	ÁÆËö¤Êµİ:
-)yumi:		ÏÂµİ:
-)long bow:	Ä¹µİ:
-)sling:		¥¹¥ê¥ó¥°:
-)crossbow:	¥¯¥í¥¹¥Ü¥¥:
+)bow:		å¼“:
+)elven bow:	ã‚¨ãƒ«ãƒ•ã®å¼“:
+)runed bow:	ç¥ç§˜çš„ãªå¼“:
+)orcish bow:	ã‚ªãƒ¼ã‚¯ã®å¼“:
+)crude bow:	ç²—æœ«ãªå¼“:
+)yumi:		å’Œå¼“:
+)long bow:	é•·å¼“:
+)sling:		ã‚¹ãƒªãƒ³ã‚°:
+)crossbow:	ã‚¯ãƒ­ã‚¹ãƒœã‚¥:
 #
 #	dummy weapon(for #enhance)
 #
-)polearms:		Ä¹Éà:
-)saber:			¥µ¡¼¥Ù¥ë:
-)two weapon combat:	ÆóÅáÎ®:
-)pick-axe:		¤Ä¤ë¤Ï¤·:
-)bare handed combat:	ÁÇ¼ê:
-)martial arts:		¥Ş¡¼¥·¥ã¥ë¥¢¡¼¥Ä:
-)unicorn horn:		¥æ¥Ë¥³¡¼¥ó¤Î³Ñ:
+)polearms:		é•·æ–§:
+)saber:			ã‚µãƒ¼ãƒ™ãƒ«:
+)two weapon combat:	äºŒåˆ€æµ:
+)pick-axe:		ã¤ã‚‹ã¯ã—:
+)bare handed combat:	ç´ æ‰‹:
+)martial arts:		ãƒãƒ¼ã‚·ãƒ£ãƒ«ã‚¢ãƒ¼ãƒ„:
+)unicorn horn:		ãƒ¦ãƒ‹ã‚³ãƒ¼ãƒ³ã®è§’:
 #
 #	armors
 #
-]elven leather helm:	¥¨¥ë¥Õ¤Î³×Ë¹»Ò:
-]leather hat:		ÈéË¹»Ò:
-]orcish helm:		¥ª¡¼¥¯¤Î³õ:
-]iron skull cap:	Å´¤ÎË¹»Ò:
-]dwarvish iron helm:	¥É¥ï¡¼¥Õ¤ÎÅ´³õ:
-]hard hat:		¸Ç¤¤Ë¹»Ò:
-]fedora:		¥Õ¥£¥É¡¼¥é:
-]cornuthaum:		¤È¤ó¤¬¤êË¹»Ò:
-]conical hat:		±ß¿í·Á¤ÎË¹»Ò:
-]dunce cap:		ÄãÇ½Ë¹:
-]dented pot:		¤¯¤Ü¤ó¤ÀÆé:
-]helmet:		³õ:
-]plumed helmet:		±©³õ:
-]helm of brilliance:	ÃÎÀ­¤Î³õ:
-]etched helmet:		ÌÏÍÍÆş¤ê³õ:
-]helm of opposite alignment:	µÕÂ°À­¤Î³õ:
-]crested helmet:	¤È¤µ¤«¤Î³õ:
-]helm of telepathy:	ÀéÎ¤´ã¤Î³õ:
-]visored helmet:	ÌÌËËÉÕ¤­¤Î³õ:
-]gray dragon scale mail:	³¥¿§¥É¥é¥´¥ó¤ÎÎÚ³»:
-]red dragon scale mail:		ÀÖ¿§¥É¥é¥´¥ó¤ÎÎÚ³»:
-]white dragon scale mail:	Çò¥É¥é¥´¥ó¤ÎÎÚ³»:
-]orange dragon scale mail:	¥ª¥ì¥ó¥¸¥É¥é¥´¥ó¤ÎÎÚ³»:
-]black dragon scale mail:	¹õ¥É¥é¥´¥ó¤ÎÎÚ³»:
-]blue dragon scale mail:	ÀÄ¥É¥é¥´¥ó¤ÎÎÚ³»:
-]green dragon scale mail:	ÎĞ¥É¥é¥´¥ó¤ÎÎÚ³»:	
-]yellow dragon scale mail:	²«¿§¥É¥é¥´¥ó¤ÎÎÚ³»:
-]gray dragon scales:		³¥¿§¥É¥é¥´¥ó¤ÎÎÚ:
-]red dragon scales:		ÀÖ¿§¥É¥é¥´¥ó¤ÎÎÚ:
-]white dragon scales:		Çò¥É¥é¥´¥ó¤ÎÎÚ:
-]orange dragon scales:		¥ª¥ì¥ó¥¸¥É¥é¥´¥ó¤ÎÎÚ:
-]black dragon scales:		¹õ¥É¥é¥´¥ó¤ÎÎÚ:
-]blue dragon scales:		ÀÄ¥É¥é¥´¥ó¤ÎÎÚ:
-]green dragon scales:		ÎĞ¥É¥é¥´¥ó¤ÎÎÚ:
-]yellow dragon scales:		²«¿§¥É¥é¥´¥ó¤ÎÎÚ:
-]plate mail:		¹İÅ´¤Î³»:
-]crystal plate mail:	¿å¾½¤Î³»:
-]bronze plate mail:	ÀÄÆ¼¤Î³»:
-]splint mail:		Å´ÊÒ¤Î³»:
-]banded mail:		ÂÓ¶â¤Î³»:
-]dwarvish mithril-coat:	¥É¥ï¡¼¥Õ¤Î¥ß¥¹¥ê¥ëÉş:
-]elven mithril-coat:	¥¨¥ë¥Õ¤Î¥ß¥¹¥ê¥ëÉş:
-]chain mail:		º¿¤«¤¿¤Ó¤é:
-]orcish chain mail:	¥ª¡¼¥¯¤Îº¿¤«¤¿¤Ó¤é:
-]crude chain mail:	ÁÆËö¤Êº¿¤«¤¿¤Ó¤é:
-]scale mail:		ÎÚ¤Î³»:
-]studded leather armor:	ÉÆÉÕ¤­Èé³»:
-]ring mail:		Å´´Ä¤Î³»:
-]orcish ring mail:	¥ª¡¼¥¯¤ÎÅ´´Ä¤Î³»:
-]crude ring mail:	ÁÆËö¤ÊÅ´´Ä¤Î³»:
-]leather armor:		Èé³»:
-]leather jacket:	Èé¤ÎÉş:
-]sailor blouse:		¥»¡¼¥é¡¼Éş:
+]elven leather helm:	ã‚¨ãƒ«ãƒ•ã®é©å¸½å­:
+]leather hat:		çš®å¸½å­:
+]orcish helm:		ã‚ªãƒ¼ã‚¯ã®å…œ:
+]iron skull cap:	é‰„ã®å¸½å­:
+]dwarvish iron helm:	ãƒ‰ãƒ¯ãƒ¼ãƒ•ã®é‰„å…œ:
+]hard hat:		å›ºã„å¸½å­:
+]fedora:		ãƒ•ã‚£ãƒ‰ãƒ¼ãƒ©:
+]cornuthaum:		ã¨ã‚“ãŒã‚Šå¸½å­:
+]conical hat:		å††éŒå½¢ã®å¸½å­:
+]dunce cap:		ä½èƒ½å¸½:
+]dented pot:		ãã¼ã‚“ã é‹:
+]helmet:		å…œ:
+]plumed helmet:		ç¾½å…œ:
+]helm of brilliance:	çŸ¥æ€§ã®å…œ:
+]etched helmet:		æ¨¡æ§˜å…¥ã‚Šå…œ:
+]helm of opposite alignment:	é€†å±æ€§ã®å…œ:
+]crested helmet:	ã¨ã•ã‹ã®å…œ:
+]helm of telepathy:	åƒé‡Œçœ¼ã®å…œ:
+]visored helmet:	é¢é ¬ä»˜ãã®å…œ:
+]gray dragon scale mail:	ç°è‰²ãƒ‰ãƒ©ã‚´ãƒ³ã®é±—é§:
+]red dragon scale mail:		èµ¤è‰²ãƒ‰ãƒ©ã‚´ãƒ³ã®é±—é§:
+]white dragon scale mail:	ç™½ãƒ‰ãƒ©ã‚´ãƒ³ã®é±—é§:
+]orange dragon scale mail:	ã‚ªãƒ¬ãƒ³ã‚¸ãƒ‰ãƒ©ã‚´ãƒ³ã®é±—é§:
+]black dragon scale mail:	é»’ãƒ‰ãƒ©ã‚´ãƒ³ã®é±—é§:
+]blue dragon scale mail:	é’ãƒ‰ãƒ©ã‚´ãƒ³ã®é±—é§:
+]green dragon scale mail:	ç·‘ãƒ‰ãƒ©ã‚´ãƒ³ã®é±—é§:	
+]yellow dragon scale mail:	é»„è‰²ãƒ‰ãƒ©ã‚´ãƒ³ã®é±—é§:
+]gray dragon scales:		ç°è‰²ãƒ‰ãƒ©ã‚´ãƒ³ã®é±—:
+]red dragon scales:		èµ¤è‰²ãƒ‰ãƒ©ã‚´ãƒ³ã®é±—:
+]white dragon scales:		ç™½ãƒ‰ãƒ©ã‚´ãƒ³ã®é±—:
+]orange dragon scales:		ã‚ªãƒ¬ãƒ³ã‚¸ãƒ‰ãƒ©ã‚´ãƒ³ã®é±—:
+]black dragon scales:		é»’ãƒ‰ãƒ©ã‚´ãƒ³ã®é±—:
+]blue dragon scales:		é’ãƒ‰ãƒ©ã‚´ãƒ³ã®é±—:
+]green dragon scales:		ç·‘ãƒ‰ãƒ©ã‚´ãƒ³ã®é±—:
+]yellow dragon scales:		é»„è‰²ãƒ‰ãƒ©ã‚´ãƒ³ã®é±—:
+]plate mail:		é‹¼é‰„ã®é§:
+]crystal plate mail:	æ°´æ™¶ã®é§:
+]bronze plate mail:	é’éŠ…ã®é§:
+]splint mail:		é‰„ç‰‡ã®é§:
+]banded mail:		å¸¯é‡‘ã®é§:
+]dwarvish mithril-coat:	ãƒ‰ãƒ¯ãƒ¼ãƒ•ã®ãƒŸã‚¹ãƒªãƒ«æœ:
+]elven mithril-coat:	ã‚¨ãƒ«ãƒ•ã®ãƒŸã‚¹ãƒªãƒ«æœ:
+]chain mail:		é–ã‹ãŸã³ã‚‰:
+]orcish chain mail:	ã‚ªãƒ¼ã‚¯ã®é–ã‹ãŸã³ã‚‰:
+]crude chain mail:	ç²—æœ«ãªé–ã‹ãŸã³ã‚‰:
+]scale mail:		é±—ã®é§:
+]studded leather armor:	é‹²ä»˜ãçš®é§:
+]ring mail:		é‰„ç’°ã®é§:
+]orcish ring mail:	ã‚ªãƒ¼ã‚¯ã®é‰„ç’°ã®é§:
+]crude ring mail:	ç²—æœ«ãªé‰„ç’°ã®é§:
+]leather armor:		çš®é§:
+]leather jacket:	çš®ã®æœ:
+]sailor blouse:		ã‚»ãƒ¼ãƒ©ãƒ¼æœ:
 #
 #	cloaks
 #
-]mummy wrapping:	¥ß¥¤¥é¤ÎÊñÂÓ:
-]elven cloak:		¥¨¥ë¥Õ¤Î¥¯¥í¡¼¥¯:
-]faded pall:		±¢µ¤¤Ê³°Åå:
-]orcish cloak:		¥ª¡¼¥¯¤Î¥¯¥í¡¼¥¯:
-]coarse mantelet:	ÁÆËö¤Ê¥Ş¥ó¥È:
-]dwarvish cloak:	¥É¥ï¡¼¥Õ¤Î¥¯¥í¡¼¥¯:
-]hooded cloak:		¥Õ¡¼¥É¤Ä¤­¤Î¥¯¥í¡¼¥¯:
-]oilskin cloak:		ËÉ¿å¥¯¥í¡¼¥¯:
-]slippery cloak:	¤Ä¤ë¤Ä¤ë¤·¤¿¥¯¥í¡¼¥¯:
-]cloak of protection:	¼é¤ê¤Î¥¯¥í¡¼¥¯:
-]tattered cape:		¤Ü¤í¤Ü¤í¤Î¥±¡¼¥×:
-]cloak of invisibility:	Æ©ÌÀ¤Î¥¯¥í¡¼¥¯:
-]opera cloak:		¥ª¥Ú¥é¥¯¥í¡¼¥¯:
-]cloak of magic resistance:	ËâË¡¤òËÉ¤°¥¯¥í¡¼¥¯:
-]ornamental cope:	Áõ¾şÍÑ¤Î³°Åå:
-]cloak of displacement:	¸¸±Æ¤Î¥¯¥í¡¼¥¯:
-]piece of cloth:	ÉÛÀÚ¤ì:
+]mummy wrapping:	ãƒŸã‚¤ãƒ©ã®åŒ…å¸¯:
+]elven cloak:		ã‚¨ãƒ«ãƒ•ã®ã‚¯ãƒ­ãƒ¼ã‚¯:
+]faded pall:		é™°æ°—ãªå¤–å¥—:
+]orcish cloak:		ã‚ªãƒ¼ã‚¯ã®ã‚¯ãƒ­ãƒ¼ã‚¯:
+]coarse mantelet:	ç²—æœ«ãªãƒãƒ³ãƒˆ:
+]dwarvish cloak:	ãƒ‰ãƒ¯ãƒ¼ãƒ•ã®ã‚¯ãƒ­ãƒ¼ã‚¯:
+]hooded cloak:		ãƒ•ãƒ¼ãƒ‰ã¤ãã®ã‚¯ãƒ­ãƒ¼ã‚¯:
+]oilskin cloak:		é˜²æ°´ã‚¯ãƒ­ãƒ¼ã‚¯:
+]slippery cloak:	ã¤ã‚‹ã¤ã‚‹ã—ãŸã‚¯ãƒ­ãƒ¼ã‚¯:
+]cloak of protection:	å®ˆã‚Šã®ã‚¯ãƒ­ãƒ¼ã‚¯:
+]tattered cape:		ã¼ã‚ã¼ã‚ã®ã‚±ãƒ¼ãƒ—:
+]cloak of invisibility:	é€æ˜ã®ã‚¯ãƒ­ãƒ¼ã‚¯:
+]opera cloak:		ã‚ªãƒšãƒ©ã‚¯ãƒ­ãƒ¼ã‚¯:
+]cloak of magic resistance:	é­”æ³•ã‚’é˜²ãã‚¯ãƒ­ãƒ¼ã‚¯:
+]ornamental cope:	è£…é£¾ç”¨ã®å¤–å¥—:
+]cloak of displacement:	å¹»å½±ã®ã‚¯ãƒ­ãƒ¼ã‚¯:
+]piece of cloth:	å¸ƒåˆ‡ã‚Œ:
 #
 #	shields
 #
-]small shield:		¾®¤µ¤Ê½â:
-]elven shield:		¥¨¥ë¥Õ¤Î½â:
-]blue and green shield:	ÀÄ¤ÈÎĞ¤Î½â:
-]Uruk-hai shield:	¥¦¥ë¥¯¡¦¥Ï¥¤¤Î½â:
-]white-handed shield:	Çò¤Î¼ê¤Î½â:
-]orcish shield:		¥ª¡¼¥¯¤Î½â:
-]red-eyed shield:	ÀÖ¤¤ÌÜ¤Î½â:
-]large shield:		Âç¤­¤Ê½â:
-]dwarvish roundshield:	¥É¥ï¡¼¥Õ¤Î´İ½â:
-]large round shield:	Âç¤­¤Ê´İ½â:
-]shield of reflection:	È¿¼Í¤Î½â:
-]polished silver shield:	¶ä¿§¤ÎËá¤«¤ì¤¿½â:
-]Hawaiian shirt:		¥¢¥í¥Ï¥·¥ã¥Ä:
-]T-shirt:		£Ô¥·¥ã¥Ä:
+]small shield:		å°ã•ãªç›¾:
+]elven shield:		ã‚¨ãƒ«ãƒ•ã®ç›¾:
+]blue and green shield:	é’ã¨ç·‘ã®ç›¾:
+]Uruk-hai shield:	ã‚¦ãƒ«ã‚¯ãƒ»ãƒã‚¤ã®ç›¾:
+]white-handed shield:	ç™½ã®æ‰‹ã®ç›¾:
+]orcish shield:		ã‚ªãƒ¼ã‚¯ã®ç›¾:
+]red-eyed shield:	èµ¤ã„ç›®ã®ç›¾:
+]large shield:		å¤§ããªç›¾:
+]dwarvish roundshield:	ãƒ‰ãƒ¯ãƒ¼ãƒ•ã®ä¸¸ç›¾:
+]large round shield:	å¤§ããªä¸¸ç›¾:
+]shield of reflection:	åå°„ã®ç›¾:
+]polished silver shield:	éŠ€è‰²ã®ç£¨ã‹ã‚ŒãŸç›¾:
+]Hawaiian shirt:		ã‚¢ãƒ­ãƒã‚·ãƒ£ãƒ„:
+]T-shirt:		ï¼´ã‚·ãƒ£ãƒ„:
 #
 #	gloves
 #
-]leather gloves:	Èé¤Î¼êÂŞ:
-]old gloves:		¸Å¤¤¼êÂŞ:
-]gauntlets of fumbling:	¤ª¼ê¶Ì¤Î¾®¼ê:
-]padded gloves:		µÍ¤á¤â¤Î¤Î¤¢¤ë¼êÂŞ:
-]gauntlets of power:	ÎÏ¤Î¾®¼ê:
-]riding gloves:		¾èÇÏÍÑ¤Î¼êÂŞ:
-]gauntlets of dexterity:	´ïÍÑ¤µ¤Î¾®¼ê:
-]fencing gloves:	¥Õ¥§¥ó¥·¥ó¥°¤Î¾®¼ê:
+]leather gloves:	çš®ã®æ‰‹è¢‹:
+]old gloves:		å¤ã„æ‰‹è¢‹:
+]gauntlets of fumbling:	ãŠæ‰‹ç‰ã®å°æ‰‹:
+]padded gloves:		è©°ã‚ã‚‚ã®ã®ã‚ã‚‹æ‰‹è¢‹:
+]gauntlets of power:	åŠ›ã®å°æ‰‹:
+]riding gloves:		ä¹—é¦¬ç”¨ã®æ‰‹è¢‹:
+]gauntlets of dexterity:	å™¨ç”¨ã•ã®å°æ‰‹:
+]fencing gloves:	ãƒ•ã‚§ãƒ³ã‚·ãƒ³ã‚°ã®å°æ‰‹:
 #
 #	boots
 #
-]low boots:		¤«¤«¤È¤ÎÄã¤¤·¤:
-]walking shoes:		»¶ÊâÍÑ¤Î·¤:
-]iron shoes:		Å´¤Î·¤:
-]hard shoes:		¸Ç¤¤·¤:
-]high boots:		¤«¤«¤È¤Î¹â¤¤·¤:
-]jackboots:		·³Ââ·¤:
-]speed boots:		ğêÂÌÅ·¤Î·¤:
-]combat boots:		ÀïÆ®·¤:
-]water walking boots:	¿å¾åÊâ¹Ô¤Î·¤:
-]jungle boots:		¥¸¥ã¥ó¥°¥ë¤Î·¤:
-]jumping boots:		Èô¤ÓÄ·¤Í¤ë·¤:
-]hiking boots:		¥Ï¥¤¥­¥ó¥°¤Î·¤:
-]elven boots:		¥¨¥ë¥Õ¤Î·¤:
-]mud boots:		¥É¥í¤À¤é¤±¤Î·¤:
-]fumble boots:		¤Ä¤Ş¤º¤­¤Î·¤:
-]riding boots:		¾èÇÏÍÑ¤Î·¤:
-]levitation boots:	ÉâÍ·¤Î·¤:
-]snow boots:		Àã·¤:
+]low boots:		ã‹ã‹ã¨ã®ä½ã„é´:
+]walking shoes:		æ•£æ­©ç”¨ã®é´:
+]iron shoes:		é‰„ã®é´:
+]hard shoes:		å›ºã„é´:
+]high boots:		ã‹ã‹ã¨ã®é«˜ã„é´:
+]jackboots:		è»éšŠé´:
+]speed boots:		éŸ‹é§„å¤©ã®é´:
+]combat boots:		æˆ¦é—˜é´:
+]water walking boots:	æ°´ä¸Šæ­©è¡Œã®é´:
+]jungle boots:		ã‚¸ãƒ£ãƒ³ã‚°ãƒ«ã®é´:
+]jumping boots:		é£›ã³è·³ã­ã‚‹é´:
+]hiking boots:		ãƒã‚¤ã‚­ãƒ³ã‚°ã®é´:
+]elven boots:		ã‚¨ãƒ«ãƒ•ã®é´:
+]mud boots:		ãƒ‰ãƒ­ã ã‚‰ã‘ã®é´:
+]fumble boots:		ã¤ã¾ãšãã®é´:
+]riding boots:		ä¹—é¦¬ç”¨ã®é´:
+]levitation boots:	æµ®éŠã®é´:
+]snow boots:		é›ªé´:
 #
 #	rings
 #
-=adornment:		¾ş¤ê¤Î»ØÎØ:
-=gain strength:		¶¯¤µ¤Î»ØÎØ:
-=increase damage:	¹¶·â¤Î»ØÎØ:
-=protection:		¼é¤ê¤Î»ØÎØ:
-=regeneration:		²óÉü¤Î»ØÎØ:
-=searching:		Ãµº÷¤Î»ØÎØ:
-=stealth:		Ç¦¤Ó¤Î»ØÎØ:
-=levitation:		ÉâÍ·¤Î»ØÎØ:
-=hunger:		µ²²î¤Î»ØÎØ:
-=aggravate monster:	È¿´¶¤Î»ØÎØ:
-=conflict:		Áè¤¤¤Î»ØÎØ:
-=warning:		·Ù¹ğ¤Î»ØÎØ:
-=poison resistance:	ÂÑÆÇ¤Î»ØÎØ:
-=fire resistance:	ÂÑ±ê¤Î»ØÎØ:
-=cold resistance:	ÂÑÎä¤Î»ØÎØ:
-=shock resistance:	ÂÑ¾×·â¤Î»ØÎØ:
-=teleportation:		½Ö´Ö°ÜÆ°¤Î»ØÎØ:
-=teleport control:	½Ö´Ö°ÜÆ°À©¸æ¤Î»ØÎØ:
-=polymorph:		ÊÑ²½¤Î»ØÎØ:
-=polymorph control:	ÊÑ²½À©¸æ¤Î»ØÎØ:
-=invisibility:		Æ©ÌÀ¤Î»ØÎØ:
-=see invisible:		²Ä»ë¤Î»ØÎØ:
-=protection from shape changers:	ÂÑÊÑ²½²øÊª¤Î»ØÎØ:
+=adornment:		é£¾ã‚Šã®æŒ‡è¼ª:
+=gain strength:		å¼·ã•ã®æŒ‡è¼ª:
+=increase damage:	æ”»æ’ƒã®æŒ‡è¼ª:
+=protection:		å®ˆã‚Šã®æŒ‡è¼ª:
+=regeneration:		å›å¾©ã®æŒ‡è¼ª:
+=searching:		æ¢ç´¢ã®æŒ‡è¼ª:
+=stealth:		å¿ã³ã®æŒ‡è¼ª:
+=levitation:		æµ®éŠã®æŒ‡è¼ª:
+=hunger:		é£¢é¤“ã®æŒ‡è¼ª:
+=aggravate monster:	åæ„Ÿã®æŒ‡è¼ª:
+=conflict:		äº‰ã„ã®æŒ‡è¼ª:
+=warning:		è­¦å‘Šã®æŒ‡è¼ª:
+=poison resistance:	è€æ¯’ã®æŒ‡è¼ª:
+=fire resistance:	è€ç‚ã®æŒ‡è¼ª:
+=cold resistance:	è€å†·ã®æŒ‡è¼ª:
+=shock resistance:	è€è¡æ’ƒã®æŒ‡è¼ª:
+=teleportation:		ç¬é–“ç§»å‹•ã®æŒ‡è¼ª:
+=teleport control:	ç¬é–“ç§»å‹•åˆ¶å¾¡ã®æŒ‡è¼ª:
+=polymorph:		å¤‰åŒ–ã®æŒ‡è¼ª:
+=polymorph control:	å¤‰åŒ–åˆ¶å¾¡ã®æŒ‡è¼ª:
+=invisibility:		é€æ˜ã®æŒ‡è¼ª:
+=see invisible:		å¯è¦–ã®æŒ‡è¼ª:
+=protection from shape changers:	è€å¤‰åŒ–æ€ªç‰©ã®æŒ‡è¼ª:
 #
-=wooden:	ÌÚ¤Î»ØÎØ:
-=granite:	²ÖÖ¾´ä¤Î»ØÎØ:
-=coral:		»¹¸ê¤Î»ØÎØ:
-=black onyx:	¹õ¤á¤Î¤¦¤Î»ØÎØ:
-=moonstone:	·îÄ¹ÀĞ¤Î»ØÎØ:
-=tiger eye:	¸×ÌÜÀĞ¤Î»ØÎØ:
-=jade:		¤Ò¤¹¤¤¤Î»ØÎØ:
-=agate:		¤á¤Î¤¦¤Î»ØÎØ:
-=topaz:		¥È¥Ñ¡¼¥º¤Î»ØÎØ:
-=sapphire:	¥µ¥Õ¥¡¥¤¥¢¤Î»ØÎØ:
-=ruby:		¥ë¥Ó¡¼¤Î»ØÎØ:
-=diamond:	¥À¥¤¥¢¥â¥ó¥É¤Î»ØÎØ:
-=pearl:		¿¿¼î¤Î»ØÎØ:
-=iron:		Å´¤Î»ØÎØ:
-=brass:		¿¿ï«¤Î»ØÎØ:
-=copper:	Æ¼¤Î»ØÎØ:
-=silver:	¶ä¤Î»ØÎØ:
-=gold:		¶â¤Î»ØÎØ:
-=ivory:		¾İ²ç¤Î»ØÎØ:
-=emerald:	¥¨¥á¥é¥ë¥É¤Î»ØÎØ:
-=wire:		¿Ë¶â¤Î»ØÎØ:
-=engagement:	º§Ìó»ØÎØ:
-=shiny:		¸÷¤ë»ØÎØ:
+=wooden:	æœ¨ã®æŒ‡è¼ª:
+=granite:	èŠ±å´—å²©ã®æŒ‡è¼ª:
+=coral:		çŠç‘šã®æŒ‡è¼ª:
+=black onyx:	é»’ã‚ã®ã†ã®æŒ‡è¼ª:
+=moonstone:	æœˆé•·çŸ³ã®æŒ‡è¼ª:
+=tiger eye:	è™ç›®çŸ³ã®æŒ‡è¼ª:
+=jade:		ã²ã™ã„ã®æŒ‡è¼ª:
+=agate:		ã‚ã®ã†ã®æŒ‡è¼ª:
+=topaz:		ãƒˆãƒ‘ãƒ¼ã‚ºã®æŒ‡è¼ª:
+=sapphire:	ã‚µãƒ•ã‚¡ã‚¤ã‚¢ã®æŒ‡è¼ª:
+=ruby:		ãƒ«ãƒ“ãƒ¼ã®æŒ‡è¼ª:
+=diamond:	ãƒ€ã‚¤ã‚¢ãƒ¢ãƒ³ãƒ‰ã®æŒ‡è¼ª:
+=pearl:		çœŸç ã®æŒ‡è¼ª:
+=iron:		é‰„ã®æŒ‡è¼ª:
+=brass:		çœŸé®ã®æŒ‡è¼ª:
+=copper:	éŠ…ã®æŒ‡è¼ª:
+=silver:	éŠ€ã®æŒ‡è¼ª:
+=gold:		é‡‘ã®æŒ‡è¼ª:
+=ivory:		è±¡ç‰™ã®æŒ‡è¼ª:
+=emerald:	ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰ã®æŒ‡è¼ª:
+=wire:		é‡é‡‘ã®æŒ‡è¼ª:
+=engagement:	å©šç´„æŒ‡è¼ª:
+=shiny:		å…‰ã‚‹æŒ‡è¼ª:
 #
 #	amulets
 #
-"amulet of ESP:			±ó»ë¤ÎËâ½ü¤±:
-"amulet of life saving:		Ì¿¤ÎËâ½ü¤±:
-"amulet of strangulation:	¹Ê»¦¤ÎËâ½ü¤±:
-"amulet of restful sleep:	°ÂÌ²¤ÎËâ½ü¤±:
-"amulet versus poison:		ÂÑÆÇ¤ÎËâ½ü¤±:
-"amulet of change:		À­Å¾´¹¤ÎËâ½ü¤±:
-"amulet of reflection:		È¿¼Í¤ÎËâ½ü¤±:
-"amulet of magical breathing:	ËâË¡¤Î¸ÆµÛ¤ÎËâ½ü¤±:
-"circular:	´İ¤¤Ëâ½ü¤±:
-"spherical:	µå¤ÎËâ½ü¤±:
-"oval:		Íñ·¿¤ÎËâ½ü¤±:
-"triangular:	»°³Ñ·Á¤ÎËâ½ü¤±:
-"pyramidal:	»Í³Ñ¿í¤ÎËâ½ü¤±:
-"square:	»Í³Ñ¤ÎËâ½ü¤±:
-"hexagonal:	Ï»³Ñ·Á¤ÎËâ½ü¤±:
-"octagonal:	È¬³Ñ·Á¤ÎËâ½ü¤±:
-"cheap plastic imitation of the Amulet of Yendor:µ¶Êª¤Î¥¤¥§¥ó¥À¡¼¤ÎËâ½ü¤±:
-"Amulet of Yendor:	¥¤¥§¥ó¥À¡¼¤ÎËâ½ü¤±:
+"amulet of ESP:			é è¦–ã®é­”é™¤ã‘:
+"amulet of life saving:		å‘½ã®é­”é™¤ã‘:
+"amulet of strangulation:	çµæ®ºã®é­”é™¤ã‘:
+"amulet of restful sleep:	å®‰çœ ã®é­”é™¤ã‘:
+"amulet versus poison:		è€æ¯’ã®é­”é™¤ã‘:
+"amulet of change:		æ€§è»¢æ›ã®é­”é™¤ã‘:
+"amulet of reflection:		åå°„ã®é­”é™¤ã‘:
+"amulet of magical breathing:	é­”æ³•ã®å‘¼å¸ã®é­”é™¤ã‘:
+"circular:	ä¸¸ã„é­”é™¤ã‘:
+"spherical:	çƒã®é­”é™¤ã‘:
+"oval:		åµå‹ã®é­”é™¤ã‘:
+"triangular:	ä¸‰è§’å½¢ã®é­”é™¤ã‘:
+"pyramidal:	å››è§’éŒã®é­”é™¤ã‘:
+"square:	å››è§’ã®é­”é™¤ã‘:
+"hexagonal:	å…­è§’å½¢ã®é­”é™¤ã‘:
+"octagonal:	å…«è§’å½¢ã®é­”é™¤ã‘:
+"cheap plastic imitation of the Amulet of Yendor:å½ç‰©ã®ã‚¤ã‚§ãƒ³ãƒ€ãƒ¼ã®é­”é™¤ã‘:
+"Amulet of Yendor:	ã‚¤ã‚§ãƒ³ãƒ€ãƒ¼ã®é­”é™¤ã‘:
 #
 #	containers
 #
-(large box:	Âç¤­¤ÊÈ¢:
-(chest:		ÊõÈ¢:
-(ice box:	¥¢¥¤¥¹¥Ü¥Ã¥¯¥¹:
-(sack:		ÂŞ:
-(oilskin sack:	ËÉ¿åÂŞ:
-(bag of holding:	ÊİÂ¸¤Î³ó:
-(bag of tricks:	¥È¥ê¥Ã¥¯¤Î³ó:
-(bag:		³ó:
+(large box:	å¤§ããªç®±:
+(chest:		å®ç®±:
+(ice box:	ã‚¢ã‚¤ã‚¹ãƒœãƒƒã‚¯ã‚¹:
+(sack:		è¢‹:
+(oilskin sack:	é˜²æ°´è¢‹:
+(bag of holding:	ä¿å­˜ã®é„:
+(bag of tricks:	ãƒˆãƒªãƒƒã‚¯ã®é„:
+(bag:		é„:
 #
 #	lock opening tools
 #
-(skeleton key:	ËüÇ½¸°:
-(key:		¸°:
-(lock pick:	¸°³«¤±´ï¶ñ:
-(credit card:	¥¯¥ì¥¸¥Ã¥È¥«¡¼¥É:
+(skeleton key:	ä¸‡èƒ½éµ:
+(key:		éµ:
+(lock pick:	éµé–‹ã‘å™¨å…·:
+(credit card:	ã‚¯ãƒ¬ã‚¸ãƒƒãƒˆã‚«ãƒ¼ãƒ‰:
 #
 #	light sources
 #
-(tallow candle:	½Ã»é¤Î¤í¤¦¤½¤¯:
-(candle:	¤í¤¦¤½¤¯:
-(wax candle:	ÌªÏ¹¤Î¤í¤¦¤½¤¯:
-(brass lantern:	¿¿ï«¤Î¥é¥ó¥¿¥ó:
-(oil lamp:	¥ª¥¤¥ë¥é¥ó¥×:
-(lamp:		¥é¥ó¥×:
-(magic lamp:	ËâË¡¤Î¥é¥ó¥×:
-(expensive camera:	¹â²Á¤Ê¥«¥á¥é:
-(mirror:	¶À:	
-(looking glass:	¥¬¥é¥¹:
-(crystal ball:	¿å¾½¶Ì:
-(glass orb:	¥¬¥é¥¹¤Îµå:
-(blindfold:	ÌÜ±£¤·:
-(towel:		¥¿¥ª¥ë:
-(leash:		É³:
-(stethoscope:	Ä°¿Ç´ï:
-(tinning kit:	´ÌµÍºîÀ®Æ»¶ñ:
-(tin opener:	´ÌÀÚ¤ê:
-(can of grease:	»é¤Î´Ì:
-(figurine:	¿Í·Á:
-(magic marker:	ËâË¡¤Î¥Ş¡¼¥«:
+(tallow candle:	ç£è„‚ã®ã‚ã†ãã:
+(candle:	ã‚ã†ãã:
+(wax candle:	èœœè‹ã®ã‚ã†ãã:
+(brass lantern:	çœŸé®ã®ãƒ©ãƒ³ã‚¿ãƒ³:
+(oil lamp:	ã‚ªã‚¤ãƒ«ãƒ©ãƒ³ãƒ—:
+(lamp:		ãƒ©ãƒ³ãƒ—:
+(magic lamp:	é­”æ³•ã®ãƒ©ãƒ³ãƒ—:
+(expensive camera:	é«˜ä¾¡ãªã‚«ãƒ¡ãƒ©:
+(mirror:	é¡:	
+(looking glass:	ã‚¬ãƒ©ã‚¹:
+(crystal ball:	æ°´æ™¶ç‰:
+(glass orb:	ã‚¬ãƒ©ã‚¹ã®çƒ:
+(blindfold:	ç›®éš ã—:
+(towel:		ã‚¿ã‚ªãƒ«:
+(leash:		ç´:
+(stethoscope:	è´è¨ºå™¨:
+(tinning kit:	ç¼¶è©°ä½œæˆé“å…·:
+(tin opener:	ç¼¶åˆ‡ã‚Š:
+(can of grease:	è„‚ã®ç¼¶:
+(figurine:	äººå½¢:
+(magic marker:	é­”æ³•ã®ãƒãƒ¼ã‚«:
 #
 #	instruments
 #
-(tin whistle:	¥Ö¥ê¥­¤ÎÅ«:
-(whistle:	Å«:	
-(magic whistle:	ËâË¡¤ÎÅ«:
-(wooden flute:	ÌÚ¤Î¥Õ¥ë¡¼¥È:
-(flute:		¥Õ¥ë¡¼¥È:
-(magic flute:	ËâË¡¤Î¥Õ¥ë¡¼¥È:
-(tooled horn:	ºÙ¹©¤Î¤Û¤É¤³¤µ¤ì¤¿¥Û¥ë¥ó:
-(horn:		¥Û¥ë¥ó:
-(frost horn:	¿áÀã¤Î¥Û¥ë¥ó:
-(fire horn:	±ê¤Î¥Û¥ë¥ó:
-(horn of plenty:	·Ã¤ß¤Î¥Û¥ë¥ó:
-(wooden harp:	ÌÚ¤ÎÃ¨¶×:
-(harp:		Ã¨¶×:
-(magic harp:	ËâË¡¤ÎÃ¨¶×:
-(bell:		¥Ù¥ë:
-(bugle:		¥é¥Ã¥Ñ:
-(leather drum:	Èé¤ÎÂÀ¸İ:
-(drum:		ÂÀ¸İ:
-(drum of earthquake:	ÃÏ¿Ì¤ÎÂÀ¸İ:
-(land mine:	ÃÏÍë:
-(beartrap:	·§¤Îæ«:
+(tin whistle:	ãƒ–ãƒªã‚­ã®ç¬›:
+(whistle:	ç¬›:	
+(magic whistle:	é­”æ³•ã®ç¬›:
+(wooden flute:	æœ¨ã®ãƒ•ãƒ«ãƒ¼ãƒˆ:
+(flute:		ãƒ•ãƒ«ãƒ¼ãƒˆ:
+(magic flute:	é­”æ³•ã®ãƒ•ãƒ«ãƒ¼ãƒˆ:
+(tooled horn:	ç´°å·¥ã®ã»ã©ã“ã•ã‚ŒãŸãƒ›ãƒ«ãƒ³:
+(horn:		ãƒ›ãƒ«ãƒ³:
+(frost horn:	å¹é›ªã®ãƒ›ãƒ«ãƒ³:
+(fire horn:	ç‚ã®ãƒ›ãƒ«ãƒ³:
+(horn of plenty:	æµã¿ã®ãƒ›ãƒ«ãƒ³:
+(wooden harp:	æœ¨ã®ç«ªç´:
+(harp:		ç«ªç´:
+(magic harp:	é­”æ³•ã®ç«ªç´:
+(bell:		ãƒ™ãƒ«:
+(bugle:		ãƒ©ãƒƒãƒ‘:
+(leather drum:	çš®ã®å¤ªé¼“:
+(drum:		å¤ªé¼“:
+(drum of earthquake:	åœ°éœ‡ã®å¤ªé¼“:
+(land mine:	åœ°é›·:
+(beartrap:	ç†Šã®ç½ :
 #
 #	tools useful as weapons
 #
-(pick-axe:	¤Ä¤ë¤Ï¤·:
-(unicorn horn:	¥æ¥Ë¥³¡¼¥ó¤Î³Ñ:
+(pick-axe:	ã¤ã‚‹ã¯ã—:
+(unicorn horn:	ãƒ¦ãƒ‹ã‚³ãƒ¼ãƒ³ã®è§’:
 #
 #	special tools
 #
-(Candelabrum of Invocation:	µ§¤ê¤Î¿¤Âæ:
-(candelabrum:			¿¤Âæ:
-(Bell of Opening:		³«Êü¤Î¥Ù¥ë:
-(silver bell:			¶ä¤Î¥Ù¥ë:
+(Candelabrum of Invocation:	ç¥ˆã‚Šã®ç‡­å°:
+(candelabrum:			ç‡­å°:
+(Bell of Opening:		é–‹æ”¾ã®ãƒ™ãƒ«:
+(silver bell:			éŠ€ã®ãƒ™ãƒ«:
 #
 #	meat
 #
-%tripe ration:	´¥¤·Æù:
-%corpse:	»àÂÎ:
-%egg:		Íñ:
+%tripe ration:	ä¹¾ã—è‚‰:
+%corpse:	æ­»ä½“:
+%egg:		åµ:
 #
 #	fruits & veggies
 #
-%apple:		¤ê¤ó¤´:
-%orange:	¥ª¥ì¥ó¥¸:
-%pear:		ÍÎ¥Ê¥·:
-%melon:		¥á¥í¥ó:
-%banana:		¥Ğ¥Ê¥Ê:
-%carrot:		¤Ë¤ó¤¸¤ó:
-%sprig of wolfsbane:	¥È¥ê¥«¥Ö¥È:
-%clove of garlic:	¤Ë¤ó¤Ë¤¯:
-%slime mold:		¤Í¤Ğ¤Í¤Ğ¥«¥Ó:
-%slice of pizza:	¥Ô¥¶:
+%apple:		ã‚Šã‚“ã”:
+%orange:	ã‚ªãƒ¬ãƒ³ã‚¸:
+%pear:		æ´‹ãƒŠã‚·:
+%melon:		ãƒ¡ãƒ­ãƒ³:
+%banana:		ãƒãƒŠãƒŠ:
+%carrot:		ã«ã‚“ã˜ã‚“:
+%sprig of wolfsbane:	ãƒˆãƒªã‚«ãƒ–ãƒˆ:
+%clove of garlic:	ã«ã‚“ã«ã:
+%slime mold:		ã­ã°ã­ã°ã‚«ãƒ“:
+%slice of pizza:	ãƒ”ã‚¶:
 #
 #	human food
 #
-%lump of royal jelly:	¥í¥¤¥ä¥ë¥¼¥ê¡¼:
-%cream pie:		¥¯¥ê¡¼¥à¥Ñ¥¤:
-%candy bar:		¥­¥ã¥ó¥Ç¥£:
-%fortune cookie:	Àê¤¤¥¯¥Ã¥­¡¼:
-%pancake:		¥Ñ¥ó¥±¡¼¥­:
-%lembas wafer:		¥ì¥ó¥Ğ¥¹:
-%cram ration:		¥¯¥é¥à:
-%food ration:		¿©ÎÁ:
-%K-ration:		£Ë¥ì¡¼¥·¥ç¥ó:
-%C-ration:		£Ã¥ì¡¼¥·¥ç¥ó:
-%tin:			´Ì:
+%lump of royal jelly:	ãƒ­ã‚¤ãƒ¤ãƒ«ã‚¼ãƒªãƒ¼:
+%cream pie:		ã‚¯ãƒªãƒ¼ãƒ ãƒ‘ã‚¤:
+%candy bar:		ã‚­ãƒ£ãƒ³ãƒ‡ã‚£:
+%fortune cookie:	å ã„ã‚¯ãƒƒã‚­ãƒ¼:
+%pancake:		ãƒ‘ãƒ³ã‚±ãƒ¼ã‚­:
+%lembas wafer:		ãƒ¬ãƒ³ãƒã‚¹:
+%cram ration:		ã‚¯ãƒ©ãƒ :
+%food ration:		é£Ÿæ–™:
+%K-ration:		ï¼«ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³:
+%C-ration:		ï¼£ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³:
+%tin:			ç¼¶:
 #
 #	potions
 #
-!gain ability:		Ç½ÎÏ³ÍÆÀ¤ÎÌô:
-!restore ability:	Ç½ÎÏ²óÉü¤ÎÌô:
-!confusion:		º®Íğ¤ÎÌô:
-!blindness:		ÌÕÌÜ¤ÎÌô:
-!paralysis:		Ëãáã¤ÎÌô:
-!speed:			Áá¤¯¤Ê¤ëÌô:
-!levitation:		ÉâÍ·¤ÎÌô:
-!hallucination:		¸¸³Ğ¤ÎÌô:
-!invisibility:		Æ©ÌÀ¤ÎÌô:
-!see invisible:		²Ä»ë¤ÎÌô:
-!healing:		²óÉü¤ÎÌô:
-!extra healing:		Ä¶²óÉü¤ÎÌô:
-!gain level:		¥ì¥Ù¥ë¥¢¥Ã¥×¤ÎÌô:
-!enlightenment:		·¼ÌØ¤ÎÌô:
-!monster detection:	²øÊª¤òÃµ¤¹Ìô:
-!object detection:	ÊªÂÎ¤òÃµ¤¹Ìô:
-!gain energy:		ËâÎÏ¤ÎÌô:
-!booze:			¿ì¤Ã¤Ñ¤é¤¤¤ÎÌô:
-!sickness:		ÉÂµ¤¤ÎÌô:
-!fruit juice:		¥Õ¥ë¡¼¥Ä¥¸¥å¡¼¥¹:
-!water:			¿å:
-!oil:			Ìı:
-!ruby:			¥ë¥Ó¡¼¿§¤ÎÌô:
-!pink:			¥Ô¥ó¥¯¿§¤ÎÌô:
-!orange:		¥ª¥ì¥ó¥¸¿§¤ÎÌô:
-!yellow:		²«¿§¤ÎÌô:
-!emerald:		¥¨¥á¥é¥ë¥É¿§¤ÎÌô:
-!dark green:		°ÅÎĞ¿§¤ÎÌô:
-!cyan:			¥·¥¢¥ó¿§¤ÎÌô:
-!sky blue:		¿å¿§¤ÎÌô:
-!brilliant blue:	ÌÀ¤ë¤¤ÀÄ¿§¤ÎÌô:
-!magenta:		¥Ş¥¼¥ó¥À¿§¤ÎÌô:
-!purple-red:		ÀÖ»ç¿§¤ÎÌô:
-!puce:			°Å³ì¿§¤ÎÌô:
-!milky:			¥ß¥ë¥¯¿§¤ÎÌô:
-!swirly:		±²¤ò´¬¤¤¤Æ¤¤¤ëÌô:
-!bubbly:		Ë¢¤À¤Ã¤Æ¤¤¤ëÌô:
-!smoky:			±ì¤¬¤Ç¤Æ¤¤¤ëÌô:
-!cloudy:		ÆŞ¤Ã¤Æ¤¤¤ëÌô:
-!brown:			Ãã¿§¤ÎÌô:
-!fizzy:			È¯Ë¢¤·¤Æ¤¤¤ëÌô:
-!dark:			±¢µ¤¤Ê¿§¤ÎÌô:
-!clear:			Ìµ¿§¤ÎÌô:
-!murky:			Ç»¹õ¤ÎÌô:
+!gain ability:		èƒ½åŠ›ç²å¾—ã®è–¬:
+!restore ability:	èƒ½åŠ›å›å¾©ã®è–¬:
+!confusion:		æ··ä¹±ã®è–¬:
+!blindness:		ç›²ç›®ã®è–¬:
+!paralysis:		éº»ç—ºã®è–¬:
+!speed:			æ—©ããªã‚‹è–¬:
+!levitation:		æµ®éŠã®è–¬:
+!hallucination:		å¹»è¦šã®è–¬:
+!invisibility:		é€æ˜ã®è–¬:
+!see invisible:		å¯è¦–ã®è–¬:
+!healing:		å›å¾©ã®è–¬:
+!extra healing:		è¶…å›å¾©ã®è–¬:
+!gain level:		ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã®è–¬:
+!enlightenment:		å•“è’™ã®è–¬:
+!monster detection:	æ€ªç‰©ã‚’æ¢ã™è–¬:
+!object detection:	ç‰©ä½“ã‚’æ¢ã™è–¬:
+!gain energy:		é­”åŠ›ã®è–¬:
+!booze:			é…”ã£ã±ã‚‰ã„ã®è–¬:
+!sickness:		ç—…æ°—ã®è–¬:
+!fruit juice:		ãƒ•ãƒ«ãƒ¼ãƒ„ã‚¸ãƒ¥ãƒ¼ã‚¹:
+!water:			æ°´:
+!oil:			æ²¹:
+!ruby:			ãƒ«ãƒ“ãƒ¼è‰²ã®è–¬:
+!pink:			ãƒ”ãƒ³ã‚¯è‰²ã®è–¬:
+!orange:		ã‚ªãƒ¬ãƒ³ã‚¸è‰²ã®è–¬:
+!yellow:		é»„è‰²ã®è–¬:
+!emerald:		ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰è‰²ã®è–¬:
+!dark green:		æš—ç·‘è‰²ã®è–¬:
+!cyan:			ã‚·ã‚¢ãƒ³è‰²ã®è–¬:
+!sky blue:		æ°´è‰²ã®è–¬:
+!brilliant blue:	æ˜ã‚‹ã„é’è‰²ã®è–¬:
+!magenta:		ãƒã‚¼ãƒ³ãƒ€è‰²ã®è–¬:
+!purple-red:		èµ¤ç´«è‰²ã®è–¬:
+!puce:			æš—è¤è‰²ã®è–¬:
+!milky:			ãƒŸãƒ«ã‚¯è‰²ã®è–¬:
+!swirly:		æ¸¦ã‚’å·»ã„ã¦ã„ã‚‹è–¬:
+!bubbly:		æ³¡ã ã£ã¦ã„ã‚‹è–¬:
+!smoky:			ç…™ãŒã§ã¦ã„ã‚‹è–¬:
+!cloudy:		æ›‡ã£ã¦ã„ã‚‹è–¬:
+!brown:			èŒ¶è‰²ã®è–¬:
+!fizzy:			ç™ºæ³¡ã—ã¦ã„ã‚‹è–¬:
+!dark:			é™°æ°—ãªè‰²ã®è–¬:
+!clear:			ç„¡è‰²ã®è–¬:
+!murky:			æ¿ƒé»’ã®è–¬:
 #
 #	scrolls
 #
-?enchant armor:		³»¤ËËâË¡¤ò¤«¤±¤ë´¬Êª:
-?destroy armor:		³»¤òÇË²õ¤¹¤ë´¬Êª:
-?confuse monster:	²øÊª¤òº®Íğ¤µ¤»¤ë´¬Êª:
-?scare monster:		²øÊª¤ò¶±¤¨¤µ¤»¤ë´¬Êª:
-?remove curse:		²ò¼ö¤Î´¬Êª:
-?enchant weapon:	Éğ´ï¤ËËâË¡¤ò¤«¤±¤ë´¬Êª:
-?create monster:	²øÊª¤òºî¤ë´¬Êª:
-?taming:		²øÊª¤ò»ô¤¤¤Ê¤é¤¹´¬Êª:
-?genocide:		µÔ»¦¤Î´¬Êª:
-?light:			¸÷¤Î´¬Êª:
-?teleportation:		½Ö´Ö°ÜÆ°¤Î´¬Êª:
-?gold detection:	¶â²ß¤òÃµ¤¹´¬Êª:
-?food detection:	¿©ÎÁ¤òÃµ¤¹´¬Êª:
-?identify:		¼±ÊÌ¤Î´¬Êª:
-?magic mapping:		ËâË¡¤ÎÃÏ¿Ş¤Î´¬Êª:
-?amnesia:		µ­²±ÁÓ¼º¤Î´¬Êª:
-?fire:			±ê¤Î´¬Êª:
-?punishment:		È³¤Î´¬Êª:
-?charging:		½¼Å¶¤Î´¬Êª:
-?mail:			¼ê»æ¤Î´¬Êª:
-?blank paper:		Çò»æ¤Î´¬Êª:
-?create altar:		º×ÃÅ¤òºî¤ë´¬Êª:
-?create trap:		æ«¤òºî¤ë´¬Êª:
-?create sink:		Î®¤·Âæ¤òºî¤ë´¬Êª:
-?create create scroll:	´¬Êª¤òºî¤ë´¬Êª¤òºî¤ë´¬Êª:
-?destroy weapon:	Éğ´ï¤òÇË²õ¤¹¤ë´¬Êª:
-?symmetry:		ÂĞ¾Î¤Î´¬Êª:
-?ZELGO MER:		¡Ø¤Ø¤í¤Ø¤í¤Ã¤¹¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?JUYED AWK YACC:	¡Ø¤Ñ¡¼¤ë¤¢¤Ñ¤Ã¤Á¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?NR 9:			¡Ø¤»¤Ö¤ó¤¹¤®¤ç¤¶¡¼¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?XIXAXA XOXAXA XUXAXA:	¡Ø¤Ó¡¼¤¨¤¹¤Ç¡¼¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?PRATYAVAYAH:		¡Ø¤ª¤í¤«¤Ö¡¼¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?DAIYEN FOOELS:		¡Ø¤¢¤é¤Û¤é¤µ¤Ã¤µ¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?LEP GEX VEN ZEA:	¡Ø¤ê¤Ê¤Ã¤¯¤¹¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?PRIRUTSENIE:		¡Ø¤²¤í¤²¡¼¤í¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?ELBIB YLOH:		¡Ø¤Ğ¤¯¤·¤ç¤¦¤â¤ó¤À¤¤¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?VERR YED HORRE:	¡Ø¤Á¤§¤Ã¤¯¤á¤¤¤È¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?VENZAR BORGAVVE:	¡Ø¤ª¡¼¤¯¤¹¤À¡¼¤Ó¡¼¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?THARR:			¡Ø¤«¤Í¤«¤Í¤«¤Í¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?YUM YUM:		¡Ø¤ª¤Ö¤Á¤±¤¤¤¾¤¦¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?KERNOD WEL:		¡Ø¤¯¤Ã¤¯¡¼¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?ELAM EBOW:		¡Ø¤¸¤ã¤¤¤¹¤È¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?DUAM XNAHT:		¡Ø¤Ş¤¨¤ò¤ß¤í¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?ANDOVA BEGARIN:	¡Ø¤É¤Ã¤¯¤ê¤Ó¤ó¤­¡¼¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?VE FORBRYDERNE:	¡Ø¤¹¤Æ¡¼¤­¤ß¤ã¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?HACKEM MUCHE:		¡Ø¤¸¤ã¤¤¤·¤ç¤¯¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?VELOX NEB:		¡Ø¤Á¤ã¤ó¤Ô¤ª¡Á¤ó¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?FOOBIE BLETCH:		¡Ø¤Ï¤Ë¤ã¡Á¤ó¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?TEMOV:			¡Ø¤İ¤Á¤Ã¤È¤Ê¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?GARVEN DEH:		¡Ø¤·¤Ó¤Ó¤ó¤·¤Ó¤Ó¤ó¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?READ ME:		¡Ø¤¦¤·¤í¤ò¤ß¤í¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?KIRJE:			¡Ø¤è¤·¤Î¤ä¤®¤å¤É¡¼¤ó¡Ù¤È½ñ¤«¤ì¤¿´¬Êª:
-?stamped:		¾Ã°õ¤Î²¡¤µ¤ì¤¿´¬Êª:
-?unlabeled:		¥é¥Ù¥ë¤Î¤Ê¤¤´¬Êª:
+?enchant armor:		é§ã«é­”æ³•ã‚’ã‹ã‘ã‚‹å·»ç‰©:
+?destroy armor:		é§ã‚’ç ´å£Šã™ã‚‹å·»ç‰©:
+?confuse monster:	æ€ªç‰©ã‚’æ··ä¹±ã•ã›ã‚‹å·»ç‰©:
+?scare monster:		æ€ªç‰©ã‚’æ€¯ãˆã•ã›ã‚‹å·»ç‰©:
+?remove curse:		è§£å‘ªã®å·»ç‰©:
+?enchant weapon:	æ­¦å™¨ã«é­”æ³•ã‚’ã‹ã‘ã‚‹å·»ç‰©:
+?create monster:	æ€ªç‰©ã‚’ä½œã‚‹å·»ç‰©:
+?taming:		æ€ªç‰©ã‚’é£¼ã„ãªã‚‰ã™å·»ç‰©:
+?genocide:		è™æ®ºã®å·»ç‰©:
+?light:			å…‰ã®å·»ç‰©:
+?teleportation:		ç¬é–“ç§»å‹•ã®å·»ç‰©:
+?gold detection:	é‡‘è²¨ã‚’æ¢ã™å·»ç‰©:
+?food detection:	é£Ÿæ–™ã‚’æ¢ã™å·»ç‰©:
+?identify:		è­˜åˆ¥ã®å·»ç‰©:
+?magic mapping:		é­”æ³•ã®åœ°å›³ã®å·»ç‰©:
+?amnesia:		è¨˜æ†¶å–ªå¤±ã®å·»ç‰©:
+?fire:			ç‚ã®å·»ç‰©:
+?punishment:		ç½°ã®å·»ç‰©:
+?charging:		å……å¡«ã®å·»ç‰©:
+?mail:			æ‰‹ç´™ã®å·»ç‰©:
+?blank paper:		ç™½ç´™ã®å·»ç‰©:
+?create altar:		ç¥­å£‡ã‚’ä½œã‚‹å·»ç‰©:
+?create trap:		ç½ ã‚’ä½œã‚‹å·»ç‰©:
+?create sink:		æµã—å°ã‚’ä½œã‚‹å·»ç‰©:
+?create create scroll:	å·»ç‰©ã‚’ä½œã‚‹å·»ç‰©ã‚’ä½œã‚‹å·»ç‰©:
+?destroy weapon:	æ­¦å™¨ã‚’ç ´å£Šã™ã‚‹å·»ç‰©:
+?symmetry:		å¯¾ç§°ã®å·»ç‰©:
+?ZELGO MER:		ã€ã¸ã‚ã¸ã‚ã£ã™ã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?JUYED AWK YACC:	ã€ã±ãƒ¼ã‚‹ã‚ã±ã£ã¡ã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?NR 9:			ã€ã›ã¶ã‚“ã™ãã‚‡ã–ãƒ¼ã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?XIXAXA XOXAXA XUXAXA:	ã€ã³ãƒ¼ãˆã™ã§ãƒ¼ã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?PRATYAVAYAH:		ã€ãŠã‚ã‹ã¶ãƒ¼ã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?DAIYEN FOOELS:		ã€ã‚ã‚‰ã»ã‚‰ã•ã£ã•ã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?LEP GEX VEN ZEA:	ã€ã‚Šãªã£ãã™ã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?PRIRUTSENIE:		ã€ã’ã‚ã’ãƒ¼ã‚ã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?ELBIB YLOH:		ã€ã°ãã—ã‚‡ã†ã‚‚ã‚“ã ã„ã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?VERR YED HORRE:	ã€ã¡ã‡ã£ãã‚ã„ã¨ã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?VENZAR BORGAVVE:	ã€ãŠãƒ¼ãã™ã ãƒ¼ã³ãƒ¼ã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?THARR:			ã€ã‹ã­ã‹ã­ã‹ã­ã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?YUM YUM:		ã€ãŠã¶ã¡ã‘ã„ãã†ã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?KERNOD WEL:		ã€ãã£ããƒ¼ã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?ELAM EBOW:		ã€ã˜ã‚ƒã„ã™ã¨ã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?DUAM XNAHT:		ã€ã¾ãˆã‚’ã¿ã‚ã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?ANDOVA BEGARIN:	ã€ã©ã£ãã‚Šã³ã‚“ããƒ¼ã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?VE FORBRYDERNE:	ã€ã™ã¦ãƒ¼ãã¿ã‚ƒã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?HACKEM MUCHE:		ã€ã˜ã‚ƒã„ã—ã‚‡ãã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?VELOX NEB:		ã€ã¡ã‚ƒã‚“ã´ãŠã€œã‚“ã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?FOOBIE BLETCH:		ã€ã¯ã«ã‚ƒã€œã‚“ã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?TEMOV:			ã€ã½ã¡ã£ã¨ãªã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?GARVEN DEH:		ã€ã—ã³ã³ã‚“ã—ã³ã³ã‚“ã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?READ ME:		ã€ã†ã—ã‚ã‚’ã¿ã‚ã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?KIRJE:			ã€ã‚ˆã—ã®ã‚„ãã‚…ã©ãƒ¼ã‚“ã€ã¨æ›¸ã‹ã‚ŒãŸå·»ç‰©:
+?stamped:		æ¶ˆå°ã®æŠ¼ã•ã‚ŒãŸå·»ç‰©:
+?unlabeled:		ãƒ©ãƒ™ãƒ«ã®ãªã„å·»ç‰©:
 #
 #	spellbooks
 #
-+dig:			·ê·¡¤ê¤ÎËâË¡½ñ:
-+magic missile:		ËâË¡¤ÎÌğ¤ÎËâË¡½ñ:
-+fireball:		²Ğ¤Î¶Ì¤ÎËâË¡½ñ:
-+cone of cold:		Îäµ¤¤ÎËâË¡½ñ:
-+sleep:			Ì²¤ê¤ÎËâË¡½ñ:
-+finger of death:	»à¤Î»Ø¤ÎËâË¡½ñ:
-+light:			¸÷¤ÎËâË¡½ñ:
-+detect monsters:	²øÊª¤òÃµ¤¹ËâË¡½ñ:
-+healing:		²óÉü¤ÎËâË¡½ñ:
-+knock:			³«¾û¤ÎËâË¡½ñ:
-+force bolt:		¾×·â¤ÎËâË¡½ñ:
-+confuse monster:	²øÊª¤òº®Íğ¤µ¤»¤ëËâË¡½ñ:
-+cure blindness:	ÌÕÌÜ¤òÌş¤¹ËâË¡½ñ:
-+slow monster:		²øÊª¤òÃÙ¤¯¤¹¤ëËâË¡½ñ:
-+wizard lock:		»Ü¾û¤ÎËâË¡½ñ:
-+create monster:	²øÊª¤òÂ¤¤ëËâË¡½ñ:	
-+detect food:		¿©ÎÁ¤òÃµ¤¹ËâË¡½ñ:
-+cause fear:		¶²Éİ¤ÎËâË¡½ñ:
-+clairvoyance:		ÀéÎ¤´ã¤ÎËâË¡½ñ:
-+cure sickness:		ÉÂµ¤¤òÌş¤¹ËâË¡½ñ:
-+charm monster:		²øÊª¤òÌ¥Î»¤¹¤ëËâË¡½ñ:
-+haste self:		ÁÇÁá¤µ¤ÎËâË¡½ñ:
-+detect unseen:		¸«¤¨¤Ê¤¤¤â¤Î¤òÃµ¤¹ËâË¡½ñ:
-+levitation:		ÉâÍ·¤ÎËâË¡½ñ:
-+extra healing:		Ä¶²óÉü¤ÎËâË¡½ñ:
-+restore ability:	Ç½ÎÏ²óÉü¤ÎËâË¡½ñ:
-+invisibility:		Æ©ÌÀ¤ÎËâË¡½ñ:
-+detect treasure:	Êõ¤òÃµ¤¹ËâË¡½ñ:
-+remove curse:		¼ö¤¤¤ò²ò¤¯ËâË¡½ñ:
-+magic mapping:		ËâË¡¤ÎÃÏ¿Ş¤ÎËâË¡½ñ:
-+identify:		¼±ÊÌ¤ÎËâË¡½ñ:
-+turn undead:		»à¿Í¤¬¤¨¤·¤ÎËâË¡½ñ:
-+polymorph:		ÊÑ²½¤ÎËâË¡½ñ:
-+teleport away:		½Ö´Ö°ÜÆ°¤ÎËâË¡½ñ:
-+create familiar:	»È¤¤Ëâ¤òÂ¤¤ëËâË¡½ñ:
-+cancellation:		ÌµÎÏ²½¤ÎËâË¡½ñ:
++dig:			ç©´æ˜ã‚Šã®é­”æ³•æ›¸:
++magic missile:		é­”æ³•ã®çŸ¢ã®é­”æ³•æ›¸:
++fireball:		ç«ã®ç‰ã®é­”æ³•æ›¸:
++cone of cold:		å†·æ°—ã®é­”æ³•æ›¸:
++sleep:			çœ ã‚Šã®é­”æ³•æ›¸:
++finger of death:	æ­»ã®æŒ‡ã®é­”æ³•æ›¸:
++light:			å…‰ã®é­”æ³•æ›¸:
++detect monsters:	æ€ªç‰©ã‚’æ¢ã™é­”æ³•æ›¸:
++healing:		å›å¾©ã®é­”æ³•æ›¸:
++knock:			é–‹éŒ ã®é­”æ³•æ›¸:
++force bolt:		è¡æ’ƒã®é­”æ³•æ›¸:
++confuse monster:	æ€ªç‰©ã‚’æ··ä¹±ã•ã›ã‚‹é­”æ³•æ›¸:
++cure blindness:	ç›²ç›®ã‚’ç™’ã™é­”æ³•æ›¸:
++slow monster:		æ€ªç‰©ã‚’é…ãã™ã‚‹é­”æ³•æ›¸:
++wizard lock:		æ–½éŒ ã®é­”æ³•æ›¸:
++create monster:	æ€ªç‰©ã‚’é€ ã‚‹é­”æ³•æ›¸:	
++detect food:		é£Ÿæ–™ã‚’æ¢ã™é­”æ³•æ›¸:
++cause fear:		ææ€–ã®é­”æ³•æ›¸:
++clairvoyance:		åƒé‡Œçœ¼ã®é­”æ³•æ›¸:
++cure sickness:		ç—…æ°—ã‚’ç™’ã™é­”æ³•æ›¸:
++charm monster:		æ€ªç‰©ã‚’é­…äº†ã™ã‚‹é­”æ³•æ›¸:
++haste self:		ç´ æ—©ã•ã®é­”æ³•æ›¸:
++detect unseen:		è¦‹ãˆãªã„ã‚‚ã®ã‚’æ¢ã™é­”æ³•æ›¸:
++levitation:		æµ®éŠã®é­”æ³•æ›¸:
++extra healing:		è¶…å›å¾©ã®é­”æ³•æ›¸:
++restore ability:	èƒ½åŠ›å›å¾©ã®é­”æ³•æ›¸:
++invisibility:		é€æ˜ã®é­”æ³•æ›¸:
++detect treasure:	å®ã‚’æ¢ã™é­”æ³•æ›¸:
++remove curse:		å‘ªã„ã‚’è§£ãé­”æ³•æ›¸:
++magic mapping:		é­”æ³•ã®åœ°å›³ã®é­”æ³•æ›¸:
++identify:		è­˜åˆ¥ã®é­”æ³•æ›¸:
++turn undead:		æ­»äººãŒãˆã—ã®é­”æ³•æ›¸:
++polymorph:		å¤‰åŒ–ã®é­”æ³•æ›¸:
++teleport away:		ç¬é–“ç§»å‹•ã®é­”æ³•æ›¸:
++create familiar:	ä½¿ã„é­”ã‚’é€ ã‚‹é­”æ³•æ›¸:
++cancellation:		ç„¡åŠ›åŒ–ã®é­”æ³•æ›¸:
 #
-+parchment:	ÍÎÈé»æ¤ÎËâË¡½ñ:
-+vellum:	»ÒµíÈé¤ÎËâË¡½ñ:
-+ragged:	¤Ü¤í¤Ü¤í¤ÎËâË¡½ñ:
-+dog eared:	¥Ú¡¼¥¸¤ÎÀŞ¤é¤ì¤¿ËâË¡½ñ:
-+mottled:	¤Ş¤À¤é¤ÎËâË¡½ñ:
-+stained:	¤è¤´¤ì¤¿ËâË¡½ñ:
-+cloth:		ÉÛÃÏ¤ÎËâË¡½ñ:
-+leather:	Èé¤ÎËâË¡½ñ:
-+white:		Çò¤¤ËâË¡½ñ:
-+pink:		¥Ô¥ó¥¯¿§¤ÎËâË¡½ñ:
-+red:		ÀÖ¤¤ËâË¡½ñ:
-+orange:	¥ª¥ì¥ó¥¸¿§¤ÎËâË¡½ñ:
-+yellow:	²«¿§¤¤ËâË¡½ñ:
-+light green:	Ã¸ÎĞ¿§¤ÎËâË¡½ñ:
-+dark green:	Ç»ÎĞ¿§¤ÎËâË¡½ñ:
-+turquoise:	ÀÄÎĞ¿§¤ÎËâË¡½ñ:
-+cyan:		¥·¥¢¥ó¿§¤ÎËâË¡½ñ:
-+light blue:	Ã¸ÀÄ¤ÎËâË¡½ñ:
-+dark blue:	Ç»ÀÄ¤ÎËâË¡½ñ:
-+indigo:	Íõ¿§¤ÎËâË¡½ñ:
-+magenta:	¥Ş¥¼¥ó¥À¿§¤ÎËâË¡½ñ:
-+purple:	»ç¿§¤ÎËâË¡½ñ:
-+violet:	¥¹¥ß¥ì¿§¤ÎËâË¡½ñ:
-+tan:		²«³ì¿§¤ÎËâË¡½ñ:
-+plaid:		¥é¥·¥ã¤ÎËâË¡½ñ:
-+light brown:	Ã¸Ãã¿§¤ÎËâË¡½ñ:
-+dark brown:	Ç»Ãã¿§¤ÎËâË¡½ñ:
-+gray:		³¥¿§¤ÎËâË¡½ñ:
-+white:		Çò¤ÎËâË¡½ñ:
-+dusty:		¤Û¤³¤ê¤Ã¤İ¤¤ËâË¡½ñ:
-+bronze:	ÀÄÆ¼¤ÎËâË¡½ñ:
-+copper:	Æ¼¤ÎËâË¡½ñ:
-+silver:	¶ä¤ÎËâË¡½ñ:
-+gold:		¶â¤ÎËâË¡½ñ:
-+glittering:	¤­¤é¤Ó¤é¤«¤ÊËâË¡½ñ:
-+shining:	µ±¤¯ËâË¡½ñ:
-+dull:		¤µ¤¨¤Ê¤¤¿§¤ÎËâË¡½ñ:
-+thin:		Çö¤¤¿§¤ÎËâË¡½ñ:
-+thick:		Ç»¤¤¿§¤ÎËâË¡½ñ:
-+plain:		¿¿¤ÃÇò¤ÊËâË¡½ñ:
-+Book of the Dead:	»à¼Ô¤Î½ñ:
-+papyrus:	¥Ñ¥Ô¥ë¥¹¤ÎËâË¡½ñ:
-+blank paper:		Çò»æ¤ÎËâË¡½ñ:
-+wrinkled:	¤¯¤·¤ã¤¯¤·¤ã¤ÎËâË¡½ñ:
++parchment:	æ´‹çš®ç´™ã®é­”æ³•æ›¸:
++vellum:	å­ç‰›çš®ã®é­”æ³•æ›¸:
++ragged:	ã¼ã‚ã¼ã‚ã®é­”æ³•æ›¸:
++dog eared:	ãƒšãƒ¼ã‚¸ã®æŠ˜ã‚‰ã‚ŒãŸé­”æ³•æ›¸:
++mottled:	ã¾ã ã‚‰ã®é­”æ³•æ›¸:
++stained:	ã‚ˆã”ã‚ŒãŸé­”æ³•æ›¸:
++cloth:		å¸ƒåœ°ã®é­”æ³•æ›¸:
++leather:	çš®ã®é­”æ³•æ›¸:
++white:		ç™½ã„é­”æ³•æ›¸:
++pink:		ãƒ”ãƒ³ã‚¯è‰²ã®é­”æ³•æ›¸:
++red:		èµ¤ã„é­”æ³•æ›¸:
++orange:	ã‚ªãƒ¬ãƒ³ã‚¸è‰²ã®é­”æ³•æ›¸:
++yellow:	é»„è‰²ã„é­”æ³•æ›¸:
++light green:	æ·¡ç·‘è‰²ã®é­”æ³•æ›¸:
++dark green:	æ¿ƒç·‘è‰²ã®é­”æ³•æ›¸:
++turquoise:	é’ç·‘è‰²ã®é­”æ³•æ›¸:
++cyan:		ã‚·ã‚¢ãƒ³è‰²ã®é­”æ³•æ›¸:
++light blue:	æ·¡é’ã®é­”æ³•æ›¸:
++dark blue:	æ¿ƒé’ã®é­”æ³•æ›¸:
++indigo:	è—è‰²ã®é­”æ³•æ›¸:
++magenta:	ãƒã‚¼ãƒ³ãƒ€è‰²ã®é­”æ³•æ›¸:
++purple:	ç´«è‰²ã®é­”æ³•æ›¸:
++violet:	ã‚¹ãƒŸãƒ¬è‰²ã®é­”æ³•æ›¸:
++tan:		é»„è¤è‰²ã®é­”æ³•æ›¸:
++plaid:		ãƒ©ã‚·ãƒ£ã®é­”æ³•æ›¸:
++light brown:	æ·¡èŒ¶è‰²ã®é­”æ³•æ›¸:
++dark brown:	æ¿ƒèŒ¶è‰²ã®é­”æ³•æ›¸:
++gray:		ç°è‰²ã®é­”æ³•æ›¸:
++white:		ç™½ã®é­”æ³•æ›¸:
++dusty:		ã»ã“ã‚Šã£ã½ã„é­”æ³•æ›¸:
++bronze:	é’éŠ…ã®é­”æ³•æ›¸:
++copper:	éŠ…ã®é­”æ³•æ›¸:
++silver:	éŠ€ã®é­”æ³•æ›¸:
++gold:		é‡‘ã®é­”æ³•æ›¸:
++glittering:	ãã‚‰ã³ã‚‰ã‹ãªé­”æ³•æ›¸:
++shining:	è¼ãé­”æ³•æ›¸:
++dull:		ã•ãˆãªã„è‰²ã®é­”æ³•æ›¸:
++thin:		è–„ã„è‰²ã®é­”æ³•æ›¸:
++thick:		æ¿ƒã„è‰²ã®é­”æ³•æ›¸:
++plain:		çœŸã£ç™½ãªé­”æ³•æ›¸:
++Book of the Dead:	æ­»è€…ã®æ›¸:
++papyrus:	ãƒ‘ãƒ”ãƒ«ã‚¹ã®é­”æ³•æ›¸:
++blank paper:		ç™½ç´™ã®é­”æ³•æ›¸:
++wrinkled:	ãã—ã‚ƒãã—ã‚ƒã®é­”æ³•æ›¸:
 #
 #	wands
 #
-/light:			¸÷¤Î¾ó:
-/secret door detection:	ÈëÌ©¤ÎÈâÃµº÷¤Î¾ó:
-/create monster:	²øÊª¤òÂ¤¤ë¾ó:
-/wishing:		´ê¤¤¤Î¾ó:
-/nothing:		Ã±¤Ê¤ë¾ó:
-/striking:		¾×·â¤Î¾ó:
-/make invisible:	Æ©ÌÀ¤Ë¤¹¤ë¾ó:
-/slow monster:		ÃÙ¤¯¤¹¤ë¾ó:
-/speed monster:		Áá¤¯¤¹¤ë¾ó:
-/undead turning:	»à¿Í¤¬¤¨¤·¤Î¾ó:
-/polymorph:		ÊÑ²½¤Î¾ó:
-/cancellation:		ÌµÎÏ²½¤Î¾ó:
-/teleportation:		½Ö´Ö°ÜÆ°¤Î¾ó:
-/opening:		³«¾û¤Î¾ó:
-/locking:		»Ü¾û¤Î¾ó:
-/probing:		Ãµºº¤¹¤ë¾ó:
-/digging:		·ê·¡¤ê¤Î¾ó:
-/magic missile:		ËâË¡¤ÎÌğ¤Î¾ó:
-/fire:			±ê¤Î¾ó:
-/cold:			¿áÀã¤Î¾ó:
-/sleep:			Ì²¤ê¤Î¾ó:
-/death:			»à¤Î¾ó:
-/lightning:		Íë¤Î¾ó:
+/light:			å…‰ã®æ–:
+/secret door detection:	ç§˜å¯†ã®æ‰‰æ¢ç´¢ã®æ–:
+/create monster:	æ€ªç‰©ã‚’é€ ã‚‹æ–:
+/wishing:		é¡˜ã„ã®æ–:
+/nothing:		å˜ãªã‚‹æ–:
+/striking:		è¡æ’ƒã®æ–:
+/make invisible:	é€æ˜ã«ã™ã‚‹æ–:
+/slow monster:		é…ãã™ã‚‹æ–:
+/speed monster:		æ—©ãã™ã‚‹æ–:
+/undead turning:	æ­»äººãŒãˆã—ã®æ–:
+/polymorph:		å¤‰åŒ–ã®æ–:
+/cancellation:		ç„¡åŠ›åŒ–ã®æ–:
+/teleportation:		ç¬é–“ç§»å‹•ã®æ–:
+/opening:		é–‹éŒ ã®æ–:
+/locking:		æ–½éŒ ã®æ–:
+/probing:		æ¢æŸ»ã™ã‚‹æ–:
+/digging:		ç©´æ˜ã‚Šã®æ–:
+/magic missile:		é­”æ³•ã®çŸ¢ã®æ–:
+/fire:			ç‚ã®æ–:
+/cold:			å¹é›ªã®æ–:
+/sleep:			çœ ã‚Šã®æ–:
+/death:			æ­»ã®æ–:
+/lightning:		é›·ã®æ–:
 #
-/glass:		¥¬¥é¥¹¤Î¾ó:
-/balsa:		¥Ğ¥ë¥µ¤Î¾ó:
-/maple:		Éö¤Î¾ó:
-/pine:		¾¾¤Î¾ó:
-/oak:		³ß¤Î¾ó:
-/ebony:		¹õÃÉ¤Î¾ó:
-/marble:	ÂçÍıÀĞ¤Î¾ó:
-/tin:		¥Ö¥ê¥­¤Î¾ó:
-/brass:		¿¿ï«¤Î¾ó:
-/copper:	Æ¼¤Î¾ó:
-/silver:	¶ä¤Î¾ó:
-/platinum:	¥×¥é¥Á¥Ê¤Î¾ó:
-/iridium:	¥¤¥ê¥¸¥¦¥à¤Î¾ó:
-/zinc:		°¡±ô¤Î¾ó:
-/aluminum:	¥¢¥ë¥ß¥Ë¥¦¥à¤Î¾ó:
-/uranium:	¥¦¥é¥Ë¥¦¥à¤Î¾ó:
-/iron:		Å´¤Î¾ó:
-/steel:		¹İÅ´¤Î¾ó:
-/hexagonal:	Ï»³Ñ·Á¤Î¾ó:
-/short:		Ã»¤¤¾ó:
-/runed:		¿ÀÈëÅª¤Ê¾ó:
-/long:		Ä¹¤¤¾ó:
-/curved:	¶Ê¤Ã¤¿¾ó:
-/forked:	Æóºµ¤Î¾ó:
-/spiked:	¤¯¤µ¤Ó¤ÎÂÇ¤Á¤Ä¤±¤é¤ì¤¿¾ó:
-/jeweled:	ÊõÀĞ¤¬Ëä¤á¤é¤ì¤¿¾ó:
+/glass:		ã‚¬ãƒ©ã‚¹ã®æ–:
+/balsa:		ãƒãƒ«ã‚µã®æ–:
+/maple:		æ¥“ã®æ–:
+/pine:		æ¾ã®æ–:
+/oak:		æ¨«ã®æ–:
+/ebony:		é»’æª€ã®æ–:
+/marble:	å¤§ç†çŸ³ã®æ–:
+/tin:		ãƒ–ãƒªã‚­ã®æ–:
+/brass:		çœŸé®ã®æ–:
+/copper:	éŠ…ã®æ–:
+/silver:	éŠ€ã®æ–:
+/platinum:	ãƒ—ãƒ©ãƒãƒŠã®æ–:
+/iridium:	ã‚¤ãƒªã‚¸ã‚¦ãƒ ã®æ–:
+/zinc:		äºœé‰›ã®æ–:
+/aluminum:	ã‚¢ãƒ«ãƒŸãƒ‹ã‚¦ãƒ ã®æ–:
+/uranium:	ã‚¦ãƒ©ãƒ‹ã‚¦ãƒ ã®æ–:
+/iron:		é‰„ã®æ–:
+/steel:		é‹¼é‰„ã®æ–:
+/hexagonal:	å…­è§’å½¢ã®æ–:
+/short:		çŸ­ã„æ–:
+/runed:		ç¥ç§˜çš„ãªæ–:
+/long:		é•·ã„æ–:
+/curved:	æ›²ã£ãŸæ–:
+/forked:	äºŒå‰ã®æ–:
+/spiked:	ãã•ã³ã®æ‰“ã¡ã¤ã‘ã‚‰ã‚ŒãŸæ–:
+/jeweled:	å®çŸ³ãŒåŸ‹ã‚ã‚‰ã‚ŒãŸæ–:
 #
 #	gold
 #
-$gold piece:	¥´¡¼¥ë¥É:
+$gold piece:	ã‚´ãƒ¼ãƒ«ãƒ‰:
 #
 #	gems & rocks
 #
-*dilithium crystal:	¥Ç¥£¥ê¥¸¥¦¥à¤Î·ë¾½:
-*white:		Çò¤¤ÊõÀĞ:
-*diamond:	¥À¥¤¥ä¥â¥ó¥É:
-*ruby:		¥ë¥Ó¡¼:
-*red:		ÀÖ¤¤ÊõÀĞ:
-*sapphire:	¥µ¥Õ¥¡¥¤¥¢:
-*blue:		ÀÄ¤¤ÊõÀĞ:
-*emerald:	¥¨¥á¥é¥ë¥É:
-*turquoise:	¥È¥ë¥³ÀĞ:
-*aquamarine:	¥¢¥¯¥¢¥Ş¥ê¥ó:
-*green:		ÎĞ¤ÎÊõÀĞ:
-*amber:		àèàá:
-*yellowish brown:	Ãã³ì¿§¤ÎÊõÀĞ:
-*topaz:		¥È¥Ñ¡¼¥º:
-*opal:		¥ª¥Ñ¡¼¥ë:
-*garnet:	¥¬¡¼¥Í¥Ã¥È:
-*amethyst:	¥¢¥á¥¸¥¹¥È:
-*violet:	»ç¤ÎÊõÀĞ:
-*jasper:	¥¸¥ã¥¹¥Ñ¡¼:
-*fluorite:	¥Õ¥ë¥ª¥é¥¤¥È:
-*jade:		¤Ò¤¹¤¤:
-*worthless piece of white glass:	Çò¤¤¥¬¥é¥¹:
-*worthless piece of blue glass:		ÀÄ¤¤¥¬¥é¥¹:
-*worthless piece of red glass:		ÀÖ¤¤¥¬¥é¥¹:
-*worthless piece of yellowish brown glass:	Ãã³ì¿§¤Î¥¬¥é¥¹:
-*worthless piece of green glass:	ÎĞ¤Î¥¬¥é¥¹:
-*worthless piece of violet glass:	»ç¤Î¥¬¥é¥¹:
+*dilithium crystal:	ãƒ‡ã‚£ãƒªã‚¸ã‚¦ãƒ ã®çµæ™¶:
+*white:		ç™½ã„å®çŸ³:
+*diamond:	ãƒ€ã‚¤ãƒ¤ãƒ¢ãƒ³ãƒ‰:
+*ruby:		ãƒ«ãƒ“ãƒ¼:
+*red:		èµ¤ã„å®çŸ³:
+*sapphire:	ã‚µãƒ•ã‚¡ã‚¤ã‚¢:
+*blue:		é’ã„å®çŸ³:
+*emerald:	ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰:
+*turquoise:	ãƒˆãƒ«ã‚³çŸ³:
+*aquamarine:	ã‚¢ã‚¯ã‚¢ãƒãƒªãƒ³:
+*green:		ç·‘ã®å®çŸ³:
+*amber:		ç¥ç€:
+*yellowish brown:	èŒ¶è¤è‰²ã®å®çŸ³:
+*topaz:		ãƒˆãƒ‘ãƒ¼ã‚º:
+*opal:		ã‚ªãƒ‘ãƒ¼ãƒ«:
+*garnet:	ã‚¬ãƒ¼ãƒãƒƒãƒˆ:
+*amethyst:	ã‚¢ãƒ¡ã‚¸ã‚¹ãƒˆ:
+*violet:	ç´«ã®å®çŸ³:
+*jasper:	ã‚¸ãƒ£ã‚¹ãƒ‘ãƒ¼:
+*fluorite:	ãƒ•ãƒ«ã‚ªãƒ©ã‚¤ãƒˆ:
+*jade:		ã²ã™ã„:
+*worthless piece of white glass:	ç™½ã„ã‚¬ãƒ©ã‚¹:
+*worthless piece of blue glass:		é’ã„ã‚¬ãƒ©ã‚¹:
+*worthless piece of red glass:		èµ¤ã„ã‚¬ãƒ©ã‚¹:
+*worthless piece of yellowish brown glass:	èŒ¶è¤è‰²ã®ã‚¬ãƒ©ã‚¹:
+*worthless piece of green glass:	ç·‘ã®ã‚¬ãƒ©ã‚¹:
+*worthless piece of violet glass:	ç´«ã®ã‚¬ãƒ©ã‚¹:
 #
-*luckstone:	¹¬¤»¤ÎÀĞ:
-*gray:		³¥¿§¤ÎÊõÀĞ:
-*loadstone:	½Å¤·:
-*flint:		²ĞÂÇ¤ÁÀĞ:
-*rock:		ÀĞ:
+*luckstone:	å¹¸ã›ã®çŸ³:
+*gray:		ç°è‰²ã®å®çŸ³:
+*loadstone:	é‡ã—:
+*flint:		ç«æ‰“ã¡çŸ³:
+*rock:		çŸ³:
 #
 #	miscellaneous
 #
-'boulder:		´ä:
-'statue:		Áü:
-0heavy iron ball:	½Å¤¤Å´µå:
-_iron chain:		Å´¤Îº¿:
-'blinding venom:	ÌÕÌÜ¤ÎÆÇ±Õ:
-'splash of venom:	ÆÇ±Õ¤Î¤·¤Ö¤­:
-'acid venom:		»À¤ÎÆÇ±Õ:
+'boulder:		å²©:
+'statue:		åƒ:
+0heavy iron ball:	é‡ã„é‰„çƒ:
+_iron chain:		é‰„ã®é–:
+'blinding venom:	ç›²ç›®ã®æ¯’æ¶²:
+'splash of venom:	æ¯’æ¶²ã®ã—ã¶ã:
+'acid venom:		é…¸ã®æ¯’æ¶²:
 #
 #	samurai's item
 #
-)wakizashi:	ÏÆº¹¤·:
-)ninja-to:	Ç¦¼ÔÅá:
-)nunchaku:	¥Ì¥ó¥Á¥ã¥¯:
-)naginata:	¤Ê¤®¤Ê¤¿:
-)ya:		Ìğ:
-(osaku:		¤ª¤µ¤¯:
-(koto:		¶×:
-)shito:		»ÉÅá:
-]tanko:		Ã»¹Ã:
-]kabuto:	³õ:
-]yugake:	µİ·ü:
-%gunyoki:	´İÌô:
-!sake:		¼ò:
+)wakizashi:	è„‡å·®ã—:
+)ninja-to:	å¿è€…åˆ€:
+)nunchaku:	ãƒŒãƒ³ãƒãƒ£ã‚¯:
+)naginata:	ãªããªãŸ:
+)ya:		çŸ¢:
+(osaku:		ãŠã•ã:
+(koto:		ç´:
+)shito:		åˆºåˆ€:
+]tanko:		çŸ­ç”²:
+]kabuto:	å…œ:
+]yugake:	å¼“æ‡¸:
+%gunyoki:	ä¸¸è–¬:
+!sake:		é…’:
 #
 #	artifacts
 #
-AExcalibur:		¥¨¥¯¥¹¥«¥ê¥Ğ¡¼:
-AStormbringer:		¥¹¥È¡¼¥à¥Ö¥ê¥ó¥¬¡¼:
-AMjollnir:		¥ß¥å¥ë¥Ë¡¼¥ë:	
-ACleaver:		¥¯¥ê¡¼¥Ğ¡¼:
-AGrimtooth:		¥°¥ê¥à¥È¥¥¡¼¥¹:
-AOrcrist:		¥ª¡¼¥¯¥ê¥¹¥È:
-ASting:			¥¹¥Æ¥£¥ó¥°:
-AMagicbane:		¥Ş¥¸¥Ã¥¯¥Ù¡¼¥ó:
-AFrost Brand:		¥Õ¥í¥¹¥È¥Ö¥é¥ó¥É:
-AFire Brand:		¥Õ¥¡¥¤¥¢¥Ö¥é¥ó¥É:
-ADragonbane:		¥É¥é¥´¥ó¥Ù¡¼¥ó:
-ADemonbane:		¥Ç¡¼¥â¥ó¥Ù¡¼¥ó:
-AWerebane:		¥¦¥§¥¢¥Ù¡¼¥ó:
-AGrayswandir:		¥°¥ì¥¤¥¹¥ï¥ó¥À¡¼:
-AGiantslayer:		¥¸¥ã¥¤¥¢¥ó¥È¥¹¥ì¥¤¥ä¡¼:
-AOgresmasher:		¥ª¡¼¥¬¥¹¥Ş¥Ã¥·¥ã¡¼:
-ATrollsbane:		¥È¥í¥ë¥¹¥Ù¡¼¥ó:
-AVorpal Blade:		¥Ü¡¼¥Ñ¥ë¥Ö¥ì¡¼¥É:
-ASnickersnee:		¥¹¥Ë¥Ã¥«¡¼¥º¥Ë¡¼:
-ASunsword:		¥µ¥ó¥½¡¼¥É:
+AExcalibur:		ã‚¨ã‚¯ã‚¹ã‚«ãƒªãƒãƒ¼:
+AStormbringer:		ã‚¹ãƒˆãƒ¼ãƒ ãƒ–ãƒªãƒ³ã‚¬ãƒ¼:
+AMjollnir:		ãƒŸãƒ¥ãƒ«ãƒ‹ãƒ¼ãƒ«:	
+ACleaver:		ã‚¯ãƒªãƒ¼ãƒãƒ¼:
+AGrimtooth:		ã‚°ãƒªãƒ ãƒˆã‚¥ãƒ¼ã‚¹:
+AOrcrist:		ã‚ªãƒ¼ã‚¯ãƒªã‚¹ãƒˆ:
+ASting:			ã‚¹ãƒ†ã‚£ãƒ³ã‚°:
+AMagicbane:		ãƒã‚¸ãƒƒã‚¯ãƒ™ãƒ¼ãƒ³:
+AFrost Brand:		ãƒ•ãƒ­ã‚¹ãƒˆãƒ–ãƒ©ãƒ³ãƒ‰:
+AFire Brand:		ãƒ•ã‚¡ã‚¤ã‚¢ãƒ–ãƒ©ãƒ³ãƒ‰:
+ADragonbane:		ãƒ‰ãƒ©ã‚´ãƒ³ãƒ™ãƒ¼ãƒ³:
+ADemonbane:		ãƒ‡ãƒ¼ãƒ¢ãƒ³ãƒ™ãƒ¼ãƒ³:
+AWerebane:		ã‚¦ã‚§ã‚¢ãƒ™ãƒ¼ãƒ³:
+AGrayswandir:		ã‚°ãƒ¬ã‚¤ã‚¹ãƒ¯ãƒ³ãƒ€ãƒ¼:
+AGiantslayer:		ã‚¸ãƒ£ã‚¤ã‚¢ãƒ³ãƒˆã‚¹ãƒ¬ã‚¤ãƒ¤ãƒ¼:
+AOgresmasher:		ã‚ªãƒ¼ã‚¬ã‚¹ãƒãƒƒã‚·ãƒ£ãƒ¼:
+ATrollsbane:		ãƒˆãƒ­ãƒ«ã‚¹ãƒ™ãƒ¼ãƒ³:
+AVorpal Blade:		ãƒœãƒ¼ãƒ‘ãƒ«ãƒ–ãƒ¬ãƒ¼ãƒ‰:
+ASnickersnee:		ã‚¹ãƒ‹ãƒƒã‚«ãƒ¼ã‚ºãƒ‹ãƒ¼:
+ASunsword:		ã‚µãƒ³ã‚½ãƒ¼ãƒ‰:
 # A
-AThe Orb of Detection:		Ãµº÷¤Î¥ª¡¼¥Ö:
+AThe Orb of Detection:		æ¢ç´¢ã®ã‚ªãƒ¼ãƒ–:
 # B
-AThe Heart of Ahriman:		¥¢¡¼¥ê¥Ş¥ó¤Î¿´Â¡:
+AThe Heart of Ahriman:		ã‚¢ãƒ¼ãƒªãƒãƒ³ã®å¿ƒè‡“:
 # C
-AThe Sceptre of Might:		¸¢ÎÏ¤Îãô:
+AThe Sceptre of Might:		æ¨©åŠ›ã®ç¬:
 # E
-AThe Palantir of Westernesse:	¥Ñ¥é¥ó¥Æ¥£¥¢¤ÎÀĞ:
+AThe Palantir of Westernesse:	ãƒ‘ãƒ©ãƒ³ãƒ†ã‚£ã‚¢ã®çŸ³:
 # F
-AThe Silver Crystal:		¸¸¤Î¶ä¿å¾½:
+AThe Silver Crystal:		å¹»ã®éŠ€æ°´æ™¶:
 # H
-AThe Staff of Aesculapius:	¥¢¥¨¥¹¥­¥å¥é¥Ô¥¹¤Î¾ó:
+AThe Staff of Aesculapius:	ã‚¢ã‚¨ã‚¹ã‚­ãƒ¥ãƒ©ãƒ”ã‚¹ã®æ–:
 # K
-AThe Magic Mirror of Merlin:	¥Ş¡¼¥ê¥ó¤ÎËâË¡¤Î¶À:
+AThe Magic Mirror of Merlin:	ãƒãƒ¼ãƒªãƒ³ã®é­”æ³•ã®é¡:
 # P
-AThe Mitre of Holiness:		À»¤Ê¤ë´§:
+AThe Mitre of Holiness:		è–ãªã‚‹å† :
 # R
-AThe Master Key of Thievery:	ÅğÂ±¤Î¥Ş¥¹¥¿¡¼¥­¡¼:
+AThe Master Key of Thievery:	ç›—è³Šã®ãƒã‚¹ã‚¿ãƒ¼ã‚­ãƒ¼:
 # S
-AThe Tsurugi of Muramasa:	Â¼Àµ¤ÎÅá:
+AThe Tsurugi of Muramasa:	æ‘æ­£ã®åˆ€:
 # T
-AThe Platinum Yendorian Express Card:	¥×¥é¥Á¥Ê¥¤¥§¥ó¥À¡¼°õ¥¨¥¯¥¹¥×¥ì¥¹¥«¡¼¥É:
+AThe Platinum Yendorian Express Card:	ãƒ—ãƒ©ãƒãƒŠã‚¤ã‚§ãƒ³ãƒ€ãƒ¼å°ã‚¨ã‚¯ã‚¹ãƒ—ãƒ¬ã‚¹ã‚«ãƒ¼ãƒ‰:
 # V
-AThe Orb of Fate:		±¿Ì¿¤Î¥ª¡¼¥Ö:
+AThe Orb of Fate:		é‹å‘½ã®ã‚ªãƒ¼ãƒ–:
 # W
-AThe Eye of the Aethiopica:	¥¨¥Á¥ª¥Ô¥¢¤ÎÌÜ:
+AThe Eye of the Aethiopica:	ã‚¨ãƒã‚ªãƒ”ã‚¢ã®ç›®:
 #
 # name of dungeon
 #
-dThe Dungeons of Doom:	±¿Ì¿¤ÎÂçÌÂµÜ:
-dThe Gnomish Mines:	¥Î¡¼¥à¤Î¹Û»³:
-dThe Quest:		¥¯¥¨¥¹¥È:
-dGehennom:		¥²¥Ø¥Ê:
-dFort Ludios:		¥Õ¥©¡¼¥È¥í¡¼¥Ç¥£¥ª¥¹:
-dVlad's Tower:		¥ô¥é¥É¸õ¤ÎÅã:
-dThe Elemental Planes:	ÀºÎî³¦:
+dThe Dungeons of Doom:	é‹å‘½ã®å¤§è¿·å®®:
+dThe Gnomish Mines:	ãƒãƒ¼ãƒ ã®é‰±å±±:
+dThe Quest:		ã‚¯ã‚¨ã‚¹ãƒˆ:
+dGehennom:		ã‚²ãƒ˜ãƒŠ:
+dFort Ludios:		ãƒ•ã‚©ãƒ¼ãƒˆãƒ­ãƒ¼ãƒ‡ã‚£ã‚ªã‚¹:
+dVlad's Tower:		ãƒ´ãƒ©ãƒ‰å€™ã®å¡”:
+dThe Elemental Planes:	ç²¾éœŠç•Œ:
 #
 # Symbols or other things name (this is not a object name (See: drawing.c))
 #
-Sstrange object:			´ñÌ¯¤ÊÊªÂÎ:
-Sweapon:				Éğ´ï:
-Ssuit or piece of armor:		Éş¤Ş¤¿¤Ï³»¤Î¤¿¤°¤¤:
-Sring:					»ØÎØ:
-Samulet:				Ëâ½ü¤±:	
-Suseful item (pick-axe, key, lamp...):	ÊØÍø¤ÊÆ»¶ñ(¤Ä¤ë¤Ï¤·¡¤¸°¡¤¥é¥ó¥×¡¥¡¥¡¥):
-Spiece of food:				¿©ÎÁ:
-Spotion:				Ìô:
-Sscroll:				´¬Êª:
-Sspell book:				ËâË¡¤ÎËÜ:
-Swand:					¾ó:
-Spile of coins:				¶â²ß¤Î»³:
-Sgem or rock:				ÊõÀĞ¤Ş¤¿¤ÏÀĞ:
-Sboulder or statue:			´ä¤Ş¤¿¤ÏÁü:
-Siron ball:				Å´¤Î¶Ì:
-Siron chain:				Å´¤Îº¿:
-Ssplash of venom:			ÆÇ±Õ:
+Sstrange object:			å¥‡å¦™ãªç‰©ä½“:
+Sweapon:				æ­¦å™¨:
+Ssuit or piece of armor:		æœã¾ãŸã¯é§ã®ãŸãã„:
+Sring:					æŒ‡è¼ª:
+Samulet:				é­”é™¤ã‘:	
+Suseful item (pick-axe, key, lamp...):	ä¾¿åˆ©ãªé“å…·(ã¤ã‚‹ã¯ã—ï¼Œéµï¼Œãƒ©ãƒ³ãƒ—ï¼ï¼ï¼):
+Spiece of food:				é£Ÿæ–™:
+Spotion:				è–¬:
+Sscroll:				å·»ç‰©:
+Sspell book:				é­”æ³•ã®æœ¬:
+Swand:					æ–:
+Spile of coins:				é‡‘è²¨ã®å±±:
+Sgem or rock:				å®çŸ³ã¾ãŸã¯çŸ³:
+Sboulder or statue:			å²©ã¾ãŸã¯åƒ:
+Siron ball:				é‰„ã®ç‰:
+Siron chain:				é‰„ã®é–:
+Ssplash of venom:			æ¯’æ¶²:
 #
-Sillegal objects:	´ñÌ¯¤ÊÊªÂÎ:
-Sweapons:		Éğ´ï:
-Sarmor:			³»:
-Srings:			»ØÎØ:
-Samulets:		Ëâ½ü¤±:
-Stools:			Æ»¶ñ:
-Sfood:			¿©ÎÁ:
-Spotions:		Ìô:
-Sscrolls:		´¬Êª:
-Sspell books:		ËâË¡¤ÎËÜ:
-Swands:			¾ó:
-Scoins:			¶â²ß:
-Srocks:			ÀĞ:
-Slarge stones:		µğÀĞ:
-Siron balls:		Å´µå:
-Schains:		º¿:
-Svenoms:		ÆÇ:
+Sillegal objects:	å¥‡å¦™ãªç‰©ä½“:
+Sweapons:		æ­¦å™¨:
+Sarmor:			é§:
+Srings:			æŒ‡è¼ª:
+Samulets:		é­”é™¤ã‘:
+Stools:			é“å…·:
+Sfood:			é£Ÿæ–™:
+Spotions:		è–¬:
+Sscrolls:		å·»ç‰©:
+Sspell books:		é­”æ³•ã®æœ¬:
+Swands:			æ–:
+Scoins:			é‡‘è²¨:
+Srocks:			çŸ³:
+Slarge stones:		å·¨çŸ³:
+Siron balls:		é‰„çƒ:
+Schains:		é–:
+Svenoms:		æ¯’:
 #
-Sant or other insect:	µÂ¤Ş¤¿¤ÏÂ¾¤Îº«Ãî:
-Sblob:			¥Ö¥í¥Ã¥Ö:
-Scockatrice:		¥³¥«¥È¥ê¥¹:
-Sdog or other canine:	¸¤¤Ş¤¿¤Ï¥¤¥Ì²Ê¤ÎÆ°Êª:
-Seye or sphere:		ÌÜ¤Ş¤¿¤ÏµåÂÎ:
-Sfeline:		Ç­¤Ş¤¿¤Ï¥Í¥³²Ê¤ÎÆ°Êª:
-Scat or other feline:	Ç­¤Ş¤¿¤Ï¥Í¥³²Ê¤ÎÆ°Êª:
-Sgremlin:		¥°¥ì¥à¥ê¥ó:
-Shumanoid:		¥Ò¥å¡¼¥Ş¥Î¥¤¥É:
-Simp or minor demon:	¥¤¥ó¥×¤Ş¤¿¤Ï²¼µé°­Ëâ:
-Sjelly:			¥¼¥ê¡¼:
-Skobold:		¥³¥Ü¥ë¥È:
-Sleprechaun:		¥ì¥×¥é¥³¡¼¥ó:
-Smimic:			¥ß¥ß¥Ã¥¯:
-Snymph:			¥Ë¥ó¥Õ:
-Sorc:			¥ª¡¼¥¯:	
-Spiercer:		·ê¶ô¤¤:
-Squadruped:		»ÍÂ­Æ°Êª:
-Srodent:		óö»õÆ°Êª:
-Sspider:		ÃØ:
-Strapper or lurker above:	¥È¥é¥Ã¥Ñ¡¼¤Ş¤¿¤Ï¥é¡¼¥«¡¼:
-Sunicorn:		¥æ¥Ë¥³¡¼¥ó:
-Svortex:		±²:
-Sworm:			¥ï¡¼¥à:
-Sxan or other mythical/fantastic insect:	¥¶¥ó¤Ş¤¿¤Ï¿ÀÏÃ¤ä¥Õ¥¡¥ó¥¿¥¸¡¼¤Îº«Ãî:
-Slight:			¸÷:
-Szruty:			¥º¥ë¥Æ¥£:
-Sangelic being:		Å·»È:
-Sbat:			¤³¤¦¤â¤ê:
-Scentaur:		¥±¥ó¥¿¥¦¥í¥¹:
-Sdragon:		¥É¥é¥´¥ó:
-Selemental:		ÀºÎî:
-Sfungus or mold:	¥­¥Î¥³¤Ş¤¿¤Ï¥â¡¼¥ë¥É:
-Sgnome:			¥Î¡¼¥à:
-Sgiant humanoid:	µğ¿Í:
-Sinvisible stalker:	Æ©ÌÀ¥¹¥È¡¼¥«¡¼:
-Sjabberwock:		¥¸¥ã¥Ğ¥¦¥©¥Ã¥¯:
-SKeystone Kop:		·ÙÈ÷°÷:
-Slich:			¥ê¥Ã¥Á:
-Smummy:			¥ß¥¤¥é:
-Snaga:			¥Ê¡¼¥¬:
-Sogre:			¥ª¡¼¥¬:
-Spudding or ooze:	¥×¥ê¥ó¤Ş¤¿¤Ï¥¦¡¼¥º:
-Squantum mechanic:	ÎÌ»Ò¾ì:
-Srust monster:		»¬¤Î²øÊª:
-Ssnake:			¥Ø¥Ó:
-Stroll:			¥È¥í¥ë:
-Sumber hulk:		¥¢¥ó¥Ğ¡¼¥Ï¥ë¥¯:
-Svampire:		µÛ·ìµ´:
-Swraith:		¥ì¥¤¥¹:
-Sxorn:			¥¾¡¼¥ó:
-Syeti, ape or other large beast:	¥¤¥¨¥Æ¥£¤Ş¤¿¤ÏµğÂç¤Ê½Ã:
-Szombie:		¥¾¥ó¥Ó:
-Shuman:			¿Í´Ö:
-Shuman or elf:		¿Í´Ö¤Ş¤¿¤Ï¥¨¥ë¥Õ:
-Sghost:			Í©Îî:
-Sgolem:			¥´¡¼¥ì¥à:
-Sdemon:			°­Ëâ:
-Smajor demon:		°­Ëâ:
-Ssea monster:		³¤¤Î²øÊª:
-Slizard:		¥È¥«¥²:
-Slong worm tail:	¥í¥ó¥°¥ï¡¼¥à¤Î¿¬Èø:
+Sant or other insect:	èŸ»ã¾ãŸã¯ä»–ã®æ˜†è™«:
+Sblob:			ãƒ–ãƒ­ãƒƒãƒ–:
+Scockatrice:		ã‚³ã‚«ãƒˆãƒªã‚¹:
+Sdog or other canine:	çŠ¬ã¾ãŸã¯ã‚¤ãƒŒç§‘ã®å‹•ç‰©:
+Seye or sphere:		ç›®ã¾ãŸã¯çƒä½“:
+Sfeline:		çŒ«ã¾ãŸã¯ãƒã‚³ç§‘ã®å‹•ç‰©:
+Scat or other feline:	çŒ«ã¾ãŸã¯ãƒã‚³ç§‘ã®å‹•ç‰©:
+Sgremlin:		ã‚°ãƒ¬ãƒ ãƒªãƒ³:
+Shumanoid:		ãƒ’ãƒ¥ãƒ¼ãƒãƒã‚¤ãƒ‰:
+Simp or minor demon:	ã‚¤ãƒ³ãƒ—ã¾ãŸã¯ä¸‹ç´šæ‚ªé­”:
+Sjelly:			ã‚¼ãƒªãƒ¼:
+Skobold:		ã‚³ãƒœãƒ«ãƒˆ:
+Sleprechaun:		ãƒ¬ãƒ—ãƒ©ã‚³ãƒ¼ãƒ³:
+Smimic:			ãƒŸãƒŸãƒƒã‚¯:
+Snymph:			ãƒ‹ãƒ³ãƒ•:
+Sorc:			ã‚ªãƒ¼ã‚¯:	
+Spiercer:		ç©´å–°ã„:
+Squadruped:		å››è¶³å‹•ç‰©:
+Srodent:		é½§æ­¯å‹•ç‰©:
+Sspider:		èœ˜:
+Strapper or lurker above:	ãƒˆãƒ©ãƒƒãƒ‘ãƒ¼ã¾ãŸã¯ãƒ©ãƒ¼ã‚«ãƒ¼:
+Sunicorn:		ãƒ¦ãƒ‹ã‚³ãƒ¼ãƒ³:
+Svortex:		æ¸¦:
+Sworm:			ãƒ¯ãƒ¼ãƒ :
+Sxan or other mythical/fantastic insect:	ã‚¶ãƒ³ã¾ãŸã¯ç¥è©±ã‚„ãƒ•ã‚¡ãƒ³ã‚¿ã‚¸ãƒ¼ã®æ˜†è™«:
+Slight:			å…‰:
+Szruty:			ã‚ºãƒ«ãƒ†ã‚£:
+Sangelic being:		å¤©ä½¿:
+Sbat:			ã“ã†ã‚‚ã‚Š:
+Scentaur:		ã‚±ãƒ³ã‚¿ã‚¦ãƒ­ã‚¹:
+Sdragon:		ãƒ‰ãƒ©ã‚´ãƒ³:
+Selemental:		ç²¾éœŠ:
+Sfungus or mold:	ã‚­ãƒã‚³ã¾ãŸã¯ãƒ¢ãƒ¼ãƒ«ãƒ‰:
+Sgnome:			ãƒãƒ¼ãƒ :
+Sgiant humanoid:	å·¨äºº:
+Sinvisible stalker:	é€æ˜ã‚¹ãƒˆãƒ¼ã‚«ãƒ¼:
+Sjabberwock:		ã‚¸ãƒ£ãƒã‚¦ã‚©ãƒƒã‚¯:
+SKeystone Kop:		è­¦å‚™å“¡:
+Slich:			ãƒªãƒƒãƒ:
+Smummy:			ãƒŸã‚¤ãƒ©:
+Snaga:			ãƒŠãƒ¼ã‚¬:
+Sogre:			ã‚ªãƒ¼ã‚¬:
+Spudding or ooze:	ãƒ—ãƒªãƒ³ã¾ãŸã¯ã‚¦ãƒ¼ã‚º:
+Squantum mechanic:	é‡å­å ´:
+Srust monster:		éŒ†ã®æ€ªç‰©:
+Ssnake:			ãƒ˜ãƒ“:
+Stroll:			ãƒˆãƒ­ãƒ«:
+Sumber hulk:		ã‚¢ãƒ³ãƒãƒ¼ãƒãƒ«ã‚¯:
+Svampire:		å¸è¡€é¬¼:
+Swraith:		ãƒ¬ã‚¤ã‚¹:
+Sxorn:			ã‚¾ãƒ¼ãƒ³:
+Syeti, ape or other large beast:	ã‚¤ã‚¨ãƒ†ã‚£ã¾ãŸã¯å·¨å¤§ãªç£:
+Szombie:		ã‚¾ãƒ³ãƒ“:
+Shuman:			äººé–“:
+Shuman or elf:		äººé–“ã¾ãŸã¯ã‚¨ãƒ«ãƒ•:
+Sghost:			å¹½éœŠ:
+Sgolem:			ã‚´ãƒ¼ãƒ¬ãƒ :
+Sdemon:			æ‚ªé­”:
+Smajor demon:		æ‚ªé­”:
+Ssea monster:		æµ·ã®æ€ªç‰©:
+Slizard:		ãƒˆã‚«ã‚²:
+Slong worm tail:	ãƒ­ãƒ³ã‚°ãƒ¯ãƒ¼ãƒ ã®å°»å°¾:
 #
 #	part of room
 #
-Sdark part of a room:	Éô²°¤Î°Å¤¤ÉôÊ¬:
-Swall:			ÊÉ:
-Sdoorway:		½ĞÆş¸ı:
-Sopen door:		³«¤¤¤¿Èâ:
-Sclosed door:		ÊÄ¤¸¤¿Èâ:
-Sfloor of a room:	Éô²°¤Î¾²:
-Scorridor:		ÄÌÏ©:
-Slit corridor:		ÌÀ¤ë¤¤ÄÌÏ©:
-Sstaircase up:		¾å¤ê³¬ÃÊ:
-Sstaircase down:	²¼¤ê³¬ÃÊ:
-Sladder up:		¾å¤ê¤Ï¤·¤´:
-Sladder down:		²¼¤ê¤Ï¤·¤´:
-Strap:			æ«:
-Sweb:			ÃØéá¤ÎÁã:
-Saltar:			º×ÃÅ:
-Sopulent throne:	²Ú¤ä¤«¤Ê¶ÌºÂ:
-Ssink:			Î®¤·Âæ:
-Sfountain:		Àô:
-Swater filled area:	¿å¤Î¤¿¤Ş¤Ã¤¿¾ì½ê:
-Swater:			¿å¤Î¤¿¤Ş¤Ã¤¿¾ì½ê:
-Sice:			É¹:
-Smolten lava:		ÍÏ´ä:
-Slowered drawbridge:	¹ß¤ê¤Æ¤¤¤ëÄ·¤Í¶¶:
-Sraised drawbridge:	¾å¤Ã¤Æ¤¤¤ëÄ·¤Í¶¶:
-Sair filled area:	¶õµ¤¤Î¤¿¤Ş¤Ã¤¿¾ì½ê:
-Sair:			¶õµ¤¤Î¤¿¤Ş¤Ã¤¿¾ì½ê:
-Scloud filled area:	ÆŞ:
-Scloud:			ÆŞ:
+Sdark part of a room:	éƒ¨å±‹ã®æš—ã„éƒ¨åˆ†:
+Swall:			å£:
+Sdoorway:		å‡ºå…¥å£:
+Sopen door:		é–‹ã„ãŸæ‰‰:
+Sclosed door:		é–‰ã˜ãŸæ‰‰:
+Sfloor of a room:	éƒ¨å±‹ã®åºŠ:
+Scorridor:		é€šè·¯:
+Slit corridor:		æ˜ã‚‹ã„é€šè·¯:
+Sstaircase up:		ä¸Šã‚Šéšæ®µ:
+Sstaircase down:	ä¸‹ã‚Šéšæ®µ:
+Sladder up:		ä¸Šã‚Šã¯ã—ã”:
+Sladder down:		ä¸‹ã‚Šã¯ã—ã”:
+Strap:			ç½ :
+Sweb:			èœ˜è››ã®å·£:
+Saltar:			ç¥­å£‡:
+Sopulent throne:	è¯ã‚„ã‹ãªç‰åº§:
+Ssink:			æµã—å°:
+Sfountain:		æ³‰:
+Swater filled area:	æ°´ã®ãŸã¾ã£ãŸå ´æ‰€:
+Swater:			æ°´ã®ãŸã¾ã£ãŸå ´æ‰€:
+Sice:			æ°·:
+Smolten lava:		æº¶å²©:
+Slowered drawbridge:	é™ã‚Šã¦ã„ã‚‹è·³ã­æ©‹:
+Sraised drawbridge:	ä¸Šã£ã¦ã„ã‚‹è·³ã­æ©‹:
+Sair filled area:	ç©ºæ°—ã®ãŸã¾ã£ãŸå ´æ‰€:
+Sair:			ç©ºæ°—ã®ãŸã¾ã£ãŸå ´æ‰€:
+Scloud filled area:	æ›‡:
+Scloud:			æ›‡:
 #
 #	traps
 #
-^arrow trap:		Ìğ¤Îæ«:
-^dart trap:		Åê¤²Ìğ¤Îæ«:
-^falling rock trap:	´äÍî¤·¤Îæ«:
-^squeaky board:		¤­¤·¤àÈÄ:
-^beartrap:		·§¤Îæ«:
-^bear trap:		·§¤Îæ«:
-^land mine:		ÃÏÍë:
-^sleeping gas trap:	¿çÌ²¥¬¥¹¤Îæ«:
-^hole:			·ê:
-^rust trap:		Éå¿©¤Îæ«:
-^fire trap:		²Ğ¤Îæ«:
-^pit:			Íî¤··ê:
-^spiked pit:		¥È¥²¤À¤é¤±¤ÎÍî¤··ê:
-^trapdoor:		Íî¤·Èâ:
-^trap door:		Íî¤·Èâ:
-^teleportation trap:	½Ö´Ö°ÜÆ°¤Îæ«:
-^level teleporter:	ÊÌ¤Î³¬¤Ø¤Î½Ö´Ö°ÜÆ°¤Îæ«:
-^magic portal:		ËâË¡¤ÎÆş¸ı:
-^web:			ÃØéá¤ÎÁã:
-^statue trap:		Ä¦Áü¤Îæ«:
-^magic trap:		ËâË¡¤Îæ«:
-^anti-magic field:	È¿ËâË¡¶õ´Ö¤Îæ«:
-^anti-magic trap field:	È¿ËâË¡¶õ´Ö¤Îæ«:
-^polymorph trap:	ÊÑ²½¤Îæ«:
-^rolling boulder trap:	Íî´ä¤Îæ«:
+^arrow trap:		çŸ¢ã®ç½ :
+^dart trap:		æŠ•ã’çŸ¢ã®ç½ :
+^falling rock trap:	å²©è½ã—ã®ç½ :
+^squeaky board:		ãã—ã‚€æ¿:
+^beartrap:		ç†Šã®ç½ :
+^bear trap:		ç†Šã®ç½ :
+^land mine:		åœ°é›·:
+^sleeping gas trap:	ç¡çœ ã‚¬ã‚¹ã®ç½ :
+^hole:			ç©´:
+^rust trap:		è…é£Ÿã®ç½ :
+^fire trap:		ç«ã®ç½ :
+^pit:			è½ã—ç©´:
+^spiked pit:		ãƒˆã‚²ã ã‚‰ã‘ã®è½ã—ç©´:
+^trapdoor:		è½ã—æ‰‰:
+^trap door:		è½ã—æ‰‰:
+^teleportation trap:	ç¬é–“ç§»å‹•ã®ç½ :
+^level teleporter:	åˆ¥ã®éšã¸ã®ç¬é–“ç§»å‹•ã®ç½ :
+^magic portal:		é­”æ³•ã®å…¥å£:
+^web:			èœ˜è››ã®å·£:
+^statue trap:		å½«åƒã®ç½ :
+^magic trap:		é­”æ³•ã®ç½ :
+^anti-magic field:	åé­”æ³•ç©ºé–“ã®ç½ :
+^anti-magic trap field:	åé­”æ³•ç©ºé–“ã®ç½ :
+^polymorph trap:	å¤‰åŒ–ã®ç½ :
+^rolling boulder trap:	è½å²©ã®ç½ :

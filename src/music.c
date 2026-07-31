@@ -128,15 +128,15 @@ int distance;
 		if (canseemon(mtmp)) {
 		    if (!could_see_mon)
 /*JP			You("notice %s, swaying with the music.",*/
-			You("²»³Ú¤Ë¹ç¤ï¤»¤ÆÍÉ¤ì¤Æ¤¤¤ë%s¤Ëµ¤¤¬¤Ä¤¤¤¿¡¥",
+			You("éŸ³æ¥½ã«åˆã‚ã›ã¦æºã‚Œã¦ã„ã‚‹%sã«æ°—ãŒã¤ã„ãŸï¼",
 			    an(mon_nam(mtmp)));
 		    else
 /*JP			pline("%s freezes, then sways with the music%s.",
 			      Monnam(mtmp),
 			      was_peaceful ? "" : ", and now seems quieter");*/
-			pline("%s¤ÏÎ©¤Á¤¹¤¯¤ß¡¤²»³Ú¤Ë¹ç¤ï¤»¤ÆÍÉ¤ì%s¤¿¡¥",
+			pline("%sã¯ç«‹ã¡ã™ãã¿ï¼ŒéŸ³æ¥½ã«åˆã‚ã›ã¦æºã‚Œ%sãŸï¼",
 			      Monnam(mtmp),
-			      was_peaceful ? "" : "¡¤¤ª¤È¤Ê¤·¤¯¤Ê¤Ã");
+			      was_peaceful ? "" : "ï¼ŒãŠã¨ãªã—ããªã£");
 		}
 	    }
 	    mtmp = mtmp->nmon;
@@ -161,7 +161,7 @@ int distance;
 		if (canseemon(mtmp))
 		    pline(
 /*JP		     "%s listens cheerfully to the music, then seems quieter.",*/
-		     "%s¤Ï²»³Ú¤ËÊ¹¤­¤¤¤ê¡¤¤ª¤È¤Ê¤·¤¯¤Ê¤Ã¤¿¡¥",
+		     "%sã¯éŸ³æ¥½ã«èãã„ã‚Šï¼ŒãŠã¨ãªã—ããªã£ãŸï¼",
 			  Monnam(mtmp));
 	    }
 	    mtmp = mtmp->nmon;
@@ -181,10 +181,10 @@ awaken_soldiers()
 		mtmp->mcanmove = 1;
 		if (canseemon(mtmp))
 /*JP		    pline("%s is now ready for battle!", Monnam(mtmp));*/
-		    pline("%s¤ÏÀï¤¤¤Î½àÈ÷¤¬À°¤Ã¤¿¡ª", Monnam(mtmp));
+		    pline("%sã¯æˆ¦ã„ã®æº–å‚™ãŒæ•´ã£ãŸï¼", Monnam(mtmp));
 		else
 /*JP		    Norep("You hear the rattle of battle gear being readied.");*/
-		    Norep("¤¢¤Ê¤¿¤ÏÀï¤¤¤Î½àÈ÷¤¬À°¤Ã¤¿¤³¤È¤ò¼¨¤¹²»¤òÊ¹¤¤¤¿¡¥");
+		    Norep("ã‚ãªãŸã¯æˆ¦ã„ã®æº–å‚™ãŒæ•´ã£ãŸã“ã¨ã‚’ç¤ºã™éŸ³ã‚’èã„ãŸï¼");
 	    }
 	    mtmp = mtmp->nmon;
 	}
@@ -237,14 +237,14 @@ int force;
 		    mtmp->mundetected = 0;
 		    if (cansee(x,y))
 /*JP			pline("%s is shaken loose from the ceiling!",*/
-			pline("%s¤ÏÍÉ¤¹¤é¤ì¡¤Å·°æ¤«¤éÍî¤Á¤Æ¤­¤¿¡ª",
+			pline("%sã¯æºã™ã‚‰ã‚Œï¼Œå¤©äº•ã‹ã‚‰è½ã¡ã¦ããŸï¼",
 							    Amonnam(mtmp));
 		    else
 /*JP			You_hear("a thumping sound.");*/
-			You("¥É¥ó¥É¥ó¤È¤¤¤¦²»¤òÊ¹¤¤¤¿¡¥");
+			You("ãƒ‰ãƒ³ãƒ‰ãƒ³ã¨ã„ã†éŸ³ã‚’èã„ãŸï¼");
 		    if (x==u.ux && y==u.uy)
 /*JP			You("easily dodge the falling %s.",*/
-			You("´ÊÃ±¤ËÍî¤Á¤Æ¤­¤¿%s¤ò¤«¤ï¤·¤¿¡¥",
+			You("ç°¡å˜ã«è½ã¡ã¦ããŸ%sã‚’ã‹ã‚ã—ãŸï¼",
 							    mon_nam(mtmp));
 		    newsym(x,y);
 		}
@@ -253,13 +253,13 @@ int force;
 		  case FOUNTAIN : /* Make the fountain disappear */
 			if (cansee(x,y))
 /*JP				pline_The("fountain falls into a chasm.");*/
-				pline("Àô¤ÏÃÏ³ä¤ì¤ËÍî¤Á¤¿¡¥");
+				pline("æ³‰ã¯åœ°å‰²ã‚Œã«è½ã¡ãŸï¼");
 			goto do_pit;
 #ifdef SINKS
 		  case SINK :
 			if (cansee(x,y))
 /*JP				pline_The("kitchen sink falls into a chasm.");*/
-				pline("Î®¤·Âæ¤ÏÃÏ³ä¤ì¤ËÍî¤Á¤¿¡¥");
+				pline("æµã—å°ã¯åœ°å‰²ã‚Œã«è½ã¡ãŸï¼");
 			goto do_pit;
 #endif
 		  case ALTAR :
@@ -267,12 +267,12 @@ int force;
 
 			if (cansee(x,y))
 /*JP				pline_The("altar falls into a chasm.");*/
-				pline("º×ÃÅ¤ÏÃÏ³ä¤ì¤ËÍî¤Á¤¿¡¥");
+				pline("ç¥­å£‡ã¯åœ°å‰²ã‚Œã«è½ã¡ãŸï¼");
 			goto do_pit;
 		  case THRONE :
 			if (cansee(x,y))
 /*JP				pline_The("throne falls into a chasm.");*/
-				pline("¶ÌºÂ¤ÏÃÏ³ä¤ì¤ËÍî¤Á¤¿¡¥");
+				pline("ç‰åº§ã¯åœ°å‰²ã‚Œã«è½ã¡ãŸï¼");
 			/* Falls into next case */
 		  case ROOM :
 		  case CORR : /* Try to make a pit */
@@ -288,8 +288,8 @@ do_pit:		    chasm = maketrap(x,y,PIT);
 			if (cansee(x, y))
 /*JP			   pline("KADOOM! The boulder falls into a chasm%s!",
 			      ((x == u.ux) && (y == u.uy)) ? " below you" : "");*/
-			   pline("¥É¥É¡¼¥ó¡ª´ä¤Ï%sÃÏ³ä¤ì¤ËÍî¤Á¤¿¡ª",
-			      ((x == u.ux) && (y == u.uy)) ? "¤¢¤Ê¤¿¤Î²¼¤Î" : "");
+			   pline("ãƒ‰ãƒ‰ãƒ¼ãƒ³ï¼å²©ã¯%såœ°å‰²ã‚Œã«è½ã¡ãŸï¼",
+			      ((x == u.ux) && (y == u.uy)) ? "ã‚ãªãŸã®ä¸‹ã®" : "");
 			if (mtmp)
 				mtmp->mtrapped = 0;
 			obj_extract_self(otmp);
@@ -305,23 +305,23 @@ do_pit:		    chasm = maketrap(x,y,PIT);
 			    mtmp->mtrapped = 1;
 			    if(cansee(x,y))
 /*JP				pline("%s falls into a chasm!", Monnam(mtmp));*/
-				pline("%s¤ÏÃÏ³ä¤ì¤ËÍî¤Á¤¿¡ª", Monnam(mtmp));
+				pline("%sã¯åœ°å‰²ã‚Œã«è½ã¡ãŸï¼", Monnam(mtmp));
 			    else if (flags.soundok && humanoid(mtmp->data))
 /*JP				You_hear("a scream!");*/
-				You("¶«¤ÓÀ¼¤òÊ¹¤¤¤¿¡ª");
+				You("å«ã³å£°ã‚’èã„ãŸï¼");
 /*JP			    mselftouch(mtmp, "Falling, ", TRUE);*/
-			    mselftouch(mtmp, "Íî²¼Ãæ¡¤", TRUE);
+			    mselftouch(mtmp, "è½ä¸‹ä¸­ï¼Œ", TRUE);
 			    if (mtmp->mhp > 0)
 				if ((mtmp->mhp -= rnd(6)) <= 0) {
 				    if(!cansee(x,y))
 /*JP					pline("It is destroyed!");*/
-					pline("²¿¼Ô¤«¤Ï»à¤ó¤À¡ª");
+					pline("ä½•è€…ã‹ã¯æ­»ã‚“ã ï¼");
 				    else {
 /*JP					You("destroy %s!", mtmp->mtame ?
 					    x_monnam(mtmp, 0, "poor", 0) :
 					    mon_nam(mtmp));*/
-				        pline("%s%s¤Ï»à¤ó¤À¡ª", mtmp->mtame ?
-					      "²Ä°¦¤½¤¦¤Ë" : "",
+				        pline("%s%sã¯æ­»ã‚“ã ï¼", mtmp->mtame ?
+					      "å¯æ„›ãã†ã«" : "",
 					      mon_nam(mtmp));
 
 				    }
@@ -332,20 +332,20 @@ do_pit:		    chasm = maketrap(x,y,PIT);
 			    if (Levitation || is_flyer(uasmon) ||
 						is_clinger(uasmon)) {
 /*JP				    pline("A chasm opens up under you!");*/
-				    pline("ÃÏ³ä¤ì¤¬¤¢¤Ê¤¿¤Î²¼¤Ë³«¤¤¤¿¡ª");
+				    pline("åœ°å‰²ã‚ŒãŒã‚ãªãŸã®ä¸‹ã«é–‹ã„ãŸï¼");
 /*JP				    You("don't fall in!");*/
-				    You("Íî¤Á¤Ê¤«¤Ã¤¿¡ª");
+				    You("è½ã¡ãªã‹ã£ãŸï¼");
 			    } else {
 /*JP				    You("fall into a chasm!");*/
-				    You("ÃÏ³ä¤ì¤ËÍî¤Á¤¿¡ª");
+				    You("åœ°å‰²ã‚Œã«è½ã¡ãŸï¼");
 				    u.utrap = rn1(6,2);
 				    u.utraptype = TT_PIT;
 /*JP				    losehp(rnd(6),"fell into a chasm",
 					NO_KILLER_PREFIX);*/
-				    losehp(rnd(6),"ÃÏ³ä¤ì¤ËÍî¤Á¤Æ",
+				    losehp(rnd(6),"åœ°å‰²ã‚Œã«è½ã¡ã¦",
 					KILLED_BY);
 /*JP				    selftouch("Falling, you");*/
-				    selftouch("Íî¤Á¤Ê¤¬¤é¡¤¤¢¤Ê¤¿¤Ï");
+				    selftouch("è½ã¡ãªãŒã‚‰ï¼Œã‚ãªãŸã¯");
 			    }
 		    } else newsym(x,y);
 		    break;
@@ -353,7 +353,7 @@ do_pit:		    chasm = maketrap(x,y,PIT);
 		    if (levl[x][y].doormask == D_NODOOR) goto do_pit;
 		    if (cansee(x,y))
 /*JP			pline_The("door collapses.");*/
-			pline("Èâ¤Ï¤³¤Ê¤´¤Ê¤Ë¤Ê¤Ã¤¿¡¥");
+			pline("æ‰‰ã¯ã“ãªã”ãªã«ãªã£ãŸï¼");
 		    if (*in_rooms(x, y, SHOPBASE))
 			add_damage(x, y, 0L);
 		    levl[x][y].doormask = D_NODOOR;
@@ -396,17 +396,17 @@ struct obj *instr;
 
 	if (!do_spec)
 /*JP	    pline("What you produce is quite far from music...");*/
-	    pline("¤¢¤Ê¤¿¤¬ÁÕ¤Ç¤¿¤â¤Î¤Ï²»³Ú¤È¤Ï¤È¤Æ¤â¸Æ¤Ù¤Ê¤¤¡¥¡¥¡¥");
+	    pline("ã‚ãªãŸãŒå¥ã§ãŸã‚‚ã®ã¯éŸ³æ¥½ã¨ã¯ã¨ã¦ã‚‚å‘¼ã¹ãªã„ï¼ï¼ï¼");
 	else
 /*JP	    You("start playing %s.", the(xname(instr)));*/
-	    You("%s¤òÁÕ¤Ç¤è¤¦¤È¤·¤¿¡¥", the(xname(instr)));
+	    You("%sã‚’å¥ã§ã‚ˆã†ã¨ã—ãŸï¼", the(xname(instr)));
 	switch (instr->otyp) {
 	case MAGIC_FLUTE:		/* Make monster fall asleep */
 	    if (do_spec && instr->spe > 0) {
 		check_unpaid(instr);
 		instr->spe--;
 /*JP		You("produce soft music.");*/
-		You("½À¤é¤«¤¤²»¿§¤òÁÕ¤Ç¤¿¡¥");
+		You("æŸ”ã‚‰ã‹ã„éŸ³è‰²ã‚’å¥ã§ãŸï¼");
 		put_monsters_to_sleep(u.ulevel * 5);
 		exercise(A_DEX, TRUE);
 		break;
@@ -415,8 +415,8 @@ struct obj *instr;
 	    do_spec &= (rn2(ACURR(A_DEX)) + u.ulevel > 25);
 /*JP	    pline("%s %s.", The(xname(instr)),
 		  do_spec ? "trills" : "toots");*/
-	    pline("%s%s¡¥", The(xname(instr)),
-		  do_spec ? "ÁÕ¤Ç¤¿" : "¤ò¿á¤¤¤¿");
+	    pline("%s%sï¼", The(xname(instr)),
+		  do_spec ? "å¥ã§ãŸ" : "ã‚’å¹ã„ãŸ");
 	    if (do_spec) charm_snakes(u.ulevel * 3);
 	    exercise(A_DEX, TRUE);
 	    break;
@@ -427,14 +427,14 @@ struct obj *instr;
 		instr->spe--;
 		if (!getdir((char *)0)) {
 /*JP		    pline("%s vibrates.", The(xname(instr)));*/
-		    pline("%s¤Ï¿Ì¤¨¤¿¡¥", The(xname(instr)));
+		    pline("%sã¯éœ‡ãˆãŸï¼", The(xname(instr)));
 		    break;
 		} else if (!u.dx && !u.dy && !u.dz) {
 		    if ((damage = zapyourself(instr, TRUE)) != 0)
 			losehp(damage,
 /*JP			       self_pronoun("using a magical horn on %sself",
 					    "him"),*/
-			       "¼«Ê¬¼«¿È¤ÎËâË¡¤Î¥Û¥ë¥ó¤ÎÎÏ¤òÍá¤Ó¤Æ",
+			       "è‡ªåˆ†è‡ªèº«ã®é­”æ³•ã®ãƒ›ãƒ«ãƒ³ã®åŠ›ã‚’æµ´ã³ã¦",
 /*JP			       NO_KILLER_PREFIX);*/
 			       KILLED_BY);
 		} else {
@@ -446,13 +446,13 @@ struct obj *instr;
 	    } /* else FALLTHRU */
 	case TOOLED_HORN:		/* Awaken or scare monsters */
 /*JP	    You("produce a frightful, grave sound.");*/
-	    You("¿È¿Ì¤¤¤¹¤ë¤è¤¦¤Ê»à¼Ô¤Î²»³Ú¤òÁÕ¤Ç¤¿¡¥");
+	    You("èº«éœ‡ã„ã™ã‚‹ã‚ˆã†ãªæ­»è€…ã®éŸ³æ¥½ã‚’å¥ã§ãŸï¼");
 	    awaken_monsters(u.ulevel * 30);
 	    exercise(A_WIS, FALSE);
 	    break;
 	case BUGLE:			/* Awaken & attract soldiers */
 /*JP	    You("extract a loud noise from %s.", the(xname(instr)));*/
-	    You("%s¤«¤éÂç¤­¤Ê¼ª¾ã¤ê¤Ê²»¤ò½Ğ¤·¤¿¡¥", the(xname(instr)));
+	    You("%sã‹ã‚‰å¤§ããªè€³éšœã‚ŠãªéŸ³ã‚’å‡ºã—ãŸï¼", the(xname(instr)));
 	    awaken_soldiers();
 	    exercise(A_WIS, FALSE);
 	    break;
@@ -462,7 +462,7 @@ struct obj *instr;
 		instr->spe--;
 /*JP		pline("%s produces very attractive music.",
 		      The(xname(instr)));*/
-		You("¤È¤Æ¤âÌ¥ÎÏÅª¤Ê²»³Ú¤òÁÕ¤Ç¤¿¡¥");
+		You("ã¨ã¦ã‚‚é­…åŠ›çš„ãªéŸ³æ¥½ã‚’å¥ã§ãŸï¼");
 		charm_monsters((u.ulevel - 1) / 3 + 1);
 		exercise(A_DEX, TRUE);
 		break;
@@ -471,8 +471,8 @@ struct obj *instr;
 	    do_spec &= (rn2(ACURR(A_DEX)) + u.ulevel > 25);
 /*JP	    pline("%s %s.", The(xname(instr)),
 		  do_spec ? "produces a lilting melody" : "twangs");*/
-	    You("%s¡¥", 
-		  do_spec ? "·Ú²÷¤Ê²»³Ú¤òÁÕ¤Ç¤¿" : "¥İ¥í¡¼¥ó¤È¤¤¤¦²»¤ò½Ğ¤·¤¿");
+	    You("%sï¼", 
+		  do_spec ? "è»½å¿«ãªéŸ³æ¥½ã‚’å¥ã§ãŸ" : "ãƒãƒ­ãƒ¼ãƒ³ã¨ã„ã†éŸ³ã‚’å‡ºã—ãŸ");
 	    if (do_spec) calm_nymphs(u.ulevel * 3);
 	    exercise(A_DEX, TRUE);
 	    break;
@@ -481,9 +481,9 @@ struct obj *instr;
 		check_unpaid(instr);
 		instr->spe--;
 /*JP		You("produce a heavy, thunderous rolling!");*/
-		You("½Å¸ü¤ÊÍë¤Î¤è¤¦¤Ê²»¤òÁÕ¤Ç¤¿¡ª");
+		You("é‡åšãªé›·ã®ã‚ˆã†ãªéŸ³ã‚’å¥ã§ãŸï¼");
 /*JP		pline_The("entire dungeon is shaking around you!");*/
-		pline("¤¢¤Ê¤¿¤Î²ó¤ê¤ÎÌÂµÜ¤¬ÍÉ¤ì¤¿¡ª");
+		pline("ã‚ãªãŸã®å›ã‚Šã®è¿·å®®ãŒæºã‚ŒãŸï¼");
 		do_earthquake((u.ulevel - 1) / 3 + 1);
 		/* shake up monsters in a much larger radius... */
 		awaken_monsters(ROWNO * COLNO);
@@ -492,7 +492,7 @@ struct obj *instr;
 	    } /* else FALLTHRU */
 	case LEATHER_DRUM:		/* Awaken monsters */
 /*JP	    You("beat a deafening row!");*/
-	    You("¼ª¤¬Ê¹¤³¤¨¤Ê¤¯¤Ê¤ë¤¯¤é¤¤Ã¡¤¤¤¿¡ª");
+	    You("è€³ãŒèã“ãˆãªããªã‚‹ãã‚‰ã„å©ã„ãŸï¼");
 	    awaken_monsters(u.ulevel * 40);
 	    exercise(A_WIS, FALSE);
 	    break;
@@ -520,26 +520,26 @@ struct obj *instr;
 
     if (Underwater) {
 /*JP	You_cant("play music underwater!");*/
-	You("¿å¤ÎÄì¤Ç¤Ï²»³Ú¤òÁÕ¤Ç¤é¤ì¤Ê¤¤¡ª");
+	You("æ°´ã®åº•ã§ã¯éŸ³æ¥½ã‚’å¥ã§ã‚‰ã‚Œãªã„ï¼");
 	return(0);
     }
     if (instr->otyp != LEATHER_DRUM && instr->otyp != DRUM_OF_EARTHQUAKE) {
 /*JP	c = yn("Improvise?");*/
-	c = yn("Â¨¶½¤Ç±éÁÕ¤¹¤ë¡©");
+	c = yn("å³èˆˆã§æ¼”å¥ã™ã‚‹ï¼Ÿ");
     }
     if (c == 'n') {
 /*JP	if (u.uevent.uheard_tune == 2 && yn("Play the passtune?") == 'y')*/
-	if (u.uevent.uheard_tune == 2 && yn("¥³¡¼¥É¤ò±éÁÕ¤¹¤ë¡©") == 'y')
+	if (u.uevent.uheard_tune == 2 && yn("ã‚³ãƒ¼ãƒ‰ã‚’æ¼”å¥ã™ã‚‹ï¼Ÿ") == 'y')
 		Strcpy(buf, tune);
 	else
 /*JP		getlin("What tune are you playing? [what 5 notes]", buf);*/
-		getlin("¤É¤Î¤è¤¦¤ÊÄ´¤Ù¤ò±éÁÕ¤·¤Ş¤¹¤«¡©[ºÇ½é¤Î5²»¤ò¤¤¤ì¤Æ¤Í]", buf);
+		getlin("ã©ã®ã‚ˆã†ãªèª¿ã¹ã‚’æ¼”å¥ã—ã¾ã™ã‹ï¼Ÿ[æœ€åˆã®5éŸ³ã‚’ã„ã‚Œã¦ã­]", buf);
 #ifndef	AMIGA
 	/* The AMIGA supports two octaves of notes */
 	for (s=buf; *s; s++) *s = highc(*s);
 #endif
 /*JP	You("extract a strange sound from %s!", the(xname(instr)));*/
-	You("%s¤«¤é´ñÌ¯¤Ê²»¤ò½Ğ¤·¤¿¡ª", the(xname(instr)));
+	You("%sã‹ã‚‰å¥‡å¦™ãªéŸ³ã‚’å‡ºã—ãŸï¼", the(xname(instr)));
 #ifdef UNIX386MUSIC
 	/* if user is at the console, play through the console speaker */
 	if (atconsole())
@@ -625,16 +625,16 @@ struct obj *instr;
 			if(gears)
 /*JP			    You_hear("%d tumbler%s click and %d gear%s turn.",
 				tumblers, plur(tumblers), gears, plur(gears));*/
-			    You("%d¤Î¶â¶ñ¤¬¥«¥Á¤Ã¤È¤Ê¤ê¡¤%d¤Î»õ¼Ö¤¬¤Ş¤ï¤ë²»¤òÊ¹¤¤¤¿",
+			    You("%dã®é‡‘å…·ãŒã‚«ãƒã£ã¨ãªã‚Šï¼Œ%dã®æ­¯è»ŠãŒã¾ã‚ã‚‹éŸ³ã‚’èã„ãŸ",
 				tumblers, gears);
 			else
 /*JP			    You_hear("%d tumbler%s click.",
 				tumblers, plur(tumblers));*/
-			    You("%d¤Î¶â¶ñ¤¬¥«¥Á¤Ã¤È¤Ê¤ë²»¤òÊ¹¤¤¤¿¡¥",
+			    You("%dã®é‡‘å…·ãŒã‚«ãƒã£ã¨ãªã‚‹éŸ³ã‚’èã„ãŸï¼",
 				tumblers);
 		    else if(gears) {
 /*JP			You_hear("%d gear%s turn.", gears, plur(gears));*/
-			You("%d¤Î»õ¼Ö¤¬²ó¤ë²»¤òÊ¹¤¤¤¿¡¥", gears);
+			You("%dã®æ­¯è»ŠãŒå›ã‚‹éŸ³ã‚’èã„ãŸï¼", gears);
 			/* could only get `gears == 5' by playing five
 			   correct notes followed by excess; otherwise,
 			   tune would have matched above */

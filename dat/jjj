@@ -1,594 +1,594 @@
 
 
-  NetHack¤Ï¤Ş¤ì¤Ë¡¤¥¢¥¤¥Æ¥à¤ä²øÊª¤ÎÌ¾Á°¤òÊ¹¤¤¤Æ¤¯¤ë¤³¤È¤¬¤¢¤ë¡¥¤³¤ì¤é
-¤Î¼ÁÌä¤Ë¤Ï±Ñ¸ì¤ÇÅú¤¨¤ë¤³¤È¤¬¤Ç¤­¤ë¡¥Ì¤ÃÎ¤Î¥¢¥¤¥Æ¥à¤Ï'`'¥³¥Ş¥ó¥É¤Ç¥ª¥ê¥¸
-¥Ê¥ë¥â¡¼¥É¤Ë¤¹¤ë¤³¤È¤Ë¤è¤ê¡¤±ÑÌ¾¤ò¥Á¥§¥Ã¥¯¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡¥¥¢¥¤¥Æ¥à°ì
-Í÷¥³¥Ş¥ó¥É 'i','I'¤Ş¤¿¤Ï¡¤±ó¤¯¤Î²øÊª¤äÊª¤òÄ´¤Ù¤ë¥³¥Ş¥ó¥É ';','/'¤ÇÃÎ¤ë
-¤³¤È¤¬¤Ç¤­¤ë¤è¤¦¤Ë¤Ê¤ë¡¥Ìô¤ä´¬Êª¤Î¤è¤¦¤Ê¼±ÊÌ¤·¤Ê¤¤¤È¤É¤Î¤è¤¦¤Ê¸ú²Ì¤¬¤¢
-¤ë¤«¤ï¤«¤é¤Ê¤¤¤â¤Î¤Ï¡¤¥ª¥ê¥¸¥Ê¥ë¥â¡¼¥É¤Ë¤·¤Æ¤â±ÑÌ¾¤Ë¤Ê¤é¤Ê¤¤¡¥
+  NetHackã¯ã¾ã‚Œã«ï¼Œã‚¢ã‚¤ãƒ†ãƒ ã‚„æ€ªç‰©ã®åå‰ã‚’èã„ã¦ãã‚‹ã“ã¨ãŒã‚ã‚‹ï¼ã“ã‚Œã‚‰
+ã®è³ªå•ã«ã¯è‹±èªã§ç­”ãˆã‚‹ã“ã¨ãŒã§ãã‚‹ï¼æœªçŸ¥ã®ã‚¢ã‚¤ãƒ†ãƒ ã¯'`'ã‚³ãƒãƒ³ãƒ‰ã§ã‚ªãƒªã‚¸
+ãƒŠãƒ«ãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹ã“ã¨ã«ã‚ˆã‚Šï¼Œè‹±åã‚’ãƒã‚§ãƒƒã‚¯ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ï¼ã‚¢ã‚¤ãƒ†ãƒ ä¸€
+è¦§ã‚³ãƒãƒ³ãƒ‰ 'i','I'ã¾ãŸã¯ï¼Œé ãã®æ€ªç‰©ã‚„ç‰©ã‚’èª¿ã¹ã‚‹ã‚³ãƒãƒ³ãƒ‰ ';','/'ã§çŸ¥ã‚‹
+ã“ã¨ãŒã§ãã‚‹ã‚ˆã†ã«ãªã‚‹ï¼è–¬ã‚„å·»ç‰©ã®ã‚ˆã†ãªè­˜åˆ¥ã—ãªã„ã¨ã©ã®ã‚ˆã†ãªåŠ¹æœãŒã‚
+ã‚‹ã‹ã‚ã‹ã‚‰ãªã„ã‚‚ã®ã¯ï¼Œã‚ªãƒªã‚¸ãƒŠãƒ«ãƒ¢ãƒ¼ãƒ‰ã«ã—ã¦ã‚‚è‹±åã«ãªã‚‰ãªã„ï¼
 
 
-           ********** ²øÊª¤Î±ÑÌ¾¡¤ÏÂÌ¾¤Î¥Æ¡¼¥Ö¥ë **********
+           ********** æ€ªç‰©ã®è‹±åï¼Œå’Œåã®ãƒ†ãƒ¼ãƒ–ãƒ« **********
 
-°Ê²¼¤Î¥Æ¡¼¥Ö¥ë¤ÏNetHack¤Ë½Ğ¤Æ¤¯¤ë¤â¤Î¤Î°ìÉô¤Ç¤¢¤ë¡¥¤³¤ì°Ê³°¤Î¤â¤Î¤ËÁø
-¶ø¤·¤¿¤È¤­¤Ï'`'¤Ç¥ª¥ê¥¸¥Ê¥ë¥â¡¼¥É¤Ë¤·¤¿¤¢¤È'/'¤Ş¤¿¤Ï'j'¤ÇÌ¾Á°¤ò¥Á¥§¥Ã
-¥¯¤¹¤ë¤³¤È¡¥
+ä»¥ä¸‹ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã¯NetHackã«å‡ºã¦ãã‚‹ã‚‚ã®ã®ä¸€éƒ¨ã§ã‚ã‚‹ï¼ã“ã‚Œä»¥å¤–ã®ã‚‚ã®ã«é­
+é‡ã—ãŸã¨ãã¯'`'ã§ã‚ªãƒªã‚¸ãƒŠãƒ«ãƒ¢ãƒ¼ãƒ‰ã«ã—ãŸã‚ã¨'/'ã¾ãŸã¯'j'ã§åå‰ã‚’ãƒã‚§ãƒƒ
+ã‚¯ã™ã‚‹ã“ã¨ï¼
 
-giant ant                       µğÂçµÂ                          
-killer bee                      »¦¿ÍËª                          
-soldier ant                     Ê¼ÂâµÂ                          
-fire ant                        ²ĞµÂ                            
-giant beetle                    µğÂç¥«¥Ö¥ÈÃî                    
-queen bee                       ½÷²¦Ëª                          
-acid blob                       »À¤Î¥Ö¥í¥Ã¥Ö                    
-quivering blob                  ¿Ì¤¨¤ë¥Ö¥í¥Ã¥Ö                  
-gelatinous cube                 ¥¼¥é¥Á¥ó¥­¥å¡¼¥Ö                
-cockatrice                      ¥³¥«¥È¥ê¥¹                      
-jackal                          ¥¸¥ã¥Ã¥«¥ë                      
-werejackal                      ¥¸¥ã¥Ã¥«¥ë¿Í´Ö                  
-little dog                      »Æ¸¤                            
-dog                             ¸¤                              
-large dog                       Âç¤­¤Ê¸¤                        
-wolf                            Ïµ                              
-werewolf                        Ïµ¿Í´Ö                          
-warg                            ¥ï¡¼¥°                          
-winter wolf                     ÅßÏµ                            
-hell hound pup                  ¥Ø¥ë¥Ï¥¦¥ó¥É¤Î»Æ                
-hell hound                      ¥Ø¥ë¥Ï¥¦¥ó¥É                    
-Cerberus                        ¥±¥ë¥Ù¥í¥¹                      
-floating eye                    ¤µ¤Ş¤è¤¦ÌÜ                      
-freezing sphere                 Åà¤Ã¤¿µåÂÎ                      
-beholder                        ¥Ó¥Û¥ë¥À¡¼
-kitten                          ¾®Ç­                            
-housecat                        ²ÈÇ­                            
-jaguar                          ¥¸¥ã¥¬¡¼                        
-large cat                       Âç¤­¤ÊÇ­                        
-tiger                           ¸×                              
-gremlin                         ¥°¥ì¥à¥ê¥ó                      
-gargoyle                        ¥¬¡¼¥´¥¤¥ë                      
-winged gargoyle                 ±©¤Î¤¢¤ë¥¬¡¼¥´¥¤¥ë              
-hobbit                          ¥Û¥Ó¥Ã¥È                        
-dwarf                           ¥É¥ï¡¼¥Õ                        
-bugbear                         ¥Ğ¥°¥Ù¥¢¡¼                      
-dwarf lord                      ¥É¥ï¡¼¥Õ¤Îµ®Â²                  
-dwarf king                      ¥É¥ï¡¼¥Õ¤Î²¦                    
-mind flayer                     ¥Ş¥¤¥ó¥É¥Õ¥ì¥¢                  
-manes                           Ë´Îî                            
-homunculus                      ¥Û¥à¥ó¥¯¥ë¥¹                    
-imp                             ¥¤¥ó¥×                          
-lemure                          ¥ì¥à¥ì¡¼¥¹                      
-quasit                          ¥¯¥¢¥·¥È                        
-tengu                           Å·¶é                            
-blue jelly                      ÀÄ¿§¥¼¥ê¡¼                      
-spotted jelly                   ¤Ş¤À¤é¥¼¥ê¡¼                    
-ochre jelly                     ²«ÅÚ¿§¥¼¥ê¡¼                    
-kobold                          ¥³¥Ü¥ë¥É                        
-large kobold                    Âç¤­¤Ê¥³¥Ü¥ë¥É                  
-kobold lord                     ¥³¥Ü¥ë¥É¤Îµ®Â²                  
-kobold shaman                   ¥³¥Ü¥ë¥É¤Î¼ö½Ñ»Õ                
-leprechaun                      ¥ì¥×¥é¥³¡¼¥ó                    
-small mimic                     ¾®¤µ¤Ê¥ß¥ß¥Ã¥¯                  
-large mimic                     Âç¤­¤Ê¥ß¥ß¥Ã¥¯                  
-giant mimic                     µğÂç¤Ê¥ß¥ß¥Ã¥¯                  
-wood nymph                      ÌÚ¤Î¥Ë¥ó¥Õ                      
-water nymph                     ¿å¤Î¥Ë¥ó¥Õ                      
-mountain nymph                  »³¤Î¥Ë¥ó¥Õ                      
-goblin                          ¥´¥Ö¥ê¥ó                        
-hobgoblin                       ¥Û¥Ö¥´¥Ö¥ê¥ó                    
-orc                             ¥ª¡¼¥¯                          
-hill orc                        µÖ¤Î¥ª¡¼¥¯                      
-Mordor orc                      ¥â¥ë¥É¡¼¥ë¤Î¥ª¡¼¥¯              
-Uruk-hai                        ¥¦¥ë¥¯¡¦¥Ï¥¤                    
-orc shaman                      ¥ª¡¼¥¯¤Î¼ö½Ñ»Õ                  
-orc-captain                     ¥ª¡¼¥¯¤ÎÂâÄ¹                    
-rock piercer                    ´ä¶ô¤¤                          
-iron piercer                    Å´¶ô¤¤                          
-rothe                           ¥í¥¼                            
-mumak                           ¥à¡¼¥Ş¥¯                        
-leocrotta                       ¥ì¥ª¥¯¥í¥Ã¥¿                    
-wumpus                          ¥ï¥ó¥Ñ¥¹                        
-titanothere                     ¥Á¥¿¥Î¥¼¥¢                      
-baluchitherium                  ¥Ğ¥ë¥­¥Æ¥ê¥¦¥à                  
-sewer rat                       ¥É¥Ö¥Í¥º¥ß                      
-giant rat                       µğÂç¥Í¥º¥ß                      
-rabid rat                       ¶¤Ë½¥Í¥º¥ß                      
-wererat                         ¤Í¤º¤ß¿Í´Ö                      
-rock mole                       ´ä¤â¤°¤é                        
-cave spider                     Æ¶·¢¥°¥â                        
-giant spider                    µğÂç¥°¥â                        
-scorpion                        ¥µ¥½¥ê                          
-lurker above                    ¥é¡¼¥«¡¼                        
-trapper                         ¥È¥é¥Ã¥Ñ¡¼                      
-white unicorn                   Çò¥æ¥Ë¥³¡¼¥ó                    
-gray unicorn                    ³¥¿§¥æ¥Ë¥³¡¼¥ó                  
-black unicorn                   ¹õ¥æ¥Ë¥³¡¼¥ó                    
-fog cloud                       Ì¸¤ÎÆŞ                          
-dust vortex                     ¤Û¤³¤ê¤Î±²                      
-ice vortex                      É¹¤Î±²                          
-energy vortex                   ¥¨¥Í¥ë¥®¡¼¤Î±²                  
-steam vortex                    ¾øµ¤¤Î±²                        
-fire vortex                     ±ê¤Î±²                          
-baby long worm                  ¥í¥ó¥°¥ï¡¼¥à¤Î»Ò¶¡              
-baby purple worm                »ç¥ï¡¼¥à¤Î»Ò¶¡                  
-long worm                       ¥í¥ó¥°¥ï¡¼¥à                    
-purple worm                     »ç¥ï¡¼¥à                        
-long worm tail                  ¥í¥ó¥°¥ï¡¼¥à¤Î¿¬Èø              
-grid bug                        ¥°¥ê¥Ã¥É¥Ğ¥°                    
-xan                             ¥¶¥ó                            
-yellow light                    ²«¿§¤¤¸÷                        
-black light                     ¹õ¤¤¸÷                          
-zruty                           ¥º¥ë¥Æ¥£                        
-couatl                          ¥³¥¦¥¢¥È¥ë                      
-Aleax                           ¥¢¥ì¥¢¥Ã¥¯¥¹                    
-Angel                           Å·»È                            
-ki-rin                          óÊÎÛ                            
-Archon                          ¥¢¥ë¥³¥ó                        
-bat                             ¤³¤¦¤â¤ê                        
-giant bat                       µğÂç¤³¤¦¤â¤ê                    
-vampire bat                     µÛ·ì¤³¤¦¤â¤ê                    
-plains centaur                  Áğ¸¶¤Î¥±¥ó¥¿¥¦¥í¥¹              
-forest centaur                  ¿¹¤Î¥±¥ó¥¿¥¦¥í¥¹                
-mountain centaur                »³¤Î¥±¥ó¥¿¥¦¥í¥¹                
-baby gray dragon                ³¥¿§¥É¥é¥´¥ó¤Î»Ò¶¡              
-baby red dragon                 ÀÖ¿§¥É¥é¥´¥ó¤Î»Ò¶¡              
-baby white dragon               Çò¥É¥é¥´¥ó¤Î»Ò¶¡                
-baby orange dragon              ¥ª¥ì¥ó¥¸¥É¥é¥´¥ó¤Î»Ò¶¡          
-baby black dragon               ¹õ¥É¥é¥´¥ó¤Î»Ò¶¡                
-baby blue dragon                ÀÄ¥É¥é¥´¥ó¤Î»Ò¶¡                
-baby green dragon               ÎĞ¥É¥é¥´¥ó¤Î»Ò¶¡                
-baby yellow dragon              ²«¿§¥É¥é¥´¥ó¤Î»Ò¶¡              
-gray dragon                     ³¥¿§¥É¥é¥´¥ó                    
-red dragon                      ÀÖ¿§¥É¥é¥´¥ó                    
-white dragon                    Çò¥É¥é¥´¥ó                      
-orange dragon                   ¥ª¥ì¥ó¥¸¥É¥é¥´¥ó                
-black dragon                    ¹õ¥É¥é¥´¥ó                      
-blue dragon                     ÀÄ¥É¥é¥´¥ó                      
-green dragon                    ÎĞ¥É¥é¥´¥ó                      
-yellow dragon                   ²«¿§¥É¥é¥´¥ó                    
-air elemental                   É÷¤ÎÀº                          
-fire elemental                  ²Ğ¤ÎÀº                          
-earth elemental                 ÅÚ¤ÎÀº                          
-water elemental                 ¿å¤ÎÀº                          
-brown mold                      Ãã¿§¥â¡¼¥ë¥É                    
-yellow mold                     ²«¿§¥â¡¼¥ë¥É                    
-green mold                      ÎĞ¥â¡¼¥ë¥É                      
-red mold                        ÀÖ¿§¥â¡¼¥ë¥É                    
-shrieker                        ¥·¥å¥ê¡¼¥«¡¼                    
-violet fungus                   »ç¥­¥Î¥³                        
-gnome                           ¥Î¡¼¥à                          
-gnome lord                      ¥Î¡¼¥à¤Îµ®Â²                    
-gnomish wizard                  ¥Î¡¼¥à¤ÎËâË¡»È¤¤                
-gnome king                      ¥Î¡¼¥à¤Î²¦                      
-giant                           µğ¿Í                            
-stone giant                     ´äÀĞµğ¿Í                        
-hill giant                      µÖ¤Îµğ¿Í                        
-fire giant                      ±ê¤Îµğ¿Í                        
-frost giant                     ¿áÀã¤Îµğ¿Í                      
-ettin                           ¥¨¥Æ¥£¥ó                        
-titan                           ¥¿¥¤¥¿¥ó                        
-minotaur                        ¥ß¥Î¥¿¥¦¥í¥¹                    
-stalker                         ¥¹¥È¡¼¥«¡¼                      
-jabberwock                      ¥¸¥ã¥Ğ¥¦¥©¥Ã¥¯                  
-Keystone Kop                    ·ÙÈ÷°÷                          
-Kop Sergeant                    ½äºº                            
-Kop Lieutenant                  ½äººÉôÄ¹                        
-Kop Kaptain                     ·ÙÉôÊä                          
-lich                            ¥ê¥Ã¥Á                          
-demilich                        ¥Ç¥ß¥ê¥Ã¥Á                      
-master lich                     ¥Ş¥¹¥¿¡¼¥ê¥Ã¥Á                  
-kobold mummy                    ¥³¥Ü¥ë¥É¤Î¥ß¥¤¥é                
-gnome mummy                     ¥Î¡¼¥à¤Î¥ß¥¤¥é                  
-orc mummy                       ¥ª¡¼¥¯¤Î¥ß¥¤¥é                  
-elf mummy                       ¥¨¥ë¥Õ¤Î¥ß¥¤¥é                  
-human mummy                     ¿Í´Ö¤Î¥ß¥¤¥é                    
-ettin mummy                     ¥¨¥Æ¥£¥ó¤Î¥ß¥¤¥é                
-giant mummy                     µğ¿Í¤Î¥ß¥¤¥é                    
-red naga hatchling              ÀÖ¿§¥Ê¡¼¥¬¤Î¿÷                  
-black naga hatchling            ¹õ¥Ê¡¼¥¬¤Î¿÷                    
-golden naga hatchling           ¶â¿§¥Ê¡¼¥¬¤Î¿÷                  
-guardian naga hatchling         ÈÖÊ¼¥Ê¡¼¥¬¤Î¿÷                  
-red naga                        ÀÖ¿§¥Ê¡¼¥¬                      
-black naga                      ¹õ¥Ê¡¼¥¬                        
-golden naga                     ¶â¿§¥Ê¡¼¥¬                      
-guardian naga                   ÈÖÊ¼¥Ê¡¼¥¬                      
-ogre                            ¥ª¡¼¥¬                          
-ogre lord                       ¥ª¡¼¥¬¤Î·¯¼ç                    
-ogre king                       ¥ª¡¼¥¬¤Î²¦                      
-gray ooze                       ³¥¿§¥¦¡¼¥º                      
-brown pudding                   Ãã¿§¥×¥ê¥ó                      
-black pudding                   ¹õ¥×¥ê¥ó                        
-quantum mechanic                ÎÌ»Ò¾ì                          
-rust monster                    »¬¤Î²øÊª                        
-garter snake                    ¾®¤µ¤Ê¥Ø¥Ó                      
-snake                           ¥Ø¥Ó                            
-water moccasin                  ¿å¥Ø¥Ó                          
-pit viper                       ·ê¥Ø¥Ó                          
-python                          ¥Ë¥·¥­¥Ø¥Ó                      
-cobra                           ¥³¥Ö¥é                          
-troll                           ¥È¥í¥ë                          
-ice troll                       É¹¤Î¥È¥í¥ë                      
-rock troll                      ´ä¤Î¥È¥í¥ë                      
-water troll                     ¿å¤Î¥È¥í¥ë                      
-Olog-hai                        ¥ª¥í¥°¥Ï¥¤                      
-umber hulk                      ¥¢¥ó¥Ğ¡¼¥Ï¥ë¥¯                  
-vampire                         µÛ·ìµ´                          
-vampire lord                    µÛ·ìµ´¤Îµ®Â²                    
-Vlad the Impaler                µÛ·ìµ´¥ô¥é¥É                    
-barrow wight                    ¥Ğ¥í¥¦¡¦¥ï¥¤¥È                  
-wraith                          ¥ì¥¤¥¹                          
-Nazgul                          ¥Ê¥º¥°¥ë                        
-xorn                            ¥¾¡¼¥ó                          
-ape                             ±î                              
-owlbear                         ¥¢¥¦¥ë¥Ù¥¢                      
-yeti                            ¥¤¥¨¥Æ¥£                        
-carnivorous ape                 ¿Í¶ô¤¤±î                        
-sasquatch                       ¥µ¥¹¥«¥Ã¥Á                      
-kobold zombie                   ¥³¥Ü¥ë¥É¤Î¥¾¥ó¥Ó                
-gnome zombie                    ¥Î¡¼¥à¤Î¥¾¥ó¥Ó                  
-orc zombie                      ¥ª¡¼¥¯¤Î¥¾¥ó¥Ó                  
-elf zombie                      ¥¨¥ë¥Õ¤Î¥¾¥ó¥Ó                  
-human zombie                    ¿Í´Ö¤Î¥¾¥ó¥Ó                    
-ettin zombie                    ¥¨¥Æ¥£¥ó¤Î¥¾¥ó¥Ó                
-giant zombie                    µğ¿Í¤Î¥¾¥ó¥Ó                    
-skeleton                        ³¼¹ü                            
-straw golem                     ÏÎ¤Î¥´¡¼¥ì¥à                    
-rope golem                      É³¤Î¥´¡¼¥ì¥à                    
-leather golem                   Èé¤Î¥´¡¼¥ì¥à                    
-wood golem                      ÌÚ¤Î¥´¡¼¥ì¥à                    
-flesh golem                     Æù¤Î¥´¡¼¥ì¥à                    
-clay golem                      ÅÚ¤Î¥´¡¼¥ì¥à                    
-stone golem                     ´ä¤Î¥´¡¼¥ì¥à                    
-iron golem                      Å´¤Î¥´¡¼¥ì¥à                    
-human                           ¿Í´Ö                            
-Woodland-elf                    ¿¹¤Î¥¨¥ë¥Õ                      
-Green-elf                       ÎĞ¥¨¥ë¥Õ                        
-Grey-elf                        ³¥¿§¥¨¥ë¥Õ                      
-elf-lord                        ¥¨¥ë¥Õ¤Îµ®Â²                    
-Elvenking                       ¥¨¥ë¥Õ¤Î²¦                      
-nurse                           ´Ç¸îÉØ                          
-shopkeeper                      Å¹¼ç                            
-guard                           ÈÖÊ¼                            
-Oracle                          ¸­¼Ô                            
-aligned priest                  ÁÎÎ·                            
-high priest                     ¹âÁÎ                            
-soldier                         Ê¼»Î                            
-sergeant                        ²¼»Î´±                          
-lieutenant                      Éû´±                            
-captain                         »Ø´ø´±                          
-watchman                        ¸«Ä¥¤ê                          
-watch captain                   ¸«Ä¥¤ê¤ÎÂâÄ¹                    
-Medusa                          ¥á¥Ç¥å¡¼¥µ                      
-Wizard of Yendor                ¥¤¥§¥ó¥À¡¼¤ÎËâË¡»È¤¤            
-Croesus                         ¥¯¥í¥¤¥½¥¹                      
-Charon                          ¥«¥í¥ó                          
-ghost                           Í©Îî                            
-shade                           ±Æ                              
-water demon                     ¿å¤ÎËâ¿À                        
-horned devil                    ³Ñ¤Î¤¢¤ë°­Ëâ                    
-succubus                        ¥µ¥­¥å¥Ğ¥¹                      
-incubus                         ¥¤¥ó¥­¥å¥Ğ¥¹                    
-erinys                          ¥¤¥ê¥Ë¥¹                        
-barbed devil                    É¦¤Î¤¢¤ë°­Ëâ                    
-marilith                        ¥Ş¥ê¥ê¥¹                        
-vrock                           ¥ô¥¡¥í¥Ã¥¯                      
-hezrou                          ¥Ø¥º¥í¥¦                        
-bone devil                      ¹ü¤Î°­Ëâ                        
-ice devil                       É¹¤Î°­Ëâ                        
-nalfeshnee                      ¥Ê¥ë¥Õ¥§¥·¥Ë                    
-pit fiend                       ·ê¤Î°­Îî                        
-balrog                          ¥Ğ¥ë¥í¥°                        
-Juiblex                         ¥¸¥ç¥¦¥Ó¥ì¥Ã¥¯¥¹                
-Yeenoghu                        ¥¤¡¼¥Î¥°                        
-Orcus                           ¥ª¡¼¥±¥¹                        
-Geryon                          ¥²¡¼¥ê¥å¥ª¡¼¥ó                  
-Dispater                        ¥Ç¥£¥¹¥Ú¡¼¥¿                    
-Baalzebub                       ¥Ù¥ë¥¼¥Ö¥Ö                      
-Asmodeus                        ¥¢¥¹¥â¥Ç¥¦¥¹                    
-Demogorgon                      ¥Ç¥â¥´¥ë¥´¥ó                    
-Death                           ¥Ç¥¹                            
-Pestilence                      ¥Ú¥¹¥Æ¥£¥ì¥ó¥¹                  
-Famine                          ¥Õ¥§¥ß¥ó                        
-mail daemon                     ¥á¥¤¥ë¥Ç¡¼¥â¥ó                  
-djinni                          É÷¤Î¥¸¥ó                        
-giant eel                       µğÂç¥¦¥Ê¥®                      
-electric eel                    ÅÅµ¤¥¦¥Ê¥®                      
-kraken                          ¥¯¥é¡¼¥±¥ó                      
-newt                            ¥¤¥â¥ê                          
-gecko                           ¥ä¥â¥ê                          
-iguana                          ¥¤¥°¥¢¥Ê                        
-baby crocodile                  ¥ï¥Ë¤Î»Ò¶¡                      
-lizard                          ¥È¥«¥²                          
-chameleon                       ¥«¥á¥ì¥ª¥ó                      
-crocodile                       ¥ï¥Ë                            
-salamander                      ¥µ¥é¥Ş¥ó¥À¡¼                    
+giant ant                       å·¨å¤§èŸ»                          
+killer bee                      æ®ºäººèœ‚                          
+soldier ant                     å…µéšŠèŸ»                          
+fire ant                        ç«èŸ»                            
+giant beetle                    å·¨å¤§ã‚«ãƒ–ãƒˆè™«                    
+queen bee                       å¥³ç‹èœ‚                          
+acid blob                       é…¸ã®ãƒ–ãƒ­ãƒƒãƒ–                    
+quivering blob                  éœ‡ãˆã‚‹ãƒ–ãƒ­ãƒƒãƒ–                  
+gelatinous cube                 ã‚¼ãƒ©ãƒãƒ³ã‚­ãƒ¥ãƒ¼ãƒ–                
+cockatrice                      ã‚³ã‚«ãƒˆãƒªã‚¹                      
+jackal                          ã‚¸ãƒ£ãƒƒã‚«ãƒ«                      
+werejackal                      ã‚¸ãƒ£ãƒƒã‚«ãƒ«äººé–“                  
+little dog                      ä»”çŠ¬                            
+dog                             çŠ¬                              
+large dog                       å¤§ããªçŠ¬                        
+wolf                            ç‹¼                              
+werewolf                        ç‹¼äººé–“                          
+warg                            ãƒ¯ãƒ¼ã‚°                          
+winter wolf                     å†¬ç‹¼                            
+hell hound pup                  ãƒ˜ãƒ«ãƒã‚¦ãƒ³ãƒ‰ã®ä»”                
+hell hound                      ãƒ˜ãƒ«ãƒã‚¦ãƒ³ãƒ‰                    
+Cerberus                        ã‚±ãƒ«ãƒ™ãƒ­ã‚¹                      
+floating eye                    ã•ã¾ã‚ˆã†ç›®                      
+freezing sphere                 å‡ã£ãŸçƒä½“                      
+beholder                        ãƒ“ãƒ›ãƒ«ãƒ€ãƒ¼
+kitten                          å°çŒ«                            
+housecat                        å®¶çŒ«                            
+jaguar                          ã‚¸ãƒ£ã‚¬ãƒ¼                        
+large cat                       å¤§ããªçŒ«                        
+tiger                           è™                              
+gremlin                         ã‚°ãƒ¬ãƒ ãƒªãƒ³                      
+gargoyle                        ã‚¬ãƒ¼ã‚´ã‚¤ãƒ«                      
+winged gargoyle                 ç¾½ã®ã‚ã‚‹ã‚¬ãƒ¼ã‚´ã‚¤ãƒ«              
+hobbit                          ãƒ›ãƒ“ãƒƒãƒˆ                        
+dwarf                           ãƒ‰ãƒ¯ãƒ¼ãƒ•                        
+bugbear                         ãƒã‚°ãƒ™ã‚¢ãƒ¼                      
+dwarf lord                      ãƒ‰ãƒ¯ãƒ¼ãƒ•ã®è²´æ—                  
+dwarf king                      ãƒ‰ãƒ¯ãƒ¼ãƒ•ã®ç‹                    
+mind flayer                     ãƒã‚¤ãƒ³ãƒ‰ãƒ•ãƒ¬ã‚¢                  
+manes                           äº¡éœŠ                            
+homunculus                      ãƒ›ãƒ ãƒ³ã‚¯ãƒ«ã‚¹                    
+imp                             ã‚¤ãƒ³ãƒ—                          
+lemure                          ãƒ¬ãƒ ãƒ¬ãƒ¼ã‚¹                      
+quasit                          ã‚¯ã‚¢ã‚·ãƒˆ                        
+tengu                           å¤©ç‹—                            
+blue jelly                      é’è‰²ã‚¼ãƒªãƒ¼                      
+spotted jelly                   ã¾ã ã‚‰ã‚¼ãƒªãƒ¼                    
+ochre jelly                     é»„åœŸè‰²ã‚¼ãƒªãƒ¼                    
+kobold                          ã‚³ãƒœãƒ«ãƒ‰                        
+large kobold                    å¤§ããªã‚³ãƒœãƒ«ãƒ‰                  
+kobold lord                     ã‚³ãƒœãƒ«ãƒ‰ã®è²´æ—                  
+kobold shaman                   ã‚³ãƒœãƒ«ãƒ‰ã®å‘ªè¡“å¸«                
+leprechaun                      ãƒ¬ãƒ—ãƒ©ã‚³ãƒ¼ãƒ³                    
+small mimic                     å°ã•ãªãƒŸãƒŸãƒƒã‚¯                  
+large mimic                     å¤§ããªãƒŸãƒŸãƒƒã‚¯                  
+giant mimic                     å·¨å¤§ãªãƒŸãƒŸãƒƒã‚¯                  
+wood nymph                      æœ¨ã®ãƒ‹ãƒ³ãƒ•                      
+water nymph                     æ°´ã®ãƒ‹ãƒ³ãƒ•                      
+mountain nymph                  å±±ã®ãƒ‹ãƒ³ãƒ•                      
+goblin                          ã‚´ãƒ–ãƒªãƒ³                        
+hobgoblin                       ãƒ›ãƒ–ã‚´ãƒ–ãƒªãƒ³                    
+orc                             ã‚ªãƒ¼ã‚¯                          
+hill orc                        ä¸˜ã®ã‚ªãƒ¼ã‚¯                      
+Mordor orc                      ãƒ¢ãƒ«ãƒ‰ãƒ¼ãƒ«ã®ã‚ªãƒ¼ã‚¯              
+Uruk-hai                        ã‚¦ãƒ«ã‚¯ãƒ»ãƒã‚¤                    
+orc shaman                      ã‚ªãƒ¼ã‚¯ã®å‘ªè¡“å¸«                  
+orc-captain                     ã‚ªãƒ¼ã‚¯ã®éšŠé•·                    
+rock piercer                    å²©å–°ã„                          
+iron piercer                    é‰„å–°ã„                          
+rothe                           ãƒ­ã‚¼                            
+mumak                           ãƒ ãƒ¼ãƒã‚¯                        
+leocrotta                       ãƒ¬ã‚ªã‚¯ãƒ­ãƒƒã‚¿                    
+wumpus                          ãƒ¯ãƒ³ãƒ‘ã‚¹                        
+titanothere                     ãƒã‚¿ãƒã‚¼ã‚¢                      
+baluchitherium                  ãƒãƒ«ã‚­ãƒ†ãƒªã‚¦ãƒ                   
+sewer rat                       ãƒ‰ãƒ–ãƒã‚ºãƒŸ                      
+giant rat                       å·¨å¤§ãƒã‚ºãƒŸ                      
+rabid rat                       å…‡æš´ãƒã‚ºãƒŸ                      
+wererat                         ã­ãšã¿äººé–“                      
+rock mole                       å²©ã‚‚ãã‚‰                        
+cave spider                     æ´çªŸã‚°ãƒ¢                        
+giant spider                    å·¨å¤§ã‚°ãƒ¢                        
+scorpion                        ã‚µã‚½ãƒª                          
+lurker above                    ãƒ©ãƒ¼ã‚«ãƒ¼                        
+trapper                         ãƒˆãƒ©ãƒƒãƒ‘ãƒ¼                      
+white unicorn                   ç™½ãƒ¦ãƒ‹ã‚³ãƒ¼ãƒ³                    
+gray unicorn                    ç°è‰²ãƒ¦ãƒ‹ã‚³ãƒ¼ãƒ³                  
+black unicorn                   é»’ãƒ¦ãƒ‹ã‚³ãƒ¼ãƒ³                    
+fog cloud                       éœ§ã®æ›‡                          
+dust vortex                     ã»ã“ã‚Šã®æ¸¦                      
+ice vortex                      æ°·ã®æ¸¦                          
+energy vortex                   ã‚¨ãƒãƒ«ã‚®ãƒ¼ã®æ¸¦                  
+steam vortex                    è’¸æ°—ã®æ¸¦                        
+fire vortex                     ç‚ã®æ¸¦                          
+baby long worm                  ãƒ­ãƒ³ã‚°ãƒ¯ãƒ¼ãƒ ã®å­ä¾›              
+baby purple worm                ç´«ãƒ¯ãƒ¼ãƒ ã®å­ä¾›                  
+long worm                       ãƒ­ãƒ³ã‚°ãƒ¯ãƒ¼ãƒ                     
+purple worm                     ç´«ãƒ¯ãƒ¼ãƒ                         
+long worm tail                  ãƒ­ãƒ³ã‚°ãƒ¯ãƒ¼ãƒ ã®å°»å°¾              
+grid bug                        ã‚°ãƒªãƒƒãƒ‰ãƒã‚°                    
+xan                             ã‚¶ãƒ³                            
+yellow light                    é»„è‰²ã„å…‰                        
+black light                     é»’ã„å…‰                          
+zruty                           ã‚ºãƒ«ãƒ†ã‚£                        
+couatl                          ã‚³ã‚¦ã‚¢ãƒˆãƒ«                      
+Aleax                           ã‚¢ãƒ¬ã‚¢ãƒƒã‚¯ã‚¹                    
+Angel                           å¤©ä½¿                            
+ki-rin                          éº’éºŸ                            
+Archon                          ã‚¢ãƒ«ã‚³ãƒ³                        
+bat                             ã“ã†ã‚‚ã‚Š                        
+giant bat                       å·¨å¤§ã“ã†ã‚‚ã‚Š                    
+vampire bat                     å¸è¡€ã“ã†ã‚‚ã‚Š                    
+plains centaur                  è‰åŸã®ã‚±ãƒ³ã‚¿ã‚¦ãƒ­ã‚¹              
+forest centaur                  æ£®ã®ã‚±ãƒ³ã‚¿ã‚¦ãƒ­ã‚¹                
+mountain centaur                å±±ã®ã‚±ãƒ³ã‚¿ã‚¦ãƒ­ã‚¹                
+baby gray dragon                ç°è‰²ãƒ‰ãƒ©ã‚´ãƒ³ã®å­ä¾›              
+baby red dragon                 èµ¤è‰²ãƒ‰ãƒ©ã‚´ãƒ³ã®å­ä¾›              
+baby white dragon               ç™½ãƒ‰ãƒ©ã‚´ãƒ³ã®å­ä¾›                
+baby orange dragon              ã‚ªãƒ¬ãƒ³ã‚¸ãƒ‰ãƒ©ã‚´ãƒ³ã®å­ä¾›          
+baby black dragon               é»’ãƒ‰ãƒ©ã‚´ãƒ³ã®å­ä¾›                
+baby blue dragon                é’ãƒ‰ãƒ©ã‚´ãƒ³ã®å­ä¾›                
+baby green dragon               ç·‘ãƒ‰ãƒ©ã‚´ãƒ³ã®å­ä¾›                
+baby yellow dragon              é»„è‰²ãƒ‰ãƒ©ã‚´ãƒ³ã®å­ä¾›              
+gray dragon                     ç°è‰²ãƒ‰ãƒ©ã‚´ãƒ³                    
+red dragon                      èµ¤è‰²ãƒ‰ãƒ©ã‚´ãƒ³                    
+white dragon                    ç™½ãƒ‰ãƒ©ã‚´ãƒ³                      
+orange dragon                   ã‚ªãƒ¬ãƒ³ã‚¸ãƒ‰ãƒ©ã‚´ãƒ³                
+black dragon                    é»’ãƒ‰ãƒ©ã‚´ãƒ³                      
+blue dragon                     é’ãƒ‰ãƒ©ã‚´ãƒ³                      
+green dragon                    ç·‘ãƒ‰ãƒ©ã‚´ãƒ³                      
+yellow dragon                   é»„è‰²ãƒ‰ãƒ©ã‚´ãƒ³                    
+air elemental                   é¢¨ã®ç²¾                          
+fire elemental                  ç«ã®ç²¾                          
+earth elemental                 åœŸã®ç²¾                          
+water elemental                 æ°´ã®ç²¾                          
+brown mold                      èŒ¶è‰²ãƒ¢ãƒ¼ãƒ«ãƒ‰                    
+yellow mold                     é»„è‰²ãƒ¢ãƒ¼ãƒ«ãƒ‰                    
+green mold                      ç·‘ãƒ¢ãƒ¼ãƒ«ãƒ‰                      
+red mold                        èµ¤è‰²ãƒ¢ãƒ¼ãƒ«ãƒ‰                    
+shrieker                        ã‚·ãƒ¥ãƒªãƒ¼ã‚«ãƒ¼                    
+violet fungus                   ç´«ã‚­ãƒã‚³                        
+gnome                           ãƒãƒ¼ãƒ                           
+gnome lord                      ãƒãƒ¼ãƒ ã®è²´æ—                    
+gnomish wizard                  ãƒãƒ¼ãƒ ã®é­”æ³•ä½¿ã„                
+gnome king                      ãƒãƒ¼ãƒ ã®ç‹                      
+giant                           å·¨äºº                            
+stone giant                     å²©çŸ³å·¨äºº                        
+hill giant                      ä¸˜ã®å·¨äºº                        
+fire giant                      ç‚ã®å·¨äºº                        
+frost giant                     å¹é›ªã®å·¨äºº                      
+ettin                           ã‚¨ãƒ†ã‚£ãƒ³                        
+titan                           ã‚¿ã‚¤ã‚¿ãƒ³                        
+minotaur                        ãƒŸãƒã‚¿ã‚¦ãƒ­ã‚¹                    
+stalker                         ã‚¹ãƒˆãƒ¼ã‚«ãƒ¼                      
+jabberwock                      ã‚¸ãƒ£ãƒã‚¦ã‚©ãƒƒã‚¯                  
+Keystone Kop                    è­¦å‚™å“¡                          
+Kop Sergeant                    å·¡æŸ»                            
+Kop Lieutenant                  å·¡æŸ»éƒ¨é•·                        
+Kop Kaptain                     è­¦éƒ¨è£œ                          
+lich                            ãƒªãƒƒãƒ                          
+demilich                        ãƒ‡ãƒŸãƒªãƒƒãƒ                      
+master lich                     ãƒã‚¹ã‚¿ãƒ¼ãƒªãƒƒãƒ                  
+kobold mummy                    ã‚³ãƒœãƒ«ãƒ‰ã®ãƒŸã‚¤ãƒ©                
+gnome mummy                     ãƒãƒ¼ãƒ ã®ãƒŸã‚¤ãƒ©                  
+orc mummy                       ã‚ªãƒ¼ã‚¯ã®ãƒŸã‚¤ãƒ©                  
+elf mummy                       ã‚¨ãƒ«ãƒ•ã®ãƒŸã‚¤ãƒ©                  
+human mummy                     äººé–“ã®ãƒŸã‚¤ãƒ©                    
+ettin mummy                     ã‚¨ãƒ†ã‚£ãƒ³ã®ãƒŸã‚¤ãƒ©                
+giant mummy                     å·¨äººã®ãƒŸã‚¤ãƒ©                    
+red naga hatchling              èµ¤è‰²ãƒŠãƒ¼ã‚¬ã®é››                  
+black naga hatchling            é»’ãƒŠãƒ¼ã‚¬ã®é››                    
+golden naga hatchling           é‡‘è‰²ãƒŠãƒ¼ã‚¬ã®é››                  
+guardian naga hatchling         ç•ªå…µãƒŠãƒ¼ã‚¬ã®é››                  
+red naga                        èµ¤è‰²ãƒŠãƒ¼ã‚¬                      
+black naga                      é»’ãƒŠãƒ¼ã‚¬                        
+golden naga                     é‡‘è‰²ãƒŠãƒ¼ã‚¬                      
+guardian naga                   ç•ªå…µãƒŠãƒ¼ã‚¬                      
+ogre                            ã‚ªãƒ¼ã‚¬                          
+ogre lord                       ã‚ªãƒ¼ã‚¬ã®å›ä¸»                    
+ogre king                       ã‚ªãƒ¼ã‚¬ã®ç‹                      
+gray ooze                       ç°è‰²ã‚¦ãƒ¼ã‚º                      
+brown pudding                   èŒ¶è‰²ãƒ—ãƒªãƒ³                      
+black pudding                   é»’ãƒ—ãƒªãƒ³                        
+quantum mechanic                é‡å­å ´                          
+rust monster                    éŒ†ã®æ€ªç‰©                        
+garter snake                    å°ã•ãªãƒ˜ãƒ“                      
+snake                           ãƒ˜ãƒ“                            
+water moccasin                  æ°´ãƒ˜ãƒ“                          
+pit viper                       ç©´ãƒ˜ãƒ“                          
+python                          ãƒ‹ã‚·ã‚­ãƒ˜ãƒ“                      
+cobra                           ã‚³ãƒ–ãƒ©                          
+troll                           ãƒˆãƒ­ãƒ«                          
+ice troll                       æ°·ã®ãƒˆãƒ­ãƒ«                      
+rock troll                      å²©ã®ãƒˆãƒ­ãƒ«                      
+water troll                     æ°´ã®ãƒˆãƒ­ãƒ«                      
+Olog-hai                        ã‚ªãƒ­ã‚°ãƒã‚¤                      
+umber hulk                      ã‚¢ãƒ³ãƒãƒ¼ãƒãƒ«ã‚¯                  
+vampire                         å¸è¡€é¬¼                          
+vampire lord                    å¸è¡€é¬¼ã®è²´æ—                    
+Vlad the Impaler                å¸è¡€é¬¼ãƒ´ãƒ©ãƒ‰                    
+barrow wight                    ãƒãƒ­ã‚¦ãƒ»ãƒ¯ã‚¤ãƒˆ                  
+wraith                          ãƒ¬ã‚¤ã‚¹                          
+Nazgul                          ãƒŠã‚ºã‚°ãƒ«                        
+xorn                            ã‚¾ãƒ¼ãƒ³                          
+ape                             çŒ¿                              
+owlbear                         ã‚¢ã‚¦ãƒ«ãƒ™ã‚¢                      
+yeti                            ã‚¤ã‚¨ãƒ†ã‚£                        
+carnivorous ape                 äººå–°ã„çŒ¿                        
+sasquatch                       ã‚µã‚¹ã‚«ãƒƒãƒ                      
+kobold zombie                   ã‚³ãƒœãƒ«ãƒ‰ã®ã‚¾ãƒ³ãƒ“                
+gnome zombie                    ãƒãƒ¼ãƒ ã®ã‚¾ãƒ³ãƒ“                  
+orc zombie                      ã‚ªãƒ¼ã‚¯ã®ã‚¾ãƒ³ãƒ“                  
+elf zombie                      ã‚¨ãƒ«ãƒ•ã®ã‚¾ãƒ³ãƒ“                  
+human zombie                    äººé–“ã®ã‚¾ãƒ³ãƒ“                    
+ettin zombie                    ã‚¨ãƒ†ã‚£ãƒ³ã®ã‚¾ãƒ³ãƒ“                
+giant zombie                    å·¨äººã®ã‚¾ãƒ³ãƒ“                    
+skeleton                        éª¸éª¨                            
+straw golem                     è—ã®ã‚´ãƒ¼ãƒ¬ãƒ                     
+rope golem                      ç´ã®ã‚´ãƒ¼ãƒ¬ãƒ                     
+leather golem                   çš®ã®ã‚´ãƒ¼ãƒ¬ãƒ                     
+wood golem                      æœ¨ã®ã‚´ãƒ¼ãƒ¬ãƒ                     
+flesh golem                     è‚‰ã®ã‚´ãƒ¼ãƒ¬ãƒ                     
+clay golem                      åœŸã®ã‚´ãƒ¼ãƒ¬ãƒ                     
+stone golem                     å²©ã®ã‚´ãƒ¼ãƒ¬ãƒ                     
+iron golem                      é‰„ã®ã‚´ãƒ¼ãƒ¬ãƒ                     
+human                           äººé–“                            
+Woodland-elf                    æ£®ã®ã‚¨ãƒ«ãƒ•                      
+Green-elf                       ç·‘ã‚¨ãƒ«ãƒ•                        
+Grey-elf                        ç°è‰²ã‚¨ãƒ«ãƒ•                      
+elf-lord                        ã‚¨ãƒ«ãƒ•ã®è²´æ—                    
+Elvenking                       ã‚¨ãƒ«ãƒ•ã®ç‹                      
+nurse                           çœ‹è­·å©¦                          
+shopkeeper                      åº—ä¸»                            
+guard                           ç•ªå…µ                            
+Oracle                          è³¢è€…                            
+aligned priest                  åƒ§ä¾¶                            
+high priest                     é«˜åƒ§                            
+soldier                         å…µå£«                            
+sergeant                        ä¸‹å£«å®˜                          
+lieutenant                      å‰¯å®˜                            
+captain                         æŒ‡æ®å®˜                          
+watchman                        è¦‹å¼µã‚Š                          
+watch captain                   è¦‹å¼µã‚Šã®éšŠé•·                    
+Medusa                          ãƒ¡ãƒ‡ãƒ¥ãƒ¼ã‚µ                      
+Wizard of Yendor                ã‚¤ã‚§ãƒ³ãƒ€ãƒ¼ã®é­”æ³•ä½¿ã„            
+Croesus                         ã‚¯ãƒ­ã‚¤ã‚½ã‚¹                      
+Charon                          ã‚«ãƒ­ãƒ³                          
+ghost                           å¹½éœŠ                            
+shade                           å½±                              
+water demon                     æ°´ã®é­”ç¥                        
+horned devil                    è§’ã®ã‚ã‚‹æ‚ªé­”                    
+succubus                        ã‚µã‚­ãƒ¥ãƒã‚¹                      
+incubus                         ã‚¤ãƒ³ã‚­ãƒ¥ãƒã‚¹                    
+erinys                          ã‚¤ãƒªãƒ‹ã‚¹                        
+barbed devil                    é«­ã®ã‚ã‚‹æ‚ªé­”                    
+marilith                        ãƒãƒªãƒªã‚¹                        
+vrock                           ãƒ´ã‚¡ãƒ­ãƒƒã‚¯                      
+hezrou                          ãƒ˜ã‚ºãƒ­ã‚¦                        
+bone devil                      éª¨ã®æ‚ªé­”                        
+ice devil                       æ°·ã®æ‚ªé­”                        
+nalfeshnee                      ãƒŠãƒ«ãƒ•ã‚§ã‚·ãƒ‹                    
+pit fiend                       ç©´ã®æ‚ªéœŠ                        
+balrog                          ãƒãƒ«ãƒ­ã‚°                        
+Juiblex                         ã‚¸ãƒ§ã‚¦ãƒ“ãƒ¬ãƒƒã‚¯ã‚¹                
+Yeenoghu                        ã‚¤ãƒ¼ãƒã‚°                        
+Orcus                           ã‚ªãƒ¼ã‚±ã‚¹                        
+Geryon                          ã‚²ãƒ¼ãƒªãƒ¥ã‚ªãƒ¼ãƒ³                  
+Dispater                        ãƒ‡ã‚£ã‚¹ãƒšãƒ¼ã‚¿                    
+Baalzebub                       ãƒ™ãƒ«ã‚¼ãƒ–ãƒ–                      
+Asmodeus                        ã‚¢ã‚¹ãƒ¢ãƒ‡ã‚¦ã‚¹                    
+Demogorgon                      ãƒ‡ãƒ¢ã‚´ãƒ«ã‚´ãƒ³                    
+Death                           ãƒ‡ã‚¹                            
+Pestilence                      ãƒšã‚¹ãƒ†ã‚£ãƒ¬ãƒ³ã‚¹                  
+Famine                          ãƒ•ã‚§ãƒŸãƒ³                        
+mail daemon                     ãƒ¡ã‚¤ãƒ«ãƒ‡ãƒ¼ãƒ¢ãƒ³                  
+djinni                          é¢¨ã®ã‚¸ãƒ³                        
+giant eel                       å·¨å¤§ã‚¦ãƒŠã‚®                      
+electric eel                    é›»æ°—ã‚¦ãƒŠã‚®                      
+kraken                          ã‚¯ãƒ©ãƒ¼ã‚±ãƒ³                      
+newt                            ã‚¤ãƒ¢ãƒª                          
+gecko                           ãƒ¤ãƒ¢ãƒª                          
+iguana                          ã‚¤ã‚°ã‚¢ãƒŠ                        
+baby crocodile                  ãƒ¯ãƒ‹ã®å­ä¾›                      
+lizard                          ãƒˆã‚«ã‚²                          
+chameleon                       ã‚«ãƒ¡ãƒ¬ã‚ªãƒ³                      
+crocodile                       ãƒ¯ãƒ‹                            
+salamander                      ã‚µãƒ©ãƒãƒ³ãƒ€ãƒ¼                    
 
-         ********** ¥¢¥¤¥Æ¥à¤Î±ÑÌ¾¡¤ÏÂÌ¾¤Î¥Æ¡¼¥Ö¥ë **********
+         ********** ã‚¢ã‚¤ãƒ†ãƒ ã®è‹±åï¼Œå’Œåã®ãƒ†ãƒ¼ãƒ–ãƒ« **********
 
-°Ê²¼¤Î¥Æ¡¼¥Ö¥ë¤ÏNetHack¤Ë½Ğ¤Æ¤¯¤ë¤â¤Î¤Î°ìÉô¤Ç¤¢¤ë¡¥¤³¤ì°Ê³°¤Î¤â¤Î¤ËÁø
-¶ø¤·¤¿¤È¤­¤Ï'`'¤Ç¥ª¥ê¥¸¥Ê¥ë¥â¡¼¥É¤Ë¤·¤¿¤¢¤È'i'¤Ş¤¿¤Ï'I'¤ÇÌ¾Á°¤ò¥Á¥§¥Ã
-¥¯¤¹¤ë¤³¤È¡¥
+ä»¥ä¸‹ã®ãƒ†ãƒ¼ãƒ–ãƒ«ã¯NetHackã«å‡ºã¦ãã‚‹ã‚‚ã®ã®ä¸€éƒ¨ã§ã‚ã‚‹ï¼ã“ã‚Œä»¥å¤–ã®ã‚‚ã®ã«é­
+é‡ã—ãŸã¨ãã¯'`'ã§ã‚ªãƒªã‚¸ãƒŠãƒ«ãƒ¢ãƒ¼ãƒ‰ã«ã—ãŸã‚ã¨'i'ã¾ãŸã¯'I'ã§åå‰ã‚’ãƒã‚§ãƒƒ
+ã‚¯ã™ã‚‹ã“ã¨ï¼
 
-±ÑÌ¾                            ÏÂÌ¾
+è‹±å                            å’Œå
 
-arrow                           Ìğ
-elven arrow                     ¥¨¥ë¥Õ¤ÎÌğ
-orcish arrow                    ¥ª¡¼¥¯¤ÎÌğ
-silver arrow                    ¶ä¤ÎÌğ
-ya                              Ìğ
-crossbow bolt                   ¥¯¥í¥¹¥Ü¥¥¥Ü¥ë¥È
-dart                            Åê¤²Ìğ
-shuriken                        ¼êÎ¢·õ
-boomerang                       ¥Ö¡¼¥á¥é¥ó
-spear                           Áä
-elven spear                     ¥¨¥ë¥Õ¤ÎÁä
-orcish spear                    ¥ª¡¼¥¯¤ÎÁä
-dwarvish spear                  ¥É¥ï¡¼¥Õ¤ÎÁä
-javelin                         ¥¸¥ã¥Ù¥ê¥ó
-trident                         ¥È¥é¥¤¥Ç¥ó¥È
-lance                           ¥é¥ó¥¹
-dagger                          Ã»·õ
-elven dagger                    ¥¨¥ë¥Õ¤ÎÃ»·õ
-orcish dagger                   ¥ª¡¼¥¯¤ÎÃ»·õ
-athame                          ¥¢¥µ¥á  
-scalpel                         ¥á¥¹
-knife                           ¥Ê¥¤¥Õ
-stiletto                        ¿íÅá
-worm tooth                      ¥ï¡¼¥à¤Î»õ
-dwarvish mattock                ¥É¥ï¡¼¥Õ¤Î¤Ä¤ë¤Ï¤·
-axe                             Éà
-battle-axe                      ÀïÉà
-short sword                     ¾®·õ
-elven short sword               ¥¨¥ë¥Õ¤Î¾®·õ
-orcish short sword              ¥ª¡¼¥¯¤Î¾®·õ
-dwarvish short sword            ¥É¥ï¡¼¥Õ¤Î¾®·õ
-scimitar                        »°Æü·îÅá
-silver saber                    ¶ä¤Î¥µ¡¼¥Ù¥ë
-broadsword                      Éı¹­¤Î·õ
-elven broadsword                ¥¨¥ë¥Õ¤ÎÉı¹­¤Î·õ
-long sword                      Ä¹·õ
-two-handed sword                Î¾¼ê»ı¤Á¤Î·õ
-katana                          Åá
-tsurugi                         ·õ
-runesword                       Ëâ·õ
-partisan                        ¥Ñ¥ë¥Á¥¶¥ó
-ranseur                         ¥é¥ó¥µ¡¼
-spetum                          ¥¹¥Ú¥¿¥à
-glaive                          ¥°¥ì¥¤¥Ö
-halberd                         ¥Ï¥ë¥Ğ¡¼¥É
-bardiche                        ¥Ğ¡¼¥Ç¥£¥Ã¥¯
-voulge                          ¥Ü¥ë¥²  
-fauchard                        Áä·õ
-guisarme                        ¥®¥¶¥ë¥à
-bill-guisarme                   ¥Ó¥ë¡¦¥®¥¶¥ë¥à
-lucern hammer                   ¥ë¥Ã¥Ä¥§¥ë¥ó¥Ï¥ó¥Ş¡¼
-bec de corbin                   ¥Ù¥Ã¥¯¡¦¥É¡¦¥³¥ë¥Ğ¥ó
-mace                            ¥á¥¤¥¹
-morning star                    ¥â¡¼¥Ë¥ó¥°¥¹¥¿¡¼
-war hammer                      ¥¦¥©¡¼¥Ï¥ó¥Ş¡¼
-club                            ¤³¤óËÀ
-rubber hose                     ¥´¥à¥Û¡¼¥¹
-quarterstaff                    Ï»¼ÜËÀ
-aklys                           ¥¢¥­¥ê¥¹
-flail                           ¥Õ¥ì¥¤¥ë
-bullwhip                        ÊÜ
-bow                             µİ
-elven bow                       ¥¨¥ë¥Õ¤Îµİ
-orcish bow                      ¥ª¡¼¥¯¤Îµİ
-yumi                            ÏÂµİ
-sling                           ¥¹¥ê¥ó¥°
-crossbow                        ¥¯¥í¥¹¥Ü¥¥
-wakizashi                       ÏÆº¹¤·
-ninja-to                        Ç¦¼ÔÅá
-nunchaku                        ¥Ì¥ó¥Á¥ã¥¯
-naginata                        ¤Ê¤®¤Ê¤¿
-shito                           »ÉÅá
+arrow                           çŸ¢
+elven arrow                     ã‚¨ãƒ«ãƒ•ã®çŸ¢
+orcish arrow                    ã‚ªãƒ¼ã‚¯ã®çŸ¢
+silver arrow                    éŠ€ã®çŸ¢
+ya                              çŸ¢
+crossbow bolt                   ã‚¯ãƒ­ã‚¹ãƒœã‚¥ãƒœãƒ«ãƒˆ
+dart                            æŠ•ã’çŸ¢
+shuriken                        æ‰‹è£å‰£
+boomerang                       ãƒ–ãƒ¼ãƒ¡ãƒ©ãƒ³
+spear                           æ§
+elven spear                     ã‚¨ãƒ«ãƒ•ã®æ§
+orcish spear                    ã‚ªãƒ¼ã‚¯ã®æ§
+dwarvish spear                  ãƒ‰ãƒ¯ãƒ¼ãƒ•ã®æ§
+javelin                         ã‚¸ãƒ£ãƒ™ãƒªãƒ³
+trident                         ãƒˆãƒ©ã‚¤ãƒ‡ãƒ³ãƒˆ
+lance                           ãƒ©ãƒ³ã‚¹
+dagger                          çŸ­å‰£
+elven dagger                    ã‚¨ãƒ«ãƒ•ã®çŸ­å‰£
+orcish dagger                   ã‚ªãƒ¼ã‚¯ã®çŸ­å‰£
+athame                          ã‚¢ã‚µãƒ¡  
+scalpel                         ãƒ¡ã‚¹
+knife                           ãƒŠã‚¤ãƒ•
+stiletto                        éŒåˆ€
+worm tooth                      ãƒ¯ãƒ¼ãƒ ã®æ­¯
+dwarvish mattock                ãƒ‰ãƒ¯ãƒ¼ãƒ•ã®ã¤ã‚‹ã¯ã—
+axe                             æ–§
+battle-axe                      æˆ¦æ–§
+short sword                     å°å‰£
+elven short sword               ã‚¨ãƒ«ãƒ•ã®å°å‰£
+orcish short sword              ã‚ªãƒ¼ã‚¯ã®å°å‰£
+dwarvish short sword            ãƒ‰ãƒ¯ãƒ¼ãƒ•ã®å°å‰£
+scimitar                        ä¸‰æ—¥æœˆåˆ€
+silver saber                    éŠ€ã®ã‚µãƒ¼ãƒ™ãƒ«
+broadsword                      å¹…åºƒã®å‰£
+elven broadsword                ã‚¨ãƒ«ãƒ•ã®å¹…åºƒã®å‰£
+long sword                      é•·å‰£
+two-handed sword                ä¸¡æ‰‹æŒã¡ã®å‰£
+katana                          åˆ€
+tsurugi                         å‰£
+runesword                       é­”å‰£
+partisan                        ãƒ‘ãƒ«ãƒã‚¶ãƒ³
+ranseur                         ãƒ©ãƒ³ã‚µãƒ¼
+spetum                          ã‚¹ãƒšã‚¿ãƒ 
+glaive                          ã‚°ãƒ¬ã‚¤ãƒ–
+halberd                         ãƒãƒ«ãƒãƒ¼ãƒ‰
+bardiche                        ãƒãƒ¼ãƒ‡ã‚£ãƒƒã‚¯
+voulge                          ãƒœãƒ«ã‚²  
+fauchard                        æ§å‰£
+guisarme                        ã‚®ã‚¶ãƒ«ãƒ 
+bill-guisarme                   ãƒ“ãƒ«ãƒ»ã‚®ã‚¶ãƒ«ãƒ 
+lucern hammer                   ãƒ«ãƒƒãƒ„ã‚§ãƒ«ãƒ³ãƒãƒ³ãƒãƒ¼
+bec de corbin                   ãƒ™ãƒƒã‚¯ãƒ»ãƒ‰ãƒ»ã‚³ãƒ«ãƒãƒ³
+mace                            ãƒ¡ã‚¤ã‚¹
+morning star                    ãƒ¢ãƒ¼ãƒ‹ãƒ³ã‚°ã‚¹ã‚¿ãƒ¼
+war hammer                      ã‚¦ã‚©ãƒ¼ãƒãƒ³ãƒãƒ¼
+club                            ã“ã‚“æ£’
+rubber hose                     ã‚´ãƒ ãƒ›ãƒ¼ã‚¹
+quarterstaff                    å…­å°ºæ£’
+aklys                           ã‚¢ã‚­ãƒªã‚¹
+flail                           ãƒ•ãƒ¬ã‚¤ãƒ«
+bullwhip                        é­
+bow                             å¼“
+elven bow                       ã‚¨ãƒ«ãƒ•ã®å¼“
+orcish bow                      ã‚ªãƒ¼ã‚¯ã®å¼“
+yumi                            å’Œå¼“
+sling                           ã‚¹ãƒªãƒ³ã‚°
+crossbow                        ã‚¯ãƒ­ã‚¹ãƒœã‚¥
+wakizashi                       è„‡å·®ã—
+ninja-to                        å¿è€…åˆ€
+nunchaku                        ãƒŒãƒ³ãƒãƒ£ã‚¯
+naginata                        ãªããªãŸ
+shito                           åˆºåˆ€
 
-elven leather helm              ¥¨¥ë¥Õ¤Î³×Ë¹»Ò
-orcish helm                     ¥ª¡¼¥¯¤Î³õ
-dwarvish iron helm              ¥É¥ï¡¼¥Õ¤ÎÅ´³õ
-fedora                          ¥Õ¥£¥É¡¼¥é
-dented pot                      ¤¯¤Ü¤ó¤ÀÆé
-helmet                          ³õ
-helm of brilliance              ÃÎÀ­¤Î³õ
-helm of opposite alignment      µÕÂ°À­¤Î³õ
-helm of telepathy               ÀéÎ¤´ã¤Î³õ
-kabuto                          ³õ
-cornuthaum                      ¤È¤ó¤¬¤êË¹»Ò
-dunce cap                       ¥À¥ó¥¹¤ÎË¹»Ò
+elven leather helm              ã‚¨ãƒ«ãƒ•ã®é©å¸½å­
+orcish helm                     ã‚ªãƒ¼ã‚¯ã®å…œ
+dwarvish iron helm              ãƒ‰ãƒ¯ãƒ¼ãƒ•ã®é‰„å…œ
+fedora                          ãƒ•ã‚£ãƒ‰ãƒ¼ãƒ©
+dented pot                      ãã¼ã‚“ã é‹
+helmet                          å…œ
+helm of brilliance              çŸ¥æ€§ã®å…œ
+helm of opposite alignment      é€†å±æ€§ã®å…œ
+helm of telepathy               åƒé‡Œçœ¼ã®å…œ
+kabuto                          å…œ
+cornuthaum                      ã¨ã‚“ãŒã‚Šå¸½å­
+dunce cap                       ãƒ€ãƒ³ã‚¹ã®å¸½å­
 
-plate mail                      ¹İÅ´¤Î³»
-crystal plate mail              ¿å¾½¤Î³»
-bronze plate mail               ÀÄÆ¼¤Î³»
-splint mail                     Å´ÊÒ¤Î³»
-banded mail                     ÂÓ¶â¤Î³»
-dwarvish mithril-coat           ¥É¥ï¡¼¥Õ¤Î¥ß¥¹¥ê¥ëÉş
-elven mithril-coat              ¥¨¥ë¥Õ¤Î¥ß¥¹¥ê¥ëÉş
-chain mail                      º¿¤«¤¿¤Ó¤é
-orcish chain mail               ¥ª¡¼¥¯¤Îº¿¤«¤¿¤Ó¤é
-crude chain mail                ÁÆËö¤Êº¿¤«¤¿¤Ó¤é
-scale mail                      ÎÚ¤Î³»
-studded leather armor           ÉÆÉÕ¤­Èé³»
-ring mail                       Å´´Ä¤Î³»
-orcish ring mail                ¥ª¡¼¥¯¤ÎÅ´´Ä¤Î³»
-leather armor                   Èé³»
-leather jacket                  Èé¤ÎÉş
-tanko                           Ã»¹Ã
-sailor blouse			¥»¡¼¥é¡¼Éş
+plate mail                      é‹¼é‰„ã®é§
+crystal plate mail              æ°´æ™¶ã®é§
+bronze plate mail               é’éŠ…ã®é§
+splint mail                     é‰„ç‰‡ã®é§
+banded mail                     å¸¯é‡‘ã®é§
+dwarvish mithril-coat           ãƒ‰ãƒ¯ãƒ¼ãƒ•ã®ãƒŸã‚¹ãƒªãƒ«æœ
+elven mithril-coat              ã‚¨ãƒ«ãƒ•ã®ãƒŸã‚¹ãƒªãƒ«æœ
+chain mail                      é–ã‹ãŸã³ã‚‰
+orcish chain mail               ã‚ªãƒ¼ã‚¯ã®é–ã‹ãŸã³ã‚‰
+crude chain mail                ç²—æœ«ãªé–ã‹ãŸã³ã‚‰
+scale mail                      é±—ã®é§
+studded leather armor           é‹²ä»˜ãçš®é§
+ring mail                       é‰„ç’°ã®é§
+orcish ring mail                ã‚ªãƒ¼ã‚¯ã®é‰„ç’°ã®é§
+leather armor                   çš®é§
+leather jacket                  çš®ã®æœ
+tanko                           çŸ­ç”²
+sailor blouse			ã‚»ãƒ¼ãƒ©ãƒ¼æœ
 
-mummy wrapping                  ¥ß¥¤¥é¤ÎÊñÂÓ
-elven cloak                     ¥¨¥ë¥Õ¤Î¥¯¥í¡¼¥¯
-orcish cloak                    ¥ª¡¼¥¯¤Î¥¯¥í¡¼¥¯
-dwarvish cloak                  ¥É¥ï¡¼¥Õ¤Î¥¯¥í¡¼¥¯
-oilskin cloak                   ËÉ¿å¥¯¥í¡¼¥¯
-cloak of protection             ¼é¤ê¤Î¥¯¥í¡¼¥¯
-cloak of invisibility           Æ©ÌÀ¤Î¥¯¥í¡¼¥¯
-cloak of magic resistance       ËâË¡¤òËÉ¤°¥¯¥í¡¼¥¯
-cloak of displacement           ¸¸±Æ¤Î¥¯¥í¡¼¥¯
-piece of cloth                  ÉÛÀÚ¤ì
-Hawaiian shirt                  ¥¢¥í¥Ï¥·¥ã¥Ä
+mummy wrapping                  ãƒŸã‚¤ãƒ©ã®åŒ…å¸¯
+elven cloak                     ã‚¨ãƒ«ãƒ•ã®ã‚¯ãƒ­ãƒ¼ã‚¯
+orcish cloak                    ã‚ªãƒ¼ã‚¯ã®ã‚¯ãƒ­ãƒ¼ã‚¯
+dwarvish cloak                  ãƒ‰ãƒ¯ãƒ¼ãƒ•ã®ã‚¯ãƒ­ãƒ¼ã‚¯
+oilskin cloak                   é˜²æ°´ã‚¯ãƒ­ãƒ¼ã‚¯
+cloak of protection             å®ˆã‚Šã®ã‚¯ãƒ­ãƒ¼ã‚¯
+cloak of invisibility           é€æ˜ã®ã‚¯ãƒ­ãƒ¼ã‚¯
+cloak of magic resistance       é­”æ³•ã‚’é˜²ãã‚¯ãƒ­ãƒ¼ã‚¯
+cloak of displacement           å¹»å½±ã®ã‚¯ãƒ­ãƒ¼ã‚¯
+piece of cloth                  å¸ƒåˆ‡ã‚Œ
+Hawaiian shirt                  ã‚¢ãƒ­ãƒã‚·ãƒ£ãƒ„
 
-small shield                    ¾®¤µ¤Ê½â
-elven shield                    ¥¨¥ë¥Õ¤Î½â
-Uruk-hai shield                 ¥¦¥ë¥¯¡¦¥Ï¥¤¤Î½â
-orcish shield                   ¥ª¡¼¥¯¤Î½â
-large shield                    Âç¤­¤Ê½â
-dwarvish roundshield            ¥É¥ï¡¼¥Õ¤Î´İ½â
-shield of reflection            È¿¼Í¤Î½â
+small shield                    å°ã•ãªç›¾
+elven shield                    ã‚¨ãƒ«ãƒ•ã®ç›¾
+Uruk-hai shield                 ã‚¦ãƒ«ã‚¯ãƒ»ãƒã‚¤ã®ç›¾
+orcish shield                   ã‚ªãƒ¼ã‚¯ã®ç›¾
+large shield                    å¤§ããªç›¾
+dwarvish roundshield            ãƒ‰ãƒ¯ãƒ¼ãƒ•ã®ä¸¸ç›¾
+shield of reflection            åå°„ã®ç›¾
 
-leather gloves                  Èé¤Î¼êÂŞ
-gauntlets of fumbling           ¤ª¼ê¶Ì¤Î¾®¼ê
-gauntlets of power              ÎÏ¤Î¾®¼ê
-gauntlets of dexterity          ´ïÍÑ¤µ¤Î¾®¼ê
-yugake                          µİ·ü
+leather gloves                  çš®ã®æ‰‹è¢‹
+gauntlets of fumbling           ãŠæ‰‹ç‰ã®å°æ‰‹
+gauntlets of power              åŠ›ã®å°æ‰‹
+gauntlets of dexterity          å™¨ç”¨ã•ã®å°æ‰‹
+yugake                          å¼“æ‡¸
 
-low boots                       ¤«¤«¤È¤ÎÄã¤¤·¤
-iron shoes                      Å´¤Î·¤
-high boots                      ¤«¤«¤È¤Î¹â¤¤·¤
-speed boots                     ğêÂÌÅ·¤Î·¤
-water walking boots             ¿å¾åÊâ¹Ô¤Î·¤
-jumping boots                   Èô¤ÓÄ·¤Í¤ë·¤
-elven boots                     ¥¨¥ë¥Õ¤Î·¤
-fumble boots                    ¤Ä¤Ş¤Å¤­¤Î·¤
-levitation boots                ÉâÍ·¤Î·¤
+low boots                       ã‹ã‹ã¨ã®ä½ã„é´
+iron shoes                      é‰„ã®é´
+high boots                      ã‹ã‹ã¨ã®é«˜ã„é´
+speed boots                     éŸ‹é§„å¤©ã®é´
+water walking boots             æ°´ä¸Šæ­©è¡Œã®é´
+jumping boots                   é£›ã³è·³ã­ã‚‹é´
+elven boots                     ã‚¨ãƒ«ãƒ•ã®é´
+fumble boots                    ã¤ã¾ã¥ãã®é´
+levitation boots                æµ®éŠã®é´
 
-adornment                       ¾ş¤ê¤Î»ØÎØ
-gain strength                   ¶¯¤µ¤Î»ØÎØ
-increase damage                 ¹¶·â¤Î»ØÎØ
-protection                      ¼é¤ê¤Î»ØÎØ
-regeneration                    ²óÉü¤Î»ØÎØ
-searching                       Ãµº÷¤Î»ØÎØ
-stealth                         Ç¦¤Ó¤Î»ØÎØ
-levitation                      ÉâÍ·¤Î»ØÎØ
-hunger                          µ²²î¤Î»ØÎØ
-aggravate monster               È¿´¶¤Î»ØÎØ
-conflict                        Áè¤¤¤Î»ØÎØ
-warning                         ·Ù¹ğ¤Î»ØÎØ
-poison resistance               ÂÑÆÇ¤Î»ØÎØ
-fire resistance                 ÂÑ±ê¤Î»ØÎØ
-cold resistance                 ÂÑÎä¤Î»ØÎØ
-shock resistance                ÂÑ¾×·â¤Î»ØÎØ
-teleportation                   ½Ö´Ö°ÜÆ°¤Î»ØÎØ
-teleport control                ½Ö´Ö°ÜÆ°À©¸æ¤Î»ØÎØ
-polymorph                       ÊÑ²½¤Î»ØÎØ
-polymorph control               ÊÑ²½À©¸æ¤Î»ØÎØ
-invisibility                    Æ©ÌÀ¤Î»ØÎØ
-see invisible                   ²Ä»ë¤Î»ØÎØ
-protection from shape changers  ÂÑÊÑ²½²øÊª¤Î»ØÎØ
+adornment                       é£¾ã‚Šã®æŒ‡è¼ª
+gain strength                   å¼·ã•ã®æŒ‡è¼ª
+increase damage                 æ”»æ’ƒã®æŒ‡è¼ª
+protection                      å®ˆã‚Šã®æŒ‡è¼ª
+regeneration                    å›å¾©ã®æŒ‡è¼ª
+searching                       æ¢ç´¢ã®æŒ‡è¼ª
+stealth                         å¿ã³ã®æŒ‡è¼ª
+levitation                      æµ®éŠã®æŒ‡è¼ª
+hunger                          é£¢é¤“ã®æŒ‡è¼ª
+aggravate monster               åæ„Ÿã®æŒ‡è¼ª
+conflict                        äº‰ã„ã®æŒ‡è¼ª
+warning                         è­¦å‘Šã®æŒ‡è¼ª
+poison resistance               è€æ¯’ã®æŒ‡è¼ª
+fire resistance                 è€ç‚ã®æŒ‡è¼ª
+cold resistance                 è€å†·ã®æŒ‡è¼ª
+shock resistance                è€è¡æ’ƒã®æŒ‡è¼ª
+teleportation                   ç¬é–“ç§»å‹•ã®æŒ‡è¼ª
+teleport control                ç¬é–“ç§»å‹•åˆ¶å¾¡ã®æŒ‡è¼ª
+polymorph                       å¤‰åŒ–ã®æŒ‡è¼ª
+polymorph control               å¤‰åŒ–åˆ¶å¾¡ã®æŒ‡è¼ª
+invisibility                    é€æ˜ã®æŒ‡è¼ª
+see invisible                   å¯è¦–ã®æŒ‡è¼ª
+protection from shape changers  è€å¤‰åŒ–æ€ªç‰©ã®æŒ‡è¼ª
 
-amulet of ESP                   ±ó»ë¤ÎËâ½ü¤±
-amulet of life saving           Ì¿¤ÎËâ½ü¤±
-amulet of strangulation         ¹Ê»¦¤ÎËâ½ü¤±
-amulet of restful sleep         °ÂÌ²¤ÎËâ½ü¤±
-amulet versus poison            ÂÑÆÇ¤ÎËâ½ü¤±
-amulet of change                À­Å¾´¹¤ÎËâ½ü¤±
-amulet of reflection            È¿¼Í¤ÎËâ½ü¤±
-amulet of magical breathing     ËâË¡¤Î¸ÆµÛ¤ÎËâ½ü¤±
+amulet of ESP                   é è¦–ã®é­”é™¤ã‘
+amulet of life saving           å‘½ã®é­”é™¤ã‘
+amulet of strangulation         çµæ®ºã®é­”é™¤ã‘
+amulet of restful sleep         å®‰çœ ã®é­”é™¤ã‘
+amulet versus poison            è€æ¯’ã®é­”é™¤ã‘
+amulet of change                æ€§è»¢æ›ã®é­”é™¤ã‘
+amulet of reflection            åå°„ã®é­”é™¤ã‘
+amulet of magical breathing     é­”æ³•ã®å‘¼å¸ã®é­”é™¤ã‘
 
-gain ability                    Ç½ÎÏ³ÍÆÀ¤ÎÌô
-restore ability                 Ç½ÎÏ²óÉü¤ÎÌô
-confusion                       º®Íğ¤ÎÌô
-blindness                       ÌÕÌÜ¤ÎÌô
-paralysis                       Ëãáã¤ÎÌô
-speed                           Áá¤¯¤Ê¤ëÌô
-levitation                      ÉâÍ·¤ÎÌô
-hallucination                   ¸¸³Ğ¤ÎÌô
-invisibility                    Æ©ÌÀ¤ÎÌô
-see invisible                   ²Ä»ë¤ÎÌô
-healing                         ²óÉü¤ÎÌô
-extra healing                   Ä¶²óÉü¤ÎÌô
-gain level                      ¥ì¥Ù¥ë¥¢¥Ã¥×¤ÎÌô
-enlightenment                   ·¼ÌØ¤ÎÌô
-monster detection               ²øÊª¤òÃµ¤¹Ìô
-object detection                ÊªÂÎ¤òÃµ¤¹Ìô
-gain energy                     ËâÎÏ¤ÎÌô
-booze                           ¿ì¤Ã¤Ñ¤é¤¤¤ÎÌô
-sake                            ¼ò
-sickness                        ÉÂµ¤¤ÎÌô
-fruit juice                     ¥Õ¥ë¡¼¥Ä¥¸¥å¡¼¥¹
-water                           ¿å
-oil                             Ìı
+gain ability                    èƒ½åŠ›ç²å¾—ã®è–¬
+restore ability                 èƒ½åŠ›å›å¾©ã®è–¬
+confusion                       æ··ä¹±ã®è–¬
+blindness                       ç›²ç›®ã®è–¬
+paralysis                       éº»ç—ºã®è–¬
+speed                           æ—©ããªã‚‹è–¬
+levitation                      æµ®éŠã®è–¬
+hallucination                   å¹»è¦šã®è–¬
+invisibility                    é€æ˜ã®è–¬
+see invisible                   å¯è¦–ã®è–¬
+healing                         å›å¾©ã®è–¬
+extra healing                   è¶…å›å¾©ã®è–¬
+gain level                      ãƒ¬ãƒ™ãƒ«ã‚¢ãƒƒãƒ—ã®è–¬
+enlightenment                   å•“è’™ã®è–¬
+monster detection               æ€ªç‰©ã‚’æ¢ã™è–¬
+object detection                ç‰©ä½“ã‚’æ¢ã™è–¬
+gain energy                     é­”åŠ›ã®è–¬
+booze                           é…”ã£ã±ã‚‰ã„ã®è–¬
+sake                            é…’
+sickness                        ç—…æ°—ã®è–¬
+fruit juice                     ãƒ•ãƒ«ãƒ¼ãƒ„ã‚¸ãƒ¥ãƒ¼ã‚¹
+water                           æ°´
+oil                             æ²¹
 
-enchant armor                   ³»¤ËËâË¡¤ò¤«¤±¤ë´¬Êª
-destroy armor                   ³»¤òÇË²õ¤¹¤ë´¬Êª
-confuse monster                 ²øÊª¤òº®Íğ¤µ¤»¤ë´¬Êª
-scare monster                   ²øÊª¤ò¶±¤¨¤µ¤»¤ë´¬Êª
-remove curse                    ²ò¼ö¤Î´¬Êª
-enchant weapon                  Éğ´ï¤ËËâË¡¤ò¤«¤±¤ë´¬Êª
-create monster                  ²øÊª¤òºî¤ë´¬Êª
-taming                          ²øÊª¤ò»ô¤¤¤Ê¤é¤¹´¬Êª
-genocide                        µÔ»¦¤Î´¬Êª
-light                           ¸÷¤Î´¬Êª
-teleportation                   ½Ö´Ö°ÜÆ°¤Î´¬Êª
-gold detection                  ¶â²ß¤òÃµ¤¹´¬Êª
-food detection                  ¿©ÎÁ¤òÃµ¤¹´¬Êª
-identify                        ¼±ÊÌ¤Î´¬Êª
-magic mapping                   ËâË¡¤ÎÃÏ¿Ş¤Î´¬Êª
-amnesia                         µ­²±ÁÓ¼º¤Î´¬Êª
-fire                            ±ê¤Î´¬Êª
-punishment                      È³¤Î´¬Êª
-charging                        ½¼Å¶¤Î´¬Êª
-mail                            ¼ê»æ¤Î´¬Êª
-blank paper                     Çò»æ¤Î´¬Êª
+enchant armor                   é§ã«é­”æ³•ã‚’ã‹ã‘ã‚‹å·»ç‰©
+destroy armor                   é§ã‚’ç ´å£Šã™ã‚‹å·»ç‰©
+confuse monster                 æ€ªç‰©ã‚’æ··ä¹±ã•ã›ã‚‹å·»ç‰©
+scare monster                   æ€ªç‰©ã‚’æ€¯ãˆã•ã›ã‚‹å·»ç‰©
+remove curse                    è§£å‘ªã®å·»ç‰©
+enchant weapon                  æ­¦å™¨ã«é­”æ³•ã‚’ã‹ã‘ã‚‹å·»ç‰©
+create monster                  æ€ªç‰©ã‚’ä½œã‚‹å·»ç‰©
+taming                          æ€ªç‰©ã‚’é£¼ã„ãªã‚‰ã™å·»ç‰©
+genocide                        è™æ®ºã®å·»ç‰©
+light                           å…‰ã®å·»ç‰©
+teleportation                   ç¬é–“ç§»å‹•ã®å·»ç‰©
+gold detection                  é‡‘è²¨ã‚’æ¢ã™å·»ç‰©
+food detection                  é£Ÿæ–™ã‚’æ¢ã™å·»ç‰©
+identify                        è­˜åˆ¥ã®å·»ç‰©
+magic mapping                   é­”æ³•ã®åœ°å›³ã®å·»ç‰©
+amnesia                         è¨˜æ†¶å–ªå¤±ã®å·»ç‰©
+fire                            ç‚ã®å·»ç‰©
+punishment                      ç½°ã®å·»ç‰©
+charging                        å……å¡«ã®å·»ç‰©
+mail                            æ‰‹ç´™ã®å·»ç‰©
+blank paper                     ç™½ç´™ã®å·»ç‰©
 
-dig                             ·ê·¡¤ê¤ÎËâË¡½ñ
-magic missile                   ËâË¡¤ÎÌğ¤ÎËâË¡½ñ
-fireball                        ²Ğ¤Î¶Ì¤ÎËâË¡½ñ
-cone of cold                    Îäµ¤¤ÎËâË¡½ñ
-sleep                           Ì²¤ê¤ÎËâË¡½ñ
-finger of death                 »à¤Î»Ø¤ÎËâË¡½ñ
-light                           ¸÷¤ÎËâË¡½ñ
-detect monsters                 ²øÊª¤òÃµ¤¹ËâË¡½ñ
-healing                         ²óÉü¤ÎËâË¡½ñ
-knock                           ³«¾û¤ÎËâË¡½ñ
-force bolt                      ¾×·â¤ÎËâË¡½ñ
-confuse monster                 ²øÊª¤òº®Íğ¤µ¤»¤ëËâË¡½ñ
-cure blindness                  ÌÕÌÜ¤òÌş¤¹ËâË¡½ñ
-slow monster                    ²øÊª¤òÃÙ¤¯¤¹¤ëËâË¡½ñ
-wizard lock                     »Ü¾û¤ÎËâË¡½ñ
-create monster                  ²øÊª¤òÂ¤¤ëËâË¡½ñ        
-detect food                     ¿©ÎÁ¤òÃµ¤¹ËâË¡½ñ
-cause fear                      ¶²Éİ¤ÎËâË¡½ñ
-clairvoyance                    ÀéÎ¤´ã¤ÎËâË¡½ñ
-cure sickness                   ÉÂµ¤¤òÌş¤¹ËâË¡½ñ
-charm monster                   ²øÊª¤òÌ¥Î»¤¹¤ëËâË¡½ñ
-haste self                      ÁÇÁá¤µ¤ÎËâË¡½ñ
-detect unseen                   ¸«¤¨¤Ê¤¤¤â¤Î¤òÃµ¤¹ËâË¡½ñ
-levitation                      ÉâÍ·¤ÎËâË¡½ñ
-extra healing                   Ä¶²óÉü¤ÎËâË¡½ñ
-restore ability                 Ç½ÎÏ²óÉü¤ÎËâË¡½ñ
-invisibility                    Æ©ÌÀ¤ÎËâË¡½ñ
-detect treasure                 Êõ¤òÃµ¤¹ËâË¡½ñ
-remove curse                    ¼ö¤¤¤ò²ò¤¯ËâË¡½ñ
-magic mapping                   ËâË¡¤ÎÃÏ¿Ş¤ÎËâË¡½ñ
-identify                        ¼±ÊÌ¤ÎËâË¡½ñ
-turn undead                     »à¿Í¤¬¤¨¤·¤ÎËâË¡½ñ
-polymorph                       ÊÑ²½¤ÎËâË¡½ñ
-teleport away                   ½Ö´Ö°ÜÆ°¤ÎËâË¡½ñ
-create familiar                 »È¤¤Ëâ¤òÂ¤¤ëËâË¡½ñ
-cancellation                    ÌµÎÏ²½¤ÎËâË¡½ñ
-blank paper                     Çò»æ¤ÎËâË¡½ñ
+dig                             ç©´æ˜ã‚Šã®é­”æ³•æ›¸
+magic missile                   é­”æ³•ã®çŸ¢ã®é­”æ³•æ›¸
+fireball                        ç«ã®ç‰ã®é­”æ³•æ›¸
+cone of cold                    å†·æ°—ã®é­”æ³•æ›¸
+sleep                           çœ ã‚Šã®é­”æ³•æ›¸
+finger of death                 æ­»ã®æŒ‡ã®é­”æ³•æ›¸
+light                           å…‰ã®é­”æ³•æ›¸
+detect monsters                 æ€ªç‰©ã‚’æ¢ã™é­”æ³•æ›¸
+healing                         å›å¾©ã®é­”æ³•æ›¸
+knock                           é–‹éŒ ã®é­”æ³•æ›¸
+force bolt                      è¡æ’ƒã®é­”æ³•æ›¸
+confuse monster                 æ€ªç‰©ã‚’æ··ä¹±ã•ã›ã‚‹é­”æ³•æ›¸
+cure blindness                  ç›²ç›®ã‚’ç™’ã™é­”æ³•æ›¸
+slow monster                    æ€ªç‰©ã‚’é…ãã™ã‚‹é­”æ³•æ›¸
+wizard lock                     æ–½éŒ ã®é­”æ³•æ›¸
+create monster                  æ€ªç‰©ã‚’é€ ã‚‹é­”æ³•æ›¸        
+detect food                     é£Ÿæ–™ã‚’æ¢ã™é­”æ³•æ›¸
+cause fear                      ææ€–ã®é­”æ³•æ›¸
+clairvoyance                    åƒé‡Œçœ¼ã®é­”æ³•æ›¸
+cure sickness                   ç—…æ°—ã‚’ç™’ã™é­”æ³•æ›¸
+charm monster                   æ€ªç‰©ã‚’é­…äº†ã™ã‚‹é­”æ³•æ›¸
+haste self                      ç´ æ—©ã•ã®é­”æ³•æ›¸
+detect unseen                   è¦‹ãˆãªã„ã‚‚ã®ã‚’æ¢ã™é­”æ³•æ›¸
+levitation                      æµ®éŠã®é­”æ³•æ›¸
+extra healing                   è¶…å›å¾©ã®é­”æ³•æ›¸
+restore ability                 èƒ½åŠ›å›å¾©ã®é­”æ³•æ›¸
+invisibility                    é€æ˜ã®é­”æ³•æ›¸
+detect treasure                 å®ã‚’æ¢ã™é­”æ³•æ›¸
+remove curse                    å‘ªã„ã‚’è§£ãé­”æ³•æ›¸
+magic mapping                   é­”æ³•ã®åœ°å›³ã®é­”æ³•æ›¸
+identify                        è­˜åˆ¥ã®é­”æ³•æ›¸
+turn undead                     æ­»äººãŒãˆã—ã®é­”æ³•æ›¸
+polymorph                       å¤‰åŒ–ã®é­”æ³•æ›¸
+teleport away                   ç¬é–“ç§»å‹•ã®é­”æ³•æ›¸
+create familiar                 ä½¿ã„é­”ã‚’é€ ã‚‹é­”æ³•æ›¸
+cancellation                    ç„¡åŠ›åŒ–ã®é­”æ³•æ›¸
+blank paper                     ç™½ç´™ã®é­”æ³•æ›¸
 
-light                           ¸÷¤Î¾ó
-secret door detection           ÈëÌ©¤ÎÈâÃµº÷¤Î¾ó
-create monster                  ²øÊª¤òÂ¤¤ë¾ó
-wishing                         ´ê¤¤¤Î¾ó
-nothing                         Ã±¤Ê¤ë¾ó
-striking                        ¾×·â¤Î¾ó
-make invisible                  Æ©ÌÀ¤Ë¤¹¤ë¾ó
-slow monster                    ÃÙ¤¯¤¹¤ë¾ó
-speed monster                   Áá¤¯¤¹¤ë¾ó
-undead turning                  »à¿Í¤¬¤¨¤·¤Î¾ó
-polymorph                       ÊÑ²½¤Î¾ó
-cancellation                    ÌµÎÏ²½¤Î¾ó
-teleportation                   ½Ö´Ö°ÜÆ°¤Î¾ó
-opening                         ³«¾û¤Î¾ó
-locking                         »Ü¾û¤Î¾ó
-probing                         Ãµºº¤¹¤ë¾ó
-digging                         ·ê·¡¤ê¤Î¾ó
-magic missile                   ËâË¡¤ÎÌğ¤Î¾ó 
-fire                            ±ê¤Î¾ó
-cold                            ¿áÀã¤Î¾ó
-sleep                           Ì²¤ê¤Î¾ó
-death                           »à¤Î¾ó
-lightning                       Íë¤Î¾ó
+light                           å…‰ã®æ–
+secret door detection           ç§˜å¯†ã®æ‰‰æ¢ç´¢ã®æ–
+create monster                  æ€ªç‰©ã‚’é€ ã‚‹æ–
+wishing                         é¡˜ã„ã®æ–
+nothing                         å˜ãªã‚‹æ–
+striking                        è¡æ’ƒã®æ–
+make invisible                  é€æ˜ã«ã™ã‚‹æ–
+slow monster                    é…ãã™ã‚‹æ–
+speed monster                   æ—©ãã™ã‚‹æ–
+undead turning                  æ­»äººãŒãˆã—ã®æ–
+polymorph                       å¤‰åŒ–ã®æ–
+cancellation                    ç„¡åŠ›åŒ–ã®æ–
+teleportation                   ç¬é–“ç§»å‹•ã®æ–
+opening                         é–‹éŒ ã®æ–
+locking                         æ–½éŒ ã®æ–
+probing                         æ¢æŸ»ã™ã‚‹æ–
+digging                         ç©´æ˜ã‚Šã®æ–
+magic missile                   é­”æ³•ã®çŸ¢ã®æ– 
+fire                            ç‚ã®æ–
+cold                            å¹é›ªã®æ–
+sleep                           çœ ã‚Šã®æ–
+death                           æ­»ã®æ–
+lightning                       é›·ã®æ–
 

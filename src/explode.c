@@ -60,27 +60,27 @@ char olet;
 
 	switch (abs(type) % 10) {
 /*JP		case 0: str = "magical blast";*/
-		case 0: str = "ËâË¡¤ÎÉ÷";
+		case 0: str = "é­”æ³•ã®é¢¨";
 			adtyp = AD_MAGM;
 			break;
 /*JP		case 1: str =   olet == BURNING_OIL ?	"burning oil" :
 				olet == SCROLL_CLASS ?	"tower of flame" :
 							"fireball";*/
-		case 1: str =   olet == BURNING_OIL ?	"Ç³¤¨¤Æ¤¤¤ëÌı" :
-				olet == SCROLL_CLASS ?	"²ĞÃì" :
-							"²Ğ¤Î¶Ì";
+		case 1: str =   olet == BURNING_OIL ?	"ç‡ƒãˆã¦ã„ã‚‹æ²¹" :
+				olet == SCROLL_CLASS ?	"ç«æŸ±" :
+							"ç«ã®ç‰";
 			adtyp = AD_FIRE;
 			break;
 /*JP		case 2: str = "ball of cold";*/
-		case 2: str = "É¹¤Î¶Ì";
+		case 2: str = "æ°·ã®ç‰";
 			adtyp = AD_COLD;
 			break;
 /*JP		case 4: str = "disintegration field";*/
-		case 4: str = "Ê´ºÕ¤ÎÉ÷";
+		case 4: str = "ç²‰ç •ã®é¢¨";
 			adtyp = AD_DISN;
 			break;
 /*JP		case 5: str = "ball lightning";*/
-		case 5: str = "Íëµå";
+		case 5: str = "é›·çƒ";
 			adtyp = AD_ELEC;
 			break;
 		default: impossible("explosion base type %d?", type); return;
@@ -184,7 +184,7 @@ char olet;
 
 	} else {
 /*JP		if (flags.soundok) You_hear("a blast.");*/
-		if (flags.soundok) You("ÇúÉ÷¤Î²»¤òÊ¹¤¤¤¿¡ª");
+		if (flags.soundok) You("çˆ†é¢¨ã®éŸ³ã‚’èã„ãŸï¼");
 	}
 
     if (dam)
@@ -207,26 +207,26 @@ char olet;
 				      (adtyp == AD_DISN) ? "perforated" :
 				      (adtyp == AD_ELEC) ? "shocked" :
 				       "fried");*/
-				pline("%s¤Ï%s¡ª",
+				pline("%sã¯%sï¼",
 				      Monnam(u.ustuck),
-				      (adtyp == AD_FIRE) ? "Ç³¤¨¤¿" :
-				      (adtyp == AD_COLD) ? "Åà¤é¤µ¤ì¤¿" :
-				      (adtyp == AD_DISN) ? "·ê¤ò¤¢¤±¤é¤ì¤¿" :
-				      (adtyp == AD_ELEC) ? "ÅÅ·â¤ò¤¯¤é¤Ã¤¿" :
+				      (adtyp == AD_FIRE) ? "ç‡ƒãˆãŸ" :
+				      (adtyp == AD_COLD) ? "å‡ã‚‰ã•ã‚ŒãŸ" :
+				      (adtyp == AD_DISN) ? "ç©´ã‚’ã‚ã‘ã‚‰ã‚ŒãŸ" :
+				      (adtyp == AD_ELEC) ? "é›»æ’ƒã‚’ãã‚‰ã£ãŸ" :
 				       "fried");
 			else
-				pline("%s¤Ï¤ï¤º¤«¤Ë%s¡ª",
+				pline("%sã¯ã‚ãšã‹ã«%sï¼",
 				      Monnam(u.ustuck),
-				      (adtyp == AD_FIRE) ? "¾Ç¤²¤¿" :
-				      (adtyp == AD_COLD) ? "Åà¤é¤µ¤ì¤¿" :
-				      (adtyp == AD_DISN) ? "·ê¤ò¤¢¤±¤é¤ì¤¿" :
-				      (adtyp == AD_ELEC) ? "ÅÅ·â¤ò¤¯¤é¤Ã¤¿" :
+				      (adtyp == AD_FIRE) ? "ç„¦ã’ãŸ" :
+				      (adtyp == AD_COLD) ? "å‡ã‚‰ã•ã‚ŒãŸ" :
+				      (adtyp == AD_DISN) ? "ç©´ã‚’ã‚ã‘ã‚‰ã‚ŒãŸ" :
+				      (adtyp == AD_ELEC) ? "é›»æ’ƒã‚’ãã‚‰ã£ãŸ" :
 				       "fried");
 		} else
 /*JP		pline("%s is caught in the %s!",
 			cansee(i+x-1, j+y-1) ? Monnam(mtmp) : "It", str);*/
-		pline("%s¤Ï%s¤Ë¤Ä¤Ä¤Ş¤ì¤¿¡ª",
-			cansee(i+x-1, j+y-1) ? Monnam(mtmp) : "²¿¼Ô¤«", str);
+		pline("%sã¯%sã«ã¤ã¤ã¾ã‚ŒãŸï¼",
+			cansee(i+x-1, j+y-1) ? Monnam(mtmp) : "ä½•è€…ã‹", str);
 
 		idamres += destroy_mitem(mtmp, SCROLL_CLASS, (int) adtyp);
 		idamres += destroy_mitem(mtmp, SPBOOK_CLASS, (int) adtyp);
@@ -246,10 +246,10 @@ char olet;
 
 			if (resist(mtmp, olet, 0, FALSE)) {
 /*JP				pline("%s resists the magical blast!",*/
-				pline("%s¤ÏËâË¡¤ÎÉ÷¤òÌµ¸ú²½¤·¤¿¡ª",
+				pline("%sã¯é­”æ³•ã®é¢¨ã‚’ç„¡åŠ¹åŒ–ã—ãŸï¼",
 					cansee(i+x-1,j+y-1) ? Monnam(mtmp)
 /*JP					: "It");*/
-					: "²¿¼Ô¤«");
+					: "ä½•è€…ã‹");
 				mdam = dam/2;
 			}
 			if (mtmp == u.ustuck)
@@ -273,7 +273,7 @@ char olet;
 	if (uhurt) {
 		if (type >= 0 && flags.verbose && olet != SCROLL_CLASS)
 /*JP			You("are caught in the %s!", str);*/
-			You("%s¤Ë¤Ä¤Ä¤Ş¤ì¤¿¡ª", str);
+			You("%sã«ã¤ã¤ã¾ã‚ŒãŸï¼", str);
 		/* do property damage first, in case we end up leaving bones */
 		if (adtyp == AD_FIRE) (void) burnarmor();
 		destroy_item(SCROLL_CLASS, (int) adtyp);
@@ -293,7 +293,7 @@ char olet;
 			    killer_format = KILLED_BY;
 /*JP			    Sprintf(buf, "caught %sself in %s own %s.",
 				    him[flags.female], his[flags.female], str);*/
-			    Sprintf(buf, "¼«Ê¬¼«¿È¤Î%s¤Ë¤Ä¤Ä¤Ş¤ì¤Æ",
+			    Sprintf(buf, "è‡ªåˆ†è‡ªèº«ã®%sã«ã¤ã¤ã¾ã‚Œã¦",
 				    str);
 			} else {
 			    killer_format = KILLED_BY;
@@ -312,9 +312,9 @@ char olet;
 /*JP		pay_for_damage(adtyp == AD_FIRE ? "burn away" :
 			       adtyp == AD_COLD ? "shatter" :
 			       adtyp == AD_DISN ? "disintegrate" : "destroy");*/
-		pay_for_damage(adtyp == AD_FIRE ? "¾Æ¤¯" :
-			       adtyp == AD_COLD ? "¤³¤Ê¤´¤Ê¤Ë¤¹¤ë" :
-			       adtyp == AD_DISN ? "¤³¤Ê¤´¤Ê¤Ë¤¹¤ë" : "ÇË²õ¤¹¤ë");
+		pay_for_damage(adtyp == AD_FIRE ? "ç„¼ã" :
+			       adtyp == AD_COLD ? "ã“ãªã”ãªã«ã™ã‚‹" :
+			       adtyp == AD_DISN ? "ã“ãªã”ãªã«ã™ã‚‹" : "ç ´å£Šã™ã‚‹");
 	}
 }
 #endif /* OVL0 */
@@ -371,7 +371,7 @@ unsigned int scflags;
 			&& rn2(10)) {
 		if (otmp->otyp == BOULDER) {
 /*JP		    pline("%s breaks apart.",The(xname(otmp)));*/
-		    pline("%s¤Ï°ìÉôÊ¬¤¬ºÕ¤±¤¿¡¥",The(xname(otmp)));
+		    pline("%sã¯ä¸€éƒ¨åˆ†ãŒç •ã‘ãŸï¼",The(xname(otmp)));
 		    fracture_rock(otmp);
 		    place_object(otmp, sx, sy);	/* put fragments on floor */
 		} else {
@@ -380,7 +380,7 @@ unsigned int scflags;
 		    if ((trap = t_at(sx,sy)) && trap->ttyp == STATUE_TRAP)
 			    deltrap(trap);
 /*JP		    pline("%s crumbles.",The(xname(otmp)));*/
-		    pline("%s¤Ï¤³¤Ê¤´¤Ê¤Ë¤Ê¤Ã¤¿¡¥",The(xname(otmp)));
+		    pline("%sã¯ã“ãªã”ãªã«ãªã£ãŸï¼",The(xname(otmp)));
 		    (void) break_statue(otmp);
 		    place_object(otmp, sx, sy);	/* put fragments on floor */
 		}

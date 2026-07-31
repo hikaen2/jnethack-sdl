@@ -301,7 +301,7 @@ char** argv;
     tty_putstr(BASE_WINDOW, 0, COPYRIGHT_BANNER_B);
     tty_putstr(BASE_WINDOW, 0, COPYRIGHT_BANNER_C);
     tty_putstr(BASE_WINDOW, 0, "");
-    tty_putstr(BASE_WINDOW, 0, "NetHack[ÆüËÜ¸ìÈÇ], Copyright 1993 - 1996");
+    tty_putstr(BASE_WINDOW, 0, "NetHack[æ—¥æœ¬èªžç‰ˆ], Copyright 1993 - 1996");
     tty_putstr(BASE_WINDOW, 0, "         By I. Numata , S. Miyashita and N. Hamada.");
     tty_putstr(BASE_WINDOW, 0, "");
    tty_display_nhwindow(BASE_WINDOW, FALSE);
@@ -325,7 +325,7 @@ tty_player_selection()
     }
 
 /*JP#define PICK_PROMPT "Shall I pick a character for you? [Y, N, or Q(quit)] "*/
-#define PICK_PROMPT "¥­¥ã¥é¥¯¥¿¡¼¤òÁª¤Ó¤Þ¤·¤ç¤¦¤«¡©[Y, N, or Q(¥²¡¼¥à¤ò¤ä¤á¤ë)] "
+#define PICK_PROMPT "ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚’é¸ã³ã¾ã—ã‚‡ã†ã‹ï¼Ÿ[Y, N, or Q(ã‚²ãƒ¼ãƒ ã‚’ã‚„ã‚ã‚‹)] "
     tty_putstr(BASE_WINDOW, 0, "");
     echoline = wins[BASE_WINDOW]->cury;
     tty_putstr(BASE_WINDOW, 0, PICK_PROMPT);
@@ -358,7 +358,7 @@ tty_player_selection()
 
     tty_putstr(BASE_WINDOW, 0, "");
 /*JP    tty_putstr(BASE_WINDOW, 0, "What kind of character are you:");*/
-    tty_putstr(BASE_WINDOW, 0, "¤É¤Î¥­¥ã¥é¥¯¥¿¡¼¤Ë¤·¤Þ¤¹¤«¡§");
+    tty_putstr(BASE_WINDOW, 0, "ã©ã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã«ã—ã¾ã™ã‹ï¼š");
     tty_putstr(BASE_WINDOW, 0, "");
 /*JP    Sprintf(pbuf, "        %s, ", An(roles[0]));*/
     Sprintf(pbuf, "        %s(%c), ", jtrns_mon(roles[0], -1), roles[0][0]);
@@ -376,11 +376,11 @@ tty_player_selection()
 		Strcpy(pbuf, "        ");
 	    }
 /*JP	    if (!roles[i+2]) Strcat(pbuf, "or ");*/
-	    if (!roles[i+2]) Strcat(pbuf, "¤Þ¤¿¤Ï");
+	    if (!roles[i+2]) Strcat(pbuf, "ã¾ãŸã¯");
 	}
     }
 /*JP    Strcat(pbuf ,"?");*/
-    Strcat(pbuf ,"¡©");
+    Strcat(pbuf ,"ï¼Ÿ");
     tty_putstr(BASE_WINDOW, 0, pbuf);
     Strcpy(pbuf, "        [");
     for(i = 0; roles[i]; i++)
@@ -415,7 +415,7 @@ beginner:
 	pc = pl_classes[i];
 	tty_putstr(BASE_WINDOW, 0, "");
 /*JP	Sprintf(pbuf, "This game you will be %s.", an(roles[i]));*/
-	Sprintf(pbuf, "¤³¤Î¥²¡¼¥à¤Ç¤Ï¤¢¤Ê¤¿¤Ï%s¤Ç¤¹¡¥", jtrns_mon(roles[i], -1));
+	Sprintf(pbuf, "ã“ã®ã‚²ãƒ¼ãƒ ã§ã¯ã‚ãªãŸã¯%sã§ã™ï¼Ž", jtrns_mon(roles[i], -1));
 	tty_putstr(BASE_WINDOW, 0, pbuf);
 	tty_putstr(BASE_WINDOW, 0, "");
 	tty_display_nhwindow(BASE_WINDOW, TRUE);
@@ -438,7 +438,7 @@ void
 tty_askname()
 {
 /*JP    static char who_are_you[] = "Who are you? ";*/
-    static char who_are_you[] = "¤¢¤Ê¤¿¤ÏÃ¯¡© ";
+    static char who_are_you[] = "ã‚ãªãŸã¯èª°ï¼Ÿ ";
     register int c, ct, tryct = 0;
     char ptmpname[PL_NSIZ];
 
@@ -448,7 +448,7 @@ tty_askname()
 	    if (tryct > 10) bail("Giving up after 10 tries.\n");
 	    tty_curs(BASE_WINDOW, 1, wins[BASE_WINDOW]->cury - 1);
 /*JP	    tty_putstr(BASE_WINDOW, 0, "Enter a name for your character...");*/
-	    tty_putstr(BASE_WINDOW, 0, "¤¢¤Ê¤¿¤Î¥­¥ã¥é¥¯¥¿¤ÎÌ¾Á°¤Ï¡©");
+	    tty_putstr(BASE_WINDOW, 0, "ã‚ãªãŸã®ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã®åå‰ã¯ï¼Ÿ");
 	    /* erase previous prompt (in case of ESC after partial response) */
 	    tty_curs(BASE_WINDOW, 1, wins[BASE_WINDOW]->cury),  cl_end();
 	}
@@ -1044,9 +1044,24 @@ struct WinDesc *cw;
 		 * this.
 		 */
 		term_start_attr(curr->attr);
-		for (n = 0, cp = curr->str;
-		      *cp && (int) ++ttyDisplay->curx < (int) ttyDisplay->cols;
-		      cp++, n++)
+/*JP
+ *      One character at a time, and curx advances by however many columns
+ *      that character takes.  This was one byte at a time with curx
+ *      advancing by one, which agreed with itself only while a kanji was
+ *      two bytes and two columns; under UTF-8 it is three and two, so the
+ *      line was cut a third of the way short -- and cut mid-character.
+ *
+ *      n still counts characters rather than bytes, which is what the
+ *      n == 2 test wants: it is the third character of "a - ", the place
+ *      the selection marker goes, and that prefix is ASCII either way.
+ */
+		for (n = 0, cp = curr->str; *cp; n++) {
+                    int len = mb_seqlen(cp), w = mb_width(cp), k;
+
+		    if ((int) ttyDisplay->curx + w >= (int) ttyDisplay->cols)
+                        break;
+                    ttyDisplay->curx += w;
+
 		    if (n == 2 && curr->identifier.a_void != 0 &&
 						    curr->selected) {
 			if (curr->count == -1L)
@@ -1056,10 +1071,13 @@ struct WinDesc *cw;
 /*JP			    (void) putchar('#');*/ /* count selected */
 			    (void) jputchar('#'); /* count selected */
 		    } else
+                        for (k = 0; k < len; k++)
 /*JP
-			(void) putchar(*cp);
+			    (void) putchar(cp[k]);
 */
-			(void) jputchar(*cp);
+			    (void) jputchar(cp[k]);
+                    cp += len;
+                }
 		term_end_attr(curr->attr);
 	    }
 	    *rp = 0;
@@ -1281,13 +1299,25 @@ struct WinDesc *cw;
 		(void) jputchar(' '); ++ttyDisplay->curx;
 	    }
 	    term_start_attr(attr);
-	    for (cp = &cw->data[i][1];
-		    *cp && (int) ++ttyDisplay->curx < (int) ttyDisplay->cols;
-		    cp++)
 /*JP
-		(void) putchar(*cp);
+ *      As in process_menu_window() above: characters and columns, not
+ *      bytes.  This is the loop that dropped the tail of every line of
+ *      dat/jhelp longer than eighty bytes once a kanji became three of
+ *      them, and cut a character in half on the way out.
+ */
+            for (cp = &cw->data[i][1]; *cp; ) {
+                int len = mb_seqlen(cp), w = mb_width(cp), k;
+
+                if ((int) ttyDisplay->curx + w >= (int) ttyDisplay->cols)
+                    break;
+                ttyDisplay->curx += w;
+                for (k = 0; k < len; k++)
+/*JP
+		    (void) putchar(cp[k]);
 */
-		(void) jputchar(*cp);
+		    (void) jputchar(cp[k]);
+                cp += len;
+            }
 	    term_end_attr(attr);
 	}
     }

@@ -250,7 +250,7 @@ tty_get_ext_cmd()
 /*JP
 		pline("%s: unknown extended command.", buf);
 */
-		pline("%s:³ÈÄ¥¥³¥Þ¥ó¥É¥¨¥é¡¼", buf);
+		pline("%s:æ‹¡å¼µã‚³ãƒžãƒ³ãƒ‰ã‚¨ãƒ©ãƒ¼", buf);
 		i = -1;
 	}
 

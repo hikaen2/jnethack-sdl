@@ -105,7 +105,7 @@ echo "$cases" | while IFS='|' read -r name keys; do
           "$work/win/"
 
     NETHACK_SEED=$seed HACKDIR="$work/tty" NETHACKOPTIONS=$opts \
-        python3 test/ptydrive.py --charset euc-jp --keys "$keys" \
+        python3 test/ptydrive.py --charset utf-8 --keys "$keys" \
             --dump "$work/$name.tty" \
             -- src/jnethack.tty -u poc >/dev/null 2>&1 || true
 

@@ -553,9 +553,9 @@ register int fd;
 		depth(&u.uz), dungeons[u.uz.dnum].dname,
 		flags.debug ? " while in debug mode" :
 		flags.explore ? " while in explore mode" : "");*/
-	You("%s%s¤ÎÃÏ²¼%d³¬¤ËÌá¤Ã¤Æ¤­¤¿¡¥",
-	    flags.debug ? "¥¦¥£¥¶¡¼¥É¥â¡¼¥ÉÃæ¤Î" :
-	    flags.explore ? "Ãµº÷¥â¡¼¥ÉÃæ¤Î" : "",
+	You("%s%sã®åœ°ä¸‹%déšã«æˆ»ã£ã¦ããŸï¼",
+	    flags.debug ? "ã‚¦ã‚£ã‚¶ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰ä¸­ã®" :
+	    flags.explore ? "æ¢ç´¢ãƒ¢ãƒ¼ãƒ‰ä¸­ã®" : "",
 	    jtrns_obj('d',dungeons[u.uz.dnum].dname), depth(&u.uz));
 	curs(WIN_MAP, 1, 1);
 	dotcnt = 0;

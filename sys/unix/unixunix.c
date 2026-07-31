@@ -224,7 +224,7 @@ getlock()
 		(void) close(fd);
 
 		if(iflags.window_inited) {
-		    c = yn("¤¢¤Ê¤¿¤ÎÌ¾Á°¤ÇÉÔÀµ½ªÎ»¤·¤¿¥²¡¼¥à¤¬»Ä¤Ã¤Æ¤¤¤Ş¤¹¡¥ÇË´ş¤·¤Ş¤¹¤«¡©");
+		    c = yn("ã‚ãªãŸã®åå‰ã§ä¸æ­£çµ‚äº†ã—ãŸã‚²ãƒ¼ãƒ ãŒæ®‹ã£ã¦ã„ã¾ã™ï¼ç ´æ£„ã—ã¾ã™ã‹ï¼Ÿ");
 /*JP
 		    c = yn("There is already a game in progress under your name.  Destroy old game?");
 */
@@ -245,7 +245,7 @@ getlock()
                      * check further up used to make that unreachable; this
                      * build has to skip that check, so it needs this instead.
                      */
-                    c = sdl_yn("¤¢¤Ê¤¿¤ÎÌ¾Á°¤ÇÉÔÀµ½ªÎ»¤·¤¿¥²¡¼¥à¤¬»Ä¤Ã¤Æ¤¤¤Ş¤¹¡¥ÇË´ş¤·¤Ş¤¹¤«¡©[yn] ");
+                    c = sdl_yn("ã‚ãªãŸã®åå‰ã§ä¸æ­£çµ‚äº†ã—ãŸã‚²ãƒ¼ãƒ ãŒæ®‹ã£ã¦ã„ã¾ã™ï¼ç ´æ£„ã—ã¾ã™ã‹ï¼Ÿ[yn] ");
                 }
 #else
 		else {

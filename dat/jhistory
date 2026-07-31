@@ -1,74 +1,74 @@
 
-¸«¤è¡¤»à¤¹¤Ù¤­¤â¤Î¤è¡¤NetHack¤Îµ¯¸»¤ò¡¥¡¥¡¥
+è¦‹ã‚ˆï¼Œæ­»ã™ã¹ãã‚‚ã®ã‚ˆï¼ŒNetHackã®èµ·æºã‚’ï¼ï¼ï¼
 
-Jay Fenlason¤¬ºÇ½é¤ÎHack¤ò Kenny Woodland, Mike Thome ¤ª¤è¤Ó Jon Payne
-¤Î½õ¤±¤Î¤â¤È½ñ¤¤¤¿¡¥
+Jay FenlasonãŒæœ€åˆã®Hackã‚’ Kenny Woodland, Mike Thome ãŠã‚ˆã³ Jon Payne
+ã®åŠ©ã‘ã®ã‚‚ã¨æ›¸ã„ãŸï¼
 
-Andries Brouwer¤Ï¤³¤ì¤òÂç¤­¤¯½ñ¤­Ä¾¤·¡¤Hack¤ò¤Ş¤Ã¤¿¤¯°ã¤¦¥²¡¼¥à¤Ë»ÅÎ©¤Æ¡¤
-UNIX(tm)¤ÇÆ°¤¯(¾¯¤Ê¤¯¤È¤â)3¤Ä¤Î¥Ğ¡¼¥¸¥ç¥ó(1.0.1, 1.0.2 ¤ª¤è¤Ó 1.0.3)¤ò
-Usenet¤Ç¸ø³«¤·¤¿¡¥
+Andries Brouwerã¯ã“ã‚Œã‚’å¤§ããæ›¸ãç›´ã—ï¼ŒHackã‚’ã¾ã£ãŸãé•ã†ã‚²ãƒ¼ãƒ ã«ä»•ç«‹ã¦ï¼Œ
+UNIX(tm)ã§å‹•ã(å°‘ãªãã¨ã‚‚)3ã¤ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³(1.0.1, 1.0.2 ãŠã‚ˆã³ 1.0.3)ã‚’
+Usenetã§å…¬é–‹ã—ãŸï¼
 
-Don G. Kneller¤Ï Hack 1.0.3¤ò Microsoft(tm) C ¤ª¤è¤Ó MS-DOS(tm)¤Ø°Ü¿¢¤·¡¤
-PC HACK 1.01e¤òÀ©ºî¤·¤¿¡¥²Ã¤¨¤Æ DEC Rainbow¥°¥é¥Õ¥£¥Ã¥¯¤ò 1.03g¤Ç¥µ
-¥İ¡¼¥È¤·¡¤¾¯¤Ê¤¯¤È¤â4¤Ä°Ê¾å¤Î¥Ğ¡¼¥¸¥ç¥ó¤òÀ©ºî¤·¤¿¡¥(3.0, 3.2, 3.51
-¤ª¤è¤Ó 3.6)¡¥
+Don G. Knellerã¯ Hack 1.0.3ã‚’ Microsoft(tm) C ãŠã‚ˆã³ MS-DOS(tm)ã¸ç§»æ¤ã—ï¼Œ
+PC HACK 1.01eã‚’åˆ¶ä½œã—ãŸï¼åŠ ãˆã¦ DEC Rainbowã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚’ 1.03gã§ã‚µ
+ãƒãƒ¼ãƒˆã—ï¼Œå°‘ãªãã¨ã‚‚4ã¤ä»¥ä¸Šã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’åˆ¶ä½œã—ãŸï¼(3.0, 3.2, 3.51
+ãŠã‚ˆã³ 3.6)ï¼
 
-P. Black¤Ï PC HACK 3.51¤ò Lattice(tm) C¤ª¤è¤Ó¡¤Atari 520/1040ST¤Ø°Ü¿¢¤·¡¤
-ST Hack 1.03¤ò³«È¯¤·¤¿¡¥
+P. Blackã¯ PC HACK 3.51ã‚’ Lattice(tm) CãŠã‚ˆã³ï¼ŒAtari 520/1040STã¸ç§»æ¤ã—ï¼Œ
+ST Hack 1.03ã‚’é–‹ç™ºã—ãŸï¼
 
-Mike Stephenson¤Ï¤³¤ì¤é¿§¡¹¤Ê¥Ğ¡¼¥¸¥ç¥ó¤ò°ì½ï¤ËÅı¹ç¤·¡¤¿·¤Êµ¡Ç½¤ò²Ã¤¨¡¤
-Nethack¥Ğ¡¼¥¸¥ç¥ó1.4¤òÀ©ºî¤·¤¿¡¥Èà¤Ï¤½¤Î¸å1000¤Ë¤âµÚ¤Ö¡¤NetHack 1.4¤Î
-²şÎÉ¤ä¥Ç¥Ğ¥Ã¥°¤ò½Å¤ÍÀ°¤¨¡¤NetHack¥Ğ¡¼¥¸¥ç¥ó 2.2¤ª¤è¤Ó 2.3¤ò¥ê¥ê¡¼¥¹¤·¤¿¡¥
+Mike Stephensonã¯ã“ã‚Œã‚‰è‰²ã€…ãªãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’ä¸€ç·’ã«çµ±åˆã—ï¼Œæ–°ãªæ©Ÿèƒ½ã‚’åŠ ãˆï¼Œ
+Nethackãƒãƒ¼ã‚¸ãƒ§ãƒ³1.4ã‚’åˆ¶ä½œã—ãŸï¼å½¼ã¯ãã®å¾Œ1000ã«ã‚‚åŠã¶ï¼ŒNetHack 1.4ã®
+æ”¹è‰¯ã‚„ãƒ‡ãƒãƒƒã‚°ã‚’é‡ã­æ•´ãˆï¼ŒNetHackãƒãƒ¼ã‚¸ãƒ§ãƒ³ 2.2ãŠã‚ˆã³ 2.3ã‚’ãƒªãƒªãƒ¼ã‚¹ã—ãŸï¼
  
-¤½¤Î¸å¡¤Mike¤Ï¥²¡¼¥à¤òÂçÉı¤Ë½ñ¤­´¹¤¨¡¤Ä´À°¤·¡¤Ken Arromdee,
+ãã®å¾Œï¼ŒMikeã¯ã‚²ãƒ¼ãƒ ã‚’å¤§å¹…ã«æ›¸ãæ›ãˆï¼Œèª¿æ•´ã—ï¼ŒKen Arromdee,
 Jean-Christophe Collet, Steve Creps, Eric Hendrickson, Izchak Miller,
-Eric S. Raymond, John Rupley, Mike Threepoint ¤ª¤è¤Ó Janet Walz¤ò´Ş¤à
-¥Á¡¼¥à¤ÎÀèÆ¬¤ËÎ©¤Á¡¤NetHack 3.0c¤òÀ©ºî¤·¤¿¡¥Æ±¤¸¥°¥ë¡¼¥×¤¬¤½¤Î¸å10¤Î¥ê
-¥Ó¥¸¥ç¥ó¥Ñ¥Ã¥Á¤ò¥ê¥ê¡¼¥¹¤·¡¤3.0¤ò¥¢¥×¥Ç¡¼¥È¤·¤¿¡¥
+Eric S. Raymond, John Rupley, Mike Threepoint ãŠã‚ˆã³ Janet Walzã‚’å«ã‚€
+ãƒãƒ¼ãƒ ã®å…ˆé ­ã«ç«‹ã¡ï¼ŒNetHack 3.0cã‚’åˆ¶ä½œã—ãŸï¼åŒã˜ã‚°ãƒ«ãƒ¼ãƒ—ãŒãã®å¾Œ10ã®ãƒª
+ãƒ“ã‚¸ãƒ§ãƒ³ãƒ‘ãƒƒãƒã‚’ãƒªãƒªãƒ¼ã‚¹ã—ï¼Œ3.0ã‚’ã‚¢ãƒ—ãƒ‡ãƒ¼ãƒˆã—ãŸï¼
 
-NetHack 3.0¤Ï Eric R. Smith¤Ë¤è¤Ã¤Æ Atari¤Ë°Ü¿¢¤µ¤ì¡¤Timo Hakulinen¤Ë¤è¤Ã¤Æ
-OS/2¤Ë°Ü¿¢¤µ¤ì¡¤ Dabvid Gentzel¤Ë¤è¤Ã¤Æ VMS¤Ë°Ü¿¢¤µ¤ì¤¿¡¥Èà¤é3¿Í¤ª¤è¤Ó¡¤
-Kevi Darcy¤Ï¸å¤Ë 3.0¤Î¥ê¥Ó¥¸¥ç¥ó¤òÀ©ºî¤·¤¿¥á¥¤¥ó³«È¯¥Á¡¼¥à¤Ë¹çÎ®¤·¤¿¡¥
+NetHack 3.0ã¯ Eric R. Smithã«ã‚ˆã£ã¦ Atariã«ç§»æ¤ã•ã‚Œï¼ŒTimo Hakulinenã«ã‚ˆã£ã¦
+OS/2ã«ç§»æ¤ã•ã‚Œï¼Œ Dabvid Gentzelã«ã‚ˆã£ã¦ VMSã«ç§»æ¤ã•ã‚ŒãŸï¼å½¼ã‚‰3äººãŠã‚ˆã³ï¼Œ
+Kevi Darcyã¯å¾Œã« 3.0ã®ãƒªãƒ“ã‚¸ãƒ§ãƒ³ã‚’åˆ¶ä½œã—ãŸãƒ¡ã‚¤ãƒ³é–‹ç™ºãƒãƒ¼ãƒ ã«åˆæµã—ãŸï¼
 
-Olaf Seibert¤Ï NetHack 2.3¤ª¤è¤Ó 3.0¤ò Amiga¤Ë°Ü¿¢¤·¤¿¡¥ Norm Meluch,
-Stephen Spackman ¤ª¤è¤Ó Pierre Martineau¤Ï PC NetHack 3.0¤Î¥ª¡¼¥Ğ¥ì¥¤
-¥³¡¼¥É¤ò¥Ç¥¶¥¤¥ó¤·¤¿¡¥Johnny Lee¤Ï NetHack 3.0¤ò Macintosh¤Ë°Ü¿¢¤·¤¿¡¥
-Âô»³¤ÎÂ¾¤Î¥À¥ó¥¸¥ç¥Ê¡¼¤Ë¤è¤ê¡¤Èà¤é¤Ï¡¤PC, Macintosh ¤ª¤è¤Ó Amiga¤Ë
-3.0¸å¤Î¥ê¥Ó¥¸¥ç¥ó¤ò°Ü¿¢¤·¤¿¡¥
+Olaf Seibertã¯ NetHack 2.3ãŠã‚ˆã³ 3.0ã‚’ Amigaã«ç§»æ¤ã—ãŸï¼ Norm Meluch,
+Stephen Spackman ãŠã‚ˆã³ Pierre Martineauã¯ PC NetHack 3.0ã®ã‚ªãƒ¼ãƒãƒ¬ã‚¤
+ã‚³ãƒ¼ãƒ‰ã‚’ãƒ‡ã‚¶ã‚¤ãƒ³ã—ãŸï¼Johnny Leeã¯ NetHack 3.0ã‚’ Macintoshã«ç§»æ¤ã—ãŸï¼
+æ²¢å±±ã®ä»–ã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒŠãƒ¼ã«ã‚ˆã‚Šï¼Œå½¼ã‚‰ã¯ï¼ŒPC, Macintosh ãŠã‚ˆã³ Amigaã«
+3.0å¾Œã®ãƒªãƒ“ã‚¸ãƒ§ãƒ³ã‚’ç§»æ¤ã—ãŸï¼
  
-Mike Stephenson¤òÀèÆ¬¤Ë¡¤Izchak Miller¤ª¤è¤Ó Janet Walz¤¬Ä´À°¤·¡¤
-º£¤ä Ken Arromdee, David Cohrs, Jean-Christophe Collet, Kevin Darcy, 
+Mike Stephensonã‚’å…ˆé ­ã«ï¼ŒIzchak MillerãŠã‚ˆã³ Janet WalzãŒèª¿æ•´ã—ï¼Œ
+ä»Šã‚„ Ken Arromdee, David Cohrs, Jean-Christophe Collet, Kevin Darcy, 
 Matt Day, Timo Hakulinen, Steve Linhart, Dean Luick, Pat Rankin, 
-Eric Raymond ¤ª¤è¤Ó¡¤ Eric Smith¤ò´Ş¤à³«È¯¥Á¡¼¥à¤Ï3.0¤ÎÈ´ËÜÅª¤Ê¥ê¥Ó¥¸¥ç¥ó
-¤ËÃå¼ê¤·¤¿¡¥Èà¤é¤Ï¥²¡¼¥à¤ò¥Ç¥¶¥¤¥ó¤·¤Ê¤ª¤·¡¤¥³¡¼¥É¤ÎÂç¤­¤Ê²şÎÉ¤ò¹Ô¤Ê¤Ã¤¿¡¥
-Èà¤é¤Ï¥Ş¥ë¥Á¥×¥ë¥À¥ó¥¸¥ç¥ó¡¤¿·¤·¤¤¥Ç¥£¥¹¥×¥ì¥¤¡¤¥­¥ã¥é¥¯¥¿¡¼Ëè¤Î¥¯¥¨¥¹¥È¡¤
-¿·¤·¤¤ºÇ½ª»îÎı¤ª¤è¤ÓÂô»³¤Î¿·¤·¤¤µ¡Ç½¤ò²Ã¤¨¡¤NetHack 3.1¤òÀ©ºî¤·¤¿¡¥
+Eric Raymond ãŠã‚ˆã³ï¼Œ Eric Smithã‚’å«ã‚€é–‹ç™ºãƒãƒ¼ãƒ ã¯3.0ã®æŠœæœ¬çš„ãªãƒªãƒ“ã‚¸ãƒ§ãƒ³
+ã«ç€æ‰‹ã—ãŸï¼å½¼ã‚‰ã¯ã‚²ãƒ¼ãƒ ã‚’ãƒ‡ã‚¶ã‚¤ãƒ³ã—ãªãŠã—ï¼Œã‚³ãƒ¼ãƒ‰ã®å¤§ããªæ”¹è‰¯ã‚’è¡Œãªã£ãŸï¼
+å½¼ã‚‰ã¯ãƒãƒ«ãƒãƒ—ãƒ«ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ï¼Œæ–°ã—ã„ãƒ‡ã‚£ã‚¹ãƒ—ãƒ¬ã‚¤ï¼Œã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼æ¯ã®ã‚¯ã‚¨ã‚¹ãƒˆï¼Œ
+æ–°ã—ã„æœ€çµ‚è©¦ç·´ãŠã‚ˆã³æ²¢å±±ã®æ–°ã—ã„æ©Ÿèƒ½ã‚’åŠ ãˆï¼ŒNetHack 3.1ã‚’åˆ¶ä½œã—ãŸï¼
 
-Ken Lorber, Gregg Wonderly¤ª¤è¤Ó Grag Olson¤Ï Richard Addison,
-Mike Passaretti ¤ª¤è¤Ó Olaf Seibert¤Î¼ê¤ò¼Ú¤ê Amiga¤Î NetHack 3.1¤ò³«È¯
-¤·¤¿¡¥
+Ken Lorber, Gregg WonderlyãŠã‚ˆã³ Grag Olsonã¯ Richard Addison,
+Mike Passaretti ãŠã‚ˆã³ Olaf Seibertã®æ‰‹ã‚’å€Ÿã‚Š Amigaã® NetHack 3.1ã‚’é–‹ç™º
+ã—ãŸï¼
 
-Norm Meluch ¤ª¤è¤Ó Kevin Smolkowski¤Ï Carl Schelin, Stephen Spackman
-Steve VanDevender¤ª¤è¤Ó Paul Winner¤Î¼ê¤ò¼Ú¤ê NetHack 3.1¤òPC¤Ë°Ü¿¢¤·¤¿¡¥
+Norm Meluch ãŠã‚ˆã³ Kevin Smolkowskiã¯ Carl Schelin, Stephen Spackman
+Steve VanDevenderãŠã‚ˆã³ Paul Winnerã®æ‰‹ã‚’å€Ÿã‚Š NetHack 3.1ã‚’PCã«ç§»æ¤ã—ãŸï¼
 
-Jon W{tte ¤ª¤è¤Ó Hao-yang Wang¤Ï Ross Brown, Mike Engber, David Hairston,
+Jon W{tte ãŠã‚ˆã³ Hao-yang Wangã¯ Ross Brown, Mike Engber, David Hairston,
 Micheal Hamel, Jonathan Handler, Johnny Lee, Tim Lennan, Rob Menke
-¤ª¤è¤Ó Andy Swanson¤Î¼ê¤ò¼Ú¤ê Macintosh¤Î Nethack 3.1¤ò³«È¯¤·¡¤MPWÍÑ¤Ë
-°Ü¿¢¤·¤¿¡¥¤½¤ì¤Î³«È¯¤Îºİ¡¤Barton House¤Ï Think C¤Ë°Ü¿¢¤·¤¿¡¥
+ãŠã‚ˆã³ Andy Swansonã®æ‰‹ã‚’å€Ÿã‚Š Macintoshã® Nethack 3.1ã‚’é–‹ç™ºã—ï¼ŒMPWç”¨ã«
+ç§»æ¤ã—ãŸï¼ãã‚Œã®é–‹ç™ºã®éš›ï¼ŒBarton Houseã¯ Think Cã«ç§»æ¤ã—ãŸï¼
 
-Timo Hakulinen¤Ï NetHack 3.1¤ò OS/2¤Ë°Ü¿¢¤·¤¿¡¥ Eric Smith¤Ï NetHack 3.1
-¤ò Atari¤Ë°Ü¿¢¤·¤¿¡¥ Pat Rankin¤Ï Joshua Delahunty¤Î¼ê¤ò¼Ú¤ê¡¤NetHack 3.1
-¤ÎVMS¥Ğ¡¼¥¸¥ç¥ó¤Ë±ş¤¸¤Æ¤¤¤ë¡¥Michael Allison¤Ï NetHack3.1¤ò Windows NT¤Ë
-°Ü¿¢¤·¤¿¡¥
+Timo Hakulinenã¯ NetHack 3.1ã‚’ OS/2ã«ç§»æ¤ã—ãŸï¼ Eric Smithã¯ NetHack 3.1
+ã‚’ Atariã«ç§»æ¤ã—ãŸï¼ Pat Rankinã¯ Joshua Delahuntyã®æ‰‹ã‚’å€Ÿã‚Šï¼ŒNetHack 3.1
+ã®VMSãƒãƒ¼ã‚¸ãƒ§ãƒ³ã«å¿œã˜ã¦ã„ã‚‹ï¼Michael Allisonã¯ NetHack3.1ã‚’ Windows NTã«
+ç§»æ¤ã—ãŸï¼
 
-Dean Luick¤Ï David Cohrs¤Î¼ê¤ò¼Ú¤ê¡¤X11¤ÎNetHack 3.1¤ò³«È¯¤·¤¿¡¥
+Dean Luickã¯ David Cohrsã®æ‰‹ã‚’å€Ÿã‚Šï¼ŒX11ã®NetHack 3.1ã‚’é–‹ç™ºã—ãŸï¼
 
                            - - - - - - - - - -
  
-»ş¡¹¡¤ÂÄÍî¤·¤¿¿ÍÊª¤¬Èà¤é¤Î¥Í¥Ã¥È¥é¥ó¥É¤«¤é¥²¡¼¥à¤Î¼ê½õ¤±¤È¤Ê¤ë¤è¤¦¤Ê¶½
-Ì£¤ò¤½¤½¤ë²şÎÉ°Æ¤òÁ÷¤Ã¤Æ¤¯¤ë¡¥¥À¥ó¥¸¥ç¥ó¤Î¿À¤Ï¤³¤ì¤éÂÄ¤Á¤ë¤È¤³¤í¤Ş¤ÇÂÄ
-¤Á¤¿¿Í´Ö¤¿¤Á¤ÎÌ¾Á°¤ò¤­¤Ş¤°¤ì¤Ç¤Ò¤«¤¨¤Æ¤¤¤ë¡¥¤½¤Î¥À¥ó¥¸¥ç¥ó¥Ê¡¼¤¿¤Á¤Ï°Ê
-²¼¤Ç¤¢¤ë:
+æ™‚ã€…ï¼Œå •è½ã—ãŸäººç‰©ãŒå½¼ã‚‰ã®ãƒãƒƒãƒˆãƒ©ãƒ³ãƒ‰ã‹ã‚‰ã‚²ãƒ¼ãƒ ã®æ‰‹åŠ©ã‘ã¨ãªã‚‹ã‚ˆã†ãªèˆˆ
+å‘³ã‚’ããã‚‹æ”¹è‰¯æ¡ˆã‚’é€ã£ã¦ãã‚‹ï¼ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ã®ç¥ã¯ã“ã‚Œã‚‰å •ã¡ã‚‹ã¨ã“ã‚ã¾ã§å •
+ã¡ãŸäººé–“ãŸã¡ã®åå‰ã‚’ãã¾ãã‚Œã§ã²ã‹ãˆã¦ã„ã‚‹ï¼ãã®ãƒ€ãƒ³ã‚¸ãƒ§ãƒ³ãƒŠãƒ¼ãŸã¡ã¯ä»¥
+ä¸‹ã§ã‚ã‚‹:
 
     Richard Addison           Eric Hendrickson       Mike Passaretti
     Michael Allison           Bruce Holloway         Pat Rankin

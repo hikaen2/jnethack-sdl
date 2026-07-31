@@ -346,7 +346,7 @@ char *argv[];
 		}
 #endif
 /*JP		pline("Restoring save file...");*/
-		pline("¥»¡¼¥Ö¥Õ¥¡¥¤¥ë¤òÉü¸µÃæ¡¥¡¥¡¥");
+		pline("ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å¾©å…ƒä¸­ï¼ï¼ï¼");
 		mark_synch();	/* flush output */
 
 		if(!dorecover(fd))
@@ -355,15 +355,15 @@ char *argv[];
 		if(!wizard && remember_wiz_mode) wizard = TRUE;
 #endif
 /*JP		pline("Hello %s, welcome back to NetHack!", plname);*/
-		pline("¤è¤¦¤³¤½ %s, ¤Ş¤¿NetHack¤ÎÀ¤³¦¤Ø¡ª", plname);
+		pline("ã‚ˆã†ã“ã %s, ã¾ãŸNetHackã®ä¸–ç•Œã¸ï¼", plname);
 		check_special_room(FALSE);
 		if (discover)
 /*JP			You("are in non-scoring discovery mode.");*/
-		        pline("Ãµº÷¥â¡¼¥É¤Ç¤Ï¥¹¥³¥¢¤Ï¤Î¤é¤Ê¤¤¤è¡¥");
+		        pline("æ¢ç´¢ãƒ¢ãƒ¼ãƒ‰ã§ã¯ã‚¹ã‚³ã‚¢ã¯ã®ã‚‰ãªã„ã‚ˆï¼");
 
 		if (discover || wizard) {
 /*JP			if(yn("Do you want to keep the save file?") == 'n'){*/
-			if(yn("¥»¡¼¥Ö¥Õ¥¡¥¤¥ë¤ò»Ä¤·¤Æ¤ª¤­¤Ş¤¹¤«¡©") == 'n'){
+			if(yn("ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ®‹ã—ã¦ãŠãã¾ã™ã‹ï¼Ÿ") == 'n'){
 				(void) delete_savefile();
 			}
 # ifdef AMIGA
@@ -379,10 +379,10 @@ not_recovered:
 		newgame();
 		/* give welcome message before pickup messages */
 /*JP		pline("Hello %s, welcome to NetHack!", plname);*/
-		pline("¤è¤¦¤³¤½ %s, NetHack¤ÎÀ¤³¦¤Ø¡ª", plname);
+		pline("ã‚ˆã†ã“ã %s, NetHackã®ä¸–ç•Œã¸ï¼", plname);
 		if (discover)
 /*JP			You("are in non-scoring discovery mode.");*/
-		        pline("Ãµº÷¥â¡¼¥É¤Ç¤Ï¥¹¥³¥¢¤Ï¤Î¤é¤Ê¤¤¤è¡¥");
+		        pline("æ¢ç´¢ãƒ¢ãƒ¼ãƒ‰ã§ã¯ã‚¹ã‚³ã‚¢ã¯ã®ã‚‰ãªã„ã‚ˆï¼");
 
 		flags.move = 0;
 		set_wear();

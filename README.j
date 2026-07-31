@@ -12,25 +12,25 @@ this program.  Japanization part of JNetHack obey original license
 completely.  Japanization part copyright belong to the authors(see
 below).
 
-JNetHack¤Ï NetHack-3.2.3¤ËÆüËÜ¸ì²½¤ò»Ü¤·¤¿¤â¤Î¤Ç¤¹¡¥JNetHack¤òºÆÇÛÉÛ¤¹¤ë
-ºİ¤Ï¥ª¥ê¥¸¥Ê¥ë¤ÎNetHack-3.2.3¤Î¥é¥¤¥»¥ó¥¹ (dat/license)¤ò¤è¤¯ÆÉ¤ó¤Ç¤¯¤À
-¤µ¤¤¡¥ÆüËÜ¸ì²½¤µ¤ì¤¿ NetHack¤Ï¡¤¥ª¥ê¥¸¥Ê¥ë¤ÎÇÛÉÛµ¬Äê¤Ë´°Á´¤Ë½¾¤Ã¤Æ¤¤¤Ş¤¹¡¥
-ÆüËÜ¸ì²½¤µ¤ì¤¿ÉôÊ¬¤Î Copyright¤Ïºî¼Ô¤é¤Ë¤¢¤ê¤Ş¤¹(²¼µ­»²¹Í)¡¥¤Ş¤¿¡¤¥ª¥ê¥¸
-¥Ê¥ë¤Î¥é¥¤¥»¥ó¥¹¤Ç¸À¤¦¤È¤³¤í¤Î NetHack¤È¤Ï JNetHack ¤ò¤â´Ş¤à¤È¤·¤Ş¤¹¡¥
+JNetHackã¯ NetHack-3.2.3ã«æ—¥æœ¬èªåŒ–ã‚’æ–½ã—ãŸã‚‚ã®ã§ã™ï¼JNetHackã‚’å†é…å¸ƒã™ã‚‹
+éš›ã¯ã‚ªãƒªã‚¸ãƒŠãƒ«ã®NetHack-3.2.3ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ (dat/license)ã‚’ã‚ˆãèª­ã‚“ã§ãã 
+ã•ã„ï¼æ—¥æœ¬èªåŒ–ã•ã‚ŒãŸ NetHackã¯ï¼Œã‚ªãƒªã‚¸ãƒŠãƒ«ã®é…å¸ƒè¦å®šã«å®Œå…¨ã«å¾“ã£ã¦ã„ã¾ã™ï¼
+æ—¥æœ¬èªåŒ–ã•ã‚ŒãŸéƒ¨åˆ†ã® Copyrightã¯ä½œè€…ã‚‰ã«ã‚ã‚Šã¾ã™(ä¸‹è¨˜å‚è€ƒ)ï¼ã¾ãŸï¼Œã‚ªãƒªã‚¸
+ãƒŠãƒ«ã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ã§è¨€ã†ã¨ã“ã‚ã® NetHackã¨ã¯ JNetHack ã‚’ã‚‚å«ã‚€ã¨ã—ã¾ã™ï¼
 
 
-			     Ãøºî¸¢¼Ô°ìÍ÷
+			     è‘—ä½œæ¨©è€…ä¸€è¦§
 
 Issei Numata		HAMADA Naoki		Shigehiro Miyashita
 Tomoyuki Shiraishi	Kazuhiro FUjieda	Kunedog
-Shinkou Awatsu		Takeshi Nishimura	¹âÅÄ¹¬¼£
-Kentaro Shirakata	ÈÄÁÒ½¼ÍÎ		Èõ¸ıÍº°ì
+Shinkou Awatsu		Takeshi Nishimura	é«˜ç”°å¹¸æ²»
+Kentaro Shirakata	æ¿å€‰å……æ´‹		æ¨‹å£é›„ä¸€
 Haruko Numata
 
-				 ¼Õ¼­
+				 è¬è¾
 				   
-°Ê²¼¤Ë¡¤¤¿¤ï¤¤¤â¤Ê¤¤¤³¤È¤«¤é¸·¤·¤¤¤³¤È¤Ş¤Ç¡¤µ®½Å¤Ê¿ÍÀ¸¤Î°ìÉôÊ¬¤ò¤¯¤À¤é
-¤Ê¤¤¤³¤È¤ËË×Æ¬¤·¤¿¿Í´Ö¤ÎÌ¾¤ò¼¨¤¹¡¥
+ä»¥ä¸‹ã«ï¼ŒãŸã‚ã„ã‚‚ãªã„ã“ã¨ã‹ã‚‰å³ã—ã„ã“ã¨ã¾ã§ï¼Œè²´é‡ãªäººç”Ÿã®ä¸€éƒ¨åˆ†ã‚’ãã ã‚‰
+ãªã„ã“ã¨ã«æ²¡é ­ã—ãŸäººé–“ã®åã‚’ç¤ºã™ï¼
 				   
 aBE TOru		HAMADA Naoki		Shigehiro Miyashita
 Shinkou Awatsu		Tomoyuki Shiraishi	Masayuki Koba
@@ -46,8 +46,8 @@ MAKOTO Matsushita	Sayu			IIDA Yosiaki
 Satoshi Asami		OZAWA Sakuro		FUCHIGAMI Masachika
 KIHARA Hideto		UCHIDA Toshiaki		Satoh Yoshiyuki
 Terishige Fukui		Yamamoto Hirotaka	Hiramoto Kouji
-MORIMOTO Kenji		ÆâÅÄ¡¡ÏÂÍÎ		Noritaka Ishizumi
+MORIMOTO Kenji		å†…ç”°ã€€å’Œæ´‹		Noritaka Ishizumi
 Yosuke Mitsumath	Kenji Gotoh		Terushige Fukui
-¤¦¤¨¤À ¤µ¤È¤·
+ã†ãˆã  ã•ã¨ã—
 
-¤ª¤è¤Ó¡¤dq-ml¤Î¥á¥ó¥Ğ¡¼
+ãŠã‚ˆã³ï¼Œdq-mlã®ãƒ¡ãƒ³ãƒãƒ¼

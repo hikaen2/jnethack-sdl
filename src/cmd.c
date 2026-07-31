@@ -293,12 +293,12 @@ doextlist()	/* here after #? - now list all full-word commands */
 /*JP
 	putstr(datawin, 0, "            Extended Commands List");
 */
-	putstr(datawin, 0, "            ³ÈÄ¥¥³¥Ş¥ó¥É°ìÍ÷");
+	putstr(datawin, 0, "            æ‹¡å¼µã‚³ãƒãƒ³ãƒ‰ä¸€è¦§");
 	putstr(datawin, 0, "");
 /*JP
 	putstr(datawin, 0, "    Press '#', then type:");
 */
-	putstr(datawin, 0, "    '#'¤ò²¡¤·¤¿¤¢¤È¥¿¥¤¥×¤»¤è:");
+	putstr(datawin, 0, "    '#'ã‚’æŠ¼ã—ãŸã‚ã¨ã‚¿ã‚¤ãƒ—ã›ã‚ˆ:");
 	putstr(datawin, 0, "");
 
 	for(efp = extcmdlist; efp->ef_txt; efp++) {
@@ -326,11 +326,11 @@ domonability()
 		if ((mtmp = cloneu()) != 0) {
 			mtmp->mhpmax = (u.mhmax /= 2);
 /*JP			You("multiply.");*/
-			You("Ê¬Îö¤·¤¿¡¥");
+			You("åˆ†è£‚ã—ãŸï¼");
 			dryup(u.ux,u.uy);
 		}
 /*JP	    } else pline("There is no fountain here.");*/
-	    } else pline("¤³¤³¤Ë¤ÏÀô¤Ï¤Ê¤¤¡¥");
+	    } else pline("ã“ã“ã«ã¯æ³‰ã¯ãªã„ï¼");
 	}
 	else if (u.usym == S_UNICORN) {
 	    use_unicorn_horn((struct obj *)0);
@@ -338,16 +338,16 @@ domonability()
 	} else if (u.umonnum == PM_MIND_FLAYER) return domindblast();
 	else if (uasmon->msound == MS_SHRIEK) {
 /*JP	    You("shriek.");*/
-	    You("¶âÀÚ¤êÀ¼¤ò¤¢¤²¤¿¡¥");
+	    You("é‡‘åˆ‡ã‚Šå£°ã‚’ã‚ã’ãŸï¼");
 	    if(u.uburied)
 /*JP		pline("Unfortunately sound does not carry well through rock.");*/
-		pline("ÉÔ¹¬¤Ë¤â²»¤Ï´ä¤ò¤¦¤Ş¤¯ÅÁ¤ï¤é¤Ê¤¤¡¥");
+		pline("ä¸å¹¸ã«ã‚‚éŸ³ã¯å²©ã‚’ã†ã¾ãä¼ã‚ã‚‰ãªã„ï¼");
 	    else aggravate();
 	} else if (Upolyd)
 /*JP		pline("Any special ability you may have is purely reflexive.");*/
-		pline("¤¢¤Ê¤¿¤Î»ı¤Ã¤Æ¤¤¤ëÆÃ¼ìÇ½ÎÏ¤Ï¤É¤ì¤â¼õÆ°Åª¤À¡¥");
+		pline("ã‚ãªãŸã®æŒã£ã¦ã„ã‚‹ç‰¹æ®Šèƒ½åŠ›ã¯ã©ã‚Œã‚‚å—å‹•çš„ã ï¼");
 /*JP	else You("don't have a special ability!");*/
-	else You("ÆÃ¼ìÇ½ÎÏ¤ò»ı¤Ã¤Æ¤¤¤Ê¤¤¡ª");
+	else You("ç‰¹æ®Šèƒ½åŠ›ã‚’æŒã£ã¦ã„ãªã„ï¼");
 	return 0;
 }
 
@@ -356,18 +356,18 @@ enter_explore_mode()
 {
 	if(!discover && !wizard) {
 /*JP		pline("Beware!  From explore mode there will be no return to normal game.");*/
-		pline("·Ù¹ğ¡ªÈ¯¸«¥â¡¼¥É¤ËÆş¤Ã¤¿¤éÄÌ¾ï¥â¡¼¥É¤Ë¤ÏÌá¤ì¤Ê¤¤¡¥");
+		pline("è­¦å‘Šï¼ç™ºè¦‹ãƒ¢ãƒ¼ãƒ‰ã«å…¥ã£ãŸã‚‰é€šå¸¸ãƒ¢ãƒ¼ãƒ‰ã«ã¯æˆ»ã‚Œãªã„ï¼");
 /*JP		if (yn("Do you want to enter explore mode?") == 'y') {*/
-		if (yn("È¯¸«¥â¡¼¥É¤Ë°Ü¤ê¤Ş¤¹¤«¡©") == 'y') {
+		if (yn("ç™ºè¦‹ãƒ¢ãƒ¼ãƒ‰ã«ç§»ã‚Šã¾ã™ã‹ï¼Ÿ") == 'y') {
 			clear_nhwindow(WIN_MESSAGE);
 /*JP			You("are now in non-scoring explore mode.");*/
-			You("¥¹¥³¥¢¤¬¤Î¤é¤Ê¤¤È¯¸«¥â¡¼¥É¤Ë°Ü¹Ô¤·¤¿¡¥");
+			You("ã‚¹ã‚³ã‚¢ãŒã®ã‚‰ãªã„ç™ºè¦‹ãƒ¢ãƒ¼ãƒ‰ã«ç§»è¡Œã—ãŸï¼");
 			discover = TRUE;
 		}
 		else {
 			clear_nhwindow(WIN_MESSAGE);
 /*JP			pline("Resuming normal game.");*/
-			pline("ÄÌ¾ï¥â¡¼¥É¤òºÆ³«¡¥");
+			pline("é€šå¸¸ãƒ¢ãƒ¼ãƒ‰ã‚’å†é–‹ï¼");
 		}
 	}
 	return 0;
@@ -386,7 +386,7 @@ wiz_wish()	/* Unlimited wishes for debug mode by Paul Polderman */
 	    (void) encumber_msg();
 	} else
 /*JP	    pline("Unavailable command '^W'.");*/
-	    pline("'^W'¥³¥Ş¥ó¥É¤Ï»È¤¨¤Ê¤¤¡¥");
+	    pline("'^W'ã‚³ãƒãƒ³ãƒ‰ã¯ä½¿ãˆãªã„ï¼");
 	return 0;
 }
 
@@ -395,7 +395,7 @@ wiz_identify()
 {
 	if (wizard)	identify_pack(0);
 /*JP	else		pline("Unavailable command '^I'.");*/
-	else		pline("'^I'¥³¥Ş¥ó¥É¤Ï»È¤¨¤Ê¤¤¡¥");
+	else		pline("'^I'ã‚³ãƒãƒ³ãƒ‰ã¯ä½¿ãˆãªã„ï¼");
 	return 0;
 }
 
@@ -404,7 +404,7 @@ wiz_map()
 {
 	if (wizard)	do_mapping();
 /*JP	else		pline("Unavailable command '^F'.");*/
-	else		pline("'^F'¥³¥Ş¥ó¥É¤Ï»È¤¨¤Ê¤¤¡¥");
+	else		pline("'^F'ã‚³ãƒãƒ³ãƒ‰ã¯ä½¿ãˆãªã„ï¼");
 	return 0;
 }
 
@@ -413,7 +413,7 @@ wiz_genesis()
 {
 	if (wizard)	(void) create_particular();
 /*JP	else		pline("Unavailable command '^G'.");*/
-	else		pline("'^G'¥³¥Ş¥ó¥É¤Ï»È¤¨¤Ê¤¤¡¥");
+	else		pline("'^G'ã‚³ãƒãƒ³ãƒ‰ã¯ä½¿ãˆãªã„ï¼");
 	return 0;
 }
 
@@ -422,7 +422,7 @@ wiz_where()
 {
 	if (wizard) print_dungeon();
 /*JP	else	    pline("Unavailable command '^O'.");*/
-	else	    pline("'^O'¥³¥Ş¥ó¥É¤Ï»È¤¨¤Ê¤¤¡¥");
+	else	    pline("'^O'ã‚³ãƒãƒ³ãƒ‰ã¯ä½¿ãˆãªã„ï¼");
 	return 0;
 }
 
@@ -431,7 +431,7 @@ wiz_detect()
 {
 	if(wizard)  (void) findit();
 /*JP	else	    pline("Unavailable command '^E'.");*/
-	else	    pline("'^E'¥³¥Ş¥ó¥É¤Ï»È¤¨¤Ê¤¤¡¥");
+	else	    pline("'^E'ã‚³ãƒãƒ³ãƒ‰ã¯ä½¿ãˆãªã„ï¼");
 	return 0;
 }
 
@@ -440,7 +440,7 @@ wiz_level_tele()
 {
 	if (wizard)	level_tele();
 /*JP	else		pline("Unavailable command '^V'.");*/
-	else		pline("'^V'¥³¥Ş¥ó¥É¤Ï»È¤¨¤Ê¤¤¡¥");
+	else		pline("'^V'ã‚³ãƒãƒ³ãƒ‰ã¯ä½¿ãˆãªã„ï¼");
 	return 0;
 }
 
@@ -561,10 +561,10 @@ static const char
 	*are  = "are ",  *were  = "were ",
 	*have = "have ", *had   = "had ",
 	*can  = "can ",  *could = "could ";*/
-	*You_ = "¤¢¤Ê¤¿¤Ï",
-	*are  = "¤Ç¤¢¤ë",  *were  = "¤Ç¤¢¤Ã¤¿",
-	*have = "¤ò¤â¤Ã¤Æ¤¤¤ë", *had   = "¤ò¤â¤Ã¤Æ¤¤¤¿",
-	*can  = "¤Ç¤­¤ë",  *could = "¤Ç¤­¤¿";
+	*You_ = "ã‚ãªãŸã¯",
+	*are  = "ã§ã‚ã‚‹",  *were  = "ã§ã‚ã£ãŸ",
+	*have = "ã‚’ã‚‚ã£ã¦ã„ã‚‹", *had   = "ã‚’ã‚‚ã£ã¦ã„ãŸ",
+	*can  = "ã§ãã‚‹",  *could = "ã§ããŸ";
 
 #define enl_msg(prefix,present,past,suffix) \
 			enlght_line(prefix, suffix, final ? past : present)
@@ -578,7 +578,7 @@ const char *start, *middle, *end;
 {
 	char buf[BUFSZ];
 
-	Sprintf(buf, "%s%s%s¡¥", start, middle, end);
+	Sprintf(buf, "%s%s%sï¼", start, middle, end);
 	putstr(en_win, 0, buf);
 }
 
@@ -591,7 +591,7 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 
 	en_win = create_nhwindow(NHW_MENU);
 /*JP	putstr(en_win, 0, final ? "Final Attributes:" : "Current Attributes:");*/
-	putstr(en_win, 0, final ? "ºÇ½ªÂ°À­¡§" : "¸½ºß¤ÎÂ°À­¡§");
+	putstr(en_win, 0, final ? "æœ€çµ‚å±æ€§ï¼š" : "ç¾åœ¨ã®å±æ€§ï¼š");
 	putstr(en_win, 0, "");
 
 #ifdef ELBERETH
@@ -600,9 +600,9 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 /*JP				"the Hand of Elbereth",
 				"the Envoy of Balance",
 				"the Glory of Arioch"*/
-				"¥¨¥ë¥Ù¥ì¥¹¤Î¸æ¼ê",
-				"Ä´ÏÂ¤Î»È¼Ô",
-				"¥¢¥ê¥ª¥Ã¥Á¤ÎÌ¾ÍÀ"
+				"ã‚¨ãƒ«ãƒ™ãƒ¬ã‚¹ã®å¾¡æ‰‹",
+				"èª¿å’Œã®ä½¿è€…",
+				"ã‚¢ãƒªã‚ªãƒƒãƒã®åèª‰"
 	    };
 /*JP*/
 	    if(u.uevent.uhand_of_elbereth == 2)
@@ -625,138 +625,138 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	else if (u.ualign.record >= -8)	you_have("sinned");
 	else you_have("transgressed");
 #endif /*JP*/
-	if (u.ualign.record >= 20)	you_are("·ÉéÊ¤Ê¿Í´Ö");
-	else if (u.ualign.record > 13)	you_are("¿®¿´¿¼¤¤¿Í´Ö");
-	else if (u.ualign.record > 8)	you_are("Ç®Îõ¤Ê¿Í´Ö");
-	else if (u.ualign.record > 3)	you_are("À¼¤Î¤«¤ó¹â¤¤¿Í´Ö");
-	else if (u.ualign.record == 3)	you_are("ÉáÄÌ¤Î¿Í´Ö");
-	else if (u.ualign.record > 0)	you_are("¤É¤â¤ê¤Î¿Í´Ö");
-	else if (u.ualign.record == 0)	you_are("Í­Ì¾Ìµ¼Â¤Î¿Í´Ö");
-	else if (u.ualign.record >= -3)	you_are("ÌÂÏÇ¤Ê¿Í´Ö");
-	else if (u.ualign.record >= -8)	you_are("µö¤·¤¬¤¿¤¤ºá¤òÉé¤Ã¤¿¿Í´Ö");
-	else you_are("°ïÃ¦¤·¤¿¿Í´Ö");
+	if (u.ualign.record >= 20)	you_are("æ•¬è™”ãªäººé–“");
+	else if (u.ualign.record > 13)	you_are("ä¿¡å¿ƒæ·±ã„äººé–“");
+	else if (u.ualign.record > 8)	you_are("ç†±çƒˆãªäººé–“");
+	else if (u.ualign.record > 3)	you_are("å£°ã®ã‹ã‚“é«˜ã„äººé–“");
+	else if (u.ualign.record == 3)	you_are("æ™®é€šã®äººé–“");
+	else if (u.ualign.record > 0)	you_are("ã©ã‚‚ã‚Šã®äººé–“");
+	else if (u.ualign.record == 0)	you_are("æœ‰åç„¡å®Ÿã®äººé–“");
+	else if (u.ualign.record >= -3)	you_are("è¿·æƒ‘ãªäººé–“");
+	else if (u.ualign.record >= -8)	you_are("è¨±ã—ãŒãŸã„ç½ªã‚’è² ã£ãŸäººé–“");
+	else you_are("é€¸è„±ã—ãŸäººé–“");
 #ifdef WIZARD
 	if (wizard) {
 		Sprintf(buf, " %d", u.ualign.record);
 /*JP		enl_msg("Your alignment ", "is", "was", buf);*/
-		enl_msg("¤¢¤Ê¤¿¤ÎÂ°À­ÃÍ¤Ï", "¤Ç¤¢¤ë", "¤Ç¤¢¤Ã¤¿",buf);
+		enl_msg("ã‚ãªãŸã®å±æ€§å€¤ã¯", "ã§ã‚ã‚‹", "ã§ã‚ã£ãŸ",buf);
 	}
 #endif
-	if (Telepat) you_have("¥Æ¥ì¥Ñ¥·¡¼Ç½ÎÏ");
-	if (Searching) you_have("ÃµººÇ½ÎÏ");
-	if (Teleportation) you_can("½Ö´Ö°ÜÆ°");
-	if (Teleport_control) you_have("½Ö´Ö°ÜÆ°¤ÎÀ©¸æÇ½ÎÏ");
-	if (See_invisible) enl_msg(You_, "¸«¤é¤ì¤ë", "¸«¤é¤ì¤¿", "¸«¤¨¤Ê¤¤¤â¤Î¤ò");
-	if (Invisible) you_are("Æ©ÌÀ");
-	else if (Invis) you_are("Â¾¿Í¤ËÂĞ¤·¤ÆÆ©ÌÀ");
+	if (Telepat) you_have("ãƒ†ãƒ¬ãƒ‘ã‚·ãƒ¼èƒ½åŠ›");
+	if (Searching) you_have("æ¢æŸ»èƒ½åŠ›");
+	if (Teleportation) you_can("ç¬é–“ç§»å‹•");
+	if (Teleport_control) you_have("ç¬é–“ç§»å‹•ã®åˆ¶å¾¡èƒ½åŠ›");
+	if (See_invisible) enl_msg(You_, "è¦‹ã‚‰ã‚Œã‚‹", "è¦‹ã‚‰ã‚ŒãŸ", "è¦‹ãˆãªã„ã‚‚ã®ã‚’");
+	if (Invisible) you_are("é€æ˜");
+	else if (Invis) you_are("ä»–äººã«å¯¾ã—ã¦é€æ˜");
 	else if ((HInvis & I_BLOCKED) != 0L &&
 		 ((HInvis & ~I_BLOCKED) != 0L || pm_invisible(uasmon)))
-	    you_are("¤Ş¤ë¸«¤¨");
-	if (Fast) you_have((Fast & ~INTRINSIC) ? "¤È¤Æ¤âÁÇÁá¤¯¹ÔÆ°¤¹¤ëÇ½ÎÏ" : "ÁÇÁá¤¯¹ÔÆ°¤¹¤ëÇ½ÎÏ");
-	if (Stealth) you_have("¿ÍÌÜ¤òÅğ¤àÇ½ÎÏ");
-	if (Regeneration) you_have("ºÆÀ¸Ç½ÎÏ");
-	if (Hunger) enl_msg("¤¢¤Ê¤¿¤Ï¤¹¤°¤Ë", "Ê¢¤¬¸º¤ë", "Ê¢¤¬¸º¤Ã¤¿", "");
-	if (Conflict) enl_msg("¤¢¤Ê¤¿¤Ï", "°ú¤­µ¯¤³¤·¤Æ¤¤¤ë","°ú¤­µ¯¤³¤·¤Æ¤¤¤¿","Æ®Áè¤ò");
-	if (Aggravate_monster) enl_msg("¤¢¤Ê¤¿¤Ï","È¿´¶¤ò¤«¤Ã¤Æ¤¤¤ë","È¿´¶¤ò¤«¤Ã¤Æ¤¤¤¿","");		      
-	if (Poison_resistance) you_have("ÆÇ¤Ø¤ÎÂÑÀ­");
-	if (Fire_resistance) you_have("²Ğ¤Ø¤ÎÂÑÀ­");
-	if (Cold_resistance) you_have("´¨¤µ¤Ø¤ÎÂÑÀ­");
-	if (Shock_resistance) you_have("¥·¥ç¥Ã¥¯¤Ø¤ÎÂÑÀ­");
-	if (Sleep_resistance) you_have("Ì²¤ê¤Ø¤ÎÂÑÀ­");
-	if (Disint_resistance) you_have("Ê´ºÕ¤Ø¤ÎÂÑÀ­");
+	    you_are("ã¾ã‚‹è¦‹ãˆ");
+	if (Fast) you_have((Fast & ~INTRINSIC) ? "ã¨ã¦ã‚‚ç´ æ—©ãè¡Œå‹•ã™ã‚‹èƒ½åŠ›" : "ç´ æ—©ãè¡Œå‹•ã™ã‚‹èƒ½åŠ›");
+	if (Stealth) you_have("äººç›®ã‚’ç›—ã‚€èƒ½åŠ›");
+	if (Regeneration) you_have("å†ç”Ÿèƒ½åŠ›");
+	if (Hunger) enl_msg("ã‚ãªãŸã¯ã™ãã«", "è…¹ãŒæ¸›ã‚‹", "è…¹ãŒæ¸›ã£ãŸ", "");
+	if (Conflict) enl_msg("ã‚ãªãŸã¯", "å¼•ãèµ·ã“ã—ã¦ã„ã‚‹","å¼•ãèµ·ã“ã—ã¦ã„ãŸ","é—˜äº‰ã‚’");
+	if (Aggravate_monster) enl_msg("ã‚ãªãŸã¯","åæ„Ÿã‚’ã‹ã£ã¦ã„ã‚‹","åæ„Ÿã‚’ã‹ã£ã¦ã„ãŸ","");		      
+	if (Poison_resistance) you_have("æ¯’ã¸ã®è€æ€§");
+	if (Fire_resistance) you_have("ç«ã¸ã®è€æ€§");
+	if (Cold_resistance) you_have("å¯’ã•ã¸ã®è€æ€§");
+	if (Shock_resistance) you_have("ã‚·ãƒ§ãƒƒã‚¯ã¸ã®è€æ€§");
+	if (Sleep_resistance) you_have("çœ ã‚Šã¸ã®è€æ€§");
+	if (Disint_resistance) you_have("ç²‰ç •ã¸ã®è€æ€§");
   	if (Protection_from_shape_changers)
-		you_have("ÊÑ²½²øÊª¤Ø¤ÎÂÑÀ­");
-	if (Polymorph) enl_msg("¤¢¤Ê¤¿¤Ï","ÊÑ²½¤·¤Æ¤¤¤ë","ÊÑ²½¤·¤Æ¤¤¤¿","");
-	if (Polymorph_control) you_have("ÊÑ²½¤ÎÀ©¸æÇ½ÎÏ");
+		you_have("å¤‰åŒ–æ€ªç‰©ã¸ã®è€æ€§");
+	if (Polymorph) enl_msg("ã‚ãªãŸã¯","å¤‰åŒ–ã—ã¦ã„ã‚‹","å¤‰åŒ–ã—ã¦ã„ãŸ","");
+	if (Polymorph_control) you_have("å¤‰åŒ–ã®åˆ¶å¾¡èƒ½åŠ›");
   	if (HHalluc_resistance)
-		you_have("¸¸³Ğ¤Ø¤ÎÂÑÀ­");
+		you_have("å¹»è¦šã¸ã®è€æ€§");
   	if (final) {
-		if (Hallucination) you_are("¸¸³Ğ¾õÂÖ");
-		if (Stunned) you_are("¤¯¤é¤¯¤é¾õÂÖ");
-		if (Confusion) you_are("º®Íğ¾õÂÖ");
+		if (Hallucination) you_are("å¹»è¦šçŠ¶æ…‹");
+		if (Stunned) you_are("ãã‚‰ãã‚‰çŠ¶æ…‹");
+		if (Confusion) you_are("æ··ä¹±çŠ¶æ…‹");
 		if (Sick) {
 			if (u.usick_type & SICK_VOMITABLE)
-				enl_msg("¤¢¤Ê¤¿¤Ï¿©ÃæÆÇ¤Çµ¤Ê¬¤¬", "°­¤¤", "°­¤«¤Ã¤¿", "");
+				enl_msg("ã‚ãªãŸã¯é£Ÿä¸­æ¯’ã§æ°—åˆ†ãŒ", "æ‚ªã„", "æ‚ªã‹ã£ãŸ", "");
 			if (u.usick_type & SICK_NONVOMITABLE)
-				enl_msg("¤¢¤Ê¤¿¤ÏÉÂµ¤¤Çµ¤Ê¬¤¬", "°­¤¤", "°­¤«¤Ã¤¿", "");
+				enl_msg("ã‚ãªãŸã¯ç—…æ°—ã§æ°—åˆ†ãŒ", "æ‚ªã„", "æ‚ªã‹ã£ãŸ", "");
 		}
-		if (Blinded) you_are("ÌÕÌÜ");
+		if (Blinded) you_are("ç›²ç›®");
 	}
 	if (Wounded_legs) {
-		Sprintf(buf, "¤¢¤Ê¤¿¤Ï%s¤òÉé½ı¤·¤Æ", makeplural(body_part(LEG)));
-		enl_msg(buf,"¤¤¤ë","¤¤¤¿","");
+		Sprintf(buf, "ã‚ãªãŸã¯%sã‚’è² å‚·ã—ã¦", makeplural(body_part(LEG)));
+		enl_msg(buf,"ã„ã‚‹","ã„ãŸ","");
 	}
   	if (Glib) {
-		Sprintf(buf, "%s¤¬¤Ì¤ë¤Ì¤ë¤·¤Æ", makeplural(body_part(FINGER)));
-		enl_msg(buf,"¤¤¤ë","¤¤¤¿","");
+		Sprintf(buf, "%sãŒã¬ã‚‹ã¬ã‚‹ã—ã¦", makeplural(body_part(FINGER)));
+		enl_msg(buf,"ã„ã‚‹","ã„ãŸ","");
 	}
 	if (Strangled) {
-		Sprintf(buf, "¤¢¤Ê¤¿¤Ï%s", (u.uburied) ? "ÃâÂ©¤·¤Æ" : "¼ó¤ò¹Ê¤á¤é¤ì¤Æ");
-		enl_msg(buf,"¤¤¤ë","¤¤¤¿","");
+		Sprintf(buf, "ã‚ãªãŸã¯%s", (u.uburied) ? "çª’æ¯ã—ã¦" : "é¦–ã‚’çµã‚ã‚‰ã‚Œã¦");
+		enl_msg(buf,"ã„ã‚‹","ã„ãŸ","");
 	}
-	if (Stoned) you_are("ÀĞ²½¾õÂÖ");
+	if (Stoned) you_are("çŸ³åŒ–çŠ¶æ…‹");
   	if (Lifesaved)
-		enl_msg("¤¢¤Ê¤¿¤ÎÀ¸Ì¿¤Ï","ÊİÂ¸¤µ¤ì¤Æ¤¤¤ë","ÊİÂ¸¤µ¤ì¤Æ¤¤¤¿","");
-	if (Adornment) you_have("Áõ¾şÉÊ");
-	if (Warning) enl_msg("¤¢¤Ê¤¿¤Ï","·Ù²üÇ½ÎÏ¤ò»ı¤Ã¤Æ¤¤¤ë","·Ù²üÇ½ÎÏ¤ò»ı¤Ã¤Æ¤¤¤¿","");
-	if (Protection) enl_msg("¤¢¤Ê¤¿¤Ï","¼é¤é¤ì¤Æ¤¤¤ë","¼é¤é¤ì¤Æ¤¤¤¿","");
-	if (Reflecting) you_have("È¿¼ÍÇ½ÎÏ");
+		enl_msg("ã‚ãªãŸã®ç”Ÿå‘½ã¯","ä¿å­˜ã•ã‚Œã¦ã„ã‚‹","ä¿å­˜ã•ã‚Œã¦ã„ãŸ","");
+	if (Adornment) you_have("è£…é£¾å“");
+	if (Warning) enl_msg("ã‚ãªãŸã¯","è­¦æˆ’èƒ½åŠ›ã‚’æŒã£ã¦ã„ã‚‹","è­¦æˆ’èƒ½åŠ›ã‚’æŒã£ã¦ã„ãŸ","");
+	if (Protection) enl_msg("ã‚ãªãŸã¯","å®ˆã‚‰ã‚Œã¦ã„ã‚‹","å®ˆã‚‰ã‚Œã¦ã„ãŸ","");
+	if (Reflecting) you_have("åå°„èƒ½åŠ›");
 	if ((HLevitation & (I_SPECIAL|W_ARTI)) != 0L &&
 	    (HLevitation & ~(I_SPECIAL|W_ARTI|TIMEOUT)) == 0L &&
-	    !is_floater(uasmon)) enl_msg("¤¢¤Ê¤¿¤Ï¼«Ê¬¤Î°Õ»Ö¤ÇÉâ¤¤¤Æ", "¤¤¤ë", "¤¤¤¿", "");
-	else if (Levitation) you_are("ÉâÍ·¾õÂÖ");
-	else if (is_flyer(uasmon)) you_can("Èô¹Ô");
-	if (Fumbling) enl_msg("¤¢¤Ê¤¿¤Ï¤è¤¯Êª¤ò","Íî¤·¤Æ¤¤¤ë","Íî¤·¤¿","");
-	if (Jumping) you_can("Ä·Ìö");
-	if (Wwalking) you_can("¿å¾åÊâ¹Ô");
-	if (passes_walls(uasmon)) you_can("ÊÉ¤òÄÌ¤ê¤Ì¤±¤ë¤³¤È¤¬");
-	if (Breathless) you_can("¶õµ¤¤Ê¤·¤ÇÀ¸Â¸¤¹¤ë¤³¤È¤¬");
-	else if (Amphibious) you_can("¿åÃæ¸ÆµÛ");
-	if (Antimagic) you_have("ËâË¡ËÉ¸æÇ½ÎÏ");
-	if (Displaced) you_have("¸¸±ÆÇ½ÎÏ");
-	if (Clairvoyant) you_have("ÀéÎ¤´ãÇ½ÎÏ");
+	    !is_floater(uasmon)) enl_msg("ã‚ãªãŸã¯è‡ªåˆ†ã®æ„å¿—ã§æµ®ã„ã¦", "ã„ã‚‹", "ã„ãŸ", "");
+	else if (Levitation) you_are("æµ®éŠçŠ¶æ…‹");
+	else if (is_flyer(uasmon)) you_can("é£›è¡Œ");
+	if (Fumbling) enl_msg("ã‚ãªãŸã¯ã‚ˆãç‰©ã‚’","è½ã—ã¦ã„ã‚‹","è½ã—ãŸ","");
+	if (Jumping) you_can("è·³èº");
+	if (Wwalking) you_can("æ°´ä¸Šæ­©è¡Œ");
+	if (passes_walls(uasmon)) you_can("å£ã‚’é€šã‚Šã¬ã‘ã‚‹ã“ã¨ãŒ");
+	if (Breathless) you_can("ç©ºæ°—ãªã—ã§ç”Ÿå­˜ã™ã‚‹ã“ã¨ãŒ");
+	else if (Amphibious) you_can("æ°´ä¸­å‘¼å¸");
+	if (Antimagic) you_have("é­”æ³•é˜²å¾¡èƒ½åŠ›");
+	if (Displaced) you_have("å¹»å½±èƒ½åŠ›");
+	if (Clairvoyant) you_have("åƒé‡Œçœ¼èƒ½åŠ›");
 	if (u.ulycn >= LOW_PM) {
 		Strcpy(buf, jtrns_mon(mons[u.ulycn].mname, flags.female));
 		you_are(buf);
 	}
 	if (Upolyd) {
-	    if (u.ulycn >= LOW_PM) Strcpy(buf, "¤¢¤Ê¤¿¤Ï½Ã¤Î»Ñ¤ò¤·¤Æ");
-	    else Sprintf(buf, "¤¢¤Ê¤¿¤Ï%s¤ËÊÑ²½¤·¤Æ", jtrns_mon(uasmon->mname, flags.female));
+	    if (u.ulycn >= LOW_PM) Strcpy(buf, "ã‚ãªãŸã¯ç£ã®å§¿ã‚’ã—ã¦");
+	    else Sprintf(buf, "ã‚ãªãŸã¯%sã«å¤‰åŒ–ã—ã¦", jtrns_mon(uasmon->mname, flags.female));
 #ifdef WIZARD
 	    if (wizard) Sprintf(eos(buf), " (%d)", u.mtimedone);
 #endif
-	    enl_msg(buf, "¤¤¤ë", "¤¤¤¿", "");
+	    enl_msg(buf, "ã„ã‚‹", "ã„ãŸ", "");
 	}
 	if (Luck) {
 	    ltmp = abs((int)Luck);
 	    Sprintf(buf, "%s%s",
-		    ltmp >= 10 ? "ÌÔÎõ¤Ë" : ltmp >= 5 ? "¤È¤Æ¤â" : "",
-		    Luck < 0 ? "ÉÔ¹¬" : "¹¬Ê¡");
+		    ltmp >= 10 ? "çŒ›çƒˆã«" : ltmp >= 5 ? "ã¨ã¦ã‚‚" : "",
+		    Luck < 0 ? "ä¸å¹¸" : "å¹¸ç¦");
 #ifdef WIZARD
 	    if (wizard) Sprintf(eos(buf), "(%d)", Luck);
 #endif
 	    you_are(buf);
 	}
 #ifdef WIZARD
- 	 else if (wizard) enl_msg("¤¢¤Ê¤¿¤Î±¿¤Ï¥¼¥í", "¤Ç¤¢¤ë", "¤Ç¤¢¤Ã¤¿", "");
+ 	 else if (wizard) enl_msg("ã‚ãªãŸã®é‹ã¯ã‚¼ãƒ­", "ã§ã‚ã‚‹", "ã§ã‚ã£ãŸ", "");
 #endif
- 	if (u.moreluck > 0) you_have("¤µ¤é¤Ê¤ë¹¬±¿");
-	else if (u.moreluck < 0) you_have("¤µ¤é¤Ê¤ë°­±¿");
+ 	if (u.moreluck > 0) you_have("ã•ã‚‰ãªã‚‹å¹¸é‹");
+	else if (u.moreluck < 0) you_have("ã•ã‚‰ãªã‚‹æ‚ªé‹");
 	if (carrying(LUCKSTONE) || stone_luck(TRUE)) {
 	    ltmp = stone_luck(FALSE);
 	    if (ltmp <= 0)
-		enl_msg("°­±¿¤Ï", "µî¤Ã¤Æ¤¤¤Ê¤¤", "µî¤Ã¤Æ¤¤¤Ê¤«¤Ã¤¿", "");
+		enl_msg("æ‚ªé‹ã¯", "å»ã£ã¦ã„ãªã„", "å»ã£ã¦ã„ãªã‹ã£ãŸ", "");
 	    if (ltmp >= 0)
-		enl_msg("¹¬±¿¤Ï", "µî¤Ã¤Æ¤¤¤Ê¤¤", "µî¤Ã¤Æ¤¤¤Ê¤«¤Ã¤¿", "");
+		enl_msg("å¹¸é‹ã¯", "å»ã£ã¦ã„ãªã„", "å»ã£ã¦ã„ãªã‹ã£ãŸ", "");
 	}
 
 	if (u.ugangr) {
-	    Sprintf(buf, "%s¤Ï%sÅÜ¤Ã¤Æ", u_gname(),
-		    u.ugangr > 6 ? "ÌÔÎõ¤Ë" : u.ugangr > 3 ? "¤È¤Æ¤â" : "");
+	    Sprintf(buf, "%sã¯%sæ€’ã£ã¦", u_gname(),
+		    u.ugangr > 6 ? "çŒ›çƒˆã«" : u.ugangr > 3 ? "ã¨ã¦ã‚‚" : "");
 	    if(final)
-	      Strcat(buf, "¤¤¤¿");
+	      Strcat(buf, "ã„ãŸ");
 	    else
-	      Strcat(buf, "¤¤¤ë");
+	      Strcat(buf, "ã„ã‚‹");
 #ifdef WIZARD
 	    if (wizard) Sprintf(eos(buf), "(%d)", u.ugangr);
 #endif
@@ -769,39 +769,39 @@ int final;	/* 0 => still in progress; 1 => over, survived; 2 => dead */
 	     */
 	  if (!final) {
 	    if(can_pray(FALSE))
-	      Sprintf(buf, "¤Ç¤­¤ë");
+	      Sprintf(buf, "ã§ãã‚‹");
 	    else
-	      Sprintf(buf, "¤Ç¤­¤Ê¤¤");
+	      Sprintf(buf, "ã§ããªã„");
 #ifdef WIZARD
 	    if (wizard) Sprintf(eos(buf), "(%d)", u.ublesscnt);
 #endif
 
-	    enl_msg("¤¢¤Ê¤¿¤Ï", buf, buf, "°ÂÁ´¤Ëµ§¤ë¤³¤È¤¬");
+	    enl_msg("ã‚ãªãŸã¯", buf, buf, "å®‰å…¨ã«ç¥ˆã‚‹ã“ã¨ãŒ");
 	}
     {
 	const char *p;
 
 	buf[0] = '\0';
 	if (final < 2) {    /* still in progress, or quit/escaped/ascended */
-	    p = "»à¤ó¤À¸åÉü³è¤·¤Æ¤¿";
+	    p = "æ­»ã‚“ã å¾Œå¾©æ´»ã—ã¦ãŸ";
 	    switch (u.umortality) {
-	    case 0:  p = !final ? (char *)0 : "À¸¤­±ä¤Ó¤Æ¤¤¤¿";  break;
-	    case 1:  Strcpy(buf, "°ìÅÙ");  break;
-	    case 2:  Strcpy(buf, "ÆóÅÙ");  break;
-	    case 3:  Strcpy(buf, "»°ÅÙ");  break;
-	    default: Sprintf(buf, "%d²ó", u.umortality);
+	    case 0:  p = !final ? (char *)0 : "ç”Ÿãå»¶ã³ã¦ã„ãŸ";  break;
+	    case 1:  Strcpy(buf, "ä¸€åº¦");  break;
+	    case 2:  Strcpy(buf, "äºŒåº¦");  break;
+	    case 3:  Strcpy(buf, "ä¸‰åº¦");  break;
+	    default: Sprintf(buf, "%då›", u.umortality);
 		     break;
 	    }
 	} else {		/* game ended in character's death */
-	    p = "»à¤ó¤Ç¤¤¤ë";
+	    p = "æ­»ã‚“ã§ã„ã‚‹";
 	    switch (u.umortality) {
 	    case 0:  impossible("dead without dying?");
 	    case 1:  break;			/* just "are dead" */
-	    default: Sprintf(buf, "(%d²ó¡ª)", u.umortality);
+	    default: Sprintf(buf, "(%då›ï¼)", u.umortality);
 		     break;
 	    }
 	}
-	if (p) enl_msg(You_, "»à¤ó¤Ç¤¤¤ë", p, buf);
+	if (p) enl_msg(You_, "æ­»ã‚“ã§ã„ã‚‹", p, buf);
     }
 
 	display_nhwindow(en_win, TRUE);
@@ -983,7 +983,7 @@ wiz_attributes()
 		enlightenment(0);
 	else
 /*JP		pline("Unavailable command '^X'.");*/
-		pline("'^X'¥³¥Ş¥ó¥É¤Ï»È¤¨¤Ê¤¤¡¥");
+		pline("'^X'ã‚³ãƒãƒ³ãƒ‰ã¯ä½¿ãˆãªã„ï¼");
 	return 0;
 }
 
@@ -1073,7 +1073,7 @@ static const struct func_tab cmdlist[] = {
 	{'R', FALSE, doremring},
 	{M('r'), FALSE, dorub},
 /*JP	{'s', TRUE, dosearch, "searching"},*/
-	{'s', TRUE, dosearch, "ÁÜ¤¹"},
+	{'s', TRUE, dosearch, "æœã™"},
 	{'S', TRUE, dosave},
 	{M('s'), FALSE, dosit},
 	{'t', FALSE, dothrow},
@@ -1104,8 +1104,8 @@ static const struct func_tab cmdlist[] = {
 #endif
 /*JP	{'.', TRUE, donull, "waiting"},
 	{' ', TRUE, donull, "waiting"},*/
-	{'.', TRUE, donull, "µÙ·Æ¤¹¤ë"},
-	{' ', TRUE, donull, "µÙ·Æ¤¹¤ë"},
+	{'.', TRUE, donull, "ä¼‘æ†©ã™ã‚‹"},
+	{' ', TRUE, donull, "ä¼‘æ†©ã™ã‚‹"},
 	{',', FALSE, dopickup},
 	{':', TRUE, dolook},
 	{';', TRUE, doquickwhatis},
@@ -1152,28 +1152,28 @@ struct ext_func_tab extcmdlist[] = {
 	{"?", "get this list of extended commands", doextlist, TRUE},
 #endif /*JP*/
 
-	{"adjust", "»ı¤ÁÊª°ìÍ÷¤ÎÄ´À°", doorganize, TRUE},
-	{"chat", "Ã¯¤«¤ÈÏÃ¤¹", dotalk, TRUE},	/* converse? */
-	{"dip", "²¿¤«¤ËÊª¤ò¿»¤¹", dodip, FALSE},
+	{"adjust", "æŒã¡ç‰©ä¸€è¦§ã®èª¿æ•´", doorganize, TRUE},
+	{"chat", "èª°ã‹ã¨è©±ã™", dotalk, TRUE},	/* converse? */
+	{"dip", "ä½•ã‹ã«ç‰©ã‚’æµ¸ã™", dodip, FALSE},
 #ifdef WEAPON_SKILLS
-	{"enhance", "Éğ´ï½ÏÎıÅÙ¤ò¹â¤á¤ë", enhance_weapon_skill, TRUE},
+	{"enhance", "æ­¦å™¨ç†Ÿç·´åº¦ã‚’é«˜ã‚ã‚‹", enhance_weapon_skill, TRUE},
 #endif /* WEAPON_SKILLS */
-	{"force", "¸°¤ò¤³¤¸¤¢¤±¤ë", doforce, FALSE},
-	{"invoke", "Êª¤ÎÆÃÊÌ¤ÊÎÏ¤ò»È¤¦", doinvoke, TRUE},
-	{"jump", "Â¾¤Î°ÌÃÖ¤ËÈô¤Ó¤¦¤Ä¤ë", dojump, FALSE},
-	{"loot", "¾²¤Î¾å¤ÎÈ¢¤ò³«¤±¤ë", doloot, TRUE},
-	{"monster", "²øÊª¤ÎÆÃÊÌÇ½ÎÏ¤ò»È¤¦", domonability, TRUE},
-	{"name", "¥¢¥¤¥Æ¥à¤äÊª¤ËÌ¾Á°¤ò¤Ä¤±¤ë", ddocall, TRUE},
-	{"offer", "¿À¤Ë¶¡Êª¤òÊû¤²¤ë", dosacrifice, FALSE},
-	{"pray", "¿À¤Ëµ§¤ë", dopray, TRUE},
-	{"rub", "¥é¥ó¥×¤ò¤³¤¹¤ë", dorub, FALSE},
-	{"sit", "ºÂ¤ë", dosit, FALSE},
-	{"turn", "¥¢¥ó¥Ç¥Ã¥È¤òÅÚ¤ËÊÖ¤¹", doturn, TRUE},
-	{"untrap", "æ«¤ò¤Ï¤º¤¹", dountrap, FALSE},
-	{"version", "¥³¥ó¥Ñ¥¤¥ë»ş¤Î¥ª¥×¥·¥ç¥ó¤òÉ½¼¨¤¹¤ë",
+	{"force", "éµã‚’ã“ã˜ã‚ã‘ã‚‹", doforce, FALSE},
+	{"invoke", "ç‰©ã®ç‰¹åˆ¥ãªåŠ›ã‚’ä½¿ã†", doinvoke, TRUE},
+	{"jump", "ä»–ã®ä½ç½®ã«é£›ã³ã†ã¤ã‚‹", dojump, FALSE},
+	{"loot", "åºŠã®ä¸Šã®ç®±ã‚’é–‹ã‘ã‚‹", doloot, TRUE},
+	{"monster", "æ€ªç‰©ã®ç‰¹åˆ¥èƒ½åŠ›ã‚’ä½¿ã†", domonability, TRUE},
+	{"name", "ã‚¢ã‚¤ãƒ†ãƒ ã‚„ç‰©ã«åå‰ã‚’ã¤ã‘ã‚‹", ddocall, TRUE},
+	{"offer", "ç¥ã«ä¾›ç‰©ã‚’æ§ã’ã‚‹", dosacrifice, FALSE},
+	{"pray", "ç¥ã«ç¥ˆã‚‹", dopray, TRUE},
+	{"rub", "ãƒ©ãƒ³ãƒ—ã‚’ã“ã™ã‚‹", dorub, FALSE},
+	{"sit", "åº§ã‚‹", dosit, FALSE},
+	{"turn", "ã‚¢ãƒ³ãƒ‡ãƒƒãƒˆã‚’åœŸã«è¿”ã™", doturn, TRUE},
+	{"untrap", "ç½ ã‚’ã¯ãšã™", dountrap, FALSE},
+	{"version", "ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«æ™‚ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’è¡¨ç¤ºã™ã‚‹",
 		doextversion, TRUE},
-	{"wipe", "´é¤ò¿¡¤¦", dowipe, FALSE},
-	{"?", "¤³¤Î³ÈÄ¥¥³¥Ş¥ó¥É°ìÍ÷¤òÉ½¼¨¤¹¤ë", doextlist, TRUE},
+	{"wipe", "é¡”ã‚’æ‹­ã†", dowipe, FALSE},
+	{"?", "ã“ã®æ‹¡å¼µã‚³ãƒãƒ³ãƒ‰ä¸€è¦§ã‚’è¡¨ç¤ºã™ã‚‹", doextlist, TRUE},
 #if defined(WIZARD)
 	/*
 	 * There must be a blank entry here for every entry in the table
@@ -1433,31 +1433,31 @@ register char *cmd;
 	if(flags.newbie){
 	    if(!(moves % 256)){
 		if(!newbie.search){
-		    pline("¥Ò¥ó¥È: 's'¤ÇÈëÌ©¤ÎÄÌÏ©¤äÈâ¤òÈ¯¸«¤Ç¤­¤ë¡¥");
+		    pline("ãƒ’ãƒ³ãƒˆ: 's'ã§ç§˜å¯†ã®é€šè·¯ã‚„æ‰‰ã‚’ç™ºè¦‹ã§ãã‚‹ï¼");
 		    newbie.search = 1;
 		}
 		else if(!newbie.pickup){
-		    pline("¥Ò¥ó¥È: ','¤ÇÄÌÏ©¤ËÍî¤Á¤Æ¤¤¤ëÊªÂÎ¤ò½¦¤¦¤³¤È¤¬¤Ç¤­¤ë¡¥");
+		    pline("ãƒ’ãƒ³ãƒˆ: ','ã§é€šè·¯ã«è½ã¡ã¦ã„ã‚‹ç‰©ä½“ã‚’æ‹¾ã†ã“ã¨ãŒã§ãã‚‹ï¼");
 		    newbie.pickup = 1;
 		}
 		else if(!newbie.open){
-		    pline("¥Ò¥ó¥È: 'o'¤ÇÈâ¤ò³«¤±¤ë¤³¤È¤¬¤Ç¤­¤ë¡¥");
+		    pline("ãƒ’ãƒ³ãƒˆ: 'o'ã§æ‰‰ã‚’é–‹ã‘ã‚‹ã“ã¨ãŒã§ãã‚‹ï¼");
 		    newbie.open = 1;
 		}
 		else if(!newbie.down){
-		    pline("¥Ò¥ó¥È: ²¼¤Î³¬¤Ø¹Ô¤¯¤Ë¤Ï'>'¤À¡¥");
+		    pline("ãƒ’ãƒ³ãƒˆ: ä¸‹ã®éšã¸è¡Œãã«ã¯'>'ã ï¼");
 		    newbie.down = 1;
 		}
 		else if(!newbie.pray){
-		    pline("¥Ò¥ó¥È: ¥Ô¥ó¥Á¤Î¤È¤­¤Ë'M-p'¤Çµ§¤ë¤È½õ¤«¤ë¤³¤È¤¬¤¢¤ë¡¥");
+		    pline("ãƒ’ãƒ³ãƒˆ: ãƒ”ãƒ³ãƒã®ã¨ãã«'M-p'ã§ç¥ˆã‚‹ã¨åŠ©ã‹ã‚‹ã“ã¨ãŒã‚ã‚‹ï¼");
 		    newbie.pray = 1;
 		}
 		else if(!newbie.offer && newbie.found_altar && newbie.found_altar + 256 < moves){
-		    pline("¥Ò¥ó¥È: º×ÃÅ¤Ë'M-o'¤ÇÊû¤²¤â¤Î¤ò¤·¤è¤¦¡¥¤¤¤¤¤³¤È¤¬¤¢¤ë¤«¤â¡¥");
+		    pline("ãƒ’ãƒ³ãƒˆ: ç¥­å£‡ã«'M-o'ã§æ§ã’ã‚‚ã®ã‚’ã—ã‚ˆã†ï¼ã„ã„ã“ã¨ãŒã‚ã‚‹ã‹ã‚‚ï¼");
 		    newbie.offer = 1;
 		}
 		else if(!newbie.loot && newbie.found_chest  && newbie.found_chest + 256 < moves){
-		    pline("¥Ò¥ó¥È: ÊõÈ¢¤Ï'M-l'¤ÇÃæ¿È¤Î½Ğ¤·Æş¤ì¤ò¤¹¤ë¤³¤È¤¬¤Ç¤­¤ë¡¥");
+		    pline("ãƒ’ãƒ³ãƒˆ: å®ç®±ã¯'M-l'ã§ä¸­èº«ã®å‡ºã—å…¥ã‚Œã‚’ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ï¼");
 		    newbie.loot = 1;
 		}
 	    }
@@ -1568,7 +1568,7 @@ register char *cmd;
 
 		if (u.uburied && !tlist->can_if_buried) {
 /*JP		    You_cant("do that while you are buried!");*/
-		    You("Ëä¤Ş¤Ã¤Æ¤¤¤ë»ş¤Ë¤½¤ó¤Ê¤³¤È¤Ï¤Ç¤­¤Ê¤¤¡ª");
+		    You("åŸ‹ã¾ã£ã¦ã„ã‚‹æ™‚ã«ãã‚“ãªã“ã¨ã¯ã§ããªã„ï¼");
 		    res = 0;
 		} else {
 		    /* we discard 'const' because some compilers seem to have
@@ -1606,7 +1606,7 @@ register char *cmd;
 	    }
 	    *cp = '\0';
 /*JP	    Norep("Unknown command '%s'.", expcmd);*/
-	    Norep("'%s'¥³¥Ş¥ó¥É¡©", expcmd);
+	    Norep("'%s'ã‚³ãƒãƒ³ãƒ‰ï¼Ÿ", expcmd);
 	}
 	/* didn't move */
 	flags.move = FALSE;
@@ -1673,7 +1673,7 @@ const char *s;
 	else
 #endif
 /*JP	    dirsym = yn_function (s ? s : "In what direction?",*/
-	    dirsym = yn_function (s ? s : "¤É¤ÎÊı¸ş¡©",
+	    dirsym = yn_function (s ? s : "ã©ã®æ–¹å‘ï¼Ÿ",
 					(char *)0, '\0');
 #ifdef REDO
 	savech(dirsym);
@@ -1683,7 +1683,7 @@ const char *s;
 	else if(!movecmd(dirsym) && !u.dz) {
 		if(!index(quitchars, dirsym))
 /*JP			pline("What a strange direction!");*/
-			pline("¤º¤¤¤Ö¤ó¤È´ñÌ¯¤ÊÊı¸ş¤À¡ª");
+			pline("ãšã„ã¶ã‚“ã¨å¥‡å¦™ãªæ–¹å‘ã ï¼");
 		return 0;
 	}
 	if(!u.dz && (Stunned || (Confusion && !rn2(5)))) confdir();
@@ -1772,7 +1772,7 @@ parse()
 		    if (multi > 9) {
 			clear_nhwindow(WIN_MESSAGE);
 /*JP			Sprintf(in_line, "Count: %d", multi);*/
-			Sprintf(in_line, "¿ô: %d", multi);
+			Sprintf(in_line, "æ•°: %d", multi);
 			pline(in_line);
 			mark_synch();
 		    }

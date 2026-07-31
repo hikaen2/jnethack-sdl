@@ -147,13 +147,13 @@ stat_align(void *data)
 #ifdef JNETHACK
     switch(u.ualign.type){
     case A_CHAOTIC:
-	return "∫Æ∆Ÿ";
+	return "Ê∑∑Ê≤å";
 	break;
     case A_NEUTRAL:
-	return "√ÊŒ©";
+	return "‰∏≠Á´ã";
 	break;
     case A_LAWFUL:
-	return "√·Ω¯";
+	return "Áß©Â∫è";
 	break;
     }
     return "";
@@ -193,29 +193,29 @@ struct nh_stat_tab {
 } stat_tab[2][7] = {
 #ifdef JNETHACK
     {
-	{NOVALUE, STAT_TYPE_CHAR_P, NULL,	"≥ª",   	(void *)&u.uac},
-	{NOVALUE, STAT_TYPE_INT_P, NULL,	"∂‚",  		(void *)&u.ugold},
-	{NOVALUE, STAT_TYPE_F_INT, NULL,	"•Ï•Ÿ•Î",	stat_lvl},
-	{NOVALUE, STAT_TYPE_F_CHAR_P, NULL,	"¬∞¿≠",		stat_align},
-	{NOVALUE, STAT_TYPE_INT_P, f_time,	" ‚",		(void *)&moves},
+	{NOVALUE, STAT_TYPE_CHAR_P, NULL,	"Èéß",   	(void *)&u.uac},
+	{NOVALUE, STAT_TYPE_INT_P, NULL,	"Èáë",  		(void *)&u.ugold},
+	{NOVALUE, STAT_TYPE_F_INT, NULL,	"„É¨„Éô„É´",	stat_lvl},
+	{NOVALUE, STAT_TYPE_F_CHAR_P, NULL,	"Â±ûÊÄß",		stat_align},
+	{NOVALUE, STAT_TYPE_INT_P, f_time,	"Ê≠©",		(void *)&moves},
 #ifdef EXP_ON_BOTL
-	{NOVALUE, STAT_TYPE_INT_P, f_exp,	"∑–∏≥", 	(void *)&u.uexp},
+	{NOVALUE, STAT_TYPE_INT_P, f_exp,	"ÁµåÈ®ì", 	(void *)&u.uexp},
 #else
 	{NOVALUE, STAT_TYPE_NULL},
 #endif
 #ifdef SCORE_ON_BOTL
-	{NOVALUE, STAT_TYPE_F_INT, f_score,	"•π•≥•¢",	stat_score},
+	{NOVALUE, STAT_TYPE_F_INT, f_score,	"„Çπ„Ç≥„Ç¢",	stat_score},
 #else
 	{NOVALUE, STAT_TYPE_NULL},
 #endif
     },
     {
-	{NOVALUE, STAT_TYPE_F_INT, NULL,	"∂Ø§µ",		stat_stat, (void *)A_STR},
-	{NOVALUE, STAT_TYPE_F_INT, NULL,	"¡«¡·§µ",	stat_stat, (void *)A_DEX},
-	{NOVALUE, STAT_TYPE_F_INT, NULL,	"¬—µ◊Œœ",	stat_stat, (void *)A_CON},
-	{NOVALUE, STAT_TYPE_F_INT, NULL,	"√ŒŒœ",		stat_stat, (void *)A_CON},
-	{NOVALUE, STAT_TYPE_F_INT, NULL,	"∏≠§µ",		stat_stat, (void *)A_WIS},
-	{NOVALUE, STAT_TYPE_F_INT, NULL,	"Ã•Œœ",		stat_stat, (void *)A_CHA},
+	{NOVALUE, STAT_TYPE_F_INT, NULL,	"Âº∑„Åï",		stat_stat, (void *)A_STR},
+	{NOVALUE, STAT_TYPE_F_INT, NULL,	"Á¥†Êó©„Åï",	stat_stat, (void *)A_DEX},
+	{NOVALUE, STAT_TYPE_F_INT, NULL,	"ËÄê‰πÖÂäõ",	stat_stat, (void *)A_CON},
+	{NOVALUE, STAT_TYPE_F_INT, NULL,	"Áü•Âäõ",		stat_stat, (void *)A_CON},
+	{NOVALUE, STAT_TYPE_F_INT, NULL,	"Ë≥¢„Åï",		stat_stat, (void *)A_WIS},
+	{NOVALUE, STAT_TYPE_F_INT, NULL,	"È≠ÖÂäõ",		stat_stat, (void *)A_CHA},
     },
 #else	/* JNETHACK */
     {
@@ -316,10 +316,10 @@ nh_status_update()
 
 #ifdef JNETHACK
     if (In_endgame(&u.uz)) {
-	Strcpy(buf, (Is_astralevel(&u.uz) ? "¿∫ŒÓ≥¶":"∫«Ω™ªÓŒ˝"));
+	Strcpy(buf, (Is_astralevel(&u.uz) ? "Á≤æÈúäÁïå":"ÊúÄÁµÇË©¶Á∑¥"));
     } else {
 	Strcpy(buf, jtrns_obj('d',dungeons[u.uz.dnum].dname));
-	Sprintf(eos(buf), " √œ≤º%d≥¨", depth(&u.uz));
+	Sprintf(eos(buf), " Âú∞‰∏ã%dÈöé", depth(&u.uz));
     }
 #else
     if (In_endgame(&u.uz)) {
@@ -393,31 +393,31 @@ nh_status_update()
 
 #ifdef JNETHACK
     if(Blind)
-	gtk_label_set_text(GTK_LABEL(blin), "Ã’Ã‹");
+	gtk_label_set_text(GTK_LABEL(blin), "Áõ≤ÁõÆ");
     else
 	gtk_label_set_text(GTK_LABEL(blin), "");
 
     if(Confusion)
-	gtk_label_set_text(GTK_LABEL(conf), "∫ÆÕ");
+	gtk_label_set_text(GTK_LABEL(conf), "Ê∑∑‰π±");
     else
 	gtk_label_set_text(GTK_LABEL(conf), "");
 
     if(Sick){
 	if(u.usick_type & SICK_VOMITABLE)
-	    gtk_label_set_text(GTK_LABEL(sick), "ø©√Ê∆«");
+	    gtk_label_set_text(GTK_LABEL(sick), "È£ü‰∏≠ÊØí");
 	else
-	    gtk_label_set_text(GTK_LABEL(sick), "…¬µ§");
+	    gtk_label_set_text(GTK_LABEL(sick), "ÁóÖÊ∞ó");
     }
     else
 	gtk_label_set_text(GTK_LABEL(sick), "");
 
     if(Stunned)
-	gtk_label_set_text(GTK_LABEL(stun), "‚¡⁄Ù");
+	gtk_label_set_text(GTK_LABEL(stun), "Áú©Êöà");
     else
 	gtk_label_set_text(GTK_LABEL(stun), "");
 
     if(Hallucination)
-	gtk_label_set_text(GTK_LABEL(hall), "∏∏≥–");
+	gtk_label_set_text(GTK_LABEL(hall), "ÂπªË¶ö");
     else
 	gtk_label_set_text(GTK_LABEL(hall), "");
 

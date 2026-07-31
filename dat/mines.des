@@ -312,8 +312,8 @@ NON_DIGGABLE:(53,14,61,14)
 # The Gnome King's wine cellar.
 #ENGRAVING:(12,03),engrave,"You are now entering the Gnome King's wine cellar."
 #ENGRAVING:(12,04),engrave,"Trespassers will be persecuted!"
-ENGRAVING:(12,03),engrave,"¥Î¡¼¥à¤Î²¦¤Î¥ï¥¤¥óÁÒ¸Ë"
-ENGRAVING:(12,04),engrave,"¿¯Æş¼Ô¤Ï¤½¤ìÁê±ş¤Î½ş¤¤¤òµá¤á¤é¤ì¤ë¡ª"
+ENGRAVING:(12,03),engrave,"ãƒãƒ¼ãƒ ã®ç‹ã®ãƒ¯ã‚¤ãƒ³å€‰åº«"
+ENGRAVING:(12,04),engrave,"ä¾µå…¥è€…ã¯ãã‚Œç›¸å¿œã®å„Ÿã„ã‚’æ±‚ã‚ã‚‰ã‚Œã‚‹ï¼"
 OBJECT:'!',"booze",(10,07)
 OBJECT:'!',"booze",(10,07)
 OBJECT:'!',random,(10,07)

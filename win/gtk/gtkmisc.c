@@ -37,47 +37,47 @@ static struct GTK_Option{
     GtkWidget *radio2;
 } gtk_option[] = {
 #ifdef JNETHACK
-    {"¥Ú¥Ã¥È¤Ø¤Î¹¶·â", "¹Ô¤¦", "¹Ô¤Ê¤ï¤Ê¤¤", &flags.safe_dog, 1},
-    {"Í§¹¥Åª¤Ê²øÊª¤Ø¤Î¹¶·â", "³ÎÇ§¤¹¤ë", "³ÎÇ§¤·¤Ê¤¤", &flags.confirm},
+    {"ãƒšãƒƒãƒˆã¸ã®æ”»æ’ƒ", "è¡Œã†", "è¡Œãªã‚ãªã„", &flags.safe_dog, 1},
+    {"å‹å¥½çš„ãªæ€ªç‰©ã¸ã®æ”»æ’ƒ", "ç¢ºèªã™ã‚‹", "ç¢ºèªã—ãªã„", &flags.confirm},
 #ifdef TEXTCOLOR
-    {"¥Ú¥Ã¥È", "ÀÖÏÈ¤Ç°Ï¤à", "°Ï¤Ş¤Ê¤¤", &iflags.hilite_pet},
+    {"ãƒšãƒƒãƒˆ", "èµ¤æ ã§å›²ã‚€", "å›²ã¾ãªã„", &iflags.hilite_pet},
 #endif
 #ifdef RADAR
-    {"¥ì¡¼¥À¡¼", "É½¼¨¤¹¤ë", "É½¼¨¤·¤Ê¤¤", &flags.radar},
+    {"ãƒ¬ãƒ¼ãƒ€ãƒ¼", "è¡¨ç¤ºã™ã‚‹", "è¡¨ç¤ºã—ãªã„", &flags.radar},
 #endif
     {NULL,},
-    {"·Ğ¸³ÃÍ", "É½¼¨¤¹¤ë", "É½¼¨¤·¤Ê¤¤", &flags.showexp},
+    {"çµŒé¨“å€¤", "è¡¨ç¤ºã™ã‚‹", "è¡¨ç¤ºã—ãªã„", &flags.showexp},
 #ifdef SCORE_ON_BOTL
-    {"¥¹¥³¥¢", "É½¼¨¤¹¤ë", "É½¼¨¤·¤Ê¤¤", &flags.showscore},
+    {"ã‚¹ã‚³ã‚¢", "è¡¨ç¤ºã™ã‚‹", "è¡¨ç¤ºã—ãªã„", &flags.showscore},
 #endif
-    {"Êâ¿ô", "É½¼¨¤¹¤ë", "É½¼¨¤·¤Ê¤¤", &flags.time},
+    {"æ­©æ•°", "è¡¨ç¤ºã™ã‚‹", "è¡¨ç¤ºã—ãªã„", &flags.time},
     {NULL,},
-    {"¼«Æ°¤Ç¥¢¥¤¥Æ¥à¤ò", "½¦¤¦", "½¦¤ï¤Ê¤¤", &flags.pickup},
+    {"è‡ªå‹•ã§ã‚¢ã‚¤ãƒ†ãƒ ã‚’", "æ‹¾ã†", "æ‹¾ã‚ãªã„", &flags.pickup},
     {NULL,},
-    {"³«»Ï»ş¤Î¥¤¥ó¥È¥í¥À¥¯¥·¥ç¥ó", "É½¼¨¤¹¤ë", "É½¼¨¤·¤Ê¤¤", &flags.legacy},
+    {"é–‹å§‹æ™‚ã®ã‚¤ãƒ³ãƒˆãƒ­ãƒ€ã‚¯ã‚·ãƒ§ãƒ³", "è¡¨ç¤ºã™ã‚‹", "è¡¨ç¤ºã—ãªã„", &flags.legacy},
 #ifdef NEWS
-    {"³«»Ï»ş¤Î¥Ë¥å¡¼¥¹", "É½¼¨¤¹¤ë", "É½¼¨¤·¤Ê¤¤", &iflags.news},
+    {"é–‹å§‹æ™‚ã®ãƒ‹ãƒ¥ãƒ¼ã‚¹", "è¡¨ç¤ºã™ã‚‹", "è¡¨ç¤ºã—ãªã„", &iflags.news},
 #endif
 #ifdef MAIL
-    {"¥á¡¼¥ë¥Ç¡¼¥â¥ó", "ÅĞ¾ì¤¹¤ë", "ÅĞ¾ì¤·¤Ê¤¤", &flags.biff},
+    {"ãƒ¡ãƒ¼ãƒ«ãƒ‡ãƒ¼ãƒ¢ãƒ³", "ç™»å ´ã™ã‚‹", "ç™»å ´ã—ãªã„", &flags.biff},
 #endif
     {NULL,},
-    {"¥¹¥Ú¡¼¥¹¥­¡¼¤ÇµÙ¤à", "µÙ¤à", "µÙ¤Ş¤Ê¤¤", &flags.rest_on_space},
-    {"¥²¡¼¥àÃæ¤Î¥á¥Ã¥»¡¼¥¸", "¾Ü¤·¤¯¹Ô¤¦", "¹Ô¤Ê¤ï¤Ê¤¤", &flags.verbose},
+    {"ã‚¹ãƒšãƒ¼ã‚¹ã‚­ãƒ¼ã§ä¼‘ã‚€", "ä¼‘ã‚€", "ä¼‘ã¾ãªã„", &flags.rest_on_space},
+    {"ã‚²ãƒ¼ãƒ ä¸­ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸", "è©³ã—ãè¡Œã†", "è¡Œãªã‚ãªã„", &flags.verbose},
 #ifdef NEWBIE
-    {"½é¿´¼Ô¤Ø¤Î¥Ò¥ó¥È", "¹Ô¤¦", "¹Ô¤Ê¤ï¤Ê¤¤", &flags.newbie},
+    {"åˆå¿ƒè€…ã¸ã®ãƒ’ãƒ³ãƒˆ", "è¡Œã†", "è¡Œãªã‚ãªã„", &flags.newbie},
 #endif
     {NULL,},
 /*
-    {"½ªÎ»»ş¤Î¾ğÊó", "É½¼¨¤¹¤ë", "É½¼¨¤·¤Ê¤¤", &flags.end_disclose},
+    {"çµ‚äº†æ™‚ã®æƒ…å ±", "è¡¨ç¤ºã™ã‚‹", "è¡¨ç¤ºã—ãªã„", &flags.end_disclose},
 */
-    {"½ªÎ»»ş¤ÎÊèÀĞ", "É½¼¨¤¹¤ë", "É½¼¨¤·¤Ê¤¤", &flags.tombstone},
+    {"çµ‚äº†æ™‚ã®å¢“çŸ³", "è¡¨ç¤ºã™ã‚‹", "è¡¨ç¤ºã—ãªã„", &flags.tombstone},
 #ifdef NH_EXTENSION_REPORT
-    {"¥¹¥³¥¢¤ÎÊó¹ğ", "Êó¹ğ¤¹¤ë", "Êó¹ğ¤·¤Ê¤¤", &flags.reportscore},
+    {"ã‚¹ã‚³ã‚¢ã®å ±å‘Š", "å ±å‘Šã™ã‚‹", "å ±å‘Šã—ãªã„", &flags.reportscore},
 #endif
     {NULL,},
-    {"¥¢¥¤¥Æ¥àÌÜÏ¿¤½¤Î1", "¤Ç¤­¤ë¤À¤±Æ±¤¸Ê¸»ú¤Ë¤¹¤ë", "¤·¤Ê¤¤", &flags.invlet_constant},
-    {"¥¢¥¤¥Æ¥àÌÜÏ¿¤½¤Î2", "»÷¤¿¤è¤¦¤Ê¼ïÎà¤ò¤Ş¤È¤á¤ë", "¤Ş¤È¤á¤Ê¤¤", &flags.sortpack},
+    {"ã‚¢ã‚¤ãƒ†ãƒ ç›®éŒ²ãã®1", "ã§ãã‚‹ã ã‘åŒã˜æ–‡å­—ã«ã™ã‚‹", "ã—ãªã„", &flags.invlet_constant},
+    {"ã‚¢ã‚¤ãƒ†ãƒ ç›®éŒ²ãã®2", "ä¼¼ãŸã‚ˆã†ãªç¨®é¡ã‚’ã¾ã¨ã‚ã‚‹", "ã¾ã¨ã‚ãªã„", &flags.sortpack},
 #else
     {"prevent you from attacking your pet", "Yes", "No", &flags.safe_dog},
     {"ask before hidding peaceful monsters", "Yes", "No", &flags.confirm},
@@ -218,7 +218,7 @@ nh_option_plname_new()
   GSList    *female_group = NULL;
 
 #ifdef JNETHACK
-  frame = gtk_frame_new("¥×¥ì¥¤¥ä¡¼");
+  frame = gtk_frame_new("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼");
 #else
   frame = gtk_frame_new("Player");
 #endif
@@ -227,7 +227,7 @@ nh_option_plname_new()
   vbox = nh_gtk_new_and_add(gtk_vbox_new(FALSE, 0), frame, "");
   hbox = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "", FALSE, FALSE, NH_PAD);
 #ifdef JNETHACK
-  label = nh_gtk_new_and_pack(gtk_label_new("Ì¾Á°:"), hbox, "", FALSE, FALSE, NH_PAD);
+  label = nh_gtk_new_and_pack(gtk_label_new("åå‰:"), hbox, "", FALSE, FALSE, NH_PAD);
 #else
   label = nh_gtk_new_and_pack(gtk_label_new("Name:"), hbox, "", FALSE, FALSE, NH_PAD);
 #endif
@@ -239,7 +239,7 @@ nh_option_plname_new()
   hbox2 = nh_gtk_new_and_pack(gtk_hbox_new(FALSE, 0), vbox, "", FALSE, FALSE, NH_PAD);
 #ifdef JNETHACK
   radio_m = nh_gtk_new_and_pack(
-      gtk_radio_button_new_with_label(female_group, "ÃË"),
+      gtk_radio_button_new_with_label(female_group, "ç”·"),
       hbox2, "", FALSE, FALSE, NH_PAD);
 #else
   radio_m = nh_gtk_new_and_pack(
@@ -250,7 +250,7 @@ nh_option_plname_new()
 
 #ifdef JNETHACK
   radio_f = nh_gtk_new_and_pack(
-      gtk_radio_button_new_with_label(female_group, "½÷"),
+      gtk_radio_button_new_with_label(female_group, "å¥³"),
       hbox2, "", FALSE, FALSE, NH_PAD);
 #else
   radio_f = nh_gtk_new_and_pack(
@@ -275,7 +275,7 @@ nh_option_pet_kitten_new()
   GtkWidget *label;
 
 #ifdef JNETHACK
-  frame = gtk_frame_new("Ç­");
+  frame = gtk_frame_new("çŒ«");
 #else
   frame = gtk_frame_new("Kitten");
 #endif
@@ -288,7 +288,7 @@ nh_option_pet_kitten_new()
 
 #ifdef JNETHACK
   label = nh_gtk_new_and_pack(
-      gtk_label_new("Ì¾Á°:"),
+      gtk_label_new("åå‰:"),
       hbox, "", FALSE, FALSE, NH_PAD);
 #else
   label = nh_gtk_new_and_pack(
@@ -315,7 +315,7 @@ nh_option_pet_dog_new()
   GtkWidget *label;
 
 #ifdef JNETHACK
-  frame = gtk_frame_new("¸¤");
+  frame = gtk_frame_new("çŠ¬");
 #else
   frame = gtk_frame_new("Dog");
 #endif
@@ -328,7 +328,7 @@ nh_option_pet_dog_new()
 
 #ifdef JNETHACK
   label = nh_gtk_new_and_pack(
-      gtk_label_new("Ì¾Á°:"),
+      gtk_label_new("åå‰:"),
       hbox, "", FALSE, FALSE, NH_PAD);
 #else
   label = nh_gtk_new_and_pack(
@@ -358,7 +358,7 @@ nh_option_pet_new()
   GSList    *pet_group = NULL;
 
 #ifdef JNETHACK
-  frame = gtk_frame_new("¥Ú¥Ã¥È");
+  frame = gtk_frame_new("ãƒšãƒƒãƒˆ");
 #else
   frame = gtk_frame_new("Pet");
 #endif
@@ -386,7 +386,7 @@ nh_option_pet_new()
 
 #ifdef JNETHACK
   label = nh_gtk_new_and_pack(
-      gtk_label_new("¥¹¥¿¡¼¥È»ş¤Î¥Ú¥Ã¥È:"), hbox2, "",
+      gtk_label_new("ã‚¹ã‚¿ãƒ¼ãƒˆæ™‚ã®ãƒšãƒƒãƒˆ:"), hbox2, "",
       FALSE, FALSE, NH_PAD);
 #else
   label = nh_gtk_new_and_pack(
@@ -396,17 +396,17 @@ nh_option_pet_new()
 
 #ifdef JNETHACK
   radio_k = nh_gtk_new_and_pack(
-      gtk_radio_button_new_with_label(pet_group, "Ç­"), hbox2, "",
+      gtk_radio_button_new_with_label(pet_group, "çŒ«"), hbox2, "",
       FALSE, FALSE, NH_PAD);
   pet_group = gtk_radio_button_group(GTK_RADIO_BUTTON(radio_k));
 
   radio_d = nh_gtk_new_and_pack(
-      gtk_radio_button_new_with_label(pet_group, "¸¤"), hbox2, "",
+      gtk_radio_button_new_with_label(pet_group, "çŠ¬"), hbox2, "",
       FALSE, FALSE, NH_PAD);
   pet_group = gtk_radio_button_group(GTK_RADIO_BUTTON(radio_d));
 
   radio_r = nh_gtk_new_and_pack(
-      gtk_radio_button_new_with_label(pet_group, "¥é¥ó¥À¥à"), hbox2, "",
+      gtk_radio_button_new_with_label(pet_group, "ãƒ©ãƒ³ãƒ€ãƒ "), hbox2, "",
       FALSE, FALSE, NH_PAD);
   pet_group = gtk_radio_button_group(GTK_RADIO_BUTTON(radio_r));
 #else
@@ -442,7 +442,7 @@ nh_option_fruit_new()
   GtkWidget *label;
 
 #ifdef JNETHACK
-  frame = gtk_frame_new("¹¥Êª¤Î²ÌÊª");
+  frame = gtk_frame_new("å¥½ç‰©ã®æœç‰©");
 #else
   frame = gtk_frame_new("Fruit");
 #endif
@@ -455,7 +455,7 @@ nh_option_fruit_new()
 
 #ifdef JNETHACK
   label = nh_gtk_new_and_pack(
-      gtk_label_new("Ì¾Á°:"),
+      gtk_label_new("åå‰:"),
       hbox, "", FALSE, FALSE, NH_PAD);
 #else
   label = nh_gtk_new_and_pack(
@@ -480,7 +480,7 @@ nh_option_url_new()
   GtkWidget *hbox;
   GtkWidget *label;
 
-  frame = gtk_frame_new("¥¹¥³¥¢Êó¹ğ»ş¤ÎURL");
+  frame = gtk_frame_new("ã‚¹ã‚³ã‚¢å ±å‘Šæ™‚ã®URL");
 
   vbox = nh_gtk_new_and_add(
       gtk_vbox_new(FALSE, 0), frame, "");
@@ -510,7 +510,7 @@ nh_option_proxy_new()
   GtkWidget *hbox;
   GtkWidget *label;
 
-  frame = gtk_frame_new("¥×¥í¥­¥·");
+  frame = gtk_frame_new("ãƒ—ãƒ­ã‚­ã‚·");
 
   vbox = nh_gtk_new_and_add(
       gtk_vbox_new(FALSE, 0), frame, "");
@@ -520,7 +520,7 @@ nh_option_proxy_new()
       vbox, "", FALSE, FALSE, NH_PAD);
 
   label = nh_gtk_new_and_pack(
-      gtk_label_new("¥µ¡¼¥Ğ:"),
+      gtk_label_new("ã‚µãƒ¼ãƒ:"),
       hbox, "", FALSE, FALSE, NH_PAD);
 
   entry_proxy = nh_gtk_new_and_pack(
@@ -532,7 +532,7 @@ nh_option_proxy_new()
       vbox, "", FALSE, FALSE, NH_PAD);
 
   label = nh_gtk_new_and_pack(
-      gtk_label_new("¥İ¡¼¥È:"),
+      gtk_label_new("ãƒãƒ¼ãƒˆ:"),
       hbox, "", FALSE, FALSE, NH_PAD);
 
   entry_proxy_port = nh_gtk_new_and_pack(
@@ -564,7 +564,7 @@ nh_option_menu_new()
   GSList    *menu_group = NULL;
 
 #ifdef JNETHACK
-  frame = gtk_frame_new("¥á¥Ë¥å¡¼");
+  frame = gtk_frame_new("ãƒ¡ãƒ‹ãƒ¥ãƒ¼");
 #else
   frame = gtk_frame_new("Menu style");
 #endif
@@ -689,7 +689,7 @@ nh_option_visual_new()
   GSList    *menu_group = NULL;
 
 #ifdef JNETHACK
-  frame = gtk_frame_new("¥Ş¥Ã¥×");
+  frame = gtk_frame_new("ãƒãƒƒãƒ—");
 #else
   frame = gtk_frame_new("Map visual");
 #endif
@@ -703,24 +703,24 @@ nh_option_visual_new()
 
 #ifdef JNETHACK
   radio_visual_monji = nh_gtk_new_and_pack(
-      gtk_radio_button_new_with_label(menu_group, "Ê¸»ú"), hbox, "", 
+      gtk_radio_button_new_with_label(menu_group, "æ–‡å­—"), hbox, "", 
       FALSE, FALSE, NH_PAD);
   menu_group = gtk_radio_button_group(GTK_RADIO_BUTTON(radio_visual_monji));
 
   radio_visual_tile = nh_gtk_new_and_pack(
-      gtk_radio_button_new_with_label(menu_group, "¥¿¥¤¥ë"), hbox, "", 
+      gtk_radio_button_new_with_label(menu_group, "ã‚¿ã‚¤ãƒ«"), hbox, "", 
       FALSE, FALSE, NH_PAD);
   menu_group = gtk_radio_button_group(GTK_RADIO_BUTTON(radio_visual_tile));
 
 #ifdef BIGTILE
   radio_visual_bigtile = nh_gtk_new_and_pack(
-      gtk_radio_button_new_with_label(menu_group, "¥¿¥¤¥ë(Âç)"), hbox, "", 
+      gtk_radio_button_new_with_label(menu_group, "ã‚¿ã‚¤ãƒ«(å¤§)"), hbox, "", 
       FALSE, FALSE, NH_PAD);
   menu_group = gtk_radio_button_group(GTK_RADIO_BUTTON(radio_visual_bigtile));
 #endif
 #ifdef BIG3DTILE
   radio_visual_big3dtile = nh_gtk_new_and_pack(
-      gtk_radio_button_new_with_label(menu_group, "3D¥¿¥¤¥ë(Âç)"), hbox, "", 
+      gtk_radio_button_new_with_label(menu_group, "3Dã‚¿ã‚¤ãƒ«(å¤§)"), hbox, "", 
       FALSE, FALSE, NH_PAD);
   menu_group = gtk_radio_button_group(GTK_RADIO_BUTTON(radio_visual_bigtile));
 #endif
@@ -830,17 +830,17 @@ nh_option_new()
   gtk_notebook_set_tab_label_text(
       GTK_NOTEBOOK(note),
       gtk_notebook_get_nth_page(GTK_NOTEBOOK(note), 0), 
-      "¥×¥ì¥¤¥ä¡¼");
+      "ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼");
 
   gtk_notebook_set_tab_label_text(
       GTK_NOTEBOOK(note),
       gtk_notebook_get_nth_page(GTK_NOTEBOOK(note), 1), 
-      "¥²¡¼¥à");
+      "ã‚²ãƒ¼ãƒ ");
 
   gtk_notebook_set_tab_label_text(
       GTK_NOTEBOOK(note),
       gtk_notebook_get_nth_page(GTK_NOTEBOOK(note), 2), 
-      "¤½¤ÎÂ¾");
+      "ãã®ä»–");
 #else
   gtk_notebook_set_tab_label_text(
       GTK_NOTEBOOK(note),
@@ -864,13 +864,13 @@ nh_option_new()
 
 #ifdef JNETHACK
   button1 = nh_gtk_new_and_pack(
-      gtk_button_new_with_label("´°Î»"), hbox, "",
+      gtk_button_new_with_label("å®Œäº†"), hbox, "",
       FALSE, FALSE, NH_PAD);
   button3 = nh_gtk_new_and_pack(
-      gtk_button_new_with_label("¾ÜºÙÀßÄê"), hbox, "",
+      gtk_button_new_with_label("è©³ç´°è¨­å®š"), hbox, "",
       FALSE, FALSE, NH_PAD);
   button2 = nh_gtk_new_and_pack(
-      gtk_button_new_with_label("¥­¥ã¥ó¥»¥ë"), hbox, "",
+      gtk_button_new_with_label("ã‚­ãƒ£ãƒ³ã‚»ãƒ«"), hbox, "",
       FALSE, FALSE, NH_PAD);
 #else
   button1 = nh_gtk_new_and_pack(

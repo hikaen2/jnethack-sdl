@@ -56,9 +56,9 @@ register boolean forceshow;
 	}
 	if(grd->mhp <= 0) {
 /*JP	    pline_The("corridor disappears.");*/
-	    pline("ÄÌÏ©¤Ï¾Ã¤¨¤¿¡¥");
+	    pline("é€šè·¯ã¯æ¶ˆãˆãŸï¼Ž");
 /*JP	    if(IS_ROCK(levl[u.ux][u.uy].typ)) You("are encased in rock.");*/
-	    if(IS_ROCK(levl[u.ux][u.uy].typ)) You("ÀÐ¤Ë¤Ä¤Ä¤Þ¤ì¤¿¡¥");
+	    if(IS_ROCK(levl[u.ux][u.uy].typ)) You("çŸ³ã«ã¤ã¤ã¾ã‚ŒãŸï¼Ž");
 	}
 	return(TRUE);
 }
@@ -243,18 +243,18 @@ fnd:
 
 	reset_faint();			/* if fainted - wake up */
 /*JP	pline("Suddenly one of the Vault's guards enters!");*/
-	pline("ÆÍÁ³¡¤ÁÒ¸Ë¤ÎÈÖÊ¼¤¬Æþ¤Ã¤Æ¤­¤¿¡ª");
+	pline("çªç„¶ï¼Œå€‰åº«ã®ç•ªå…µãŒå…¥ã£ã¦ããŸï¼");
 	newsym(guard->mx,guard->my);
 	if (Strangled || uasmon->msound == MS_SILENT) {
 /*JP	    verbalize("I'll be back when you're ready to speak to me!");*/
-	    verbalize("ÏÃ¤»¤ë¤è¤¦¤Ë¤Ê¤Ã¤¿¤éÌá¤Ã¤Æ¤­¤Æ¤ä¤ë¡ª");
+	    verbalize("è©±ã›ã‚‹ã‚ˆã†ã«ãªã£ãŸã‚‰æˆ»ã£ã¦ãã¦ã‚„ã‚‹ï¼");
 	    mongone(guard);
 	    return;
 	}
 	stop_occupation();		/* if occupied, stop it *now* */
 	do {
 /*JP		getlin("\"Hello stranger, who are you?\" -",buf);*/
-		getlin("¡Ö¸«ÃÎ¤é¤Ì¿Í¤è¡¤¤ª¤Þ¤¨¤ÏÃ¯¤À¡©¡×-",buf);
+		getlin("ã€Œè¦‹çŸ¥ã‚‰ã¬äººã‚ˆï¼ŒãŠã¾ãˆã¯èª°ã ï¼Ÿã€-",buf);
 	} while (!letter(buf[0]));
 
 	if (u.ualign.type == A_LAWFUL &&
@@ -270,12 +270,12 @@ fnd:
 	    ) {
 	    if (!mvitals[PM_CROESUS].died) {
 /*JP		verbalize("Oh, yes, of course.  Sorry to have disturbed you.");*/
-		verbalize("¤¤¤ä¡¤¤³¤ê¤ã¡¤¤¨¡¼¤È¡¤¤ªÁû¤»¤·¤¿¡¥");
+		verbalize("ã„ã‚„ï¼Œã“ã‚Šã‚ƒï¼Œãˆãƒ¼ã¨ï¼ŒãŠé¨’ã›ã—ãŸï¼Ž");
 		mongone(guard);
 	    } else {
 		setmangry(guard);
 /*JP		verbalize("Back from the dead, are you?  I'll remedy that!");*/
-		verbalize("¤Û¤¦¡ª»à¤ÎÀ¤³¦¤«¤éÌá¤Ã¤Æ¤­¤¿¤Î¤«¡©¤¦¤½¤Ê¤é¾å¼ê¤Ë¤Ä¤±¡ª");
+		verbalize("ã»ã†ï¼æ­»ã®ä¸–ç•Œã‹ã‚‰æˆ»ã£ã¦ããŸã®ã‹ï¼Ÿã†ããªã‚‰ä¸Šæ‰‹ã«ã¤ã‘ï¼");
 		/* don't want guard to waste next turn wielding a weapon */
 		if (!MON_WEP(guard)) {
 		    guard->weapon_check = NEED_HTH_WEAPON;
@@ -285,18 +285,18 @@ fnd:
 	    return;
 	}
 /*JP	verbalize("I don't know you.");*/
-	verbalize("ÃÎ¤é¤ó¤Ê¡¥");
+	verbalize("çŸ¥ã‚‰ã‚“ãªï¼Ž");
 	if (!u.ugold && !hidden_gold())
 /*JP	    verbalize("Please follow me.");*/
-	    verbalize("»ä¤Î¸å¤Ë¤Ä¤¤¤Æ¤³¤¤¡¥");
+	    verbalize("ç§ã®å¾Œã«ã¤ã„ã¦ã“ã„ï¼Ž");
 	else {
 	    if (!u.ugold)
 /*JP		verbalize("You have hidden gold.");*/
-		verbalize("¤Þ¤À¥´¡¼¥ë¥É¤ò±£¤·¤Æ¤ë¤Ê¡¥");
+		verbalize("ã¾ã ã‚´ãƒ¼ãƒ«ãƒ‰ã‚’éš ã—ã¦ã‚‹ãªï¼Ž");
 /*JP	    verbalize("Most likely all your gold was stolen from this vault.");
 	    verbalize("Please drop that gold and follow me.");*/
-	    verbalize("ÁÒ¸Ë¤«¤éÅð¤ó¤À¥´¡¼¥ë¥É¤¬¤¢¤ë¤À¤í¤¦¡¥");
-	    verbalize("¤½¤ì¤ò¤½¤Ã¤¯¤êÌá¤·¤Æ¤«¤é¡¤»ä¤Î¸å¤Ë¤Ä¤¤¤Æ¤³¤¤¡¥");
+	    verbalize("å€‰åº«ã‹ã‚‰ç›—ã‚“ã ã‚´ãƒ¼ãƒ«ãƒ‰ãŒã‚ã‚‹ã ã‚ã†ï¼Ž");
+	    verbalize("ãã‚Œã‚’ãã£ãã‚Šæˆ»ã—ã¦ã‹ã‚‰ï¼Œç§ã®å¾Œã«ã¤ã„ã¦ã“ã„ï¼Ž");
 	}
 	EGD(guard)->gdx = gx;
 	EGD(guard)->gdy = gy;
@@ -424,15 +424,15 @@ struct monst *grd;
 	if(movedgold || fixed) {
 	    if(in_fcorridor(grd, grd->mx, grd->my) || cansee(grd->mx, grd->my))
 /*JP		pline_The("guard whispers an incantation.");*/
-		pline("ÈÖÊ¼¤Ï¼öÊ¸¤ò¤µ¤µ¤ä¤¤¤¿¡¥");
+		pline("ç•ªå…µã¯å‘ªæ–‡ã‚’ã•ã•ã‚„ã„ãŸï¼Ž");
 /*JP	    else You_hear("a distant chant.");*/
-	    else You("±óÊý¤Ç¤Î¼öÊ¸¤òÊ¹¤¤¤¿¡¥");
+	    else You("é æ–¹ã§ã®å‘ªæ–‡ã‚’èžã„ãŸï¼Ž");
 	    if(movedgold)
 /*JP		pline("A mysterious force moves the gold into the vault.");*/
-		pline("¿ÀÈëÅª¤ÊÎÏ¤¬¥´¡¼¥ë¥É¤òÁÒ¸Ë¤Ø±¿¤ó¤À¡¥");
+		pline("ç¥žç§˜çš„ãªåŠ›ãŒã‚´ãƒ¼ãƒ«ãƒ‰ã‚’å€‰åº«ã¸é‹ã‚“ã ï¼Ž");
 	    if(fixed)
 /*JP		pline_The("damaged vault's walls are magically restored!");*/
-		pline("½ý¤Ä¤¤¤¿ÁÒ¸Ë¤ÎÊÉ¤ÏËâË¡¤ÇÉü¸µ¤µ¤ì¤¿¡ª");
+		pline("å‚·ã¤ã„ãŸå€‰åº«ã®å£ã¯é­”æ³•ã§å¾©å…ƒã•ã‚ŒãŸï¼");
 	}
 }
 
@@ -489,15 +489,15 @@ register struct monst *grd;
 				u_carry_gold ? (!u.ugold ?
 					  "drop that hidden gold and " :
 					  "drop that gold and ") : "");*/
-			verbalize("·«¤êÊÖ¤¹¡ª%s»ä¤Ë¤Ä¤¤¤Æ¤³¤¤¡¥",
+			verbalize("ç¹°ã‚Šè¿”ã™ï¼%sç§ã«ã¤ã„ã¦ã“ã„ï¼Ž",
 				u_carry_gold ? (!u.ugold ?
-					  "±£¤·»ý¤Ã¤Æ¤ë¥´¡¼¥ë¥É¤òÃÖ¤¤¤Æ" :
-					  "¥´¡¼¥ë¥É¤òÃÖ¤¤¤Æ") : "");
+					  "éš ã—æŒã£ã¦ã‚‹ã‚´ãƒ¼ãƒ«ãƒ‰ã‚’ç½®ã„ã¦" :
+					  "ã‚´ãƒ¼ãƒ«ãƒ‰ã‚’ç½®ã„ã¦") : "");
 		if(egrd->warncnt == 7) {
 			m = grd->mx;
 			n = grd->my;
 /*JP			verbalize("You've been warned, knave!");*/
-			verbalize("¤ª¤Þ¤¨¤Ï·Ù¹ð¤µ¤ì¤Æ¤¤¤ë¤Î¤À¡¤°­ÅÞ¡ª");
+			verbalize("ãŠã¾ãˆã¯è­¦å‘Šã•ã‚Œã¦ã„ã‚‹ã®ã ï¼Œæ‚ªå…šï¼");
 			mnexto(grd);
 			levl[m][n].typ = egrd->fakecorr[0].ftyp;
 			newsym(m,n);
@@ -520,18 +520,18 @@ register struct monst *grd;
 letknow:
 		    if(!cansee(grd->mx, grd->my))
 /*JP			You_hear("the shrill sound of a guard's whistle.");*/
-			You("ÈÖÊ¼¤Î±Ô¤¤Å«¤Î²»¤òÊ¹¤¤¤¿¡¥");
+			You("ç•ªå…µã®é‹­ã„ç¬›ã®éŸ³ã‚’èžã„ãŸï¼Ž");
 		    else
 			You(um_dist(grd->mx, grd->my, 2) ?
 /*JP			    "see an angry %s approaching." :
 			    "are confronted by an angry %s.",*/
-			    "ÅÜ¤Ã¤¿%s¤¬¶á¤Å¤¤¤Æ¤¯¤ë¤Î¤ò¸«¤¿¡¥" :
-			    "ÅÜ¤Ã¤¿%s¤ÈÄ¾ÌÌ¤·¤¿¡¥",
+			    "æ€’ã£ãŸ%sãŒè¿‘ã¥ã„ã¦ãã‚‹ã®ã‚’è¦‹ãŸï¼Ž" :
+			    "æ€’ã£ãŸ%sã¨ç›´é¢ã—ãŸï¼Ž",
 			    l_monnam(grd));
 		    return(-1);
 		} else {
 /*JP		    verbalize("Well, begone.");*/
-		    verbalize("Î©¤Áµî¤ì¡¥");
+		    verbalize("ç«‹ã¡åŽ»ã‚Œï¼Ž");
 		    wallify_vault(grd);
 		    egrd->gddone = 1;
 		    goto cleanup;
@@ -545,7 +545,7 @@ letknow:
 		  levl[egrd->fakecorr[0].fx][egrd->fakecorr[0].fy].typ
 				 == egrd->fakecorr[0].ftyp) {
 /*JP		pline_The("guard, confused, disappears.");*/
-		pline("ÈÖÊ¼¤Ïº®Íð¤·¡¤¾Ã¤¨¤¿¡¥");
+		pline("ç•ªå…µã¯æ··ä¹±ã—ï¼Œæ¶ˆãˆãŸï¼Ž");
 		disappear_msg_seen = TRUE;
 		goto cleanup;
 	    }
@@ -560,11 +560,11 @@ letknow:
 		if(egrd->warncnt < 6) {
 			egrd->warncnt = 6;
 /*JP			verbalize("Drop all your gold, scoundrel!");*/
-			verbalize("¶â¤òÁ´ÉôÃÖ¤¤¤Æ¤æ¤±¡¤¤Ê¤é¤º¤â¤Î¡ª");
+			verbalize("é‡‘ã‚’å…¨éƒ¨ç½®ã„ã¦ã‚†ã‘ï¼Œãªã‚‰ãšã‚‚ã®ï¼");
 			return(0);
 		} else {
 /*JP			verbalize("So be it, rogue!");*/
-			verbalize("Åð¿Í¤á¡ª");
+			verbalize("ç›—äººã‚ï¼");
 			grd->mpeaceful = 0;
 			return(-1);
 		}
@@ -591,7 +591,7 @@ letknow:
 		    /* just for insurance... */
 		    if (MON_AT(m, n) && m != grd->mx && n != grd->my) {
 /*JP			verbalize("Out of my way, scum!");*/
-			verbalize("ÌÜ¤ÎÁ°¤«¤é¾Ã¤¨¤í¡¤¥¯¥½¤Ã¤¿¤ì¡ª");
+			verbalize("ç›®ã®å‰ã‹ã‚‰æ¶ˆãˆã‚ï¼Œã‚¯ã‚½ã£ãŸã‚Œï¼");
 			rloc(m_at(m, n));
 		    }
 		    remove_monster(grd->mx, grd->my);
@@ -602,8 +602,8 @@ letknow:
 		if(cansee(m,n))
 /*JP		    pline("%s%s picks up the gold.", Monnam(grd),
 				grd->mpeaceful ? " calms down and" : "");*/
-		    pline("%s¤Ï%s¥´¡¼¥ë¥É¤ò½¦¤Ã¤¿¡¥", Monnam(grd),
-				grd->mpeaceful ? "ÅÜ¤ê¤òÀÅ¤á" : "");
+		    pline("%sã¯%sã‚´ãƒ¼ãƒ«ãƒ‰ã‚’æ‹¾ã£ãŸï¼Ž", Monnam(grd),
+				grd->mpeaceful ? "æ€’ã‚Šã‚’é™ã‚" : "");
 		if(x != grd->mx || y != grd->my) {
 		    remove_monster(grd->mx, grd->my);
 		    newsym(grd->mx, grd->my);
@@ -618,7 +618,7 @@ letknow:
 	}
 	if(um_dist(grd->mx, grd->my, 1) || egrd->gddone) {
 /*JP		if(!egrd->gddone && !rn2(10)) verbalize("Move along!");*/
-		if(!egrd->gddone && !rn2(10)) verbalize("Î¥¤ì¤ë¤Ê¡ª");
+		if(!egrd->gddone && !rn2(10)) verbalize("é›¢ã‚Œã‚‹ãªï¼");
 		restfakecorr(grd);
 		return(0);	/* didn't move */
 	}
@@ -727,7 +727,7 @@ cleanup:
 				     cansee(x, y))) {
 		    if (!disappear_msg_seen)
 /*JP			pline("Suddenly, the guard disappears.");*/
-			pline("ÆÍÁ³¡¤ÈÖÊ¼¤Ï¾Ã¤¨¤¿¡¥");
+			pline("çªç„¶ï¼Œç•ªå…µã¯æ¶ˆãˆãŸï¼Ž");
 		    return(1);
 		}
 		return(-2);
@@ -754,7 +754,7 @@ paygd()
 
 	if (u.uinvault) {
 /*JP	    Your("%ld zorkmid%s goes into the Magic Memory Vault.",*/
-	    Your("%ld¥´¡¼¥ë¥É¤ÏËâË¡µ­Ç°ÁÒ¸Ë¤ËÆþ¤Ã¤¿¡¥",
+	    Your("%ldã‚´ãƒ¼ãƒ«ãƒ‰ã¯é­”æ³•è¨˜å¿µå€‰åº«ã«å…¥ã£ãŸï¼Ž",
 		u.ugold);
 	    gx = u.ux;
 	    gy = u.uy;
@@ -765,12 +765,12 @@ paygd()
 	    }
 	    mnexto(grd);
 /*JP	    pline("%s remits your gold to the vault.", Monnam(grd));*/
-	    pline("%s¤Ï¤¢¤Ê¤¿¤Î¥´¡¼¥ë¥É¤òÁÒ¸Ë¤ËÁ÷¤Ã¤¿¡¥", Monnam(grd));
+	    pline("%sã¯ã‚ãªãŸã®ã‚´ãƒ¼ãƒ«ãƒ‰ã‚’å€‰åº«ã«é€ã£ãŸï¼Ž", Monnam(grd));
 	    gx = rooms[EGD(grd)->vroom].lx + rn2(2);
 	    gy = rooms[EGD(grd)->vroom].ly + rn2(2);
 	    Sprintf(buf,
 /*JP		"To Croesus: here's the gold recovered from %s the %s.",*/
-		"Croesus¤Ø: ¤³¤³¤Ë%s¤Î%s¤«¤é¼è¤êÌá¤·¤¿¥´¡¼¥ë¥É¤òÁ÷¤ë¡¥",
+		"Croesusã¸: ã“ã“ã«%sã®%sã‹ã‚‰å–ã‚Šæˆ»ã—ãŸã‚´ãƒ¼ãƒ«ãƒ‰ã‚’é€ã‚‹ï¼Ž",
 		player_mon()->mname, plname );
 	    make_engr_at(gx, gy, buf, 0L, ENGRAVE);
 	}

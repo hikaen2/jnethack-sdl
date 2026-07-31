@@ -112,7 +112,7 @@ You VA_DECL(const char *, line)
 	VA_START(line);
 	VA_INIT(line, const char *);
 /*JP	vpline(YouMessage(tmp, "You ", line), VA_ARGS);*/
-	vpline(YouMessage(tmp, "¤¢¤Ê¤¿¤Ï", line), VA_ARGS);
+	vpline(YouMessage(tmp, "ã‚ãªãŸã¯", line), VA_ARGS);
 	VA_END();
 }
 
@@ -123,7 +123,7 @@ Your VA_DECL(const char *,line)
 	VA_START(line);
 	VA_INIT(line, const char *);
 /*JP	vpline(YouMessage(tmp, "Your ", line), VA_ARGS);*/
-	vpline(YouMessage(tmp, "¤¢¤Ê¤¿¤Î", line), VA_ARGS);
+	vpline(YouMessage(tmp, "ã‚ãªãŸã®", line), VA_ARGS);
 	VA_END();
 }
 
@@ -134,7 +134,7 @@ You_feel VA_DECL(const char *,line)
 	VA_START(line);
 	VA_INIT(line, const char *);
 /*JP	vpline(YouMessage(tmp, "You feel ", line), VA_ARGS);*/
-	vpline(YouMessage(tmp, "¤¢¤Ê¤¿¤Ï", line), VA_ARGS);
+	vpline(YouMessage(tmp, "ã‚ãªãŸã¯", line), VA_ARGS);
 	VA_END();
 }
 
@@ -146,7 +146,7 @@ You_cant VA_DECL(const char *,line)
 	VA_START(line);
 	VA_INIT(line, const char *);
 /*JP	vpline(YouMessage(tmp, "You can't ", line), VA_ARGS);*/
-	vpline(YouMessage(tmp, "¤¢¤Ê¤¿¤Ï", line), VA_ARGS);
+	vpline(YouMessage(tmp, "ã‚ãªãŸã¯", line), VA_ARGS);
 	VA_END();
 }
 
@@ -175,12 +175,12 @@ You_hear VA_DECL(const char *,line)
 		adj = "";
 	else
 /*JP		YouPrefix(tmp, "You barely hear ", line);*/
-		adj = "¤«¤¹¤«¤Ë";
+		adj = "ã‹ã™ã‹ã«";
 
-	tmp = You_buf(strlen(adj) + strlen(line) + sizeof("¤¢¤Ê¤¿¤Ï   "));
+	tmp = You_buf(strlen(adj) + strlen(line) + sizeof("ã‚ãªãŸã¯   "));
 
-	Strcpy(tmp, "¤¢¤Ê¤¿¤Ï");
-	if((p = (char *)strstr(line, "Ê¹¤¤")) != NULL){
+	Strcpy(tmp, "ã‚ãªãŸã¯");
+	if((p = (char *)strstr(line, "èã„")) != NULL){
 	  strncat(tmp, line, (p - line));
 	  strcat(tmp, adj);
 	  strcat(tmp, p);
@@ -203,10 +203,10 @@ verbalize VA_DECL(const char *,line)
 	VA_INIT(line, const char *);
 	tmp = You_buf((int)strlen(line) + sizeof "\"\"");
 /*JP	Strcpy(tmp, "\"");*/
-	Strcpy(tmp, "¡Ö");
+	Strcpy(tmp, "ã€Œ");
 	Strcat(tmp, line);
 /*JP	Strcat(tmp, "\"");*/
-	Strcat(tmp, "¡×");
+	Strcat(tmp, "ã€");
 	vpline(tmp, VA_ARGS);
 	VA_END();
 }
@@ -271,13 +271,13 @@ align_str(alignment)
 	case A_NEUTRAL: return "neutral";
 	case A_LAWFUL:	return "lawful";
 	case A_NONE:	return "unaligned";*/
-	case A_CHAOTIC: return "º®ÆÙ";
-	case A_NEUTRAL: return "ÃæÎ©";
-	case A_LAWFUL:	return "Ãá½ø";
-	case A_NONE:	return "Ìµ¿´";
+	case A_CHAOTIC: return "æ··æ²Œ";
+	case A_NEUTRAL: return "ä¸­ç«‹";
+	case A_LAWFUL:	return "ç§©åº";
+	case A_NONE:	return "ç„¡å¿ƒ";
     }
 /*JP    return "unknown";*/
-    return "ÉÔÌÀ";
+    return "ä¸æ˜";
 }
 
 void
@@ -336,39 +336,39 @@ register struct monst *mtmp;
 				", engulfed you") :
 				", holding you");
 #endif /*JP*/
-	if (mtmp->mtame) {	  Strcat(info, ", »ô¤¤¤Ê¤é¤µ¤ì¤Æ¤¤¤ë");
+	if (mtmp->mtame) {	  Strcat(info, ", é£¼ã„ãªã‚‰ã•ã‚Œã¦ã„ã‚‹");
 #ifdef WIZARD
 	    if (wizard)		  Sprintf(eos(info), " (%d)", mtmp->mtame);
 #endif
 	}
 	if (mtmp->mblinded || !mtmp->mcansee)
-				  Strcat(info, ", ÌÕÌÜ");
-	if (mtmp->mstun)	  Strcat(info, ", ¤¯¤é¤¯¤é¾õÂÖ");
-	if (mtmp->msleep)	  Strcat(info, ", Ì²¤Ã¤Æ¤¤¤ë");
+				  Strcat(info, ", ç›²ç›®");
+	if (mtmp->mstun)	  Strcat(info, ", ãã‚‰ãã‚‰çŠ¶æ…‹");
+	if (mtmp->msleep)	  Strcat(info, ", çœ ã£ã¦ã„ã‚‹");
 #if 0	/* unfortunately mfrozen covers temporary sleep and being busy
 	   (donning armor, for instance) as well as paralysis */
-	else if (mtmp->mfrozen)	  Strcat(info, ", Ëãáã¾õÂÖ");
+	else if (mtmp->mfrozen)	  Strcat(info, ", éº»ç—ºçŠ¶æ…‹");
 #else
 	else if (mtmp->mfrozen || !mtmp->mcanmove)
-				  Strcat(info, ", Æ°¤±¤Ê¤¤");
+				  Strcat(info, ", å‹•ã‘ãªã„");
 #endif
 				  /* [arbitrary reason why it isn't moving] */
 	else if (mtmp->mstrategy & STRAT_WAITMASK)
-				  Strcat(info, ", ÌÛÁÛÃæ");
-	else if (mtmp->mflee)	  Strcat(info, ", ¶±¤¨¤Æ¤¤¤ë");
-	if (mtmp->mtrapped)	  Strcat(info, ", æ«¤Ë¤«¤«¤Ã¤Æ¤¤¤ë");
+				  Strcat(info, ", é»™æƒ³ä¸­");
+	else if (mtmp->mflee)	  Strcat(info, ", æ€¯ãˆã¦ã„ã‚‹");
+	if (mtmp->mtrapped)	  Strcat(info, ", ç½ ã«ã‹ã‹ã£ã¦ã„ã‚‹");
 	if (mtmp->mspeed)	  Strcat(info,
-					mtmp->mspeed == MFAST ? ", ÁÇÁá¤¤" :
-					mtmp->mspeed == MSLOW ? ", ÃÙ¤¤" :
-					", Â®ÅÙ ????");
-	if (mtmp->mundetected)	  Strcat(info, ", ±£¤ì¤Æ¤¤¤ë");
-	if (mtmp->minvis)	  Strcat(info, ", ÉÔ²Ä»ë");
+					mtmp->mspeed == MFAST ? ", ç´ æ—©ã„" :
+					mtmp->mspeed == MSLOW ? ", é…ã„" :
+					", é€Ÿåº¦ ????");
+	if (mtmp->mundetected)	  Strcat(info, ", éš ã‚Œã¦ã„ã‚‹");
+	if (mtmp->minvis)	  Strcat(info, ", ä¸å¯è¦–");
 	if (mtmp == u.ustuck)	  Strcat(info,
-			(Upolyd && sticks(uasmon)) ? ", ¤¢¤Ê¤¿¤¬ÄÏ¤Ş¤¨¤Æ¤¤¤ë" :
+			(Upolyd && sticks(uasmon)) ? ", ã‚ãªãŸãŒæ´ã¾ãˆã¦ã„ã‚‹" :
 				u.uswallow ? (is_animal(u.ustuck->data) ?
-				", ¤¢¤Ê¤¿¤ò°û¤ß¹ş¤ó¤Ç¤¤¤ë" :
-				", ¤¢¤Ê¤¿¤ò´¬¤­¹ş¤ó¤Ç¤¤¤ë") :
-				", ¤¢¤Ê¤¿¤òÄÏ¤Ş¤¨¤Æ¤¤¤ë");
+				", ã‚ãªãŸã‚’é£²ã¿è¾¼ã‚“ã§ã„ã‚‹" :
+				", ã‚ãªãŸã‚’å·»ãè¾¼ã‚“ã§ã„ã‚‹") :
+				", ã‚ãªãŸã‚’æ´ã¾ãˆã¦ã„ã‚‹");
 
 	Strcpy(monnambuf, mon_nam(mtmp));
 	/* avoid "Status of the invisible newt ..., invisible" */
@@ -376,7 +376,7 @@ register struct monst *mtmp;
 	if (mtmp->minvis && strstri(monnambuf, "invisible")) {
 */
 	if (mtmp->minvis && (strstri(monnambuf, "invisible") ||
-			     strstr(monnambuf, "»Ñ¤Î¸«¤¨¤Ê¤¤"))) {
+			     strstr(monnambuf, "å§¿ã®è¦‹ãˆãªã„"))) {
 	    mtmp->minvis = 0;
 	    Strcpy(monnambuf, mon_nam(mtmp));
 	    mtmp->minvis = 1;
@@ -385,7 +385,7 @@ register struct monst *mtmp;
 /*JP
 	pline("Status of %s (%s):  Level %d  HP %d(%d)  AC %d%s.",
 */
-	pline("%s¤Î¾õÂÖ (%s):  Level %d  HP %d(%d)  AC %d%s.",
+	pline("%sã®çŠ¶æ…‹ (%s):  Level %d  HP %d(%d)  AC %d%s.",
 		monnambuf,
 		align_str(alignment),
 		mtmp->m_lev,
@@ -410,17 +410,17 @@ ustatusline()
 /*JP
 			Strcat(info, " food poisoning");
 */
-			Strcat(info, "¿©ÃæÆÇ");
+			Strcat(info, "é£Ÿä¸­æ¯’");
 		if (u.usick_type & SICK_NONVOMITABLE) {
 			if (u.usick_type & SICK_VOMITABLE)
 /*JP
 				Strcat(info, " and");
 			Strcat(info, " illness");
 */
-				Strcat(info, "¤È");
-			Strcat(info, "ÉÂµ¤");
+				Strcat(info, "ã¨");
+			Strcat(info, "ç—…æ°—");
 		}
-		Strcat(info, "¤Ç»à¤Ë¤Ä¤Ä¤¢¤ë");
+		Strcat(info, "ã§æ­»ã«ã¤ã¤ã‚ã‚‹");
 	}
 #if 0 /*JP*/
 	if (Stoned)		Strcat(info, ", solidifying");
@@ -428,10 +428,10 @@ ustatusline()
 	if (Vomiting)		Strcat(info, ", nauseated"); /* !"nauseous" */
 	if (Confusion)		Strcat(info, ", confused");
 #endif
-	if (Stoned)		Strcat(info, ", ÀĞ²½¤·¤Ä¤Ä¤¢¤ë");
-	if (Strangled)		Strcat(info, ", ¼ó¤òÄù¤á¤é¤ì¤Æ¤¤¤ë");
-	if (Vomiting)		Strcat(info, ", ÅÇ¤­µ¤¤¬¤¹¤ë");
-	if (Confusion)		Strcat(info, ", º®Íğ¾õÂÖ");
+	if (Stoned)		Strcat(info, ", çŸ³åŒ–ã—ã¤ã¤ã‚ã‚‹");
+	if (Strangled)		Strcat(info, ", é¦–ã‚’ç· ã‚ã‚‰ã‚Œã¦ã„ã‚‹");
+	if (Vomiting)		Strcat(info, ", åãæ°—ãŒã™ã‚‹");
+	if (Confusion)		Strcat(info, ", æ··ä¹±çŠ¶æ…‹");
 	if (Blind) {
 /*JP
 	    Strcat(info, ", blind");
@@ -444,17 +444,17 @@ ustatusline()
 		    Strcat(info, ", cover");
 		Strcat(info, "ed by sticky goop");
 */
-		Strcat(info, "¤Í¤Ğ¤Í¤Ğ¤Ù¤È¤Ä¤¯¤â¤Î¤Ç");
+		Strcat(info, "ã­ã°ã­ã°ã¹ã¨ã¤ãã‚‚ã®ã§");
 		if ((long)u.ucreamed < Blinded || Blindfolded
 						|| !haseyes(uasmon))
-		    Strcat(info, "Ê¤¤ï¤ì¤Æ¤¤¤ë, ");
+		    Strcat(info, "è¦†ã‚ã‚Œã¦ã„ã‚‹, ");
 	    }	/* note: "goop" == "glop"; variation is intentional */
-	    Strcat(info, "ÌÕÌÜ");
+	    Strcat(info, "ç›²ç›®");
 	}
 /*JP
 	if (Stunned)		Strcat(info, ", stunned");
 */
-	if (Stunned)		Strcat(info, ", ¤¯¤é¤¯¤é¾õÂÖ");
+	if (Stunned)		Strcat(info, ", ãã‚‰ãã‚‰çŠ¶æ…‹");
 	if (Wounded_legs) {
 	    const char *what = body_part(LEG);
 	    if ((Wounded_legs & BOTH_SIDES) == BOTH_SIDES)
@@ -462,12 +462,12 @@ ustatusline()
 /*JP
 				Sprintf(eos(info), ", injured %s", what);
 */
-				Sprintf(eos(info), ", %s¤Ë¤±¤¬¤ò¤·¤Æ¤¤¤ë", what);
+				Sprintf(eos(info), ", %sã«ã‘ãŒã‚’ã—ã¦ã„ã‚‹", what);
 	}
 /*JP
 	if (Glib)		Sprintf(eos(info), ", slippery %s",
 */
-	if (Glib)		Sprintf(eos(info), ", %s¤¬¤Ì¤ë¤Ì¤ë",
+	if (Glib)		Sprintf(eos(info), ", %sãŒã¬ã‚‹ã¬ã‚‹",
 					makeplural(body_part(HAND)));
 #if 0 /*JP*/
 	if (u.utrap)		Strcat(info, ", trapped");
@@ -475,10 +475,10 @@ ustatusline()
 	if (u.uundetected)	Strcat(info, ", concealed");
 	if (Invis)		Strcat(info, ", invisible");
 #endif
-	if (u.utrap)		Strcat(info, ", æ«¤Ë¤«¤«¤Ã¤Æ¤¤¤ë");
-	if (Fast)		Strcat(info, ", ÁÇÁá¤¤");
-	if (u.uundetected)	Strcat(info, ", ±£¤ì¤Æ¤¤¤ë");
-	if (Invis)		Strcat(info, ", ÉÔ²Ä»ë");
+	if (u.utrap)		Strcat(info, ", ç½ ã«ã‹ã‹ã£ã¦ã„ã‚‹");
+	if (Fast)		Strcat(info, ", ç´ æ—©ã„");
+	if (u.uundetected)	Strcat(info, ", éš ã‚Œã¦ã„ã‚‹");
+	if (Invis)		Strcat(info, ", ä¸å¯è¦–");
 	if (u.ustuck) {
 #if 0 /*JP*/
 	    if (Upolyd && sticks(uasmon))
@@ -490,15 +490,15 @@ ustatusline()
 	    Strcat(info, ", ");
 	    Strcat(info, mon_nam(u.ustuck));
 	    if (Upolyd && sticks(uasmon))
-		Strcat(info, "¤òÄÏ¤Ş¤¨¤Æ¤¤¤ë");
+		Strcat(info, "ã‚’æ´ã¾ãˆã¦ã„ã‚‹");
 	    else
-		Strcat(info, "¤ËÄÏ¤Ş¤¨¤é¤ì¤Æ¤¤¤ë");
+		Strcat(info, "ã«æ´ã¾ãˆã‚‰ã‚Œã¦ã„ã‚‹");
 	}
 
 /*JP
 	pline("Status of %s (%s%s):  Level %d  HP %d(%d)  AC %d%s.",
 */
-	pline("%s¤Î¾õÂÖ (%s %s):  Level %d  HP %d(%d)  AC %d%s.",
+	pline("%sã®çŠ¶æ…‹ (%s %s):  Level %d  HP %d(%d)  AC %d%s.",
 		plname,
 #if 0 /*JP*/
 		    (u.ualign.record >= 20) ? "piously " :
@@ -510,14 +510,14 @@ ustatusline()
 		    (u.ualign.record == 0) ? "nominally " :
 					    "insufficiently ",
 #endif
-		    (u.ualign.record >= 20) ? "·ÉéÊ" :
-		    (u.ualign.record > 13) ? "¿®¿´¿¼¤¤" :
-		    (u.ualign.record > 8) ? "Ç®Îõ" :
-		    (u.ualign.record > 3) ? "À¼¤Î¤«¤ó¹â¤¤" :
+		    (u.ualign.record >= 20) ? "æ•¬è™”" :
+		    (u.ualign.record > 13) ? "ä¿¡å¿ƒæ·±ã„" :
+		    (u.ualign.record > 8) ? "ç†±çƒˆ" :
+		    (u.ualign.record > 3) ? "å£°ã®ã‹ã‚“é«˜ã„" :
 		    (u.ualign.record == 3) ? "" :
-		    (u.ualign.record >= 1) ? "Í­Ì¾Ìµ¼Â" :
-		    (u.ualign.record == 0) ? "ÌÂÏÇ" :
-					    "ÉÔÅ¬Åö",
+		    (u.ualign.record >= 1) ? "æœ‰åç„¡å®Ÿ" :
+		    (u.ualign.record == 0) ? "è¿·æƒ‘" :
+					    "ä¸é©å½“",
 		align_str(u.ualign.type),
 		Upolyd ? mons[u.umonnum].mlevel : u.ulevel,
 		Upolyd ? u.mh : u.uhp,

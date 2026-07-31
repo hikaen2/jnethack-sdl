@@ -1148,7 +1148,10 @@ const char *s;
      */
     const char *p = s;
     long cp;
-    int n, b1, b2;
+    int n;
+#ifndef JP_INTERNAL_UTF8
+    int b1, b2;
+#endif
 
     if (meta_pending) {
         meta_pending = FALSE;
@@ -1165,8 +1168,27 @@ const char *s;
     }
 
     while ((n = utf8_decode(p, &cp)) > 0) {
-        p += n;
+#ifdef JP_INTERNAL_UTF8
+        /*
+         * The internal code is UTF-8, so there is nothing to convert: the
+         * bytes SDL handed us are the bytes the game wants.  They still go
+         * through utf8_decode() rather than straight into the queue, because
+         * this is the boundary, and a malformed sequence from a half-composed
+         * IME buffer must be rejected here and not stored.
+         *
+         * No range is filtered.  Option B of UTF8-PLAN.md is that the whole
+         * of Unicode is accepted; the EUC-JP bottleneck that used to reject
+         * anything outside JIS X 0208 has gone with the encoding.
+         */
+        if (cp == UTF8_REPLACEMENT && n == 1) {
+            tty_nhbell();               /* malformed: do not store it */
+        } else {
+            int i;
 
+            for (i = 0; i < n; i++)
+                sdl_queue_byte((unsigned char) p[i]);
+        }
+#else
         if (cp < 0x80L) {
             sdl_queue_byte((int) cp);
         } else if (sdl_ucs_to_euc(cp, &b1, &b2)) {
@@ -1175,6 +1197,8 @@ const char *s;
         } else {
             tty_nhbell();               /* nothing JNetHack could store */
         }
+#endif
+        p += n;
     }
 }
 
@@ -2198,22 +2222,31 @@ sdl_dump_if_asked()
  *      character does not leave a stray left half behind, whether it is
  *      overwritten directly or erased with cl_end();
  *   3. the result does not depend on LANG;
- *   4. East Asian Ambiguous characters still take two cells, because they
- *      arrived as two bytes.  This is the case a wcwidth()-based backend
- *      gets wrong, and it is why sdl_puteuc() does not consult
- *      sdl_cp_width();
- *   5. every character in the table survives EUC -> Unicode -> EUC, so
- *      what is typed in an IME is what the game stores;
- *   6. half-width katakana takes one cell, even though it too arrives as
- *      two bytes -- the exception rule 4 is stated against;
- *   7. UTF-8 from the keyboard reaches the queue as EUC-JP pairs.
+ *   4. East Asian Ambiguous characters still take two cells.  Under
+ *      EUC-JP that followed from their arriving as two bytes; under
+ *      UTF-8 nothing about the bytes says so, and mb_cpwidth() states
+ *      the rule instead.  This is the case a wcwidth()-based backend
+ *      gets wrong;
+ *   5. every character the game can hold survives a round trip through
+ *      its code point, so what is typed in an IME is what gets stored;
+ *   6. half-width katakana takes one cell -- the exception rule 4 is
+ *      stated against, since under EUC-JP it too arrives as two bytes;
+ *   7. text from the keyboard reaches the queue in the internal code.
  */
 void
 sdl_width_test()
 {
-    /* U+65E5 U+672C U+8A9E U+6F22 U+5B57 ("nihongo kanji") in EUC-JP */
+    /* U+65E5 U+672C U+8A9E U+6F22 U+5B57 ("nihongo kanji"), in whichever
+       code the game is built for.  Written as escapes so this file stays
+       ASCII and is not itself converted. */
+#ifdef JP_INTERNAL_UTF8
+    static const char kanji_euc[] =
+        "\346\227\245\346\234\254\350\252\236"
+        "\346\274\242\345\255\227";
+#else
     static const char kanji_euc[] =
         "\306\374\313\334\270\354\264\301\273\372";
+#endif
     static const long kanji_ucs[] =
         { 0x65E5L, 0x672CL, 0x8A9EL, 0x6F22L, 0x5B57L };
     /*
@@ -2221,15 +2254,27 @@ sdl_width_test()
      * Ambiguous: U+00B1 U+00D7 U+00F7 U+00A7 U+00B0.  A terminal's column count for these depends
      * on the user's locale; JNetHack's own layout code always counts two.
      */
+#ifdef JP_INTERNAL_UTF8
+    static const char ambig_euc[] =
+        "\302\261\303\227\303\267\302\247\302\260";
+#else
     static const char ambig_euc[] = "\241\336\241\337\241\340\241\370\241\353";
+#endif
     static const long ambig_ucs[] =
         { 0x00B1L, 0x00D7L, 0x00F7L, 0x00A7L, 0x00B0L };
     /*
-     * Half-width katakana A I U E O, U+FF71..U+FF75.  SS2 pairs: they
-     * arrive as two bytes each but take one cell each.
+     * Half-width katakana A I U E O, U+FF71..U+FF75.  One cell each in
+     * either code, and under EUC-JP that is in spite of their arriving as
+     * SS2 pairs.
      */
+#ifdef JP_INTERNAL_UTF8
+    static const char kana_euc[] =
+        "\357\275\261\357\275\262\357\275\263"
+        "\357\275\264\357\275\265";
+#else
     static const char kana_euc[] =
         "\216\261\216\262\216\263\216\264\216\265";
+#endif
     static const long kana_ucs[] =
         { 0xFF71L, 0xFF72L, 0xFF73L, 0xFF74L, 0xFF75L };
     int i, x, fail = 0;
@@ -2372,23 +2417,41 @@ sdl_width_test()
             (void) printf("    case 4 (Ambiguous width from encoding): PASS\n");
     }
 
-    /* --- case 5: EUC -> Unicode -> EUC round trip --------------- */
+    /* --- case 5: internal code -> Unicode -> internal code ------ */
     {
-        int before = fail, b1, b2, row, cell, checked = 0;
+        int before = fail, row, cell, checked = 0;
 
         for (row = 1; row <= JIS_ROWS; row++)
             for (cell = 1; cell <= JIS_CELLS; cell++) {
-                long cp;
+                long cp = jis_to_ucs(row, cell), back;
+                char enc[MB_MAXBYTES + 1];
+                int n;
 
-                if (!jis_to_ucs(row, cell))
-                    continue;
-                cp = sdl_euc_to_ucs(0xA0 + row, 0xA0 + cell);
+                if (!cp) continue;
                 checked++;
-                if (!sdl_ucs_to_euc(cp, &b1, &b2) ||
-                    b1 != 0xA0 + row || b2 != 0xA0 + cell) {
-                    if (fail == before) /* report the first one only */
-                        (void) printf("    FAIL: row %d cell %d (U+%04lX)"
-                                      " does not round trip\n", row, cell, cp);
+
+                /*
+                 * Every character the game can hold must survive being
+                 * turned into a code point and back, because that is what
+                 * happens between an IME commit and the save file.  Under
+                 * EUC-JP this was the JIS table's round trip; under UTF-8
+                 * it is the codec's, and the loop is the same either way.
+                 */
+                n = mb_encode(cp, enc, MB_MAXBYTES);
+                if (!n) {
+                    if (fail == before)
+                        (void) printf("    FAIL: U+%04lX (row %d cell %d) has"
+                                      " no form in the internal code\n",
+                                      cp, row, cell);
+                    fail++;
+                    continue;
+                }
+                enc[n] = '\0';
+                back = mb_decode(enc);
+                if (back != cp || mb_seqlen(enc) != n) {
+                    if (fail == before)
+                        (void) printf("    FAIL: U+%04lX does not round trip"
+                                      " (got U+%04lX)\n", cp, back);
                     fail++;
                 }
             }
@@ -2427,18 +2490,21 @@ sdl_width_test()
             fail++;
         }
         /* and it survives the way back, so an IME's half-width kana is
-           stored as the SS2 pair the game reads */
+           stored as what the game reads.  Case 5 walks JIS X 0208 and
+           these are JIS X 0201, so they are checked here or nowhere. */
         {
-            int b1, b2;
+            char enc[MB_MAXBYTES + 1];
+            int n;
 
-            for (i = 0; i < 5; i++)
-                if (!sdl_ucs_to_euc(kana_ucs[i], &b1, &b2) ||
-                    b1 != 0x8E ||
-                    b2 != (unsigned char) kana_euc[i * 2 + 1]) {
-                    (void) printf("    FAIL: U+%04lX does not round trip to"
-                                  " SS2\n", kana_ucs[i]);
+            for (i = 0; i < 5; i++) {
+                n = mb_encode(kana_ucs[i], enc, MB_MAXBYTES);
+                enc[n] = '\0';
+                if (!n || mb_decode(enc) != kana_ucs[i]) {
+                    (void) printf("    FAIL: U+%04lX does not round trip\n",
+                                  kana_ucs[i]);
                     fail++;
                 }
+            }
         }
         if (fail == before)
             (void) printf("    case 6 (half-width katakana, 1 cell): PASS\n");
@@ -2451,8 +2517,14 @@ sdl_width_test()
            delivers when an IME commits "nihongo". */
         static const char utf8[] =
             "\346\227\245\346\234\254\350\252\236";
+#ifdef JP_INTERNAL_UTF8
+        /* nothing to convert: the queue holds what SDL delivered */
+        static const unsigned char want[] =
+            { 0346, 0227, 0245, 0346, 0234, 0254, 0350, 0252, 0236 };
+#else
         static const unsigned char want[] =
             { 0306, 0374, 0313, 0334, 0270, 0354 };
+#endif
 
         kq_head = kq_tail = 0;
         sdl_queue_text(utf8);
@@ -2476,7 +2548,11 @@ sdl_width_test()
         }
         kq_head = kq_tail = 0;
         if (fail == before)
+#ifdef JP_INTERNAL_UTF8
+            (void) printf("    case 7 (UTF-8 input, no conversion): PASS\n");
+#else
             (void) printf("    case 7 (UTF-8 input -> EUC-JP pairs): PASS\n");
+#endif
     }
 
     /* leave something on screen for the screenshot */

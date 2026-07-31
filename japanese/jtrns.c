@@ -94,10 +94,10 @@ dotogglelang()
 
   switch(lang_mode){
   case 0:
-    pline("¥ª¥ê¥¸¥Ê¥ë¥â¡¼¥É");
+    pline("ã‚ªãƒªã‚¸ãƒŠãƒ«ãƒ¢ãƒ¼ãƒ‰");
     break;
   case 1:
-    pline("ÆüËÜ¸ì¥â¡¼¥É");
+    pline("æ—¥æœ¬èªãƒ¢ãƒ¼ãƒ‰");
     break;
   }
   return 0;
@@ -145,19 +145,19 @@ jtrns_mon(name, female)
 
   if(female){
     if(!strcmp(name, "werejackal") || !strcmp(name, "Werejackal"))
-      return "¥¸¥ã¥Ã¥«¥ë½÷";
+      return "ã‚¸ãƒ£ãƒƒã‚«ãƒ«å¥³";
     else if(!strcmp(name, "werewolf") || !strcmp(name, "Werewolf"))
-      return "Ïµ½÷";
+      return "ç‹¼å¥³";
     else if(!strcmp(name, "wererat") || !strcmp(name, "Wererat"))
-      return "¤Í¤º¤ß½÷";
+      return "ã­ãšã¿å¥³";
   }
   else{
     if(!strcmp(name, "werejackal") || !strcmp(name, "Werejackal"))
-      return "¥¸¥ã¥Ã¥«¥ëÃË";
+      return "ã‚¸ãƒ£ãƒƒã‚«ãƒ«ç”·";
     else if(!strcmp(name, "werewolf") || !strcmp(name, "Werewolf"))
-      return "ÏµÃË";
+      return "ç‹¼ç”·";
     else if(!strcmp(name, "wererat") || !strcmp(name, "Wererat"))
-      return "¤Í¤º¤ßÃË";
+      return "ã­ãšã¿ç”·";
   }
 
   return ret;

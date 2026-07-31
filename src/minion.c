@@ -102,12 +102,12 @@ boolean talk;
     if (mon) {
 	if (talk) {
 /*JP	    pline_The("voice of %s booms:", align_gname(alignment));*/
-	    pline("%s§Œ¿º§¨∂¡§§§ø:", align_gname(alignment));
+	    pline("%s„ÅÆÂ£∞„ÅåÈüø„ÅÑ„Åü:", align_gname(alignment));
 /*JP	    verbalize("Thou shalt pay for thy indiscretion!");*/
-	    verbalize("∆Ú°§Ãµ ¨ Ã§ π‘∆∞§Œ»≥§Úºı§±§Ë°™");
+	    verbalize("Ê±ùÔºåÁÑ°ÂàÜÂà•„Å™Ë°åÂãï„ÅÆÁΩ∞„ÇíÂèó„Åë„ÇàÔºÅ");
 	    if (!Blind)
 /*JP		pline("%s appears before you.", Amonnam(mon));*/
-		pline("%s§¨§¢§ §ø§Œ¡∞§À∏Ω§Ô§Ï§ø°•", Amonnam(mon));
+		pline("%s„Åå„ÅÇ„Å™„Åü„ÅÆÂâç„Å´Áèæ„Çè„Çå„ÅüÔºé", Amonnam(mon));
 	}
 	mon->mpeaceful = FALSE;
 	/* don't call set_malign(); player was naughty */
@@ -124,7 +124,7 @@ register struct monst *mtmp;
 
 	if (uwep && uwep->oartifact == ART_EXCALIBUR) {
 /*JP	    pline("%s looks very angry.", Amonnam(mtmp));*/
-	    pline("%s§œ§»§∆§‚≈‹§√§∆§§§Î§Ë§¶§À∏´§®§Î°•", Amonnam(mtmp));
+	    pline("%s„ÅØ„Å®„Å¶„ÇÇÊÄí„Å£„Å¶„ÅÑ„Çã„Çà„ÅÜ„Å´Ë¶ã„Åà„ÇãÔºé", Amonnam(mtmp));
 	    mtmp->mpeaceful = mtmp->mtame = 0;
 	    newsym(mtmp->mx, mtmp->my);
 	    return 0;
@@ -134,14 +134,14 @@ register struct monst *mtmp;
 	if (is_dprince(mtmp->data) && mtmp->minvis) {
 	    mtmp->minvis = mtmp->perminvis = 0;
 /*JP	    if (!Blind) pline("%s appears before you.", Amonnam(mtmp));*/
-	    if (!Blind) pline("%s§¨Ã‹§Œ¡∞§À∏Ω§Ô§Ï§ø°•", Amonnam(mtmp));
+	    if (!Blind) pline("%s„ÅåÁõÆ„ÅÆÂâç„Å´Áèæ„Çè„Çå„ÅüÔºé", Amonnam(mtmp));
 	    newsym(mtmp->mx,mtmp->my);
 	}
 	if (u.usym == S_DEMON) {	/* Won't blackmail their own. */
 /*JP	    pline("%s says, \"Good hunting, %s.\" and vanishes.",
 		  Amonnam(mtmp), flags.female ? "Sister" : "Brother");*/
-	    pline("%s§œ∏¿§√§ø°÷§Ë§¶∑ª%s°™°◊°•§Ω§∑§∆æ√§®§ø°•",
-		  Amonnam(mtmp), flags.female ? "ÀÂ" : "ƒÔ");
+	    pline("%s„ÅØË®Ä„Å£„Åü„Äå„Çà„ÅÜÂÖÑ%sÔºÅ„ÄçÔºé„Åù„Åó„Å¶Ê∂à„Åà„ÅüÔºé",
+		  Amonnam(mtmp), flags.female ? "Â¶π" : "Âºü");
 	    rloc(mtmp);
 	    return(1);
 	}
@@ -152,21 +152,21 @@ register struct monst *mtmp;
 	else {
 /*JP	    pline("%s demands %ld zorkmid%s for safe passage.",
 		  Amonnam(mtmp), demand, plur(demand));*/
-	    pline("%s§œƒÃπ‘Œ¡§»§∑§∆%ld•¥°º•Î•…Õ◊µ·§∑§ø°•",
+	    pline("%s„ÅØÈÄöË°åÊñô„Å®„Åó„Å¶%ld„Ç¥„Éº„É´„ÉâË¶ÅÊ±Ç„Åó„ÅüÔºé",
 		  Amonnam(mtmp), demand);
 
 	    if ((offer = bribe(mtmp)) >= demand) {
 /*JP		pline("%s vanishes, laughing about cowardly mortals.",*/
-		pline("ª‡§π§Ÿ§≠»‹§∑§≠§‚§Œ§Úæ–§§§ §¨§È°§%s§œæ√§®§ø°•",
+		pline("Ê≠ª„Åô„Åπ„ÅçÂçë„Åó„Åç„ÇÇ„ÅÆ„ÇíÁ¨ë„ÅÑ„Å™„Åå„ÇâÔºå%s„ÅØÊ∂à„Åà„ÅüÔºé",
 		      Amonnam(mtmp));
 	    } else {
 		if ((long)rnd(40) > (demand - offer)) {
 /*JP		    pline("%s scowls at you menacingly, then vanishes.",*/
-		    pline("%s§œ§¢§ §ø§Ú∞“≥≈§∑°§æ√§®§ø°•",
+		    pline("%s„ÅØ„ÅÇ„Å™„Åü„ÇíÂ®ÅÂöá„ÅóÔºåÊ∂à„Åà„ÅüÔºé",
 			  Amonnam(mtmp));
 		} else {
 /*JP		    pline("%s gets angry...", Amonnam(mtmp));*/
-		    pline("%s§œ≈‹§√§ø°•°•°•", Amonnam(mtmp));
+		    pline("%s„ÅØÊÄí„Å£„ÅüÔºéÔºéÔºé", Amonnam(mtmp));
 		    return mtmp->mpeaceful = 0;
 		}
 	    }
@@ -183,26 +183,26 @@ struct monst *mtmp;
 	long offer;
 
 /*JP	getlin("How much will you offer?", buf);*/
-	getlin("≤ø•¥°º•Î•…Õø§®§Î°©", buf);
+	getlin("‰Ωï„Ç¥„Éº„É´„Éâ‰∏é„Åà„ÇãÔºü", buf);
 	(void) sscanf(buf, "%ld", &offer);
 
 	/*Michael Paddon -- fix for negative offer to monster*/
 	/*JAR880815 - */
 	if (offer < 0L) {
 /*JP		You("try to shortchange %s, but fumble.",*/
-		You("%s§Ú§¿§ﬁ§Ω§¶§»§∑§ø§¨°§º∫«‘§∑§ø°•",
+		You("%s„Çí„Å†„Åæ„Åù„ÅÜ„Å®„Åó„Åü„ÅåÔºåÂ§±Êïó„Åó„ÅüÔºé",
 			mon_nam(mtmp));
 		offer = 0L;
 	} else if (offer == 0L) {
 /*JP		You("refuse.");*/
-		You("µÒ§Û§¿°•");
+		You("Êãí„Çì„Å†Ôºé");
 	} else if (offer >= u.ugold) {
 /*JP		You("give %s all your gold.", mon_nam(mtmp));*/
-		You("%s§À§™∂‚§Ú¡¥§∆Õø§®§ø°•", mon_nam(mtmp));
+		You("%s„Å´„ÅäÈáë„ÇíÂÖ®„Å¶‰∏é„Åà„ÅüÔºé", mon_nam(mtmp));
 		offer = u.ugold;
 /*JP	} else You("give %s %ld zorkmid%s.", mon_nam(mtmp), offer,
 		   plur(offer));*/
-	} else You("%s§À%ld•¥°º•Î•…Õø§®§ø°•", mon_nam(mtmp), offer);
+	} else You("%s„Å´%ld„Ç¥„Éº„É´„Éâ‰∏é„Åà„ÅüÔºé", mon_nam(mtmp), offer);
 
 	u.ugold -= offer;
 	mtmp->mgold += offer;

@@ -80,7 +80,7 @@ xchar x, y;
 	    } else {
 		pm = rndmonst();
 		if (!pm) {
-		    pline("²¼ËÍ¤Ï¸½¤ì¤Ê¤«¤Ã¤¿¡¥");
+		    pline("ä¸‹åƒ•ã¯ç¾ã‚Œãªã‹ã£ãŸï¼Ž");
 		    break;
 		}
 	    }
@@ -90,7 +90,7 @@ xchar x, y;
 	    pm->pxlth -= sizeof (struct edog);
 	    if (otmp && !mtmp) { /* monster was genocided or square occupied */
 /*JP		pline_The("figurine writhes and then shatters into pieces!");*/
-		pline("¿Í·Á¤Ï¤â¤¬¤­¡¤¤¯¤À¤±»¶¤Ã¤¿¡ª");
+		pline("äººå½¢ã¯ã‚‚ãŒãï¼Œãã ã‘æ•£ã£ãŸï¼");
 		break;
 	    }
 	} while (!mtmp && --trycnt > 0);
@@ -107,7 +107,7 @@ xchar x, y;
 		mtmp->mtame = 0;	/* not tame after all */
 		if (chance == 2) { /* hostile (cursed figurine) */
 /*JP		    You("get a bad feeling about this.");*/
-		    You("·ù¤ÊÍ½´¶¤¬¤·¤¿¡¥");
+		    You("å«Œãªäºˆæ„ŸãŒã—ãŸï¼Ž");
 		    mtmp->mpeaceful = 0;
 		}
 	    }
@@ -146,11 +146,11 @@ makedog()
 	    if(Role_is('S')) petname = "Hachi";     /* Shibuya Station */
 	    if(Role_is('B')) petname = "Idefix";    /* Obelix */
 #endif
-	    if(Role_is('C')) petname = "¥¹¥é¥Ã¥·¥ã¡¼";   /* The Warrior */
-	    if(Role_is('S')) petname = "¥Ï¥Á¸ø";    /* Shibuya Station */
-	    if(Role_is('B')) petname = "¥¤¥Ç¥Õ¥£¥¯¥¹";    /* Obelix */
+	    if(Role_is('C')) petname = "ã‚¹ãƒ©ãƒƒã‚·ãƒ£ãƒ¼";   /* The Warrior */
+	    if(Role_is('S')) petname = "ãƒãƒå…¬";    /* Shibuya Station */
+	    if(Role_is('B')) petname = "ã‚¤ãƒ‡ãƒ•ã‚£ã‚¯ã‚¹";    /* Obelix */
 #ifdef FIGHTER
-	    if(Role_is('F')) petname = rn2(2) ? "¥ë¥Ê" : "¥¢¥ë¥Æ¥ß¥¹";
+	    if(Role_is('F')) petname = rn2(2) ? "ãƒ«ãƒŠ" : "ã‚¢ãƒ«ãƒ†ãƒŸã‚¹";
 #endif
 	}
 
@@ -413,13 +413,13 @@ boolean pets_only;	/* true for ascension or final escape */
 		if (mtmp->mtame && mtmp->meating) {
 			if (canseemon(mtmp))
 /*JP			  pline("%s is still eating.", Monnam(mtmp));*/
-			  pline("%s¤Ï¤Þ¤À¿©¤Ù¤Æ¤¤¤ë¡¥", Monnam(mtmp));
+			  pline("%sã¯ã¾ã é£Ÿã¹ã¦ã„ã‚‹ï¼Ž", Monnam(mtmp));
 
 			stay_behind = TRUE;
 		} else if (mon_has_amulet(mtmp)) {
 			if (canseemon(mtmp))
 /*JP			  pline("%s seems very disoriented for a moment.",*/
-			  pline("%s¤Ï°ì½ÖÊý¸þ´¶³Ð¤ò¼º¤Ã¤¿¤è¤¦¤À¡¥",
+			  pline("%sã¯ä¸€çž¬æ–¹å‘æ„Ÿè¦šã‚’å¤±ã£ãŸã‚ˆã†ã ï¼Ž",
 
 				Monnam(mtmp));
 			stay_behind = TRUE;
@@ -430,10 +430,10 @@ boolean pets_only;	/* true for ascension or final escape */
 					humanoid(mtmp->data)
 					    ? (mtmp->female ? "Her" : "His")
 					    : "Its");*/
-				pline("%s¤Ë·ë¤Ð¤ì¤¿É³¤ÏÆÍÁ³¤æ¤ë¤ó¤À¡¥",
+				pline("%sã«çµã°ã‚ŒãŸç´ã¯çªç„¶ã‚†ã‚‹ã‚“ã ï¼Ž",
 				        humanoid(mtmp->data)
-					    ? (mtmp->female ? "Èà½÷¤Î" : "Èà¤Î")
-					    : "¤½¤ÎÀ¸Êª¤Î");
+					    ? (mtmp->female ? "å½¼å¥³ã®" : "å½¼ã®")
+					    : "ãã®ç”Ÿç‰©ã®");
 				m_unleash(mtmp);
 			}
 			continue;
@@ -472,7 +472,7 @@ boolean pets_only;	/* true for ascension or final escape */
 		/* this can happen if your quest leader ejects you from the
 		   "home" level while a leashed pet isn't next to you */
 /*JP		pline("%s leash goes slack.", s_suffix(Monnam(mtmp)));*/
-		pline("%s¤Ë·ë¤Ð¤ì¤¿É³¤Ï¤¿¤ë¤ó¤À¡¥", s_suffix(Monnam(mtmp)));
+		pline("%sã«çµã°ã‚ŒãŸç´ã¯ãŸã‚‹ã‚“ã ï¼Ž", s_suffix(Monnam(mtmp)));
 		m_unleash(mtmp);
 	    }
 	}
@@ -518,7 +518,7 @@ migrate_to_level(mtmp, tolev, xyloc, cc)
 		m_unleash(mtmp);
 		mtmp->mtame--;
 /*JP		pline_The("leash comes off!");*/
-		pline("É³¤Ï¤Ï¤º¤ì¤¿¡ª");
+		pline("ç´ã¯ã¯ãšã‚ŒãŸï¼");
 	}
 	newsym(mtmp->mx,mtmp->my);
 
@@ -670,12 +670,12 @@ register struct obj *obj;
 /*JP		    pline("%s catches %s%s",
 			  Monnam(mtmp), the(xname(obj)),
 			  !big_corpse ? "." : ", or vice versa!");*/
-		    pline("%s¤Ï%s¤ò¤Ä¤«¤Þ¤¨¤¿%s",
+		    pline("%sã¯%sã‚’ã¤ã‹ã¾ãˆãŸ%s",
 			  Monnam(mtmp), the(xname(obj)),
-			  !big_corpse ? "¡¥" : "¤È¸À¤¦¤è¤ê¤½¤ÎµÕ¤«¡ª");
+			  !big_corpse ? "ï¼Ž" : "ã¨è¨€ã†ã‚ˆã‚Šãã®é€†ã‹ï¼");
 		} else if (cansee(mtmp->mx,mtmp->my))
 /*JP		    pline("%s stops.", The(xname(obj)));*/
-		    pline("%s¤Ï»ß¤Þ¤Ã¤¿¡¥", The(xname(obj)));
+		    pline("%sã¯æ­¢ã¾ã£ãŸï¼Ž", The(xname(obj)));
 		/* dog_eat expects a floor object */
 		place_object(obj, mtmp->mx, mtmp->my);
 		(void) dog_eat(mtmp, obj, mtmp->mx, mtmp->my, FALSE);

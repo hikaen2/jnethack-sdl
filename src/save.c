@@ -61,13 +61,13 @@ dosave()
 {
 	clear_nhwindow(WIN_MESSAGE);
 /*JP	if(yn("Really save?") == 'n') {*/
-	if(yn("ËÜÅö¤ËÊİÂ¸¤¹¤ë¡©") == 'n') {
+	if(yn("æœ¬å½“ã«ä¿å­˜ã™ã‚‹ï¼Ÿ") == 'n') {
 		clear_nhwindow(WIN_MESSAGE);
 		if(multi > 0) nomul(0);
 	} else {
 		clear_nhwindow(WIN_MESSAGE);
 /*JP		pline("Saving...");*/
-		pline("ÊİÂ¸Ãæ¡¥¡¥¡¥");
+		pline("ä¿å­˜ä¸­ï¼ï¼ï¼");
 #if defined(UNIX) || defined(VMS) || defined(SDL_GRAPHICS)
 		program_state.done_hup = 0;
 #endif
@@ -75,7 +75,7 @@ dosave()
 			/* make sure they see the Saving message */
 			display_nhwindow(WIN_MESSAGE, TRUE);
 /*JP			exit_nhwindows("Be seeing you...");*/
-			exit_nhwindows("¤Ş¤¿²ñ¤¤¤Ş¤·¤ç¤¦¡¥¡¥¡¥");
+			exit_nhwindows("ã¾ãŸä¼šã„ã¾ã—ã‚‡ã†ï¼ï¼ï¼");
 			terminate(EXIT_SUCCESS);
 		} else (void)doredraw();
 	}
@@ -146,8 +146,8 @@ dosave0()
 		(void) close(fd);
 		clear_nhwindow(WIN_MESSAGE);
 /*JP		pline("There seems to be an old save file.");*/
-		pline("Á°¤Ë¥»¡¼¥Ö¤·¤¿¥Õ¥¡¥¤¥ë¤¬¤¢¤ê¤Ş¤¹¡¥");
-		if (yn("¸Å¤¤¥Õ¥¡¥¤¥ë¤Ë¾å½ñ¤­¤·¤Ş¤¹¤«¡©") == 'n') {
+		pline("å‰ã«ã‚»ãƒ¼ãƒ–ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚Šã¾ã™ï¼");
+		if (yn("å¤ã„ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¸Šæ›¸ãã—ã¾ã™ã‹ï¼Ÿ") == 'n') {
 		    compress(SAVEF);
 		    return 0;
 		}

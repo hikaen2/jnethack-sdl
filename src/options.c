@@ -257,55 +257,55 @@ static struct Comp_Opt
 	{ (char *)0, (char *)0, 0 }
 #endif /* JP */
 
-	{ "catname",  "║╟╜щд╦╦┴╕▒дЄ╢бд╦д╣ды╟нд╬╠╛┴░ (╬у catname:е┐е▐),", PL_PSIZ },
-	{ "disclose", "е▓б╝ер╜к╬╗╗■д╦╕лды╛Ё╩єд╬е┐еде╫,", sizeof(flags.end_disclose)},
-	{ "dogname",  "║╟╜щд╦╦┴╕▒дЄ╢бд╦д╣ды╕дд╬╠╛┴░ (╬у dogname:е▌е┴),", PL_PSIZ },
-	{ "dungeon",  "е└еєе╕ечеєдЄ╔┴дпд╬д╦╗╚дж╡н╣ц", MAXDCHARS+1},
-	{ "effects",  "╞├╝ь╕·▓╠дЄ╔┴дпд╬д╦╗╚дж╡н╣ц", MAXDCHARS+1},
-	{ "fruit",    "╣е╩кд╬┐йд┘╩к," },
-	{ "menustyle","еке╓е╕езепе╚дЄ┴к┬Єд╣дыд╚днд╬ецб╝е╢едеєе┐б╝е╒езб╝е╣", MENUTYPELEN},
-	{ "menu_deselect_all", "┴┤д╞д╬еведе╞ердЄ┴к┬Є", 4},
-	{ "menu_deselect_page", "╕╜║▀╔╜╝ид╡дьд╞дддые┌б╝е╕д╬еведе╞ердЄ╚є┴к┬Є", 4},
-	{ "menu_first_page", "есе╦ехб╝д╬║╟╜щд╬е┌б╝е╕д╪", 4},
-	{ "menu_invert_all", "┴┤д╞д╬еведе╞ердЄ╚┐┼╛", 4},
-	{ "menu_invert_page", "╕╜║▀╔╜╝ид╡дьд╞дддые┌б╝е╕д╬еведе╞ердЄ╚┐┼╛", 4},
-	{ "menu_last_page", "есе╦ехб╝д╬║╟╕хд╬е┌б╝е╕д╪", 4},
-	{ "menu_next_page", "╝бд╬есе╦ехб╝д╬е┌б╝е╕д╪", 4},
-	{ "menu_previous_page", "┴░д╬есе╦ехб╝д╬е┌б╝е╕д╪", 4},
-	{ "menu_search", "есе╦ехб╝д╬╕б║ў", 4},
-	{ "menu_select_all", "┴┤д╞д╬еведе╞ердЄ┴к┬Є", 4},
-	{ "menu_select_page", "╕╜║▀╔╜╝ид╡дьд╞ддды┴┤д╞д╬еведе╞ердЄ┴к┬Є", 4},
-	{ "monsters", "▓°╩кд╦╗╚═╤д╣ды╡н╣ц,", MAXMCLASSES },
-	{ "msghistory", "е╗б╝е╓д╣ды└ш╞м╣╘д╬┐Ї,", 5 },
-	{ "name",     "енеуещепе┐б╝д╬╠╛┴░ (╬у name:е█еде▀еє),", PL_NSIZ },
-	{ "objects",  "╩к┬╬д╦╗╚═╤д╣ды╡н╣ц,", MAXOCLASSES },
-	{ "packorder", "еведе╞ер░ь═ўд╬╜ч╚╓,", MAXOCLASSES },
+	{ "catname",  "цЬАхИЭуБлхЖТщЩ║уВТф╛ЫуБлуБЩуВЛчМлуБохРНхЙН (ф╛Л catname:уВ┐уГЮ),", PL_PSIZ },
+	{ "disclose", "уВ▓уГ╝уГач╡Вф║ЖцЩВуБлшжЛуВЛцГЕха▒уБоуВ┐уВдуГЧ,", sizeof(flags.end_disclose)},
+	{ "dogname",  "цЬАхИЭуБлхЖТщЩ║уВТф╛ЫуБлуБЩуВЛчКмуБохРНхЙН (ф╛Л dogname:уГЭуГБ),", PL_PSIZ },
+	{ "dungeon",  "уГАуГ│уВ╕уГзуГ│уВТцППуБПуБоуБлф╜┐уБЖшиШхП╖", MAXDCHARS+1},
+	{ "effects",  "чЙ╣цоКхК╣цЮЬуВТцППуБПуБоуБлф╜┐уБЖшиШхП╖", MAXDCHARS+1},
+	{ "fruit",    "хе╜чЙйуБощгЯуБ╣чЙй," },
+	{ "menustyle","уВкуГЦуВ╕уВзуВпуГИуВТщБ╕цКЮуБЩуВЛуБиуБНуБоуГжуГ╝уВ╢уВдуГ│уВ┐уГ╝уГХуВзуГ╝уВ╣", MENUTYPELEN},
+	{ "menu_deselect_all", "хЕиуБжуБоуВвуВдуГЖуГауВТщБ╕цКЮ", 4},
+	{ "menu_deselect_page", "чП╛хЬишбичд║уБХуВМуБжуБДуВЛуГЪуГ╝уВ╕уБоуВвуВдуГЖуГауВТщЭЮщБ╕цКЮ", 4},
+	{ "menu_first_page", "уГбуГЛуГеуГ╝уБоцЬАхИЭуБоуГЪуГ╝уВ╕уБ╕", 4},
+	{ "menu_invert_all", "хЕиуБжуБоуВвуВдуГЖуГауВТхПНш╗в", 4},
+	{ "menu_invert_page", "чП╛хЬишбичд║уБХуВМуБжуБДуВЛуГЪуГ╝уВ╕уБоуВвуВдуГЖуГауВТхПНш╗в", 4},
+	{ "menu_last_page", "уГбуГЛуГеуГ╝уБоцЬАх╛МуБоуГЪуГ╝уВ╕уБ╕", 4},
+	{ "menu_next_page", "цмбуБоуГбуГЛуГеуГ╝уБоуГЪуГ╝уВ╕уБ╕", 4},
+	{ "menu_previous_page", "хЙНуБоуГбуГЛуГеуГ╝уБоуГЪуГ╝уВ╕уБ╕", 4},
+	{ "menu_search", "уГбуГЛуГеуГ╝уБоцдЬч┤в", 4},
+	{ "menu_select_all", "хЕиуБжуБоуВвуВдуГЖуГауВТщБ╕цКЮ", 4},
+	{ "menu_select_page", "чП╛хЬишбичд║уБХуВМуБжуБДуВЛхЕиуБжуБоуВвуВдуГЖуГауВТщБ╕цКЮ", 4},
+	{ "monsters", "цАкчЙйуБлф╜┐чФиуБЩуВЛшиШхП╖,", MAXMCLASSES },
+	{ "msghistory", "уВ╗уГ╝уГЦуБЩуВЛхЕИщаншбМуБоцХ░,", 5 },
+	{ "name",     "уВнуГгуГйуВпуВ┐уГ╝уБохРНхЙН (ф╛Л name:уГЫуВдуГЯуГ│),", PL_NSIZ },
+	{ "objects",  "чЙйф╜УуБлф╜┐чФиуБЩуВЛшиШхП╖,", MAXOCLASSES },
+	{ "packorder", "уВвуВдуГЖуГаф╕АшжзуБощаЖчХк,", MAXOCLASSES },
 #ifdef CHANGE_COLOR
-	{ "palette",  "е╤еье├е╚(00c/880/-fff д╧бд└─/▓л/╟Єд╬╚┐┼╛),", 15 },
+	{ "palette",  "уГСуГмуГГуГИ(00c/880/-fff уБпя╝МщЭТ/щ╗Д/чЩ╜уБохПНш╗в),", 15 },
 # if defined(MAC)
-	{ "hicolor",  "е╤еье├е╚д╚╞▒д╕д└дм╚┐┼╛д╬д▀,", 15 },
+	{ "hicolor",  "уГСуГмуГГуГИуБихРМуБШуБауБМхПНш╗вуБоуБ┐,", 15 },
 # endif
 #endif
-	{ "pettype",  "║╟╜щд╬е┌е├е╚д╬╝я╬р,", 4 },
-	{ "pickup_types", "╝л╞░д╟╜ждж╩к┬╬д╬╝я╬р,", MAXOCLASSES },
-	{ "scores",   "е▓б╝ерд╬║╟╕хд╦╕лдые╣е│евд╬╝я╬р,", 32 },
+	{ "pettype",  "цЬАхИЭуБоуГЪуГГуГИуБочиощбЮ,", 4 },
+	{ "pickup_types", "шЗкхЛХуБзцЛ╛уБЖчЙйф╜УуБочиощбЮ,", MAXOCLASSES },
+	{ "scores",   "уВ▓уГ╝уГауБоцЬАх╛МуБлшжЛуВЛуВ╣уВ│уВвуБочиощбЮ,", 32 },
 #ifdef MSDOS
-	{ "soundcard", "╗╚═╤д╣дые╡ежеєе╔елб╝е╔д╬е┐еде╫", 20 },
+	{ "soundcard", "ф╜┐чФиуБЩуВЛуВ╡уВжуГ│уГЙуВлуГ╝уГЙуБоуВ┐уВдуГЧ", 20 },
 #endif
-	{ "traps",    "цлдЄ╔┴дпд╬д╦╗╚═╤д╣ды╡н╣ц", MAXTCHARS+1 },
+	{ "traps",    "ч╜ауВТцППуБПуБоуБлф╜┐чФиуБЩуВЛшиШхП╖", MAXTCHARS+1 },
 #ifdef MSDOS
-	{ "video",    "▓ш┴№д╬╣╣┐╖╩¤╦б", 20 },
+	{ "video",    "чФ╗хГПуБоцЫ┤цЦ░цЦ╣ц│Х", 20 },
 #endif
 #ifdef VIDEOSHADES
 	{ "videocolors", "color mappings for internal screen routines,", 4},
 	{ "videoshades", "gray shades to map to black/gray/white,", 32 },
 #endif
-	{ "windowtype", "╗╚═╤д╣дыежегеєе╔еже╖е╣е╞ер,", WINTYPELEN },
+	{ "windowtype", "ф╜┐чФиуБЩуВЛуВжуВгуГ│уГЙуВжуВ╖уВ╣уГЖуГа,", WINTYPELEN },
 /*JP*/
-	{ "kcode", "├╝╦Ўд╬┤┴╗·е│б╝е╔,", 4 },
+	{ "kcode", "члпцЬлуБоц╝вхнЧуВ│уГ╝уГЙ,", 4 },
 #ifdef	NH_EXTENSION_REPORT
-	{ "homeurl", "двд╩д┐д╬е█б╝ере┌б╝е╕URL,", 128 },
-	{ "proxy", "HTTPе╫еэене╖,", 128 },
+	{ "homeurl", "уБВуБкуБЯуБоуГЫуГ╝уГауГЪуГ╝уВ╕URL,", 128 },
+	{ "proxy", "HTTPуГЧуГнуВнуВ╖,", 128 },
 #endif
 	{ NULL, NULL }
 };
@@ -664,7 +664,7 @@ const char *optname;
 		pline("\"%s\" settable only from %s.", optname, configfile);
 #else
 /*JP	pline("%s can be set only from NETHACKOPTIONS or %s.", optname,*/
-	pline("%sд╧ NETHACKOPTIONSдл %sд╟д╩ддд╚└▀─ъд╟днд╩ддбе", optname,
+	pline("%sуБп NETHACKOPTIONSуБЛ %sуБзуБкуБДуБишинхоЪуБзуБНуБкуБДя╝О", optname,
 			configfile);
 #endif
 }
@@ -678,7 +678,7 @@ const char *opts;
 		option_help();
 	    else	
 /*JP		pline("Bad syntax: %s.  Enter \"?g\" for help.", opts);*/
-		pline("%s:еке╫е╖ечеєеиещб╝бке╪еые╫дЄ╕лдыд╦д╧\"?g\"д╚е┐еде╫д╗дшбе", opts);
+		pline("%s:уВкуГЧуВ╖уГзуГ│уВиуГйуГ╝я╝БуГШуГлуГЧуВТшжЛуВЛуБлуБп\"?g\"уБиуВ┐уВдуГЧуБЫуВИя╝О", opts);
     return;
 	}
 # ifdef AMIGA
@@ -1812,12 +1812,12 @@ dotogglepickup()
 	if (flags.pickup) {
 	    oc_to_str(flags.pickup_types, ocl);
 /*JP	    Sprintf(buf, "ON, for %s objects", ocl[0] ? ocl : "all");*/
-	    Sprintf(buf, "%sд╬еке╓е╕езепе╚д╦┬╨д╖д╞екеє", ocl[0] ? ocl : "┴┤д╞");
+	    Sprintf(buf, "%sуБоуВкуГЦуВ╕уВзуВпуГИуБлхп╛уБЧуБжуВкуГ│", ocl[0] ? ocl : "хЕиуБж");
 	} else {
-	    Strcpy(buf, "еке╒");
+	    Strcpy(buf, "уВкуГХ");
 	}
 /*JP	pline("Autopickup: %s.", buf);*/
-	pline("екб╝е╚е╘е├епеве├е╫бз%sбе", buf);
+	pline("уВкуГ╝уГИуГФуГГуВпуВвуГГуГЧя╝Ъ%sя╝О", buf);
 	return 0;
 }
 
@@ -1830,7 +1830,7 @@ static const char *opt_intro[] = {
 	(char *)0,
 #if !defined(MICRO) && !defined(MAC)
 /*JP	"or use `NETHACKOPTIONS=\"<options>\"' in your environment;",*/
-	"д▐д┐д╧бд┤─╢н╩╤┐Їбд`NETHACKOPTIONS=\"<options>\"'дЄ└▀─ъд╣дыбе",
+	"уБ╛уБЯуБпя╝МчТ░хвГхдЙцХ░я╝М`NETHACKOPTIONS=\"<options>\"'уВТшинхоЪуБЩуВЛя╝О",
 # ifdef VMS
 	"-- for example, $ DEFINE NETHACKOPTIONS \"noautopickup,fruit:kumquat\"",
 # endif
@@ -1838,11 +1838,11 @@ static const char *opt_intro[] = {
 /*JP	"or press \"O\" while playing, and type your <options> at the prompt.",
 	"In all cases, <options> is a list of options separated by commas.",
 */
-	"д▐д┐д╧е▓б╝ер├ц\"O\"е│е▐еєе╔д╟еке╫е╖ечеєдЄ└▀─ъд╣дыбе",
-	"┴┤д╞д╬╛ь╣чеке╫е╖ечеєд╧елеєе▐д╟╢ш└┌д├д╞└▀─ъд╣дыбе",
+	"уБ╛уБЯуБпуВ▓уГ╝уГаф╕н\"O\"уВ│уГЮуГ│уГЙуБзуВкуГЧуВ╖уГзуГ│уВТшинхоЪуБЩуВЛя╝О",
+	"хЕиуБжуБоха┤хРИуВкуГЧуВ╖уГзуГ│уБпуВлуГ│уГЮуБзхМ║хИЗуБгуБжшинхоЪуБЩуВЛя╝О",
 	"",
 /*JP "Boolean options (which can be negated by prefixing them with '!' or \"no\"):",*/
- "┐┐╡╢еке╫е╖ечеє(╞мд╦'!'д▐д┐д╧\"no\"дЄд─д▒дыд│д╚д╦дшдъ╡╢д╦д╩ды):",
+ "чЬЯхБ╜уВкуГЧуВ╖уГзуГ│(щануБл'!'уБ╛уБЯуБп\"no\"уВТуБдуБСуВЛуБУуБиуБлуВИуВКхБ╜уБлуБкуВЛ):",
 	(char *)0
 };
 
@@ -1852,8 +1852,8 @@ static const char *opt_epilog[] = {
  "Some of the options can be set only before the game is started.  You will",
 	"be so informed, if you attempt to set them while in the game.",
 */
-        "дддпд─длд╬еке╫е╖ечеєд╧е▓б╝ере╣е┐б╝е╚╗■д╦д╖дл└▀─ъд╟днд╩ддбе",
-	"е▓б╝ер├цд╦е╗е├е╚д╖дшджд╚д╣дыд╚д╜д╬╗▌д╬есе├е╗б╝е╕дмд╟дыбе",
+        "уБДуБПуБдуБЛуБоуВкуГЧуВ╖уГзуГ│уБпуВ▓уГ╝уГауВ╣уВ┐уГ╝уГИцЩВуБлуБЧуБЛшинхоЪуБзуБНуБкуБДя╝О",
+	"уВ▓уГ╝уГаф╕нуБлуВ╗уГГуГИуБЧуВИуБЖуБиуБЩуВЛуБиуБЭуБоцЧиуБоуГбуГГуВ╗уГ╝уВ╕уБМуБзуВЛя╝О",
 	(char *)0
 };
 
@@ -1871,7 +1871,7 @@ option_help()
     } else
 #endif
 /*JP	Sprintf(buf, "Set options as OPTIONS=<options> in %s;", configfile);*/
-	Sprintf(buf, "%sе╒ебедеы╞тд╟бдOPTIONS=<options>д╬дшджд╦└▀─ъд╣дыбе", configfile);
+	Sprintf(buf, "%sуГХуВбуВдуГлхЖЕуБзя╝МOPTIONS=<options>уБоуВИуБЖуБлшинхоЪуБЩуВЛя╝О", configfile);
     opt_intro[CONFIG_SLOT] = (const char *) buf;
     for (i = 0; opt_intro[i]; i++)
 	putstr(datawin, 0, opt_intro[i]);
@@ -1885,7 +1885,7 @@ option_help()
 
     /* Compound options */
 /*JP    putstr(datawin, 0, "Compound options:");*/
-    putstr(datawin, 0, "е╤ещесб╝е┐д─днеке╫е╖ечеє:");
+    putstr(datawin, 0, "уГСуГйуГбуГ╝уВ┐уБдуБНуВкуГЧуВ╖уГзуГ│:");
     for (i = 0; compopt[i].name; i++) {
 	Sprintf(buf2, "`%s'", compopt[i].name);
 	Sprintf(buf, "%-20s - %s%c", buf2, compopt[i].descr,

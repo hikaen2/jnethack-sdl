@@ -39,20 +39,20 @@ static NEARDATA const char *c_armor  = "armor",
 			   *c_axe    = "axe",
 			   *c_that_  = "that";
 */
-static NEARDATA const char *c_armor  = "³»",
-			   *c_suit   = "Éş",
+static NEARDATA const char *c_armor  = "é§",
+			   *c_suit   = "æœ",
 #ifdef TOURIST
-			   *c_shirt  = "¥·¥ã¥Ä",
+			   *c_shirt  = "ã‚·ãƒ£ãƒ„",
 #endif
-			   *c_cloak  = "¥¯¥í¡¼¥¯",
-			   *c_gloves = "¾®¼ê",
-			   *c_boots  = "·¤",
-			   *c_helmet = "³õ",
-			   *c_shield = "½â",
-			   *c_weapon = "Éğ´ï",
-			   *c_sword  = "·õ",
-			   *c_axe    = "Éà",
-			   *c_that_  = "¤½¤ì";
+			   *c_cloak  = "ã‚¯ãƒ­ãƒ¼ã‚¯",
+			   *c_gloves = "å°æ‰‹",
+			   *c_boots  = "é´",
+			   *c_helmet = "å…œ",
+			   *c_shield = "ç›¾",
+			   *c_weapon = "æ­¦å™¨",
+			   *c_sword  = "å‰£",
+			   *c_axe    = "æ–§",
+			   *c_that_  = "ãã‚Œ";
 
 static NEARDATA const long takeoff_order[] = { WORN_BLINDF, 1L, /* weapon */
 	WORN_SHIELD, WORN_GLOVES, LEFT_RING, RIGHT_RING, WORN_CLOAK,
@@ -89,7 +89,7 @@ register struct obj *otmp;
 
 	if(flags.verbose)
 /*JP	    You("were wearing %s.", doname(otmp));*/
-	  You("%s%s%s¡¥", doname(otmp), j, jpast(m));
+	  You("%s%s%sï¼", doname(otmp), j, jpast(m));
 }
 
 /* for items that involve no delay */
@@ -104,7 +104,7 @@ register struct obj *otmp;
 	if(flags.verbose)
 /*JP	    You("are now wearing %s.",*/
 /*JP	      obj_is_pname(otmp) ? the(xname(otmp)) : an(xname(otmp)));*/
-	  You("%s%s%s¡¥", xname(otmp), j, jpast(m));
+	  You("%s%s%sï¼", xname(otmp), j, jpast(m));
 }
 
 /*
@@ -135,15 +135,15 @@ Boots_on()
 			makeknown(uarmf->otyp);
 /*JP			You_feel("yourself speed up%s.",
 				oldprop ? " a bit more" : "");*/
-			You("%sÁÇÁá¤¯¤Ê¤Ã¤¿¤è¤¦¤Êµ¤¤¬¤·¤¿¡¥",
-				oldprop ? "¤µ¤é¤Ë" : "");
+			You("%sç´ æ—©ããªã£ãŸã‚ˆã†ãªæ°—ãŒã—ãŸï¼",
+				oldprop ? "ã•ã‚‰ã«" : "");
 		}
 		break;
 	case ELVEN_BOOTS:
 		if (!oldprop) {
 			makeknown(uarmf->otyp);
 /*JP			You("walk very quietly.");*/
-			Your("Â­²»¤Ï¾®¤µ¤¯¤Ê¤Ã¤¿¡¥");
+			Your("è¶³éŸ³ã¯å°ã•ããªã£ãŸï¼");
 		}
 		break;
 	case FUMBLE_BOOTS:
@@ -177,8 +177,8 @@ Boots_off()
 			makeknown(otyp);
 /*JP			You_feel("yourself slow down%s.",
 				oldprop ? " a bit" : "");*/
-			You("%s¤Î¤í¤¯¤Ê¤Ã¤¿¤è¤¦¤Êµ¤¤¬¤·¤¿¡¥",
-				oldprop ? "¤Á¤ç¤Ã¤È" : "");
+			You("%sã®ã‚ããªã£ãŸã‚ˆã†ãªæ°—ãŒã—ãŸï¼",
+				oldprop ? "ã¡ã‚‡ã£ã¨" : "");
 		}
 		break;
 	case WATER_WALKING_BOOTS:
@@ -193,7 +193,7 @@ Boots_off()
 		if (!oldprop) {
 			makeknown(otyp);
 /*JP			You("sure are noisy.");*/
-			Your("Â­²»¤ÏÂç¤­¤¯¤Ê¤Ã¤¿¡¥");
+			Your("è¶³éŸ³ã¯å¤§ãããªã£ãŸï¼");
 		}
 		break;
 	case FUMBLE_BOOTS:
@@ -237,7 +237,7 @@ Cloak_on()
 		    && !See_invisible && !Blind) {
 			newsym(u.ux,u.uy);
 /*JP			You("can %s!", see_yourself);*/
-			pline("¼«Ê¬¼«¿È¤¬¸«¤¨¤ë¤è¤¦¤Ë¤Ê¤Ã¤¿¡¥");
+			pline("è‡ªåˆ†è‡ªèº«ãŒè¦‹ãˆã‚‹ã‚ˆã†ã«ãªã£ãŸï¼");
 		}
 		break;
 	case CLOAK_OF_INVISIBILITY:
@@ -247,12 +247,12 @@ Cloak_on()
 			makeknown(uarmc->otyp);
 			newsym(u.ux,u.uy);
 /*JP			pline("Suddenly you cannot %s.", see_yourself);*/
-			pline("ÆÍÁ³¡¤¼«Ê¬¼«¿È¤¬¸«¤¨¤Ê¤¯¤Ê¤Ã¤¿¡¥");
+			pline("çªç„¶ï¼Œè‡ªåˆ†è‡ªèº«ãŒè¦‹ãˆãªããªã£ãŸï¼");
 		}
 		break;
 	case OILSKIN_CLOAK:
 /*JP		pline("%s fits very tightly.",The(xname(uarmc)));*/
-		pline("%s¤Ï¤È¤Æ¤â¤Ô¤Ã¤Á¤ê¹ç¤¦¡¥",The(xname(uarmc)));
+		pline("%sã¯ã¨ã¦ã‚‚ã´ã£ã¡ã‚Šåˆã†ï¼",The(xname(uarmc)));
 		break;
 	default: impossible(unknown_type, c_cloak, uarmc->otyp);
     }
@@ -280,7 +280,7 @@ Cloak_off()
 		if (Invisible && !Blind) {
 			newsym(u.ux,u.uy);
 /*JP			You("can no longer %s.", see_yourself);*/
-			You("¼«Ê¬¼«¿È¤¬¸«¤¨¤Ê¤¯¤Ê¤Ã¤¿¡¥");
+			You("è‡ªåˆ†è‡ªèº«ãŒè¦‹ãˆãªããªã£ãŸï¼");
 		}
 		break;
 	case CLOAK_OF_INVISIBILITY:
@@ -288,7 +288,7 @@ Cloak_off()
 			makeknown(CLOAK_OF_INVISIBILITY);
 			newsym(u.ux,u.uy);
 /*JP			pline("Suddenly you can %s.", see_yourself);*/
-			pline("ÆÍÁ³¡¤¼«Ê¬¼«¿È¤¬¸«¤¨¤ë¤è¤¦¤Ë¤Ê¤Ã¤¿¡¥");
+			pline("çªç„¶ï¼Œè‡ªåˆ†è‡ªèº«ãŒè¦‹ãˆã‚‹ã‚ˆã†ã«ãªã£ãŸï¼");
 		}
 		break;
 	default: impossible(unknown_type, c_cloak, otyp);
@@ -333,25 +333,25 @@ Helmet_on()
 /*JP		    pline("%s %s%s for a moment.", The(xname(uarmh)),
 			  Blind ? "vibrates" : "glows ",
 			  Blind ? (const char *)"" : hcolor(Black));*/
-		    pline("%s¤Ï°ì½Ö%s%s¡¥", The(xname(uarmh)),
+		    pline("%sã¯ä¸€ç¬%s%sï¼", The(xname(uarmh)),
                           Blind ? (const char *)"" : jconj_adj(hcolor(Black)),
-                          Blind ? "¿Ì¤¨¤¿" : "µ±¤¤¤¿");
+                          Blind ? "éœ‡ãˆãŸ" : "è¼ã„ãŸ");
 		    curse(uarmh);
 		}
 		flags.botl = 1;		/* reveal new alignment or INT & WIS */
 		if (Hallucination) {
 /*JP		    pline("My brain hurts!"); * Monty Python's Flying Circus */
-		    pline("¤Î¡¼¤ß¡¼¤½¥Ğ¡¼¥ó¡ª"); /*¥â¥ó¥Æ¥£¥Ñ¥¤¥½¥ó¤È¤Ï¤Á¤ç¤Ã¤È°ã¤¦¤±¤É*/			    
+		    pline("ã®ãƒ¼ã¿ãƒ¼ããƒãƒ¼ãƒ³ï¼"); /*ãƒ¢ãƒ³ãƒ†ã‚£ãƒ‘ã‚¤ã‚½ãƒ³ã¨ã¯ã¡ã‚‡ã£ã¨é•ã†ã‘ã©*/			    
 		} else if (uarmh->otyp == DUNCE_CAP) {
 /*JP		    You_feel("%s.",	* track INT change; ignore WIS *
 		  ACURR(A_INT) <= (ABASE(A_INT) + ABON(A_INT) + ATEMP(A_INT)) ?
 			     "like sitting in a corner" : "giddy");*/
-		    You("%s¤è¤¦¤Êµ¤¤¬¤·¤¿¡¥",
+		    You("%sã‚ˆã†ãªæ°—ãŒã—ãŸï¼",
 		  ACURR(A_INT) <= (ABASE(A_INT) + ABON(A_INT) + ATEMP(A_INT)) ?
-			     "³¹³Ñ¤ËºÂ¤Ã¤Æ¤¤¤ë" : "ÌÜ¤¬¤Ş¤ï¤Ã¤¿");
+			     "è¡—è§’ã«åº§ã£ã¦ã„ã‚‹" : "ç›®ãŒã¾ã‚ã£ãŸ");
 		} else {
 /*JP		    Your("mind oscillates briefly.");*/
-		    You("¾¯¤·¤âÌÂ¤ï¤º¤Í¤¬¤¨¤Ã¤¿¡¥");
+		    You("å°‘ã—ã‚‚è¿·ã‚ãšã­ãŒãˆã£ãŸï¼");
 		    makeknown(HELM_OF_OPPOSITE_ALIGNMENT);
 		}
 		break;
@@ -449,10 +449,10 @@ Gloves_off()
     if (uwep && uwep->otyp == CORPSE && uwep->corpsenm == PM_COCKATRICE) {
 	/* Prevent wielding cockatrice when not wearing gloves */
 /*JP	You("wield the cockatrice corpse in your bare %s.",*/
-	You("¥³¥«¥È¥ê¥¹¤Î»àÂÎ¤òÁÇ%s¤Ç»ı¤Ã¤¿¡¥",
+	You("ã‚³ã‚«ãƒˆãƒªã‚¹ã®æ­»ä½“ã‚’ç´ %sã§æŒã£ãŸï¼",
 	    makeplural(body_part(HAND)));
 /*JP	instapetrify("cockatrice corpse");*/
-	instapetrify("¥³¥«¥È¥ê¥¹¤Î»àÂÎ¤Ë¿¨¤ì¤Æ");
+	instapetrify("ã‚³ã‚«ãƒˆãƒªã‚¹ã®æ­»ä½“ã«è§¦ã‚Œã¦");
 	uwepgone();  /* life-saved still doesn't allow touching cockatrice */
     }
     return 0;
@@ -552,17 +552,17 @@ Amulet_on()
 		/* Don't use same message as polymorph */
 /*JP		You("are suddenly very %s!", flags.female ? "feminine"
 			: "masculine");*/
-		You("ÆÍÁ³%s¡ª", flags.female ? "½÷¤Ã¤İ¤¯¤Ê¤Ã¤¿"
-			: "¶ÚÆù¼Á¤Ë¤Ê¤Ã¤¿");
+		You("çªç„¶%sï¼", flags.female ? "å¥³ã£ã½ããªã£ãŸ"
+			: "ç­‹è‚‰è³ªã«ãªã£ãŸ");
 		flags.botl = 1;
 /*JP		pline_The("amulet disintegrates!");*/
-		pline("Ëâ½ü¤±¤Ï¤³¤Ê¤´¤Ê¤Ë¤Ê¤Ã¤¿¡ª");
+		pline("é­”é™¤ã‘ã¯ã“ãªã”ãªã«ãªã£ãŸï¼");
 		useup(uamul);
 		break;
 	case AMULET_OF_STRANGULATION:
 		makeknown(AMULET_OF_STRANGULATION);
 /*JP		pline("It constricts your throat!");*/
-		pline("Ëâ½ü¤±¤Ï¤¢¤Ê¤¿¤Î¹¢¤ò¹Ê¤á¤Ä¤±¤¿¡ª");
+		pline("é­”é™¤ã‘ã¯ã‚ãªãŸã®å–‰ã‚’çµã‚ã¤ã‘ãŸï¼");
 		Strangled = 6;
 		break;
 	case AMULET_OF_RESTFUL_SLEEP:
@@ -592,7 +592,7 @@ Amulet_off()
 		    if (!breathless(uasmon) && !amphibious(uasmon)
 						&& !is_swimmer(uasmon))
 /*JP			You("suddenly inhale an unhealthy amount of water!");*/
-			You("ÆÍÁ³¡¤ÂçÎÌ¤Î¿å¤òµÛ¤¤¤³¤ó¤À¡ª");
+			You("çªç„¶ï¼Œå¤§é‡ã®æ°´ã‚’å¸ã„ã“ã‚“ã ï¼");
 		    /* HMagical_breathing must be set off
 		       before calling drown() */
 		    setworn((struct obj *)0, W_AMUL);
@@ -606,7 +606,7 @@ Amulet_off()
 	case AMULET_OF_STRANGULATION:
 		if (Strangled) {
 /*JP			You("can breathe more easily!");*/
-			You("³Ú¤Ë¸ÆµÛ¤Ç¤­¤ë¤è¤¦¤Ë¤Ê¤Ã¤¿¡ª");
+			You("æ¥½ã«å‘¼å¸ã§ãã‚‹ã‚ˆã†ã«ãªã£ãŸï¼");
 			Strangled = 0;
 		}
 		break;
@@ -655,7 +655,7 @@ register struct obj *obj;
 		if (Invis && !oldprop && !perceives(uasmon) && !Blind) {
 			newsym(u.ux,u.uy);
 /*JP			pline("Suddenly you can see yourself.");*/
-			pline("ÆÍÁ³¡¤¼«Ê¬¼«¿È¤¬¸«¤¨¤ë¤è¤¦¤Ë¤Ê¤Ã¤¿¡¥");
+			pline("çªç„¶ï¼Œè‡ªåˆ†è‡ªèº«ãŒè¦‹ãˆã‚‹ã‚ˆã†ã«ãªã£ãŸï¼");
 			makeknown(RIN_SEE_INVISIBLE);
 		}
 		break;
@@ -665,8 +665,8 @@ register struct obj *obj;
 			newsym(u.ux,u.uy);
 /*JP			Your("body takes on a %s transparency...",
 				Hallucination ? "normal" : "strange");*/
-			pline("%s¤¢¤Ê¤¿¤ÎÂÎ¤ÏÆ©²áÀ­¤ò¤â¤Ã¤¿¡¥¡¥¡¥",
-				Hallucination ? "¤¢¤¿¤ê¤Ş¤¨¤Ê¤³¤È¤À¤¬" : "´ñÌ¯¤Ê¤³¤È¤Ë");
+			pline("%sã‚ãªãŸã®ä½“ã¯é€éæ€§ã‚’ã‚‚ã£ãŸï¼ï¼ï¼",
+				Hallucination ? "ã‚ãŸã‚Šã¾ãˆãªã“ã¨ã ãŒ" : "å¥‡å¦™ãªã“ã¨ã«");
 		}
 		break;
 	case RIN_ADORNMENT:
@@ -754,7 +754,7 @@ boolean gone;
 		if (Invisible && !Blind) {
 			newsym(u.ux,u.uy);
 /*JP			pline("Suddenly you cannot see yourself.");*/
-			pline("ÆÍÁ³¡¤¼«Ê¬¼«¿È¤¬¸«¤¨¤Ê¤¯¤Ê¤Ã¤¿¡¥");
+			pline("çªç„¶ï¼Œè‡ªåˆ†è‡ªèº«ãŒè¦‹ãˆãªããªã£ãŸï¼");
 			makeknown(RIN_SEE_INVISIBLE);
 		}
 		break;
@@ -763,7 +763,7 @@ boolean gone;
 		    !See_invisible && !Blind) {
 			newsym(u.ux,u.uy);
 /*JP			Your("body seems to unfade...");*/
-			Your("ÂÎ¤¬¼¡Âè¤Ë¸½¤ï¤ì¤Æ¤­¤¿¡¥¡¥¡¥");
+			Your("ä½“ãŒæ¬¡ç¬¬ã«ç¾ã‚ã‚Œã¦ããŸï¼ï¼ï¼");
 			makeknown(RIN_INVISIBILITY);
 		}
 		break;
@@ -820,7 +820,7 @@ register struct obj *otmp;
 	setworn(otmp, W_TOOL);
 	if (otmp->otyp == TOWEL && flags.verbose)
 /*HP	    You("wrap %s around your %s.", an(xname(otmp)), body_part(HEAD));*/
-	    You("%s¤Ë%s¤ò´¬¤­¤Ä¤±¤¿¡¥", body_part(HEAD), xname(otmp));
+	    You("%sã«%sã‚’å·»ãã¤ã‘ãŸï¼", body_part(HEAD), xname(otmp));
 	on_msg(otmp);
 	if (!already_blinded) {
 	    if (Punished) set_bc(0);	/* Set ball&chain variables before */
@@ -843,7 +843,7 @@ register struct obj *otmp;
 	    flags.botl = 1;
 	} else
 /*JP	    You("still cannot see.");*/
-	    You("¤Ş¤ÀÌÜ¤¬¸«¤¨¤Ê¤¤¡¥");
+	    You("ã¾ã ç›®ãŒè¦‹ãˆãªã„ï¼");
 }
 
 /* called in main to set intrinsics of worn start-up items */
@@ -914,21 +914,21 @@ dotakeoff()
 /*JP		    pline_The("%s merged with your skin!",
 			      uskin->otyp >= GRAY_DRAGON_SCALES ?
 				"dragon scales are" : "dragon scale mail is");*/
-		    pline("%s¤Ï¤¢¤Ê¤¿¤ÎÈ©¤ÈÍ»¹ç¤·¤Æ¤·¤Ş¤Ã¤Æ¤¤¤ë¡ª",
+		    pline("%sã¯ã‚ãªãŸã®è‚Œã¨èåˆã—ã¦ã—ã¾ã£ã¦ã„ã‚‹ï¼",
 			      uskin->otyp >= GRAY_DRAGON_SCALES ?
-				"¥É¥é¥´¥ó¤ÎÎÚ" : "¥É¥é¥´¥ó¤ÎÎÚ³»");
+				"ãƒ‰ãƒ©ã‚´ãƒ³ã®é±—" : "ãƒ‰ãƒ©ã‚´ãƒ³ã®é±—é§");
 		else
 /*JP		    pline("Not wearing any armor.");*/
-		    pline("³»¤ÎÎà¤òÁõÈ÷¤·¤Æ¤¤¤Ê¤¤¡¥");
+		    pline("é§ã®é¡ã‚’è£…å‚™ã—ã¦ã„ãªã„ï¼");
 		return 0;
 	}
 	if (armorpieces > 1)
 /*JP		otmp = getobj(clothes, "take off");*/
-		otmp = getobj(clothes, "¤ÎÁõÈ÷¤ò²ò¤¯");
+		otmp = getobj(clothes, "ã®è£…å‚™ã‚’è§£ã");
 	if (otmp == 0) return(0);
 	if (!(otmp->owornmask & W_ARMOR)) {
 /*JP		You("are not wearing that.");*/
-		You("¤½¤ì¤ÏÁõÈ÷¤·¤Æ¤¤¤Ê¤¤¡¥");
+		You("ãã‚Œã¯è£…å‚™ã—ã¦ã„ãªã„ï¼");
 		return(0);
 	}
 	/* note: the `uskin' case shouldn't be able to happen here; dragons
@@ -940,31 +940,31 @@ dotakeoff()
 		) {
 /*JP	    You_cant("take that off.");*/
 	    m = joffmsg(otmp, &j);
-	    You("¤½¤ì%s%s¤³¤È¤Ï¤Ç¤­¤Ê¤¤¡¥", j, m);
+	    You("ãã‚Œ%s%sã“ã¨ã¯ã§ããªã„ï¼", j, m);
 	    return 0;
 	}
 	if (otmp == uarmg && welded(uwep)) {
 /*JP	    You("seem unable to take off the gloves while holding your %s.",
 		is_sword(uwep) ? c_sword : c_weapon);*/
-	    You("%s¤ò»ı¤Ã¤¿¤Ş¤Ş¾®¼ê¤ò¤Ï¤º¤¹¤³¤È¤Ï¤Ç¤­¤Ê¤¤¡¥",
+	    You("%sã‚’æŒã£ãŸã¾ã¾å°æ‰‹ã‚’ã¯ãšã™ã“ã¨ã¯ã§ããªã„ï¼",
 		is_sword(uwep) ? c_sword : c_weapon);
 	    uwep->bknown = TRUE;
 	    return 0;
 	}
 	if (otmp == uarmg && Glib) {
 /*JP	    You_cant("remove the slippery gloves with your slippery fingers.");*/
-	    You("³ê¤ê¤ä¤¹¤¤¾®¼ê¤ò³ê¤ê¤ä¤¹¤¤»Ø¤«¤é¤Ï¤º¤»¤Ê¤¤¡¥");
+	    You("æ»‘ã‚Šã‚„ã™ã„å°æ‰‹ã‚’æ»‘ã‚Šã‚„ã™ã„æŒ‡ã‹ã‚‰ã¯ãšã›ãªã„ï¼");
 	    return 0;
 	}
 	if (otmp == uarmf && u.utrap && (u.utraptype == TT_BEARTRAP ||
 					u.utraptype == TT_INFLOOR)) { /* -3. */
 	    if(u.utraptype == TT_BEARTRAP)
 /*JP		pline_The("bear trap prevents you from pulling your %s out.",*/
-		pline("%s¤¬·§¤Îæ«¤Ë¤Ä¤«¤Ş¤Ã¤Æ¤¤¤ë¤Î¤ÇÃ¦¤°¤³¤È¤¬¤Ç¤­¤Ê¤¤¡¥",
+		pline("%sãŒç†Šã®ç½ ã«ã¤ã‹ã¾ã£ã¦ã„ã‚‹ã®ã§è„±ãã“ã¨ãŒã§ããªã„ï¼",
 		      body_part(FOOT));
 	    else
 /*JP		You("are stuck in the %s, and cannot pull your %s out.",*/
-		You("%s¤¬%s¤Ë¤Ï¤Ş¤Ã¤Æ¤¤¤ë¤Î¤ÇÃ¦¤°¤³¤È¤¬¤Ç¤­¤Ê¤¤¡¥",
+		You("%sãŒ%sã«ã¯ã¾ã£ã¦ã„ã‚‹ã®ã§è„±ãã“ã¨ãŒã§ããªã„ï¼",
 		    surface(u.ux, u.uy), makeplural(body_part(FOOT)));
 		return(0);
 	}
@@ -987,36 +987,36 @@ doremring()
 
 	if(!Accessories) {
 /*JP		pline("Not wearing any accessories.");*/
-		pline("Áõ¾şÉÊ¤Ï¿È¤Ë¤Ä¤±¤Æ¤¤¤Ê¤¤¡¥");
+		pline("è£…é£¾å“ã¯èº«ã«ã¤ã‘ã¦ã„ãªã„ï¼");
 		return(0);
 	}
 /*JP	if (Accessories != 1) otmp = getobj(accessories, "take off");*/
-	if (Accessories != 1) otmp = getobj(accessories, "¤Ï¤º¤¹");
+	if (Accessories != 1) otmp = getobj(accessories, "ã¯ãšã™");
 	if(!otmp) return(0);
 	if(!(otmp->owornmask & (W_RING | W_AMUL | W_TOOL))) {
 /*JP		You("are not wearing that.");*/
-		You("¤½¤ì¤Ï¿È¤Ë¤Ä¤±¤Æ¤¤¤Ê¤¤¡¥");
+		You("ãã‚Œã¯èº«ã«ã¤ã‘ã¦ã„ãªã„ï¼");
 		return(0);
 	}
 	if(cursed(otmp)) return(0);
 	if(otmp->oclass == RING_CLASS) {
 		if (nolimbs(uasmon)) {
 /*JP			pline("It seems to be stuck.");*/
-			pline("ÂÎ¤ËËä¤Ş¤Ã¤Æ¤·¤Ş¤Ã¤Æ¤Ï¤º¤»¤Ê¤¤¡¥");
+			pline("ä½“ã«åŸ‹ã¾ã£ã¦ã—ã¾ã£ã¦ã¯ãšã›ãªã„ï¼");
 			return(0);
 		}
 		if (uarmg && uarmg->cursed) {
 			uarmg->bknown = TRUE;
 			You(
 /*JP	    "seem unable to remove your ring without taking off your gloves.");*/
-	    "¾®¼ê¤ò³°¤µ¤Ê¤¤¤³¤È¤Ë¤Ï»ØÎØ¤ò¤Ï¤º¤»¤Ê¤¤¡¥");
+	    "å°æ‰‹ã‚’å¤–ã•ãªã„ã“ã¨ã«ã¯æŒ‡è¼ªã‚’ã¯ãšã›ãªã„ï¼");
 			return(0);
 		}
 		if (welded(uwep) && bimanual(uwep)) {
 			uwep->bknown = TRUE;
 			You(
 /*JP	       "seem unable to remove the ring while your hands hold your %s.",*/
-		"%s¤ò¼ê¤Ë¤·¤Æ¤¤¤ë¤Î¤Ç»ØÎØ¤ò¤Ï¤º¤»¤Ê¤¤¡¥",
+		"%sã‚’æ‰‹ã«ã—ã¦ã„ã‚‹ã®ã§æŒ‡è¼ªã‚’ã¯ãšã›ãªã„ï¼",
 			    is_sword(uwep) ? c_sword : c_weapon);
 			return(0);
 		}
@@ -1024,7 +1024,7 @@ doremring()
 			uwep->bknown = TRUE;
 			You(
 /*JP	 "seem unable to remove the ring while your right hand holds your %s.",*/
-	 "±¦¼ê¤¬%s¤ÇºÉ¤¬¤Ã¤Æ¤¤¤ë¤Î¤Ç¤Ï¤º¤»¤Ê¤¤¡¥",
+	 "å³æ‰‹ãŒ%sã§å¡ãŒã£ã¦ã„ã‚‹ã®ã§ã¯ãšã›ãªã„ï¼",
 			    is_sword(uwep) ? c_sword : c_weapon);
 			return(0);
 		}
@@ -1053,9 +1053,9 @@ register struct obj *otmp;
 /*JP		You("can't.  %s to be cursed.",
 			(is_boots(otmp) || is_gloves(otmp) || otmp->quan > 1L)
 			? "They seem" : "It seems");*/
-		pline("ÌµÍı¤À¡¥%s¤Ï¼ö¤ï¤ì¤Æ¤¤¤ë¤è¤¦¤À¡¥",
+		pline("ç„¡ç†ã ï¼%sã¯å‘ªã‚ã‚Œã¦ã„ã‚‹ã‚ˆã†ã ï¼",
 			(is_boots(otmp) || is_gloves(otmp) || otmp->quan > 1L)
-			? "¤½¤ì¤é" : "¤½¤ì");
+			? "ãã‚Œã‚‰" : "ãã‚Œ");
 		otmp->bknown = TRUE;
 		return(1);
 	}
@@ -1073,22 +1073,22 @@ register struct obj *otmp;
 		nomul(delay);
 		if (is_helmet(otmp)) {
 /*JP			nomovemsg = "You finish taking off your helmet.";*/
-			nomovemsg = "¤¢¤Ê¤¿¤Ï³õ¤òÃ¦¤®¤ª¤¨¤¿¡¥";
+			nomovemsg = "ã‚ãªãŸã¯å…œã‚’è„±ããŠãˆãŸï¼";
 			afternmv = Helmet_off;
 		     }
 		else if (is_gloves(otmp)) {
 			nomovemsg = "You finish taking off your gloves.";
-			nomovemsg = "¤¢¤Ê¤¿¤Ï¾®¼ê¤òÃ¦¤®¤ª¤¨¤¿¡¥";
+			nomovemsg = "ã‚ãªãŸã¯å°æ‰‹ã‚’è„±ããŠãˆãŸï¼";
 			afternmv = Gloves_off;
 		     }
 		else if (is_boots(otmp)) {
 			nomovemsg = "You finish taking off your boots.";
-			nomovemsg = "¤¢¤Ê¤¿¤Ï·¤¤òÃ¦¤®¤ª¤¨¤¿¡¥";
+			nomovemsg = "ã‚ãªãŸã¯é´ã‚’è„±ããŠãˆãŸï¼";
 			afternmv = Boots_off;
 		     }
 		else {
 			nomovemsg = "You finish taking off your suit.";
-			nomovemsg = "¤¢¤Ê¤¿¤ÏÃå¤Æ¤¤¤ëÊª¤òÃ¦¤®¤ª¤¨¤¿¡¥";
+			nomovemsg = "ã‚ãªãŸã¯ç€ã¦ã„ã‚‹ç‰©ã‚’è„±ããŠãˆãŸï¼";
 			afternmv = Armor_off;
 		}
 	} else {
@@ -1119,7 +1119,7 @@ register struct obj *otmp;
 }
 
 /*
-** Êª¤Ë¤è¤Ã¤ÆÆ°»ì¤¬ÊÑ²½¤¹¤ë¤Î¤Ç otmp¤òÄÉ²Ã
+** ç‰©ã«ã‚ˆã£ã¦å‹•è©ãŒå¤‰åŒ–ã™ã‚‹ã®ã§ otmpã‚’è¿½åŠ 
 */
 static void
 already_wearing(cc, otmp)
@@ -1128,10 +1128,10 @@ struct obj *otmp;
 {
   const char *j;
   const char *m;
-  m = jconj(jonmsg(otmp, &j), "¤Æ¤¤¤ë");
+  m = jconj(jonmsg(otmp, &j), "ã¦ã„ã‚‹");
 
 /*JP	You("are already wearing %s%c", cc, (cc == c_that_) ? '!' : '.');*/
-	You("¤â¤¦%s%s%s%s", cc, j,  m, (cc == c_that_) ? "¡ª" : "¡¥");
+	You("ã‚‚ã†%s%s%s%s", cc, j,  m, (cc == c_that_) ? "ï¼" : "ï¼");
 }
 
 /* the 'W' command */
@@ -1150,12 +1150,12 @@ dowear()
 	/* verysmall or nohands checks for shields, gloves, etc... */
 	if ((verysmall(uasmon) || nohands(uasmon))) {
 /*JP		pline("Don't even bother.");*/
-		pline("¤½¤ó¤Ê¤Ä¤Ş¤é¤Ê¤¤¤³¤È¤Ë¤³¤À¤ï¤ë¤Ê¡¥");
+		pline("ãã‚“ãªã¤ã¾ã‚‰ãªã„ã“ã¨ã«ã“ã ã‚ã‚‹ãªï¼");
 		return(0);
 	}
 
 /*JP	otmp = getobj(clothes, "wear");*/
-	otmp = getobj(clothes, "¿È¤Ë¤Ä¤±¤ë");
+	otmp = getobj(clothes, "èº«ã«ã¤ã‘ã‚‹");
 	if(!otmp) return(0);
 
 	which = is_cloak(otmp) ? c_cloak :
@@ -1167,7 +1167,7 @@ dowear()
 		/* same exception for cloaks as used in m_dowear() */
 		(which != c_cloak || uasmon->msize != MZ_SMALL)) {
 /*JP	    pline_The("%s will not fit on your body.", which);*/
-	    pline("%s¤Ï¤¢¤Ê¤¿¤ÎÂÎ¤Ë¹ç¤ï¤Ê¤¤¡¥", which);
+	    pline("%sã¯ã‚ãªãŸã®ä½“ã«åˆã‚ãªã„ï¼", which);
 	    return 0;
 	} else if (otmp->owornmask & W_ARMOR) {
 /*JP	    already_wearing(c_that_);*/
@@ -1192,8 +1192,8 @@ dowear()
 /*JP		    You("cannot wear a shield while wielding a two-handed %s.",
 			is_sword(uwep) ? c_sword :
 				uwep->otyp == BATTLE_AXE ? c_axe : c_weapon);*/
-		    m = jconj(jonmsg(otmp, &j), "¤Æ¤¤¤ë");
-		    You("Î¾¼ê»ı¤Á¤Î%s%s%s¤Î¤Ç½â¤Ç¿È¤ò¼é¤ì¤Ê¤¤¡¥",
+		    m = jconj(jonmsg(otmp, &j), "ã¦ã„ã‚‹");
+		    You("ä¸¡æ‰‹æŒã¡ã®%s%s%sã®ã§ç›¾ã§èº«ã‚’å®ˆã‚Œãªã„ï¼",
 			is_sword(uwep) ? c_sword :
 				uwep->otyp == BATTLE_AXE ? c_axe : c_weapon,
 				j, m);
@@ -1207,16 +1207,16 @@ dowear()
 			err++;
 		} else if (Upolyd && slithy(uasmon)) {
 /*JP			You("have no feet...");	*//* not body_part(FOOT) */
-			You("Â­¤¬¤Ê¤¤¡¥¡¥¡¥");	/* not body_part(FOOT) */
+			You("è¶³ãŒãªã„ï¼ï¼ï¼");	/* not body_part(FOOT) */
 			err++;
 		} else if (u.utrap && (u.utraptype == TT_BEARTRAP ||
 				  u.utraptype == TT_INFLOOR)) {
 			if (u.utraptype == TT_BEARTRAP)
 /*JP			    Your("%s is trapped!", body_part(FOOT));*/
-			    Your("%s¤Ïæ«¤Ë¤«¤«¤Ã¤Æ¤¤¤ë¡ª", body_part(FOOT));
+			    Your("%sã¯ç½ ã«ã‹ã‹ã£ã¦ã„ã‚‹ï¼", body_part(FOOT));
 			else
 /*JP			    Your("%s are stuck in the %s!",*/
-			    Your("%s¤Ï%s¤Ë¤Ï¤Ş¤Ã¤Æ¤¤¤ë¡ª",
+			    Your("%sã¯%sã«ã¯ã¾ã£ã¦ã„ã‚‹ï¼",
 				 makeplural(body_part(FOOT)),
 				 surface(u.ux, u.uy));
 			err++;
@@ -1229,7 +1229,7 @@ dowear()
 			err++;
 		} else if (welded(uwep)) {
 /*JP			You("cannot wear gloves over your %s.",*/
-			You("%s¤Î¾å¤«¤é¾®¼ê¤òÁõÈ÷¤Ç¤­¤Ê¤¤¡¥",
+			You("%sã®ä¸Šã‹ã‚‰å°æ‰‹ã‚’è£…å‚™ã§ããªã„ï¼",
 			      is_sword(uwep) ? c_sword : c_weapon);
 			err++;
 		} else
@@ -1242,7 +1242,7 @@ dowear()
 			   already_wearing(an(c_shirt), uarmu);
 			else
 /*JP			   You_cant("wear that over your %s.",*/
-			   You("%s¤Î¾å¤«¤éÃå¤ë¤³¤È¤Ï¤Ç¤­¤Ê¤¤¡¥",
+			   You("%sã®ä¸Šã‹ã‚‰ç€ã‚‹ã“ã¨ã¯ã§ããªã„ï¼",
 				 (uarm && !uarmc) ? c_armor : c_cloak);
 			err++;
 		} else
@@ -1258,11 +1258,11 @@ dowear()
 	} else {
 		if(uarmc) {
 /*JP			You("cannot wear armor over a cloak.");*/
-			You("¥¯¥í¡¼¥¯¤Î¾å¤«¤éÃå¤ë¤³¤È¤Ï¤Ç¤­¤Ê¤¤¡¥");
+			You("ã‚¯ãƒ­ãƒ¼ã‚¯ã®ä¸Šã‹ã‚‰ç€ã‚‹ã“ã¨ã¯ã§ããªã„ï¼");
 			err++;
 		} else if(uarm) {
 /*JP			already_wearing("some armor");*/
-			already_wearing("³»", uarm);
+			already_wearing("é§", uarm);
 			err++;
 		}
 		if(!err) mask = W_ARM;
@@ -1282,7 +1282,7 @@ dowear()
 	if (otmp->otyp == HELM_OF_OPPOSITE_ALIGNMENT &&
 			qstart_level.dnum == u.uz.dnum) {	/* in quest */
 /*JP		You("narrowly avoid losing all chance at your goal.");*/
-		You("ÌÜÅªÃ£À®¤Î¤¿¤á¤Î²ÄÇ½À­¤ò¼º¤¦¤³¤È¤ò¤Ê¤ó¤È¤«²óÈò¤·¤¿¡¥");
+		You("ç›®çš„é”æˆã®ãŸã‚ã®å¯èƒ½æ€§ã‚’å¤±ã†ã“ã¨ã‚’ãªã‚“ã¨ã‹å›é¿ã—ãŸï¼");
 		u.ublessed = 0; /* lose your god's protection */
 		makeknown(otmp->otyp);
 		flags.botl = 1;
@@ -1301,7 +1301,7 @@ dowear()
 		if(is_gloves(otmp)) afternmv = Gloves_on;
 		if(otmp == uarm) afternmv = Armor_on;
 /*JP		nomovemsg = "You finish your dressing maneuver.";*/
-		nomovemsg = "¤¢¤Ê¤¿¤ÏÁõÈ÷¤·½ª¤Ã¤¿¡¥";
+		nomovemsg = "ã‚ãªãŸã¯è£…å‚™ã—çµ‚ã£ãŸï¼";
 	} else {
 		if(is_cloak(otmp)) (void) Cloak_on();
 /*		if(is_shield(otmp)) (void) Shield_on(); */
@@ -1324,13 +1324,13 @@ doputon()
 /*JP    Your("%s%s are full, and you're already wearing an amulet and a blindfold.",
 			humanoid(uasmon) ? "ring-" : "",
 			makeplural(body_part(FINGER)));*/
-	  Your("%s%s¤Ï¤Õ¤µ¤¬¤Ã¤Æ¤ë¤·¡¤¤¹¤Ç¤ËËâ½ü¤±¤ÈÌÜ±£¤·¤â¿È¤Ë¤Ä¤±¤Æ¤¤¤ë¡¥",
-	       humanoid(uasmon) ? "Ìô" : "",
+	  Your("%s%sã¯ãµã•ãŒã£ã¦ã‚‹ã—ï¼Œã™ã§ã«é­”é™¤ã‘ã¨ç›®éš ã—ã‚‚èº«ã«ã¤ã‘ã¦ã„ã‚‹ï¼",
+	       humanoid(uasmon) ? "è–¬" : "",
 	       makeplural(body_part(FINGER)));
 	  return(0);
 	}
 /*JP	otmp = getobj(accessories, "wear");*/
-	otmp = getobj(accessories, "¿È¤Ë¤Ä¤±¤ë");
+	otmp = getobj(accessories, "èº«ã«ã¤ã‘ã‚‹");
 	if(!otmp) return(0);
 	if(otmp->owornmask & (W_RING | W_AMUL | W_TOOL)) {
 		already_wearing(c_that_, otmp);
@@ -1345,15 +1345,15 @@ doputon()
 	if(otmp->oclass == RING_CLASS) {
 		if(nolimbs(uasmon)) {
 /*JP			You("cannot make the ring stick to your body.");*/
-			You("»ØÎØ¤ò¤Ï¤á¤ì¤Ê¤¤ÂÎ¤À¡¥");
+			You("æŒ‡è¼ªã‚’ã¯ã‚ã‚Œãªã„ä½“ã ï¼");
 			return(0);
 		}
 		if(uleft && uright){
 /*JP			pline("There are no more %s%s to fill.",
 				humanoid(uasmon) ? "ring-" : "",
 				makeplural(body_part(FINGER)));*/
-			pline("¤Ï¤á¤ë¤³¤È¤Î¤Ç¤­¤ë%s%s¤¬¤Ê¤¤¡¥",
-				humanoid(uasmon) ? "Ìô" : "",
+			pline("ã¯ã‚ã‚‹ã“ã¨ã®ã§ãã‚‹%s%sãŒãªã„ï¼",
+				humanoid(uasmon) ? "è–¬" : "",
 				makeplural(body_part(FINGER)));
 			return(0);
 		}
@@ -1366,8 +1366,8 @@ doputon()
 /*JP			Sprintf(qbuf, "What %s%s, Right or Left?",
 				humanoid(uasmon) ? "ring-" : "",
 				body_part(FINGER));*/
-			Sprintf(qbuf, "¤É¤Á¤é¤Î%s%s¡¤±¦(r)¤½¤ì¤È¤âº¸(l)¡©",
-				humanoid(uasmon) ? "Ìô" : "",
+			Sprintf(qbuf, "ã©ã¡ã‚‰ã®%s%sï¼Œå³(r)ãã‚Œã¨ã‚‚å·¦(l)ï¼Ÿ",
+				humanoid(uasmon) ? "è–¬" : "",
 				body_part(FINGER));
 			if(!(answer = yn_function(qbuf, "rl", '\0')))
 				return(0);
@@ -1385,19 +1385,19 @@ doputon()
 		if (uarmg && uarmg->cursed) {
 			uarmg->bknown = TRUE;
 /*JP		    You("cannot remove your gloves to put on the ring.");*/
-		    You("»ØÎØ¤ò¤Ï¤á¤è¤¦¤È¤·¤¿¤¬¾®¼ê¤¬Ã¦¤²¤Ê¤¤¡¥");
+		    You("æŒ‡è¼ªã‚’ã¯ã‚ã‚ˆã†ã¨ã—ãŸãŒå°æ‰‹ãŒè„±ã’ãªã„ï¼");
 			return(0);
 		}
 		if (welded(uwep) && bimanual(uwep)) {
 			/* welded will set bknown */
 /*JP	    You("cannot free your weapon hands to put on the ring.");*/
-	    You("»ØÎØ¤ò¤Ï¤á¤è¤¦¤È¤·¤¿¤¬ÍøÏÓ¤Î¼«Í³¤¬¤­¤«¤Ê¤¤¡¥");
+	    You("æŒ‡è¼ªã‚’ã¯ã‚ã‚ˆã†ã¨ã—ãŸãŒåˆ©è…•ã®è‡ªç”±ãŒãã‹ãªã„ï¼");
 			return(0);
 		}
 		if (welded(uwep) && mask==RIGHT_RING) {
 			/* welded will set bknown */
 /*JP	    You("cannot free your weapon hand to put on the ring.");*/
-	    You("»ØÎØ¤ò¤Ï¤á¤è¤¦¤È¤·¤¿¤¬ÍøÏÓ¤Î¼«Í³¤¬¤­¤«¤Ê¤¤¡¥");
+	    You("æŒ‡è¼ªã‚’ã¯ã‚ã‚ˆã†ã¨ã—ãŸãŒåˆ©è…•ã®è‡ªç”±ãŒãã‹ãªã„ï¼");
 			return(0);
 		}
 		setworn(otmp, mask);
@@ -1405,7 +1405,7 @@ doputon()
 	} else if (otmp->oclass == AMULET_CLASS) {
 		if(uamul) {
 /*JP			already_wearing("an amulet");*/
-			already_wearing("Ëâ½ü¤±", uamul);
+			already_wearing("é­”é™¤ã‘", uamul);
 			return(0);
 		}
 		setworn(otmp, W_AMUL);
@@ -1420,15 +1420,15 @@ doputon()
 			if (ublindf->otyp == TOWEL)
 /*JP				Your("%s is already covered by a towel.",
 					body_part(FACE));*/
-				You("´û¤Ë¥¿¥ª¥ë¤ò¿È¤Ë¤Ä¤±¤Æ¤¤¤ë¡¥");
+				You("æ—¢ã«ã‚¿ã‚ªãƒ«ã‚’èº«ã«ã¤ã‘ã¦ã„ã‚‹ï¼");
 			else
 /*JP				already_wearing("a blindfold");*/
-				already_wearing("ÌÜ±£", ublindf);
+				already_wearing("ç›®éš ", ublindf);
 			return(0);
 		}
 		if (otmp->otyp != BLINDFOLD && otmp->otyp != TOWEL) {
 /*JP			You_cant("wear that!");*/
-			You("¤½¤ì¤ò¿È¤Ë¤Ä¤±¤ë¤³¤È¤Ï¤Ç¤­¤Ê¤¤¡ª");
+			You("ãã‚Œã‚’èº«ã«ã¤ã‘ã‚‹ã“ã¨ã¯ã§ããªã„ï¼");
 			return(0);
 		}
 		Blindf_on(otmp);
@@ -1482,7 +1482,7 @@ glibr()
 		/* changed so cursed rings don't fall off, GAN 10/30/86 */
 /*JP		Your("%s off your %s.",
 			(leftfall && rightfall) ? "rings slip" : "ring slips",*/
-		Your("»ØÎØ¤Ï%s¤«¤é³ê¤êÍî¤Á¤¿¡¥",
+		Your("æŒ‡è¼ªã¯%sã‹ã‚‰æ»‘ã‚Šè½ã¡ãŸï¼",
 			makeplural(body_part(FINGER)));
 		xfl++;
 		if (leftfall) {
@@ -1504,10 +1504,10 @@ glibr()
 				makesingular(oclass_names[(int)otmp->oclass]),
 			xfl ? "also " : "",
 			makeplural(body_part(HAND)));*/
-		You("%s%s%s¤«¤é³ê¤êÍî¤È¤·¤¿¡¥",
+		You("%s%s%sã‹ã‚‰æ»‘ã‚Šè½ã¨ã—ãŸï¼",
 			is_sword(otmp) ? c_sword :
 				jtrns_obj('S',oclass_names[(int)otmp->oclass]),
-			xfl ? "¤â¤Ş¤¿" : "¤ò",
+			xfl ? "ã‚‚ã¾ãŸ" : "ã‚’",
 			makeplural(body_part(HAND)));
 		setuwep((struct obj *)0);
 		if (otmp->otyp != LOADSTONE || !otmp->cursed)
@@ -1544,7 +1544,7 @@ boolean acid_dmg;
 		(acid_dmg ? !is_corrodeable(otmph) : !is_rustprone(otmph))) {
 		if (flags.verbose || !(otmph->oerodeproof && otmph->rknown))
 /*JP			Your("%s not affected.", aobjnam(otmph, "are"));*/
-			Your("%s¤Ï±Æ¶Á¤ò¼õ¤±¤Ê¤«¤Ã¤¿¡¥", xname(otmph));
+			Your("%sã¯å½±éŸ¿ã‚’å—ã‘ãªã‹ã£ãŸï¼", xname(otmph));
 		if (otmph->oerodeproof) otmph->rknown = TRUE;
 		return;
 	    }
@@ -1552,10 +1552,10 @@ boolean acid_dmg;
 /*JP		Your("%s%s!", aobjnam(otmph, acid_dmg ? "corrode" : "rust"),
 			otmph->oeroded+1 == MAX_ERODE ? " completely" :
 			otmph->oeroded ? " further" : "");*/
-		Your("%s¤Ï%s%s¡ª", xname(otmph), 
-			otmph->oeroded+1 == MAX_ERODE ? "´°Á´¤Ë" :
-			otmph->oeroded ? "¤µ¤é¤Ë" : "",
-		        acid_dmg ? "Éå¿©¤·¤¿" : "»¬¤Ó¤¿");
+		Your("%sã¯%s%sï¼", xname(otmph), 
+			otmph->oeroded+1 == MAX_ERODE ? "å®Œå…¨ã«" :
+			otmph->oeroded ? "ã•ã‚‰ã«" : "",
+		        acid_dmg ? "è…é£Ÿã—ãŸ" : "éŒ†ã³ãŸ");
 		otmph->oeroded++;
 		return;
 	    }
@@ -1563,10 +1563,10 @@ boolean acid_dmg;
 /*JP		Your("%s completely %s.",
 		     aobjnam(otmph, Blind ? "feel" : "look"),
 		     acid_dmg ? "corroded" : "rusty");*/
-		Your("%s¤Ï´°Á´¤Ë%s%s¡¥",
+		Your("%sã¯å®Œå…¨ã«%s%sï¼",
 		     xname(otmph),
-		     acid_dmg ? "Éå¿©¤·¤¿" : "»¬¤Ó¤¿",
-	             Blind ? "¤è¤¦¤À" : "¤è¤¦¤Ë¸«¤¨¤ë");
+		     acid_dmg ? "è…é£Ÿã—ãŸ" : "éŒ†ã³ãŸ",
+	             Blind ? "ã‚ˆã†ã " : "ã‚ˆã†ã«è¦‹ãˆã‚‹");
 	}
 }
 
@@ -1633,7 +1633,7 @@ do_takeoff()
 	  if(!cursed(uwep)) {
 	    setuwep((struct obj *) 0);
 /*JP	    You("are empty %s.", body_part(HANDED));*/
-	    You("²¿¤â%s¤Ë¤·¤Æ¤¤¤Ê¤¤¡¥", body_part(HAND));
+	    You("ä½•ã‚‚%sã«ã—ã¦ã„ãªã„ï¼", body_part(HAND));
 	  }
 	} else if (taking_off ==  WORN_ARMOR) {
 	  otmp = uarm;
@@ -1673,7 +1673,7 @@ do_takeoff()
 	    setworn((struct obj *)0, ublindf->owornmask);
 	    if(!Blinded) make_blinded(1L,FALSE); /* See on next move */
 /*JP	    else	 You("still cannot see.");*/
-	    else	 You("¤Ş¤À¸«¤¨¤Ê¤¤¡¥");
+	    else	 You("ã¾ã è¦‹ãˆãªã„ï¼");
 	  }
 	} else impossible("do_takeoff: taking off %lx", taking_off);
 
@@ -1709,7 +1709,7 @@ take_off()
 
 	if (taking_off == 0L) {
 /*JP	  You("finish disrobing.");*/
-	  You("ÁõÈ÷¤ò²ò¤­¤ª¤¨¤¿¡¥");
+	  You("è£…å‚™ã‚’è§£ããŠãˆãŸï¼");
 	  return 0;
 	} else if (taking_off == 1L) {
 	  todelay = 1;
@@ -1752,7 +1752,7 @@ take_off()
 
 	if (otmp) todelay += objects[otmp->otyp].oc_delay;
 /*JP	set_occupation(take_off, "disrobing", 0);*/
-	set_occupation(take_off, "ÁõÈ÷¤ò²ò¤¤¤Æ¤¤¤ë", 0);
+	set_occupation(take_off, "è£…å‚™ã‚’è§£ã„ã¦ã„ã‚‹", 0);
 	return(1);		/* get busy */
 }
 
@@ -1775,20 +1775,20 @@ doddoremarm()
 
     if (taking_off || takeoff_mask) {
 /*JP	You("continue disrobing.");*/
-	You("ÁõÈ÷¤ò²ò¤¯¤Î¤òºÆ³«¤·¤¿¡¥");
-	set_occupation(take_off, "ÁõÈ÷¤ò²ò¤¤¤Æ¤¤¤ë", 0);
+	You("è£…å‚™ã‚’è§£ãã®ã‚’å†é–‹ã—ãŸï¼");
+	set_occupation(take_off, "è£…å‚™ã‚’è§£ã„ã¦ã„ã‚‹", 0);
 	return(take_off());
     } else if (!uwep && !uamul && !ublindf &&
 		!uleft && !uright && !wearing_armor()) {
 /*JP	You("are not wearing anything.");*/
-	You("²¿¤âÁõÈ÷¤·¤Æ¤¤¤Ê¤¤¡¥");
+	You("ä½•ã‚‚è£…å‚™ã—ã¦ã„ãªã„ï¼");
 	return 0;
     }
 
     add_valid_menu_class(0); /* reset */
     if (flags.menu_style != MENU_TRADITIONAL ||
 /*JP	    (result = ggetobj("take off", select_off, 0, FALSE)) < -1)*/
-	    (result = ggetobj("¤ÎÁõÈ÷¤ò²ò¤¯", select_off, 0, FALSE)) < -1)
+	    (result = ggetobj("ã®è£…å‚™ã‚’è§£ã", select_off, 0, FALSE)) < -1)
 	result = menu_remarm(result);
 
     return takeoff_mask ? take_off() : 0;
@@ -1807,7 +1807,7 @@ int retry;
     } else if (flags.menu_style == MENU_FULL) {
 	all_worn_categories = FALSE;
 /*JP	n = query_category("What type of things do you want to take off?",*/
-	n = query_category("¤É¤Î¥¿¥¤¥×¤ÎÊª¤ÎÁõÈ÷¤ò²ò¤­¤Ş¤¹¤«¡©",
+	n = query_category("ã©ã®ã‚¿ã‚¤ãƒ—ã®ç‰©ã®è£…å‚™ã‚’è§£ãã¾ã™ã‹ï¼Ÿ",
 			   invent, WORN_TYPES|ALL_TYPES, &pick_list, PICK_ANY);
 	if (!n) return 0;
 	for (i = 0; i < n; i++) {
@@ -1820,12 +1820,12 @@ int retry;
     } else if (flags.menu_style == MENU_COMBINATION) {
 	all_worn_categories = FALSE;
 /*JP	if (ggetobj("take off", select_off, 0, TRUE) == -2)*/
-	if (ggetobj("¤ÎÁõÈ÷¤ò²ò¤¯", select_off, 0, TRUE) == -2)
+	if (ggetobj("ã®è£…å‚™ã‚’è§£ã", select_off, 0, TRUE) == -2)
 	    all_worn_categories = TRUE;
     }
 
 /*JP    n = query_objlist("What do you want to take off?", invent,*/
-    	n = query_objlist("¤É¤ÎÁõÈ÷¤ò²ò¤­¤Ş¤¹¤«¡©", invent,
+    	n = query_objlist("ã©ã®è£…å‚™ã‚’è§£ãã¾ã™ã‹ï¼Ÿ", invent,
 			SIGNAL_NOMENU|USE_INVLET|INVORDER_SORT,
 			&pick_list, PICK_ANY,
 			all_worn_categories ? is_worn : is_worn_by_type);
@@ -1835,7 +1835,7 @@ int retry;
 	free((genericptr_t) pick_list);
     } else if (n < 0) {
 /*JP	pline("There is nothing else you can remove or unwield.");*/
-	pline("ÁõÈ÷¤ò²ò¤±¤ë¤â¤Î¤Ï²¿¤â¤Ê¤¤¡¥");
+	pline("è£…å‚™ã‚’è§£ã‘ã‚‹ã‚‚ã®ã¯ä½•ã‚‚ãªã„ï¼");
     }
     return 0;
 }
@@ -1851,7 +1851,7 @@ register struct obj *atmp;
 
 	if (DESTROY_ARM(uarmc)) {
 /*JP		Your("cloak crumbles and turns to dust!");*/
-		Your("¥¯¥í¡¼¥¯¤ÏºÕ¤±¤Æ¿Ğ¤È¤Ê¤Ã¤¿¡ª");
+		Your("ã‚¯ãƒ­ãƒ¼ã‚¯ã¯ç •ã‘ã¦å¡µã¨ãªã£ãŸï¼");
 		(void) Cloak_off();
 		useup(otmp);
 	} else if (DESTROY_ARM(uarm)) {
@@ -1859,39 +1859,39 @@ register struct obj *atmp;
 		if (donning(otmp)) cancel_don();
 /*JP		Your("armor turns to dust and falls to the %s!",
 			surface(u.ux,u.uy));*/
-		Your("³»¤Ï¿Ğ¤È¤Ê¤ê%s¤ËÍî¤Á¤¿¡ª",
+		Your("é§ã¯å¡µã¨ãªã‚Š%sã«è½ã¡ãŸï¼",
 			surface(u.ux,u.uy));
 		(void) Armor_gone();
 		useup(otmp);
 #ifdef TOURIST
 	} else if (DESTROY_ARM(uarmu)) {
 /*JP		Your("shirt crumbles into tiny threads and falls apart!");*/
-		Your("¥·¥ã¥Ä¤Ï¥º¥¿¥º¥¿¤ËÎö¤±¡¤¾®¤µ¤Ê»å¶ı¤È¤Ê¤êÍî¤Á¤¿¡ª");
+		Your("ã‚·ãƒ£ãƒ„ã¯ã‚ºã‚¿ã‚ºã‚¿ã«è£‚ã‘ï¼Œå°ã•ãªç³¸å±‘ã¨ãªã‚Šè½ã¡ãŸï¼");
 		useup(otmp);
 #endif
 	} else if (DESTROY_ARM(uarmh)) {
 		if (donning(otmp)) cancel_don();
 /*JP		Your("helmet turns to dust and is blown away!");*/
-		Your("³õ¤Ï¿Ğ¤È¤Ê¤ê¿á¤­¤È¤ó¤À¡ª");
+		Your("å…œã¯å¡µã¨ãªã‚Šå¹ãã¨ã‚“ã ï¼");
 		(void) Helmet_off();
 		useup(otmp);
 	} else if (DESTROY_ARM(uarmg)) {
 		if (donning(otmp)) cancel_don();
 /*JP		Your("gloves vanish!");*/
-		Your("¾®¼ê¤Ï¾Ã¤¨¤¿¡ª");
+		Your("å°æ‰‹ã¯æ¶ˆãˆãŸï¼");
 		(void) Gloves_off();
 		useup(otmp);
 /*JP		selftouch("You");*/
-		selftouch("¤½¤Î¤È¤­¤¢¤Ê¤¿¤Ï");
+		selftouch("ãã®ã¨ãã‚ãªãŸã¯");
 	} else if (DESTROY_ARM(uarmf)) {
 		if (donning(otmp)) cancel_don();
 /*JP		Your("boots disintegrate!");*/
-		Your("·¤¤ÏÊ´¡¹¤ËºÕ¤±¤¿¡ª");
+		Your("é´ã¯ç²‰ã€…ã«ç •ã‘ãŸï¼");
 		(void) Boots_off();
 		useup(otmp);
 	} else if (DESTROY_ARM(uarms)) {
 /*JP		Your("shield crumbles away!");*/
-		Your("½â¤ÏºÕ¤±»¶¤Ã¤¿¡ª");
+		Your("ç›¾ã¯ç •ã‘æ•£ã£ãŸï¼");
 		(void) Shield_off();
 		useup(otmp);
 	} else	return(0);		/* could not destroy anything */

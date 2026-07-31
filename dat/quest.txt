@@ -76,85 +76,85 @@
 #the entrance.
 #
 #Strange forbidding shapes seem to be moving in the distance.
-���ʤ����������Ф��Τ�����ˤ����������˸������ʪ�Ϥ��ʤ���
-�칻�˰㤤�ʤ����������������㤦���ޤ�ǺǶᡤ˽ư�����ä���
-%H����Ϥ���Ƥ������Τ褦�˸����롥
+あなたは突然見覚えのある場所にいた．遠方に見える建物はあなたの
+母校に違いない，しかし何かが違う．まるで最近，暴動があったか
+%Hが包囲されていたかのように見える．
 
-���Ƥ���ȸ�����Ϻɤ��졤�ع��������ϻ��餫�ä��ޤޤ���
+全ての窓と言う窓は塞がれ，学校の入口は散らかったままだ．
 
-�������ۤ��Ե�̣�ʷ��򤷤���Τ�������ư���Ƥ���Τ���������
+恐しいほど不気味な形をしたものが遠方で動いているのが見えた．
 %E
 %Cp A 00002
 #Once again, you are back at %H.
-�⤦���١����ʤ���%H����ä���
+もう一度，あなたは%Hに戻った．
 %E
 %Cp A 00003
 #You are back at %H.
 #You have an odd feeling this may be the last time you ever come here.
-���ʤ���%H����ä���
-��������äƤ���ΤϺǸ�Ǥ���褦�ʴ�̯�ʵ���������
+あなたは%Hに戻った．
+ここに戻ってくるのは最後であるような奇妙な気がした．
 %E
 %Cp A 00005
 #-#"Man, the dig this year was a real bust!"
-#-�֤䤡����ǯ��ȯ��Ĵ���ϤҤɤ���������
+#-「やぁ，今年の発掘調査はひどいもんだ！」
 #"Did you see Lash LaRue in 'Song of Old Wyoming' the other night?"
 "Did you see Lash LaRue in 'Song of Old Wyoming' the other night?"/*argrath*/
 %E
 %Cp A 00006
 #"Hey man, got any potions of hallucination for sale?"
-�֤䤡�����Ф�������äƤ���ʤ���������
+「やぁ，幻覚の薬を売ってくれないかい？」
 %E
 %Cp A 00007
 #"Did you see the artifact %l brought back from the last dig?"
-��%l����������ȯ��Ĵ���ǻ������ä�����򸫤���������
+「%lがこの前の発掘調査で持ち帰った聖器を見たかい？」
 %E
 %Cp A 00008
 #"So what species do *you* think we evolved from?"
-�ֲ桹�Ϥ��ä����ɤΤ褦����ʪ����ʲ����������������
+「我々はいったいどのような生物から進化したんだろう？」
 %E
 %Cp A 00009
 #"So you're %ls prize pupil!  I don't know what he sees in you."
-�ַ���%l�ΰ��֤����̤������ब����ɤΤ褦�˸��Ƥ��뤳�Ȥ�顥��
+「君は%lの一番の生徒だが，彼が君をどのように見ていることやら．」
 %E
 %Cc A 00010
 #"Finally you have returned, %p.  You were always
 #my most promising student.  Allow me to see if you are ready for the
 #most difficult task of your career."
-����äƤ�������%p�������ϻ䤬��äȤ⿮�ꤷ�Ƥ����������
-  ���ο����Ǥ�äȤ⺤��ʻŻ����Ф�����������褿�顤��˲񤦤���
-  �����������
+「戻ってきたか，%p君．君は私がもっとも信頼している学生だ．
+  君の人生でもっとも困難な仕事に対する準備が出来たら，私に会うこと
+  を許そう．」
 %E
 %Cp A 00011
 #"Again, %p, you stand before me.
 #Let me see if you have gained experience in the interim."
-�֤ޤ��褿����%p������������褿�ޤ���
-  �����ơ������и����Ѥ�����ɤ��������Ƥ��줿�ޤ�����
+「また来たか，%p君．私の前に来たまえ．
+  そして，君が経験を積んだかどうか見せてくれたまえ．」
 %E
 %Cp A 00012
 #"Once more, %p, you have returned from the field.
 #Are you finally ready for the task that must be accomplished?"
-�֤⤦���٤���%p���������������äƤ�����
-  ������ɸ��ã�����ʤ���Фʤ�ʤ��ȸ����Ż��ؤν��������褿��
-  ���ʡ���
+「もう一度だ，%p君．君は野原から戻ってきた．
+  君は目標を達成しなければならないと言う仕事への準備が出来たの
+  かな？」
 %E
 %Cc A 00013
 #"%p, you have failed us.  All of my careful training has been in
 #vain.  Begone!  Your tenure at this college has been revoked!
 #
 #"You are a disgrace to the profession!"
-��%p������Ϸ��˼�˾�����补��϶��դȤ��Ƥμ����򼺤ʤä���
-  �ɤ��Ǥ�Ԥ����ޤ���������ؤǤκ߿����ϼ��ä�����
+「%p君，私は君に失望したよ．私は教師としての自信を失なった．
+  どこでも行きたまえ！君の大学での在職権は取り消しだ！
 
-  ����Ʊ�ȼԤȤ��Ƥޤä����Ѥ���������Ĥ�����
+  君は同業者としてまったく恥ずかしいやつだ！」
 %E
 %Cc A 00014
 #"%p, you are yet too inexperienced to undertake such a demanding
 #quest.  A mere %r could not possibly face the rigors demanded and
 #survive.  Go forth, and come here again when your adventures have further
 #taught you."
-��%p�������ϻ�Υ������Ȥ�¹Ԥ���ˤϤ���äȷи���­��ʤ�
-  �褦����ñ�ʤ�%r�ǤϤ����餯���������Ѥ������Ĥ뤳�ȤϤǤ��ʤ�
-  �����������������դ����Ϥ�Ĥ�������������äƤ�������
+「%p君，君は私のクエストを実行するにはちょっと経験が足りない
+  ようだ．単なる%rではおそらく厳しさに耐え生き残ることはできない
+  だろう．冒険が教師だ！力をつけろ，そして戻ってこい．」
 %E
 %Cc A 00015
 #"%p!  I've heard that you've been using sloppy techniques.  Your
@@ -162,11 +162,11 @@
 #
 #"How could you have strayed from the %a path?  Go from here, and come
 #back only when you have purified yourself."
-��%p������Ϸ�������������������򤷤Ƥ����ʹ���Ȥ�补����
-  �ʤ󤸤�%r�ȤϤȤƤ�Ƥ٤ʤ��͡�
+「%p君！私は君がいいかげんな冒険をしていると聞いとるよ．そん
+  なんじゃ%rとはとても呼べないね．
 
-��%a��ƻ���餤���ˤϤ���Ƥ��뤫�狼�뤫����������ȤäȤȾä�
-  ��꼫ʬ���Ȥ����������äƤ��뤬�褤����
+「%aの道からいかにはずれているかわかるか？ここからとっとと消え
+  去り自分自身を浄化して戻ってくるがよい．」
 %E
 %Cc A 00016
 #"Grave times have befallen the college, for %na has
@@ -183,88 +183,88 @@
 #close this college.
 #
 #"May the wisdom of %d be your guide."
-����ؤ˰ű������������äƤ��롥�¤�%n��%o��
-  �����Τ������줬�ʤ���ľ������ؤ���������������碌���桹
-  �θ����̵���ˤ���Ǥ�������
+「大学に暗雲がさしかかっている．実は%nが%oを
+  盗んだのだ．あれがないと直ちに大学の理事会は問答言わせず我々
+  の研究を無効にするであろう．
 
-�ַ���%i�������˹Ԥ��ͤФʤ�ʤ��������˹Ԥ��С�
-  %n�������������
+「君は%iの入口に行かねばならない．そこに行けば，
+  %nがいるだろう．
 
-�ַ���%n���Ǥ��餫���ͤФ�ʤʤ���������%o����
-  �֤��Τ���
+「君は%nを打ち負かさねばらなない．そして%oを取り
+  返すのだ．
 
-�֤�����ؤ��ĺ���Ƴ��������κ�����ɤ��ˤϤ��줷����ˡ���ʤ���
+「この大学を閉鎖に導く研究費の削除を防ぐにはこれしか方法がない．
 
-��%d���μ������ν����Ȥʤ�󤳤Ȥ򡥡�
+「%dの知識が君の助けとならんことを．」
 %E
 %Cp A 00020
 #"Beware, for %n is powerful and cunning."
-�ֵ���Ĥ�����%n�϶���������Ѥʤ�Ĥ�����
+「気をつけろ！%nは強い上に狡猾なやつだ．」
 %E
 %Cp A 00021
 #"To locate the entrance to %i, you must pass
 #many traps."
-��%i�������عԤ��ˤϡ�¿���δ�����櫤��̤�ȴ���ͤФʤ�ʤ�����
+「%iの入口へ行くには，多くの危険な罠を通り抜けねばならない．」
 %E
 %Cp A 00022
 #"A %nt may be vulnerable to attacks by magical cold."
-��%n���䵤����ˡ�˼夤�Ϥ�������
+「%nは冷気の魔法に弱いはずだ．」
 %E
 %Cp A 00023
 #"Call upon %d when you encounter %n."
-��%n�˽а��ä��顤%d�˵�������Τ�����
+「%nに出逢ったら，%dに祈りを求めるのだ．」
 %E
 %Cp A 00024
 #"You must destroy %n.  It will pursue you otherwise."
-�ַ���%n�򻦤��ͤФʤ餤�������ĤϷ����ɤ������ޤ魯�Τ����顥��
+「君は%nを殺さねばならい．そいつは君を追いかけまわすのだから．」
 %E
 %Cp A 00025
 #"%oC is a mighty talisman.  With it you
 #can destroy %n."
-%o�϶��Ϥʸ���������줬����з���%n���Ǥ��Τ᤻�롥��
+%oは強力な護符だ．それがあれば君も%nを打ちのめせる．」
 %E
 %Cp A 00026
 #"Go forth with the blessings of %d."
-��%d�ν�ʡ�Τ���󤳤Ȥ򡥡�
+「%dの祝福のあらんことを．」
 %E
 %Cp A 00027
 #"I will have my %gP watch for your return."
-�ֲ�%g�����ε��Ԥ򸫼��󤳤Ȥ򡥡�
+「我%gが君の帰還を見守らんことを．」
 %E
 %Cp A 00028
 #"Remember not to stray from the true %a path."
-�ֿ��¤�%a��ƻ����Ϥ���̤褦�Ĥͤ����դ���Τ�����
+「真実の%aの道からはずれぬようつねに注意するのだ．」
 %E
 %Cp A 00029
 #"You may be able to sense %o when you are near."
-�ַ��ʤ�%o�˶�Ť����Ȥ�����¸�ߤ򴶤��뤳�Ȥ��Ǥ���Ϥ�������
+「君なら%oに近づいたときその存在を感じることができるはずだ．」
 %E
 %Cp A 00030
 #You have the feeling that you will soon find the entrance to
 #%i.
-���ʤ��Ϥ⤦����%i��������ȯ���Ǥ���褦�ʵ���������
+あなたはもうすぐ%iの入口を発見できるような気がした．
 %E
 %Cp A 00031
 #Once again, you are near the entrance to %i.
-�⤦���١����ʤ���%i�������ζ᤯�ޤǤ�äƤ�����
+もう一度，あなたは%iの入口の近くまでやってきた．
 %E
 %Cp A 00040
 #You sense the presence of %o.
-���ʤ���%o��¸�ߤ򴶤�����
+あなたは%oの存在を感じた．
 %E
 %Cp A 00041
 #The familiar presence of %o is in the ether.
-%o��¸�ߤ��������̤��ƤĤ���äƤ�����
+%oの存在が空気を通してつたわってきた．
 %E
 %Cc A 00050
 #"So, %p, you think that you can succeed in recovering
 #%o, when your teacher, %l, has already failed.
 #
 #"Come, try your best!  I shall destroy you, and gnaw on your bones."
-�֤���%p�衤������%o��å��Ǥ���ȻפäƤ��������������
-  �����λդǤ���%l�ϼ��Ԥ��Ƥ���Τ���
+「け！%pよ，お前は%oを奪回できると思っているだろう，だが
+  お前の師である%lは失敗しているのだ．
 
-�֤��������Ϥ��褤�������ι��������ˤ���̣��������������
+「さあ，全力で来い！お前の骨は本当にいい味がしそうだ．」
 %E
 %Cc A 00051
 #"Again you try to best me, eh %p?  Well, you shall fail again.
@@ -272,75 +272,75 @@
 #"You shall never recover %o.
 #
 #"I shall bear your soul to the Plane of Origins for my master's pleasure."
-�֤����ޤ��褿�����ɤ����ޤ����Ԥ���
+「け！また来たか！どうせまた失敗さ．
 
-��%o�����֤��ʤ���Բ�ǽ����
+「%oを取り返すなんて不可能だ．
 
-�ֲ椬�ޥ������Τ���ˡ������κ��򤢤��������äƤ��������
+「我がマスターのために，お前の魂をあの世に送ってやろう．」
 %E
 %Cp A 00052
 #"You persist yet %p!  Good.  Now, you shall die!"
-��%p���ޤ������Ƥ����Τ����褷�����٤��������Ƥ�롪��
+「%p！まだ生きていたのか．よし，今度こそ殺してやる！」
 %E
 %Cp A 00053
 #"I shall have %o from you, %p, then feast
 #upon your entrails!"
-��%p�����ޤ�����%o�����֤����Ϥ�錄�����Ӥˤ��Ƥ��������
+「%p！おまえから%oを取り返し，はらわたを晩飯にしてやろう！」
 %E
 %Cp A 00060
 #"Try your best, %p.  You cannot defeat me."
-�����ϤǤ���%p�������ʤ󤫤ˤ㻦����ʤ�������
+「全力でこい%p．お前なんかにゃ殺されないさ．」
 %E
 %Cp A 00061
 #"I shall rend the flesh from your body whilst you still breathe!"
-�ְ�֤Ǥ������Τ�Ҥ������Ƥ�뤼����
+「一瞬でお前の体をひきさいてやるぜ！」
 %E
 %Cp A 00062
 #"First you, %p, then I shall destroy your mentor, %l."
-��%p���ޤ������򻦤��ơ����˻դǤ���%l�򻦤��Ƥ�롥��
+「%p！まずお前を殺して，次に師である%lを殺してやる．」
 %E
 %Cp A 00063
 #"Tiring yet, %p?  I draw my power from my master and cannot
 #falter!"
-�֤ޤ����Τ�%p����ϲ椢�뤸�����Ϥ����Ƥ��롥�褷�ƻ�ʤʤ�
-�Τ�����
+「まだやるのか%p？私は我あるじから力を得ている．決して死なない
+のさ！」
 %E
 %Cp A 00064
 #"I shall rend thy soul from thy body and consume it!"
-�֤����κ�����ä��������ˤ��ޤ���������
+「お前の魂を喰ったら本当にうまそうだ！」
 %E
 %Cp A 00065
 #"You are far too %a -- it weakens you.  You shall die in this place."
-��%a�ˤ����󤤤ʡ������Ϥ����Ϥǻ�̤Τ�����
+「%aには程遠いな．お前はこの地で死ぬのだ．」
 %E
 %Cp A 00066
 #"%d has forsaken you!  You are lost now!"
-��%d�Ϥ����򸫤��Ƥ����������Ϥ����Ǿ��Ǥ���Τ�����
+「%dはお前を見すてたぞ！お前はここで消滅するのだ！」
 %E
 %Cp A 00067
 #"A mere %r cannot hope to defeat me!"
-��ñ�ʤ�%r���㥪��ˤϾ��Ƥ󡪡�
+「単なる%rじゃオレには勝てん！」
 %E
 %Cp A 00068
 #"If you are the best %l can send, I have nothing to fear."
-��%l�������˰��ֶ�����Ĥ����äƤ����Τ������줸�㶲��뤳��
-  �ʤɲ���ʤ�����
+「%lは本当に一番強いやつを送ってきたのか？これじゃ恐れること
+  など何もない！」
 %E
 %Cp A 00069
 #"Die %c!  I shall exhibit your carcass as a trophy."
-�ֻ�͡�%c�补�����λĳ���椬���쥯�����˲ä��褦����
+「死ね！%cよ．お前の残骸を我がコレクションに加えよう．」
 %E
 %Cc A 00070
 #The power of %o flows through your body!  You feel
 #as if you could now take on the Wizard of Yendor himself and win, but
 #you know you must return %o to %l.
-%o���Ϥ��Τ������줿�����ʤ��ϡ��ޤ������ˡ�Ȥ��������������
-�����ˤ��ơ������Ǥ��뤫�Τ褦�ʵ����ˤʤä�����������%o��
-���ä�%l�Τ�Ȥ����ͤФʤ�ʤ����Ȥ˵����Ĥ�����
+%oの力が体に注がれた！あなたは，まるで大魔法使いイェンダー自身
+を相手にして，勝利できるかのような気持になった．しかし，%oを
+持って%lのもとへ戻らねばならないことに気がついた．
 %E
 %Cp A 00080
 #The body of %n dissipates in a cloud of noxious fumes.
-%n���Τ������ξ����ؤ����ӻ��ä���
+%nの体は毒性の蒸気へと飛び散った．
 %E
 %Cc A 00081
 #%lC touches %o briefly, gazes into it,
@@ -354,21 +354,21 @@
 #guard it now far better than I.
 #
 #May the blessings of %d follow you and guard you."
-%l�Ϸڤ�%o�˿��졤����򤸤äȸ��Ĥᡤ���ʤ��˸��ä�
-���Фߤ�������
+%lは軽く%oに触れ，それをじっと見つめ，あなたに向って
+微笑みかけた：
 
-��%p�补�褯��ä���������%n���ݤ���%o��
-  ����ᤷ�������������������֤��Τ�Ϥ�����ǤϤʤ���
+「%pよ．よくやった．お前は%nを倒し，%oを
+  取り戻した．しかし，ここに置くのやはり安全ではない．
 
-  %o����äƤ������褤��%p�补�������¤��Ƥ����а¿�����
+  %oを持っていくがよい．%pよ．お前に預けておけば安心だ．
 
-  %d�ν�ʡ�Ȳø����󤳤Ȥ򡥡�
+  %dの祝福と加護があらんことを．」
 %E
 %Cc A 00090
 #"Welcome back, %p.  Have you progressed with your quest to
 #regain the Amulet of Yendor for %d?"
-�֤褯��äƤ���%p�补%d�Τ��ᥤ����������������õ��ι��
-  ��Ÿ�������͡���
+「よく戻ってきた%pよ．%dのためイェンダーの魔除けを探す旅は
+  進展したかね？」
 %E
 %Cc A 00091
 #"Congratulations, %p.  I wondered if anyone could prevail against
@@ -380,14 +380,14 @@
 #Amulet on that altar to fulfill your destiny.
 #
 #"Remember, your path now should always be upwards."
-�֤���ǤȤ�%p���������ˡ�Ȥ���⡼���å��λȤ����
-  �Ǥ����Ƥ�Ԥ�����Τ��ɤ�������˻פäƤ����Τ������������Ϻǽ�����
-  �˸��ä����Ф��ͤФʤ�ʤ���
+「おめでとう%p！私は大魔法使いやモーロックの使い魔に
+  打ち勝てる者がいるのかどうか疑問に思っていたのだ．今，お前は最終試練
+  に向って船出せねばならない．
 
-���������Ȥ�������ؤ�ƻ�򸫤Ĥ���Τ�����̿��̤����ᡤ������
-  %d�κ��Ť򸫤Ĥ������������Ť������ͤФʤ�ʤ���
+「魔除けを使い，精霊界への道を見つけるのだ．運命を果すため，お前は
+  %dの祭壇を見つけ，魔除けを祭壇に捧げねばならない．
 
-�֤����οʤ�ƻ�Ͼ�˰��ܤǤ��뤳�Ȥ�Ф��Ƥ����Τ�����
+「お前の進む道は常に一本であることを覚えておくのだ．」
 %E
 #
 #	Barbarian
@@ -405,66 +405,66 @@
 #Without thought, you ready your weapon, and mutter under your breath:
 #
 #    "By %d, there will be blood spilt today."
-��ä���Ȥ��ʤ����ܳ��򳫤���������Ȥ����봶�Ф����������ȯ����
-���롥������%H�θ����줿���ʤ���������
+ゆっくりとあなたは目蓋を開けた．ありとあらゆる感覚が危険信号を発して
+いる．遠方に%Hの見慣れた光景が見えた．
 
-�����������Τ�%l�������ˤ��롩��
+しかし，何故か%lがそこにいる？！
 
-����������˼ٰ�����ˡ�Υ�����򴶤������ʤ��Τ��ʤ��ˤष�������ä���
+突然，空中に邪悪な魔法のオーラを感じ，あなたのうなじにむしずが走った．
 
-����ͤ��������ʤ������򹽤����������ư�͸���Ĥ֤䤤����
+何も考えず，あなたは武器を構えた．そして一人言をつぶやいた：
 
-    ��%d��̾�ˤ����Ʒ줷�֤���������ޤ���
+    「%dの名において血しぶきを許したまえ」
 %E
 %Cp B 00002
 #Once again, you near %H.  You know that %l
 #will be waiting.
-�⤦����%H�ˤ�äƤ�����%l���ԤäƤ��롥
+もう一度%Hにやってきた．%lが待っている．
 %E
 %Cp B 00003
 #Again, and you think possibly for the last time, you approach
 #%H.
-�ޤ���äƤ�����%H�ˤ�ä����Τϡ�¿ʬ���줬�Ǹ�Ǥ�������
-�פä���
+またやってきた．%Hにやって来るのは，多分これが最後であろうと
+思った．
 %E
 %Cp B 00005
 #"The battles here have been good -- our enemies' blood soaks the soil!"
-�֤����Ǥ��襤�Ϲ�Ĵ����Ũ�η줬�ھ��˿��ߤ���Ǥ뤼����
+「ここでの戦いは好調だ．敵の血が土壌に浸みこんでるぜ！」
 %E
 %Cp B 00006
 #"Remember that glory is crushing your enemies beneath your feet!"
-�ֱɸ���­�β���Ũ�򤯤��㤯����ˤ��Ƥ�뤳�ȤǤ��뤳�Ȥ�˺���ʡ���
+「栄光は足の下で敵をくしゃくしゃにしてやることであることを忘れるな！」
 %E
 %Cp B 00007
 #"There has been little treasure to loot, since the horde arrived."
-�ַ��Ĥ���Ƥ���ϡ��ۤȤ��άå������Ȣ�ϻĤäƤ��ʤ�����
+「軍団が来てからは，ほとんど略奪する宝箱は残っていない，」
 %E
 %Cp B 00008
 #"The horde is mighty in numbers, but they have little courage."
-�ַ��ĤϿ����Ϥǲ����Ƥ��롤�ʤˤ��������Ĥ�ϲ��¤�Τ�����ʡ���
+「軍団は数の力で押してくる，なにせ，あいつらは憶病ものだからな．」
 %E
 %Cp B 00009
 #"%lC is a strange one, but he has helped defend us."
-��%l�ȸ����Τ��Ѥä���Ĥ�����������ϲ桹���äƤ���Ƥ��롥��
+「%lと言うのは変ったやつだ，しかし彼は我々を守ってくれている．」
 %E
 %Cc B 00010
 #"Ah, %p.  You have returned at last.  The world is in dire
 #need of your help.  There is a great quest you must undertake.
 #
 #"But first, I must see if you are ready to take on such a challenge."
-�֤�����%p�补��ä���äƤ��Ƥ��줿�������������ϻ�ޤ�����
-  ������ɬ�פȤ��Ƥ��롥���������������ͤФʤ�̰���ʥ������Ȥ��Ԥ�����
-  �Ƥ���Τ���
-�֤��������ޤ����������������餦�������Ϥ����뤫Ĵ�٤ͤФʤ�̡���
+「おお！%pよ．やっと戻ってきてくれたか．この世界は至急お前の
+  助けを必要としている．お前が引き受けねばならぬ偉大なクエストが待ち構え
+  ているのだ．
+「しかし，まずお前がそれを受け負うだけの力があるか調べねばならぬ．」
 %E
 %Cp B 00011
 #"%p, you are back.  Are you ready now for the challenge?"
-��%p�补��äƤ������������ĩ��ν��������ä����ʡ���
+「%pよ．戻ってきたか．偉大な挑戦の準備は整ったかな？」
 %E
 %Cp B 00012
 #"Again, you stand before me, %p.  Surely you have prepared yourself."
-��%p�补�ޤ������ϻ������Ω�äƤ���Τ�����������
-  �������ʡ���
+「%pよ．またお前は私の前に立っているのだが，準備は
+  いいかな？」
 %E
 %Cc B 00013
 #"Pah!  You have betrayed the gods, %p.  You will never attain
@@ -473,29 +473,29 @@
 #
 #"I will protect these people as best I can, but soon %n will overcome
 #me and destroy all who once called you %s.  Now begone!"
-�֤դ󡪤�����%p�ο���΢�ڤä���������Ǯ˾����
-  ̾�������뤳�Ȥ�ʤ������������¤�ƻ��é�ꤪ���μ��Ԥ�̤����Ĥ���
-  �Ϥ�����
+「ふん！お前は%pの神を裏切った．お前が熱望する
+  名誉を得ることもないだろう．真実の道を辿りお前の失敗が未来を閉ざす
+  はずだ．
 
-�ֻ�Ϥ����ˤ���͡������ϤǼ��Ĥ����������������ˤǤ�%n
-  ������ݤ���������%s�ȸƤ���͡��򻦤����������ä�����������
+「私はここにいる人々を全力で守るつもりだ，しかしすぐにでも%n
+  が私を倒し，お前を%sと呼んだ人々を殺すだろう．消えうせろ！」
 %E
 %Cc B 00014
 #"%p, I fear that you are as yet too inexperienced to face
 #%n.  Only %Ra with the help of %d could ever hope to
 #defeat him."
-��%p�衤%n�����Ф���ˤϤ��ȷи���­�Τ褦���ʡ�
-  %R������%d�ν���������%n���ݤ��褦����
+「%pよ，%nと正対するにはちと経験不足のようだな．
+  %Rだけが%dの助けを得て%nを倒せよう．」
 %E
 %Cp B 00015
 #"%p!  You have wandered from the path of the %a!
 #If you attempt to overcome %n in this state, he will surely
 #enslave your soul.  Your only hope, and ours, lies in your purification.
 #Go forth, and return when you feel ready."
-��%p��%a��ƻ���鳰�줵�ޤ�äƤ���ʡ����ξ��֤�%n��
-  �Ǥ��ޤ������Ȥ���ʤ顤�μ¤ˤ����κ��ϤȤꤳ�ˤ�����������
-  ͣ���˾�ߤϼ�ʬ���Ȥξ��������ʤᡪ�����ƽ������Ǥ����Ȼפä���
-  ��äƤ�������
+「%p！%aの道から外れさまよっているな！この状態で%nを
+  打ちまかそうとするなら，確実にお前の魂はとりこにされるだろう．
+  唯一の望みは自分自身の浄化だ．進め！そして準備ができたと思ったら
+  戻ってこい．」
 %E
 %Cc B 00016
 #"The world is in great need of your assistance, %p.
@@ -521,182 +521,182 @@
 #"You must go to %i.  From there, you can track down
 #%n, defeat him, and return %o to us.  Only
 #then will the world be safe."
-�������Ϥ����ν�����ɬ�פȤ��Ƥ��롤%p�补
+「世界はお前の助けを必要としている，%pよ．
 
-��Ⱦǯ�ۤ��������%n�Ȥ����Τ��Ƥ������Ū����ˡ�Ȥ�����
-  ���͵���άå�Ԥ򽸤�Ƥ���ȸ����Τ��Τä���
+「半年ほど前，私は%nとして知られている神秘的な魔法使いが，
+  殺人鬼や略奪者を集めていると言うのを知った．
 
-�֤ޤ��ۤ�Ʊ�������������Ϥοʹ֤����Ϥ���ˡ�θ���Ǥ���%o��
-  �ĥ�˥����ƶ�����������ä���
+「またほぼ同じころ，この地の人間が強力な魔法の護符である%oを
+  ツラニアンの洞窟から持ち去った．
 
-��%n�������ΰŹ����Ĥϡ�%i�˲����󤻡�������
-  �͡����Ǥ��餫���������ɤ���ä������%o��������
-  ��ΰջפΤ���Ȥ���ˡ��õ���Ƥ��롥��ϱ�̿����̯�ʰ㤤���̤��Ȥꡤ
-  �����Ƥ����Ϥο͡��ȹ�ή�����������Ƥ����˾����Τ�����Ϥ����ä��Τ���
+「%nおよび彼の暗黒軍団は，%iに押し寄せ，そこの
+  人々を打ち負かし砂漠へ追いやった．彼は%oを手に入れ
+  彼の意思のため使う方法を探している．私は運命の微妙な違いを嗅ぎとり，
+  そしてこの地の人々と合流した．そしてお前に召喚のための力を送ったのだ．
 
-�֤⤷%n��%o��դΤޤޤˤ��뤳�Ȥ��Ǥ����ʤ�С�
-  ������Ǥκ�������������οʹ֤ο�������ˤ��뤳�Ȥ��Ǥ����������
-  ������ͣ��δ�˾�������ν�ʡ������󤳤Ȥ�
-  �ޤ�%d�βø����󤳤Ȥ򡥤���������ͣ��
-  %n���ݤ��롥
+「もし%nが%oを意のままにすることができたならば，
+  彼は不滅の魂を得，世界中の人間の心を奴隷にすることができるだろう．
+  お前は唯一の希望だ．神の祝福があらんことを，
+  また%dの加護があらんことを．お前だけが唯一
+  %nを倒せる．
 
-�֤�����%i�˹Ԥ��ͤФ�ʤ̡���������%n�ΤȤ����ޤ�
-  �ߤ�ƹԤ��롥������%o�����ᤷ�Ƥ����졥���줬ͣ��
-  ������ߤ���ˡ������
+「お前は%iに行かねばらなぬ．ここから%nのところまで
+  降りて行ける．そして%oを私に戻しておくれ．それが唯一
+  世界を救う方法だ．」
 %E
 %Cp B 00020
 #"%nC is strong in the dark arts, but not immune to cold steel."
-��%n�ϰŹ������Ǥ϶������������䤤�ݤˤ����Ϥ��ʤ�����
+「%nは暗黒世界では強い．しかし冷い鋼には抵抗力がない．」
 %E
 %Cp B 00021
 #"Remember that %n is a great sorcerer.  He lived in the time
 #of Atlantis."
-��%n�ϰ������ˡ�Ȥ��Ǥ��뤳�Ȥ�˺���ʡ���ϥ��ȥ��ƥ���
-  �λ��夫�������Ƥ���Τ�����
+「%nは偉大な魔法使いであることを忘れるな．彼はアトランティス
+  の時代から生きているのだ．」
 %E
 %Cp B 00022
 #"If you fail, %p, I will not be able to protect these people long."
-��%p�补���������Ԥ����ʤ��Ϥ����Ϥοʹ֤�Ĺ����ä�
-  �����ʤ�������
+「%pよ．お前が失敗したなら私はこの地の人間を長く守って
+  いられないぞ．」
 %E
 %Cp B 00023
 #"To enter %i, you must be very stealthy.  The horde will be on
 guard."
-��%i������ˤϡ����ܤ�����Ϥ�Ĥ��ͤФʤ�̡����Ĥ���ä�
-  ����Ϥ�������
+「%iに入るには，人目を盗む力をつけねばならぬ．軍団が守って
+  いるはずだ．」
 %E
 %Cp B 00024
 #"Call upon %d in your time of need."
-��ɬ�פʤ��%d��Ƥ֤Τ�����
+「必要ならば%dを呼ぶのだ．」
 %E
 %Cp B 00025
 #"May %d protect you, and guide your steps."
-��%d�βø��Ƴ���Τ���󤳤Ȥ򡥡�
+「%dの加護と導きのあらんことを．」
 %E
 %Cp B 00026
 #"If you can lay hands upon %o, carry it for good fortune."
-��%o�ξ�˼�򤫤������Ȥ��Ǥ����ʤ�С���������������
-  ����������
+「%oの上に手をかざすことができたならば，幸運を手に入れれる
+  だろう．」
 %E
 %Cp B 00027
 #"I cannot stand against %ns sorcery.  But %d will help you."
-��%n����Ѥ����˻��̵�񹳤���������%d�������������
-  ����褦��
+「%nの魔術の前に私は無抵抗だ．しかし%dがお前を助けて
+  くれよう」
 %E
 %Cp B 00028
 #"Do not fear %n.  I know you can defeat him."
-��%n�򶲤��ʡ�����������ݤ����Ȥ��ΤäƤ��롥��
+「%nを恐れるな．お前が彼を倒すことを知っている．」
 %E
 %Cp B 00029
 #"You have a great road to travel, %p, but only after you defeat
 #%n."
-��%p�衤�����ΰ���ʤ�������%n���ݤ��Ƥ�������Ω�ĤΤ�����
+「%pよ，お前の偉大なる冒険は%nを倒してこそ成り立つのだ．」
 %E
 %Cc B 00030
 #The scent of water comes to you in the desert breeze.  You know that
 #you have located %i.
-��������������������Ϥ�����Ǥ��롥���ʤ���%i�ˤ��뤳�Ȥ�
-�´�������
+水の匂いが砂漠の風に溶けこんでいる．あなたは%iにいることを
+実感した．
 %E
 %Cp B 00031
 #Yet again you have a chance to infiltrate %i.
-�ޤ�%i���������뵡�񤬤�äƤ�����
+また%iに潜入する機会がやってきた．
 %E
 %Cc B 00040
 #The hairs on the nape of your neck lift as you sense an energy in the
 #very air around you.  You fight down a primordial panic that seeks to
 #make you turn and run.  This is surely the lair of %n.
-���ϤΥ��ͥ륮���򴶤���ȡ����ʤ��Τ��ʤ����Ӥ���Ω�ä������ʤ�����ǽŪ
-�˥ѥ˥å��˴����ꡤƨ��ƻ��õ���������줳��������%n��
-���߲Ȥ���
+周囲のエネルギーを感じると，あなたのうなじの毛が逆立った．あなたは本能的
+にパニックに陥入り，逃げ道を探した．これこそ本当の%nの
+住み家だ．
 %E
 %Cp B 00041
 #Yet again you feel the air around you heavy with malevolent magical energy.
-�⤦���١����ʤ��ϽŶ줷����ˡ�Υ��ͥ륮�������Ϥ˰Ϥޤ�Ƥ���Τ�
-��������
+もう一度，あなたは重苦しい魔法のエネルギーが周囲に囲まれているのを
+感じた．
 %E
 %Cc B 00050
 #"So.  This is what that second rate sorcerer %l sends to do his bidding.
 #I have slain many before you.  You shall give me little sport.
 #
 #"Prepare to die, %c."
-�֤������������Ĥ������ˡ�Ȥ�%l�����ꤳ��Ǥ�����Ĥ���
-  �亮�Ϥ��������˿�ʬ�Ȼ���������������äȥ��ݡ��ĤǤ⤷�Ƥߤ뤫��
+「そうか，こいつが二級魔法使い%lの送りこんできたやつか．
+  ワシはお前の前に随分と殺したもんだ．ちょっとスポーツでもしてみるか．
 
-�ֻ�̽����Ͻ��褿����%c����
+「死ぬ準備は出来たか？%c．」
 %E
 %Cp B 00051
 #"I have wasted too much time on you already.  Now, you shall die."
-�֤����ν������Ǥ���ޤǿ�ʬ�Ȳˤ��ä������Ĥ��ˡ������λ�̤Ȥ���
-  �褿������
+「お前の準備ができるまで随分と暇だったぞ．ついに，お前の死ぬときが
+  来たか．」
 %E
 %Cp B 00052
 #"You return yet again, %c!  Are you prepared for death now?"
-�֤ޤ��褿�Τ�%c�����٤�����̽����ϤǤ����Τ�����
+「また来たのか%c！今度こそ死ぬ準備はできたのか？」
 %E
 %Cp B 00053
 #"I shall have %o back, you pitiful excuse for %ca.
 #And your life as well."
-��%o�����ᤷ�Ƥ�롤�����𤦤��褤%c�补
-  �����ơ����ޤ���̿��Ʊ�ͤ�����
+「%oを取り戻してやる，哀れを乞うがよい%cよ．
+  そして，おまえの命も同様だ．」
 %E
 %Cp B 00060
 #"My pets will dine on your carcass tonight!"
-�֥亮�ΥڥåȤ������λӤο�����ڤ��ߤˤ��Ȥ���
+「ワシのペットがお前の屍の食事を楽しみにしとるわ！」
 %E
 %Cp B 00061
 #"You are a sorry excuse for %ra."
-��%r�����ܤޤ�Ĥ֤���ʡ���
+「%rの面目まるつぶれだな．」
 %E
 %Cp B 00062
 #"Run while you can, %c.  My next spell will be your last."
-�����Ϥ�ƨ������%c��������ˡ�������κǸ������
+「全力で逃げろ，%c．次の魔法がお前の最後だ．」
 %E
 %Cp B 00063
 #"I shall use your very skin to bind my next grimoire."
-�֤�������򿷤�����ʸ��������˻Ȥ��Ȥ��褦����
+「お前の皮を新しい呪文書の装丁に使うとしよう．」
 %E
 %Cp B 00064
 #"%d cannot protect you now.  Here, you die."
-��%d�Ϥ������äƤ�뤳�Ȥʤ��Ǥ��ʤ�����͡���
+「%dはお前を守ってやることなぞできない．死ね．」
 %E
 %Cp B 00065
 #"Your %a nature makes you weak.  You cannot defeat me."
-�֤�����%a���������μ夯����Τ��������˥亮���ݤ��ʤ�����
+「お前の%aさがお前の弱くするのだ．お前にワシは倒せない．」
 %E
 %Cp B 00066
 #"Come, %c.  I shall kill you, then unleash the horde on your tribe."
-���褤��%c�������򻦤��Ƥ�롥�����Ʒ��Ĥ�������²��
-  ���ꤳ��Ǥ�롥��
+「来い，%c．お前を殺してやる．そして軍団をお前の部族へ
+  送りこんでやる．」
 %E
 %Cp B 00067
 #"Once you are dead, my horde shall finish off %l, and your tribe."
-�֤����������ʤ顤�亮�η��Ĥ�%l����²�򤹤ä��꤫��
-  �����뤳�Ȥ���������
+「お前が死んだなら，ワシの軍団は%lや部族をすっかりかた
+  ずけることだろう．」
 %E
 %Cp B 00068
 #"Fight, %c, or are you afraid of the mighty %n?"
-���廊%c������Ȥ�����%n�ˤ������Ť���������
+「戦え%c！それとも偉大な%nにおじけづいたか？」
 %E
 %Cp B 00069
 #"You have failed, %c.  Now, my victory is complete."
-�־��餢�ä���%c���亮�ξ����϶�Ť�������
+「勝負あったな%c．ワシの勝利は近づいた．」
 %E
 %Cc B 00070
 #As you pick up %o, you feel the power of it
 #flowing through your hands.  It seems to be in two or more places
 #at once, even though you are holding it.
-%o�򽦤��ȡ��꤫��ѥ������äƤ���Τ򴶤�����
-����򰮤äƤ��Ƥ�����������ˤ�¸�ߤ��Ƥ���褦�ʵ���������
+%oを拾うと，手からパワーが伝わってくるのを感じた．
+それを握っていてさえ，何ヶ所にも存在しているような気がした．
 %E
 %Cp B 00080
 #%nC falls to the ground, and utters a last curse at you.  Then his
 #body fades slowly, seemingly dispersing into the air around you.  You
 #slowly become aware that the overpowering aura of magic in the air has
 #begun to fade.
-%n���Ϥ��������Ǹ�μ����������ȯ����������ΤϤ�ä����
-�ä��Ϥ��ᡤ���ʤ��μ���ζ������Ϥ�����������ʤ��ϼ��ϤˤϤ�ᤰ�餵
-��Ƥ�����ˡ�Υ����餬�ä��Ϥ���Ƥ���Τˤʤ�Ȥʤ������Ĥ�����
+%nは地に伏し，最後の呪いを口から発した．彼の体はゆっくりと
+消えはじめ，あなたの周りの空気に溶けこんだ．あなたは周囲にはりめぐらさ
+れていた魔法のオーラが消えはじめているのになんとなく気がついた．
 %E
 %Cc B 00081
 #When %l sees %o, he smiles, and says:
@@ -714,25 +714,25 @@ guard."
 #    Remember me, %p, and return when you have triumphed.  I
 #    will tell you then of what you must do.  You will understand when the
 #    time comes.
-%l��%o�򸫤��������Фߡ��������ä���:
+%lが%oを見ると彼は微笑み，そして話した:
 
-  �褯��ä�%p�补���������������Ǥ���ߤä��Τ��������ǡ�
-  %o�˲��򤵤��褦����
+  よくやった%pよ．お前は世界を破滅から救ったのだ．そこで，
+  %oに何をさせようか？
 
-  �����Ϥοʹ֤϶������ϤʤΤǡ�%n����������¾����ˡ�Ȥ�����
-  ��äƤ�餦�ȸ����Τ�˾�ޤʤ��Ǥ�������
+  この地の人間は強く強力なので，%nが死んだ今，他の魔法使いから
+  守ってもらうと言うのは望まないであろう．
 
-  %o����äƤ������褤��%p�补�����������
-  �������äƤ������������������Ϻ�����Ԥ��Ƥ�����äƤ��
-  �ͤФʤ�ʤ����������´����Ƥ�����Ϥ뤫�˰���ʥ������Ȥ˸�
-  �������Ф���Τ��� 
+  %oを持っていくがよい，%pよ．それは冒険で
+  お前を守ってくれるだろうし，お前は最善を尽してそれを守ってやら
+  ねばならない．お前が実感しているよりはるかに偉大なクエストに向
+  けて船出するのだ． 
 
-  ���˺����%p�������ƾ����Τ����Ĥ��ˤ���äƤ��Ƥۤ��������
-  ���򤹤٤����𤲤�Ǥ������������ϻ����褿���Ȥ����򤻤ͤФʤ�̡�
+  私を忘れるな%p，そして勝利のあかつきには戻ってきてほしい．私は
+  何をすべきか告げるであろう．お前は時が来たことを理解せねばならぬ．
 %E
 %Cp B 00090
 #"Tell us, %p, have you fared well on your great quest?"
-��%p�补�����ΰ���ʥ������ȤˤĤ����ä��Ƥ����졥��
+「%pよ．お前の偉大なクエストについて話しておくれ．」
 %E
 %Cc B 00091
 #"This is wondrous, %p.  I feared that you could not possibly
@@ -756,26 +756,26 @@ guard."
 #    stand by %d as champion of all %cP for eternity.
 #
 #"This is all I know, %p.  I hope it will help you."
-�ֿ�����������%p���������������Ȥ����������뤳�ȤϤǤ��ʤ��ΤǤ�
-  �ʤ����ȿ��ۤ��Ƥ��Τ��������ޤ��˥�������������������äƤ���Ǥ�
-  �ʤ�����
+「信じがたい！%p．お前がクエストを成功させることはできないのでは
+  ないかと心配してたのだが，今まさにイェンダーの魔除けを持っているでは
+  ないか！
 
-�ֻ�Ϥ�������äƤ�����ˡ��ʸ�������ɤߤ����äƤ��������ΤȤ�
-  Skelos���ܤ˼��Τ褦�ʰ���򸫤Ĥ����Τ�:
+「私はお前が去ってから魔法の文献を常に読みあさっていた．そのとき
+  Skelosの本に次のような一節を見つけたのだ:
 
-    %d���ͤλҤ�����������󡥤��λ�%d�ΰջפˤ���襤��
-    �����ƶ�������Ѥ˱����Ƥ⶯������ꡥ%d�λ������λϤ���
-    ¤��줷��ʪ����ޤ줿���������������������ᤵ��
+    %d１人の子を世界に送らん．この子%dの意思により戦いに
+    於いて強く，魔術に於いても強く作られり．%dの子世界の始めより
+    造られし生物に盗まれたイェンダーの魔除けを取り戻さん．
 
-�֤�����%p�衤�����������������äƤ��롥�����ܤϤ����Τ��Ȥ��ä�
-  ����ΤǤ�������
+「そして%pよ，今お前が魔除けを持っている．この本はお前のことを語って
+  いるのであろう．
 
-    %d�λ�������������졤%d�ΰ���ʤ�����򸫤Ĥ����
-    �����ι�����󡥺��Ťˤ��������%d�˸��夷�����λ�
-    %d�����ˤƴ��ɤʤ�ʱ��%c�Ȥʤ�ꡥ
+    %dの子魔除けを手に入れ，%dの偉大なる寺院を見つけんと
+    精霊界へ旅だたん．祭壇にて魔除けを%dに献上し，その子
+    %dの前にて完壁なる永遠の%cとなれり．
 
-�֤��줬����ΤäƤ뤳�Ȥ�%p�补���餫�ν����ˤʤ뤳�Ȥ�
-  ���äƤ��뤾����
+「これが私の知ってることだ%pよ．何らかの助けになることを
+  祈っているぞ．」
 %E
 #
 #	Cave(wo)man
@@ -787,45 +787,45 @@ guard."
 #You arrive back at %H, but something seems
 #wrong here.  The usual smoke and glowing light of the fires of the
 #outer caves are absent, and an uneasy quiet fills the damp air.
-���ʤ��ϸ��ʤ줿���ʤ�ߤ�ʤ��顤������ιΩ�ä��Ȥ���%l
-�����ʤ��򸫤Ƥ����Τ�դȻפ���������
+あなたは見なれた階段を降りながら，冒険に旅立ったとき，%l
+があなたを見ていたのをふと思いだした．
 
-���ʤ���%H����äƤ�������������������äƤ���褦�˸����롥���Ĥ�
-�α��ƶ���γ��βФ������ä������Ƥ��ꡤ���Ȥ�����ʤ����ۤ�ɺ�ä�
-������
+あなたは%Hに戻ってきた，しかし何かが違っているように見える．いつも
+の煙や洞窟の外の火の灯が消えうせており，何とも言えない沈黙が漂って
+いた．
 %E
 %Cp C 00002
 #Once again, you arrive back at %H.
-�⤦���١����ʤ���%H����äƤ�����
+もう一度，あなたは%Hに戻ってきた．
 %E
 %Cp C 00003
 #For some reason, you think that this may be the last time you will
 #enter %H.
-�ʤ��������ʤ���%H�����ΤϤ��줬�Ǹ�Ǥ���
-�褦�ʵ���������
+なぜか，あなたは%Hに来るのはこれが最後である
+ような気がした．
 %E
 %Cp C 00005
 #"We have not been able to gather as much food since the Giants sealed
 #off our access to the outer world."
-�ֵ�ͤ����ؤν�������������ư�����Ͻ�ʬ�ʿ����򽸤�뤳�Ȥ�
-  �Ǥ��ʤ��Τ�����
+「巨人が外への出入りを封印して以来我らは十分な食料を集めることは
+  できないのだ．」
 %E
 %Cp C 00006
 #"Since %n sent her minions, we have been constantly fighting."
-��%n������β��ͤ����äƤ��ư��衤���Ͼ��
-  ��äƤ���Τ�����
+「%nが彼女の下僕を送ってきて以来，我らは常に
+  戦っているのだ．」
 %E
 %Cp C 00007
 #"I have heard your vision quest was successful.  Is this so?"
-�ֻ�Ϥ��ʤ�����������������������ʹ���Ƥ��뤬���ɤ��ʤ������
+「私はあなたの冒険が成功しそうだと聞いているが，どうなんだ？」
 %E
 %Cp C 00008
 #"So, tell me, %p, how have you fared?"
-��%p�补���ޤ����äƤ��뤫�ɤ��������Ƥ����
+「%pよ．うまくいっているかどうか教えてくれ」
 %E
 %Cp C 00009
 #"%lC grows old.  We know not who will guide us after he ascends."
-��%l��ǯϷ��������˴���塤ï�������äƤ����ȸ����Τ�����
+「%lは年老いた．彼亡き後，誰が我らを守ってくれると言うのだ．」
 %E
 %Cc C 00010
 #"You have returned from your vision quest, %p.  Thank %d.
@@ -834,20 +834,20 @@ guard."
 #
 #"But first, I must see if you are yet capable of the quest I would
 #ask you to undertake."
-������������äƤ�����%p�补%d�˴��դ��褦��
+「冒険から戻ってきたか%pよ．%dに感謝しよう．
 
-�ֲ�%s�补���Ϥ����ν�����ɬ�פȤ��Ƥ��롥
+「我%sよ．我らはお前の助けを必要としている．
 
-�֤�������Ϥ�ˡ�����׵᤹�륯�����Ȥ�������������ε��̤����뤫
-  Ĵ�٤ͤФʤ�̡���
+「しかし手始めに，私の要求するクエストを受けいれるだけの技量があるか
+  調べねばならぬ．」
 %E
 %Cp C 00011
 #"Again, you return to us, %p.  Let me see if you are ready now."
-�֤ޤ���äƤ�����%p�补���������褿���ɤ������Ƥ��������
+「また戻ってきたか%pよ．準備が出来たかどうか見てやろう．」
 %E
 %Cp C 00012
 #"Ah, %p.  Are you finally ready?"
-�֤���%p�������ϤǤ������ʡ�����
+「おお%p．準備はできたかな？．」
 %E
 %Cc C 00013
 #"%p!  You have sealed our fate.  You seem unable to reform yourself,
@@ -857,13 +857,13 @@ guard."
 #the path of the %C over the true path of the %L.
 #
 #"You no longer live in our eyes."
-��%p�������ϲ��α�̿���������Ƥ��ޤä��������ϼ�ʬ���Ȥ�����
-  ���Ȥ��Ǥ��ʤ��ȸ����롥����Ǥ̳�ˤ��ؤ�μԤ򤿤Ƥ뤳�ȤȤ��褦��
+「%p！お前は我らの運命を封印してしまった．お前は自分自身を改める
+  ことができないと見える．この任務には替りの者をたてることとしよう．
 
-��%H�����뤬�褤��������%L�ο��¤�ƻ���ؤ��
-  %C��ƻ�����򤷡�����΢�ڤä���
+「%Hから去るがよい！お前は%Lの真実の道の替りに
+  %Cの道を撰択し，我らを裏切った．
 
-�ֲ椬�ܤ��������٤ȸ�����ʡ���
+「我が目の前に二度と現われるな．」
 %E
 %Cc C 00014
 #"Alas, %p, you are as yet too inexperienced to embark upon such
@@ -874,24 +874,24 @@ guard."
 #
 #"Adventure some more, and you will learn the skills you will require.
 #%d decrees it."
-�֤���%p�补�����ϻ䤬�������뺤��ʥ������Ȥ�ι�˽Ф�ˤ�
-  �����и���­�Τ褦����
+「あぁ%pよ．お前は私がさずける困難なクエストの旅に出るには
+  少し経験不足のようだ．
 
-��%r�Ǥ�%i�򸫤Ĥ��������Ƥ����ǽ���ʤɤʤ���������
-  �ޤ��Ƥ�����%n�����̤ʤɤǤ��̡�
+「%rでは%iを見つけ，生きている可能性などないだろう．
+  ましていわんや%nと対面などできぬ．
 
-��������Ťͤ补������ɬ�Ѥʵ��̤�ؤ�Ǥ��뤬�褤��
-  %d�Ϥ���̿���Ǥ��롥��
+「冒険を重ねよ．そして必用な技量を学んでくるがよい．
+  %dはそう命じでいる．」
 %E
 %Cc C 00015
 #"%p!  You have deviated from my teachings.  You no longer follow
 #the path of the %a as you should.  I banish you from these caves, to
 #go forth and purify yourself.  Then, you might be able to accomplish this
 #quest."
-��%p�衪�椬�����ˤ��त�Ƥ���ʡ������������٤�%a��
-  ƻ���鳰��Ƥ��롥�Ϥ�Ĥ���ʬ���Ȥ�������Ƥ�餦���ᡤ������
-  ����ƶ�������ɤ�ʧ�����������Ƥ��Υ������Ȥ���Ȥ��뤯�餤
-  ���Ϥ�Ĥ��Ƥ���Τ�����
+「%pよ！我が教えにそむいておるな．お前は成すべき%aの
+  道から外れている．力をつけ自分自身を浄化してもらうため，お前を
+  この洞窟から追い払おう．そしてこのクエストをやりとげるくらい
+  の力をつけてくるのだ．」
 %E
 %Cc C 00016
 #"You are indeed ready now, %p.  I shall tell you a tale of
@@ -899,22 +899,22 @@ guard."
 #
 #"Shortly after you left on your vision quest, the caves were invaded by
 #the creatures sent against us by %n.
-�֤դࡥ�������Ǥ����褦����%p�补�ޤ��������Ϥǵ������礤�ʤ�
-  ������ä򤷤褦:
+「ふむ．準備ができたようだな%pよ．まず，この地で起きた大いなる
+  受難の話をしよう:
 
-�֤����������˽Ф������夹���ˡ�����ƶ����%n��
-  �桹�����äƤ�����ʪ�˿�ά����Ƥ��ޤä���
+「お前が冒険に出かけた後すぐに，この洞窟は%nが
+  我々に送ってきた生物に侵略されてしまった．
 
 #"She, herself, could not attack us due to her great size, but her minions
 #have harassed us ever since.  In the first attacks, many died, and the
 #minions of %n managed to steal %o.
 #They took it to %i and there, none of our
 #%g warriors have been able to go.
-������Ϥ��ε��ΤΤ��Ἣʬ���ȤǤϹ���Ǥ��ʤ��Τ���������β���ã��
-  �桹��Ǻ�ߤμ�����ǽ�ι����¿������ˡ�%n
-  �β���ã��%o�����Ǥ��ޤä�������%i��
-  ���������ꡤ���%g����Τ�ï�⤽���عԤ�����
-  ���Ǥ��ʤ���
+「彼女はその巨体のため自分自身では攻撃できないのだが，彼女の下僕達は
+  我々の悩みの種だ．最初の攻撃で多くが死に，%n
+  の下僕達は%oを盗んでしまった．彼らは%iに
+  持ちかえり，我ら%gの戦士は誰もそこへ行くこと
+  ができない．
 
 #"You must find %i, and within it wrest
 #%o from %n.  She guards it as
@@ -922,61 +922,61 @@ guard."
 #we can make our caves safe once more.
 #
 #"Please, %p, recover %o for us, and return it here."
-�֤�����%i�򸫤Ĥ���%n����%o��
-  �⤮��äƤ���Τ�����������ϤǤ�����äƤ��롥��������᤻
-  �в��ϰ��٤���
+「お前は%iを見つけ，%nから%oを
+  もぎ取ってくるのだ．彼女は全力でそれを守っている．それを取り戻せ
+  ば我らは安泰だ．
 
-��%p�补�ɤ������Τ����%o�����ᤷ����������äƤ���
-  �ۤ�������
+「%pよ．どうか我らのために%oを取り戻し，ここへ戻ってきて
+  ほしい．」
 %E
 %Cp C 00020
 #"%nC is immune to her own breath weapons.
 #You should use magic upon her that she does not use herself."
-��%n��������ȤΥ֥쥹������Ф��Ƥ����������롥
-  ����������λȤ�ʤ���ˡ���Ѥ���٤�������
+「%nは彼女自身のブレス攻撃に対しては耐性がある．
+  お前は彼女の使わない魔法を用いるべきだ．」
 %E
 %Cp C 00021
 #"When you encounter %n, call upon %d for assistance."
-��%n�˲�ä��ʤ顤%d�ν�����Ƥ֤Τ�����
+「%nに会ったなら，%dの助けを呼ぶのだ．」
 %E
 %Cp C 00022
 #"There will be nowhere to hide inside %n's inner sanctum."
-��%n��������Ǥϱ����Ȥ����ʤɤʤ�������
+「%nの聖域内では隠れるところなどないぞ．」
 %E
 %Cp C 00023
 #"Your best chance with %n will be to keep moving."
-��%n���Ф��ƤϾ��ư��������󥹤򤦤���������
+「%nに対しては常に動き，チャンスをうかがえ．」
 %E
 %Cp C 00024
 #"Do not be distracted by the great treasures in %ns lair.
 #Concentrate on %o."
-��%n�ν��ߤ������ˤ��ܤ⤯���ʡ�%o��
-  ���椹��Τ�����
+「%nの住みかの宝には目もくれるな．%oに
+  集中するのだ．」
 %E
 %Cp C 00025
 #"%oC is the only object that %n truly fears."
-��%o��%n���ڤ��ͣ���ʪ�Τ�����
+「%oは%nが畏れる唯一の物体だ．」
 %E
 %Cp C 00026
 #"Do not be fooled by %ns size.  She is fast, and it is
 #rumored that she uses magic."
-��%n���礭�����¤蘆���ʡ���������᤯���ޤ���ˡ��
-  �Ȥ��ȱ�����Ƥ��롥��
+「%nの大きさに迷わされるな．彼女は素早く，また魔法を
+  使うと噂されている．」
 %E
 %Cp C 00027
 #"I would send a party of %gP with you, but we will need all
 #of our strength to defend ourselves."
-��%g�ΰ�������ꤿ���Τ������������ԤϤ����μ��Τ����ɬ��
-  �ʤΤ�����
+「%gの一隊を送りたいのだが，我らの精鋭はここの守りのために必要
+  なのだ．」
 %E
 %Cp C 00028
 #"Remember, be %a at all times.  This is your strength."
-�֤��ĤǤ�%a��������˺���ʡ����줬�����ζ����ʤΤ�����
+「いつでも%aの精神を忘れるな．それがお前の強さなのだ．」
 %E
 %Cp C 00029
 #"If only we had an amulet of reflection, this would not have happened."
-��ȿ�ͤ�������������äƤ���С����Τ褦�ʤ��Ȥ�
-  �����餫�ä��Ǥ���������
+「反射の魔除けさえ持っていれば，このようなことは
+  起こらかったであろう．」
 %E
 %Cc C 00030
 #You %x many large claw marks on the ground.  The tunnels ahead
@@ -985,15 +985,15 @@ guard."
 #
 #Your nose detects the smell of carrion from within, and bones litter
 #the sides of the tunnels.
-���ʤ��ϡ����̤˵�������פ�����Τ�%x�������ʤ��������ˤ���ȥ�ͥ��
-�����ˤ��ʤ����������ȤΤ����Τ�����ǡ�ʣ���Ǥ��롥
+あなたは，地面に巨大な爪跡があるのを%xた．あなたの前方にあるトンネルは
+今迄にあなたが見たことのあるものより巨大で，複雑である．
 
-�����ν�������������ɺ�äƤ���Τ򴶤��������ȥ�ͥ��ξ¦�˻��𤷤�
-���롥
+死肉の臭いがそこから漂ってくるのを感じ，骨がトンネルの両側に散乱して
+いる．
 %E
 %Cp C 00031
 #Once again, you approach %i.
-�⤦���١����ʤ���%i�˶�Ť�����
+もう一度，あなたは%iに近づいた．
 %E
 %Cc C 00040
 #You find yourself in a large cavern, with neatly polished walls, that
@@ -1003,84 +1003,84 @@ guard."
 #The air is close with the stench of sulphurous fumes.
 #
 #%nC is clearly visible, but she seems to be asleep.
-���ʤ����ɤ���ǫ���ᤫ�줿�礭��ƶ���ˤ���Τ˵����Ĥ�����������������
-�Ǥ⡤�ФǾǤ����줿�פ����������ˤ��롥
+あなたは壁が丁寧に磨かれた大きな洞窟にいるのに気がついた．しかし，それ
+でも，火で焦がされた跡があちこちにある．
 
-�������˻��𤷤Ƥ��ꡤ������ʤ�Τ�̵¤��ˤ���ФäƤ��롥
-������ή����ڤäƤ��ꡤβ���ν�����ɡ�ˤĤ���
+骨が床に散乱しており，いろんなものが無造作にちらばっている．
+空気の流れは滞っており，硫黄の臭いが鼻につく．
 
-%n�ϤϤä���ȸ����Ƥ��롥����������Ͽ��Ƥ���褦����
+%nははっきりと見えている．しかし彼女は寝ているようだ．
 %E
 %Cp C 00041
 #Once again, you find yourself in the lair of %n.
-�⤦���١����ʤ���%n�ν��ߤ��ˤ�����
+もう一度，あなたは%nの住みかにいた．
 %E
 %Cc C 00050
 #"So, human, you seek to invade the lair of %n.
 #Only my meals are allowed down here.  Prepare to be eaten!"
-�ֿʹ֤补%n�ν��ߤ��˿������Ʋ������ܤ��Ǥ�����
-  �����ؤϻ�ο����ʳ������äƤ���ʤ��ΤǤ������٤�������򤷤ʤ�������
+「人間よ．%nの住みかに侵入して何かをお捜しですか？
+  ここへは私の食料以外は入ってこれないのです．食べられる準備をしなさい！」
 %E
 %Cp C 00051
 #"So, again you face me, %c.  No human has ever before escaped me.
 #Now I shall kill you."
-�֤ޤ����񤤤��ޤ����͡�%c���ʹ֤��Ȥ����䤫��ƨ������Ȼפäơ�
-  ���٤��������Ƥ��������ޤ��礦����
+「またお会いしましたね，%c．人間ごときが私から逃げられると思って？
+  今度こそ殺してさしあげましょう．」
 %E
 %Cp C 00052
 #"You are getting annoying, %c.  Prepare to die."
-�֤��ʤ��Ϥ��餤�餵�����ޤ���%c����̽����򤷤ʤ�������
+「あなたはいらいらさせられます，%c．死ぬ準備をしなさい．」
 %E
 %Cp C 00053
 #"I'll have %o from you, %c.  You shall die."
-�ֻ䤳��%o����Ĥ٤�����%c����͡���
+「私こそ%oを持つべきだ，%c．死ね．」
 %E
 %Cp C 00060
 #"You are weak, %c.  No challenge for the Mother of all Dragons."
-�ּ�äƤ����褦�͡�%c�����ƤΥɥ饴������ĩ�魯��ʤ�
-  ̵�Ť��ä��褦�Ǥ��͡���
+「弱ってきたようね，%c．全てのドラゴンの母へ挑戦するなど
+  無謀だったようですね．」
 %E
 %Cp C 00061
 #"I grow hungry, human.  You look like a nice appetizer!"
-�֤��礦��ʢ�����äƤ����Ȥ����衤�ʹ֤补���ʤ��򸫤Ƥ�ȿ��ߤ�ͯ��
-  �Ƥ��ޤ�����
+「ちょうど腹が減ってきたところよ，人間よ．あなたを見てると食欲が湧い
+  てきます．」
 %E
 %Cp C 00062
 #"Join me for lunch?  You're the main course, %c."
-���뿩�򤤤ä���ˤɤ��Ǥ�����������󤢤ʤ����ᥤ��ǥ��å���Ǥ�
-  ���ɡ�%c��
+「昼食をいっしょにどうですか？もちろんあなたがメインディッシュです
+  けど，%c」
 %E
 %Cp C 00063
 #"With %o, I am invincible!  You cannot succeed."
-��%o�ˤ����̵Ũ�Ǥ������ʤ�����Ū��ã������ʤ�
-  �Բ�ǽ�Ǥ��补��
+「%oにより私は無敵です．あなたが目的を達成するなど
+  不可能ですよ．」
 %E
 %Cp C 00064
 #"Your mentor, %l has failed.  You are nothing to fear."
-�֤��ʤ��λ�Ƴ�ԤǤ���%l�ϼ��Ԥ����ΤǤ��补���ʤ��ⲿ�ⶲ���
-  ���Ȥʤɤʤ��Ǥ��礦����
+「あなたの指導者である%lは失敗したのですよ．あなたも何も恐れる
+  ことなどないでしょう．」
 %E
 %Cp C 00065
 #"You shall die here, %c.  %rA cannot hope to defeat me."
-�֤��ʤ��Ϥ����ǻ�̤ΤǤ���%c��%r���Ȥ��Ǥϻ��
-  �ݤ��ʤ�̴ʪ��Ǥ��͡���
+「あなたはここで死ぬのです，%c．%rごときでは私を
+  倒すなど夢物語ですね．」
 %E
 %Cp C 00066
 #"You, a mere %r challenge the might of %n?  Hah!"
-��%n���Ϥ�ĩ�魯��Ȥϴ���%r�Ǥ��͡��ա����
+「%nの力に挑戦するとは希な%rですね．ふーん」
 %E
 %Cp C 00067
 #"I am the Mother of all Dragons!  You cannot hope to defeat me."
-�ֻ�����ɥ饴�����Ǥ����ݤ��ʤɸ����ϼ������ͤ��ϴ��Ƥʤ�������
+「私は全ドラゴンの母です！倒すなど言う馬鹿げた考えは棄てなさい．」
 %E
 %Cp C 00068
 #"My claws are sharp now.  I shall rip you to shreds!"
-�ֺ����λ���ޤϱԤ��Ǥ��补���������ˤ��Ƥ����ޤ��礦����
+「今日の私の爪は鋭いですよ．ずたずたにしてあげましょう！」
 %E
 %Cp C 00069
 #"%d has deserted you, %c.  This is my domain."
-��%d�Ϥ��ʤ��򸫼ΤƤ��褦�Ǥ��͡�%c�������ϻ��
-  �ΰ�ʤΤǤ��补��
+「%dはあなたを見捨てたようですね，%c．ここは私の
+  領域なのですよ．」
 %E
 %Cc C 00070
 #As you pick up %o it seems heavy at first, but as you
@@ -1088,17 +1088,17 @@ guard."
 #
 #You suddenly feel full of power, as if nothing could possibly stand
 #in your path.
-���ʤ��ϡ�%o�򽦤ä����ǽ�ϽŤ����������������Ĥ��Ϥ��Ӥ�
-������Ƥ�����
+あなたは，%oを拾った．最初は重く感じたがそれを持つと力が腕に
+注がれてきた．
 
-���ʤ��ϡ��Ϥ��������줿�褦�˴�����ï��Ԥ�����ˤळ�ȤʤɤǤ��ʤ���
-���ʵ���������
+あなたは，力が満たされたように感じ，誰も行く手を阻むことなどできないよ
+うな気がした．
 %E
 %Cp C 00080
 #%nC sinks to the ground, her heads flailing about.
 #As she dies, a cloud of noxious fumes billows about her.
-%n�����̤����졤�����Ƭ��������Ȥ��ʤ��줿��
-�������̤ȡ�ͭ�ǥ������Τ��餿�����᤿��
+%nは地面に崩れ，彼女の頭がガクンとうなだれた．
+彼女が死ぬと，有毒ガスが体からたちこめた．
 %E
 %Cc C 00081
 #%lC glimpses %o in your possession.
@@ -1111,22 +1111,22 @@ guard."
 #    To prevent further trouble, I would like you, %p,
 #    to take %o away with you.  It will help you as you
 #    quest for the Amulet of Yendor.
-%l�Ϥ��ʤ������äƤ���%o�����äȸ���ȡ����Ф�
-�ʤ����ä�������:
+%lはあなたが持っている%oをちらっと見ると，微笑み
+ながら話しかけた:
 
-    �����ʤ��Ȥ����������Ͻ����ä��������������%o��
-    ������������Ȥ���ԤΡ����ĤǤ�%c���Ϥζ���
-    �ˤ��뤳�Ȥ򶲤�Ƥ��롥
+    見事なしとげたか！我らは助かった．しかし，私は%oが
+    それを手に入れんとする者の，いつでも%cの力の脅威
+    にあることを恐れている．
 
-    ���Τ褦��������򤱤뤿�ᡤ��ϼ��Τ褦�ˤ��ƤϤɤ����Ȼפä�
-    ���롥%p�衤������%o����äƤ����Τ���
-    ����Ϥ����Υ������������������ܤ������ν����ˤʤ��������
+    そのような問題を避けるため，私は次のようにしてはどうかと思って
+    いる．%pよ，お前が%oを持っていくのだ．
+    それはお前のイェンダーの魔除けを捜す冒険の助けになるだろう．
 %E
 %Cp C 00090
 #"%p!  Welcome back.
 #How goes your quest to recover the Amulet for %d?"
-��%p����äƤ�������
-  %d������������᤹�����Ϥɤ��Ĵ�Ҥ�������
+「%p！戻ってきたか．
+  %dの魔除けを取り戻す冒険はどんな調子だい？」
 %E
 %Cc C 00091
 #"You have been successful, I see, %p.
@@ -1138,16 +1138,16 @@ guard."
 #casts its influence throughout our world.
 #
 #"Sacrifice the Amulet on the altar.  Thus shall %d become supreme!"
-�����������Τ�%p�补
+「成功したのか%pよ．
 
-�֤��ޤ䡤�����������������Ϥ����μ�ˤ��롤���򤹤٤���������
-  ���󤼤褦:
+「いまや，イェンダーの魔除けはお前の手にある，何をすべきか教えて
+  しんぜよう:
 
-���礤�ʤ����ι��³����Τ��������������������ؤĤ�ƹԤä�
-  �����������������ˤ�������˱ƶ���Ϳ���Ƥ���
-  %d������������롥
+「大いなる空へ旅を続けるのだ．魔除けがお前を精霊界へつれて行って
+  くれるだろう．そこには世界中に影響を与えている
+  %dの大寺院がある．
 
-��������򸥾夻�补%d���ޤ��Ƥ�������������
+「魔除けを献上せよ．%dが迎えてくれるだろう！」
 %E
 #
 #	Elf
@@ -1158,93 +1158,93 @@ guard."
 #
 #Something is wrong, though.  Surrounding the circle are orcs!
 #And they've noticed you!
-���ʤ��ϸ��ʤ줿���ˤ��ɤ�Ĥ���������%d�ο��Ҥ��Ϥ�
-�������ʥ��ȡ��󥵡������%x����
+あなたは見なれた場所にたどりつき，遠方に%dの崇拝の地で
+ある偉大なストーンサークルを%xた．
 
-���������������㤦���ʤ�ȥ�������β��ˤ���Τϥ���������
-���Ϥ��ʤ��˵����Ĥ�����
+しかし，何かが違う．なんとサークルの回りにいるのはオークだ！
+彼らはあなたに気がついた！
 %E
 %Cp E 00002
 #Once again, you stand before %H.
-�Ƥӡ����ʤ���%H������Ω�ä���
+再び，あなたは%Hの前に立った．
 %E
 %Cp E 00003
 #You have the oddest feeling that this may be the last time you
 #are to enter %H.
-���ʤ��ϡ�%H������ΤϤ��줬�Ǹ夫�⤷��ʤ��Ȥ�����̯�ʴ�����������
+あなたは，%Hに入るのはこれが最後かもしれないという奇妙な感じがした．
 %E
 %Cp E 00005
 #"%p!  I have not seen you in many cycles.  How do you fare?"
-��%p�衪 �����֤�Ĺ�����Ȳ��ʤ��ä����������ˤ�äƤ��뤫�͡���
+「%pよ！ ずいぶん長いこと会わなかったが，元気にやっているかね？」
 %E
 %Cp E 00006
 #"%nC continues to threaten the circle.  But we hold fast."
-��%n�ϥ�������򶼤���³���Ƥ��뤬���桹�����ä���٤��Ƥ��롥��
+「%nはサークルを脅かし続けているが，我々がしっかり支えている．」
 %E
 %Cp E 00007
 #"%lC is growing weak.  The magic required to defend the circle drains us."
-��%l�Ϥ�������äƤ�����
-����������뤿���ɬ�פ����Ϥ��桹����פ�����Τ�����
+「%lはだんだん弱ってきた．
+サークルを守るために必要な魔力が我々を消耗させるのだ．」
 %E
 %Cp E 00008
 #"Remember %i is hard to enter.  Seek the secret
 #passageways."
-��%i����������Τ��񤷤�������̩����ϩ��õ���������
+「%iに潜入するのは難しいぞ．秘密の通路を探すんだ．」
 %E
 %Cp E 00009
 #"We must regain %o.  Without it we will be overrun."
-�ֲ桹��%o�����ᤵ�ʤ���Фʤ�ʤ�������ʤ���
-  ����Ƥ��ޤ�����������
+「我々は%oを取り戻さなければならない．さもなくば
+  やられてしまうだろう．」
 %E
 %Cc E 00010
 #"%p!  You have returned!  Thank %d.
 #
 #"We have great need of you.  But first, I must see if you have the
 #required abilities to take on this responsibility."
-��%p�衪 �褯��ä���Ƥ��줿�� %d�贶�դ��ޤ���
+「%pよ！ よく戻って来てくれた！ %dよ感謝します．
 
-�桹�Ϥ�����ɬ�פ�����������������ܤ�̤���ǽ�Ϥ��������äƤ��뤫
-�ǽ�˳Τ��ᤵ���Ƥ��졥��
+我々はお前が必要だが，この大事な役目を果たす能力をお前が持っているか
+最初に確かめさせてくれ．」
 %E
 %Cp E 00011
 #"Once again, %p, you stand in our midst.  Are you ready now?"
-�֤���%p�补�ƤӤ����ϲ桹���濴��Ω�äƤ��롥�����ϤǤ��Ƥ��뤫����
+「おお%pよ．再びお前は我々の中心に立っている．準備はできているか？」
 %E
 %Cp E 00012
 #"Ah, you are here again, %p.  Allow me to determine your readiness..."
-�֤������ޤ��褿��%p�补�����ν������Ǥ��Ƥ��뤫Ĵ�٤����Ƥ���ġ�
+「おお，また来たな%pよ．お前の準備ができているか調べさせてくれ…」
 %E
 %Cc E 00013
 #"%p!  You have doomed us all.  You fairly radiate %L influences
 #and weaken the power we have raised in this circle as a result!
 #
 #"Begone!  We renounce your %shood with us!  You are an outcast now!"
-��%p�衪 �����ϲ桹���٤Ƥ����Ǥ����뵤�ʤΤ���
-������%L�αƶ��Ϥ�ޤ����餷�Ƥ��뤻���ǡ�
-���������٤��Ƥ���桹���Ϥ���ޤäƤ���ǤϤʤ�����
+「%pよ！ お前は我々すべてを破滅させる気なのか！
+お前が%Lの影響力をまき散らしているせいで，
+サークルを支えている我々の力が弱まっているではないか！
 
-��Ω����졪 �桹�Ϥ�����%sʬ�α���ڤ롥����������������
+「立ち去れ！ 我々はお前と%s分の縁を切る．お前は追放だ！」
 %E
 %Cc E 00014
 #"%p, you are yet too inexperienced to withstand the demands of that
 #which we need you to do.  %RA might just be able to do this thing.
 #
 #"Return to us when you have learned more, my %S."
-��%p�补�����Ϥޤ��и���­����
-����Ǥϲ桹���׵᤹�뤳�Ȥˤ��Ѥ����ʤ���������
-%R�ʤ�ɤ��ˤ��Ѥ����뤫�⤷���
+「%pよ．お前はまだ経験不足だ．
+これでは我々が要求することには耐えられないだろう．
+%Rならどうにか耐えられるかもしれん．
 
-�֤�äȷи����Ѥ�Ǥ���桹�θ�����äƤ��뤬�ɤ����郎%S�补��
+「もっと経験を積んでから我々の元に戻ってくるが良い．わが%Sよ．」
 %E
 %Cc E 00015
 #"You have strayed, %p!  You know that %d requires that
 #we maintain a pure devotion to things %a!
 #
 #"You must go from us.  Return when you have purified yourself."
-��������ƻ���餽��Ƥ���褦���ʡ�%p�补�������ΤäƤ���褦�ˡ�
-%d�ϲ桹��%a���Ф�����ʿ�������Ĥ��Ȥ���Ƥ��롥
+「正しい道からそれているようだな，%pよ．お前も知っているように，
+%dは我々に%aに対する純粋な信心を持つことを求めている．
 
-�桹��������Ω����졥�������Ҥ������Ƥ�����äƤ���Τ�����
+我々の前から立ち去れ．そして穢れを清めてから戻ってくるのだ．」
 %E
 %Cc E 00016
 #"You are indeed ready, %p.  I shall tell you what has transpired,
@@ -1270,74 +1270,74 @@ guard."
 #
 #"Recover %o for us, %p!  Only then will
 #the circle of %d be safe."
-��%p�衤�������ɤ��褦���ʡ��ޤ��ϲ��������ä��Τ��������ơ�
-�ʤ��桹������ʤˤ⤪���ν�����ɬ�פȤ��Ƥ���Τ���ʹ�����ߤ�����
+「%pよ，準備は良いようだな．まずは何が起こったのか，そして，
+なぜ我々がこんなにもお前の助けを必要としているのかを聞いて欲しい．
 
-�֤Ĥ��Ƕ�Τ��Ȥ�������������̮�Υ��륯���ϥ����������󤻤Ƥ��ơ�
-���������Υ��֥��ɤ������ˤ���������������%n��
-��������Ѵ�ǡ��ۤϥ��륯���ϥ����緯��˻Ť��Ƥ��롥
+「つい最近のことだ，あの東方山脈のウルク・ハイ共が押し寄せてきて，
+この地方のゴブリンどもを奴隷にした．この地方の%nは
+ただの傀儡で，奴はウルク・ハイの大君主に仕えている．
 
-�֤��δ����ҤΤ���˲桹�������˽��ޤäƤ���֤ˡ��������ܷ⤷���褦�ˡ�
-�桹�ϥ������ȥ��֥��η���˰Ϥޤ�Ƥ��ޤä��������ƺǽ���Թ���λ��ˡ�
-%n�Υ��롼�פ���������򤦤ޤ����ˤ���%o�������Τ���
+「この間礼拝のために我々がここに集まっている間に，お前が目撃したように，
+我々はオークとゴブリンの群れに囲まれてしまった．そして最初の猛攻撃の時に，
+%nのグループがサークルをうまく突破して%oを盗んだのだ．
 
-�֤�����衤�桹�Ϥ��ä���Ϥ���Ƥ��롥
-�桹����ɤ줯�餤��ˡ�ΥХꥢ��ݻ��Ǥ��뤫�狼���
+「それ以来，我々はずっと包囲されている．
+我々が後どれくらい魔法のバリアを維持できるかわからん．
 
-�ֲ桹�������ΤӤ뤿��ˤϡ�%p�衤������%i����������
-����Фʤ�ʤ��������ˤϲ��ء����ʤ��%n���ϲ���عߤ��
-ƻ������Ϥ������ۤϤ��Ĥ�%o���ߤ����äƤ������顤
-���륯���ϥ����緯����Ϥ��ޤǤδ֤ϡ�ɬ���ȤˤĤ��Ƥ����������
+「我々が生きのびるためには，%pよ，お前は%iに潜入しな
+ければならない．そこには下へ，すなわち%nの地下城へ降りる
+道があるはずだ．奴はいつも%oを欲しがっていたから，
+ウルク・ハイの大君主に渡すまでの間は，必ず身につけているだろう．
 
-�ֲ桹�Τ����%o�����֤��Ƥ��졤%p�衪
-����֤��Ƥ����С�%d�Υ�������ϰ��٤�����
+「我々のために%oを取り返してくれ，%pよ！
+取り返してくれれば，%dのサークルは安泰だ．」
 %E
 %Cp E 00020
 #"It is rumored that the Uruk-hai have a pact with the Hill Ogres."
-�ֱ��ˤ�����Υ��륯���ϥ����ҥ롦�������Ⱦ��������餷������
+「噂によると例のウルク・ハイがヒル・オーガと条約を結んだらしい．」
 %E
 %Cp E 00021
 #"%nC is strong, but not very smart."
-��%n�϶������ȤƤ⸭���Ȥ����櫓�ǤϤʤ�����
+「%nは強いがとても賢いというわけではない．」
 %E
 %Cp E 00022
 #"Use %o, when you find it.  It will help you survive
 #to reach us."
-��%o���դ�����ޤ��ȤäƤߤ�����
-�桹�θ������Ԥ���Τ����Ω�Ĥ���������
+「%oを見付けたらまず使ってみるんだ．
+我々の元に生還するのに役に立つだろう．」
 %E
 %Cp E 00023
 #"Remember, let %d be your guide."
-��˺���ʡ�%d�����ΰ���ͤˤ���Τ�����
+「忘れるな，%dをお前の案内人にするのだ．」
 %E
 %Cp E 00024
 #"Call upon %d when you face %n.
 #The very act of doing so will infuriate him, and give you advantage."
-��%n��Ω���������Ȥ��ˤ�%d�˵�������
-���ι�ư���ۤ���ܤ����ơ�������ͭ���ˤ������������
+「%nに立ち向かうときには%dに祈るんだ．
+その行動が奴を激怒させて，お前を有利にするだろう．」
 %E
 %Cp E 00025
 #"Though %n is as %C as we, he and his kind have always
 #hated us."
-��%n�ϲ桹��Ʊ�ͤ�%C�������ۤ��ۤμ�²�ϲ桹������Ǥ��롥��
+「%nは我々と同様に%Cだが，奴と奴の種族は我々を憎んでいる．」
 %E
 %Cp E 00026
 #"We cannot hold the circle much longer, %p.  Hurry!"
-�ֲ桹�Ϥ���ʾ奵�������٤��Ƥ��������ˤʤ���%p�衤�ޤ��Ǥ��졪��
+「我々はこれ以上サークルを支えていけそうにない．%pよ，急いでくれ！」
 %E
 %Cp E 00027
 #"To infiltrate %i, you must be very stealthy."
-��%i����������ˤϡ����ܤ����ǽ�Ϥ�ɬ�פ�����
+「%iに潜入するには，人目を盗む能力が必要だ．」
 %E
 %Cp E 00028
 #"Remember that %n is a braggart.  Trust not what he says."
-��%n���ۤ�᤭�Ǥ��뤳�Ȥ�Ф��Ƥ��������
-  �ۤθ������Ȥ��Ѥ���ʤ补��
+「%nがほら吹きであることを覚えておくんだ．
+  奴の言うことを信用するなよ．」
 %E
 %Cp E 00029
 #"You can triumph, %p, if you trust in %d."
-��%p�衤�⤷������%d�򿮤���Τʤ顤���������뤳�Ȥ�
-  �Ǥ������������
+「%pよ，もしお前が%dを信じるのなら，勝利を得ることが
+  できるだろう．」
 %E
 %Cc E 00030
 #You descend into the outer regions of %i.  You can hear
@@ -1345,15 +1345,15 @@ guard."
 #
 #You remember that %ga once told you that there were many secret
 #passageways in this complex.
-���ʤ���%i�γ������˹ߤ�Ω�ä�����ϩ�����­��Ҥ����ä��⤯������
-�󤯤���Ϥ������ˤܤ��ܤ���������ʹ�����롥
+あなたは%iの外縁部に降り立った．通路からは足をひきずって歩く音が，
+遠くからはかすかにぼそぼそ言う声が聞こえる．
 
-���ʤ���%g�ΰ�ͤ����������Ȥ����ϩ��¿���α�����ϩ�������
-���äƤ����Τ�Ф��Ƥ��롥
+あなたは%gの一人がこの入り組んだ迷路に多くの隠し通路があると
+言っていたのを覚えている．
 %E
 %Cp E 00031
 #Once again, you descend into %i.
-�ƤӤ��ʤ���%i�˹ߤ�Ω�ä���
+再びあなたは%iに降り立った．
 %E
 %Cc E 00040
 #You descend into a weird place, in which roughly cut cave-like walls
@@ -1361,85 +1361,85 @@ guard."
 #finishing off the construction of a subterranean complex.
 #
 #Off in the distance, you hear the sounds of a large, raucous gathering.
-���ʤ��ϵ�̣�ΰ������˹ߤ�Ω�ä���
-�Ӥ����Ǥ���ƶ���Τ褦���ɤ����������줿�ʤ�餫���ɤȤĤʤ��äƤ��롥
-�ޤ��ï�����ϲ��µܤη��ۤ�ž夲�Ƥ������Τ褦�Ǥ��롥
+あなたは気味の悪い場所に降り立った．
+荒く切断した洞窟のような壁が，完成されたなめらかな壁とつながっている．
+まるで誰かが地下迷宮の建築を仕上げている最中のようである．
 
-��Υ�줿��ǡ����������ޤäƤ��虜�������Ǥ��벻��ʹ�����롥
+遠く離れた所で，大勢が集まってざわざわ騒いでいる音が聞こえる．
 %E
 %Cp E 00041
 #Once again, you enter the distorted castle of %n.
-�ƤӤ��ʤ���%n�Τͤ��ʤ��ä���˿���������
+再びあなたは%nのねじ曲がった城に侵入した．
 %E
 %Cc E 00050
 #"So, %c.  %lC has sent you to recover %o.
 #
 #"Well, I shall keep that bauble.  It pleases me.  You, %c, shall die."
-�֤ۤ�%c����%l��%o�����ᤵ���뤿���
-  ������������������ʡ�
+「ほう%cか．%lが%oを取り戻させるために
+  お前を送り込んだんだな．
 
-�����路�Ϥ����Ĥ���������Ϥʤ�����%c�衤�����ϻ�̤Τ�����
+だがわしはこいつを手放す気はないぞ．%cよ，お前は死ぬのだ．」
 %E
 %Cp E 00051
 #"Back again, eh?  Well, a mere %r is no threat to me!  Die, %c!"
-�֤ۤ����ޤ��褿����������������%r�Ǥ϶��ҤˤϤʤ�ʤ�����
-  ��͡�%c����
+「ほう，また来たか．だが，たかが%rでは脅威にはならないぞ．
+  死ね，%c！」
 %E
 %Cp E 00052
 #"You haven't learned your lesson, %c.  You can't kill me!  You shall die now."
-�ַи���­����%c�补�����ǤϤ��Τ路���ݤ��� 
-  �����Ϻ������ǻ�̤Τ�����
+「経験不足だな%cよ．お前ではこのわしは倒せん！ 
+  お前は今ここで死ぬのだ．」
 %E
 %Cp E 00053
 #"I shall have %o from you, %r.  Then I shall
 #kill you."
-��%r�衤������%o���Ϥ��Ĥ��Ϥʤ��������ϻ�������
+「%rよ，お前に%oを渡すつもりはない．お前は殺す．」
 %E
 %Cp E 00060
 #"Your %d is nothing, %c.  You are mine now!"
-��%c��������%d�����Ω����补
-  �����Ϻ�����路�Τ�Τ�����
+「%c，お前の%dは役に立たんよ．
+  お前は今からわしのものだ！」
 %E
 %Cp E 00061
 #"Run away little %c!  You can never hope to defeat %n!"
-�֤ۤ�ƨ���뤬���������äݤ���%c�衪 %n���ݤ����ʤɤ�
-  �פ�ʤ����Ȥ��ʡ���
+「ほら逃げるがいい，ちっぽけな%cよ！ %nを倒そうなどと
+  思わないことだな．」
 %E
 %Cp E 00062
 #"My Uruk-hai servants will rip you to shreds!"
-�ֲ椬����٤Υ��륯���ϥ��ɤ⤬�����򤺤������˰�����������������
+「我がしもべのウルク・ハイどもがお前をずたずたに引き裂くだろう！」
 %E
 %Cp E 00063
 #"I shall display your head as a trophy.  What do you think about that wall?"
-�֤路�Ϥ�����Ƭ��ȥ��ե����Ȥ��ƾ���Ĥ����������ɤǤɤ����ʡ���
+「わしはお前の頭をトロフィーとして飾るつもりだ．あの壁でどうかな？」
 %E
 %Cp E 00064
 #"I shall break your %ls circle, and destroy all the %gP!"
-��%l�Υ�������������������%g�����������Ƥ�롪��
+「%lのサークルを壊し，そして%gを全員殺してやる！」
 %E
 %Cp E 00065
 #"%d has abandoned you, %c.  You are doomed."
-��%c�衤%d�Ϥ����򸫼ΤƤ�����������
-  �ह�٤����ʤΤ�����
+「%cよ，%dはお前を見捨てたぞ．お前は
+  死すべき定めなのだ．」
 %E
 %Cp E 00066
 #"%rA?  %lC sends a mere %r against me?  Hah!"
-��%r�� �路���ݤ��Τ�%r���Ȥ����������Ȥ�
-  %l�ᡥ�򤫤ʤ�Ĥ衪��
+「%r？ わしを倒すのに%rごときを送り込むとは
+  %lめ．愚かなやつよ！」
 %E
 %Cp E 00067
 #"%lC has failed, %c.  %oC will never leave here."
-��%l�ϼ��Ԥ����ʡ�%c�补
-  %o�򤳤���������Ф����Ȥ��Բ�ǽ������
+「%lは失敗したな，%cよ．
+  %oをここから持ち出すことは不可能だ．」
 %E
 %Cp E 00068
 #"You really think you can defeat me, eh %c?  You are wrong!"
-��%c�衤�����������ˤ��Τ路���ݤ���ȻפäƤ���Τ���
-  �礭�ʴְ㤤��������
+「%cよ，お前は本当にこのわしを倒せると思っているのか？
+  大きな間違いだぞ！」
 %E
 %Cp E 00069
 #"You weaken, %c.  I shall kill you now."
-�ּ�äƤ���ʡ�%c�补�����������Ƥ�롥��
+「弱っているな，%cよ．今すぐ殺してやる．」
 %E
 %Cc E 00070
 #As you pick up %o, it seems to glow, and a warmth
@@ -1448,23 +1448,23 @@ guard."
 #
 #You must now return it to %l without delay -- their lives depend
 #on your speed.
-���ʤ���%o�򽦤��ȡ�����ϸ��ä��褦�˸����ơ������Ƥ��ʤ���
-�Ȥ������������������ʤ��Ϥ����Ϥ�Ũ���臘%sã��Ĺ���ּ�ä�
-������ΤǤ��뤳�Ȥ��ä���
+あなたが%oを拾うと，それは光ったように見えて，そしてあなたを
+暖かさで満たした．あなたはこの力が敵と戦う%s達を長い間守って
+きたものであることを悟った．
 
-���ʤ��ϰ����᤯�����%l�θ����Ϥ��ʤ���Фʤ�ʤ�---
-����̿�Ϥ��ʤ��Υ��ԡ��ɤˤ����äƤ��롥
+あなたは一刻も早くこれを%lの元に届けなければならない---
+彼らの命はあなたのスピードにかかっている．
 %E
 %Cc E 00080
 #%nC collapses to the ground, cursing you and %l, then says:
 #
 #    You have defeated me, %r!  But I curse you one final time, with my
 #    dying breath!  You shall die before you leave my castle!
-%n�Ϥ��ʤ���%l������ʤ������̤��ݤ졤�����Ƹ��ä���
+%nはあなたと%lを呪いながら地面に倒れ，そして言った：
 
-    �����ξ�������%r�衪 ���������路�Ϻ��ݤκݤ�
-    ��������äƤ�롤�路�κǴ���©�Ǥʡ� �����ϼ�ʬ�ξ�������
-    �˻�̤Τ���
+    お前の勝ちだ，%rよ！ しかし，わしは今際の際に
+    お前を呪ってやる，わしの最期の息でな！ お前は自分の城に戻る前
+    に死ぬのだ！
 %E
 %Cc E 00081
 #"%p!  You have succeeded!  I feared it was not possible!
@@ -1477,20 +1477,20 @@ guard."
 #
 #"Take %o with you.  It will aid in your quest for
 #the Amulet."
-��%p�衪 �褯��ä��� ���̵���ǤϤʤ����ȶ���Ƥ����Τ���
+「%pよ！ よくやった！ 私は無理ではないかと恐れていたのだ！
 
-�֤����Υ����餬%o��Ȥ��դ��Ƥ��뤳�Ȥ�ʪ��äƤ��뤾��
+「お前のオーラが%oを身に付けていることを物語っているぞ！
 
-�ֻ�Ϻ������Υ��륯���ϥ����̤�%n�����֤��Ȥ򶲤�Ƥ��롥
-����Ϥ��Ĥ��ʤ��������������������������ˤ�����%d�Τ����
-���������������������᤹���Ȥ��Ǥ���С��桹�ϱʱ�˰��٤���
+「私は今，かのウルク・ハイが別の%nを選ぶことを恐れている．
+それはいつかなされるだろう，しかし，その前にお前が%dのために
+イェンダーの魔除けを取り戻すことができれば，我々は永遠に安泰だ．
 
-��%o����äƹԤ����������������õ�������ν����Ȥʤ����������
+「%oを持って行くがいい．魔除けを探す冒険の助けとなるだろう．」
 %E
 %Cp E 00090
 #"Welcome, %p.  How have you fared on your quest for the Amulet
 #of Yendor?"
-���ɤ��褿��%p�补������������������õ���Ͻ�Ĵ���ʡ���
+「良く来た，%pよ．イェンダーの魔除けの探索は順調かな？」
 %E
 %Cc E 00091
 #"Utuelyes!  You have recovered the Amulet of Yendor!
@@ -1503,221 +1503,221 @@ guard."
 #When you reach the temple, sacrifice the Amulet to %d.
 #
 #"Thus will you fulfill your destiny."
-�֤����� ���������������������ᤷ���Τ���
-���줫�鲿�򤹤�٤��������뤫�顤���դ���ʹ���Τ���
+「おお！ イェンダーの魔除けを取り戻したのか！
+これから何をするべきか教えるから，注意して聞くのだ：
 
-����������Ϥ������Ϥ�������Ƥ��롥����Ϥ����������ž�������Τ���
-����ˤ�%d�κǽ�Υ������뤬¸�ߤ��롥
+この魔除けはある魔力を内に秘めている．それはお前を精霊界に転送するものだ．
+精霊界には%dの最初のサークルが存在する．
 
-�������Ϥ�Ư������ˤϡ��������Ф���������Ф�ʤ���Фʤ�ʤ���
-�����ˤ��ɤ��夤���顤�������%d��������Τ���
+この魔力を働かせるには，お前は登れるだけ上に登らなければならない．
+寺院にたどり着いたら，魔除けを%dに捧げるのだ．
 
-��������Ф����Ͻ�̿��̤������Ȥ��Ǥ������������
+そうすればお前は宿命を果たすことができるだろう．」
 %E
 #
 #	Fighter
 #
 %Cc F 00001
-���ʤ����������Ф��Τ������Ω�äƤ���Τ˵����Ĥ������ְ㤤�ʤ�����
-��%H�Ǥ��롥�������������㤦���ޤ�ǲ����㤷����Ʈ��
-���ä����Τ褦�˻�Ȳ�Ȥ��Ƥ��롥�ޤ���ѵ�����
+あなたは突然見覚えのある場所に立っているのに気がついた．間違いないここ
+は%Hである．しかし何かが違う．まるで何か激しい戦闘が
+あったかのように殺伐としている．まるで廃虚だ．
 
-%l�θ��صޤ��ͤФ���ǽŪ�ˤ��ʤ��ϴ�������
+%lの元へ急がねばと本能的にあなたは感じた．
 %E
 %Cp F 00002
-�⤦���١����ʤ���%H����ä���
+もう一度，あなたは%Hに戻った．
 %E
 %Cp F 00003
-���ʤ���%H����ä���
-���ʤ��ϡ��⤦���֤��ʤ�����ǽ�ǻ�����
+あなたは%Hに戻った．
+あなたは，もう時間がないと本能で察した
 %E
 %Cp F 00005
-�ֵ���Ĥ��ơ�%n���Ϥϰ����Ȥ���٤�Τˤʤ�ʤ����
+「気をつけて！%nの力は以前とは比べものにならないわ．」
 %E
 %Cp F 00006
-��%n��%o�ο����Ϥ�����������ϰǤ��Ĥ�����롥
-  �ޤ��ǡ���
+「%nが%oの真の力を得れば世界は闇に閉ざされる．
+  急いで！」
 %E
 %Cp F 00007
-�ֻ䤿����%H��������������դʤΡ��⤦���ʤ�����뤷��
-  �ʤ����
+「私たちは%Hを守るだけで精一杯なの．もうあなたに頼るしか
+  ないわ．」
 %E
 %Cp F 00008
-��%o�ʤ��Ǥ�%l�Ϥ����Ϥ�Ⱦʬ��ȯ���Ǥ��ʤ���
-  ���Τɤ�����С�������
+「%oなしでは%lはその力の半分も発揮できない．
+  一体どうすれば．．．」
 %E
 %Cp F 00009
-�֤��Τ褦�ʻ��ˤ��οͤ������Ƥ����С�������
+「このような時にあの人さえいてくれれば．．．」
 %E
 %Cc F 00010
-����äƤ��Ƥ��줿�Τ͡�%p�����ʤ�������������������
-  ���äȵ��äƤ���ȻפäƤ��
-�֤������̤�%H�ϻ���������֤ʤΡ����ꤤ������䤿��
-  �Ȥ��ä������äƤ��礦��������
+「戻ってきてくれたのね，%p．あなたは正義感が強いから
+  きっと帰ってくると思ってたわ．
+「ご覧の通り%Hは散々たる状態なの．お願いだから私たち
+  といっしょに戦ってちょうだい？」
 %E
 %Cp F 00011
-�֤ޤ���Ƥ��줿�Τ͡�%p��
-  ���ä������äƤ����Ρ���
+「また来てくれたのね，%p．
+  いっしょに戦ってくれるの？」
 %E
 %Cp F 00012
-�֤⤦���֤��ʤ��
-  ���ä������äƤ����Ρ���
+「もう時間がないわ．
+  いっしょに戦ってくれるの？」
 %E
 %Cc F 00013
-�֤⤦�����ޤ����%p���������ϻ��������Ƥ��ǤˤΤޤ��
-  ���⤫�⤪���ޤ���������
+「もうおしまいだわ，%p．この世は時期，全てが闇にのまれるわ．
+  何もかもおしまい．．．．
 
-  �������⥨�ʥ�����ۤ����졤�ǤοФȾä��Ƥ��ޤ�������
-  ��̿�ʤΤ͡�������
+  あたしもエナジーを吸い取られ，闇の塵と消えてしまうわ．これも
+  宿命なのね．．．」
 %E
 %Cc F 00014
-�֤Ǥ��%p�����ʤ��Ϥޤ�����ä�̤�Ϥ��
-  %r�Ǥϻ�˵ޤ��褦�ʤ�Τ补�������Ϥ狼�뤱��
-  %R���餤����ʤ��ȡ�������
+「でもね%p．あなたはまだちょっと未熟だわ．
+  %rでは死に急ぐようなものよ．気持ちはわかるけど
+  %Rくらいじゃないと．．．」
 %E
 %Cc F 00015
-��%p���ɤ����ƤʤΡ�
+「%p．どうしてなの？
 
-��%a��ƻ����Ϥ��줿���Ȥ򤷤Ƥ��äơ������ˤϤʤ�ʤ�����ꤤ��
-  �ܤ򤵤ޤ��ơ���
+「%aの道からはずれたことをしてたって，幸せにはなれないわ．お願い！
+  目をさまして！」
 %E
 %Cc F 00016
-�ֺ����������Ǥδ������Τ��Ƥ����%p��
+「今世界は絶滅の危機に瀕しているの%p．
 
-�����褷��%n��%o�����%i��
-  ƨ�����������%o�Υ��ʥ������Ѥ��ơ��������������
-  ������⤦�Ȥ��Ƥ��롥
+「復活した%nが%oを盗み%iに
+  逃げ込んだわ．彼は%oのエナジーを用いて，全世界に妖魔を
+  送り込もうとしている．
 
-�֤������Ϻ���ʬ�˻Ĥ��줿�Ϥ����Ƥ���֤������Ϥ��Ѥ����������Ǥ��Ĥ������
-  �Τ��ɤ��Ǥ��뤱�ɡ�%o���ʤ����֤Ǥɤ��ޤǴ�ĥ��뤫������
-  �ʤ��Ρ�
+「あたしは今自分に残された力と全ての仲間たちの力を用いて世界が闇に閉ざされる
+  のを防いでいるけど，%oがない状態でどこまで頑張れるか自信が
+  ないの．
 
-��%i��³���Ǥβ�ϭ�������򺣲򤭤ޤ���
-  ���ꤤ%i�˹Ԥä�%n���ݤ��ơ������Ϥ��ʤ��ˤ����ä�
-  ����Τ衪���ꤤ����
+「%iへ続く闇の回廊の封印を今解きます．
+  お願い%iに行って%nを倒して！世界はあなたにかかって
+  いるのよ！お願い！」
 %E
 %Cp F 00020
-��%n�϶��������Ĥ��Ƥ͡���
+「%nは強いわ！気をつけてね！」
 %E
 %Cp F 00021
-��%i�˹Ԥ��ޤǤ����Ѥ衪��
+「%iに行くまでが大変よ！」
 %E
 %Cp F 00022
-�֤����ϻ䤿����Ǥ���ơ���
+「ここは私たちに任せて！」
 %E
 %Cp F 00023
-�֤��ä�%d����äƤ���������ơ���
+「きっと%dが守ってくれるわ！信じて！」
 %E
 %Cp F 00024
-��%n�ϰ��β���ͤ��Ƥ���Τ����顩��
+「%nは一体何を考えているのかしら？」
 %E
 %Cp F 00025
-��%o�϶��Ϥʥѥ����äƤ���Ρ�����ʤΤ�
-  %n�μ�ˤ錄�ä��顥������
+「%oは強力なパワーを持っているの．あんなのが
+  %nの手にわたったら．．．」
 %E
 %Cp F 00026
-��%H����Τ�������ã��Ǥ̳����
+「%Hを守るのがあたし達の任務．」
 %E
 %Cp F 00027
-�֤�����͡��㤤�Ƥ����礸��ʤ��Τ�͡���
+「そうよね？泣いている場合じゃないのよね！」
 %E
 %Cp F 00028
-�֤��������οͤ������Ƥ����С�������
+「あぁ，あの人さえいてくれれば．．．」
 %E
 %Cp F 00029
-�������Ƥ����äƤ��Ƥ͡�%p����
+「生きてかえってきてね．%p．」
 %E
 %Cp F 00030
-���ʤ��ϲ�ϭ��ȴ��%i�ޤǤ�äƤ������ܤ����˸��Ф��Τ���
-���ʤ������롪�����Ϥ��ʤ����칻�������������ɤ��ˤ����̤Τ��뵤�ۤϤʤ���
+あなたは回廊を抜け%iまでやってきた．目の前に見覚えのある
+風景が広がる！ここはあなたの母校だ！しかし，どこにも生徒のいる気配はない！
 
-�Ե�̣�ʤ��᤭�����ΰ�ۤΤۤ�����ʹ�����������ʤ��ϳи�����
-�ع�������˸��ä���
+不気味なうめき声が体育館のほうから聞こえた．あなたは覚悟を決めて
+学校の正門に向った．
 %E
 %Cp F 00031
-�⤦���١����ʤ���%i�ޤǤ�äƤ�����
+もう一度，あなたは%iまでやってきた．
 %E
 %Cp F 00040
-���ʤ���%o��¸�ߤ򴶤�����
+あなたは%oの存在を感じた．
 %E
 %Cp F 00041
-%o��¸�ߤ��������̤��ƤĤ���äƤ�����
+%oの存在が空気を通してつたわってきた．
 %E
 %Cc F 00050
-���褿�ʡ�%c�衤��ϰ����λ�Ȥϰ㤦����
-  %o�����ƥ��ʥ������ߤʤ��äƤ��뤫��ʡ�
+「来たな！%cよ，私は以前の私とは違うぞ．
+  %oを得てエナジーがみなぎっているからな．
 
-�֤��������Ϥ��褤��%c�ؤκ��ߤ򤳤ξ�ǤϤ餷�Ƥ�롥��
+「さあ，全力で来い！%cへの恨みをこの場ではらしてやる．」
 %E
 %Cc F 00051
-����Ĩ���ʤ��ޤ���äƤ�����%c�补
+「性懲りもなくまたやってきたか%cよ．
 
-��%o�Ϥ�Ϥ�椬����ˤ��롥
+「%oはもはや我が手中にある．
 
-�֤���ɤ��������κ��򤢤��������äƤ��������
+「こんどこそお前の魂をあの世に送ってやろう．」
 %E
 %Cp F 00052
-�֤��֤Ȥ���Ĥᡪ���٤��������������äƤ�롪��
+「しぶといやつめ！今度こそあの世に送ってやる！」
 %E
 %Cp F 00053
-�֤�����ȴ���ä���%o���֤�����
+「くそ！抜かった！%oを返せ！」
 %E
 %Cp F 00060
-�֤�������%c����
+「さあこい%c！」
 %E
 %Cp F 00061
-��%o���ϤȤ��ȸ����Ƥ��������
+「%oの力とくと見せてやろう！」
 %E
 %Cp F 00062
-��%c������ˤ��ꤺ����
+「%cおそるにたりず！」
 %E
 %Cp F 00063
-�֤��Ƥ�������
+「やめておけ！」
 %E
 %Cp F 00064
-�֤��ޤ��Υ��ʥ�����ۤ���äƤ�롪��
+「おまえのエナジーも吸い取ってやる！」
 %E
 %Cp F 00065
-�֤��ޤ����ϤϤ���ʤ�Τ�����
+「おまえの力はそんなものか？」
 %E
 %Cp F 00066
-�֤ϤϤϤϡ�������Ϥǲ����ݤ����Ȥϡ���
+「はははは！そんな力で俺を倒そうとは！」
 %E
 %Cp F 00067
-��%l�Ǥʤ���в����ݤ��󡪡�
+「%lでなければ俺は倒せん！」
 %E
 %Cp F 00068
-�֤���ʤ�Ĥ������ʤ��Ȥ�%c���������Τ�����
+「こんなやつしかいないとは%cも落ちたものだ！」
 %E
 %Cp F 00069
-�ֻ�͡�%c�补��
+「死ね！%cよ．」
 %E
 %Cc F 00070
-%o���Ϥ��Τ������줿���ʤ�������餷���ѥ�ʤΤ���
-���ʤ���%l�θ���ƻ��ޤ�����
+%oの力が体に注がれた！なんと素晴らしいパワーなのだ！
+あなたは%lの元へ道を急いだ！
 %E
 %Cp F 00080
-�֤��λ䤬����������
+「この私が．．．．」
 
-������ζ��ӤȤȤ��%n���Τ������������
+断末魔の叫びとともに%nの体は崩れ落ちた．
 %E
 %Cc F 00081
-%l�����Ф߷ڤ�%o�˿��줿��
+%lは微笑み軽く%oに触れた．
 
-�ִ�ĥ�ä����%p�������%n�δ����Ϥʤ��ʤä��
+「頑張ったわね%p．これで%nの危機はなくなったわ．
 
-�֤Ǥ�%o�Ϥ�������ꤢ�ʤ��ˤդ��路���Ȼפ��Ρ�
-  ��������äƤ��äơ��������ʤ�����ס����äƿ�������֤�������
-  ����Ρ�
+「でも%oはあたしよりあなたにふさわしいと思うの．
+  だから持っていって．あたしなら大丈夫．だって心強い仲間がいるんで
+  すもの」
 %E
 %Cp F 00090
-�֤��פ��֤�%p�����������������Ѥ�餺�补��
+「お久しぶり%p．あたしたちは相変わらずよ．」
 %E
 %Cc F 00091
-�֤���ǤȤ�%p���ޤ���������ޤǼ�������ʤ�ơ�
+「おめでとう%p！まさか魔除けまで手に入れるなんて」
 
-�����������ä�����ؤ����Ȥ����������%d�κ��Ť�
-  ��������Ρ����礷�Ƥ��뤫��͡���
+「魔除けを持って精霊界へいくといいわ．そして%dの祭壇に
+  ささげるの．応援しているからね．」
 %E
 #
 #	Healer
@@ -1733,55 +1733,55 @@ guard."
 #You know that you must quickly make your way to the collegium, and
 #%ls iatreion, and find out what has happened in your
 #absence.
-�ɤ����ˡ�����ʤ���%H��Ϣ���ᤷ���Τ����������������Ѥ�
-�Ť��������������ǳ��Ȥ��뤿��˻Ȥä��������ϤΤɤ������Զ�礬������
-����ȹ𤲤Ƥ��롥
+どんな魔法があなたを%Hに連れ戻したのだ？真新しい火葬用の
+薪の匂いが，ここで開業するために使った治癒の力のどこかに不具合が生じて
+いると告げている．
 
-���ѿ�ʪ��ظ��������вʰ�λѤ�ʤ������Ť���Ƥ����͡��Ϥ��ä���
-�ɤ��˹ԤäƤ��ޤä��Τ���
+薬用植物園へ向かう神経科医の姿もない．治療に来ていた人々はいったい
+どこに行ってしまったのだ？
 
-���ʤ������ʤ��֤˲��������ä��Τ����Τ뤿��ˡ������˰Ѱ����
-%l�ΰ��Ž�˽и���ɬ�פ������������
+あなたがいない間に何が起こったのかを知るために，すぐに委員会と
+%lの医療所に出向く必要があるだろう．
 %E
 %Cp H 00002
 #After your last experience you expected to be here, but you certainly
 #did not expect to see things so much worse.  This time you must
 #succeed.
-ͽ�ۤ��줿�Ǹ�ηи��򽪤�����Ǥ⡤����������ۤɤޤ�
-���֤��󤯤ʤäƤ��褦�ȤϻפäƤ⤤�ʤ��ä������ʤ���ɬ��
-�������ʤ���Фʤ�ʤ��Τ���
+予想された最後の経験を終えた後でも，しかしこれほどまで
+事態が酷くなっていようとは思ってもいなかった．あなたは必ず
+成功しなければならないのだ．
 %E
 %Cp H 00003
 #Again, you %x %H in the distance.
 #
 #The smell of death and disease permeates the air.  You do not have
 #to be %Ra to know that %n is on the verge of victory.
-�դ����ӡ����ʤ��ϱ󤯤�%H��%x����
+ふたたび，あなたは遠くに%Hを%xた．
 
-����¤��������������Ω������Ƥ��롥%Ra�ʤ餺�Ȥ⡤
-%n���ޤ��˾���������Ȥ��Ƥ��뤳�Ȥ�ʬ�����������
+死と病の匂いが空気中に立ちこめている．%Raならずとも，
+%nがまさに勝利を収めんとしていることが分かるだろう．
 %E
 %Cp H 00005
 #"Did you read that new treatise on the therapeutic use of leeches?"
-�֥ҥ�μ��ų�Ū����ˡ�˴ؤ��뿷������ʸ���ɤ��������
+「ヒルの治療学的使用法に関する新しい論文は読んだか？」
 %E
 %Cp H 00006
 #"Paint a red caduceus on your shield and monsters won't hit you."
-���֤��ؾ���������С���ʪ�Ϲ��⤷�Ƥ��ʤ��ʤ����������
+「赤い蛇杖を盾に描けば，怪物は攻撃してこなくなるだろう．」
 %E
 %Cp H 00007
 #"I passed handwriting so they are demoting me a rank."
-��ɮ����˹�ʤ����Τǡ����ϻ��߳ʤ��롥��
+「筆記試験に合格したので，彼らは私を降格する．」
 %E
 %Cp H 00008
 #"I've heard that even %l has not been able to cure Chiron."
-��%l�Ǥ��顤������������Ť��뤳�ȤϽ���̤�ʹ����������
+「%lですら，ケイローンを治療することは出来ぬと聞いたぞ．」
 %E
 %Cp H 00009
 #"We think %n has used his alchemists, and %o,
 #to unleash a new disease we call 'the cold' on Gehennom."
-�ֲ���%n��ϣ��Ѥ�%o��Ȥäơ����إʤ�
-  �����١٤ȸƤФ�뿷�����¤�����ä��ȹͤ��Ƥ��롥��
+「我らは%nが錬金術と%oを使って，ゲヘナで
+  『風邪』と呼ばれる新たな病を解き放ったと考えている．」
 %E
 %Cc H 00010
 #"Feebly, %l raises his head to look at you.
@@ -1793,41 +1793,41 @@ guard."
 #
 #"Come closer and let me lay hands on you, and determine if you have
 #the skills necessary to accomplish this mission."
-���Ϥʤ���%l�Ϥ��ʤ��˴���������
+「力なく，%lはあなたに顔を向けた．
 
-�ֺƤӲ񤨤��ɤ��ä���%p�补���ۤ������ܤ��ʡ������Ƥ��뤳
-  �ȤϤʤ����ޤ��ϥǥ������äˤϤʤ�󡥲���%n���ɤ��Τ�
-  �������Ϥ�Ȥ��Ԥ����Ƥ��ޤä������λŻ���³����ˤϤ����μ㤤�Ϥ�
-  ɬ�פʤΤ���
+「再び会えて良かった，%pよ．心配そうな目だな，だが案ずるこ
+  とはない．まだハデスの世話にはならん．我らは%nを防ぐのに
+  癒しの力を使い尽くしてしまった．この仕事を続けるにはお前の若い力が
+  必要なのだ．
 
-�ֶ᤯�˴�äƼ���뤬�����������ˤ���Ǥ̳�������뤲�뵻�̤����뤫
-  �������褦����
+「近くに寄って手を取るがいい．お前にこの任務を成し遂げる技量があるか
+  見きわめよう．」
 %E
 %Cp H 00011
 #"Again you return to me, %p.  I sense that each trip back
 #the pleurisy and maladies of our land begin to infect you.  Let us
 #hope and pray to %d that you become ready for your task before
 #you fall victim to the bad humors."
-�֤ޤ����äƤ����ʡ�%p�补���줾���ι��Ͼ���������碌�ǡ�
-  ���ι���µ������ʤ��˱ƶ��򤪤�ܤ��Ϥ�Ƥ���Τ��������롥
-  %d�˵���������ơ����ʤ������������ε����ˤʤ����˻Ż���
-  �������Ǥ���褦���Ԥ��Ƥ��뤾����
+「また帰ってきたな，%pよ．それぞれの旅は肋膜炎と背中合わせで，
+  我らの国の病気がそなたに影響をおよぼし始めているのが感じられる．
+  %dに祈りを捧げて，そなたが悪しき気の犠牲になる前に仕事の
+  準備ができるよう期待しているぞ．」
 %E
 %Cp H 00012
 #"Chiron has fallen, Hermes has fallen, what else must I tell you to
 #impress upon you the importance of your mission!  I hope that you
 #have come prepared this time."
-�֥��������󤬻�ˡ��إ�᥹����ˡ�¾�˲����äƤ�����Ǥ̳��
-  ��������ǧ��������Ф褤�Τ����⤦�и�Ϸ�᤿�Τ������ʡ���
+「ケイローンが死に，ヘルメスが死に，他に何をもってお前に任務の
+  重要性を認識させればよいのだ！もう覚悟は決めたのだろうな．」
 %E
 %Cc H 00013
 #"You have failed us, %p.  You are a quack!  A charlatan!
 #
 #"Hades will be happy to hear that you are once again practicing your
 #arts on the unsuspecting."
-�֤����ˤϼ�˾������%p�补�����Ϥˤ���Ԥ������������Ϻ��
+「お前には失望した，%pよ．お前はにせ医者だ！いんちき野郎！
 
-�֤������ޤ���Ԥ�Ϥ᤿��ʹ�����顤�ϥǥ��Ϥ�����֤������补��
+「お前がまた医者を始めたと聞いたら，ハデスはさぞ喜ぶだろうよ．」
 %E
 %Cc H 00014
 #"Alas, %p, you are yet too inexperienced to deal with the rigors
@@ -1836,11 +1836,11 @@ guard."
 #conscience.
 #
 #"Return when you wear %Ra's caduceus."
-�֤�����%p�衤�����Ϥޤ������ͤ��񤷤��Ż��򤳤ʤ���
-  �Ϥ��ޤ�ˤ�̤�Ϥ����¿����Ƥ���õ��������Ф����ˤϡ���ʪ�ء��ð�ء�
-  ϣ��Ѥ��μ������ѤǤ��ʤ���Фʤ�̡�
+「ああ！%pよ，お前はまだこの様な難しい仕事をこなすに
+  はあまりにも未熟だ．安心してこの探索に送り出す前には，植物学，獣医学，
+  錬金術の知識を利用できなければならぬ．
 
-��%Ra�μؾ��ȤˤĤ�������ä����Τ�����
+「%Raの蛇杖を身につけたら戻って来るのだ．」
 %E
 %Cc H 00015
 #"You have learned much of the remedies that benefit, but you must also
@@ -1848,11 +1848,11 @@ guard."
 #part of your training.
 #
 #"Return to us when you have healed thyself."
-�֤��ʤ��Ͽ�¿����ͭ�פʼ���ˡ��ؤ���������ɤ������ɤ��¤�
-  ��������ؤФͤФʤ�̡�%d�ζ��������ʤ��η����ΰ�����
-  �ʤäƤ���ΤϤ��Τ������
+「そなたは数多くの有益な治療法を学んだ．だがどの薬がどの病に
+  効くかも学ばねばならぬ．%dの教えがそなたの訓練の一部と
+  なっているのはそのためだ．
 
-���򼫿Ȥ�����������ä��褤����
+「汝自身を癒したら戻って来い．」
 %E
 %Cc H 00016
 #For the first time, you sense a smile on %ls face.
@@ -1872,84 +1872,84 @@ guard."
 #
 #    You must travel into the swamps to %i, and from there
 #    follow the trail to the %ns island lair.  Be careful.
-�ǽ�ˡ�%l�δ�˾Фߤ��⤫��Ǥ���Τ򴶤�����
+最初に，%lの顔に笑みが浮かんでいるのを感じた．
 
-    ���ʤ��ϳΤ��˲桹�����λŻ��ν����ˤȶ�������¤�Τ��Ȥ�
-    �ؤ�����䤬�ΤäƤ��뤭�������ä������ʤ���������
-    �ܤ����Ȥ���Ԥ��褦��
+    そなたは確かに我々がこの仕事の準備にと教えうる限りのことを
+    学んだ．私が知っているきざしを話し，そなたが癒しを
+    施すことを期待しよう．
 
-    �������ˡ�����٤�%n�Ͽ������٤����
-    %o���Ѥ����Ϸ�����������Ȥ��Ǥ���ȹͤ�����
-    �ʱ�μ㤵������������Ĥη򹯤ϡ����Ϥη򹯤�å�����Ȥ�
-    ��äƤʤ���Ƥ��롥
+    少し前に，恐るべき%nは神々に騙されて
+    %oを用いれば老いを癒すことができると考えた．
+    永遠の若さだ！しかしやつの健康は，周囲の健康を奪うことに
+    よってなされている．
 
-    ��ĤϷ򹯤ʿ͡���������Ȥ��Ԥ��������䤽�αƶ��Ϥ�
-    ���������ˤޤǹ����褦�Ȥ��Ƥ��롥���ʤ���%o��
-    ��Ĥ������ᤷ����ʸ���Ǥ��ˤ�ͤФʤ�ʤ���
+    やつは健康な人々の備えを使い尽くし，今やその影響力を
+    我らの世界にまで広げようとしている．そなたは%oを
+    やつから取り戻し，呪文を打ち破らねばならない．
 
-    ���Ϥ��̤ä�%i���뤭����������%n��
-    ����ȤȤʤäƤ�����ؤμ꤬������ɤ��Τ������դ��补
+    沼地を通って%iへ赴き，そこから%nの
+    隠れ家となっている島への手がかりを追うのだ．注意せよ．
 %E
 %Cp H 00020
 #"Remember, %p, to always wash your hands before operating."
-��˺���ʡ�%p�补��Ѥ����ˤ�ɬ����������Τ�����
+「忘れるな，%pよ．手術の前には必ず手を洗うのだ．」
 %E
 %Cp H 00021
 #"%nC has no real magic of his own.  To this he is vulnerable."
-��%n�ϼ������ˡ������̡���������Ĥμ�̣������
+「%nは自らの魔法を持たぬ．そこがやつの弱味だ．」
 %E
 %Cp H 00022
 #"If you have been true to %d, you can draw on the power of
 #%o."
-��%d���Ф������¤Ǥ��ä��Τʤ顤
-  %o���Ϥ����ѤǤ��롥��
+「%dに対して誠実であったのなら，
+  %oの力が利用できる．」
 %E
 %Cp H 00023
 #"Bring with you antidotes for poisons."
-�ֲ��Ǻޤ���ä���ʤ�������
+「解毒剤を持って来なさい．」
 %E
 %Cp H 00024
 #"Remember this, %n cannot use %o
 #to harm you, it has only healing powers."
-�ֳФ��Ƥ�����%n��%o�Ǥ�������Ĥ��뤳�ȤϽ���̡�
-  �������Ϥ������äƤ��ʤ����������
+「覚えておけ，%nは%oでお前を傷つけることは出来ぬ．
+  癒しの力しか持っていないからだ．」
 %E
 %Cp H 00025
 #"I have sent for Chiron, but I am afraid he will come too late."
-�֥���������ˤϻȤ���Ф������������ब��뺢�ˤϤ⤦
-  �٤����뤫�⤷��̡���
+「ケイローンには使いを出した．しかし彼が来る頃にはもう
+  遅すぎるかもしれぬ．」
 %E
 %Cp H 00026
 #"Maybe when you return the snakes will once again begin to shed."
-�֤��ʤ�����ä��褿�����ؤϺƤ�æ�餹�뤫�⤷��̡���
+「そなたが戻って来た時，蛇は再び脱皮するかもしれぬ．」
 %E
 %Cp H 00027
 #"The plague grows worse as we speak.  Hurry, %p!"
-���ä��Ƥ���֤ˤ���¤ϰ��ذ����ʤäƤ��Ƥ��롥�ޤ���%p�衪��
+「話している間にも疫病は一層悪くなってきている．急げ，%pよ！」
 %E
 %Cp H 00028
 #"Many times %n has caused trouble in these lands.  It is
 #time that he was eradicated like the diseases he has caused."
-��%n�ϲ��٤⤳���Ϥ˲Ҥ����������������Ĥ��⤿�餷���µ���
-  �褦�ˡ����٤Ϥ�Ĥ��Ǥܤ�����֤�����
+「%nは何度もこの地に禍を引き起こした．やつがもたらした病気の
+  ように，今度はやつが滅ぼされる番だ．」
 %E
 %Cp H 00029
 #"With but one eye, %n should be easy to blind.  Remember this."
-�����ܤ����ʤ����椨�ˡ�%n�����ܤˤʤ�䤹�����Ф��Ƥ�������
+「片目しかないがゆえに，%nは盲目になりやすい．覚えておけ．」
 %E
 %Cc H 00030
 #You stand before the entrance to %i.  Strange
 #scratching noises come from within the building.
 #
 #The swampy ground around you seems to stink with disease.
-���ʤ���%i������������Ω�ä�����̯��
-���ä���������ʪ���椫��ʹ�����Ƥ��롥
+あなたは%iの入口の前に立った．奇妙な
+引っかく音が建物の中から聞こえてくる．
 
-�ޤ��ξ��Ϥ��¤���äƤ���褦�˸����롥
+まわりの沼地は病で腐っているように見える．
 %E
 %Cp H 00031
 #Once again you stand at the entrance to %i.
-�⤦���٤��ʤ���%i��������Ω�ä���
+もう一度あなたは%iの入口に立った．
 %E
 %Cc H 00040
 #You stand within sight of the infamous Isle of %n.  Even
@@ -1958,94 +1958,94 @@ guard."
 #Steeling yourself against the wails of the ill that pierce your ears,
 #you hurry on your task.  Maybe with %o you can
 #heal them on your return, but not now.
-���ʤ��ϴ��ޤ路��%n���礬���������Ω�ä���
-%l�θ��դǤ��餳�Τ��Ȥ�и礵�����ΤǤϤʤ��ä���
+あなたは忌まわしき%nの島が見える場所に立った．
+%lの言葉ですらこのことを覚悟させるものではなかった．
 
-����Ӥ��ԵȤ����β��˿���Ǥ����ơ����ʤ��ϻŻ���ޤ�����
-%o���äƤ���С����ä������������Ȥ�����뤫�⤷��̡�
-��������Ϻ��ǤϤʤ���
+耳を貫く不吉な風の音に心を固くして，あなたは仕事を急いだ．
+%oをもってすれば，帰って彼らを癒すことが出来るかもしれぬ．
+だがそれは今ではない．
 %E
 %Cp H 00041
 #Once again, you %x the Isle of %n in the distance.
-�⤦���١����ʤ��ϸ�������%n�����%x����
+もう一度，あなたは向こうに%nの島を%xた．
 %E
 %Cc H 00050
 #"They have made a mistake in sending you, %p.
 #
 #"When I add your youth to mine, it will just make it easier for me
 #to defeat %l."
-�֤�Ĥ餬���������������Τϴְ㤤���ä��褦���ʡ�%p�补
+「やつらがお前を送り込んだのは間違いだったようだな，%pよ．
 
-�֤����μ㤵���������С�%l���Ǥܤ��ΤϹ��ˤ��䤹���ʤ����������
+「お前の若さを手に入れれば，%lを滅ぼすのは更にたやすくなるだろう．」
 %E
 %Cp H 00051
 #"Unlike your patients, you seem to keep coming back, %p!"
-�֤����δ��ԤȤϰ�äơ���ä��褿�褦���ʡ�%p�衪��
+「お前の患者とは違って，戻って来たようだな，%pよ！」
 %E
 %Cp H 00052
 #"Which would you like, %p?  Boils, pleurisy, convulsions?"
-�֤ɤ줬���ߤ���%p�����ʪ��ʢ��ꡤ����Ȥ���ڻ������
+「どれが好みだ，%p？腫れ物，腹膜炎，それとも痙攣か？」
 %E
 %Cp H 00053
 #"I'll have %o back from you, %r.  You are
 #not going to live to escape this place."
-�֤��ä�%o�����᤹��%r�补���ξ�꤫��ƨ���Ф���
-  ������Ӥ뤳�Ȥʤɽ���̤�����
+「きっと%oを取り戻す，%rよ．この場所から逃げ出して
+  生き延びることなど出来ぬぞ．」
 %E
 %Cp H 00060
 #"They might as well give scalpels to wizards as to let you try to
 #use %o!"
-�֤�����%o��Ȥ碌��Ȥϡ���ˡ�Ȥ��˥᥹��
-  Ϳ����褦�ʤ�Τ�����
+「お前に%oを使わせるとは，魔法使いにメスを
+  与えるようなものだ！」
 %E
 %Cp H 00061
 #"If I could strike %l, surrounded by his %gP, imagine what I
 #can do to you here by yourself."
-��%gP�˰Ϥޤ줿%l���ݤ����Ȥ��Ǥ���ȤϤɤ��������Ȥ���
-  �������Ƥߤ��ޤ�����
+「%gPに囲まれた%lを倒すことができるとはどういうことか，
+  想像してみたまえ．」
 %E
 %Cp H 00062
 #"I will put my %Rp to work making a physic out of your ashes."
-�֤����γ����Ϥ��̤Ȥ�����%Rp�˼��Ť򤵤��Ƥ���롥��
+「お前の骸の届かぬところで%Rpに治療をさせてくれる．」
 %E
 %Cp H 00063
 #"As we speak, Hades gathers your patients to join you."
-�ֲ�餬�ä��Ƥ���֤ˤ⡤�ϥǥ��Ϥ����δ��Ԥ򽸤��
-  ������ƻϢ��ˤ��Ƥ���뤾����
+「我らが話している間にも，ハデスはお前の患者を集めて
+  お前の道連れにしてくれるぞ．」
 %E
 %Cp H 00064
 #"After I'm done with you, I'll destroy %l as well."
-�֤������Ѥ���顤%l��Ʊ���褦���Ǥܤ��Ƥ������
+「お前が済んだら，%lも同じように滅ぼしてくれるわ．」
 %E
 %Cp H 00065
 #"You will have to kill me if you ever hope to leave this place."
-�֤����Ϥ��ꤿ���Τʤ顤��򻦤��ͤФʤ�̡���
+「この地を去りたいのなら，私を殺さねばならぬ．」
 %E
 %Cp H 00066
 #"I will impale your head on my caduceus for all to see."
-�ֳ��˸�����褦�ˡ�������Ƭ���μؾ���ͤ��ɤ��Ƥ��������
+「皆に見えるように，お前の頭を私の蛇杖に突き刺してやろう．」
 %E
 %Cp H 00067
 #"There is no materia medica in your sack which will cure you of me!"
-���ޤ���ˡ�������ľ���Ƥ����褦�����ʤϤʤ�����
+「袋の中に，お前を直してくれるような薬品はない．」
 %E
 %Cp H 00068
 #"Do not fight too hard, I want your soul strong, not weakened!"
-�֤��ޤ�㤷���臘�ʡ������κ��򶯤��������ΤǤ��äơ�
-  �夯�������ΤǤϤʤ�����
+「あまり激しく戦うな．お前の魂を強くしたいのであって，
+  弱くしたいのではない！」
 %E
 %Cp H 00069
 #"You should have stopped studying at vetenary."
-�ֽð�ؤ��ٶ�����Τ����٤�������
+「獣医学を勉強するのをやめるべきだ．」
 %E
 %Cc H 00070
 #As you pick up %o, you feel its healing begin to
 #warm your soul.  You curse Zeus for taking it from its rightful owner,
 #but at least you hope that %l can put it to good use once
 #again.
-%o�򽦤��夲��ȡ��������Ϥ����ʤ��κ��򲹤�Ϥ��Τ�
-������줿�����ʤ��Ϥ���������������礫��å�ä���������
-���ä��������ʤ��Ȥ�⤦����Ŭ�ڤ˻Ȥ��뤳�Ȥ�˾�����
+%oを拾い上げると，癒しの力があなたの魂を温め始めるのが
+感じられた．あなたはこれを正しい持ち主から奪ったゼウスを
+呪ったが，少なくとももう一度適切に使われることを望んだ．
 %E
 %Cc H 00080
 #The battered body of %n slumps to the ground and gasps
@@ -2056,12 +2056,12 @@ guard."
 #    cancer on you.
 #
 #With that %n dies.
-%n���٤줿�Τ����̤ؤ�����������ä��ʤ���Ǹ�μ��������ä���
+%nの潰れた体は地面へと崩れ落ち，喘ぎながら最後の呪いを放った．
 
-    �����ξ�������%p���������ä��������Ƥ�롥
-    ������ˡ�ϸ���̤������μ����ϴ�Τ褦�ˤ����򿪤��������
+    お前の勝ちだ，%p．だがきっと復讐してやる．
+    その方法は言わぬが，この呪いは癌のようにお前を蝕むだろう．
 
-��������%n�ϻ�����
+かくして%nは死んだ．
 %E
 %Cc H 00081
 #As soon as %l sees %o he summons his %gP.
@@ -2075,22 +2075,22 @@ guard."
 #    been called upon to travel next.  I wish you could ride Chiron to the
 #    end of your journey, but I need him to help me spread the cure.  Go
 #    now and continue your journey.
-%l��%o�򸫤�䤤�ʤ䡤���%gP��ƤӴ󤻤���
+%lは%oを見るやいなや，彼の%gPを呼び寄せた．
 
-�Ť��ˡ�%l�ϼ�򿭤Ф���%o�˿��줿��
-��Ͻ��ޤä��ơ���Ʊ�����Ȥ򤹤�褦�˶����������Ƥ����ä��塤
-��Ϥ��ʤ����ä���������
+静かに，%lは手を伸ばして%oに触れた．
+彼は集まった各々に同じことをするように教えた．全てが終った後，
+彼はあなたに話しかけた．
 
-    �����������������졤���α��¤��Ǥ��ˤ뤳�Ȥ��Ǥ��롥
-    ���ʤ���%o��Ȥ��ơ�����ι����褦�����Ƥ���������
-    �������ͤФʤ�̡�����������˾�äƹԤ���Ф褤�Τ�����
-    �������Ϥ򹭤��Τ��बɬ�פ����ԤäƤ��ʤ���ι��³����Τ���
+    今こそ我らは満たされ，この疫病を打ち破ることができる．
+    そなたは%oを携えて，次に旅するよう求められている世界を
+    満たさねばならぬ．ケイローンに乗って行ければよいのだが，
+    癒しの力を広めるのに彼が必要だ．行ってそなたの旅を続けるのだ．
 %E
 %Cp H 00090
 #"You have again returned to us, %p.  We have done well in your
 #absence, yes?  How fare you upon your quest for the Amulet?"
-�ֺƤ���ä��褿�ʡ�%p�补�桹�Ϥ��ʤ��Τ��ʤ��֤�
-  ���ޤ���äƤ��롥�������õ���Ϥɤ�������
+「再び戻って来たな，%pよ．我々はそなたのいない間も
+  うまくやっている．魔除けの探索はどうだ？」
 %E
 %Cc H 00091
 #"Ah, you have recovered the Amulet, %p.  Well done!
@@ -2098,11 +2098,11 @@ guard."
 #"Now, you should know that you must travel through the elemental planes
 #to the astral, and there return the Amulet to %d.  Go forth and
 #may our prayers be as a wind upon your back."
-�֤���������������ᤷ���Τ��ʡ�%p�补�褯��ä���
+「おお，魔除けを取り戻したのだな，%pよ．よくやった！
 
-�ֺ����������̤��̤ä�����ؤȸ��������������%d��
-  �᤹ι�˽Фʤ���Фʤ�̡��Ԥ��������Ʋ��ε��꤬
-  ���ʤ����ؤ˿᤯���Ȥʤ�󤳤Ȥ򡥡�
+「今こそ，界面を通って精霊界へと向かい，魔除けを%dに
+  戻す旅に出なければならぬ．行け，そして我らの祈りが
+  そなたの背に吹く風とならんことを．」
 %E
 #
 #	Knight
@@ -2117,71 +2117,71 @@ guard."
 #
 #Looking closer, you %x long gouges in the walls of %H.
 #You know of only one creature that makes those kinds of marks...
-���ʤ���%H�αƤ���˸��줿�����������˲�������äƤ���
-���Ȥ˵��դ�������μ��Ϥ��𸶤�Ƨ�ߤĤ����ư��Ƥ��롥�ޤ�ǤĤ�
-�Ƕ�ʤˤ��礭���褤�����ä����Τ褦�Ǥ��롥
+あなたは%Hの影の中に現れた．が，すぐに何かが違っている
+ことに気付いた．城の周囲の草原は踏みつけられて萎れている．まるでつい
+最近なにか大きな争いがあったかのようである．
 
-�ֶ��ߤ�ȡ�%H���ɤ˺�Ĺ���¤�����Τ������롥
-���Τ褦�ʽ���Ĥ�����Τ�ͣ�줢����ʪ�����Ǥ��뤳�Ȥ�
-���ʤ����ΤäƤ��롥����
+間近をみると，%Hの壁に細長い溝があるのが見える．
+このような傷をつけられるのは唯一あの生物だけであることを，
+あなたは知っている．．．
 %E
 %Cp K 00002
 #Once again you stand in the shadows of %H.
-���ʤ���%H�αƤ���˺ƤӸ��줿��
+あなたは%Hの影の中に再び現れた．
 %E
 %Cp K 00003
 #Again, you stand before %H.  You vaguely sense that this
 #may be the last time you stand before %l.
-���ʤ��Ϥޤ�%H�����ˤ��롥���ʤ��Ϥʤ�Ȥʤ���
-%l������Ω�ĤΤ�����ǺǸ�Ȥʤ������Ȥ򴶤��Ƥ�����
+あなたはまた%Hの前にいる．あなたはなんとなく，
+%lの前に立つのがこれで最後となろうことを感じていた．
 %E
 %Cp K 00005
 #"Hail, %p!  Verily, thou looks well."
-�֤褦����%p�衪��ϼ¤˸�������������
+「ようこそ%pよ！汝は実に元気そうだ．」
 %E
 %Cp K 00006
 #"There is word, %p, that %n hath been sighted in the fens
 #near %i."
-��%p�衤�ä����롥%n��%i��¦�ξ��Ϥ�
-  �ܷ⤵�줿�Ȥ����Τ�����
+「%pよ，話がある．%nが%iの側の沼地で
+  目撃されたというのだ．」
 %E
 %Cp K 00007
 #"Thou art our only hope now, %p."
-��%p�衤���������餬�Ǹ�δ�˾�Ȥʤä�����
+「%pよ，汝だけが我らが最後の希望となった．」
 %E
 %Cp K 00008
 #"Verily, %l could have no better champion, %p."
-�ּ¤�%l�ˤϾ��Ԥ�%p������Ƥϸ�������ޤ�����
+「実に%lには勝者は%pを除いては見当たるまい．」
 %E
 %Cp K 00009
 #"Many brave %cP died when %n attacked."
-��¿����%cP��%n���襤�������ƻ��Ǥ��ä�����
+「多くの%cPが%nと戦い，そして死んでいった．」
 %E
 %Cc K 00010
 #"Ah, %p.  We see thou hath received our summons.
 #We are in dire need of thy prowess.  But first, We must needs
 #decide if thou art ready for this great undertaking."
-�֤�����%p�补��ϲ�餬�����˱������ΤǤ�������
-�桹�ˤ������ͦ��ɬ�פ��������ޤ��ǽ�ˡ��򤬤��ΰ���ʻ�̿��
-�Ф��ƽ������Ǥ��Ƥ��뤫�ɤ������ʤ���Фʤ�ʤ�����
+「おお，%pよ．汝は我らが召喚に応じたのであろう．
+我々には汝の武勇が必要だ．だがまず最初に，汝がこの偉大な使命に
+対して準備ができているかどうか決めなければならない．」
 %E
 %Cp K 00011
 #"Welcome again, %p.  We hope thou art ready now."
-�֤褯�����ä���%p�补��ν��������äƤ��뤳�Ȥ���Ԥ��뤾����
+「よくぞ参った，%pよ．汝の準備が整っていることを期待するぞ．」
 %E
 %Cp K 00012
 #"Once again, thou standeth before us, %p.  Art thou ready now?"
-�֤ޤ�����ϲ�餬��Ȥ��褿��%p�补�����ϤǤ���������
+「またも汝は我らがもとに来た，%pよ．準備はできたか？」
 %E
 %Cp K 00013
 #"Thou disgraceth this noble court with thine impure presence.  We have been
 #lenient with thee, but no more.  Thy name shalt be spoken no more.  We
 #hereby strip thee of thy title, thy lands, and thy standing as %ca.
 #Begone from our sight!"
-����Ϥ��ι⵮�ʤ���򤽤α���路��¸�ߤǿ��᤿�Τ����桹��
-��ˤϴ���Ǥ��ä�����������⤳��ޤǤǤ��롥���̾�����٤ȸ�
-�ˤ����ޤ�������ˤ�������ξι桤���ϡ�������%c�Ȥ���
-���ϰ̤���å���Ƥ���褦��Ω����뤬��������
+「汝はこの高貴なる廷をその汚らわしい存在で辱めたのだ．我々は
+汝には寛大であった．が，それもこれまでである．汝の名は二度と口
+にされるまい．これにより我らは汝の称号，土地，そして%cとして
+の地位も剥奪してくれよう．立ち去るがいい！」
 %E
 %Cp K 00014
 #"Verily, %p, thou hast done well.  That thou hast survived thus
@@ -2191,23 +2191,23 @@ guard."
 #
 #"Journey forth from this place, and hone thy skills.  Return to
 #Our presence when thou hast attained the noble title of %R."
-��%p�衤�¤ˤ褯��ä����򤬤���ޤǤ��ڤ�ȴ���Ƥ������Ȥϡ�
-������ͦ���˹�ޤ�Ƥ��롥��������ϡ������ʸ�Ԥ�
-ɬ�פȤ�����׵���Ф��Ƥޤ��������Ǥ��Ƥ��ʤ���
-%rA�ϡ����Ȥ��ɤ�ʤ˹��Ǥ��äƤ⡤
-������%n�򤦤��餫�����ȤϤޤä���˾��ʤ���
+「%pよ，実によくやった．汝がこれまでに切り抜けてきたことは，
+その武勇伝に刻まれている．しかし汝は，我らの擁護者に
+必要とされる要求に対してまだ準備ができていない。
+%rAは，たとえどんなに高潔であっても，
+卑劣な%nをうち負かすことはまったく望めない．
 
-�֤��ξ�꤫��ιΩ�������������ǽ�Ϥ��ᤱ��%R�ι⵮�ʾι��
-���������顤�桹�ξ�����äƤ��뤬��������
+「この場所から旅立ち，そして汝の能力を磨け．%Rの高貴な称号を
+勝ち得たら，我々の場所へ戻ってくるがいい．」
 
 %E
 %Cp K 00015
 #"Thou dishonoureth us, %p!  Thou hast strayed from the path of
 #chivalry! Go from our presence and do penance.  Only when thou art again
 #pure may thou return hence."
-��%p�衤��ϲ�餬̾�������������ϵ���ƻ��Ƨ�߳������Τ���
-��������Ω����ꡤ������������뤬�褤���򤬺Ƥӽ��ˤʤä��ʤ顤
-��������뤳�Ȥ����������
+「%pよ，汝は我らが名誉を汚した！汝は騎士道を踏み外したのだ！
+ここから立ち去り，そして懺悔するがよい．汝が再び純粋になったなら，
+ここに戻ることを許そう．」
 %E
 %Cc K 00016
 #"Ah, %p.  Thou art truly ready, as no %c before thee hath
@@ -2230,85 +2230,85 @@ guard."
 #%i.  From there, thou must track down %n.  Destroy the
 #beast, and return to Us %o.  Only then can
 #We restore Merlin to health."
-�֤�����%p�补����Ѱդ����ä��褦������Τ褦��%c�Ϥ���ޤ�
-����ʤ��ä�����������餬̿�������褦��
+「おお，%pよ．汝の用意が整ったようだ．汝のような%cはこれまで
+現れなかった．さあ，我らが命を伝えよう：
 
-����%H�����夷�Ƥ����˵��դ����Ȥ��ꡤ�Ĥ��Ƕᤳ��ʿ����
-  �襤�����ä����ΤäƤ��̤ꡤ����%n���臘�����
-  �ޡ���󼫿Ȥ������˲��μ�������褿�Τ��������襤����ǡ�
-  %n�ζ���ʰ��ǥޡ������ݤ�Ƥ��ޤä���
-  �����Ʋ�餬������ű���;���ʤ����졤%n��
-  %o��å��줿�Τ���
+「汝が%Hに到着してすぐに気付いたとおり，つい最近この平原で
+  戦いがあった．知っての通り，醜い%nと戦うために
+  マーリン自身がここに我らの手助けに来たのだ．その戦いの中で，
+  %nの強大な一撃でマーリンは倒れてしまった．
+  そして我らが軍勢は撤退を余儀なくされ，%nに
+  %oを奪われたのだ．
 
-�ַ�̤Ȥ��Ʒ������Ѥ�ꡤ¿����%cP�򼺤äƤ��ޤä���
-  �ޡ����Ϥ�����Ҥ�Ϣ��Ƥ����줿�����ޤ��������Ƥ��ʤ���
-  %n��%o���ͭ���Ƥ���¤ꡤ�ޡ���󤬤��η򹯤�
-  �������ʤ���ʹ���Ƥ��롥
+「結果として形勢は変わり，多くの%cPを失ってしまった．
+  マーリンはその弟子に連れていかれたが，まだ回復していない．
+  %nが%oを所有している限り，マーリンがその健康を
+  回復しないと聞いている．
 
-�֤����ǲ桹����˼��ζˤ�ƽ���ʵ�̳��ݤ����ȤȤʤä��Τ���
+「そこで我々は汝に次の極めて重大な義務を課すこととなったのだ：
 
-�֤��ξ�꤫����Ϥ˸������������Ƥ��������%i��õ����
-  �����ơ������������%n�����פ�ª���롥���νä��ݤ�������
-  %o�����֤��Τ��������Ƥ��λ����ƥޡ����Ϸ򹯤��������
-  ���Ȥ��Ǥ������������
+「この場所から沼地に向かい，そしてそこで汝は%iを探す．
+  そして，そこから汝は%nを追跡し捉える．その獣を倒し，我らに
+  %oを取り返すのだ．そしてその時初めてマーリンは健康を回復する
+  ことができるだろう．」
 %E
 %Cp K 00020
 #"Remember, %p, follow always the path of %d."
-��%p�衤���%d��­�פ˽������Ȥ�˺���Ǥʤ�����
+「%pよ，常に%dの足跡に従うことを忘れるでない．」
 %E
 %Cp K 00021
 #"Though %n is verily a mighty foe, we have confidence in thy victory."
-��%n�ϼ¤˶��Ϥ�Ũ�������桹����ξ����˼�������äƤ��롥��
+「%nは実に強力な敵だが，我々は汝の勝利に自信を持っている．」
 %E
 %Cp K 00022
 #"Beware, for %n hast surrounded himself with hordes of foul creatures."
-��%n�Ϥ��Τޤ��򤪤��ޤ�����ʪ���緲�Ǽ���Ƥ���Ȥ�����
-�����դ��뤬��������
+「%nはそのまわりをおぞましい生物の大群で守られているという．
+気を付けるがいい．」
 %E
 %Cp K 00023
 #"Great treasure, 'tis said, is hoarded in the lair of %n."
-�֤��Ф餷����ʪ��%n������������Ƥ���Ȥ�������
+「すばらしい宝物が%nの巣に貯えられているという．」
 %E
 %Cp K 00024
 #"If thou possesseth %o, %p, %ns magic
 #shalt therewith be thwarted."
-��%p�衤�⤷��%o��������Ƥ���ΤǤ���С�
-  ����ˤ�ä�%n����ˡ�򤯤������Ȥ��Ǥ��褦����
+「%pよ，もし汝が%oを手に入れているのであれば，
+  それによって%nの魔法をくじくことができよう．」
 %E
 %Cp K 00025
 #"The gates of %i are guarded by forces unseen, %p.
 #Go carefully."
-��%p�衤%i����ϸ����ʤ��ϤǼ���Ƥ��뤾��
-�����դ��ƹԤ�����������
+「%pよ，%iの門は見えない力で守られているぞ．
+気を付けて行くがいい．」
 %E
 %Cp K 00026
 #"Return %o to us quickly, %p."
-��%o��ľ���˲�餬��˼���֤��Τ���%p�补��
+「%oを直ちに我らが手に取り返すのだ，%pよ．」
 %E
 %Cp K 00027
 #"Destroy %n, %p, else %H shall surely fall."
-��%n���ݤ��Τ���%p�补����ʤ���
-  %H�ϳμ¤�����褦����
+「%nを倒すのだ，%pよ．さもなくば
+  %Hは確実に落ちよう．」
 %E
 %Cp K 00028
 #"Call upon %d when thou art in need."
-����ɬ�פˤʤ�С�%d����뤬�褤����
+「汝が必要になれば，%dを求めるがよい．」
 %E
 %Cp K 00029
 #"To find %i, thou must keep thy heart pure."
-����%i�򸫤Ĥ���ˤϡ����ʿ����ݤ��ͤФʤ�ʤ�����
+「汝が%iを見つけるには，純粋な心を保たねばならない．」
 %E
 %Cc K 00030
 #You stand at the foot of %i.  Atop, you can %x a shrine.
 #Strange energies seem to be focused here, and the hair on the back
 #of your neck stands on end.
-���ʤ���%i�Τ�����Ω������Ǥ��롥����ĺ��ˤϤۤ��餬��������
-���������ͥ륮���������˽��椷�Ƥ���褦�˸����������Ƥ��ʤ��θ��ȱ��
-�ԥ�ȵ�Ω�ä���
+あなたは%iのすそに立たずんでいる．その頂上にはほこらが見えた．
+怪しいエネルギーがそこに集中しているように見え，そしてあなたの後ろ髪は
+ピンと逆立った．
 %E
 %Cp K 00031
 #Again, you stand at the foot of %i.
-�ƤӤ��ʤ���%i�Τ����ˤ��롥
+再びあなたは%iのすそにいる．
 %E
 %Cc K 00040
 #As you exit the swamps, you %x before you a huge, gaping hole in the
@@ -2316,88 +2316,88 @@ guard."
 #
 #The pools on either side of the entrance are fouled with blood, and
 #pieces of rusted metal and broken weapons show above the surface.
-���ʤ������ξ¤���æ�Ф���ȡ������ˡ��礭���Ѥä���ȳ������꤬
-�֤�¦�̤ˤ���Τ��������������椫������ΰ�����������äƤ��롥
+あなたがその沼から脱出すると，目前に，大きくぱっくりと開いた穴が
+丘の側面にあるのが見えた．その中から屍肉の悪臭がただよってくる．
 
-������μ��Ϥο夿�ޤ�Ϸ�Ǳ��졤����ɽ�̤ˤϻ��Ӥ���°����줿
-��郎�����롥
+入り口の周囲の水たまりは血で汚れ，その表面には錆びた金属や壊れた
+武器が見える．
 %E
 %Cp K 00041
 #Again, you stand at the entrance to %ns lair.
-�Ƥӡ����ʤ���%n������������Ω�äƤ�����
+再び，あなたは%nの巣の入り口に立っていた．
 %E
 %Cp K 00050
 #"Hah!  Another puny %c seeks death.  I shall dine well tonight,
 #then tomorrow, %H shall fall!"
-�֤�դա��ޤ����Ƥ⤪������%s�������Ƥ��롥����Ϥ�������
-  �ˤ��褦����������������%H�������Τ�����
+「むふふ，またしてもおろかな%sが死を求めておる．今夜はごちそう
+  にしようぞ．そして明日は%Hが落ちるのだ！」
 %E
 %Cp K 00051
 #"Again, thou challengeth me, %r?  So be it.  Thou wilt die here."
-�֤ޤ����Ƥ���ϲ��ĩ�⤦�Ȥ����Τ���%r�衩�����ˤ��뤬������
-���������ǻ�̤��Ȥˤʤ뤾����
+「またしても汝は我に挑もうというのか，%rよ？好きにするがいい．
+が，ここで死ぬことになるぞ．」
 %E
 %Cp K 00052
 #"Thou art truly foolish, %r.  I shall dispatch thee anon."
-�֤ޤä�����ä���Ϥ��櫓���ʡ�%r�����ä���������դ��Ƥ���褦����
+「まったくもって汝はたわけだな，%r．さっさと汝を片付けてくれよう．」
 %E
 %Cp K 00053
 #"So, thou darest touch MY property!  I shall have that bauble back,
 #puny %r.  Thou wilt die in agony!"
-�֤�������������椬�⻺�˿���褦�Ȥϡ�����ϻҶ����ޤ��θ���ˤ���Τ���
-��������%r�补�줷�ߤ�����ƻ�̤���������
+「ずうずうしくも我が財産に触れようとは！それは子供だましの後ろにあるのだ，
+おろかな%rよ．苦しみもだえて死ぬがいい！」
 %E
 %Cp K 00060
 #"A mere %r can never withstand me!"
-�֤�����%r�Ǥϲ�ˤ��Ѥ����̤�����
+「たかが%rでは我には耐えられぬぞ！」
 %E
 %Cp K 00061
 #"I shall kill thee now, and feast!"
-����򤹤��˻����ơ����äƤ���褦����
+「汝をすぐに殺して，食ってくれよう！」
 %E
 %Cp K 00062
 #"Puny %c.  What manner of death dost thou wish?"
-�֤��äݤ���%c�补�ɤΤ褦�ʻ�����˾��Τ�����
+「ちっぽけな%cよ．どのような死を汝は望むのだ？」
 %E
 %Cp K 00063
 #"First thee, %p, then I shall feast upon %l."
-�ֺǽ�������%p�����줫��%l�򿩤餪��������
+「最初は汝だ，%p．それから%lを食らおうぞ．」
 %E
 %Cp K 00064
 #"Hah!  Thou hast failed, %r.  Now thou shalt die."
-�֤�դա���ϼ��Ԥ����褦���ʡ�%r�补��������λह�٤����ʤꡥ��
+「むふふ，汝は失敗したようだな，%rよ．今こそ汝の死すべき時なり．」
 %E
 %Cp K 00065
 #"Die, %c.  Thou art as nothing against my might."
-�ֻ�͡�%c����Ǥϲ���Ϥˤ�Ŭ��̡���
+「死ね，%c．汝では我の力には適わぬ．」
 %E
 %Cp K 00066
 #"I shall suck the marrow from thy bones, %c."
-����ι��ο�ޤǵۤäƤ��������%c�补��
+「汝の骨の髄まで吸ってやろうぞ，%cよ．」
 %E
 %Cp K 00067
 #"Let's see...  Broiled?  No.  Fried?  Nay.  Baked?  Yea verily,
 #that is the way I like my %c for dinner."
-�֤����������֤äƤ�����������䡤�Ȥ��뤫���ݡ��Ƥ�������������
-�����ꡤ������ä�%c�򤤤������Τ��¤˲�Ϲ����ʤΤ�����
+「ええい，あぶってやろうか？いや，揚げるか？否，焼く方がいいか？
+しかり，こうやって%cをいただくのが実に我は好きなのだ．」
 %E
 %Cp K 00068
 #"Thy strength wanes, %p.  The time of thy death draws near."
-��%p�衤�Ϥ�ȴ���Ƥ������������⤦������˻बˬ��褦����
+「%pよ，力が抜けていくだろう．もうじき汝に死が訪れようぞ」
 %E
 %Cp K 00069
 #"Call upon thy precious %d, %p.  It shalt not avail thee."
-�ֵ��Ťʤ�%d����Ƥ����Τ���%p�补
-  ��ǤϤ���ϻȤ��̤�����
+「貴重なる%dを求めてきたのか，%pよ．
+  汝ではこれは使えぬぞ．」
 %E
 %Cc K 00070
 #As you pick up %o, you feel its protective fields
 #form around your body.  You also feel a faint stirring in your mind,
 #as if you are in two places at once, and in the second, you are waking
 #from a long sleep.
-���ʤ���%o�򽦤��ȡ����ʤ��Τޤ��ˤ��η볦��������Τ�
-���������ޤ����ޤ��Ʊ���������ˤ���褦�ʡ������Ƥ����ޤ�Ĺ��̲�꤫��
-�Ф᤿�褦�ʡ�����ʷڤ���ư��Ф�����
+あなたは%oを拾うと，あなたのまわりにその結界が生じるのを
+感じた．また，まるで同時に二ヶ所にいるような，そしてたちまち長い眠りから
+覚めたような，そんな軽い感動を覚えた．
 %E
 %Cc K 00080
 #As %n sinks to the ground, blood gushing from his open mouth, he
@@ -2408,11 +2408,11 @@ guard."
 #
 #His tail flailing madly, %n tries to crawl towards you, but slumps
 #to the ground and dies in a pool of his own blood.
-%n�Ϥ��γ�������������᤭�Ф��Ϥ�����Ǥ��������ǡ�ĩ��Ū��
-���ʤ���%l����äƸ��ä���
+%nはその開いた口から血を吹き出し地に沈んでいく一方で，挑戦的に
+あなたと%lを呪って言った：
 
-    ��Ϥޤ����ä��櫓�ǤϤʤ�����%r�补���������ˤ�����ɬ���������
-    ��η�����̾����˹��Ǥ�뤾��
+    汝はまだ勝ったわけではないぞ，%rよ．ええい口惜しい，必ずや舞い戻り
+    汝の血で汝の名を墓に刻んでやるぞ．
 %E
 %Cc K 00081
 #As you approach %l, he beams at you and says:
@@ -2426,19 +2426,19 @@ guard."
 #    its powers in thine adventures.  It is our wish that thou keep
 #    %o with thee as thou search for the fabled
 #    Amulet of Yendor.
-%l�˶�Ť��ȡ���Ϥ��ʤ������Фߡ������Ƹ��ä���
+%lに近づくと，彼はあなたに微笑み，そして言った：
 
-    �褯��ä������%H�ο��ξ��ԤȤʤä����桹�ϥޡ����
-    �������������Ƥ����˲��˹�ή������������Ƥ��롥
+    よくやった！汝は%Hの真の勝者となった．我々はマーリンが
+    回復し，そしてじきに我らに合流すると伝えられている．
 
-    ��ϲ��˺�����%o�θ�ҤȤ���Ŭ���Ƥ��뤳�Ȥ�
-    �����Ƥ��줿�������������ˤ����Ƥ����Ϥ���ɬ�פȤ��Ƥ����
-    ���������Ȥ򴶤��Ƥ���Τ�������ʤ륤����������������õ����
-    ���ơ���%o�ȤȤ�ˤ��뤳�Ȥ����˾��Ǥ��롥
+    彼は我らに今や汝が%oの護衛として適していることを
+    教えてくれた．彼は汝の冒険においてその力を汝が必要としているで
+    あろうことを感じているのだ．偉大なるイェンダーの魔除けの探索と
+    して，汝が%oとともにあることを我らは望んでいる．
 %E
 %Cp K 00090
 #"Well met, %p.  How goest thy search for the Amulet of Yendor?"
-�֤褯���褿��%p�补������������������õ���Ϥɤ��ʤäƤ��롩��
+「よくぞ来た，%pよ．イェンダーの魔除けの探索はどうなっておる？」
 %E
 %Cc K 00091
 #"Thou hast succeeded, we see, %p!  Now thou art commanded to take
@@ -2448,13 +2448,13 @@ guard."
 #the planes of the elements, to achieve this goal.
 #
 #"Go with %d, %p."
-�֤褯��ä���%p�衪��ϼ��������%d��������٤���
-�������������äƤ����Τ���
+「よくやった，%pよ！汝は次は精霊界の%dに捧げるべく，
+かの魔除けを持っていくのだ．
 
-�֥ޡ���󤫤鼡�ν����򤦤��Ƥ��롥������򤬤�����Ū��ã������ˤϡ�
-���̤��̤�ȴ���ƾ�˸�����ͤФʤ�ʤ��Ȥ�����Τ���
+「マーリンから次の助言をうけておる．それは汝がその目的を達成するには，
+界面を通り抜けて上に向かわねばならないというものだ．
 
-��%p��%d�βø�Τ���󤳤Ȥ򡥡�
+「%pに%dの加護のあらんことを．」
 %E
 #
 #	Priest
@@ -2466,80 +2466,80 @@ guard."
 #outside.
 #
 #You realize that %l needs your assistance!
-�����Ĥ��ȡ����ʤ���%H������Ω�äƤ����������������㤦��
-���ʳ����Ƥ���%H�θͤϴ������Ĥ�����Ƥ��뤷����̯�ʿʹ�
-�γʹ��򤷤���Τ�������������⤤�Ƥ��롥
+気がつくと，あなたは%Hの前に立っていた．が，何かが違う．
+普段開いている%Hの戸は完全に閉ざされているし，奇妙な人間
+の格好をしたものが外をよろよろと歩いている．
 
-���ʤ���%l�����������Ƥ��뤳�Ȥ˵��դ�����
+あなたは%lが手助けを求めていることに気付いた．
 %E
 %Cp P 00002
 #Once again, you stand before %H.
-�⤦���١����ʤ���%H������Ω�äƤ�����
+もう一度，あなたは%Hの前に立っていた．
 %E
 %Cp P 00003
 #Again you face %H.  Your intuition hints that this may be
 #the final time you come here.
-���ʤ��ϺƤ� %H ������Ω�äƤ���������Τ餻����
-���ʤ��Ϥ��������Τ�����ǺǸ�ʤΤ��⤷��ʤ��Ȥ򴶤�����
+あなたは再び %H の前に立っていた．虫の知らせか，
+あなたはここに来るのがこれで最後なのかもしれないとを感じた．
 %E
 %Cp P 00005
 #"Greetings, honored %r.  It is good to see you."
-�֤褯���褿�����ɤʤ�%r�补���ʤ��˲񤨤ƻ�����ˤ��줷������
+「よくぞ来た，光栄なる%rよ．そなたに会えて私は非常にうれしい．」
 %E
 %Cp P 00006
 #"Ah, %p!  Surely you can help us in our hour of need."
-��%p�补���ʤ��ʤ餳�ν���ʻ�����Ω������Ƥ�����������
-  ���Ȥ������Ǥ���������
+「%pよ．そなたならこの重大な時期に立たされている我らを助ける
+  ことが出来るであろう．」
 %E
 %Cp P 00007
 #"Greetings, %s.  %lC has great need of your help."
-�֤褦��������%s�补%l�����ʤ��˼��������Ƥ���ä���롥��
+「ようこそ，我%sよ．%lがあなたに手助けを求めていらっしゃる．」
 %E
 %Cp P 00008
 #"Alas, it seems as if even %d has deserted us."
-�֤������桹��%d�ˤ⸫������Ƥ��ޤä��ΤǤϤʤ�����������
+「ああ，我々は%dにも見放されてしまったのではなかろうか．」
 %E
 %Cp P 00009
 #"May %d be with you, %s."
-��%d�����ʤ��ȤȤ�ˤ���󤳤Ȥ򡥡�
+「%dがあなたとともにあらんことを．」
 %E
 %Cc P 00010
 #"Ah, %p, my %S.  You have returned to us at last.
 #A great blow has befallen our order; perhaps you can help us.
 #First, however, I must determine if you are prepared for this
 #great challenge."
-�ֲ椬%S%p�补���ʤ��Ϥ�äȲ桹�Τ�Ȥ���äƤ�����
-  �桹�ζ��Ĥϸ��߽���ʴ������Ѥ��Ƥ��롥����ˤĤ��ơ����ʤ��ϲ桹�μ�
-  �����������⤷��̡�
-  ���������ޤ��ǽ�ˡ���Ϥ��ʤ��������礤�ʤ�ĩ����Ф��뿴�����������
-  ���뤫�ɤ�����ͤФʤ�̡���
+「我が%S%pよ．そなたはやっと我々のもとへ戻ってきた．
+  我々の教団は現在重大な危機に頻しておる．これについて，そなたは我々の手
+  助けを出来るやもしれぬ．
+  しかし，まず最初に，私はそなたがこの大いなる挑戦に対する心構えが出来て
+  いるかどうか試さねばならぬ．」
 %E
 %Cp P 00011
 #"Again, my %S, you stand before me.  Are you ready now to help us?"
-�ֲ椬%S�衤���ʤ��ϺƤӻ�����˸��줿���桹�μ�����򤹤�
-  �������Ͻ��褿������
+「我が%Sよ，そなたは再び私の前に現れた．我々の手助けをする
+  心構えは出来たか？」
 %E
 %Cp P 00012
 #"Once more, %p, you stand within the sanctum.  Are you ready now?"
-��%p�����ʤ��ϺƤ��������˸��줿�������Ͻ��褿������
+「%p，そなたは再び聖域の内に現れた．準備は出来たか？」
 %E
 %Cc P 00013
 #"You are a heretic, %p!  How can you, %ra, deviate so from the
 #teachings of %d?  Begone from this temple.  You are no longer
 #%sa to this order.  We will pray to %d for other assistance,
 #as you have failed us utterly."
-��%p�����ΰ�ü�����ɤ������顤���ʤ��Τ褦��%r��%d
-  �ζ������餽��뤳�Ȥ������Τ������λ������⤫��ФƤ����������ʤ�
-  �Ϥ⤦���ζ��Ĥ�%s�ǤϤʤ������ʤ����桹�δ��Ԥ˱������ʤ��ä�
-  ������%d�ˤ�¾�μ������𤦤褦����������
+「%p，この異端が！どうしたら，そなたのような%rが%d
+  の教えからそれることが出来るのだ！この寺院の内から出ていけい！そなた
+  はもうこの教団の%sではない！そなたが我々の期待に応えられなかった
+  手前，%dには他の手助けを乞うよう祈ろう．」
 %E
 %Cc P 00014
 #"Alas, %p, it is not yet to be.  A mere %r could never
 #withstand the might of %n.  Go forth, again into the world, and return
 #when you have attained the post of %R."
-��%p����ǰ�ʤ��顤�����Ϥޤ��ѰդǤ��Ƥ���̤褦����
-  %r�Ǥ�%n �������Ǥ����뤳�Ȥ�̵�������ޤ��Ƥ�������ؽФơ�
-  %R���ϰ̤򤪤���뤳�Ȥ����褿�鵢�äƤ��뤬�褤����
+「%p，残念ながら，そちはまだ用意できておらぬようだ．
+  %rでは%n に太刀打ちすることは無理だ．また再び世の中へ出て，
+  %Rの地位をおさめることが出来たら帰ってくるがよい．」
 %E
 %Cc P 00015
 #"This is terrible, %p.  You have deviated from the true path!
@@ -2548,12 +2548,12 @@ guard."
 #
 #"Go from here, atone for your sins against %d.  Return only when
 #you have purified yourself."
-�֤���Ϥʤ�ȤҤɤ����Ȥ��㡤%p�����ʤ�����ƻ����Ƨ�߳���
-  �Ƥ��롥���ʤ���¸���Ƥ�������%d�϶������Ŀ��򤳤ζ��Ĥ�
-  ���Ƥ��뤳�Ȥ򡥤��ʤ��ϴ����ʤޤǤο����򸫤��ͤФʤ�̡�
+「これはなんとひどいことじゃ，%p．そなたは正道から踏み外し
+  ている．そなたも存じておろう，%dは強い信仰心をこの教団に
+  求めていることを．そなたは完璧なまでの信心を見せねばならぬ．
 
-  ��������Фơ�%d�ؤ�Ư��������������Τ����ʤοȤ������
-  �줿�Ȥ��Τߡ������ؤ���뤬�褤����
+  ここから出て，%dへと働いた罪を懺悔するのだ．己の身を清めら
+  れたときのみ，ここへと戻るがよい．」
 %E
 %Cc P 00016
 #"Yes, %p.  You are truly ready now.  Attend to me and I shall
@@ -2573,68 +2573,68 @@ guard."
 #undead that befoul the land.
 #
 #"Go with %d as your guide, %p."
-��%p�补���ʤ����Ѱդ�����Ƥ���褦���������鲿�������ä���
-  �ä��Τǡ���Τ������Ȥ˼��򷹤��Ƥ��졥
+「%pよ．そなたは用意が出来ておるようだ．今から何が起こったか
+  話すので，私のいうことに耳を傾けてくれ．
 
-�־���������פˡ�%n�ȡ�%n�˰���Ϣ��줿����ǥåɤη��Ĥ�
-  %H�򹶤᤿�Τ���%o����äƤ����Ԥ�Ϥᡤ¿����
-  %g�������줿�Τ��� 
+「少し前の大祭に，%nと，%nに引き連られたアンデッドの軍団が
+  %Hを攻めたのだ．%oを持っていた者を始め，多くの
+  %gが殺されたのだ． 
 
-�֤����Ƥ��θ塤����¿����%n�Ϥ����κ��Ť�������Τ���
-  ���Ťʤ��Ǥϲ桹�ϵս����뤳�ȤϽ���ʤ��������Ƹ��ߡ��桹�Τ�Ȥˤ�
-  %H�˷�����󤻤Ĥ��ʤ�����ˤ�������Ρ�����������%g
-  �������ʤ��Τ���
+「そしてその後，恐れ多くも%nはここの祭壇を汚したのだ．
+  祭壇なしでは我々は逆襲することは出来ない．そして現在，我々のもとには
+  %Hに軍勢を寄せつけないためにするだけの，ごく小数の%g
+  しかいないのだ．
 
-�֤ޤ��ǽ�ˡ�%i��õ���������ơ���������%n�Υ����Ȥؤȸ�����
-  �Ƥ�餦���⤷���ʤ���%n���ݤ��ơ�%o��������äƤ��뤳�Ȥ�
-  �����Τʤ�С��桹�Ϥ������Ϥ��������ǥå�
-  �ɤ���ɤ��֤���Τ���
+「まず最初に，%iを探し，そして，そこから%nのアジトへと向かっ
+  てもらう．もしそなたが%nを倒して，%oを持ち帰ってくることが
+  出来るのならば，我々はこの土地を汚すアンデッド
+  どもを追い返せるのだ．
 
-�֤�����%d�βø�Τ�ȡ��Ԥ��Τ���%p�补��
+「さあ，%dの加護のもと，行くのだ，%pよ．」
 %E
 %Cp P 00020
 #"You can prevail, if you rely on %d."
-��%d�򿮤���С����ʤ��Ͼ��Ƥ롥��
+「%dを信ずれば，そなたは勝てる．」
 %E
 %Cp P 00021
 #"Remember that %n has great magic at his command."
-��%n�Ϥ����ޤ�����Ѥ�դΤޤޤ���롤�Ȥ������Ȥ�Τ�̿���Ƥ�������
+「%nはすさまじい魔術を意のままに操る，ということを肝に命じておけ．」
 %E
 %Cp P 00022
 #"Be pure, my %S."
-���������졤�椬%S�补��
+「清くあれ，我が%Sよ．」
 %E
 %Cp P 00023
 #"Beware, %i is surrounded by a great graveyard."
-��%i�ϵ�������Ϥ˰Ϥޤ�Ƥ��롤����Ĥ���褦�ˡ���
+「%iは巨大な墓地に囲まれておる，気をつけるように．」
 %E
 %Cp P 00024
 #"You may be able to affect %n with magical cold."
-�֤⤷������С�%n���䵤�μ�ʸ���������Ȥ�����뤫�⤷��ʤ�����
+「もしかすれば，%nを冷気の呪文で冒すことが出来るかもしれない．」
 %E
 %Cp P 00025
 #"Acquire and wear %o if you can.  It will aid you
 #against %n."
-�֤Ǥ���ʤ��%o���ˤ��졤���夹��Τ���%n���Ф����Ϥ�ȯ��
-  ����Ǥ���������
+「できるならば%oを手にいれ，装着するのだ．%nに対し効力を発揮
+  するであろう．」
 %E
 %Cp P 00026
 #"Call upon %d when your need is greatest.  You will be answered."
-�ֺǤ⺤�ä��Ȼפ���Ȥ��ˤ�%d�˽�������补
-  ���ʤ��δꤤ�ϼ��������Ǥ���������
+「最も困ったと思われるときには%dに助けを求めよ．
+  そなたの願いは受けれられるであろう．」
 %E
 %Cp P 00027
 #"The undead legions are weakest during the daylight hours."
-�֥���ǥåɤη��Ĥ����桤�Ǥ�夤����
+「アンデッドの軍団は日中，最も弱い．」
 %E
 %Cp P 00028
 #"Do not loose faith, %p.  If you do so, %n will grow stronger."
-��%p�衤���Ŀ���˺���ʡ��⤷���Τ褦�ʤ��Ȥ�����С�
-  %n�Ϥ�궯���ʤ뤳�ȤǤ���������
+「%pよ，信仰心を忘れるな．もしそのようなことがあれば，
+  %nはより強くなることであろう．」
 %E
 %Cp P 00029
 #"Wear %o.  It will assist you against the undead."
-��%o�����夻�补������С�����ǥåɤ��Ф������Ϥ�ȯ�����롥��
+「%oを装着せよ．さすれば，アンデッドに対し，効力を発揮する．」
 %E
 %Cc P 00030
 #You stand facing a large graveyard.  The sky above is filled with clouds
@@ -2643,30 +2643,30 @@ guard."
 #
 #You remember the descriptions of %i, given to you by
 #%lC.  It is ahead that you will find %ns trail.
-���ʤ����礭�����Ϥ�����Ω�äƤ��롥�����濴�ؤ�����Ϣ��Ƥɤ���Ȥ�
-�Ƥ������˰Ϥޤ�Ƥ��롥���ʤ��Ϻ��ޤǤ������������ȤΤʤ��ۤɤΥ���ǥ�
-�ɤ��緳��¸�ߤ򻡤�����
+あなたは大きな墓地の前に立っている．空は中心へいくに連れてどんよりとし
+ていく雲に囲まれている．あなたは今までに遭遇したことのないほどのアンデッ
+ドの大軍の存在を察した．
 
-���ʤ���%l�������Ƥ��줿��%i�ι�¤��פ��Ф�����
-������%n���̤ä��פ�����褦����
+あなたは%lが教えてくれた，%iの構造を思い出した．
+前方に%nの通った跡があるようだ．
 %E
 %Cp P 00031
 #Again, you stand before %i.
-���ʤ��ϺƤ�%i������Ω�ä���
+あなたは再び%iの前に立った．
 %E
 %Cc P 00040
 #The stench of brimstone is all about you, and the shrieks and moans
 #of tortured souls assault your psyche.
 #
 #Ahead, there is a small clearing amidst the bubbling pits of lava...
-�����餸�夦��β���ν����ˤ�ä���ޤ졤�Զ�ʺ����ζ��Ӥ䤦�᤭������
-�ʤ����԰¤򤫤ꤿ�Ƥ���
+そこらじゅうが硫黄の臭いによって包まれ，不具な魂供の叫びやうめきが，あ
+なたの不安をかりたてた．
 
-�����Ρ����Ĥ��ĤȼѤ����ä��ϴ�ζ��֤ˡ������ʶ����Ϥ����롥
+手前の，ぐつぐつと煮えたった溶岩の狭間に，小さな空き地がある．
 %E
 %Cp P 00041
 #Again, you have invaded %ns domain.
-���ʤ��ϺƤ�%n���ΰ�򽱷⤷����
+あなたは再び%nの領域を襲撃した．
 %E
 %Cc P 00050
 #"Ah, so %lC has sent another %g to retrieve
@@ -2675,64 +2675,64 @@ guard."
 #"No, I see you are no %g.  Perhaps I shall have some fun today
 #after all.  Prepare to die, %r!  You shall never regain
 #%o."
-�֥��á�%l���ޤ����%g��褳�����Τ���
-  %o�����֤�����ˡ�
+「ケッ！%lがまたもや%gをよこしたのか，
+  %oを取り返すために．
 
-�֤��䡤�Ԥơ������ϡ�������%g�ǤϤʤ��餷���ʡ��⤷�������顤
-  �����Ͼ����ڤ���뤫�⤷��ʤ�����̽����Ǥ⤹��Τ��ʡ�%r��
-  ���ʤ���%o�����֤����Ȥʤ��Բ�ǽ�ʤΤ�����ʡ���
+「いや，待て．そちは，ただの%gではないらしいな．もしかしたら，
+  今日は少し楽しめるかもしれない．死ぬ準備でもするのだな，%r！
+  そなたが%oを取り返すことなど不可能なのだからな．」
 %E
 %Cp P 00051
 #"So, %r.  Again you challenge me."
-�֤ۤ���%r�������Ϥޤ����ĩ�魯��Τ�����
+「ほう，%r．そちはまた私に挑戦するのか．」
 %E
 %Cp P 00052
 #"Die now, %r.  %d has no power here to aid you."
-�ֻ�ͤ���%r�������Ǥ�%d������������뤳�ȤϤǤ��̡���
+「死ねい，%r．ここでは%dがそちを助けることはできぬ．」
 %E
 %Cp P 00053
 #"You shall die, %r, and I will have %o back."
-��%r�������ϻ��ǡ����%o�����֤��Τ�����
+「%r，そちは死んで，私は%oを取り返すのだ．」
 %E
 %Cp P 00060
 #"Submit to my will, %c, and I shall spare you."
-��%c�衤�����������С���Ϥ���������������
+「%cよ，私に服従すれば，私はそちを生かす．」
 %E
 %Cp P 00061
 #"Your puny powers are no match for me, %c."
-��%c�衤�����Τ褦�������ͤǤϻ�ˤ�����ڤФ̡���
+「%cよ，そちのような猪小才では私には到底及ばぬ．」
 %E
 %Cp P 00062
 #"I shall have you turned into a zombie for my pleasure!"
-�ֻ�γڤ��ߤΤ���ˡ������򥾥�ӤˤǤ⤷�Ƥ��������
+「私の楽しみのために，そちをゾンビにでもしてやろう．」
 %E
 %Cp P 00063
 #"Despair now, %r.  %d cannot help you."
-����˾���ʡ�%r��%d�Ϥ���������뤳�ȤϤǤ��̡���
+「絶望だな，%r．%dはそちを助けることはできぬ．」
 %E
 %Cp P 00064
 #"I shall feast upon your soul for many days, %c."
-�֤����κ������ˤ��Ϥäƶ��餤�ĤŤ��Ƥ�����ǤϤʤ�����%c����
+「そちの魂を何日にも渡って喰らいつづけてやろうではないか，%c．」
 %E
 %Cp P 00065
 #"Your death will be slow and painful.  That I promise!"
-�֤����Ϥ��露��ȶ줷��ƻ����Ƥ���褦��������������«�����
+「そちはじわじわと苦しめて殺してくれよう．それだけ私は約束する」
 %E
 %Cp P 00066
 #"You cannot defeat %n, you fool.  I shall kill you now."
-�֤����Τ褦�ʤ��Ĥ��Ǥϡ�%n�˾��Ƥ̤Τ��������ƺ����夲�褦����
+「そちのようなうつけでは，%nに勝てぬのだ．殺して差し上げよう．」
 %E
 %Cp P 00067
 #"Your precious %lt will be my next victim."
-��%l����μ��α¿��Ȥʤ�Ǥ���������
+「%lが私の次の餌食となるであろう．」
 %E
 %Cp P 00068
 #"I feel your powers failing you, %r.  You shall die now."
-�֤������Ϥ�Ĵ�����̤褦���ʡ�%r�������Ϥ⤦��̡���
+「そちは力を調節出来ぬようだな，%r．そちはもう死ぬ．」
 %E
 %Cp P 00069
 #"With %o, nothing can stand in my way."
-��%o��������С���˶����٤���ΤϤʤ�����
+「%oさえあれば，私に恐れるべきものはない．」
 %E
 %Cc P 00070
 #As you pick up %o, you feel the essence of
@@ -2743,13 +2743,13 @@ guard."
 #You sense a message from %d.  Though not verbal, you
 #get the impression that you must return to %lC as soon
 #as possible.
-%o�򽦤��ȡ����ʤ���%d���ܼ��򴶤��Ȥä��������ơ�
-%d��%c�ʤ��%n����˾���Ǥ��ˤ�뤫�顤
-%n��%H���%o���������Ȥ������Ȥ˵��դ�����
+%oを拾うと，あなたは%dの本質を感じとった．そして，
+%dの%cならば%nの野望を打ち破れるから，
+%nが%Hより%oを盗んだ，ということに気付いた．
 
-���ʤ���%d����Υ�å������򴶤���ä�������ϸ��դ�
-����ΤǤϤʤ��������ʤ��Ϥ���%l�Τ�Ȥص���ͤФʤ�ʤ�
-���Ȥ򴶤�����
+あなたは%dからのメッセージを感じ取った．それは言葉に
+よるものではないが，あなたはすぐ%lのもとへ帰らねばならない
+ことを感じた．
 %E
 %Cc P 00080
 #You feel a wrenching shift in the ether as %n's body dissolves
@@ -2763,16 +2763,16 @@ guard."
 #    at my leisure.
 #
 #You then hear the voice of %n, screaming in terror...
-%n�����Τ������ε��Τؤȶ�����ͻ������ˤĤ졤
-ŷ���������Ƥ���Τ˵��դ�����
+%nの肉体が毒性の気体へと空気に融けこむにつれ，
+天空が響いているのに気付いた．
 
-����������������줭�錄�ä���
+すると突然，声が轟きわたった：
 
-  %r�衤��ϻ�Τ�äȤ����餷�����ͤ��ݤ��Ƥ��줿��
-  �⡼���å���������¸�ߤ˵��դ��Ƥ���Ȥ������Ȥ�Τ�̿���补
-  %n�衤����Լ����ϻ䤬ľ�˺ۤ�����
+  %rよ，汝は私のもっとも汚わらしい下僕を倒してくれた．
+  モーロックがそちの存在に気付いているということを肝に命じよ．
+  %nよ，汝の不首尾は私が直に裁こう．
 
-�����ơ����ʤ���%n�����Ĥ�ʹ������
+そして，あなたは%nの悲鳴を聞いた．
 %E
 %Cc P 00081
 #"You have returned, %p.  And with %o, I see.
@@ -2784,74 +2784,74 @@ guard."
 #of Yendor.
 #
 #"Go forth, and let %d guide your steps."
-%p�����äƤ��������������⡤%o���ˤ��ơ�
-����ǤȤ���
+%p，帰ってきたか．．しかも，%oを手にして．
+おめでとう．
 
-��Ϥ��ä����ۤ��Ƥ����Τ�����%d�λȼԤ��̿��򾵤ä���
-%d�ϡ����ʤ���%o�����³����褦�ˡ���̿�����������ơ�
-������äơ����������������������᤹�Τ���
+私はずっと瞑想していたのだが，%dの使者より命令を承った．
+%dは，そなたに%oを持ち続けるように，と命じた．そして，
+それをもって，イェンダーの魔除けを取り戻すのだ．
 %E
 %Cp P 00090
 #"Welcome back, %p.  How is your quest for the Amulet going?"
-�褯�����äƤ�����%p���������õ�����Ϥɤ��ʤäƤ���Τ���
+よくぞ帰ってきた，%p．魔除けを探す方はどうなっているのだ．
 %E
 %Cc P 00091
 #"You have prevailed, %p!  %d is surely with you.  Now,
 #you must take the amulet, and sacrifice it on %ds altar on
 #the Astral plane.  I suspect that I shall never see you again in this
 #life, but I hope to at %ds feet."
-%p�衤�������Ǥ����ä��Τ������ˡ�%d�Ϥ����ȤȤ�˺ߤ롥
-���������ʤ������������äơ����줫������ˤ���%d�κ���
-�ˤ����������Τ��������ǤϤ��ʤ��˲񤦤��ȤϤ⤦�ʤ���������
-��������%d��­���Ǥ��ʤ��˲񤦤��Ȥ�ڤ��ߤˤ��Ƥ��뤾��
+%pよ，そちは打ち勝ったのだ！真に，%dはそちとともに在る．
+さあ，そなたは魔除けを持って，これから精霊界にある%dの祭壇
+にそれを捧げるのだ．今生ではそなたに会うことはもうないだろう，
+しかし，%dの足元でそなたに会うことを楽しみにしているぞ．
 %E
 #
 #	Rogue (with apologies to all Norsk speakers -dean)
-#	(����)���󤲡���������̣�褯�狼���^_^;
+#	(訳注)すんげー意訳．意味よくわからん．^_^;
 #
 %Cc R 00001
 #Unexpectedly, you find yourself back in Ransmannsby, where you trained to
 #be a thief.  Quickly you make the guild sign, hoping that you AND word
 #of your arrival reach the %ls den.
-�դȡ����ʤ�����±�ˤʤ뤿��˽��Ȥ�������󥹥ޥ󥹥٥���
-��äƤ���Τ˵����Ĥ��������ʤ������᤯����ɤΰ����ä���
-%l���Ϥ����Ȥ򵧤�ʤ��顥
+ふと，あなたは盗賊になるために修業した，ランスマンスベイに
+戻っているのに気がついた．あなたは素早くギルドの印を作った．
+%lに届くことを祈りながら．
 %E
 %Cp R 00002
 #Once again, you find yourself back in Ransmannsby.  Fond memories are
 #replaced by fear, knowing that %l is waiting for you.
-�⤦�����ɡ����ʤ��ϥ�󥹥ޥ󥹥٥�����äƤ���Τ˵����Ĥ������Ť�
-������������֤��������Ƥ��롥%l�����ʤ����ԤäƤ���
-�Τ˵����Ĥ�����
+もういちど，あなたはランスマンスベイに戻っているのに気がついた．甘い
+記憶が恐れに置きかえられている．%lがあなたを待っている
+のに気がついた．
 %E
 %Cp R 00003
 #You rub your hands through your hair, hoping that the little ones on
 #the back of your neck stay down, and prepare yourself for your meeting
 #with %l.
-���ʤ�������Ȥ�������ï�ˤ��ͤä��򰵤��Ĥ����뤳�Ȥ�
-�ʤ����Ȥ򵧤�ʤ��顥�����ơ�%l�˲񤦽����򤷤���
+あなたは髮をとかした，誰にも首ねっこを圧えつけられることは
+ないことを祈りながら．そして，%lに会う準備をした．
 %E
 %Cp R 00005
 #"I hear that Lady Tyvefelle's household is lightly guarded."
-�֥�ǥ������������ե���βȤη����ϼ���������������
+「レディ・タイヴェフェルの家の警備は手薄だそうだ．」
 %E
 %Cp R 00006
 #"You're back?  Even the Twain don't come back anymore."
-����äƤ������ȥ�������Ǥ�����äƤ��ʤ��Τˡ���
+「戻ってきた？トウェーンですら戻ってこないのに．」
 %E
 %Cp R 00007
 #"Can you spare an old cutpurse a zorkmid for some grog?"
-�֤���ǯ�󥹥�˥���Τ���ζ��ä�Ǥ��졥��
+「この年寄スリにラム酒のための金を恵んでくれ．」
 %E
 %Cp R 00008
 #"Fritz tried to join the other side, and now he's hell-hound chow."
-�֥ե�åĤ�΢�ڤ�䤬�ä������ޤ䤹�ä��ꥫ����������
+「フリッツは裏切りやがった．いまやすっかりカタギだ．」
 %E
 %Cp R 00009
 #"Be careful what you steal, I hear the boss has perfected turning
 #rocks into worthless pieces of glass."
-�ֲ��Ǥ����Ф����äƤ�󤸤�ʤ����ܥ��������ͤΤʤ����饹��
-  �ž夲�Ƥ��벻��ʹ����������
+「何でも盗めばいいってもんじゃない，ボスが岩を価値のないガラスに
+  仕上げている音を聞いたぜ．」
 %E
 %Cc R 00010
 #"Well, look who it is boys -- %p has come home.  You seem to have
@@ -2859,24 +2859,24 @@ guard."
 #other worthless cutpurses, but I have a better plan.  If you are ready
 #maybe you could work off your back dues by performing a little job for
 #me.  Let us just see if you are ready..."
-��ï���褿�褦���ʡ�%p����������Ǥ̳�˼��Ԥ��䤬�ä��Τ����դ�
-  �����ˤ�����ͤΤʤ�����Τ褦�˻����Ƥ�����Ȼפä�������äȤ�������
-  ��פ��Ĥ����������Ϥ��������ʡ��ˡ����Τ���ˤ��礤�ȻŻ��򤷤Ƥ�����
-  �����Τ����������Ǥ��Ƥ뤫�ʡ�������
+「誰か来たようだな．%pか．何だ？任務に失敗しやがったのか．ふん．
+  ここにいる価値のないスリのように殺してやろうと思ったが，もっといいこと
+  を思いついた．準備はいいか？なーに，俺のためにちょいと仕事をしてくれれば
+  いいのさ．準備ができてるかな．．．」
 %E
 %Cp R 00011
 #"Well, I didn't expect to see you back.  It shows that you are either stupid,
 #or you are finally ready to accept my offer.  Let us hope for your sake it
 #isn't stupidity that brings you back."
-�֤ޤ��񤨤�Ȥϻפ�ʤ��ä������������ϼ���������Ǥ̳�������餦
-  �����ε��̤����뤫���Ƥ����������������������������餺�ϼ���
-  �ʤ����Ȥ򵧤�������
+「また会えるとは思わなかったぜ．お前は馬鹿か？俺の任務を請け負う
+  だけの技量があるか見てやろう．せいぜいお前があいかわらず馬鹿で
+  ないことを祈ろう．」
 %E
 %Cp R 00012
 #"Did you perhaps mistake me for some other %lt?  You must
 #think me as stupid as your behavior.  I warn you not to try my patience."
-��%l�ʳ��ˤ����Τ�����Ƥ����������ʡ����Τ��Ȥ���
-  ���餤�ϼ����ȹͤ��Ƥ�����������ˤ�����θ³��äƤ�Τ�������������
+「%l以外にそそのかされておらんだろうな？俺のことをお前
+  くらい馬鹿だと考えてるだろう．俺にも我慢の限界ってものがあるんだぜ．」
 %E
 %Cc R 00013
 #"Well %gp, it looks like our friend has forgotten who is the boss
@@ -2885,28 +2885,28 @@ guard."
 #
 #Your sudden shift in surroundings prevents you from hearing the end
 #of %ls curse.
-��%g������ͧ��ï�������Υܥ�����˺�줿�ȸ����롥����ͧ��
-  %r��΢�ڤä��ȹͤ��Ƥ��롥�ְ㤤�����ह�٤��ְ㤤������
+「%g！俺の友は誰がここのボスだか忘れたと見える．俺の友は
+  %rが裏切ったと考えている．間違いだ．死すべき間違いだ！」
 
-%l�μ����θ��դ���Τ����ޤ��ηʿ��������Ѥä���
+%lの呪いの言葉が遠のき，まわりの景色が突然変った．
 %E
 %Cc R 00014
 #"In the time that you've been gone you've only been able to master the
 #arts of %ra?  I've trained ten times again as many %Rp
 #in that time.  Maybe I should send one of them, no?  Where would that
 #leave you, %p?  Oh yeah, I remember, I was going to kill you!"
-�ָ�������%r��ˤ᤿��������10ǯ����%R��ˤ᤿��Τ���
-  ���%R��ˤ᤿���ͤȤ�������줿�Τ������������٤�%p
-  �����Ϥɤ������դ�˺���ʡ����Ϥ����򻦤����Ȥ��Ƥ�Τ�������
+「現時点で%rを極めたか？俺は10年前に%Rを極めたものだ．
+  私は%Rを極めた１人として送られたのだが，それに比べて%p
+  お前はどうだ？ふん．忘れるな！俺はお前を殺そうとしてるのだぜ．」
 %E
 %Cc R 00015
 #"Maybe I should chain you to my perch here for a while.  Perhaps watching
 #real %A men at work will bring some sense back to you.  I don't
 #think I could stand the sight of you for that long though.  Come back
 #when you can be trusted to act properly."
-�֤ɤ���顤������ߤޤ��ڤˤĤʤ�Ǥ����٤����ä��褦������������Ư��
-  %A�οʹ֤򸫤ƤĤޤ�󴶾�Ǥ��������������������������
-  Ω�äƤ���ʤ�ƹͤ�������ʤ������򿮤���٤����狼�ä�����äƤ�������
+「どうやら，お前を止まり木につなりでおくべきだったようだ．おおかた働く
+  %Aの人間を見てつまらん感情でも抱いたんだろう．お前の前に
+  立っているなんて考えたくもない．何を信じるべきかわかったら戻ってこい．」
 %E
 %Cc R 00016
 #"Will everyone not going to retrieve %o from that
@@ -2918,158 +2918,158 @@ guard."
 #has %o.  You are going to get %o
 #and bring it back to me.  So simple an assignment even you can understand
 #it."
-��ï��%o���ϼ���Ϻ��%n�����꤫�����Ƥ���
-  ����ͤ����褯ʹ����%p���ʤ��ʤ鲶�Ϥ���������Ĥ��뤫�����
-  ¾��%g�����Ϥ����ʤ󤫤�����������ʡ�
+「誰も%oを馬鹿野郎の%nから取りかえしてきや
+  がらねぇ．よく聞け！%p，なぜなら俺はお前を送りつけるからだ．
+  他の%gたちはお前なんかより大事だからな．
 
-�ּ������ȹԤ�������ʤ���������%o���ߤ�����%n��
-  %o����äƤ��롥������%o����˹Ԥ���
-  ���ΤȤ����ػ��äƤ�������ñ�ʤ��ä��������Ǥ⽽ʬ����Ǥ����������
+「取り引きと行こうじゃないか．俺は%oが欲しい．%nが
+  %oを持っている．お前は%oを取りに行き，
+  俺のところへ持ってこい．簡単なこった．お前でも十分理解できるだろ．」
 %E
 %Cc R 00020
 #"You don't seem to understand, %o isn't here so
 #neither should you be!"
-�֤ʤ�Ǥ����狼��ʤ��ä��Τ���%o�Ϥ����ˤϤͤ���������������
-  ����֤��Ƥͤ��������ʡ���
+「なんでぇ，わからなかったのか？%oはここにはねぇ．何しろお前が
+  取り返してねぇんだからな！」
 %E
 %Cp R 00021
 #"May %d curse you with lead fingers.  Get going!"
-��%d�μ���������󤳤Ȥ򡥹Ԥ�����
+「%dの呪いがあらんことを．行け！」
 %E
 %Cp R 00022
 #"We don't have all year.  GET GOING!"
-�ֲ���ˤϲˤ��ͤ�������Ԥ�����
+「俺らには暇がねぇんだ．行け！」
 %E
 %Cc R 00023
 #"How would you like a scar necklace?  I'm just the jeweler to do it!"
-�ֽ���ΤΥͥå��쥹�Ϲ����������Ϥ����������Ȥ򤹤����в���������
+「傷もののネックレスは好きか？俺はそういうことをする宝石屋だぜ！」
 %E
 %Cp R 00024
 #"Lazy S.O.B.  Maybe I should call up someone else..."
-���դ���󤬡����Υ�����Ϻ��ï��¾�Τ�Ĥ�Ƥ֤���������
+「怠けもんが！このクソ野郎．誰か他のやつを呼ぶぞ．．．」
 %E
 %Cp R 00025
 #"Maybe I should open your skull and see if my instructions are inside?"
-�֤�����Ƭ�򳫤��Ʋ���̿�᤬�����ˤƤᤧ��������äƤ뤫���Ƥ����������
+「お前の頭を開いて俺の命令が本当にてめぇの中に入ってるか見てやろうか？」
 %E
 %Cp R 00026
 #"This is not a task you can complete in the afterlife, you know."
-�ְ¿�����Ϸ������ꤿ���ʤ顤���λŻ��Ϥ����Ȥ�äȤ�����ʡ���
+「安心して老後を送りたいなら，この仕事はちゃんとやっとくんだな．」
 %E
 %Cc R 00027
 #"Inside every living person is a dead person trying to get out, and I have
 #your key!"
-�������Ƥ���ʹ֤ȸ����ΤϤ⤬��³��������ʹ֤��������Ʋ��Ϥ�����
-  ������äƤ��롪��
+「生きている人間と言うのはもがき続ける死んだ人間だ．そして俺はお前の
+  鍵を持っている！」
 %E
 %Cp R 00028
 #"We're almost out of hell-hound chow, so why don't you just get moving!"
-�ֲ���ϳ��������ˤϤʤ�ͤ��������ޤ��餸���Ф����Ƥ������
+「俺らは皆カタギにはなれねぇ．何いまさらじたばたしてんだ！」
 %E
 %Cp R 00029
 #"You know, %o isn't going to come when you
 #whistle.  You must get it yourself."
-��%o��ū��ᤤ���ä���䤬��ͤ�����ʬ�Ǽ�ä�
-  ���뤷���ͤ��������
+「%oは笛を吹いたって来やがらねぇ．自分で取って
+  くるしかねぇんだ．」
 %E
 %Cp R 00030
 #Those damn little hairs tell you that you are nearer to
 #%o.
-�����ä���������Ӥ�%o�˶�Ť������Ȥ��Τ餻����
+くそったれの髮の毛が%oに近づいたことを知らせた．
 %E
 %Cp R 00031
 #Not wanting to face %l without having stolen
 #%o, you continue.
-%o�����ޤǤ�%l�ˤϲ񤤤����ʤ��ä�����³������
+%oを盗むまでは%lには会いたくなかったが，続けた．
 %E
 %Cc R 00040
 #You feel a great swelling up of courage, sensing the presence of
 #%o.  Or is it fear?
-���ʤ���ͦ����ͯ���Ƥ���褦�ʵ���������%o���ᤤ�˰㤤�ʤ���
-����Ȥⶲ�졩
+あなたは勇気が湧いてくるような気がした．%oが近いに違いない．
+それとも恐れ？
 %E
 %Cp R 00041
 #The hairs on the back of your neck whisper -- it's fear.
-���ʤ��Τ��ʤ������������䤤����-- ���ݤʤ󤫤���ʤ���
+あなたのうなじの髮がささやいた．-- 恐怖なんかじゃない．
 %E
 %Cc R 00050
 #"Ah!  You must be %ls ... er, `hero'.  A pleasure
 #to meet you."
-�֤�����%l�Ρ������Ȥ��Υҡ��������������˲񤨤ƴ򤷤�������
+「お前が%lの．．．使いのヒーローか．お前に会えて嬉しいぜ．」
 %E
 %Cc R 00051
 #"We meet again.  Please reconsider your actions."
-�֤ޤ���ä��ʡ��⤦����������ˤ��Ƥۤ�����Τ�����
+「また会ったな．もういいかげんにしてほしいものだ．」
 %E
 %Cp R 00052
 #"Surely, %p, you have learned that you cannot trust any bargains
 #that %l has made.  I can show you how to continue on
 #your quest without having to run into him again."
-�֤���%p��%l�Ȥμ������Ͽ��ѤǤ��ʤ��äƤ��Ȥ�
-  �ΤäƤ�������ʡ������������ɤ���ä���������³���뤫�����Ƥ������
-  ��ΤȤ�����ƨ���������ˤʡ���
+「おい%p，%lとの取り引きは信用できないってことは
+  知ってんだろうな．俺がお前がどうやったら冒険を続けるか示してやろう．
+  彼のところに逃げこむ前にな．」
 %E
 %Cp R 00053
 #"Please, think for a moment about what you are doing.  Do you truly
 #believe that %d would want %l to have
 #%o?"
-�֤���äȤޤơ��ͤ��ʤ����Ƥ��졥������%l��%o
-  ����Ĥ��Ȥ�%d��˾��Ǥ���ȻפäƤ�Τ�����
+「ちょっとまて，考えなおしてくれ．本当に%lが%o
+  を持つことを%dが望んでいると思ってるのか？」
 %E
 %Cp R 00060
 #"May I suggest a compromise.  Are you interested in gold or gems?"
-���Ŷ����褦����ͤ�����������ФΤɤä�����������
+「妥協しようじゃねぇか．金と宝石のどっちがいい？」
 %E
 %Cp R 00061
 #"Please don't force me to kill you."
-�֤����ϻ��������ͤ�������ʡ���
+「お前は殺したくねぇんだがな．」
 %E
 %Cp R 00062
 #"Grim times are upon us all.  Will you not see reason?"
-�֤���ʻ��֤�������䤬�롥��ͳ�Ϥ狼�äƤ�Τ�����
+「いやな時間だけありやがる．理由はわかってんのか？」
 %E
 %Cp R 00063
 #"I knew %l, and you're no %l, thankfully."
-�ֲ���%l���ΤäƤ��롥������%l����ʤ������꤬�Ƥ�����
+「俺は%lを知っている．お前は%lじゃない．ありがてぇ．」
 %E
 %Cp R 00064
 #"It is a shame that we are not meeting under more pleasant circumstances."
-�ֲ���������äȴ�Ф��������ǲ񤨤ͤ��ȤϤҤǤ��ä�����
+「俺たちがもっと喜ばしい状況で会えねぇとはひでぇ話だ．」
 %E
 %Cp R 00065
 #"I was once like you are now, %p.  Believe in me -- our way
 #is better."
-�ֲ��Ϥ��ĤƤϺ��Τ����Τ褦��Ω����ä���%p�补���򿮤�����
-  ���Τ�꤫��������������Ƥ�äƤ�������
+「俺はかつては今のお前のような立場だった，%pよ．俺を信じろ，
+  俺のやりかたの方がすぐれてるってもんだ．」
 %E
 %Cp R 00066
 #"Stay with me, and I will make you %os guardian."
-�ֲ��ΤȤ�������ͤ�����������%o����ʼ�ˤ��Ƥ��������
+「俺のところに来ねぇか？お前を%oの番兵にしてやろう．」
 %E
 %Cp R 00067
 #"When you return, with or without %o,
 #%l will have you killed."
-�֤�������ä���%o��ǡ���ˤ�����餺
-  %l�Ϥ����򻦤�������
+「お前が戻ったら%oの如何にかかわらず
+  %lはお前を殺すぜ．」
 %E
 %Cp R 00068
 #"Do not be fooled; I am prepared to kill to defend %o."
-���ϼ��Ϥ���������%o�Τ��Ủ���Ƥ⤤�����������
+「馬鹿はやめろ，俺は%oのため殺してもいいんだぜ．」
 %E
 %Cp R 00069
 #"I can reunite you with the Twain.  Oh, the stories you can swap."
-�֤�����ȥ�������˲�碌�Ƥ��뤼���ߥ����꤬�ߥ��餫����
+「お前をトウェインに会わせてやれるぜ．ミイラ取りがミイラか？」
 %E
 %Cc R 00070
 #"As you pick up %o, the hairs on the back of your
 #neck fall out.  At once you realize why %n was
 #willing to die to keep it out of %ls hands.  Somehow
 #you know that you must do likewise."
-���ʤ���%o�򽦤��ȡ����ʤ���ȱ���Ӥ��Ϥ����������������
-���ʤ��ϡ�����%n�������%l�μ긵����
-Υ���Ƥ�������˿ʤ�ǻ����Τ����ä���
-�ɤ������櫓�������ʤ���Ʊ�����Ȥ򤷤ʤ����
-�ʤ�ʤ��褦�ʵ��ˤʤä���
+あなたが%oを拾うと，うなじの髪の毛がはらりと落ちた．すぐに
+あなたは，何故%nがそれを%lの手元から
+離しておくために進んで死んだのかを悟った．
+どういうわけか，あなたも同じことをしなければ
+ならないような気になった．
 %E
 %Cc R 00080
 #"I know what you are thinking, %p.  It is not too late for you
@@ -3078,11 +3078,11 @@ guard."
 #
 #You sit and wait for death to come for %n, and then you
 #brace yourself for your next meeting with %l!
-��%p������������ͤ��Ƥ�Τ��ΤäƤ뤾��%o�򸭤�
-  �Ȥ��ˤϤޤ��٤��ʤ��������Υ���ɤ�%l�Τ����������Ȥ��Τ�����
+「%p，お前が何を考えてるのか知ってるぞ．%oを賢く
+  使うにはまだ遅くない．お前のギルドの%lのため正しく使うのだ．」
 
-���ʤ��Ϻ¤ꤳ�ߡ�%n�λ���Ԥä��������Ƽ���%l�˲񤦤���
-���Ф��ĥ��������
+あなたは座りこみ，%nの死を待った，そして次に%lに会うため
+神経を緊張させた！
 %E
 %Cc R 00081
 #"Well, I'll be damned.  You got it.  I am proud of you, a fine %r
@@ -3095,23 +3095,23 @@ guard."
 #
 #"But, you see what happened to %n when he refused.
 #Don't make me find another to send after you this time."
-�֤դ󡥤��礦�ɤ��ʤ��Ƥ��Ȥ������֥Ĥ������줿�褦���ʡ�������
-  �ؤ�˻פäȤ�补��������������%r����
+「ふん．ちょうどけなしてたとろだ．ブツを手に入れたようだな．お前を
+  誇りに思っとるよ．お前は素晴しい%rだ．
 
-�֤������ԤäƤ��ޤä����ȡ��ͤ��Ƥ��������������%o
-  �ϰ��ˤ��Ȥ��Ȳ����ä����Τ���Ȥ�����Ƴ���Ƥ��줽�������ɤ�������
-  �Ĥޤꡤ����ʹ���Ƥ��ΤϤ�����άå������Τ�ʬ�����äƤ��Ȥ���
-  %n�ʤ󤫤�ꤺ�äȤ�����ʬ�����ˤ������ͤ���
+「お前が行ってしまったあと，考えてたんだが，お前と%o
+  は一緒にしとくと俺をもっと宝のあるところへ導いてくれそうだ．どうだい？
+  つまり，俺が聞きてぇのはお前が略奪したものの分け前ってことだ．
+  %nなんかよりずっとすげぇ分け前にちがいねぇ．
 
-�֤�������������%n�����ݤ����Ȥ��������������������������ޤ��̤�
-  �ʹ֤��٤Ϥ����ΤȤ���������ʤ�Ƥ��Ȥ��ͤ��褦�ˤ��Ȥ�����
+「しかし，お前は%nが拒否したとき何が起きたか見ただろう．また別の
+  人間を今度はお前のところに送るなんてことがねぇようにしとけ．」
 %E
 %Cc R 00090
 #"Quite the little thief, aren't we, %p.  Can I interest you in a
 #swap for %o.  Look around, anything in the keep
 #is yours for the asking."
-�֥��󥱤���±����%p������%o�Τ����ˤ����˶�̣�����롥
-  �ɤ����ޤ碌�������ˤ�����������˾��ʤ餪���ˤ���Ƥ�äƤ⤤��������
+「チンケな盗賊だが%p，俺は%oのかわりにお前に興味がある．
+  良く見まわせ，ここにあるもん全部を望むならお前にくれてやってもいいぜ．」
 %E
 %Cc R 00091
 #"I see that with your abilities, and my brains, we could rule this world.
@@ -3119,27 +3119,27 @@ guard."
 #"All that we would need to be all-powerful is for you to take that little
 #trinket you've got there up to the Astral plane.  From there, %d will
 #show you what to do with it.  Once that's done, we will be invincible!"
-�֤�����ǽ�Ϥϲ��Τդ���̤�Τ�Τ��ä�������Ϥ����������ݤ���
+「お前の能力は俺のふんだ通りのものだった，俺らはこの世界の掟だ．
 
-����ǽ���Ϥ����뤿��ˤ��������뤳�Ȥϡ����Υ��󥱤�������������
-  ���äƤ����Ȥ���������%d�����򤹤�㤤���Τ������Ƥ���롥���줬�Ǥ�
-  ���顤�����̵Ũ������
+「万能の力を得るためにお前がすることは，そのチンケな装飾具を精霊界に
+  持ってくことだ．そこで%dが何をすりゃいいのか教えてくれる．これができ
+  たら，俺らは無敵だ！」
 %E
 #
 #	Samurai
 #
 %Cc S 00001
-�ռ���������������ˡ����ʤ���%H���Ԥˤ��뤳�Ȥ��狼�ä���
+意識が完全に戻る前に，あなたは%Hの都にいることがわかった．
 
-������̯�������ʤ��ν�Ũ�Ǥ���%n������Į�ξ����
-����Ǥ���Τ���Ǧ�Ԥ����Τ�����������ϲ���Ƥ���Τ������ʤ�����
-̾�Ǥ���%l�λ��Ϥɤ��ˤ���Τ���
+しかし妙だ．あなたの宿敵である%nが何故町の上空を
+飛んでいるのだ？忍者が何故あちこちで放浪しているのだ？あなたの大
+名である%lの侍はどこにいるのだ？
 
-���ʤ��ϵޤ��ǰ˼��������Ӱ˼������˵���򤵤�����Į�ظ��ä�
-�⤤�Ƥ��ä���
+あなたは急いで伊邪那岐および伊邪那美に祈りをささげ，町へ向って
+歩いていった．
 %E
 %Cp S 00002
-�⤦���١����ʤ���%H����ä���
+もう一度，あなたは%Hに戻った．
 %E
 %Cp S 00003
 #You are back at %H.
@@ -3147,74 +3147,74 @@ guard."
 #Instantly you sense a subtle change in your karma.  You seem to know that
 #if you do not succeed in your quest, %n will have destroyed
 #the kami of %H before you return again.
-���ʤ���%H����ä���
+あなたは%Hに戻った．
 
-¨�¤ˡ����ʤ��ϥ���ޤ���̯�ʰ㤤�򴶤��Ȥä������ʤ��ϡ��⤷�������Ȥ�
-���Ԥ����顤���ʤ����������%n��%H���Ԥ��˲�����ȸ��������
-���֤˵����Ĥ�����
+即座に，あなたはカルマの微妙な違いを感じとった．あなたは，もしクエストに
+失敗したら，あなたが戻る前に%nが%Hの都を破壊すると言う重大な
+事態に気がついた．
 %E
 %Cp S 00005
 #"To succeed, you must walk like a butterfly on the wind."
-�������Τ���ˤϡ�ĳ�Τ褦���⤫�ͤФʤ�ʤ���
+「成功のためには，蝶のように歩かねばならない」
 %E
 %Cp S 00006
 #"Ikaga desu ka?"
-�֤⤦����ޤä�����
+「もうかりまっか？」
 %E
 %Cp S 00007
 #"I fear for The Land of The Gods."
-�ֻ�Ͽ����Ϥ򶲤�Ƥ����
+「私は神の地を恐れている」
 %E
 %Cp S 00008
 #"%nC has hired the Ninja -- be careful."
-��%n��Ǧ�Ԥ�ۤä�������������Ĥ�������
+「%nは忍者を雇ったそうだ．気をつけろ．」
 %E
 %Cp S 00009
 #"If %o is not returned, we will all be ronin."
-�֤⤷%o��������ʤ���С��桹�Ϥ��ä�ϲ�ͤΤޤޤ�����
+「もし%oが手に戻らなければ，我々はずっと浪人のままだ．」
 %E
 %Cc S 00010
 #"Ah, %p-san, it is good to see you again.  I need someone who can
 #lead my samurai against %n.  If you are ready, you will be
 #that person."
-�֤���%p�衤���ޤ��˲񤨤����˴򤷤������%n��
-  �Ф��Ʋ椬������Ƴ���Ԥ�ɬ�פȤ��Ƥ��롥
-  �⤷�����ޤ��˽������Ǥ��Ƥ���ʤ顤
-  ���ޤ����������Ф줿�ʹ֤�����
+「おお%pよ，おまえに会えて非常に嬉しい．私は%nに
+  対して我が侍魂を導く者を必要としている．
+  もし，おまえに準備ができているなら，
+  おまえがその選ばれた人間だ．」
 %E
 %Cp S 00011
 #"Once again, %p-san, you kneel before me.  Are you yet capable of
 #being my vassal?"
-�֤ޤ��褿��%p�补������ˤҤ��ޤ��������ޤ��ˤ錄���οò�
-  �ˤʤ�����ε��̤����뤫�ʡ���
+「また来たな%pよ．私の前にひざまずけ．おまえにわたしの臣下
+  になるだけの技量があるかな？」
 %E
 %Cp S 00012
 #"You begin to test my matsu, %p-san.
 #If you cannot determine what I want in a samurai, how can I rely on you
 #to figure out what I need from a samurai?"
-�֤��ޤ��ϻ�ξ��λ���������Ϥ��᤿��%p�补�⤷�����ޤ���
-  �䤬����˾��٤���Τ��ᤫ�ͤƤ���ʤ顤�ɤ���äƤ��ޤ����ꤷ����
-  �褤�Τ�����
+「おまえは私の松の試練を受けはじめた，%pよ．もし，おまえが
+  私が侍に望むべきものを決めかねているなら，どうやっておまえを信頼したら
+  よいのだ？」
 %E
 %Cp S 00013
 #"You are no longer my samurai, %p.
 #
 #"Hara-kiri is denied.  You are ordered to shave your head and then to
 #become a monk.  Your fief and family are forfeit.  Wakarimasu?"
-�֤��ޤ��Ϥ�Ϥ��λ��ǤϤʤ���%p�补
+「おまえはもはや私の侍ではない，%pよ．
 
-�֥ϥ饭��Ϥ��褦��Ƭ����ꡤ�ΤˤǤ�ʤ뤬�褤�����ޤ���
-  ���Ϥ��²���׼����롥�狼�ä�������
+「ハラキリはやめよう．頭を剃り，僧にでもなるがよい．おまえの
+  領地や家族は没収する．わかったか？」
 %E
 %Cp S 00014
 #"%p-san, you have learned well and honored your family.
 #I require the skills of %Ra in order to defeat %n.
 #Go and seek out teachers.  Learn what they have learned.  When you
 #are ready, return to me."
-��%p�衤���ޤ��Ϥ褯�ؤӡ���²��̾���˻פäƤ��롥���ޤ���%n��
-  �ݤ��ˤ�%R���餤�ε��̤�ɬ�פ���
-  �Ԥ��������ƻդ��ܤ������ؤ֤٤����Ȥ�ؤ١��Ѱդ��Ǥ����ʤ�
-  ��ΤȤ�������äƤ���Τ�����
+「%pよ，おまえはよく学び，家族を名誉に思っている．おまえが%nを
+  倒すには%Rくらいの技量が必要だ．
+  行け！そして師を捜せ！．学ぶべきことを学べ！用意ができたなら
+  私のところへ戻ってくるのだ．」
 %E
 %Cp S 00015
 #"%p-san, you would do better to join the kyokaku.
@@ -3222,11 +3222,11 @@ guard."
 #"You have skills, but until you can call upon the bushido to know when and
 #how to use them you are not samurai.  When you can think %A and
 #act %A then return."
-��%p�补���Ҥ˲ä�ä��ۤ����褤�ΤǤϤʤ�����
+「%pよ．侠客に加わったほうがよいのではないか？
 
-�֤��ޤ��ϵ��̤���äƤ��롤���������ƻ�Τʤ󤿤뤫���Τ�ޤǤϡ�
-  ���ޤ��ϻ��ǤϤʤ���%a�ˤĤ��Ƥ褯�ͤ���%a��¹Ԥ�
-  ��������뤬�褤����
+「おまえは技量を持っている，しかし武士道のなんたるかを知るまでは，
+  おまえは侍ではない．%aについてよく考え，%aを実行し
+  そして戻るがよい．」
 %E
 %Cc S 00016
 #"Domo %p-san, indeed you are ready.  I can now tell you what
@@ -3245,76 +3245,76 @@ guard."
 #cha-no-you in 5 sticks.
 #
 #"Wakarimasu?"
-��%p�衤�¤ˤ��Ф餷������Ϥ����˻䤬������Ƥ��뤫
-  �𤲤褦��
+「%pよ，実にすばらしい．私はお前に私が何を求めているか
+  告げよう．
 
-����̾��%n���桹��΢�ڤä�����ϲ桹����%o����ߡ�
-  %i���ϲ������˻�����ä��Τ���
+「大名の%nが我々を裏切った．彼は我々から%oを盗み，
+  %iの地下深くに持ち去ったのだ．
 
-���뤬�פˤ�äƤ����Ȥ���%o�򸥾�Ǥ��ͤС���ϻ�μ��Ԥ�
-  �����Ĥ�����ʢ���׵᤹��Ǥ�������
+「帝が祭にやってきたとき，%oを献上できねば，帝は私の失敗に
+  気がつき，切腹を要求するであろう．
 
-�֤��ޤ��ϡ�%i�����ꡤ��κ⻺�������ͤФʤ�ʤ����ޤ���
-  ���5��������������Τ���
+「おまえは，%iに入り，帝の財産を回収せねばならない．急げ！
+  帝は5日後の茶の湯に来るのだ．
 
-�֤狼�ä�������
+「わかったか？」
 %E
 %Cp S 00020
 #"To defeat %n you must overcome the seven emotions:
 #hate, adoration, joy, anxiety, anger, grief, and fear."
-��%n���ݤ��ˤϡ����ޤ���7�Ĥδ�����Ǥ��ˤ�ͤФʤ�̡�
-  �����ߡ����顤�ڤ��ߡ��԰¡��ܤꡤ�ᤷ�ߡ������ƶ��������
+「%nを倒すには，おまえは7つの感情を打ち破らねばならぬ：
+  憎しみ，愛慕，楽しみ，不安，怒り，悲しみ，そして恐れだ．」
 %E
 %Cp S 00021
 #"Remember your honor is my honor, you perform in my name."
-�֤��ޤ���̾���ϻ��̾���Ǥ��뤳�Ȥ�˺���ʡ��椬̾�Τ�Ȥ��廊����
+「おまえの名誉は私の名誉であることを忘れるな，我が名のもとで戦え！」
 %E
 %Cp S 00022
 #"I will go to the temple and burn incense for your safe return."
-�ֻ�ϻ��عԤ������ޤ��ΰ����Τ�����ʲ���Ĥ�������
+「私は寺へ行き，おまえの安全のため香を焚くつもりだ．」
 %E
 %Cp S 00023
 #"Sayonara."
-�֤���Ф�����
+「さらばだ．」
 %E
 %Cp S 00024
 #"There can be honor in defeat, but no gain."
-���Ǥ��餫�����ݤˤ��Ϥ��Ϥʤ�����̾�������롥��
+「打ち負かした際には力や金はないが，名誉がある．」
 %E
 %Cp S 00025
 #"Your kami must be strong in order to succeed."
-�������Τ���ˤϤ��ޤ��ο��϶��ԤǤʤ���Фʤ�ʤ�����
+「成功のためにはおまえの神は強者でなければならない．」
 %E
 %Cp S 00026
 #"You are indeed a worthy %R, but now you must be a worthy samurai."
-�֤��ޤ��ϼ¤�%R�ˤդ��路�������������䤪�ޤ��ϻ��Ȥ��Ƥ�
-  �դ��路���ʤ���Фʤ�̡���
+「おまえは実に%Rにふさわしい，しかし今やおまえは侍としても
+  ふさわしくなければならぬ．」
 %E
 %Cp S 00027
 #"If you fail, %n will be like a tai-fun on the land."
-�֤⤷���ޤ������Ԥ���ʤ顤%n�Ϥ����Ϥ������Τ褦�ˤʤ�
-  �Ǥ���������
+「もしおまえが失敗するなら，%nはこの地の台風のようになる
+  であろう．」
 %E
 %Cp S 00028
 #"If you are truly %A, %d will listen."
-�֤⤷���ޤ���������%a���äƤ���ʤ顤%d��ʹ������Ƥ�
-  ������������
+「もしおまえが本当に%aを守っているなら，%dは聞きいれてく
+  れるだろう．」
 %E
 %Cp S 00029
 #"Sharpen your swords and your wits for the task before you."
-��Ǥ̳�Τ��ᡤ���ޤ��η��򸦤����ηä��ä��补��
+「任務のため，おまえの剣を研ぎ，知恵を鍛えよ．」
 %E
 %Cc S 00030
 #You instinctively reach for your swords.  You do not recognize the
 #lay of this land, but you know that your teki are everywhere.
-���ʤ���ľ��Ū�˷��˼꤬���Ӥ������ʤ��ϼ�ʬ���ɤ��ˤ���Τ��狼��ʤ���
-������Ũ�����������ˤ���Τ����Ϥ狼�ä���
+あなたは直感的に剣に手が伸びた．あなたは自分がどこにいるのかわからなかっ
+たが，敵があちこちにいるのだけはわかった．
 %E
 %Cp S 00031
 #Thankful that your %sp at %H cannot see
 #your fear, you prepare again to advance.
-%H�ˤ��뤢�ʤ���%s�����ʤ��ζ��ݤˤҤ��Ĥä�
-��򸫤�ʤ����Ȥ������������ʤ������ʤ�������򤷤���
+%Hにいるあなたの%sがあなたの恐怖にひきつった
+顔を見れないことが幸いだ．あなたは前進する準備をした．
 %E
 %Cc S 00040
 #In your mind, you hear the taunts of %n.
@@ -3322,93 +3322,93 @@ guard."
 #You become like the rice plant and bend to the ground, offering a
 #prayer to %d.  But when the wind has passed, you stand
 #proudly again.  Putting your kami in the hands of fate, you advance.
-���Τ�������%n�Τ������Ф���ʹ������
+気のせいか，%nのあざけ笑いを聞いた．
 
-���ʤ��ϰ���Τ褦�˼���졤���̤˶�������
-%d�ؤε��������������ؤ������̤ꤹ����ȡ�
-���ν�̿���ˡ����ʤ��Ϥޤ�ͦ�ޤ��������ʤ�����
+あなたは稲穂のように首を垂れ，地面に屈伏し，
+%dへの祈りを捧げた．一陣の風が通りすぎると，
+神の宿命を手に，あなたはまた勇ましげに前進した．
 %E
 %Cp S 00041
 #As you arrive once again at the home of %n, your thoughts
 #turn only to %o.
-%n���Ϥؤ⤦�������Ȥ��ϡ�%o������ͤ���
-����褦�ʵ���������
+%nの地へもう一度戻るときは，%oだけを考えて
+いるような気がした．
 %E
 %Cp S 00050
 #"Ah, so it is to be you, %p-san.  I offer you seppuku.
 #I will be your second if you wish."
-�֤��ޤ�����%p�补��ʢ����Ȥ������ʤ��ĤäƤ��뤾�补
-  ������˾��ʤ顤����ͤˤʤ���������
+「おまえか，%pよ．切腹するという手段が残っているぞよ．
+  お前が望むなら，介錯人になろうぞ．」
 %E
 %Cp S 00051
 #"I have offered you the honorable exit.  Now I will have your
 #head to send unwashed to %l."
-��̾�������򴫤�褦��������С�%l�ˤ����������
-  �Ϥ��Ƥ�롥��
+「名誉ある死を勧めよう．さすれば，%lにお前の生首を
+  届けてやる．」
 %E
 %Cp S 00052
 #"After I have dispatched you, I will curse your kami."
-�֤�����ȤäȤȽ跺���ơ����ޤ��ο�����äƤ����������
+「お前をとっとと処刑して，おまえの神を呪ってやろうぞ．」
 %E
 %Cp S 00053
 #"You have fought my samurai; surely you must know that you
 #will not be able to take %o back to
 #%H"
-�֤����ϻ�λ�����ä���%o����ä�
-  %H�˵��뤳�Ȥʤ��Բ�ǽ�Ǥ�����ˤ��ۤ��Τ뤬�褤��
+「お前は私の侍と戦った．%oを持って
+  %Hに帰ることなど不可能であると痛いほど知るがよい」
 %E
 %Cp S 00060
 #"Ahh, I finally meet the daimyo of the kyokaku!"
-�֤�������ϤȤ��Ȥ����Ҥ���̾�˲�ä�����
+「おお，私はとうとう侠客の大名に会った！」
 %E
 %Cp S 00061
 #"There is no honor for me in your death."
-�֤����λ�ʤɻ�ˤȤäƤ�̾���Ǥ�ʤ�Ǥ�ʤ�����
+「お前の死など私にとっては名誉でもなんでもない．」
 %E
 %Cp S 00062
 #"You know that I cannot resash my swords until they have killed."
-�ֲ椬���Ϸ����Ƥ�ޤʤ�����
+「我が剣は血を求めてやまない．」
 %E
 %Cp S 00063
 #"Your presence only compounds the dishonor of %l in not coming himself."
-�֤�����¸�ߤ�ñ��%l����̾����������������
+「お前の存在は単に%lの不名誉を高めるだけだ．」
 %E
 %Cp S 00064
 #"I will make tea with your hair and serve it to %l."
-�֤�����ȱ�����ʨ������%l�������褦����
+「お前の髪で茶を沸かし，%lに捧げよう．」
 %E
 %Cp S 00065
 #"Your fear shows in your eyes, coward!"
-�֤����ζ��ݿ����ܤ˸����뤾�����¼Ԥᡪ��
+「お前の恐怖心が目に見えるぞ，憶病者め！」
 %E
 %Cp S 00066
 #"I have not heard of you, %p-san; has your life been that unworthy?"
-��"%p���Τ�ʤ��ʡ�������¸�ߤʤɰ��Ҥβ��ͤ�ʤ���
+「"%p？知らないな．お前の存在など一片の価値もない」
 %E
 %Cp S 00067
 #"If you will not obey me, you will die."
-�ֽ���ͤС��ढ��Τߡ���
+「従わねば，死あるのみ．」
 %E
 %Cp S 00068
 #"Kneel now and make the two cuts of honor.  I will tell your %sp
 #of your honorable death."
-�֤Ҥ��ޤ�����̾����ΤƤ补������Ф�����%s��
-  ̾���λ�������Ƥ������
+「ひざまずけ，名誉を捨てよ．さすればお前の%sに
+  名誉の死を伝えてやろう」
 %E
 %Cp S 00069
 #"Your master was a poor teacher.  You will pay for his mistakes in
 #your teaching."
-�֤����λդϴ�ȴ�����ʡ���ζ����ְ㤤���󤤤�����뤬�褤��
+「お前の師は間抜けだな．彼の教え間違いの報いを受けるがよい」
 %E
 %Cc S 00070
 #As you pick up %o, you feel the strength of its karma.
 #You realize at once why so many good samurai had to die to defend it.
 #You are humbled knowing that you hold one of the artifacts of the
 #sun god.
-%o�򽦤��ȡ����Υ���ޤζ����򴶤�����
-���ʤ���ľ���ˡ��ʤ�¿���λ���������뤿��˻����Τ���
-��ä������ʤ������ۿ�������Σ��Ĥ��ˤ������Ȥ��ΤäƸ���
-�ʵ����ˤʤä���
+%oを拾うと，そのカルマの強さを感じた．
+あなたは直ちに，なぜ多くの侍がそれを守るために死んだのかを
+悟った．あなたは太陽神の聖器の１つを手にしたことを知って謙虚
+な気持になった．
 %E
 %Cc S 00080
 #Your healing skills tell you that %ns wounds are mortal.
@@ -3419,13 +3419,13 @@ guard."
 #
 #You order that his unwashed head be given to the crows and his body
 #thrown into the sea.
-%n�ν�����̿���Ǥ��뤳�Ȥ�����Ū�ˤ狼�ä���
+%nの傷は致命傷であることが感覚的にわかった．
 
-���ʤ������ƻ�Ǥϼ�Τ��ᡤ�ޤ��ϼ�ο��Τ���˻�̤��Ȥ�̾���Ǥ����
-�����Ƥ��뤳�Ȥ��ΤäƤ��롥��������������̾�����ˤΤ���˻�����¿��
-�λ��ؤλפ����Ȥɤ�ΰ���Ϳ���뤳�Ȥ�˸������
+あなたは武士道では主のため，または主の神のために死ぬことは名誉であると
+教えていることを知っている．しかし，この不名誉な男のために死んだ数多く
+の侍への思いがとどめの一撃を与えることを妨げた．
 
-���ʤ����������򥫥饹��Ϳ��������Τ򳤤��ꤲ�뤳�Ȥˤ�����
+あなたは彼の生首をカラスに与え，彼の体を海へ投げることにした．
 %E
 %Cc S 00081
 #As you bow before %l, he welcomes you:
@@ -3445,24 +3445,24 @@ guard."
 #
 #With that, %l bows, and places his sword atop
 #%o.
-%l����򤹤����ˡ���Ϥ��ʤ���ޤ�����
+%lに礼をする前に，彼はあなたを迎えた：
 
-    ���ʤ��ϲ�²�˰����̾����⤿�餷�ޤ�����%p�͡�
+    あなたは家族に偉大な名誉をもたらしました，%p様．
 
-    ���ʤ����Ԥ�������ν��Ԥ������ʸ�����������������᤹
-    �����õ��������Υ���ޤ�ȯ������%o�Υ���ޤ�
-    �͵��ε���Ȥ��Ʒ�ӤĤ����Ƥ��뤳�Ȥ�ȯ�����ޤ�����
+    あなたが行く前に帝の従者が古代の文献の中に魔除けを取り戻す
+    ために探索する侍のカルマを発見し，%oのカルマは
+    四季の季節として結びつけられていることを発見しました．
 
-    ���ʤ����������򸫤ơ���Ϥ��ʤ���¾�ε�̳�������������ʤ��ν�̿��
-    ƻ�򤿤ɤ뤳�Ȥ���ޤ������⤷���ʤ������������äƤ���
-    �ޤǤ錄�������ʤ��β�²�����ä򤷤Ƥ�褤�ʤ顤�����
-    ����̾���ʤ��ȤǤ���
+    あなたの忠誠心を見て，帝はあなたが他の義務を放棄し，あなたの宿命の
+    道をたどることを求めました．もしあなたが魔除けを持ってくる
+    までわたしがあなたの家族の世話をしてもよいなら，それは
+    非常に名誉なことです．
 
-���Τ褦��%l����򤷡���η��򺹤��Ф�����
+このように%lは礼をし，彼の剣を差し出した．
 %E
 %Cp S 00090
 #%lC bows.  "%p-sama, tell us of your search for the Amulet."
-%l����򤷤�����%p�͡������õ�����ä�ʹ����������������
+%lは礼をした．「%p様，魔除け探索の話をお聞かせください．」
 %E
 %Cc S 00091
 #"Ah, %p-sama.  You have wasted your efforts returning home.
@@ -3471,12 +3471,12 @@ guard."
 #for saki and stories when you have finished.
 #
 #"Go now, and may our prayers be a wind at your back."
-�֤���%p�͡��ζ��˵���ˤ�̵�̤ʤ��Ȥ򤷤Ƥ���ޤ���
-  ���䡤���ʤ���������ν�ͭ�ԤǤ������ʤ���������äƤ���������
-  ��λ���뤳�Ȥ�̾���ʤ��ȤǤ���̵����λ�����ݤˤϡ�����������
-  �Τ���ˤ��ޤ�ۤɤλ��֤�����Ǥ��礦��
+「おお%p様，故郷に帰るには無駄なことをしております．
+  今や，あなたは魔除けの所有者です．あなたが請け負っている冒険を
+  終了することは名誉なことです．無事終了した際には，酒宴と冒険談
+  のためにあまるほどの時間があるでしょう．
 
-�֤��ʤߤ������������ʤ��˲桹�ε���Τ���󤳤Ȥ򡥡�
+「お進みください，あなたに我々の祈りのあらんことを．」
 %E
 #
 #	Tourist
@@ -3491,54 +3491,54 @@ guard."
 #matter of fact, you do not %x any movement in the fields at all, and
 #the crops look as though they have been untended for many weeks.
 #
-���ʤ��ϸ����줿%H�����ϤˤĤ��ư��Ȥΰ�©��Ĥ�����
+あなたは見慣れた%Hの敷地について安堵の一息をついた．
 
-��������������Υ�줿���ȤϤʤ�����㤦�Τ˵��դ�����
-Į�ϰŤ����Ťޤ��֤äƤ��롥Į���ɤθ�����¦����Ϥʤˤⲻ��ʹ��������
-����ǤΥ����ץե��������⸫������ʤ���
-�Ȥ�����ꡤ����Ǥϲ���ư���ⴶ����줺����ʪ�ϲ�����
-�ˤ��ϤäƼ����줵��Ƥ��ʤ��褦����
+しかし，ここを離れた時とはなんだか違うのに気付いた．
+町は暗く，静まり返っている．町の壁の向こう側からはなにも音が聞こえず，
+広場でのキャンプファイアーも見当たらない．
+というより，広場では何の動きも感じられず，作物は何週間
+にも渡って手入れされていないようだ．
 %E
 %Cp T 00002
 #Once again, you are back at %H.
 #
-���ʤ��ϺƤ�%H�ؤ���äƤ�����
+あなたは再び%Hへと戻ってきた．
 %E
 %Cp T 00003
 #You are back at %H.
 #Things appear to have become so bad that you fear that soon
 #%H will not be here to return to.
 #
-���ʤ���%H�ؤ���äƤ�����
+あなたは%Hへと戻ってきた．
 
-�������Ҥɤ��ʤꤹ���ơ�
-���äƤ��뺢�ˤ�%H���ʤ��ʤäƤ��ޤ��ΤǤϤʤ����ȴ���������
+状況がひどくなりすぎて，
+帰ってくる頃には%Hがなくなってしまうのではないかと危惧した．
 %E
 %Cp T 00005
 #"Gehennom on 5 zorkmids a day -- more like 500 a day if you ask me."
 #
-�֥��إʤǰ�����������ɤ��äơ��������δְ㤤���㤡�ʤ��Τ�������
+「ゲヘナで一日５ゴールドだって？５００の間違いじゃぁないのかい？」
 %E
 %Cp T 00006
 #"Do you know where I could find some nice postcards of The Gnomish Mines?"
 #
-�֥Ρ����ú���Τ��줤�ʳ��ս����äƤ�Ȥ����Τ�ޤ��󡩡�
+「ノームの炭坑のきれいな絵葉書を売ってるところ知りません？」
 %E
 %Cp T 00007
 #"Have you tried the weird toilets?"
 #
-�֤��Ρ����Ѥʥȥ����Ȥä����Ȥ���ޤ�����
+「あのー．変なトイレを使ったことあります？」
 %E
 %Cp T 00008
 #"Don't stay at the Inn, I hear the food is terrible and it has rats."
 #
-�ֽɤˤ���ޤ�ʤ����������补�������Ҥɤ��ơ�
-�����ޤ����ͤ��Ǥ����äƤ�����
+「宿には泊まらない方がいいよ．食事がひどくて，
+　おまけに鼠がでるんだってさ．」
 %E
 %Cp T 00009
 #"They told me that this was the off season!"
 #
-�֤�����ʹ���Ƥʤ��衼���������ե������󤸤�ʤ��ä��Ρ���
+「えー．聞いてないよー．今がオフシーズンじゃなかったの？」
 %E
 %Cc T 00010
 #"Is it really you, %p!  I had given up hope for your return.
@@ -3547,31 +3547,31 @@ guard."
 #
 #"Let me see if you are ready to be that someone."
 #
-�֤�䡤%p����������äƤ���Ȥϻפ�ʤ��ä��补
-  ���ˤ�ʬ����Ȼפ������桹�ϥҥ��硼�˺��äƤ�����
-��ï����%n���ݤ��ͤС�Į�Ϥ�ȤΤ褦�����ʤ��������
+「やや，%p君かい．戻ってくるとは思わなかったよ．
+  君にも分かると思うが，我々はヒジョーに困ってるんだ．
+　誰かが%nを倒さねば，町はもとのように戻らないんだ．」
 
-�ַ����桹���������ͤ���ۤɤ��Τ���Ƥߤ褦����
+「君が我々を助けるに値するほどか確かめてみよう．」
 %E
 %Cp T 00011
 #"Things are getting worse, %p.
 #I hope that this time you are ready."
 #
-�־����Ϲ��ﰭ�����Ƥ�����%p����
-��������ѰդǤ��Ƥ���������͡���
+「状況は刻一刻悪化してるんだ，%p君．
+　今回は用意できているだろうね．」
 %E
 %Cp T 00012
 #"I hope that for the sake of %H you have prepared
 #yourself this time."
 #
-��%H�Τ���ˤ⡤����Ͻ������Ƥ����������͡���
+「%Hのためにも，今回は準備してきただろうね．」
 %E
 %Cc T 00013
 #"It is too late, %p.  You are not even worthy to die amongst us.
 #Leave %H and never return."
 #
-���٤������͡�%p�������ϲ桹����֤Ȥ��ƻ�̤ˤ��ͤ��ʤ���
-��%H��Υ��ơ����٤ȵ��äƤ���ʡ���
+「遅すぎたね，%p君．君は我々の仲間として死ぬにも値しない．
+　%Hを離れて，二度と帰ってくるな．」
 %E
 %Cc T 00014
 #"There is still too much that you have to learn before you can undertake
@@ -3580,11 +3580,11 @@ guard."
 #
 #"Go back now, and may the teachings of %d serve you well."
 #
-�ַ��ϼ��ι�ư�򵯤������ˤ�äȳؤФʤ���Ф����ʤ���
-��%R �Ȥ��Ʋ桹�����˵��äƤ��줿�顤�⤷���������Ѱ�
-���Ǥ��Ƥ뤫�⤷��ʤ�����
+「君は次の行動を起こす前にもっと学ばなければいけない．
+　%R として我々の前に帰ってこれたら，もしかしたら用意
+　できてるかもしれない．」
 
-�֤�������ꤿ�ޤ�����ǡ�%d�ζ��������ΰ٤ˤʤ�󤳤Ȥ򡥡�
+「ささ，戻りたまえ．んで，%dの教えが君の為にならんことを．」
 %E
 %Cc T 00015
 #"It would be an affront to %d to have one not true to the
@@ -3594,12 +3594,12 @@ guard."
 #bad influences on your actions.  Remember, only by following the %a
 #path can you hope to overcome the obstacles you will face."
 #
-��%a�Ǥʤ�ƻ������Τ򤳤λ��������뤳�Ȥ�%d���Ф�
-  �����Ư�����Ȥˤʤ롥��	
+「%aでない道を歩むものをこの試練に送ることは%dに対し
+  不貞を働くことになる．」	
 
-�ַ��ϼ���ζȤ������ޤǤ����θ��˵��äƤ���ʡ�
-  �����ƳФ��Ƥ�����%a��ƻ������ʤ��Ȥˤ�äƷ��Ϥ���ʤ�
-  ������Ω�����������Ȥ��Ǥ���������
+「君は自らの業を清めるまでわれわれの元に帰ってくるな．
+  そして覚えておけ．%aな道だけを進ことによって君はさらなる
+  試練に立ち向かうことができるんだ．」
 %E
 %Cc T 00016
 #"You have indeed proven yourself a worthy %c, %p.
@@ -3617,110 +3617,110 @@ guard."
 #that all will be lost.  Let us both pray now that %d will guide you
 #and keep you safe."
 #
-�ֳΤ��˷��Ϥ��硼���󤷤硼�᡼��%c����%p������
+「確かに君はしょーしんしょーめーの%cだ，%p君．」
 
-�֤���������ڤӲ椬��²�Ϸ���ι�����ٻߤ���
-  ���κ��äƤ�����ˤ����ƽ����Ƥۤ���������ι�˽Ф�ľ�塤
-  %n��������ĮĹ�Ȥ������������������
-  �ۤϻ�Ǧ�ˤ��ƾ��ƼϤʤ����Ȥ�Ǥ�ʤ���Ĥ��ä����������
+「しかし，私及び我が一族は君に旅を一時休止して
+  この困ってる状況において助けてほしい．君が旅に出た直後，
+  %nが新しい町長として当選したんだが，
+  奴は残忍にして情け容赦ない，とんでもないやつだったんだ．．」
 
-��ĮĹ�ˤʤäƤ���Ȥ�����Ρ��ۤ�%o��
-  ��ߤ�����  Į��ʬ�μ겼�ɤ�˹����ʤ褦��Ǥ����
-  Į��ФƤ��ä����桹������Į�򸵤��᤹����ˤϷ���
-  %i�ˤ��äƤ�餤��%o��
-  ��äƤ��Ƥ���ʤ���Фʤ�ʤ�����
+「町長になってからというもの，奴は%oを
+  盗みだし，  町を自分の手下どもに好きなように任せ，
+  町を出ていった．我々がこの町を元に戻すためには君に
+  %iにいってもらい，%oを
+  取ってきてもらわなければならない．」
 
-��ƻ��򿩤��褦�ʤ��ȤϤ��ʤ��Ǥ��졥�⤷�����᤯���äƤ���ʤ�
-  ��в桹�����Ƥ򼺤äƤ��ޤ����⤷��ʤ������%d��
-  ����Ƴ���������˼�äƤ���뤳�Ȥ򵧤�������
+「道草を食うようなことはしないでくれ．もし君が早く帰ってこれなけ
+  れば我々は全てを失ってしまうかもしれないんだ．%dが
+  君を導き，安全に守ってくれることを祈ろう．」
 
 %E
 %Cp T 00020
 #"Do not be fooled by the false promises of %n."
 #
-��%n�θ��֤ˤΤ�ʡ��ۤ�ɬ��΢�ڤ롥��
+「%nの口車にのるな．奴は必ず裏切る．」
 %E
 %Cp T 00021
 #"To enter %i you must pass many traps."
 #
-��%i�����뤿��ˤ��͡���櫤򤯤���ȴ���ʤ���Фʤ�ʤ��ä����� 
+「%iに入るためには様々な罠をくぐり抜けなければならないっす．」 
 %E
 %Cp T 00022
 #"If you do not return with %o, your quest
 #will be in vain."
 #
-��%o�ʤ����Ƶ��äƤ����顤���ʤ��Τ��Ƥ���
-  ���ȤϤʡ���ΰ�̣������ʤ�����
+「%oなくして帰ってきたら，あなたのしてきた
+  ことはなーんの意味も持たない．」
 %E
 %Cp T 00023
 #"Do not be afraid to call upon %d if you truly need help."
 #
-�֤ɤ����Ƥ������ɬ�פʤ顤�����鷺��%d�˵���ʤ�������
+「どうしても助けが必要なら，ためらわずに%dに祈りなさい．」
 
 %E
 %Cp T 00024
 #"If you do not destroy %n, he will follow you back here!"
 #
-��%n���ݤ��ʤ���С�%n�Ϥ��ʤ��򤳤��ޤ��ɤäƤ��ޤ��补��
+「%nを倒さなければ，%nはあなたをここまで追ってきますよ．」
 
 %E
 %Cp T 00025
 #"Take %o from %n
 #and you may be able to defeat him."
 #
-��%n����%o��Ȥ뤳�Ȥ����褿��
-  %n���ݤ����Ȥ�����뤫�⤷��ʤ��ä�����
+「%nから%oをとることが出来たら
+  %nを倒すことが出来るかもしれないっす．」
 %E
 %Cp T 00026
 #"You must hurry, %p!"
 #
-��%p���ޤ��ʤ�������
+「%p，急ぎなさい！」
 %E
 %Cp T 00027
 #"You are like %Sa to me, %p.  Do not let me down."
 #
-��%p������ˤȤäƷ���%S�Τ褦�ʤ�Τ���
-  ���Ԥ�΢�ڤ�褦�ʤ��ȤϤ��ʤ��Ǥ��졥��
+「%p君，私にとって君は%Sのようなものだ．
+  期待を裏切るようなことはしないでくれ．」
 %E
 %Cp T 00028
 #"If you are %a at all times you may succeed, %p."
 #
-��%p�����������%a�Ǥ���ʤ�С�
-  �⤷���������������뤫�⤷��ʤ�����
+「%p君，君が常に%aであるならば，
+  もしかしたら成功するかもしれない．」
 %E
 %Cp T 00029
 #"Let all who meet you on your journey know that you are on an quest for
 #%l and grant safe passage."
 #
-��ι������ǲ����ƤμԤ����˰����Ǥ���褦�ˡ�
-  ����%l�ΰ٤�ι�˽ФƤ��롤
-  �Ȥ������Ȥ��Τ餻�Ƥ������ۤ�����������
+「旅の途中で会う全ての者が君に安全であるように，
+  君が%lの為に旅に出ている，
+  ということを知らせておいたほうがいい．」
 %E
 %Cp T 00030
 #Only your faith in %d keeps you from trembling.  You %x
 #the handiwork of %ns henchlings everywhere.
 #
-%d���Ф��뿮�Ĥ��������ʤ����ݤ���󤶤��Ƥ���褦����
-���ʤ���%n�Τ����Ĥ��ɤ�κ�ä���Τ򤽤��餸�夦�Ǹ���������
+%dに対する信仰だけがあなたを恐怖から遠ざけているようだ．
+あなたは%nのごろつきどもの作ったものをそこらじゅうで見かけた．
 %E
 %Cp T 00031
 #You know that this time you must find and destroy %n.
 #
-���󤳤����ʤ���%n��õ�����ݤ��ʤ���Фʤ�ʤ���
-�ȴ�������
+今回こそあなたは%nを探して倒さなければならない，
+と感じた．
 %E
 %Cp T 00040
 #You sense the presence of %o.
 #
-���ʤ���%o�������Τɤ�����
-���뤳�Ȥ˵��Ť�����
+あなたは%oがここのどこかに
+あることに気づいた．
 %E
 %Cp T 00041
 #You gain confidence, knowing that you may soon be united with
 #%o.
 #
-���ʤ��Ϥ⤦����������%o�ȶ��ˤʤ�롤
-�Ȥ������ȤǼ��������ᤷ����
+あなたはもう少ししたら%oと共になれる，
+ということで自信を取り戻した．
 %E
 %Cc T 00050
 #"So, %p, %l thinks that you can wrest
@@ -3731,19 +3731,19 @@ guard."
 #in the mines where you will rue the day that you ever entered
 #%i.
 #
-�֤ۤۤ���%p��%l�Ϥ������Ȥ����䤫��
-%o�����֤���ȻפäƤ���Τ�����
+「ほほう，%p，%lはお前ごときが私から
+%oを取り返せると思っているのか！」
 
-��%r���٤λ������Τ�Ȥ�����Ĥ���ȤϾлߤʡ�
-  ��ۤ������˷äޤ�Ƥ��ʤ��餷���������Ȥ�����������ä��顤
-  �������ϲ��α�������Ư������%i���褿���Ȥ򤦤��
-  ��������Ƥ��������
+「%r程度の雑魚を私のもとに送りつけるとは笑止な．
+  よほど部下に恵まれていないらしい．今日という日が終わったら，
+  お前を地下の奥深くで働かせ，%iに来たことをうんと
+  後悔させてやろう．」
 %E
 %Cc T 00051
 #"I let you live the last time because it gave me pleasure.  This time I will
 #destroy you, %p."
-�֤������䤬�������������Ƥ������Τϡ����ξ�ʤ��ڤ��ޤ��Ƥ��ä�����
-  ����������%p������������˻�������
+「この前私がお前を生かしておいたのは，この上なく楽しませてもらったから
+  だ．しかし%p，今回は本当に殺す！」
 %E
 %Cp T 00052
 #"These meetings come to bore me.  You disturb my workings with
@@ -3752,12 +3752,12 @@ guard."
 #"If you do not run away now, I will inflict so much suffering on you that
 #%l will feel guilty for ever having sent his %S to me!"
 #
-�֤ʤ�����������Ƥ����Ȳ����񤦤Τ�Ĥޤ��
-  ���%o����⤷�Ƥ����������
+「なんだかこうしてお前と何回も会うのもつまらん．
+  私と%oを邪魔してるだけだ．」
 
-�֤⤷��������鼺���ʤ���С������ˤ��ξ�ʤ��줷�ߤ�̣�碌�Ƥ���롥
-  ��������С�%l�ϼ�ʬ��%S���θ������ä����Ȥ򤵤���
-  ����������������
+「もし私の前から失せなければ，お前にこの上ない苦しみを味わせてくれる．
+  そうすれば，%lは自分の%Sを私の元に送ったことをさぞや
+  後悔するだろう．」
 %E
 %Cp T 00053
 #"You fool.  You do not know how to call upon the powers of%o.
@@ -3767,80 +3767,80 @@ guard."
 #will rule %H.  But do so now, as my patience
 #grows thin."
 
-�ֶ򤫼Ԥ���������%o�򰷤�
-  �μ��Ϥʤ�������������
+「愚か者が！お前に%oを扱う
+  知識はないだろうが．」
 
-�ֺ���ˤ�����֤��Ф���λȤ����򶵤��Ƥ�롥
-  ����Ǥ�äơ���ͤ�%H����ۤ��褦���������������֤���
-  ��ϵ���û����Ǥ͡���
+「今私にそれを返せばそれの使い方を教えてやる．
+  それでもって，二人で%Hを支配しよう．ただ，今すぐ返せ．
+  私は気が短いんでね．」
 %E
 %Cp T 00060
 #"I defeated %l and I will defeat you, %p."
 #
-�ֻ��%l�˾��ä��������ƺ��٤Ϥ����˾����֤���%p����
+「私は%lに勝った．そして今度はお前に勝つ番だ，%p．」
 %E
 %Cp T 00061
 #"Where is %d now!  You must realize no one can help you here."
 #
-��%d�Ȥ��Ϥ����ˤϤ��ʤ��������Ǥ�����������Τʤ�
-  ï�⤤�ʤ�����
+「%dとやらはここにはいない．ここでお前を助けるものなぞ
+  誰もいない．」
 
 %E
 %Cp T 00062
 #"Beg for mercy now and I may be lenient on you."
 #
-���ͤӤ�����������н����Ƥ��ʤ����Ȥ�ʤ�����
+「詫びろ．そうすれば助けてやらないこともない．」
 %E
 %Cp T 00063
 #"If you were not so %a, you might have stood a chance."
 #
-�֤���ۤ�%a�Ǥʤ���С��⤷��������߳Ѥ��廊�����⤷��ʤ�����
+「それほど%aでなければ，もしかしたら互角に戦えたかもしれない．」
 %E
 %Cp T 00064
 #"Vengeance is mine at last, %p."
 #
-�ֺǸ�˾��ĤΤϻ����%p��
+「最後に勝つのは私だ，%p」
 %E
 %Cp T 00065
 #"I only wish that %l had a more worthy %r to send against me."
 #
-�ּ夤��%l��⤦�������Τ���%r������Ф��Ф褫�ä���Τ򡥡�
+「弱い！%lももう少し骨のある%rを送り出せばよかったものを．」
 %E
 %Cp T 00066
 #"With %o in my possession you cannot
 #hope to defeat me."
 #
-��%o����μ긵�ˤ���ʾ塤
-  �����˾��ĸ����ߤϤʤ�����
+「%oが私の手元にある以上，
+  お前に勝つ見込みはない！」
 %E
 %Cp T 00067
 #"%nC has never been defeated, NEVER!"
 #
-��%n�ϰ��٤���Ȥ��餱�����ȤϤʤ��Τ������٤�ʡ���
+「%nは一度たりとも負けたことはないのだ．一度もな．」
 %E
 %Cp T 00068
 #"Are you truly the best %H has to send against me?
 #I pity %l."
 #
-�֤�����������%H�ǰ��ֶ����Τ��������ʤ��
-  %l�������补��
+「お前は本当に%Hで一番強いのか？そうならば
+  %lを憐れむよ．」
 %E
 %Cp T 00069
 #"How do you spell %p?  I want to ensure the marker on your grave is
 #correct as a warning to your %sp."
 #
-��%p�ΤĤŤ�Ϥɤ��񤯤�������Фˤɤ��񤯤Τ�������
-  �Τ���ʤ��ȡ�������%s���Ф��� ��������ˤʤ�ʤ�����ʡ���
+「%pのつづりはどう書くんだ？墓石にどう書くのかちゃんと
+  確かめないと，お前の%sに対する 見せしめにならないからな．」
 %E
 %Cc T 00070
 #As you pick up %o, you feel a great
 #weight has been lifted from your shoulders.  Your only thoughts are
 #to quickly return to %H and find %l.
 #
-%o�򽦤��ˤĤ�ơ����椫��
-�Ų٤򲼤������Ȥ��Τ褦��
-���ȴ��򴶤��������פ����ȤϤ�����ġ�
-%H���᤯�����ä�%l��õ�����Ȥ���
+%oを拾うにつれて，背中から
+重荷を下ろしたときのような
+安堵感を感じた．今思うことはただ一つ．
+%Hへ早くかえって%lを探すことだ．
 %E
 %Cc T 00080
 #You turn in the direction of %n.  As his earthly body begins
@@ -3849,12 +3849,12 @@ guard."
 #    You shall never be rid of me, %p!
 #    I will find you where ever you go and regain what is rightly mine.
 #
-���ʤ���%n���������ܤ�����롥����Τ����ʤ����ܤ�������
-�ä���ˤĤ졤��μ����θ��դ�ʹ������
+あなたは%nの方向へ目を向ける．彼の体があなたの目の前から
+消えるにつれ，彼の呪いの言葉を聞いた．
 
-��%p�������ˤϤ��äȤĤ��ޤȤäƤ�롪
-  �������ɤ��ˤ��褦��������ɬ��õ���Ф���
-  ��ΰ٤ˤ���٤���Τ����֤��Ƥߤ��롥��
+「%p，お前にはずっとつきまとってやる！
+  お前がどこにいようがお前を必ず探し出して
+  私の為にあるべきものを取り返してみせる．」
 %E
 %Cc T 00081
 #As %l detects the presence of %o,
@@ -3867,24 +3867,24 @@ guard."
 #    your journey.  With its help, and %d to guide you on the
 #    %a path, you may yet recover the Amulet of Yendor.
 #
-%l��%o��¸�ߤ��ǧ����ˤĤ졤
-����֤꤫�Ȥ����ۤɤξд�򸫤�����
+%lは%oの存在を確認するにつれ，
+何月ぶりかというほどの笑顔を見せた．
 
-�����ơ�%o�����ܤ�Υ���ˤĤ���ä�����
+そして，%oから目を離すにつれて話した．
 
-�ַ���%o�����ᤷ�Ƥ��줿��
-  ����Ϸ���������Ȥʤä��櫓���������Ϥޤ����μ�Ȥʤä��櫓�ǤϤʤ���
-  ����ι��³����ˤĤ졤����Ͽ��λѤ򸫤���������������%d��
-  %a��Ƴ��������Ф⤷�䤷���饤�����������������ˤ��뤳�Ȥ�
-  �Ǥ��뤫�⤷��ʤ�����
+「君は%oを取り戻してくれた．
+  それは君が持ち主となったわけだが，君はまだ真の主となったわけではない．
+  君が旅を続けるにつれ，それは真の姿を見せるだろう．それと%dの
+  %aな導きがあればもしやしたらイェンダーの魔除けを手にすることが
+  できるかもしれない．」
 %E
 %Cc T 00090
 #"I could not be more proud than if you were my own %S, %p!
 #Tell me of your adventures in quest of the Amulet of Yendor."
 #
-�ַ������������%S�Ǥ���Ф褫�ä���ΤΡ�������������ˤ��Ƥ�
-����ϻ�ˤȤäƷ��Ϥ��ξ�ʤ��ؤ����
-���������Υ�����������������õ���ޤǤ������̤�ʹ�����Ƥ��줿�ޤ�����
+「君が私の本当の%Sであればよかったものの．しかし，それにしても
+これは私にとって君はこの上ない誇りだ．
+ささ，君のイェンダーの魔除けを探すまでの冒険談を聞かせてくれたまえ．」
 %E
 %Cc T 00091
 #"Stand back and let me look at you, %p.
@@ -3895,14 +3895,14 @@ guard."
 #our oral history foretells for you.  Forever more, though, your name shall
 #be spoken by the %gP with awe.  You are truly an inspiration to your
 #%sp!"
-�֤⤦���������äƷ��λѤ򸫤��Ƥ��졤%p��
-  �������������������ˤ����ʾ塤���줫�餺�ä�
-  %H�������Ƥ����Ȥ����ΤϤ��ȤĤޤ�ʤ��Ǥ���������
+「もう少し下がって君の姿を見せてくれ，%p．
+  イェンダーの魔除けを手にした以上，これからずっと
+  %Hで生きていくというのはちとつまらないであろう．」
 
-�ַ��Ϥ⤦����ꤹ�����ˤϤ����ʤ����ʤ��ʤ顤
-  ���Ϥ��줫�����͡��������򤹤뤳�Ȥ�̿�Ť����Ƥ��롥
-  �����ơ�%p�ȸ���̾��%g�δ֤�����Ȥ��Ƹ��Ѥ�����������
-  %p�����ϼ�ʬ��%s�ΰ���ʤ���ܤȤʤä��Τ�����
+「君はもう後戻りする訳にはいかない．なぜなら，
+  君はこれから後に様々な冒険をすることを運命づけられている．
+  そして，%pと言う名は%gの間で伝説として語り継がれるだろう．
+  %p，君は自分の%sの偉大なる手本となったのだ．」
 
 %E
 #
@@ -3917,45 +3917,45 @@ guard."
 #water.  Fumaroles and pools of bubbling lava surround the hill.
 #The stench of sulphur is carried through the air, and you %x creatures
 #that should not be able to live in this environment moving towards you.
-���ʤ�����ιߤ�֤���ǡ����줿�������Ϥε֤�ĺ��ˤ���%H��
-�褯�ΤäƤ�������������ʤ���¨�¤˲������礭���㤦���Ȥ˵����Ĥ�����
+あなたは雪の降る丘に突如現われた．この地の丘の頂上にある%Hは
+よく知っている場所だが，あなたは即座に何かが大きく違うことに気がついた．
 
-���Τ������ɹ�����Ϥ��������⤯�⤯�Ȥ����Ƥ��롥ʮ������֤��֤�
-��ˢ���äƤ����ϴ䤬�֤�Ϥ�Ǥ��롥β����������������ɺ�äƤ��ꡤ
-���Τ褦�ʴĶ��Ǥ������Ƥ����ʤ���ʪ�����ʤ���������ư���Ƥ����
-��%x����
+何故か，雪や氷が水溶け水蒸気をもくもくとあげている．噴気孔やぶくぶく
+と泡だっている溶岩が丘を囲んでいる．硫黄の匂いが空気を漂っており，
+このような環境では生きていけない生物があなたの前方で動いているの
+を%xた．
 %E
 %Cp V 00002
 #Once again, you are near the abode of %l.
-�⤦���١����ʤ���%l�ν��ޤ��ζ᤯�ˤ�äƤ�����
+もう一度，あなたは%lの住まいの近くにやってきた．
 %E
 %Cp V 00003
 #Again you materialize near %ls abode.  You have a nagging feeling
 #that this may be the last time you come here.
-���١����ʤ���%l�ν��ޤ����γФ˸���줿�������ˤ�äƤ���ΤϤ��줬
-�Ǹ�Ǥ���褦�ʤ�����ĵ����ˤʤä���
+再度，あなたは%lの住まいの知覚に現われた．ここにやってくるのはこれが
+最後であるようないらだつ気持になった．
 %E
 %Cp V 00005
 #"Hail, and well met, brave %c."
-�֤褦����������ʤ�%c����
+「ようこそ！偉大なる%c．」
 %E
 %Cp V 00006
 #"May %d guide your steps, %p."
-��%p�衤%d��������Ƴ���Ƥ����Ǥ���������
+「%pよ，%dがお前を導いてくれるであろう．」
 %E
 %Cp V 00007
 #"%lC weakens.  Without %o, her foresight is dim."
-��%l�Ͽ�夷�Ƥ��롥%o�ʤ��Ǥ������
-  ƶ���ϤϤ�����Ǥ��ޤ��Τ�����
+「%lは衰弱している．%oなしでは彼女の
+  洞察力はかすんでしまうのだ．」
 %E
 %Cp V 00008
 #"You must hurry, %p, else Ragnarok may well come."
-�֤����ϵޤ��ͤФʤ��%p������ʤ���Х饰�ʥ��å�����äƤ��롥��
+「お前は急がねばならぬ%p．さもなければラグナロックがやってくる．」
 %E
 %Cp V 00009
 #"I would deal with this foul %n myself, but %d forbids it."
-�֤फ�Ĥ�%n�ˤ��οȤ�֤Ĥ�������������%d�������
-  ���ƤϤʤ�̤ȸ����Τ�����
+「むかつく%nにこの身をぶつけたい，しかし%dがそれを
+  してはならぬと言うのだ．」
 %E
 %Cc V 00010
 #"Ah, %p, my %S.  You have returned to %H
@@ -3963,32 +3963,32 @@ guard."
 #are yet ready for such an undertaking.
 #
 #"Let me read your fate..."
-�֤ޤ����錄����%s%p�衪%H����äƤ��Ƥ���ޤ����Τ͡�
-  �桹�Ϥ��ʤ����Ϥ����ɬ�פʤΤǤ����������������ˤ��ʤ��������
-  �����餦�������Ϥ����뤫���ʤ���Фʤ�ޤ���
+「まぁ，わたしの%s%pよ！%Hに戻ってきてくれましたのね．
+  我々はあなたの力が至急必要なのです，しかしその前にあなたがそれを
+  受け負うだけの力があるか決めなければなりません．
 
-�֤��ʤ��α�̿���ɤ�Ǥߤޤ��礦��������
+「あなたの運命を読んでみましょう．．．」
 %E
 %Cp V 00011
 #"Let me read the future for you now, %p, perhaps you have managed to
 #change it enough..."
-�֤��ʤ���̤����ɤ�Ǥߤޤ��礦%p�����֤󤢤ʤ��ϴ�ñ��
-  ���Ȥ�ʤ��äƤ���Ǥ��礦���ɡ�������
+「あなたの未来を読んでみましょう%p，たぶんあなたは簡単に
+  修業をなさってくるでしょうけど．．．」
 %E
 %Cp V 00012
 #"Again, I shall read your fate, my %S.  Let us both hope that you have
 #made changes to become ready for this task..."
-�֤ޤ������ʤ��α�̿���ɤ�Ǥߤޤ��礦���錄����%S�补����
-  Ǥ̳�򤳤ʤ������ν��Ȥ�ʤ��äƤ������Ȥ�˾�ߤޤ��礦����
+「また，あなたの運命を読んでみましょう，わたしの%Sよ．この
+  任務をこなすだけの修業をなさってきたことを望みましょう．」
 %E
 %Cc V 00013
 #"No, %p.  Your fate is sealed.  I must cast about for another
 #champion.  Begone from my presence, and never return.  Know this, that
 #you shall never succeed in this life, and Valhalla is denied to you."
-�֤����ޤ���%p�����ʤ��α�̿����������Ƥ��ޤ��ޤ�����
-  �錄�����̤�ͦ�Ԥ���뤳�Ȥˤ��ޤ����錄������������ʤ�������ä�
-  ���뤳�ȤϤޤ���ʤ�ޤ��󡥼��Τ��Ȥ�褯�Ф��Ƥ����ΤǤ������ʤ���
-  �褷���������뤳�ȤϤʤ��Ǥ��礦��������ϥ���¤⤢�ʤ�����Ǥ��ޤ�����
+「いけません%p！あなたの運命は封印されてしまいました．
+  わたしは別の勇者を頼ることにします．わたしの前から去りなさい．戻って
+  くることはまかりなりません．次のことをよく覚えておくのです．あなたは
+  決して成功することはないでしょう．ヴァルハラ宮殿もあなたを拒んでいます．」
 %E
 %Cc V 00014
 #"I see you and %n fighting, %p.  But you are not prepared and
@@ -3996,22 +3996,22 @@ guard."
 #Go back out into the world, and grow more experienced at the ways of
 #war.  Only when you have returned %Ra will you be able to defeat
 #%n."
-��%p�衤��Ϥ��ʤ���%n���襤�򸫤Ƥ��ޤ���������
-  ���ʤ��Ͻ������Ǥ��Ƥʤ��褦�Ǥ������ΤޤޤǤϤ��ʤ���%n
-  �μ�ˤ�껦����Ƥ��ޤ��Ǥ��礦�������ޤ��󡥤���ʤ��ȤˤʤäƤ�
-  �����ʤ������ʤ������������襤�ˤ��и����Ѥ�ΤǤ���%R
-  �ˤʤäƤ�����äƤ���ΤǤ�����������С�%n���Ǥ��餫����
-  �Ȥ��Ǥ���Ǥ��礦���� 
+「%pよ，私はあなたと%nの戦いを見ています．しかし
+  あなたは準備ができてないようです．今のままではあなたは%n
+  の手により殺されてしまうでしょう．いけません．こんなことになっては
+  いけない．戻りなさい，そして戦いにより経験を積むのです．%R
+  になってから戻ってくるのです．そうすれば，%nを打ち負かすこ
+  とができるでしょう．」 
 %E
 %Cc V 00015
 #"NO!  This is terrible.  I see you becoming an ally of %n, and
 #leading his armies in the final great battles.  This must not come to
 #pass!  You have strayed from the %a path.  You must purge yourself,
 #and return here only when you have regained a state of purity."
-�֤����ޤ��󡪶��������ȤǤ���%n�˿���å��졤
-  ����ʤ�ǽ�������������Ƴ���Ѥ������ޤ������Ѻ��ä�
-  ���ȤǤ���͡����ʤ���%a��ƻ���鳰��Ƥ���褦�Ǥ���
-  ��ʬ���Ȥ����ᡤ���ʵ��������ᤷ���Ȥ��ˤޤ���äƤ���ΤǤ�����
+「いけません！恐しいことです．%nに心を奪われ，
+  偉大なる最終戦で彼の部下を導く姿が見えます．大変困った
+  ことですわね．あなたは%aの道から外れているようです．
+  自分自身を清め，純粋な気持を取り戻したときにまた戻ってくるのです．」
 %E
 %Cc V 00016
 #"It is not clear, %p, for my sight is limited without
@@ -4032,92 +4032,92 @@ guard."
 #"You must find the entrance to %i.  Travel downward
 #from there and you will find %ns lair.  Defeat him and
 #return %o to me."
-��%p�衤�錄���δ��Ϥ�%o̵���Ǥ϶ˤ�����¤���Ƥ���
-  ���Τ����Τʤ��Ȥϸ����ޤ��󡥤����������ʤ���%n���Ǥ��餫����
-  %o�����֤��������Ϥ������褦�Ǥ���
+「%pよ，わたしの眼力は%o無しでは極めて制限されてしま
+  うので正確なことは言えません．しかし，あなたは%nを打ち負かし，
+  %oを取り返すだけの力を得たようです．
 
-�־������ˡ�%n����λȤ��⤬�����Ϥ˹���򤷤����ޤ������֤ξ�
-  �ˤ���Τ򸫤��Ȼפ��ޤ��������ϵ���ʲи��򳫤�������򤷤����Ƥ�
-  ���ΤǤ����錄���Ϥ��줬���ä����Ȥˤʤ�Τ��Τꡤ%g�ΰ���ˤ����Ϥ�
-  ���褦%d�˺��ꤷ�ޤ����������ˤ����ã�ϥ�����ϥ����ľ°
-  �����Ф줿���Ԥǡ�%d�����ä�100�ͤ���Τ������Ĥ�ʤΤǤ���
+「少し前に，%nと彼の使い魔がこの地に攻撃をしかけました．丘の上
+  にあるのを見たと思いますが，彼らは巨大な火口を開き，攻撃をしかけてき
+  たのです．わたしはこれが困ったことになるのを知り，%gの一隊にこの地を
+  守るよう%dに懇願しました．ここにいる者達はヴァルハラ宮殿直属
+  の選ばれた精鋭で，%dの送った100人の戦士の生き残りなのです．
 
-�ְ��礫�ı��������襤�ˤ⤫����餺���Ȥ��Ȥ�%n��
-  %o�����Ǥ��ޤ��ޤ�����%o���錄���μ긵������
-  ����С�%n�ϥ饰�ʥ��å���Ϥ�Ƥ��ޤ��������ζѹդ������
-  ���ޤ��Ǥ��礦��
+「偉大かつ栄誉ある戦いにもかかわらず，とうとう%nは
+  %oを盗んでしまいました．%oがわたしの手元に戻らな
+  ければ，%nはラグナロックを始めてしまい，世界の均衡は崩れて
+  しまうでしょう．
 
-�֤��ʤ��ϡ�%i��������õ���ʤ���Фʤ�ޤ��󡥤��������ϲ���
-  ι��ʤᡤ%n�α���Ȥ�ߤĤ���ΤǤ�������Ǥ��餫����
-  %o���θ��ؼ���֤��Ƥ�����������
+「あなたは，%iの入口を探さなければなりません．ここから地下に
+  旅を進め，%nの隠れ家をみつけるのです．彼を打ち負かし，
+  %oを私の元へ取り返してください．」
 %E
 %Cp V 00020
 #"Go with the blessings of %d."
-��%d�ν�ʡ�Τ���󤳤Ȥ򡥡�
+「%dの祝福のあらんことを．」
 %E
 %Cp V 00021
 #"Call upon %d when you are in need."
-��ɬ�פʤ��%d��ƤӤʤ�������
+「必要ならば%dを呼びなさい．」
 %E
 %Cp V 00022
 #"Use %o if you can.  It will protect you."
-�ֲ�ǽ�ʤ�%o��Ȥ��ʤ��������ʤ�����Ƥ��礦����
+「可能なら%oを使いなさい．あなたを守るてしょう．」
 %E
 %Cp V 00023
 #"Magical cold is very effective against %n."
-��%n�ˤϴ�������ˡ������Ū�Ǥ�����
+「%nには寒さの魔法が効果的です．」
 %E
 %Cp V 00024
 #"To face %n, you will need to be immune to fire."
-��%n��ľ�̤���ˤϡ���ؤ�������ɬ�פǤ�����
+「%nと直面するには，炎への耐性が必要です．」
 %E
 %Cp V 00025
 #"May %d strengthen your sword-arm."
-��%d�����ʤ��������Ӥ��Ϥ�Ϳ���Ƥ����Ǥ��礦����
+「%dがあなたの利き腕に力を与えてくれるでしょう．」
 %E
 %Cp V 00026
 #"Trust in %d.  He will not desert you."
-��%d�򿮤��ʤ�������Ϥ��ʤ��򸫼ΤƤ��ꤷ�ޤ�����
+「%dを信じなさい．彼はあなたを見捨てたりしませんわ．」
 %E
 %Cp V 00027
 #"It becomes more likely that Ragnarok will come with every passing moment.
 #You must hurry, %p."
-�֥饰�ʥ��å����������ˤǤⵯ�������Ǥ����ޤ��ʤ���%p����
+「ラグナロックが今すぐにでも起きそうです．急ぎなさい%p！」
 %E
 %Cp V 00028
 #"If %n can master %o, he will be powerful enough to
 #face %d far earlier than is fated.  This must not be!"
-�֤⤷%n��%o����ۤ��Ƥ���ʤ顤���%d��
-  ɤŨ���뤯�餤���ϤʤϤ��Ǥ�������������򤱤ͤФʤ�ޤ��󡪡�
+「もし%nが%oを支配しているなら，彼は%dに
+  匹敵するくらい強力なはずです．これだけは避けねばなりません！」
 %E
 %Cp V 00029
 #"Remember your training, %p.  You can succeed."
-�֤��ʤ����Ϥ򿮤��ʤ���%p�����ä��������ޤ����
+「あなたの力を信じなさい%p．きっと成功しますわ．」
 %E
 %Cc V 00030
 #The ice and snow gives way to a valley floor.  You %x ahead of you
 #a huge round hill surrounded by pools of lava.  This then is the entrance
 #to %i.  It looks like you're not going to get in without
 #a fight though.
-ɹ���㤬ë���ƻ���äƤ��������ʤ����ܤ����ˡ��ϴ�˰Ϥޤ줿�礭��
-�ݤ��֤򸫤��������%i�ؤ������Ǥ��롥�臘���Ȥʤ���������
-���뤳�Ȥ�̵���ʤ褦����
+氷と雪が谷底に道を作っていた．あなたは目の前に，溶岩に囲まれた大きな
+丸い丘を見た．これは%iへの入口である．戦うことなしに内部に
+入ることは無理なようだ．
 %E
 %Cp V 00031
 #Once again, you stand before the entrance to %i.
-�⤦���١����ʤ���%i�����������ˤ�äƤ�����
+もう一度，あなたは%iの入口の前にやってきた．
 %E
 %Cc V 00040
 #Through clouds of sulphurous gasses, you %x a rock palisade
 #surrounded with a moat of bubbling lava.  You remember the description
 #from something that %l said.  This is the lair of %n.
-β���Υ����α��֤ˡ����ʤ���ˢ�����ϴ���٤�Ϥ��Фκ��򸫤Ĥ�����
-���ʤ���%l�����äƤ������Ȥ�פ��������������%n��
-���߲Ȥ���
+硫黄のガスの雲間に，あなたは泡だつ溶岩の堀を囲む石の柵を見つけた．
+あなたは%lが言っていたことを思いだした．これは%nの
+住み家だ．
 %E
 %Cp V 00041
 #Once again, you stand in sight of %ns lair.
-�⤦���١����ʤ���%n�ν��߲Ȥθ�����Ȥ����ˤ�äƤ�����
+もう一度，あなたは%nの住み家の見えるところにやってきた．
 %E
 %Cc V 00050
 #"So!  %lC has finally sent %ca to challenge me!
@@ -4126,76 +4126,76 @@ guard."
 #but it has shown me that first I must kill you!
 #So come, little %s.  Once I defeat you, I can at last begin
 #the final battle with %d."
-�֤ۤ���%l�ϻ���ݤ�����%c�����äƤ�������
+「ほう．%lは私を倒すため%cを送ってきたか！
 
-�ֻ��%o����ۤ��뤳�Ȥˤ��%d���ݤ���ȻפäƤ�Τ�����
-  ��Ϥ�˵��ͤ򻦤����Ȥˤ�äƤ����Ϥ򤿤ᤷ�Ƥߤ褦����뤬�褤��
-  �����%s�补���ͤ򻦤��Ƥ��顤%d�Ȥκǽ������Ϥ�褦
-  �ǤϤʤ�������
+「私は%oを支配することにより%dを倒せると思ってるのだが，
+  手始めに貴様を殺すことによってその力をためしてみよう！来るがよい．
+  哀れな%sよ．貴様を殺してから，%dとの最終戦争を始めよう
+  ではないか．」
 %E
 %Cp V 00051
 #"Again you challenge me, %r.  Good.  I will kill you now."
-�֤ޤ�������%r��������������٤������ͤ˻ߤ��ɤ��Ƥ��������
+「またきたか%r．よろしい．今度こそ貴様に止めを刺してやろう．」
 %E
 %Cp V 00052
 #"Have you not learned yet?  You cannot defeat %n!"
-�֤ޤ��狼���Τ������ͤ�%n���ݤ��ʤ��Τ�����
+「まだわからんのか？貴様に%nは倒せないのさ！」
 %E
 %Cp V 00053
 #"I will kill you, %c, and wrest %o from your mangled hands."
-��%c���͡����ͤ��Ӥ��ڤ꤭����%o��⤮�ȤäƤ�롥��
+「%cよ死ね！貴様の腕を切りきざみ%oをもぎとってやる．」
 %E
 %Cp V 00060
 #"I am your death, %c."
-�ֲ�˵��ͤλ��%c����
+「我に貴様の死を，%c．」
 %E
 %Cp V 00061
 #"You cannot prevail, %r.  I have foreseen your every move."
-�ֻ�ˤϾ��Ƥ�衤%r�����ͤ�ư���ʤɼ�˼��褦�ˤ狼��襤����
+「私には勝てんよ，%r．貴様の動きなど手に取るようにわかるわい．」
 %E
 %Cp V 00062
 #"With you out of the way, Valhalla will be mine for the taking."
-�ֵ��ͤ�ƻ���鳰��Ƥ���Τǡ�������ϥ���¤ϲ椬��Τ�����
+「貴様が道から外れているので，ヴァルハラ宮殿は我がものだ．」
 %E
 %Cp V 00063
 #"I killed scores of %ds best when I took %o.
 #Do you really think that one %c can stand against me?"
-��%o���ˤ��Ƥ��Ȥ��ϡ�%d�����Ԥ򲿽��ͤȤʤ�������������
-  ���ä����ͤ�%c����ˤϤफ�äƤ��롩��Τ��ä�����
+「%oを手にしてたときは，%dの精鋭を何十人となく殺したもんだ．
+  たった１人の%cが私にはむかってくる？滑稽な話だ．」
 %E
 %Cp V 00064
 #"Who bears the souls of %cP to Valhalla, %r?"
-��ï��%c�κ��������ϥ���¤����ߤĤ�������%r�衩��
+「誰が%cの魂をヴァルハラ宮殿に生みつけるんだ，%rよ？」
 %E
 %Cp V 00065
 #"No, %d cannot help you here."
-��̵��̵�̡������Ǥ�%d�Ͻ����Ƥ���ʤ�������
+「無駄無駄，ここでは%dは助けてくれないぞ．」
 %E
 %Cp V 00066
 #"Some instrument of %d you are, %p.  You are a weakling!"
-�ֵ��ͤ�%d��ƻ��%p�����Ԥᡪ��
+「貴様は%dの道具さ%p．軟弱者め！」
 %E
 %Cp V 00067
 #"Never have I seen %ca so clumsy in battle."
-��%c������ʤˤ��襤������Ȥ��Τ�ʤ��ä��襤����
+「%cがこんなにも戦いが下手とは知らなかったわい．」
 %E
 %Cp V 00068
 #"You die now, little %s."
-�ֵ��ͤϤ����ˤǤ��̤����İ���������%s�补��
+「貴様はすぐにでも死ぬさ，可愛いそうな%sよ．」
 %E
 %Cp V 00069
 #"Your body I destroy now, your soul when my hordes overrun Valhalla!"
-�ֵ��ͤ��Τ��˲��������ͤκ��ϲ椬����������ϥ���¤򽱤��Ȥ���
-  �˲�����Ȥ��褦����
+「貴様の体を破壊し，貴様の魂は我が軍がヴァルハラ宮殿を襲うときに
+  破壊するとしよう！」
 %E
 %Cc V 00070
 #As you pick up %o, your mind is suddenly filled with images,
 #and you perceive all of the possibilities of each potential choice you
 #could make.  As you begin to control and channel your thoughts, you
 #realize that you must return %o to %lC immediately.
-%o�򽦤��ȡ����ʤ��ο����������᡼�����������졤�����ǽ�����Ƥ�
-��ǽ�������򤷤������ʤ��λפ������椷��ã���Ϥ����ȡ����ʤ���
-%o��%l��ľ�����֤��ʤ���Фʤ�ʤ����Ȥ˵����Ĥ�����
+%oを拾うと，あなたの心は突然イメージで満たされ，選択可能な全ての
+可能性を理解した．あなたの思いを制御し伝達しはじめると，あなたは
+%oを%lに直ちに返さなければならないことに気がついた．
 %E
 %Cc V 00080
 #A look of surprise and horror appears on %ns face.
@@ -4203,11 +4203,11 @@ guard."
 #    No!!!  %o has lied to me!  I have been misled!
 #
 #Suddenly, %n grasps his head and screams in agony, then dies.
-�ä��ȶ��ݤ�%n�δ�˸���줿��
+驚きと恐怖が%nの顔に現われた．
 
-     �Ф��ʡ�%o�ϲ椬����ˤ��ä��Ϥ��������Τ�����
+     ばかな！%oは我が手中にあったはずだ．何故だ！！
 
-����%n�ϴ���Ϥߡ����ˤ����򤢤���������
+突然%nは顔を掴み，苦痛の声をあげ，死んだ．
 %E
 %Cc V 00081
 #As you approach, %lC rises and touches %o.
@@ -4218,22 +4218,22 @@ guard."
 #
 #"You must now begin in %ds name to search for the Amulet of Yendor.
 #May your steps be guided by %d, my %S."
-���ʤ�����Ť��ȡ�%l��Ω�������ꡤ%o�˿��줿��
+あなたが近づくと，%lは立ちあがり，%oに触れた．
 
-��%p�补%o����äƤ����ʤ������錄����%o����
-  �ʹ֤μ�˿���ƤϤʤ��̤���𤲤��Ϥ�������ޤ�����
-  �������ʤ���%o��¾���Ϥϡ����ʤ��λפ��̤��
-  ���Ƥ��ޤ��ޤ���
+「%pよ．%oを持っていきなさい．わたしは%oから
+  人間の手に触れてはならぬ未来を告げる力を取り除きました．
+  しかしながら%oの他の力は，あなたの思い通りに
+  してかまいません．
 
-�֤��ʤ���%d��̾�Τ�ȥ�����������������õ���ͤФʤ�ޤ���
-  ���ʤ��οʤ�ƻ��%d��Ƴ���ˤ�곫����ޤ��褦�ˡ�
-  �錄����%s�补��
+「あなたは%dの名のもとイェンダーの魔除けを探さねばなりません．
+  あなたの進む道が%dの導きにより開かれますように．
+  わたしの%sよ．」
 %E
 %Cp V 00090
 #"Greetings, %p.  I have not been able to pay as much attention to
 #your search for the Amulet as I have wished.  How do you fare?"
-��%p���褦��������Ϥ��ʤ��������õ���ˤĤ��Ƥν�����
-  �Ҥ٤뤳�ȤϤǤ��ޤ��󡥺���ι�Ϥɤ�ʴ��������顩��
+「%p，ようこそ．私はあなたの魔除け探索についての助言を
+  述べることはできません．今の旅はどんな感じかしら？」
 %E
 %Cc V 00091
 #"Excellent, %p.  I see you have recovered the Amulet!
@@ -4243,14 +4243,14 @@ guard."
 #
 #"Go now, my %S.  I cannot tell you your fate, as the power of the
 #Amulet interferes with mine.  I hope for your success."
-�֤ޤ����ʤ�Ƥ��ȤǤ��礦%p�����ʤ�������������᤹�Τ�
-  �����ܤǸ�����ʤ�ơ�
+「まぁ，なんてことでしょう%p．あなたが魔除けを取り戻すのを
+  この目で見られるなんて！
 
-�֤��ʤ��������������ˤ���%d�ΰ���ʻ����˻��äƤ����ͤ�
-  �ʤ�ޤ��󡥤�����%d���������������ΤǤ���
+「あなたは魔除けを精霊界にある%dの偉大な寺院に持っていかねば
+  なりません．そこで%dに魔除けを捧げるのです．
 
-�֤������錄����%S����Ϥ��ʤ��˱�̿��𤲤뤳�ȤϤǤ���
-  ������������Ϥ�����򤹤�ΤǤ������ʤ��������򵧤äƤ��ޤ����
+「さぁ，わたしの%S．私はあなたに運命を告げることはできま
+  せん．魔除けの力が邪魔をするのです．あなたの成功を祈っていますわ．」
 %E
 #
 #	Wizard
@@ -4266,52 +4266,52 @@ guard."
 #
 #Your master would never allow such unaesthetic forms to surround the
 #tower...  unless something were dreadfully wrong!
-���������ʤ��ϸ��ʤ줿�ʿ�����˼�ʬ�򸫤��Ф������礭���Ƥ��󤰤ꤷ��
-�ФŤ���η�¤ʪ�������Фˤ���Τˤ��ʤ��ϵ����Ĥ������ԤƤ衤����Ϥ�
-�ʤ���Ϸ�ա�%l����Τ褦����
+突然，あなたは見なれた景色の中に自分を見い出した．大きくてずんぐりした
+石づくりの建造物が，そばにあるのにあなたは気がついた．待てよ，それはあ
+なたの老師，%lの塔のようだ．
 
-���������󤳤����褿���Ⱦ������Ѥ�äƤ��ޤäƤ��롥̸�ȡ�̾����������
-�Ź��Ȥ����ʤ�äƤ��롥�Ǥ���ˡ�ư���Ƥ����롥
+だが，前回ここへ来た時と状況は変わってしまっている．霧と，名状しがたい
+暗黒とが塔を覆っている．闇の中に，動く影がある．
 
-���ʤ��λդ����ռ��ϡ�����ʤ�Τ����ʤ�����Ȥ�褷�Ƶ����Ϥ��ʤ��Ϥ�
-���������������ȤƤĤ�ʤ������������Ȥ������ä��ȤǤ⤤���ΤǤʤ�����
-�ꡪ
+あなたの師の美意識は，こんなものが塔を覆うことを決して許しはしないはず
+だ．．．．何かとてつもなく恐ろしいことが起こったとでもいうのでないかぎ
+り！
 %E
 %Cp W 00002
 #Once again, you are back at %H.
-�դ����ӡ����ʤ���%H����äƤ�����
+ふたたび，あなたは%Hに戻ってきた．
 %E
 %Cp W 00003
 #You are back at %H.
 #You have an odd feeling this may be the last time you ever come here.
-���ʤ���%H����äƤ�����
-���������ΤϤ���ǺǸ�ˤʤ뤫�⤷��ʤ�������ʴ�̯�ʵ���������
+あなたは%Hに戻ってきた．
+ここに来るのはこれで最後になるかもしれない，そんな奇妙な気がした．
 %E
 %Cp W 00005
 #"Would you happen to have some eye of newt in that overstuffed pack, %s?"
-��%s�衤���ΤѤ�Ѥ�β�ʪ����ˤϡ��Ҥ�äȤ��ƥ������ܤ�
-  ���äƤ�����Ϥ��ʤ�������
+「%sよ，そのぱんぱんの荷物の中には，ひょっとしてイモリの目が
+  入っていたりはしないか？」
 %E
 %Cp W 00006
 #"Ah, the spell to create the magic portal worked.  Outstanding!"
-�֤�������ˡ������������ˡ��Ư���������衪��
+「おお，魔法の入口を作る魔法が働いた．見よ！」
 %E
 %Cp W 00007
 #"Hurry!  %lC may not survive that casting of the
 #portal spell!!"
-�ֵޤ�����ˡ������������ˡ�򾧤�������ˤ�%l�Ϥ⤦Ĺ������
-  �Ϥʤ���������
+「急げ！魔法の入口を作る魔法を唱えたからには%lはもう長いこと
+  はないぞ！！」
 %E
 %Cp W 00008
 #"We must strive to return balance to the world, or all is lost."
-�ֲ桹�������ΤӤ�����ʿ�Ť����ᤵ�ͤФʤ�ʤ�������ʤ��С����٤Ƥ�
-  �����Ƥ��ޤ�����
+「我々は生きのびて世の平静を取り戻さねばならない．さもなくば，すべては
+  失われてしまう．」
 %E
 %Cp W 00009
 #"I, too, will venture into the world, because %n is but one of
 #many evils to be vanquished."
-�֤錄����פ��ڤä������˽Ф褦��%n�ϡ��Ǥܤ��٤�
-  ��Ԥɤ�ΤҤȤĤˤ�����Τ����顥��
+「わたしも思い切って冒険に出よう．%nは，滅ぼすべき
+  魔者どものひとつにすぎんのだから．」
 %E
 %Cc W 00010
 #"Come closer, %p, for my voice falters in my old age.
@@ -4319,37 +4319,37 @@ guard."
 #world, leaving the safe confines of this tower.  However, I must first
 #determine if you have all of the skills required to take on the task
 #I require of you."
-��%p�衤��äȶ᤯����Ƥ��졥�錄��������ǯ�Τ�����Ϋ��Ƥ�
-  �ޤä��ΤǤʡ����ޤ��������ʤ�������ΰ���ꡤ����ιΩ�äƤ���⤦��
-  �����֤�ˤʤ롥��ä���Ƥ��줿�Τ��ʡ��������ޤ��Ϥ���ˡ����ޤ���
-  ��̿��̤������ὼʬ������������Τ��ɤ�������ͤФʤ�󡥡�
+「%pよ，もっと近くに来てくれ．わたしの声は年のせいで掠れてし
+  まったのでな．おまえが安全なこの塔の領域を去り，世に旅立ってからもう，
+  ずいぶんになる．やっと来てくれたのだな．だが，まずはじめに，おまえに
+  使命を果たすため充分な腕前があるのかどうか，試さねばならん．」
 %E
 %Cp W 00011
 #"Well, %p, you have returned.  Perhaps you are now ready..."
-��%p�衤��äƤ��Ƥ��줿�Τ��ʡ���������ü�Τ��ȤȻפ�����������
+「%pよ，戻ってきてくれたのだな．準備は万端のことと思うが．．．」
 %E
 %Cp W 00012
 #"This is getting tedious, %p, but perseverance is a sign of a true mage.
 #I certainly hope that you are truly ready this time!"
-��%p�衤�ԤĤΤ����������������Ǧ�Ѥ����Ͽ���ͦ���ξڤʤΤ���
-  ���٤����Ϥޤ��˽����������Ƥ������ʡ���
+「%pよ，待つのは退屈だ．しかし，忍耐こそは真の勇気の証なのだ．
+  今度こそはまさに準備を整えておろうな！」
 %E
 %Cc W 00013
 #"You fool, %p!  Why did I waste all of those years teaching you
 #the esoteric arts?  Get out of here!  I shall find another."
-��%p�衤���Τ��Ĥ���Τ᤬�����Τ錄���Ϥ��ο�ǯ�ޤ�ޤ롤
-  ���ޤ��˱�������������Τ���䤷�Ƥ��ޤä��Ȥ����Τ��������ФƤ�����
-  �����ʤ󤾤˴��ԤϤ��󡥡�
+「%pよ，このうつけものめが！何故わたしはこの数年まるまる，
+  おまえに奥義を伝授するのに費やしてしまったというのだろう？出ていけ！
+  お前なんぞに期待はせん．」
 %E
 %Cc W 00014
 #"Alas, %p, you have not yet shown your proficiency as a worthy
 #spellcaster.  As %ra, you would surely be overcome in the challenge
 #ahead.  Go, now, expand your horizons, and return when you have attained
 #renown as %Ra."
-�֤�����%p�补���ޤ��Ϥޤ����ޤ��ʤ��դˤդ��路��������
-  �����Ƥ����%ra�Ȥ��Ƥϡ��Τ��˻������Ѥ��Ƥ����ΤǤ�������������
-  �Ԥ�����ä�ǽ�Ϥ���补%Ra�Ȥ��Ƥ�̾���򾡤��Ȥä�����
-  �Ƥ���äƤ���Τ�����
+「ああ，%pよ．おまえはまだ，まじない師にふさわしい熟練を
+  見せておらん．%raとしては，確かに試練に耐えてきたのであろう．さあ，
+  行け．もっと能力を高めよ．%Raとしての名声を勝ちとった時，
+  再び戻ってくるのだ．」
 %E
 %Cc W 00015
 #"You amaze me, %p!  How many times did I tell you that Balance
@@ -4358,12 +4358,12 @@ guard."
 #
 #"You must go back and show your worthiness.  Do not return until you are
 #truly ready for this quest.  May %d guide you in this task."
-��%p�衤���ޤ��ˤ϶ä�����Ĵ�¤ˤϺٿ������դ�ʧ��ɬ�פ�����ȡ�
-  ���ٸ��ä���狼��Τ��������򰷤��ˤ����դ��äƤ��补����ʤ��С�
-  �������ѵ��Ȳ�����%n�λŻ���ڤˤ����������
+「%pよ，おまえには驚いた．調和には細心の注意を払う必要があると，
+  何度言ったらわかるのだ．世界を扱うには注意をもってせよ．さもなくば，
+  世界は廃虚と化し，%nの仕事を楽にするだけだ．
 
-����äơ���ʬ�������˲��ͤ���Ԥ��������Τ��������ν�����������������
-  �ǡ���������뤳�Ȥϵ�����%d��Ƴ���Τ���󤳤Ȥ򡥡�
+「戻って，自分がいかに価値ある者か，示すのだ．冒険の準備が本当に整うま
+  で，ここに戻ることは許さん．%dの導きのあらんことを．」
 %E
 %Cc W 00016
 %E
@@ -4389,88 +4389,88 @@ guard."
 #find and overcome %n, and return %o to me.
 #
 #"Go now, with %d, and return Balance to the world."
-��%p�衤���Τ����������Ż��ؤν����Ϥޤ������ä��褦���ʡ�
-  �褯ʹ�������줫��錄���θ������Ȥϡ����ޤ��ˤȤäƤ����ƽ��פʤ�
-  �ȤʤΤ���
+「%pよ，このおそろしい仕事への準備はまさに整ったようだな．
+  よく聞け．これからわたしの言うことは，おまえにとってきわめて重要なこ
+  となのだ．
 
-�֤��ޤ��������᤯���ᡤ�桹��Ĥ������˽ФƹԤäƤ���Ȥ�����Ρ��桹
-  ��%n�μ�ˤ��ͽ�����ʤ�����򿩤�äƤ��롥%n��
-  ��λ���ν�����Ǥ����ΤȻפäƤ�����������������������ϴְ㤤��
-  �ä��Τ���
+「おまえが技を磨くため，我々を残し，世に出て行ってからというもの，我々
+  は%nの手により予期しない攻撃を食らっている．%nは
+  先の時代の終りに滅んだものと思っていた．しかし，ああ，それは間違いだ
+  ったのだ．
 
-��%n�ϴ��ޤ路����Τ��緲�򡤲桹�Τ�Ȥؤ褳���������Τʤ�
-  �ˤ������Τʤ���ѻȤ��μ겼�����ꡤ����˾褸�Ʋ桹���ɱ��������ˤ�
-  �뤳�Ȥ��Ǥ����Τ��������������Ĥ�%o�����Ǥ��ޤä���
-  ������%o��%n�Τ�Ȥ��Ϥ��Ƥ��ޤä��ΤǤϤʤ����Ȥ錄
-  ���϶���Ƥ��롥
+「%nは忌まわしきものの大群を，我々のもとへよこした．そのなか
+  には理性のない魔術使いの手下がおり，混乱に乗じて我々の防衛線を突破す
+  ることができたのだ．ああ，そいつは%oを盗んでしまった．
+  そして%oを%nのもとへ届けてしまったのではないかとわた
+  しは恐れている．
 
-��Ĺǯ�δ֡��錄���ϼ�ʬ���ϤΤۤȤ�ɤ򡤤�����褱�����������������
-  �����Ǥ錄������褱�ʤ��Ǥϡ��Ϥ�ۤȤ��ȯ���Ǥ��ʤ��������ơ�����
-  �ޤ޻��Ǥ��ޤ��ΤǤϤʤ����Ȥ錄���϶���Ƥ��롥
+「長年の間，わたしは自分の力のほとんどを，この魔よけに注ぎ込んだ．その
+  せいでわたしは魔よけなしでは，力をほとんど発揮できない．そして，その
+  まま死んでしまうのではないかとわたしは恐れている．
 
-�֤��ޤ���%i�عԤ���������ϩ�����%n�򸫤Ĥ��Ǥ��ݤ���
-  %o��錄���Τ�Ȥ�å���֤��Ƥ���Τ���
+「おまえは%iへ行き，その迷路の中で%nを見つけ打ち倒し，
+  %oをわたしのもとへ奪い返してくるのだ．
 
-��%d�ȤȤ�˹Ԥ���������������Ĵ�¤����᤹�Τ�����
+「%dとともに行け．そして世界の調和を取り戻すのだ．」
 %Cp W 00020
 #"Beware, for %n is immune to most magical attacks."
-�ֵ���Ĥ�����%n����ˡ�ǹ��⤷�Ƥ⡤��������ʤ�������
+「気をつけろ．%nを魔法で攻撃しても，大抵効かないぞ．」
 %E
 %Cp W 00021
 #"To enter %i you must pass many traps."
-��%i�����뤿��ˤϡ�櫤򤿤����󤫤蘆�ͤФʤ�ʤ�����
+「%iに入るためには，罠をたくさんかわさねばならない．」
 %E
 %Cp W 00022
 #"%nC may be vulnerable to physical attacks."
-��%n�ϡ�ʪ��Ū����ˤϼ夤�Ȥ������Ȥ⤢�ꤦ�롥��
+「%nは，物理的攻撃には弱いということもありうる．」
 %E
 %Cp W 00023
 #"%d will come to your aid when you call."
-��%d�ϡ��Ƥ٤С����ʤ����������Ƥ���뤳�Ȥ���������
+「%dは，呼べば，あなたを助けに来てくれることだろう．」
 %E
 %Cp W 00024
 #"You must utterly destroy %n.  He will pursue you otherwise."
-��%n�ϴ����˻����Ƥ��ޤ�ͤФʤ�ʤ����������ʤ��ȡ����ĤޤǤ�
-  �ɤ������Ƥ��롥��
+「%nは完全に殺してしまわねばならない．そうしないと，いつまでも
+  追いかけてくる．」
 %E
 %Cp W 00025
 #"%oC is a mighty artifact.  With it you can
 #destroy %n."
-��%oC�϶��Ϥ�������������Ȥ��С�%n�򻦤����Ȥ��Ǥ��롥��
+「%oCは強力な聖器だ．これを使えば，%nを殺すことができる．」
 %E
 %Cp W 00026
 #"Go forth with the blessings of %d."
-��%d�ν�ʡ�ȤȤ�˿ʤᡥ��
+「%dの祝福とともに進め．」
 %E
 %Cp W 00027
 #"I will have my %gP watch for your return."
-�֤錄����%gP�ˡ����ʤ��ε��Ԥ��Ԥ�����Ȥ��褦����
+「わたしの%gPに，あなたの帰還を待たせるとしよう．」
 %E
 %Cp W 00028
 #"Feel free to take any items in that chest that might aid you."
-�֤���Ȣ����Τ�Τǡ���Ω�Ĥ�Τ�����в��Ǥ���äƤ������褤����
+「この箱の中のもので，役立つものがあれば何でも持っていくがよい．」
 %E
 %Cp W 00029
 #"You will know when %o is near.  Proceed with care!"
-��%o�����դ��Ƥ���ȡ�����򴶤�������������տ����ʤᡪ��
+「%oが近付いてくると，それを感じるだろう．注意深く進め！」
 %E
 %Cp W 00030
 #Wisps of fog swirl nearby.  You feel that %ns lair is close.
-�᤯�Ǳ줬��ڡ����򴬤��Ƥ��롥���ʤ���%n�α���Ȥ�
-���դ����Τ򴶤�����
+近くで煙が一筋，渦を巻いている．あなたは%nの隠れ家が
+近付いたのを感じた．
 %E
 %Cp W 00031
 #You believe that you may once again invade %i.
-���ʤ��ϡ���ʬ���Ƥӡ�%i�˿������뤳�Ȥˤʤ뤫�⤷��ʤ����Ȥ�
-�ο�������
+あなたは，自分が再び，%iに侵入することになるかもしれないことを
+確信した．
 %E
 %Cp W 00040
 #You feel your mentor's presence; perhaps %o is nearby.
-���ʤ��ϻդ�¸�ߤ򴶤�����%o���ᤤ�Τ�������
+あなたは師の存在を感じた．%oが近いのだろう．
 %E
 %Cp W 00041
 #The aura of %o tingles at the edge of your perception.
-%o�Υ�����Τ����ǡ����ʤ����γФΤؤ꤬�Ҥ�Ҥꤷ����
+%oのオーラのせいで，あなたの知覚のへりがひりひりした．
 %E
 %Cc W 00050
 #"Ah, I recognize you, %p.  So, %l has sent you to steal
@@ -4479,12 +4479,12 @@ guard."
 #
 #"Your destruction, however, should make for good sport.  In the end, you
 #shall beg me to kill you!"
-�֤�����%p���������Ĥޤꡤ%l�Ϥ錄������%o��
-  ��߽Ф�����˷������������äƤ櫓���͡�����ʤ������ϼ���錄����
-  ����������Ȥϡ�%l��䥭���ޤ�ä������ͤ�����
+「おお，%p，君か．つまり，%lはわたしから%oを
+  盗み出すために君を送り込んだってわけだね？こんなうすら馬鹿をわたしに
+  差し向けるとは，%lもヤキがまわったもんだねぇ．」
 
-�֤ޤá������äĤ���Τ⡤������ư�ˤʤ�����������ޤ��ˤϡ���ʬ����
-  �����Ƥ���äƤ錄���˺��ꤵ���Ƥ����褦����ʤ�������
+「まっ，君をやっつけるのも，いい運動になるだろう．しまいには，自分から
+  殺してくれってわたしに懇願させてあげようじゃないか！」
 %E
 %Cc W 00051
 #"How nice of you to return, %p!  I enjoyed our last meeting.  Are you
@@ -4492,66 +4492,66 @@ guard."
 #
 #"Come!  Your soul, like %o, shall soon be mine to
 #command."
-��%p�衤�褯����äƤ��������Τޤ��ϤȤƤ�ڤ����ä��补
-  �ˤ��פ��ˤޤ��ޤ������Ƥ�äƤ櫓��������
+「%pよ，よくぞ戻ってきた．このまえはとても楽しかったよ．
+  痛い思いにまだまだ飢えてるってわけかい？」
 
-�֤����äƤ����������˷��κ���%o��Ʊ�������錄���λפ��ޤ�
-  �ˤ��Ƥ����褦����ʤ�������
+「かかってこい！すぐに君の魂を，%oと同じく，わたしの思うまま
+  にしてあげようじゃないか．」
 %E
 %Cp W 00052
 #"I'm sure that your perseverance shall be the subject of innumerable
 #ballads, but you shall not be around to hear them, I fear!"
-�֤��ޤ���Ǧ���Ϥϡ�̵����ʪ��θ��Ȥ����Ȥʤ뤳�Ȥ��������������錄
-  ���������Τϡ����ޤ��������ʹ�����ȤϤĤ����ʤ��ΤǤϤʤ����Ȥ���
-  ���Ȥ�����
+「おまえの忍耐力は，無数の物語の語るところとなることだろう．だが，わた
+  しが恐れるのは，おまえがそれを聞くことはついぞないのではないかという
+  ことだ！」
 %E
 %Cp W 00053
 #"Thief!  %o belongs to me, now.  I shall feed
 #your living flesh to my minions."
-��ť����%o�Ϻ���錄���Τ�Τ������ޤ������򡤤錄���μ겼�ɤ�
-  �ˤ���Ƥ�뤾����
+「泥棒！%oは今やわたしのものだ．おまえの肉を，わたしの手下ども
+  にくれてやるぞ．」
 %E
 %Cp W 00060
 #"Your puny powers are no match for me, fool!"
-���ϼ���Τᡤ����ʤҤ��ʤ��ȤǤ錄���ˤ��ʤ��Ȼפä�������
+「馬鹿ものめ，そんなひよわなことでわたしにかなうと思ったか！」
 %E
 %Cp W 00061
 #"When you are defeated, your torment will last for a thousand years."
-�ַ��λ�ζ줷�ߤ�1000ǯ��Τ�����³�����Ȥˤʤ�������
+「君の死の苦しみは1000年ものあいだ続くことになろう．」
 %E
 %Cp W 00062
 #"After your downfall, %p, I shall devour %l
 #for dessert!"
-��%p�衤�����ͤ������Ȥϡ��ǥ����Ȥ�%l���Ǥܤ���
-  ���������ʤ�������
+「%pよ，君を斃したあとは，デザートに%lを滅ぼして
+  やろうじゃないか！」
 %E
 %Cp W 00063
 #"Are you ready yet to beg for mercy?  I could be lenient..."
-�֤⤦�����𤦽����ϤǤ����������錄��������Ǥ��ä���褫�ä�����ʡ�������
+「もう慈悲を乞う準備はできたかい？わたしが寛大であったらよかったかもな．．．」
 %E
 %Cp W 00064
 #"Your soul shall join the enslaved multitude I command!"
-�ַ��κ��򡤤錄����̿�˽�����Ĥ�˲ä��Ƥ��������ʤ�������
+「君の魂を，わたしの命に従うやつらに加えてやろうじゃないか！」
 %E
 %Cp W 00065
 #"Your lack of will is evident, and you shall die as a result."
-�ַ��˵��Ϥ��ʤ����Ȥ��ܤ˸����Ƥ����������줬̿�Ȥ�ˤʤ����补��
+「君に気力がないことは目に見えているんだ．それが命とりになるんだよ．」
 %E
 %Cp W 00066
 #"Your faith in %d is for naught!  Come, submit to me now!"
-�ַ���%d�ؤο�����̵�̤�����������Ϥ䡤�錄���˽����Τ�����
+「君の%dへの信心は無駄だ！さあ，もはや，わたしに従うのだ！」
 %E
 %Cp W 00067
 #"A mere %r is nothing compared to my skill!"
-��%r�ʤɡ��錄���ε�����٤�Ф�Το��ǤϤʤ�����
+「%rなど，わたしの技に比べればものの数ではない！」
 %E
 %Cp W 00068
 #"So, you are the best hope of %l?  How droll."
-�֤ۤ�������%l�κ���δ�˾�Ǥ���äƤ櫓���͡�����㤢����������
+「ほう，君は%lの最大の希望であるってわけかね？こりゃあ，傑作だ．」
 %E
 %Cp W 00069
 #"Feel my power, %c!  My victory is imminent!"
-��%c�衤�錄�����Ϥ򴶤���Τ����錄���ξ������ܤ˸����Ƥ뤸��ʤ�������
+「%cよ，わたしの力を感じるのだ！わたしの勝利は目に見えてるじゃないか！」
 %E
 %Cc W 00070
 #As you touch %o, its comforting power infuses you
@@ -4559,11 +4559,11 @@ guard."
 #through it.  Although you yearn to wear %o
 #and attack the Wizard of Yendor, you know you must return it to its
 #rightful owner, %l.
-%o�˿����ȡ����ο��Ϥ褤�ϤϤ��ޤ��˿����ʤ��Ϥ�������
-����롥���ޤ��Ϥ��줫��ή��ФƤ���¾�μԤλ׹ͤ�����Ǥ���褦�ʵ���
-���뤳�Ȥ����������ޤ���%o��ޤȤäƥ������������ˡ�Ȥ�
-�򹶷⤹�뤳�Ȥ��ڤ˴ꤦ�Ǥ������������ޤ��Ϥ��������ʤ��ͭ�ԡ�
-%l�Τ�Ȥؼ�ʬ�����ͤФʤ�̤Τ���
+%oに触れると，その心地よい力はおまえに新たなる力を注いで
+くれる．おまえはそれから流れ出てくる他の者の思考を理解できるような気が
+することだろう．おまえは%oをまとってイェンダーの魔法使い
+を攻撃することを切に願うであろうが，おまえはその正当なる所有者，
+%lのもとへ自分が戻らねばならぬのだ．
 %E
 %Cc W 00080
 #%nC croaks out, as his body begins to shrivel up:
@@ -4572,12 +4572,12 @@ guard."
 #    curses on you and %l.
 #
 #Then, the body bursts into a cloud of choking dust, and blows away.
-%n�����֤ȡ������ΤϤߤ�ߤ뤦���ˤ��ܤߤϤ��᤿��
+%nが叫ぶと，その体はみるみるうちにしぼみはじめた．
 
-    ���ޤ��ιԤ��衹�����ν���ޤǤ����äƤ�롥
-    ���ޤ���%l����μ����Τ���󤳤Ȥ�
+    おまえの行く先々，時の終りまでたたってやる．
+    おまえと%lに千の呪いのあらんことを．
 
-����ȡ������Τ���ȯ����©�ΤĤޤꤽ���ʱ���Ѥ�ꡤή��ƾä�����
+すると，その体は爆発して息のつまりそうな煙に変わり，流れて消えた．
 %E
 %Cc W 00081
 #%lC notices %o in your possession,
@@ -4592,23 +4592,23 @@ guard."
 #    itself to you already.
 #
 #    May %d guide you in your quest, and keep you from harm.
-%l�Ϥ��ʤ���%o����äƤ��뤳�Ȥ˵����Ĥ���
-���ʤ��򸫤Ƹ��ä���
+%lはあなたが%oを持っていることに気がつき，
+あなたを見て言った．
 
-    �ɤ���顤%n�򤿤�����%o��Ȥ꤫����
-    ���Ȥ��Ǥ����褦���ʡ��錄���Ϥ���ͦ������Ԥʤ���褷��˺��Ϥ���
-    ������
+    どうやら，%nをたおして%oをとりかえす
+    ことができたようだな．わたしはこの勇気ある行ないを決して忘れはしま
+    いぞ．
 
-    �������������褱����ˡ�%o��Ȥ��ƹԤ����褤��
-    ���Ǥˤ��ޤ���ƱĴ���Ƥ���Τ��錄���ˤϤ狼��Τ���
+    イェンダーの魔よけを求めに，%oを携えて行くがよい．
+    すでにおまえに同調しているのがわたしにはわかるのだ．
 
-    %d�����ޤ���ι��Ƴ�������������󤳤Ȥ�
+    %dがおまえの旅を導き，危険より守らんことを．
 %E
 %Cc W 00090
 #"Come near, my %S, and share your adventures with me.  So, have you
 #succeeded in your quest for the Amulet of Yendor?"
-�֤郎%S�衤��äȶ᤯����ơ������򶦤ˤ��Ƥ��졥���������
-  ����褱�Ϥ⤦��������줿���͡���
+「わが%Sよ，もっと近くに来て，冒険を共にしてくれ．イェンダー
+  の魔よけはもう，手に入れたかね？」
 %E
 %Cc W 00091
 #"Congratulations, %p.  I always knew that if anyone could succeed
@@ -4620,16 +4620,16 @@ guard."
 #experienced before, so be prepared!
 #
 #"For this you were born, %s!  I am very proud of you."
-��%p�衤����ǤȤ����������������ˡ�Ȥ��Ȥ��ΰ�̣�򤿤�������
-  ���Ǥ����Τ�����Ȥ���С����ޤ��Ǥ��������ȤϤ錄���ˤϤ��Ĥ�狼��
-  �Ƥ����补
+「%pよ，おめでとう．イェンダーの魔法使いとその一味をたおすこと
+  ができるものがいるとすれば，おまえであろうことはわたしにはいつもわかっ
+  ていたよ．
 
-�֤�������������������˹Ԥ��Τ����Ρ������������%d�κ��Ťˤ��ä���
-  �����������桤���ޤ��ϣ��Ĥγ��̤��̲᤹�뤳�Ȥˤʤ��������ޤǤηи���
-  �ʤ��������и����Ƥ����Τ�����
+「その魔除けを持ち，精霊界に行くのだ．昔，その魔除けは%dの祭壇にあったの
+  だ．その途中，おまえは４つの界面を通過することになろう．今までの経験に
+  ない場所だ，覚悟を決めておくのだぞ！
 
-��%s�衤���ޤ��Ϥ��Τ�������ޤ�Ƥ����Τ������ޤ���錄���ϤȤƤ�
-  �ۤ��餷���פ�������
+「%sよ，おまえはこのために生まれてきたのだ．おまえをわたしはとても
+  ほこらしく思うぞ．」
 %E
 #
 #	General
@@ -4652,165 +4652,165 @@ guard."
 #to recover the Amulet for your deity, or die in the
 #attempt.  Your hour of destiny has come.  For the sake
 #of us all:  Go bravely with %d!
-����ϡ�%d�ν�˽Ҥ٤��Ƥ����ΤǤ��롥
+これは，%dの書に述べられているものである．
 
-   ŷ����¤�θ塤�˲����⡼���å�����¤��ޥ�ɥ������Ȱ㤤����
-   ȿ��򵯤������˲����⡼���å����ޥ�ɥ�����������Τʤ����
-   ��äȤ��Ϥ��롤��������������������ߤ�����������������
-   �������졤���إʤΰǤ�ƶ���˱����������ԤƤꡥ
+   天地創造の後，破壊神モーロック，創造主マルドゥークと違いして
+   反乱を起こす．破壊神モーロック，マルドゥークの聖器のなかより
+   もっとも力ある，イェンダーの魔除けを盗みだし，それを彼の潜む
+   世界の底，ゲヘナの闇の洞窟に隠し，時を待てり．
 
-���ʤ��ο�%d���������˾�ߡ�¾�ο����������ͥ������
-�褦��õ�����Ƥ��롥
+あなたの神%dは魔除けを望み，他の神より当然の優勢を得
+ようと探索している．
 
-���ʤ��ϸ��ߡ��ޤ�%r�ǤϤ��뤬�����ޤ줿�Ȥ�����%d
-�β��ͤ�ͽ������Ƥ��롥����Τ��ᡤ������������������ȯ��
-���뤫�����Τ���˻�̤�����̿�Ť���Ƥ��롥���ʤ��α�̿�λ�
-���褿���桹�Τ���ˡ�%d�βø�Τ���󤳤Ȥ�
+あなたは現在，まだ%rではあるが，生まれたときから%d
+の下僕と予言されている．主神のため，イェンダーの魔除けを発見
+するか，そのために死ぬかが運命づけらている．あなたの運命の時
+は来た！我々のために，%dの加護のあらんことを！
 %E
 %Cp - 00002
 #You receive a faint telepathic message from %l:
 #Your help is urgently needed at %H!
 #Look for a ...ic transporter.
 #You couldn't quite make out that last message.
-���ʤ��ϡ�%l���������ʥƥ�ѥ�����å�����������Ȥä���
-%H�Ǥ��ޤ��ν�����еޤ�ɬ�פȤ��Ƥ��롥
-��..��..����õ������������
-���ʤ��ϺǸ�Υ�å����������˼����Ȥ�ʤ��ä���
+あなたは，%lから微かなテレパシーメッセージを受けとった：
+%Hでおまえの助けを火急に必要としている．
+魔..の..口を探す．．．．．
+あなたは最後のメッセージを完全に受けとれなかった．
 %E
 %Cp - 00003
 #You again sense %l pleading for help.
-���ʤ��ϡ��ޤ�%l����������Ƥ���Τ򴶤�����
+あなたは，また%lが助けを求めているのを感じた．
 %E
 %Cp - 00004
 #You again sense %l demanding your attendance.
-���ʤ��ϡ��ޤ�%l�����ʤ��λ��ä���Ƥ���Τ򴶤�����
+あなたは，また%lがあなたの参加を求めているのを感じた．
 %E
 #
 #	Angelic maledictions.
 #
 %Cp - 00010
 #"Repent, and thou shalt be saved!"
-�ֲ������餿��衤�������ߤ��󡪡�
+「悔いあらためよ，されば汝救われん！」
 %E
 %Cp - 00011
 #"Thou shalt pay for thine insolence!"
-���򡤸ʤ�Ư�����������󤤤������٤�����
+「汝，己の働きし傲慢の報いを受けるべし！」
 %E
 %Cp - 00012
 #"Very soon, my child, thou shalt meet thy maker."
-�ֲ椬�Ҥ衤��ϸʤκ�ꤿ�⤦�Ԥˤ����޸����뤳�Ȥˤʤ�������
+「我が子よ，汝は己の作りたもう者にあいま見えることになろう．」
 %E
 %Cp - 00013
 #"The great %D has sent me to make you pay for your sins!"
-�ְ���ʤ�%D����κ�ν����Τ�����Ȥ碌�󡥡�
+「偉大なる%Dが汝の罪の償いのため我を使わせん．」
 %E
 %Cp - 00014
 #"The wrath of %D is now upon you!"
-�֤��ʤ���%D���ܤ�˿��줿����
+「そなたは%Dの怒りに触れた！」
 %E
 %Cp - 00015
 #"Thy life belongs to %D now!"
-�������̿�����ޤ�%D�ξ��ξ�ʤꡪ��
+「汝の生命，いまや%Dの掌の上なり！」
 %E
 %Cp - 00016
 #"Dost thou wish to receive thy final blessing?"
-����Ǹ�ν�ʡ������뤳�Ȥ��˾���뤫����
+「汝最後の祝福を受けることを所望するか？」
 %E
 %Cp - 00017
 #"Thou art but a godless void."
-���򡤿���⿮���̰�ü�԰ʳ��β��ԤǤ�ʤ�����
+「汝，神をも信じぬ異端者以外の何者でもない．」
 %E
 %Cp - 00018
 #"Thou art not worthy to seek the Amulet."
-�����������õ��������ͤ��ʤ�����
+「汝，魔除けを探し求めるに値しない！」
 %E
 %Cp - 00019
 #"No one expects the Spanish Inquisition!"
-�ְ�ü���������뤳�Ȥ�ͽ�ۤ���Ԥʤ�ï�⤤�ʤ�����
+「異端審問を受けることを予想する者など誰もいない！」
 %E
 #
 #	Demonic maledictions.
 #
 %Cp - 00030
 #"I first mistook thee for a statue, when I regarded thy head of stone."
-�֤�������Ƭ�򸫤ơ������������ȴְ㤨���襤����
+「お前の石頭を見て，お前を石像と間違えたわい．」
 %E
 %Cp - 00031
 #"Come here often?"
-�֤����ؤϤ褯���Τ�����
+「ここへはよく来るのか？」
 %E
 %Cp - 00032
 #"Dost pain excite thee?  Wouldst thou prefer the whip?"
-�֤����϶��ˤ˶�ʳ�򴶤��뤫���ܤΤۤ����褤���ʡ���
+「お前は苦痛に興奮を感じるか？鞭のほうがよいかな？」
 %E
 %Cp - 00033
 #"Thinkest thou it shall tickle as I rip out thy lungs?"
-�֤����ΤϤ�錄�������������ڤ����Ȼפ�������
+「お前のはらわたを引き裂いたら楽しいと思うか？」
 %E
 %Cp - 00034
 #"Eat slime and die!"
-�֥��饤��Ǥ����äƻ�ͤ�����
+「スライムでも喰らって死ねい！」
 %E
 %Cp - 00035
 #"Go ahead, fetch thy mama!  I shall wait."
-�ּ������������ΥޥޤǤ�Ƥ�Ǥ��ʡ�����ޤ��ԤäƤ�롥��
+「失せろ！お前のママでも呼んできな！それまで待ってやる．」
 %E
 %Cp - 00036
 #"Go play leapfrog with a herd of unicorns!"
-�֥�˥�����η���������ӤǤ⤷��ͷ��Ǥʡ���
+「ユニコーンの群れと馬飛びでもして遊んでな！」
 %E
 %Cp - 00037
 #"Hast thou been drinking, or art thou always so clumsy?"
-�֤����Ͽ�äѤ餤��������Ȥ⤽�줬���Ϥ�����
+「お前は酔っぱらいか？それともそれが実力か？」
 %E
 %Cp - 00038
 #"This time I shall let thee off with a spanking, but let it not happen again."
-�ֺ���Ͽ�á�������ǵ������������������ܤϤ����Ϥ�����.��
+「今回は尻叩きだけで許そう．しかし二度目はそうはいかぬ.」
 %E
 %Cp - 00039
 #"I've met smarter (and prettier) acid blobs."
-�֤�����ꤺ�äȸ���(��������)���Υ֥��֤򸫤����Ȥ����뤾����
+「お前よりずっと賢い(かつ綺麗な)酸のブロブを見たことがあるぞ．」
 %E
 %Cp - 00040
 #"Look!  Thy bootlace is undone!"
-�ָ�������ɳ���ۤɤ��Ƥ뤾����
+「見ろ！靴紐がほどけてるぞ！」
 %E
 %Cp - 00041
 #"Mercy!  Dost thou wish me to die of laughter?"
-�֤�Ϥϡ����Ƥ��졪�����ϻ��Ф������Ĥ�꤫����
+「わはは，やめてくれ！お前は私を笑い殺すつもりか？」
 %E
 %Cp - 00042
 #"Run away!  Live to flee another day!"
-��ƨ���������������Ǥ�Ĺ������³���뤬�褤����
+「逃げ失せろ！一日でも長く生き続けるがよい！」
 %E
 %Cp - 00043
 #"Thou hadst best fight better than thou canst dress!"
-�֤������夳�ʤ�����臘�ۤ������ޤ��ʡ���
+「お前は着こなすより戦うほうがうまいな！」
 %E
 %Cp - 00044
 #"Twixt thy cousin and thee, Medusa is the prettier."
-�֤����Ȥ����ν������ꡤ��ǥ塼�����������襤��������
+「お前とお前の従兄弟より，メデューサの方がかわいいぞ．」
 %E
 %Cp - 00045
 #"Methinks thou wert unnaturally interested in yon corpse back there, eh, varlet?"
-�ָ���¤�Ǥϡ��������ˤ���ʤλӤ�̵�ؿ��ʤ褦������
-  �ºݤϤɤ��ʤΤ�������äѡ�
+「見る限りでは，向こうにある己の屍に無関心なようだが，
+  実際はどうなのだ？こわっぱ」
 %E
 %Cp - 00046
 #"Up thy nose with a rubber hose!"
-��ɡ�˥���ۡ����Ǥ��͹���Ǥ�����
+「鼻にゴムホースでも突込んでろ！」
 %E
 %Cp - 00047
 #"Verily, thy corpse could not smell worse!"
-�֤Ϥä��ꤤ�äơ������λӤ������Ϻǰ�������
+「はっきりいって，そちの屍の匂いは最悪だ！」
 %E
 %Cp - 00048
 #"Wait!  I shall polymorph into a grid bug to give thee a fighting chance!"
-�֤��äȡ�����åɥХ��ˤǤ��Ѳ������襤��ڤˤ��Ƥ����������
+「おっと！グリッドバグにでも変化して戦いを楽にしてやろうか！」
 %E
 %Cp - 00049
 #"Why search for the Amulet?  Thou wouldst but lose it, cretin."
-�ֲ����������õ�����롩�����Τ褦�ʤ��Ĥ��ǤϤʤ�������������
+「何故魔除けを探索する？お前のようなうつけではなくすだけだ．」
 %E
 #
 #	TEST PATTERN

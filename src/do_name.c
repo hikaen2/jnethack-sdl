@@ -31,7 +31,7 @@ const char *goal;
 
     if (flags.verbose) {
 /*JP	pline("(For instructions type a ?)");*/
-	pline("(?¤Ç¥Ø¥ë¥×)");
+	pline("(?ã§ãƒ˜ãƒ«ãƒ—)");
 	msg_given = TRUE;
     }
     cx = cc->x;
@@ -79,7 +79,7 @@ const char *goal;
 /*JP
 	    Sprintf(sbuf, "Use [%s] to move the cursor to %s.",
 */
-	    Sprintf(sbuf, "[%s]¤Ç%s¤Ø°ÜÆ°¤Ç¤­¤ë¡¥",
+	    Sprintf(sbuf, "[%s]ã§%sã¸ç§»å‹•ã§ãã‚‹ï¼",
 		  iflags.num_pad ? "2468" : "hjkl", goal);
 	    putstr(tmpwin, 0, sbuf);
 #if 0 /*JP*/
@@ -91,11 +91,11 @@ const char *goal;
 		putstr(tmpwin, 0, "Type Space or Escape when you're done.");
 #endif
 	    putstr(tmpwin, 0,
-		   "[HJKL]¤Ç°ìÅÙ¤Ë8Êâ°ÜÆ°¤Ç¤­¤ë¡¥");
-	    putstr(tmpwin, 0, "[<]¤Ç¸µ¤Î°ÌÃÖ¤ËÌá¤ë¡¥");
-	    putstr(tmpwin, 0, "[.]¤Ç·èÄê¡¥");
+		   "[HJKL]ã§ä¸€åº¦ã«8æ­©ç§»å‹•ã§ãã‚‹ï¼");
+	    putstr(tmpwin, 0, "[<]ã§å…ƒã®ä½ç½®ã«æˆ»ã‚‹ï¼");
+	    putstr(tmpwin, 0, "[.]ã§æ±ºå®šï¼");
 	    if(!force)
- 		putstr(tmpwin, 0, "¥¹¥Ú¡¼¥¹¤Ş¤¿¤Ï¥¨¥¹¥±¡¼¥×¤Ç½ªÎ»¡¥");
+ 		putstr(tmpwin, 0, "ã‚¹ãƒšãƒ¼ã‚¹ã¾ãŸã¯ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—ã§çµ‚äº†ï¼");
 	    putstr(tmpwin, 0, "");
 	    display_nhwindow(tmpwin, TRUE);
 	    destroy_nhwindow(tmpwin);
@@ -133,7 +133,7 @@ const char *goal;
 /*JP
 		    pline("Can't find dungeon feature '%c'", c);
 */
-		    pline("'%c'¡©", c);
+		    pline("'%c'ï¼Ÿ", c);
 		    msg_given = TRUE;
 		    goto nxtc;
 		} else {
@@ -143,12 +143,12 @@ const char *goal;
 			  !force ? "aborted" :
 			  iflags.num_pad ? "use 2468 or ." : "use hjkl or .");
 #endif
-		    pline("¤½¤ÎÊı¸ş¤Ï¤Ê¤¤: '%s' (%s).",
+		    pline("ãã®æ–¹å‘ã¯ãªã„: '%s' (%s).",
 			  visctrl((char)c),
 			  force ?
-			  iflags.num_pad ? "[2468]¤Ç°ÜÆ°¡¤[.]¤Ç½ªÎ»" :
-			  "[hjkl]¤Ç°ÜÆ°¡¤[.]¤Ç½ªÎ»" :
-			  "ÃæÃÇ¤·¤¿");
+			  iflags.num_pad ? "[2468]ã§ç§»å‹•ï¼Œ[.]ã§çµ‚äº†" :
+			  "[hjkl]ã§ç§»å‹•ï¼Œ[.]ã§çµ‚äº†" :
+			  "ä¸­æ–­ã—ãŸ");
 		    msg_given = TRUE;
 		} /* k => matching */
 	    } /* !quitchars */
@@ -156,7 +156,7 @@ const char *goal;
 /*JP
 	    pline("Done.");
 */
-	    pline("°Ê¾å¡¥");
+	    pline("ä»¥ä¸Šï¼");
 	    msg_given = FALSE;	/* suppress clear */
 	    cx = -1;
 	    cy = 0;
@@ -232,24 +232,24 @@ do_mname()
 
 	if (Hallucination) {
 /*JP		You("would never recognize it anyway.");*/
-		You("¤½¤ì¤òÇ§¼±¤Ç¤­¤Ê¤¤¡¥");
+		You("ãã‚Œã‚’èªè­˜ã§ããªã„ï¼");
 		return 0;
 	}
 	cc.x = u.ux;
 	cc.y = u.uy;
 /*JP	getpos(&cc, FALSE, "the monster you want to name");*/
-	getpos(&cc, FALSE, "¤¢¤Ê¤¿¤¬Ì¾¤Å¤±¤¿¤¤²øÊª");
+	getpos(&cc, FALSE, "ã‚ãªãŸãŒåã¥ã‘ãŸã„æ€ªç‰©");
 	cx = cc.x;
 	cy = cc.y;
 	if(cx < 0) return(0);
 	if (cx == u.ux && cy == u.uy) {
 /*JP		pline("This %s creature is called %s and cannot be renamed.",*/
-		pline("¤³¤Î%sÀ¸¤­Êª¤Ï%s¤È¸Æ¤Ğ¤ì¤Æ¤¤¤Æ¡¤Ì¾Á°¤ÏÊÑ¹¹¤Ç¤­¤Ê¤¤¡¥",
+		pline("ã“ã®%sç”Ÿãç‰©ã¯%sã¨å‘¼ã°ã‚Œã¦ã„ã¦ï¼Œåå‰ã¯å¤‰æ›´ã§ããªã„ï¼",
 		ACURR(A_CHA) > 14 ?
 /*JP		(flags.female ? "beautiful" : "handsome") :
 		"ugly",*/
-		(flags.female ? "Èş¿Í¤Î" : "¤«¤Ã¤³¤¤¤¤") :
-		"½¹¤¤",
+		(flags.female ? "ç¾äººã®" : "ã‹ã£ã“ã„ã„") :
+		"é†œã„",
 		plname);
 		return(0);
 	}
@@ -262,7 +262,7 @@ do_mname()
 /*JP
 		pline("I see no monster there.");
 */
-		pline("¤½¤³¤Ë²øÊª¤Ï¤¤¤Ê¤¤¡¥");
+		pline("ãã“ã«æ€ªç‰©ã¯ã„ãªã„ï¼");
 		return(0);
 	}
 	/* special case similar to the one in lookat() */
@@ -273,7 +273,7 @@ do_mname()
 	    Sprintf(buf, "the high priest%s", mtmp->female ? "ess" : "");
 	Sprintf(qbuf, "What do you want to call %s?", buf);
 */
-	Sprintf(qbuf, "%s¤ò²¿¤È¸Æ¤Ó¤Ş¤¹¤«¡©", x_monnam(mtmp, 0, (char *)0, 1));
+	Sprintf(qbuf, "%sã‚’ä½•ã¨å‘¼ã³ã¾ã™ã‹ï¼Ÿ", x_monnam(mtmp, 0, (char *)0, 1));
 	getlin(qbuf,buf);
 	if(!*buf || *buf == '\033') return(0);
 	/* strip leading and trailing spaces; unnames monster if all spaces */
@@ -283,7 +283,7 @@ do_mname()
 /*JP
 	    pline("%s doesn't like being called names!", Monnam(mtmp));
 */
-	    pline("%s¤ÏÌ¾Á°¤Ç¸Æ¤Ğ¤ì¤ë¤Î¤¬·ù¤¤¤Ê¤è¤¦¤À¡ª", Monnam(mtmp));
+	    pline("%sã¯åå‰ã§å‘¼ã°ã‚Œã‚‹ã®ãŒå«Œã„ãªã‚ˆã†ã ï¼", Monnam(mtmp));
 	else (void) christen_monst(mtmp, buf);
 	return(0);
 }
@@ -303,7 +303,7 @@ register struct obj *obj;
 	short objtyp;
 
 /*JP	Sprintf(qbuf, "What do you want to name %s?", doname(obj));*/
-	Sprintf(qbuf, "%s¤ò²¿¤ÈÌ¾¤Å¤±¤Ş¤¹¤«¡©", doname(obj));
+	Sprintf(qbuf, "%sã‚’ä½•ã¨åã¥ã‘ã¾ã™ã‹ï¼Ÿ", doname(obj));
 	getlin(qbuf, buf);
 	if(!*buf || *buf == '\033')	return;
 	/* strip leading and trailing spaces; unnames item if all spaces */
@@ -315,7 +315,7 @@ register struct obj *obj;
 
 	if (obj->oartifact) {
 /*JP		pline_The("artifact seems to resist the attempt.");*/
-		pline("À»´ï¤ÏÌ¾¤Å¤±¤òµñÈİ¤·¤Æ¤¤¤ë¤è¤¦¤À¡¥");
+		pline("è–å™¨ã¯åã¥ã‘ã‚’æ‹’å¦ã—ã¦ã„ã‚‹ã‚ˆã†ã ï¼");
 		return;
 	} else if (restrict_name(obj, buf) || exist_artifact(obj->otyp, buf)) {
 		int n = rn2((int)strlen(buf));
@@ -325,10 +325,10 @@ register struct obj *obj;
 		do c2 = 'a' + rn2('z'-'a'); while (c1 == c2);
 		buf[n] = (buf[n] == c1) ? c2 : highc(c2);  /* keep same case */
 /*JP		pline("While engraving your %s slips.", body_part(HAND));*/
-		pline("¹ï¤ó¤Ç¤¤¤ë´Ö¤Ë%s¤¬³ê¤Ã¤Æ¤·¤Ş¤Ã¤¿¡¥", body_part(HAND));
+		pline("åˆ»ã‚“ã§ã„ã‚‹é–“ã«%sãŒæ»‘ã£ã¦ã—ã¾ã£ãŸï¼", body_part(HAND));
 		display_nhwindow(WIN_MESSAGE, FALSE);
 /*JP		You("engrave: \"%s\".",buf);*/
-		You("¹ï¤ó¤À: ¡Ö%s¡×¡¥",buf);
+		You("åˆ»ã‚“ã : ã€Œ%sã€ï¼",buf);
 	}
 	obj = oname(obj, buf);
 	if (obj->where == OBJ_INVENT)
@@ -486,7 +486,7 @@ ddocall()
 		ch =
 #endif
 /*JP		ynq("Name an individual object?")) {*/
-		ynq("»ı¤ÁÊª¤Ë¸ÄÊÌ¤ÎÌ¾Á°¤ò¤Ä¤±¤Ş¤¹¤«¡©")) {
+		ynq("æŒã¡ç‰©ã«å€‹åˆ¥ã®åå‰ã‚’ã¤ã‘ã¾ã™ã‹ï¼Ÿ")) {
 	case 'q':
 		break;
 	case 'y':
@@ -495,7 +495,7 @@ ddocall()
 #endif
 		allowall[0] = ALL_CLASSES; allowall[1] = '\0';
 /*JP		obj = getobj(allowall, "name");*/
-		obj = getobj(allowall, "Ì¾¤Å¤±¤ë");
+		obj = getobj(allowall, "åã¥ã‘ã‚‹");
 		if(obj) do_oname(obj);
 		break;
 	default :
@@ -503,11 +503,11 @@ ddocall()
 		savech(ch);
 #endif
 /*JP		obj = getobj(callable, "call");*/
-		obj = getobj(callable, "¸Æ¤Ö");
+		obj = getobj(callable, "å‘¼ã¶");
 		if (obj) {
 			if (!obj->dknown) {
 /*JP				You("would never recognize another one.");*/
-				You("Â¾¤ËÇ§¼±¤Ç¤­¤Ê¤¤¡¥");
+				You("ä»–ã«èªè­˜ã§ããªã„ï¼");
 				return 0;
 			}
 			docall(obj);
@@ -537,7 +537,7 @@ register struct obj *obj;
 /*JP
 	    Sprintf(qbuf,"Call a stream of %s fluid:",
 */
-	    Sprintf(qbuf,"%s¤Î±ÕÂÎ:",
+	    Sprintf(qbuf,"%sã®æ¶²ä½“:",
 /*JP		    OBJ_DESCR(objects[otemp.otyp]));*/
 		    jtrns_obj('!', OBJ_DESCR(objects[otemp.otyp])));
 
@@ -545,7 +545,7 @@ register struct obj *obj;
 /*JP
 	    Sprintf(qbuf, "Call %s:", an(xname(&otemp)));
 */
-	    Sprintf(qbuf, "%s¤Ë²¿¤ÈÌ¾Á°¤ò¤Ä¤±¤ë¡©", an(xname(&otemp)));
+	    Sprintf(qbuf, "%sã«ä½•ã¨åå‰ã‚’ã¤ã‘ã‚‹ï¼Ÿ", an(xname(&otemp)));
 
 	}
 	getlin(qbuf, buf);
@@ -635,7 +635,7 @@ const char *adjective;
 		!(u.uswallow && mtmp == u.ustuck) && !killer) {
 	    if (!(cansee(bhitpos.x, bhitpos.y) && mon_visible(mtmp))) {
 /*JP		Strcpy(buf, "it");*/
-		Strcpy(buf, "²¿¼Ô¤«");
+		Strcpy(buf, "ä½•è€…ã‹");
 		return  buf;
 	    }
 	}
@@ -649,7 +649,7 @@ const char *adjective;
 		 * or 'Asidonhopo the blue dragon'.
 		 */
 /*JP		Strcat(buf, " ");*/
-		Strcat(buf, "¤È¤¤¤¦Ì¾¤Î");
+		Strcat(buf, "ã¨ã„ã†åã®");
 	    } else if (mtmp->mnamelth) {
 		name = NAME(mtmp);
 	    }
@@ -669,7 +669,7 @@ const char *adjective;
 		Strcat(buf, adjective);
 	    if (mtmp->minvis && !Blind)
 /*JP		Strcat(buf, "invisible ");*/
-		Strcat(buf, "»Ñ¤Î¸«¤¨¤Ê¤¤");
+		Strcat(buf, "å§¿ã®è¦‹ãˆãªã„");
 	}
 
 	if (name && !called) {
@@ -678,7 +678,7 @@ const char *adjective;
 	}
 	if (name) {
 	    Strcat(buf, NAME(mtmp));
-	    Strcat(buf, "¤È¸Æ¤Ğ¤ì¤ë");
+	    Strcat(buf, "ã¨å‘¼ã°ã‚Œã‚‹");
 	}
 
 	if (Hallucination && !trunam) {
@@ -694,7 +694,7 @@ const char *adjective;
 		Strcpy((char *) mtmp->mextra, gn);
 	    }
 /*JP	    Sprintf(buf, "%s ghost", s_suffix((char *) mtmp->mextra));*/
-	    Sprintf(buf, "%s¤ÎÍ©Îî", s_suffix((char *) mtmp->mextra));
+	    Sprintf(buf, "%sã®å¹½éœŠ", s_suffix((char *) mtmp->mextra));
 	} else if (is_mplayer(mdat) && !In_endgame(&u.uz)) {
 	    char pbuf[BUFSZ];
 	    Strcpy(pbuf, rank_of((int)mtmp->m_lev,
@@ -919,15 +919,15 @@ static NEARDATA const char *hcolors[] = {
 	"cabernet", "sangria", "fuchsia", "wisteria",
 	"lemon-lime", "strawberry-banana", "peppermint",
 	"romantic", "incandescent"*/
-	"»ç³°¿§¤Î", "ÀÖ³°¿§¤Î", "ÀÄ¿§¤¬¤«¤Ã¤¿¥ª¥ì¥ó¥¸¿§¤Î",
-	"ÀÖ¤ß¤¬¤«¤Ã¤¿ÎĞ¿§¤Î", "°Å¤¤Çò¿§¤Î", "ÌÀ¤ë¤¤¹õ¤Î", "¿å¿§¤¬¤«¤Ã¤¿¥Ô¥ó¥¯¿§¤Î",
-	"±ö¿É¤¤", "´Å¤¤", "¤¹¤Ã¤Ñ¤¤", "¶ì¤¤",
-	"¤·¤ŞÌÏÍÍ¤Î", "¤é¤»¤ó¾õ¤Î", "ÇÈ¾õ¤Î", "³Ê»ÒÌÏÍÍ¾õ¤Î", "¥Á¥§¥Ã¥¯¾õ¤Î", "Êü¼Í¾õ¤Î",
-	"¥Ú¡¼¥º¥ê¡¼ÌÏÍÍ¤Î", "¤·¤ß¾õ¤Î", "ÀÄ¿§¤ÎÈÃÅÀ¾õ¤Î", "ÅÀ¾õ¤Î",
-	"»Í³Ñ·Á¾õ¤Î", "´İ¾õ¤Î", "»°³Ñ¾õ¤Î",
-	"ÆüËÜ¼ò¿§¤Î", "¤Ö¤É¤¦¼ò¿§¤Î", "ºù¿§¤Î", "Æ£¿§¤Î",
-	"¥ì¥â¥ó¥é¥¤¥à¿§¤Î", "çõ¥Ğ¥Ê¥Ê¿§¤Î", "¥Ú¥Ñ¡¼¥ß¥ó¥È¿§¤Î",
-	"¥í¥Ş¥ó¥Á¥Ã¥¯¤Ê¿§¤Î", "¤Ş¤Ö¤·¤¤"
+	"ç´«å¤–è‰²ã®", "èµ¤å¤–è‰²ã®", "é’è‰²ãŒã‹ã£ãŸã‚ªãƒ¬ãƒ³ã‚¸è‰²ã®",
+	"èµ¤ã¿ãŒã‹ã£ãŸç·‘è‰²ã®", "æš—ã„ç™½è‰²ã®", "æ˜ã‚‹ã„é»’ã®", "æ°´è‰²ãŒã‹ã£ãŸãƒ”ãƒ³ã‚¯è‰²ã®",
+	"å¡©è¾›ã„", "ç”˜ã„", "ã™ã£ã±ã„", "è‹¦ã„",
+	"ã—ã¾æ¨¡æ§˜ã®", "ã‚‰ã›ã‚“çŠ¶ã®", "æ³¢çŠ¶ã®", "æ ¼å­æ¨¡æ§˜çŠ¶ã®", "ãƒã‚§ãƒƒã‚¯çŠ¶ã®", "æ”¾å°„çŠ¶ã®",
+	"ãƒšãƒ¼ã‚ºãƒªãƒ¼æ¨¡æ§˜ã®", "ã—ã¿çŠ¶ã®", "é’è‰²ã®æ–‘ç‚¹çŠ¶ã®", "ç‚¹çŠ¶ã®",
+	"å››è§’å½¢çŠ¶ã®", "ä¸¸çŠ¶ã®", "ä¸‰è§’çŠ¶ã®",
+	"æ—¥æœ¬é…’è‰²ã®", "ã¶ã©ã†é…’è‰²ã®", "æ¡œè‰²ã®", "è—¤è‰²ã®",
+	"ãƒ¬ãƒ¢ãƒ³ãƒ©ã‚¤ãƒ è‰²ã®", "è‹ºãƒãƒŠãƒŠè‰²ã®", "ãƒšãƒ‘ãƒ¼ãƒŸãƒ³ãƒˆè‰²ã®",
+	"ãƒ­ãƒãƒ³ãƒãƒƒã‚¯ãªè‰²ã®", "ã¾ã¶ã—ã„"
 };
 
 const char *

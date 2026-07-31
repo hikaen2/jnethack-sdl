@@ -190,9 +190,9 @@ const char *he[3]  = { "he",  "she", "it" };
 const char *him[3] = { "him", "her", "it" };
 const char *his[3] = { "his", "her", "its" };
 #endif
-const char *he[3]  = { "Èà", "Èà½÷", "¤½¤ì" };
-const char *him[3] = { "Èà", "Èà½÷", "¤½¤ì" };
-const char *his[3] = { "Èà", "Èà½÷", "¤½¤ì" };
+const char *he[3]  = { "å½¼", "å½¼å¥³", "ãã‚Œ" };
+const char *him[3] = { "å½¼", "å½¼å¥³", "ãã‚Œ" };
+const char *his[3] = { "å½¼", "å½¼å¥³", "ãã‚Œ" };
 
 /* originally from dog.c */
 NEARDATA char dogname[PL_PSIZ] = DUMMY;
@@ -210,19 +210,19 @@ NEARDATA struct c_color_names c_color_names = {
 	"light blue", "red", "green",
 	"silver", "blue", "purple",
 	"white"*/
-	"¹õ¤¤", "àèàá¿§¤Î", "¶â¿§¤Î",
-	"¿å¿§¤Î", "ÀÖ¤¤", "ÎĞ¿§¤Î",
-	"¶ä¿§¤Î", "ÀÄ¤¤", "»ç¿§¤Î",
-	"Çò¤¤"
+	"é»’ã„", "ç¥ç€è‰²ã®", "é‡‘è‰²ã®",
+	"æ°´è‰²ã®", "èµ¤ã„", "ç·‘è‰²ã®",
+	"éŠ€è‰²ã®", "é’ã„", "ç´«è‰²ã®",
+	"ç™½ã„"
 };
 
 struct c_common_strings c_common_strings = {
 /*JP	"Nothing happens.",		"That's enough tries!",
 	"That is a silly thing to %s.",	"shudder for a moment.",
 	"something", "Something", "You can move again."*/
-	"²¿¤âµ¯¤­¤Ê¤«¤Ã¤¿¡¥",		"¤¤¤¤²Ã¸º¤Ë¤·¤í¡ª",
-	"%s¡©¤½¤ê¤ã¤Ğ¤«¤²¤Æ¤¤¤ë¡¥",	"°ì½Ö¿Ì¤¨¤¿¡¥",
-	"²¿¤«", "²¿¤«", "¤Ş¤¿Æ°¤±¤ë¤è¤¦¤Ë¤Ê¤Ã¤¿¡¥"
+	"ä½•ã‚‚èµ·ããªã‹ã£ãŸï¼",		"ã„ã„åŠ æ¸›ã«ã—ã‚ï¼",
+	"%sï¼Ÿãã‚Šã‚ƒã°ã‹ã’ã¦ã„ã‚‹ï¼",	"ä¸€ç¬éœ‡ãˆãŸï¼",
+	"ä½•ã‹", "ä½•ã‹", "ã¾ãŸå‹•ã‘ã‚‹ã‚ˆã†ã«ãªã£ãŸï¼"
 };
 
 /* Vision */

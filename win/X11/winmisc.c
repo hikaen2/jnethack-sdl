@@ -165,10 +165,10 @@ X11_player_selection()
       sprintf(jtmp, "(%c)", roles[num_roles][0]);
       strcat(jroles[num_roles], jtmp);
     }
-    popup = make_menu("player_selection", "¥­¥ã¥é¥¯¥¿¡¼¤òÁª¤ó¤Ç¤¯¤À¤µ¤¤",
+    popup = make_menu("player_selection", "ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚’é¸ã‚“ã§ãã ã•ã„",
 		player_select_translations,
-		"¤ä¤á¤ë", ps_quit,
-		"¤ª¤Ş¤«¤»", ps_random,
+		"ã‚„ã‚ã‚‹", ps_quit,
+		"ãŠã¾ã‹ã›", ps_random,
 		num_roles, (const char **)jroles,
 	        (Widget **)0, ps_select, &player_form);
 
@@ -196,7 +196,7 @@ X11_player_selection()
 /*JP
 	Sprintf(buf, "This game you will be %s.", an(roles[ps_selected]));
 */
-	Sprintf(buf, "¤³¤Î¥²¡¼¥à¤Ç¤Ï¤¢¤Ê¤¿¤Ï%s¤Ç¤¹¡¥", jtrns_mon(roles[ps_selected], -1));
+	Sprintf(buf, "ã“ã®ã‚²ãƒ¼ãƒ ã§ã¯ã‚ãªãŸã¯%sã§ã™ï¼", jtrns_mon(roles[ps_selected], -1));
 
 	tmpwin = X11_create_nhwindow(NHW_TEXT);
 	X11_putstr(tmpwin, 0, "");

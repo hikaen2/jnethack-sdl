@@ -99,6 +99,17 @@ dump_splits()
                 (void) strcat(joined, s2);
                 if (strcmp(joined, jlib_strings[i]) != 0)
                     (void) printf("LOSSY\t%d\t%d\t[%s]\n", i, pos, joined);
+
+                /*
+                 * And the break has to fall between characters.  Rejoining
+                 * would still succeed if it split one down the middle --
+                 * the halves concatenate back -- so this is a separate
+                 * question, and the one that decides whether what reaches
+                 * the screen is text.
+                 */
+                if (!mb_is_boundary(jlib_strings[i], (int) strlen(s1)))
+                    (void) printf("SPLITCHAR\t%d\t%d\t%d\n", i, pos,
+                                  (int) strlen(s1));
             }
         }
     }

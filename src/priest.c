@@ -106,7 +106,7 @@ pick_move:
 		if(ib) {
 			if (cansee(mtmp->mx,mtmp->my))
 /*JP			    pline("%s picks up %s.", Monnam(mtmp),*/
-			    pline("%s¤Ï%s¤ò½¦¤Ã¤¿¡¥", Monnam(mtmp),
+			    pline("%sã¯%sã‚’æ‹¾ã£ãŸï¼", Monnam(mtmp),
 				distant_name(ib,doname));
 			obj_extract_self(ib);
 			mpickobj(mtmp, ib);
@@ -173,7 +173,7 @@ register struct monst *priest;
 		if(monnear(priest, u.ux, u.uy)) {
 			if(Displaced)
 /*JP				Your("displaced image doesn't fool %s!",*/
-			        Your("¸¸±Æ¤Ï%s¤ò¤À¤Ş¤»¤Ê¤«¤Ã¤¿¡ª",
+			        Your("å¹»å½±ã¯%sã‚’ã ã¾ã›ãªã‹ã£ãŸï¼",
 					mon_nam(priest));
 			(void) mattacku(priest);
 			return(0);
@@ -268,17 +268,17 @@ char *pname;		/* caller-supplied output buffer */
 	if (mon->minvis) Strcat(pname, "invisible ");
 */
 	Strcpy(pname, "");
-	if (mon->minvis) Strcat(pname, "Æ©ÌÀ¤Ê");
+	if (mon->minvis) Strcat(pname, "é€æ˜ãª");
 	if (mon->ispriest || mon->data == &mons[PM_ALIGNED_PRIEST] ||
 					mon->data == &mons[PM_ANGEL]) {
 		/* use epri */
 		Strcat(pname, align_gname((int)EPRI(mon)->shralign));
-		Strcat(pname, "¤Î");
+		Strcat(pname, "ã®");
 		if (mon->mtame && mon->data == &mons[PM_ANGEL])
 /*JP
 			Strcat(pname, "guardian ");
 */
-			Strcat(pname, "·Ù¸î¤Î");
+			Strcat(pname, "è­¦è­·ã®");
 		if (mon->data != &mons[PM_ALIGNED_PRIEST] &&
 				mon->data != &mons[PM_HIGH_PRIEST]) {
 /*JP
@@ -290,16 +290,16 @@ char *pname;		/* caller-supplied output buffer */
 		if (mon->data != &mons[PM_ANGEL]) {
 			if (!mon->ispriest && EPRI(mon)->renegade)
 /*JP				Strcat(pname, "renegade ");*/
-				Strcat(pname, "Î¢ÀÚ¤ê¼Ô¤Î");
+				Strcat(pname, "è£åˆ‡ã‚Šè€…ã®");
 			if (mon->data == &mons[PM_HIGH_PRIEST])
 /*JP				Strcat(pname, "high ");*/
-				Strcat(pname, "°Ì¤Î¹â¤¤");
+				Strcat(pname, "ä½ã®é«˜ã„");
 			if (mon->female)
 /*JP				Strcat(pname, "priestess ");*/
-				Strcat(pname, "ÆôÁÎ");
+				Strcat(pname, "å°¼åƒ§");
 			else
 /*JP				Strcat(pname, "priest ");*/
-				Strcat(pname, "ÁÎÎ·");
+				Strcat(pname, "åƒ§ä¾¶");
 		}
 /*JP
 		Strcat(pname, "of ");
@@ -314,7 +314,7 @@ char *pname;		/* caller-supplied output buffer */
 	Strcat(pname, " of ");
 */
 	Strcat(pname, align_gname(EMIN(mon)->min_align));
-	Strcat(pname, "¤Î²½¿È¤Î");
+	Strcat(pname, "ã®åŒ–èº«ã®");
 	Strcat(pname, jtrns_mon(mon->data->mname, mon->female));
 	return(pname);
 }
@@ -374,9 +374,9 @@ register int roomno;
 /*JP		    pline("%s intones:",
 			  (!Blind ? Monnam(priest) : "A nearby voice"));*/
 		    if(Blind)
-		      pline("¶á¤¯¤ÇÃ¯¤«¤¬±Ó¾§¤·¤¿¡§");
+		      pline("è¿‘ãã§èª°ã‹ãŒè© å”±ã—ãŸï¼š");
 		    else
-		      pline("%s¤Ï±Ó¾§¤·¤¿¡§", Monnam(priest));
+		      pline("%sã¯è© å”±ã—ãŸï¼š", Monnam(priest));
 		}
 
 		msg2 = 0;
@@ -384,18 +384,18 @@ register int roomno;
 		    if(priest->mpeaceful) {
 /*JP			msg1 = "Infidel, you entered Moloch's Sanctum!";
 			msg2 = "Be gone!";*/
-		        msg1 = "°ÛÃ¼¼Ô¤è¡ª¤³¤³¤Ï¡¤¥â¡¼¥í¥Ã¥¯¤ÎÀ»°è¤À¡ª";
-			msg2 = "Î©¤Á¤µ¤ì¡ª";
+		        msg1 = "ç•°ç«¯è€…ã‚ˆï¼ã“ã“ã¯ï¼Œãƒ¢ãƒ¼ãƒ­ãƒƒã‚¯ã®è–åŸŸã ï¼";
+			msg2 = "ç«‹ã¡ã•ã‚Œï¼";
 			priest->mpeaceful = 0;
 			set_malign(priest);
 		    } else
 /*JP			msg1 = "You desecrate this place by your presence!";*/
-		        msg1 = "¤ª¤Ş¤¨¤Ï¤³¤Î¿ÀÀ»¤Ê¾ì½ê¤ò±ø¤·¤Æ¤¤¤ë¡ª";
+		        msg1 = "ãŠã¾ãˆã¯ã“ã®ç¥è–ãªå ´æ‰€ã‚’æ±šã—ã¦ã„ã‚‹ï¼";
 		} else {
 /*JP		    Sprintf(buf, "Pilgrim, you enter a %s place!",
 			    !shrined ? "desecrated" : "sacred");*/
-		    Sprintf(buf, "½äÎé¼Ô¤è¡¤¤ª¤Ş¤¨¤Ï%sÃÏ¤Ë¤¤¤ë¡ª",
-			    !shrined ? "ÉÔ¾ô¤Î" : "¿ÀÀ»¤Ê¤ë");
+		    Sprintf(buf, "å·¡ç¤¼è€…ã‚ˆï¼ŒãŠã¾ãˆã¯%såœ°ã«ã„ã‚‹ï¼",
+			    !shrined ? "ä¸æµ„ã®" : "ç¥è–ãªã‚‹");
 		    msg1 = buf;
 		}
 		if (can_speak) {
@@ -408,19 +408,19 @@ register int roomno;
 						   u.ualign.record < -5)
 /*JP			You("have a%s forbidding feeling...",
 				(!shrined) ? "" : " strange");*/
-			You("%s¶á¤Å¤­¤¬¤¿¤¤µ¤»ı¤¬¤·¤¿¡¥¡¥¡¥",
-				(!shrined) ? "" : "´ñÌ¯¤Ê");
+			You("%sè¿‘ã¥ããŒãŸã„æ°—æŒãŒã—ãŸï¼ï¼ï¼",
+				(!shrined) ? "" : "å¥‡å¦™ãª");
 /*JP		    else You("experience a strange sense of peace.");*/
-		    else You("´ñÌ¯¤ÊÃá½ø¤¢¤ëÊ·°Ïµ¤¤òÂÎ¸³¤·¤¿¡¥");
+		    else You("å¥‡å¦™ãªç§©åºã‚ã‚‹é›°å›²æ°—ã‚’ä½“é¨“ã—ãŸï¼");
 		}
 	    } else {
 		switch(rn2(3)) {
 /*JP		  case 0: You("have an eerie feeling..."); break;*/
-		  case 0: You("¤¾¤Ã¤È¤·¤¿¡¥¡¥¡¥"); break;
+		  case 0: You("ãã£ã¨ã—ãŸï¼ï¼ï¼"); break;
 /*JP		  case 1: You_feel("like you are being watched."); break;*/
-		  case 1: You("¸«¤Ä¤á¤é¤ì¤Æ¤¤¤ë¤è¤¦¤Êµ¤¤¬¤·¤¿¡¥"); break;
+		  case 1: You("è¦‹ã¤ã‚ã‚‰ã‚Œã¦ã„ã‚‹ã‚ˆã†ãªæ°—ãŒã—ãŸï¼"); break;
 /*JP		  default: pline("A shiver runs down your %s.",*/
-		  default: pline("¿Ì¤¨¤¬¤¢¤Ê¤¿¤Î%s¤òÁö¤Ã¤¿¡¥",
+		  default: pline("éœ‡ãˆãŒã‚ãªãŸã®%sã‚’èµ°ã£ãŸï¼",
 			body_part(SPINE)); break;
 		}
 		if(!rn2(5)) {
@@ -429,15 +429,15 @@ register int roomno;
 		    if(!(mtmp = makemon(&mons[PM_GHOST],u.ux,u.uy,NO_MM_FLAGS)))
 			return;
 /*JP		    pline("An enormous ghost appears next to you!");*/
-		    pline("µğÂç¤ÊÍ©Îî¤¬¤¢¤Ê¤¿¤ÎÎÙ¤Ë¸½¤ï¤ì¤¿¡ª");
+		    pline("å·¨å¤§ãªå¹½éœŠãŒã‚ãªãŸã®éš£ã«ç¾ã‚ã‚ŒãŸï¼");
 		    mtmp->mpeaceful = 0;
 		    set_malign(mtmp);
 		    if(flags.verbose)
 /*JP			You("are frightened to death, and unable to move.");*/
-			You("¤Ş¤Ã¤µ¤ª¤Ë¤Ê¤Ã¤Æ¶Ã¤­¡¤Æ°¤±¤Ê¤¯¤Ê¤Ã¤¿¡¥");
+			You("ã¾ã£ã•ãŠã«ãªã£ã¦é©šãï¼Œå‹•ã‘ãªããªã£ãŸï¼");
 		    nomul(-3);
 /*JP		    nomovemsg = "You regain your composure.";*/
-		    nomovemsg = "¤¢¤Ê¤¿¤ÏÊ¿ÀÅ¤ò¼è¤êÌá¤·¤¿¡¥";
+		    nomovemsg = "ã‚ãªãŸã¯å¹³é™ã‚’å–ã‚Šæˆ»ã—ãŸï¼";
 	       }
 	   }
        }
@@ -452,7 +452,7 @@ register struct monst *priest;
 
 	if(priest->mflee || (!priest->ispriest && coaligned && strayed)) {
 /*JP	    pline("%s doesn't want anything to do with you!",*/
-	    pline("%s¤Ï¤¢¤Ê¤¿¤Ë¤«¤Ş¤¤¤¿¤¯¤Ê¤¤¤è¤¦¤À¡ª",
+	    pline("%sã¯ã‚ãªãŸã«ã‹ã¾ã„ãŸããªã„ã‚ˆã†ã ï¼",
 				Monnam(priest));
 	    priest->mpeaceful = 0;
 	    return;
@@ -465,14 +465,14 @@ register struct monst *priest;
 /*JP		"Thou wouldst have words, eh?  I'll give thee a word or two!",
 		"Talk?  Here is what I have to say!",
 		"Pilgrim, I would speak no longer with thee."*/
-		"Æò¸ÀÍÕ¤òË¾¤à¤Î¤«¡©",
-		"ÏÃ¤¹¡©²¿¤ò¸À¤¨¤Ğ¤è¤¤¤Î¤À¡ª",
-		"½äÎé¼Ô¤è¡¤Æò¤Ë¸ì¤ë¤³¤È¤Ê¤É¤Ê¤¤¡¥"
+		"æ±è¨€è‘‰ã‚’æœ›ã‚€ã®ã‹ï¼Ÿ",
+		"è©±ã™ï¼Ÿä½•ã‚’è¨€ãˆã°ã‚ˆã„ã®ã ï¼",
+		"å·¡ç¤¼è€…ã‚ˆï¼Œæ±ã«èªã‚‹ã“ã¨ãªã©ãªã„ï¼"
 	    };
 
 	    if(!priest->mcanmove || priest->msleep) {
 /*JP		pline("%s breaks out of %s reverie!",*/
-		pline("%s¤Ï%s¤ÎÌ½ÁÛ¤òÃæÃÇ¤·¤¿¡ª",
+		pline("%sã¯%sã®å†¥æƒ³ã‚’ä¸­æ–­ã—ãŸï¼",
 		      Monnam(priest), his[pronoun_gender(priest)]);
 		priest->mfrozen = priest->msleep = 0;
 		priest->mcanmove = 1;
@@ -487,7 +487,7 @@ register struct monst *priest;
 		  !has_shrine(priest)) {
 /*JP	    verbalize("Begone!  Thou desecratest this holy place with thy presence.");*/
 
-	  verbalize("Î©¤Áµî¤ì¡ªÆò¤Ï¤³¤Î¿ÀÀ»¤Ê¤ë¾ì½ê¤ò±ø¤·¤Æ¤¤¤ë¡¥");
+	  verbalize("ç«‹ã¡å»ã‚Œï¼æ±ã¯ã“ã®ç¥è–ãªã‚‹å ´æ‰€ã‚’æ±šã—ã¦ã„ã‚‹ï¼");
 	    priest->mpeaceful = 0;
 	    return;
 	}
@@ -498,8 +498,8 @@ register struct monst *priest;
 		    /* Note: two bits is actually 25 cents.  Hmm. */
 /*JP		    pline("%s gives you %s for an ale.", Monnam(priest),
 			(priest->mgold == 1L) ? "one bit" : "two bits");*/
-		    pline("%s¤Ï¤¢¤Ê¤¿¤Ë%s¥¨¡¼¥ë¼ò¤òÍ¿¤¨¤¿¡¥", Monnam(priest),
-			(priest->mgold == 1L) ? "°ì¸ı" : "Æó¸ı");
+		    pline("%sã¯ã‚ãªãŸã«%sã‚¨ãƒ¼ãƒ«é…’ã‚’ä¸ãˆãŸï¼", Monnam(priest),
+			(priest->mgold == 1L) ? "ä¸€å£" : "äºŒå£");
 		    if (priest->mgold > 1L)
 			u.ugold = 2L;
 		    else
@@ -508,52 +508,52 @@ register struct monst *priest;
 		    flags.botl = 1;
 		} else
 /*JP		    pline("%s preaches the virtues of poverty.", Monnam(priest));*/
-		    pline("%s¤ÏÉÏº¤¤ÎÈşÆÁ¤Ë¤Ä¤¤¤ÆÀâ¶µ¤·¤¿¡¥", Monnam(priest));
+		    pline("%sã¯è²§å›°ã®ç¾å¾³ã«ã¤ã„ã¦èª¬æ•™ã—ãŸï¼", Monnam(priest));
 		exercise(A_WIS, TRUE);
 	    } else
 /*JP		pline("%s is not interested.", Monnam(priest));*/
-		pline("%s¤Ï¶½Ì£¤ò¼¨¤µ¤Ê¤¤¡¥", Monnam(priest));
+		pline("%sã¯èˆˆå‘³ã‚’ç¤ºã•ãªã„ï¼", Monnam(priest));
 	    return;
 	} else {
 	    long offer;
 
 /*JP	    pline("%s asks you for a contribution for the temple.",*/
-	    pline("%s¤Ï¤¢¤Ê¤¿¤Ë»û±¡¤Ø¤Î´óÂ£¤òµá¤á¤¿¡¥",
+	    pline("%sã¯ã‚ãªãŸã«å¯ºé™¢ã¸ã®å¯„è´ˆã‚’æ±‚ã‚ãŸï¼",
 			Monnam(priest));
 	    if((offer = bribe(priest)) == 0) {
 /*JP		verbalize("Thou shalt regret thine action!");*/
-		verbalize("Æò¤Î¹Ô°Ù¤Ï¿À¤òËÁÆÂ¤¹¤ë¤â¤Î¤Ê¤ê¡ª");
+		verbalize("æ±ã®è¡Œç‚ºã¯ç¥ã‚’å†’æ¶œã™ã‚‹ã‚‚ã®ãªã‚Šï¼");
 		if(coaligned) adjalign(-1);
 	    } else if(offer < (u.ulevel * 200)) {
 /*JP		if(u.ugold > (offer * 2L)) verbalize("Cheapskate.");*/
-		if(u.ugold > (offer * 2L)) verbalize("¥±¥Á¤á¡¥");
+		if(u.ugold > (offer * 2L)) verbalize("ã‚±ãƒã‚ï¼");
 		else {
 /*JP		    verbalize("I thank thee for thy contribution.");*/
-		    verbalize("Æò¤Î´óÂ£¤ËÊó¤¤¤è¤¦¤¾¡¥");
+		    verbalize("æ±ã®å¯„è´ˆã«å ±ã„ã‚ˆã†ãï¼");
 		    /*  give player some token  */
 		    exercise(A_WIS, TRUE);
 		}
 	    } else if(offer < (u.ulevel * 400)) {
 /*JP		verbalize("Thou art indeed a pious individual.");*/
-		verbalize("Æò¡¤¤Ş¤µ¤Ë·ÉéÊ¤Ê¿ÍÊª¤Ê¤ê¡¥");
+		verbalize("æ±ï¼Œã¾ã•ã«æ•¬è™”ãªäººç‰©ãªã‚Šï¼");
 		if(u.ugold < (offer * 2L)) {
 		    if(coaligned && u.ualign.record < -5) adjalign(1);
 /*JP		    verbalize("I bestow upon thee a blessing.");*/
-		    verbalize("Æò¤Ë½ËÊ¡¤ò¡¥");
+		    verbalize("æ±ã«ç¥ç¦ã‚’ï¼");
 		    HClairvoyant += rn1(500,500);
 		}
 	    } else if(offer < (u.ulevel * 600) &&
 		      u.ublessed < 20 &&
 		      (u.ublessed < 9 || !rn2(u.ublessed))) {
 /*JP		verbalize("Thy devotion has been rewarded.");*/
-		verbalize("Æò¤Î¸¥¿È¤ËÊó¤ï¤ó¡¥");
+		verbalize("æ±ã®çŒ®èº«ã«å ±ã‚ã‚“ï¼");
 		if (!(Protection & INTRINSIC))  {
 			Protection |= FROMOUTSIDE;
 			if (!u.ublessed)  u.ublessed = rn1(3, 2);
 		} else u.ublessed++;
 	    } else {
 /*JP		verbalize("Thy selfless generosity is deeply appreciated.");*/
-		verbalize("Æò¼«¿È¤Î¿¿²Á¤ÏÂç¤¤¤ËÇ§¤á¤é¤ì¤¿¡¥");
+		verbalize("æ±è‡ªèº«ã®çœŸä¾¡ã¯å¤§ã„ã«èªã‚ã‚‰ã‚ŒãŸï¼");
 		if(u.ugold < (offer * 2L) && coaligned) {
 		    if(strayed && (moves - u.ucleansed) > 5000L) {
 			u.ualign.record = 0; /* cleanse thee */
@@ -671,17 +671,17 @@ struct monst *priest;
 	switch(rn2(3)) {
 	case 0:
 /*JP	    pline("%s roars in anger:  \"Thou shalt suffer!\"",*/
-	    pline("%s¤ÏÅÜ¤ê¤ÎÀ¼¤ò¤¢¤²¤¿¡§¡ÖÆò¡¤¶ì¤·¤à¤¬¤è¤¤¡ª¡×",
+	    pline("%sã¯æ€’ã‚Šã®å£°ã‚’ã‚ã’ãŸï¼šã€Œæ±ï¼Œè‹¦ã—ã‚€ãŒã‚ˆã„ï¼ã€",
 			a_gname_at(ax, ay));
 	    break;
 	case 1:
 /*JP	    pline("%s voice booms:  \"How darest thou harm my servant!\"",*/
-	    pline("%s¤ÎÀ¼¤¬¶Á¤¤¤¿¡§¡Ö¤ï¤¬²¼ËÍ¤Ë¶ì¤·¤à¤¬¤è¤¤¡ª¡×",
+	    pline("%sã®å£°ãŒéŸ¿ã„ãŸï¼šã€Œã‚ãŒä¸‹åƒ•ã«è‹¦ã—ã‚€ãŒã‚ˆã„ï¼ã€",
 			s_suffix(a_gname_at(ax, ay)));
 	    break;
 	default:
 /*JP	    pline("%s roars:  \"Thou dost profane my shrine!\"",*/
-	    pline("%s¤ÎÀ¼¤¬Ê¹¤³¤¨¤ë¡§¡ÖÆò¡¤²æ¤¬À»Æ²¤ò±ø¤·¤¿¤ê¡×",
+	    pline("%sã®å£°ãŒèã“ãˆã‚‹ï¼šã€Œæ±ï¼Œæˆ‘ãŒè–å ‚ã‚’æ±šã—ãŸã‚Šã€",
 			a_gname_at(ax, ay));
 	    break;
 	}

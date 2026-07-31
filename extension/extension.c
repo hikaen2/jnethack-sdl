@@ -146,7 +146,7 @@ ht_version(NHBUF *b)
 	      JPATCHLEVEL, JEDITLEVEL);
 }
 
-#define IC ((unsigned char)("´Á"[0])==0x8a)
+#define IC ((unsigned char)("æ¼¢"[0])==0x8a)
 
 static void
 ht_encode(NHBUF *b)
@@ -242,7 +242,7 @@ report_score(char *action, char *linebuf)
 
     while(sd < 0){
 	raw_printf("Report: %s", soc_err());
-	c = yn_function("¥¹¥³¥¢¥µ¡¼¥Ð¡¼¤È¤ÎÀÜÂ³¤Ë¼ºÇÔ¤·¤Þ¤·¤¿¡£ºÆÅÙÀÜÂ³¤ò»î¤ß¤Þ¤¹¤«¡©",ynqchars,'y');
+	c = yn_function("ã‚¹ã‚³ã‚¢ã‚µãƒ¼ãƒãƒ¼ã¨ã®æŽ¥ç¶šã«å¤±æ•—ã—ã¾ã—ãŸã€‚å†åº¦æŽ¥ç¶šã‚’è©¦ã¿ã¾ã™ã‹ï¼Ÿ",ynqchars,'y');
 	if(c != 'y')
 	    goto report_end;
     }
@@ -302,7 +302,7 @@ send_bones()
     sd = connect_bonesserver();
     while(sd < 0){
 	raw_printf("Report: %s", soc_err());
-	c = yn_function("¹ü¥µ¡¼¥Ð¡¼¤È¤ÎÀÜÂ³¤Ë¼ºÇÔ¤·¤Þ¤·¤¿¡£ºÆÅÙÀÜÂ³¤ò»î¤ß¤Þ¤¹¤«¡©",ynqchars,'y');
+	c = yn_function("éª¨ã‚µãƒ¼ãƒãƒ¼ã¨ã®æŽ¥ç¶šã«å¤±æ•—ã—ã¾ã—ãŸã€‚å†åº¦æŽ¥ç¶šã‚’è©¦ã¿ã¾ã™ã‹ï¼Ÿ",ynqchars,'y');
 	if(c != 'y')
 	    goto report_end;
     }

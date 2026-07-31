@@ -266,7 +266,7 @@ char *argv[];
 #endif
 /*JP*/
 #ifdef JNETHACK
-		pline("¥»¡¼¥Ö¥Õ¥¡¥¤¥ë¤òÉü¸µÃæ¡¥¡¥¡¥");
+		pline("ã‚»ãƒ¼ãƒ–ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å¾©å…ƒä¸­ï¼ï¼ï¼");
 #else
 		pline("Restoring save file...");
 #endif
@@ -282,7 +282,7 @@ char *argv[];
 		    char buf[4096];
 /*JP*/
 #ifdef JNETHACK		    
-		    sprintf(buf, "¤è¤¦¤³¤½ %s, ¤Ş¤¿NetHack¤ÎÀ¤³¦¤Ø¡ª", plname);
+		    sprintf(buf, "ã‚ˆã†ã“ã %s, ã¾ãŸNetHackã®ä¸–ç•Œã¸ï¼", plname);
 #else
 		    sprintf(buf, "Hello %s, welcome back to NetHack!", plname);
 #endif
@@ -295,7 +295,7 @@ char *argv[];
 #endif
 /*JP*/
 #ifdef	JNETHACK
-		    pline("¤è¤¦¤³¤½ %s, ¤Ş¤¿NetHack¤ÎÀ¤³¦¤Ø¡ª", plname);
+		    pline("ã‚ˆã†ã“ã %s, ã¾ãŸNetHackã®ä¸–ç•Œã¸ï¼", plname);
 #else
 		    pline("Hello %s, welcome back to NetHack!", plname);
 #endif
@@ -324,7 +324,7 @@ not_recovered:
 		    char buf[4096];
 /*JP*/
 #ifdef JNETHACK		    
-		    sprintf(buf, "¤è¤¦¤³¤½ %s, NetHack¤ÎÀ¤³¦¤Ø¡ª", plname);
+		    sprintf(buf, "ã‚ˆã†ã“ã %s, NetHackã®ä¸–ç•Œã¸ï¼", plname);
 #else
 	   	    sprintf(buf, "Hello %s, welcome to NetHack!", plname);
 #endif
@@ -337,7 +337,7 @@ not_recovered:
 #endif
 /*JP*/
 #ifdef JNETHACK
-		    pline("¤è¤¦¤³¤½ %s, NetHack¤ÎÀ¤³¦¤Ø¡ª", plname);
+		    pline("ã‚ˆã†ã“ã %s, NetHackã®ä¸–ç•Œã¸ï¼", plname);
 #else
 		    pline("Hello %s, welcome to NetHack!", plname);
 #endif
@@ -530,17 +530,17 @@ wd_message()
 {
 #ifdef WIZARD
 	if (wiz_error_flag) {
-		pline("¡Ö%s¡×¤Î¤ß¤¬¥Ç¥Ğ¥Ã¥°(wizard)¥â¡¼¥É¤ò»ÈÍÑ¤Ç¤­¤ë¡¥",
+		pline("ã€Œ%sã€ã®ã¿ãŒãƒ‡ãƒãƒƒã‚°(wizard)ãƒ¢ãƒ¼ãƒ‰ã‚’ä½¿ç”¨ã§ãã‚‹ï¼",
 # ifndef KR1ED
 			WIZARD);
 # else
 			WIZARD_NAME);
 # endif
-		pline("¤«¤ï¤ê¤ËÈ¯¸«¥â¡¼¥É¤Ø°Ü¹Ô¤¹¤ë¡¥");
+		pline("ã‹ã‚ã‚Šã«ç™ºè¦‹ãƒ¢ãƒ¼ãƒ‰ã¸ç§»è¡Œã™ã‚‹ï¼");
 	} else
 #endif
 	if (discover)
-		You("¥¹¥³¥¢¤ÎºÜ¤é¤Ê¤¤È¯¸«¥â¡¼¥É¤Çµ¯Æ°¤·¤¿¡¥");
+		You("ã‚¹ã‚³ã‚¢ã®è¼‰ã‚‰ãªã„ç™ºè¦‹ãƒ¢ãƒ¼ãƒ‰ã§èµ·å‹•ã—ãŸï¼");
 }
 #else
 static void

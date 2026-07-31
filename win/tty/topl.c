@@ -240,7 +240,7 @@ raw_topl_putsym(c)
 	return;
     case '\n':
 	cl_end();
-	(void) cputchar('\r'); /* raw mode ¤ÇÉ¬Í×? */
+	(void) cputchar('\r'); /* raw mode ã§å¿…è¦? */
 	(void) cputchar('\n');
 	ttyDisplay->curx = 0;
 	ttyDisplay->cury++;
@@ -291,7 +291,7 @@ topl_putsym(c)
 	return;
     case '\n':
 	cl_end();
-	(void) jputchar('\r'); /* raw mode ¤ÇÉ¬Í×? */
+	(void) jputchar('\r'); /* raw mode ã§å¿…è¦? */
 	(void) jputchar('\n');
 	ttyDisplay->curx = 0;
 	ttyDisplay->cury++;

@@ -9,14 +9,14 @@
 #
 # Both runs share one fixed RNG seed, so they see the same dungeon.
 #
-# The pty side is decoded as EUC-JP and rendered by pyte, which places
+# The pty side is decoded as UTF-8 and rendered by pyte, which places
 # East Asian Wide characters in two cells -- so a Japanese status line has
 # to come out at the same columns on both sides for a case to pass.  Note
 # that pyte gets its widths from wcwidth(), which calls East Asian
-# Ambiguous characters narrow; the SDL backend calls anything that arrived
-# as an EUC-JP pair wide.  A screen containing, say, U+00B1 will therefore
-# differ, and the SDL side is the one that agrees with what JNetHack's own
-# layout code counted.  See SDL-PORT.md.
+# Ambiguous characters narrow; JNetHack counts anything in JIS X 0208 as
+# wide (see mb_cpwidth() in include/mbchar.h).  A screen containing, say,
+# U+00B1 will therefore differ, and the game's side is the one that agrees
+# with what its own layout code counted.  See SDL-PORT.md.
 set -e
 
 cd "$(dirname "$0")/.."
@@ -82,7 +82,7 @@ echo "$cases" | while IFS='|' read -r name keys; do
     ./test/mkplaydir.sh "$work/sdl" >/dev/null
 
     NETHACK_SEED=$seed HACKDIR="$work/tty" NETHACKOPTIONS=$opts \
-        python3 test/ptydrive.py --charset euc-jp --keys "$keys" \
+        python3 test/ptydrive.py --charset utf-8 --keys "$keys" \
             --dump "$work/$name.tty" \
             -- src/jnethack.tty -u poc >/dev/null 2>&1 || true
 

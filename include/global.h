@@ -313,14 +313,30 @@ struct version_info {
 #define MAX_SUBROOMS	24	/* max # of subrooms in a given room */
 #define DOORMAX		120	/* max number of doors per level */
 
-#define BUFSZ		256	/* for getlin buffers */
-#define QBUFSZ		128	/* for building question text */
+/*JP
+ *      These are byte counts, and Japanese text stopped fitting the same
+ *      number of characters into them when the internal encoding became
+ *      UTF-8: a kanji is three bytes where it was two, and a character the
+ *      player types can be four.  Sized so that the number of *characters*
+ *      that fits is no smaller than it was, which is what a player notices.
+ *
+ *      Changing PL_NSIZ, PL_FSIZ or BUFSZ changes the layout of saved
+ *      structures, so EDITLEVEL in include/patchlevel.h goes up in the same
+ *      commit and old saves are refused rather than misread.
+ *
+ *      PL_NSIZ has a second job: src/monst.c passes it as the extension
+ *      length for the player and ghost entries, so it also sizes every
+ *      ghost's allocation and appears in bones files.
+ */
+#define BUFSZ		512	/* for getlin buffers */	/*JP: was 256 */
+#define QBUFSZ		256	/* for building question text *//*JP: was 128 */
 
-#define PL_NSIZ		32	/* name of player, ghost, shopkeeper */
+#define PL_NSIZ		128	/* name of player, ghost, shopkeeper */
+					/*JP: was 32 */
 #define PL_CSIZ		20	/* sizeof pl_character */
-#define PL_FSIZ		32	/* fruit name */
-#define PL_PSIZ		63	/* player-given names for pets, other
-				 * monsters, objects */
+#define PL_FSIZ		96	/* fruit name */	/*JP: was 32 */
+#define PL_PSIZ		191	/* player-given names for pets, other
+				 * monsters, objects */	/*JP: was 63 */
 
 #define MAXDUNGEON	10	/* current maximum number of dungeons */
 #define MAXLEVEL	30	/* max number of levels in one dungeon */

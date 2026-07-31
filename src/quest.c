@@ -151,18 +151,18 @@ boolean talk;
     if (wizard && talk) {
 	if (u.ualign.type != original_alignment) {
 /*JP	    You("are currently %s instead of %s.",*/
-	    You("%s¤Ç¤Ï¤Ê¤¯%s¤ÎÂ°À­¤Ç¤¢¤ë¡¥",
+	    You("%sã§ã¯ãªã%sã®å±æ€§ã§ã‚ã‚‹ï¼",
 /*JP		align_str(u.ualign.type), align_str(original_alignment));*/
 		align_str(original_alignment), align_str(u.ualign.type));
 	} else if (u.ualignbase[0] != original_alignment) {
 /*JP	    You("have converted.");*/
-	    You("ÊÑ¹¹¤µ¤ì¤Æ¤¤¤ë¡¥");
+	    You("å¤‰æ›´ã•ã‚Œã¦ã„ã‚‹ï¼");
 	} else if (u.ualign.record < MIN_QUEST_ALIGN) {
 /*JP	    You("are currently %d and require %d.",*/
-	    Your("Â°À­ÃÍ¤Ï¸½ºß%d¤Ç%dÉ¬Í×¤À¡¥",
+	    Your("å±æ€§å€¤ã¯ç¾åœ¨%dã§%då¿…è¦ã ï¼",
 		u.ualign.record, MIN_QUEST_ALIGN);
 /*JP	    if (yn_function("adjust?", (char *)0, 'y') == 'y')*/
-	    if (yn_function("Ä¾¤·¤Ş¤¹¤«¡©", (char *)0, 'y') == 'y')
+	    if (yn_function("ç›´ã—ã¾ã™ã‹ï¼Ÿ", (char *)0, 'y') == 'y')
 		u.ualign.record = MIN_QUEST_ALIGN;
 	}
     }

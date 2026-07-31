@@ -24,7 +24,7 @@
 #endif
 
 #ifdef NH_EXTENSION_REPORT	/* jp */
-extern int report_flag;		/* end.c ����� */
+extern int report_flag;		/* end.c で定義 */
 #endif
 
 #ifdef VMS
@@ -100,8 +100,8 @@ NEARDATA const char *killed_by_prefix[] = {
 	"", "",
 	"", "", ""
 #endif /*JP*/
-	"�˻����줿", "����©����", "���Ǥǻ���", "", "Ů�ष��",
-	"�ƻष��", "�ϴ���Ϥ���", "�����٤��줿", "�в�����", "����", "�Ի����줿",
+	"に殺された", "で窒息した", "の毒で死んだ", "", "溺死した",
+	"焼死した", "溶岩に溶けた", "押し潰された", "石化した", "死んだ", "虐殺された",
         "", "",
 	"", "", ""
 };
@@ -350,7 +350,7 @@ int how;
 	}
 #endif /* LOGFILE */
 
-#if 1	/*�Х��Ф��Τ���*/
+#if 1	/*バグ出しのため*/
 	if (wizard || discover) {
 	    if (how != PANICKED) HUP {
 		char pbuf[BUFSZ];
@@ -358,8 +358,8 @@ int how;
 		Sprintf(pbuf,
 /*JP	      "Since you were in %s mode, the score list will not be checked.",
 		    wizard ? "wizard" : "discover");*/
-	      "%s�⡼�ɤǥץ쥤�����Τǥ������ꥹ�ȤˤϺܤ�ʤ���",
-		    wizard ? "����������" : "�ǥ������Х�");
+	      "%sモードでプレイしたのでスコアリストには載らない．",
+		    wizard ? "ウィザード" : "ディスカバリ");
 		topten_print(pbuf);
 	    }
 	    goto showwin;
@@ -422,7 +422,7 @@ int how;
 			    char pbuf[BUFSZ];
 			    Sprintf(pbuf,
 /*JP			  "You didn't beat your previous score of %ld points.",*/
-			  "���ʤ��ϰ�����%ld�ݥ���ȤΥ��������Ϥ��ʤ��ä���",
+			  "あなたは以前の%ldポイントのスコアに届かなかった．",
 				    t1->points);
 			    topten_print(pbuf);
 			    topten_print("");
@@ -459,13 +459,13 @@ int how;
 		if(!done_stopprint) if(rank0 > 0){
 		    if(rank0 <= 10)
 /*JP			topten_print("You made the top ten list!");*/
-			topten_print("���ʤ��ϥȥå�10�ꥹ�Ȥ˺ܤä���");
+			topten_print("あなたはトップ10リストに載った！");
 		    else {
 			char pbuf[BUFSZ];
 			Sprintf(pbuf,
 /*JP			  "You reached the %d%s place on the top %d list.",
 				rank0, ordin(rank0), ENTRYMAX);*/
-			  "���ʤ��ϡ��ȥå�%d�ꥹ�Ȥ�%d�̤˺ܤä���",
+			  "あなたは，トップ%dリストの%d位に載った！",
 				ENTRYMAX, rank0 );
 			topten_print(pbuf);
 		    }
@@ -587,24 +587,24 @@ boolean re;
 /*JP	Sprintf(eos(linebuf), " %10ld  %.10s", t1->points, t1->name);*/
 /*JP	Sprintf(eos(linebuf), "-%c ", t1->plchar);*/
 	bp = index(pl_classes, t1->plchar);
-	Sprintf(who, " %10ld  %s��", t1->points, 
+	Sprintf(who, " %10ld  %sの", t1->points, 
 		jtrns_mon(roles[bp - pl_classes], t1->sex == 'F'));
 /*JP
 		jtrns_mon(pl_character, flags.female));*/
-	Sprintf(eos(who), "%s(%s)��", t1->name,
-		t1->sex == 'F' ? "��" : "��");
+	Sprintf(eos(who), "%s(%s)は", t1->name,
+		t1->sex == 'F' ? "女" : "男");
 /*JP*/
 	jdeath = t1->death;
-	if (!strncmp(jdeath, "���������", sizeof("���������")-1))
-	    jdeath += sizeof("���������")-1;
-	else if (!strncmp(jdeath, "ŷ����ѿ������", sizeof("ŷ����ѿ������")-1))
-	    jdeath += sizeof("ŷ����ѿ������")-1;
+	if (!strncmp(jdeath, "魔除けを手に", sizeof("魔除けを手に")-1))
+	    jdeath += sizeof("魔除けを手に")-1;
+	else if (!strncmp(jdeath, "天上で恥辱を受け", sizeof("天上で恥辱を受け")-1))
+	    jdeath += sizeof("天上で恥辱を受け")-1;
         /*JP
          * 24 here, where the literal is 22 bytes.  end.c builds the string
-         * as "��ʪ����������Ϥޤ���" + "æ�Ф���", so strncmp() reached the
-         * literal's terminator at byte 22, found æ in jdeath instead, and
+         * as "偽物の魔除けを掴まされ" + "脱出した", so strncmp() reached the
+         * literal's terminator at byte 22, found 脱 in jdeath instead, and
          * reported a difference: this branch never fired.  The prefix was
-         * therefore never stripped, "æ�Ф���" below never matched, and an
+         * therefore never stripped, "脱出した" below never matched, and an
          * escape with the fake Amulet was listed as a death rather than as
          * an escape.
          *
@@ -612,20 +612,20 @@ boolean re;
          * lengths, which is why they work; taking the length from the
          * literal removes the chance of a fourth one getting it wrong.
          */
-	else if (!strncmp(jdeath, "��ʪ����������Ϥޤ���",
-			  sizeof("��ʪ����������Ϥޤ���")-1))
-	    jdeath += sizeof("��ʪ����������Ϥޤ���")-1;
+	else if (!strncmp(jdeath, "偽物の魔除けを掴まされ",
+			  sizeof("偽物の魔除けを掴まされ")-1))
+	    jdeath += sizeof("偽物の魔除けを掴まされ")-1;
 
 /*JP	if (!strncmp("escaped", t1->death, 7)) {*/
-	if (!strncmp("æ�Ф���", jdeath, sizeof("æ�Ф���")-1)
+	if (!strncmp("脱出した", jdeath, sizeof("脱出した")-1)
 	    || !strncmp("escaped", jdeath, 7)) {
 #if 0 /*JP*/
 	    Sprintf(eos(linebuf), "escaped the dungeon %s[max level %d]",
 		    !strncmp(" (", t1->death + 7, 2) ? t1->death + 7 + 2 : "",
 		    t1->maxlvl);*/
-	    Sprintf(action, "%s�µܤ���æ�Ф���[�����ϲ�%d��]",
-		    !strncmp("���������", t1->death, sizeof("���������")-1) ?
-		    "���������" : "",
+	    Sprintf(action, "%s迷宮から脱出した[最大地下%d階]",
+		    !strncmp("魔除けを手に", t1->death, sizeof("魔除けを手に")-1) ?
+		    "魔除けを手に" : "",
 		    t1->maxlvl);
 	    /* fixup for closing paren in "escaped... with...Amulet)[max..." */
 	    if ((bp = index(linebuf, ')')) != 0)
@@ -634,25 +634,25 @@ boolean re;
 	    char jbuf[BUFSZ];
 	    strncpy(jbuf, t1->death, jdeath - t1->death);
 	    jbuf[jdeath - t1->death] = '\0';
-	    Sprintf(action, "%s�µܤ���æ�Ф���[�����ϲ�%d��]",
+	    Sprintf(action, "%s迷宮から脱出した[最大地下%d階]",
 		    jbuf, t1->maxlvl);
 	    second_line = FALSE;
 /*JP	} else if (!strncmp("ascended", t1->death, 8)) {*/
-	} else if (!strncmp("��ŷ����", jdeath, sizeof("��ŷ����")-1)
+	} else if (!strncmp("昇天した", jdeath, sizeof("昇天した")-1)
 		   || !strncmp("ascended", jdeath, 8)) {
 /*JP	    Sprintf(eos(linebuf), "ascended to demigod%s-hood",
 		    (t1->sex == 'F') ? "dess" : "");*/
-	    Sprintf(action, "��ŷ��%s���Ȥʤä�",
-		    (t1->sex == 'F') ? "��" : "");
+	    Sprintf(action, "昇天し%s神となった",
+		    (t1->sex == 'F') ? "女" : "");
 	    second_line = FALSE;
 	} else {
 /*JP	    if (!strncmp(t1->death, "quit", 4)) {*/
             /*JP
-             * Was 4, which stopped in the middle of �� and so matched
-             * "ȴ��" followed by any kana.  end.c's ends[] has exactly
-             * "ȴ����", so comparing all of it is the same test.
+             * Was 4, which stopped in the middle of た and so matched
+             * "抜け" followed by any kana.  end.c's ends[] has exactly
+             * "抜けた", so comparing all of it is the same test.
              */
-	    if (!strncmp(jdeath, "ȴ����", sizeof("ȴ����")-1)
+	    if (!strncmp(jdeath, "抜けた", sizeof("抜けた")-1)
 		|| !strncmp(jdeath, "quit", 4)) {
 /*JP		Strcat(linebuf, "quit");*/
 		Strcat(action, t1->death);
@@ -683,34 +683,34 @@ boolean re;
 			fmt = " on the %s Plane";
 			arg = "Astral";	break;
 */
-			arg = "̿�����"; break;
+			arg = "命の精霊界"; break;
 		case -4:
 /*JP			arg = "Water";	break;*/
-			arg = "������";	break;
+			arg = "水の精霊界";	break;
 		case -3:
 /*JP			arg = "Fire";	break;*/
-			arg = "�Ф����";	break;
+			arg = "火の精霊界";	break;
 		case -2:
 /*JP			arg = "Air";	break;*/
-			arg = "�������";	break;
+			arg = "風の精霊界";	break;
 		case -1:
 /*JP			arg = "Earth";	break;*/
-			arg = "�Ϥ����";	break;
+			arg = "地の精霊界";	break;
 		default:
 			arg = "Void";	break;
 		}
 /*JP		Sprintf(eos(linebuf), fmt, arg);*/
-		Sprintf(where, "%s�ˤ�", arg);
+		Sprintf(where, "%sにて", arg);
 	    } else {
 /*JP
 		Sprintf(eos(linebuf), " in %s on level %d",
 			dungeons[t1->deathdnum].dname, t1->deathlev);
 */
-		Sprintf(where, "%s���ϲ�%d���ˤ�",
+		Sprintf(where, "%sの地下%d階にて",
 			jtrns_obj('d', dungeons[t1->deathdnum].dname), t1->deathlev);
 		if (t1->deathlev != t1->maxlvl)
 /*JP		    Sprintf(eos(linebuf), " [max %d]", t1->maxlvl);*/
-		    Sprintf(eos(where), "[�����ϲ�%d��]", t1->maxlvl);
+		    Sprintf(eos(where), "[最大地下%d階]", t1->maxlvl);
 	    }
 
 	    /* kludge for "quit while already on Charon's boat" */
@@ -724,7 +724,7 @@ boolean re;
 /*JP	    Sprintf(eos(linebuf), "  %c%s.", highc(*(t1->death)), t1->death+1);*/
 	    Sprintf(action, "%s", t1->death);
 
-	Sprintf(eos(linebuf), "%s%s%s��", who, where, action);
+	Sprintf(eos(linebuf), "%s%s%s．", who, where, action);
 
 	lngr = (int)strlen(linebuf);
 	if (t1->hp <= 0) hpbuf[0] = '-', hpbuf[1] = '\0';
@@ -740,7 +740,7 @@ boolean re;
 #endif
 	while(lngr >= hppos ){
 /*
-**	hppos�������Ŭ���ʰ��֤�ʬ�䤹�롥
+**	hpposより前の適当な位置で分割する．
 */
 	  split_japanese(linebuf, car, cdr, hppos);
 
@@ -757,7 +757,7 @@ boolean re;
 	}
 
 /*
-**	���ܸ줬�����ʸ�����夫�鸫�Ƥ������ȤϤǤ��ʤ���
+**	日本語が入ると文字列を後から見ていくことはできない．
 */
 
 #if 0 /*JP*/

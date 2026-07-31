@@ -56,10 +56,10 @@ dosounds()
 		"the splashing of a naiad.",
 		"a soda fountain!",
 */
-	        "¥´¥Ü¥´¥Ü¤È¤¤¤¦²»¤òÊ¹¤¤¤¿¡¥",
-		"¥Ô¥Á¥ã¥Ô¥Á¥ã¤È¤¤¤¦²»¤òÊ¹¤¤¤¿¡¥",
-		"¥Ğ¥·¥ã¥Ğ¥·¥ã¤È¤¤¤¦²»¤òÊ¹¤¤¤¿¡¥",
-		"Ãº»ÀÆş¤êÊ®¿å¤Î¥·¥å¡¼¤È¤¤¤¦²»¤òÊ¹¤¤¤¿¡¥"
+	        "ã‚´ãƒœã‚´ãƒœã¨ã„ã†éŸ³ã‚’èã„ãŸï¼",
+		"ãƒ”ãƒãƒ£ãƒ”ãƒãƒ£ã¨ã„ã†éŸ³ã‚’èã„ãŸï¼",
+		"ãƒã‚·ãƒ£ãƒã‚·ãƒ£ã¨ã„ã†éŸ³ã‚’èã„ãŸï¼",
+		"ç‚­é…¸å…¥ã‚Šå™´æ°´ã®ã‚·ãƒ¥ãƒ¼ã¨ã„ã†éŸ³ã‚’èã„ãŸï¼"
 	};
 	You_hear(fountain_msg[rn2(3)+hallu]);
     }
@@ -71,9 +71,9 @@ dosounds()
 		"a gurgling noise.",
 		"dishes being washed!",
 */
-	        "¿å¤¬¤İ¤¿¤İ¤¿¤ÈÍî¤Á¤ë²»¤òÊ¹¤¤¤¿¡¥",
-		"¤¬¤é¤¬¤é¤È¤¤¤¦²»¤òÊ¹¤¤¤¿¡¥",
-		"»®¤òÀö¤¦²»¤òÊ¹¤¤¤¿¡¥",
+	        "æ°´ãŒã½ãŸã½ãŸã¨è½ã¡ã‚‹éŸ³ã‚’èã„ãŸï¼",
+		"ãŒã‚‰ãŒã‚‰ã¨ã„ã†éŸ³ã‚’èã„ãŸï¼",
+		"çš¿ã‚’æ´—ã†éŸ³ã‚’èã„ãŸï¼",
 	};
 	You_hear(sink_msg[rn2(2)+hallu]);
     }
@@ -86,10 +86,10 @@ dosounds()
 		"Someone shouts \"Off with %s head!\"",
 		"Queen Beruthiel's cats!",
 */
-	        "¾åÉÊ¤ÊÏÃ¤·À¼¤òÊ¹¤¤¤¿¡¥",
-		"ºÛÈ½¤Çãô¤òÆÍ¤¯²»¤òÊ¹¤¤¤¿¡¥",
-		"¤À¤ì¤«¤¬¡Ö¤½¤Î¤â¤Î¤Î¼ó¤òÄ·¤Í¤è¡×¤È¶«¤ÖÀ¼¤òÊ¹¤¤¤¿¡¥",
-		"¥Ù¥ë¥µ¥¤¥æ½÷²¦¤ÎÇ­¤ÎÀ¼¤òÊ¹¤¤¤¿¡¥",
+	        "ä¸Šå“ãªè©±ã—å£°ã‚’èã„ãŸï¼",
+		"è£åˆ¤ã§ç¬ã‚’çªãéŸ³ã‚’èã„ãŸï¼",
+		"ã ã‚Œã‹ãŒã€Œãã®ã‚‚ã®ã®é¦–ã‚’è·³ã­ã‚ˆã€ã¨å«ã¶å£°ã‚’èã„ãŸï¼",
+		"ãƒ™ãƒ«ã‚µã‚¤ãƒ¦å¥³ç‹ã®çŒ«ã®å£°ã‚’èã„ãŸï¼",
 	};
 	for (mtmp = fmon; mtmp; mtmp = mtmp->nmon)
 	    if ((mtmp->msleep ||
@@ -109,9 +109,9 @@ dosounds()
 /*JP		"hear mosquitoes!",
 		"smell marsh gas!",	* so it's a smell...*
 		"hear Donald Duck!",*/
-		"²ã¤Î±©²»¤òÊ¹¤¤¤¿¡¥",
-		"Éå¤Ã¤¿Æ÷¤¤¤¬¤·¤¿¡ª",	/* so it's a smell...*/
-		"¥É¥Ê¥ë¥É¥À¥Ã¥¯¤ÎÀ¼¤òÊ¹¤¤¤¿¡ª",
+		"èšŠã®ç¾½éŸ³ã‚’èã„ãŸï¼",
+		"è…ã£ãŸåŒ‚ã„ãŒã—ãŸï¼",	/* so it's a smell...*/
+		"ãƒ‰ãƒŠãƒ«ãƒ‰ãƒ€ãƒƒã‚¯ã®å£°ã‚’èã„ãŸï¼",
 	};
 	You_hear(swamp_msg[rn2(2)+hallu]);
 	return;
@@ -144,22 +144,22 @@ dosounds()
 			if (gold_in_vault)
 /*JP			    You_hear(!hallu ? "someone counting money." :
 				"the quarterback calling the play.");*/
-			    You_hear(!hallu ? "Ã¯¤«¤¬¤ª¶â¤ò¿ô¤¨¤Æ¤¤¤ë²»¤òÊ¹¤¤¤¿¡¥" :
-				"¥¯¥©¡¼¥¿¥Ğ¥Ã¥¯¤¬»Ø¼¨¤ò¤¹¤ëÀ¼¤òÊ¹¤¤¤¿¡¥");
+			    You_hear(!hallu ? "èª°ã‹ãŒãŠé‡‘ã‚’æ•°ãˆã¦ã„ã‚‹éŸ³ã‚’èã„ãŸï¼" :
+				"ã‚¯ã‚©ãƒ¼ã‚¿ãƒãƒƒã‚¯ãŒæŒ‡ç¤ºã‚’ã™ã‚‹å£°ã‚’èã„ãŸï¼");
 			else
 /*JP			    You_hear("someone searching.");*/
-			    You_hear("Ã¯¤«¤¬ÁÜº÷¤·¤Æ¤¤¤ë²»¤òÊ¹¤¤¤¿¡¥");
+			    You_hear("èª°ã‹ãŒæœç´¢ã—ã¦ã„ã‚‹éŸ³ã‚’èã„ãŸï¼");
 			break;
 		    }
 		    /* fall into... (yes, even for hallucination) */
 		}
 		case 0:
 /*JP		    You_hear("the footsteps of a guard on patrol.");*/
-		    You_hear("·ÙÈ÷°÷¤Î¥Ñ¥È¥í¡¼¥ë¤¹¤ë²»¤òÊ¹¤¤¤¿¡¥");
+		    You_hear("è­¦å‚™å“¡ã®ãƒ‘ãƒˆãƒ­ãƒ¼ãƒ«ã™ã‚‹éŸ³ã‚’èã„ãŸï¼");
 		    break;
 		case 2:
 /*JP		    You_hear("Ebenezer Scrooge!");*/
-		    You_hear("¤³¤Áµµ¤ÎÎ¾¤µ¤ó¤ÎÀ¼¤òÊ¹¤¤¤¿¡ª");
+		    You_hear("ã“ã¡äº€ã®ä¸¡ã•ã‚“ã®å£°ã‚’èã„ãŸï¼");
 		    break;
 	    }
 	return;
@@ -171,17 +171,17 @@ dosounds()
 		switch (rn2(2)+hallu) {
 		    case 0:
 /*JP			You_hear("a low buzzing.");*/
-			You_hear("¤Ö¡¼¤ó¤È¤¤¤¦²»¤òÊ¹¤¤¤¿¡¥");
+			You_hear("ã¶ãƒ¼ã‚“ã¨ã„ã†éŸ³ã‚’èã„ãŸï¼");
 			break;
 		    case 1:
 /*JP			You_hear("an angry drone.");*/
-			You_hear("¶½Ê³¤·¤¿Íº¥Ğ¥Á¤Î²»¤òÊ¹¤¤¤¿¡¥");
+			You_hear("èˆˆå¥®ã—ãŸé›„ãƒãƒã®éŸ³ã‚’èã„ãŸï¼");
 			break;
 		    case 2:
 /*JP			You_hear("bees in your %sbonnet!",
 			    uarmh ? "" : "(nonexistent) ");*/
-			You_hear("¥Ï¥Á¤¬¤¢¤Ê¤¿¤ÎË¹»Ò%s¤ÎÃæ¤Ë¤¤¤ë²»¤òÊ¹¤¤¤¿¡ª",
-			    uarmh ? "" : "(Èï¤Ã¤Æ¤Ê¤¤¤±¤É)");
+			You_hear("ãƒãƒãŒã‚ãªãŸã®å¸½å­%sã®ä¸­ã«ã„ã‚‹éŸ³ã‚’èã„ãŸï¼",
+			    uarmh ? "" : "(è¢«ã£ã¦ãªã„ã‘ã©)");
 			break;
 		}
 		return;
@@ -194,18 +194,18 @@ dosounds()
 		switch (rn2(2)+hallu) {
 		    case 0:
 /*JP			You("suddenly realize it is unnaturally quiet.");*/
-			You("ÉÔ¼«Á³¤Ê¤¯¤é¤¤ÀÅ¤«¤Ê¤Î¤Ëµ¤¤Å¤¤¤¿¡¥");
+			You("ä¸è‡ªç„¶ãªãã‚‰ã„é™ã‹ãªã®ã«æ°—ã¥ã„ãŸï¼");
 			break;
 		    case 1:
 /*JP			pline_The("%s on the back of your %s stands up.",
 				body_part(HAIR), body_part(NECK));*/
-			pline("¤¢¤Ê¤¿¤Î%s¤Î¤¦¤·¤í¤Î%s¤¬µÕ¤À¤Ã¤¿¡¥",
+			pline("ã‚ãªãŸã®%sã®ã†ã—ã‚ã®%sãŒé€†ã ã£ãŸï¼",
 				body_part(NECK), body_part(HAIR));
 			break;
 		    case 2:
 /*JP			pline_The("%s on your %s seems to stand up.",
 				body_part(HAIR), body_part(HEAD));*/
-			pline("¤¢¤Ê¤¿¤Î%s¤Î%s¤ÏµÕ¤À¤Ã¤¿¡¥",
+			pline("ã‚ãªãŸã®%sã®%sã¯é€†ã ã£ãŸï¼",
 				body_part(NECK), body_part(HAIR));
 			break;
 		}
@@ -218,10 +218,10 @@ dosounds()
 		"loud snoring.",
 		"dice being thrown.",
 		"General MacArthur!",*/
-	        "¿ÏÊª¤ò¸¦¤°²»¤òÊ¹¤¤¤¿¡¥",
-		"Âç¤­¤Ê¤¤¤Ó¤­¤òÊ¹¤¤¤¿¡¥",
-		"¥À¥¤¥¹¤¬¿¶¤é¤ì¤ë²»¤òÊ¹¤¤¤¿¡¥",
-		"¥Ş¥Ã¥«¡¼¥µ¡¼ÄóÆÄ¤ÎÀ¼¤òÊ¹¤¤¤¿¡¥",
+	        "åˆƒç‰©ã‚’ç ”ãéŸ³ã‚’èã„ãŸï¼",
+		"å¤§ããªã„ã³ãã‚’èã„ãŸï¼",
+		"ãƒ€ã‚¤ã‚¹ãŒæŒ¯ã‚‰ã‚Œã‚‹éŸ³ã‚’èã„ãŸï¼",
+		"ãƒãƒƒã‚«ãƒ¼ã‚µãƒ¼æç£ã®å£°ã‚’èã„ãŸï¼",
 	};
 	int count = 0;
 
@@ -243,9 +243,9 @@ dosounds()
 /*JP		"a sound reminiscent of an elephant stepping on a peanut.",
 		"a sound reminiscent of a seal barking.",
 		"Doctor Doolittle!",*/
-	        "¾İ¤¬¥Ô¡¼¥Ê¥Ã¥Ä¤Î¾å¤ÇÍÙ¤ë¤è¤¦¤Ê²»¤òÊ¹¤¤¤¿¡¥",
-		"¥¢¥·¥«¤¬ËÊ¤¨¤ë¤è¤¦¤Ê²»¤òÊ¹¤¤¤¿¡¥",
-		"¥É¥ê¥È¥ëÀèÀ¸¤ÎÀ¼¤òÊ¹¤¤¤¿¡¥",
+	        "è±¡ãŒãƒ”ãƒ¼ãƒŠãƒƒãƒ„ã®ä¸Šã§è¸Šã‚‹ã‚ˆã†ãªéŸ³ã‚’èã„ãŸï¼",
+		"ã‚¢ã‚·ã‚«ãŒå ãˆã‚‹ã‚ˆã†ãªéŸ³ã‚’èã„ãŸï¼",
+		"ãƒ‰ãƒªãƒˆãƒ«å…ˆç”Ÿã®å£°ã‚’èã„ãŸï¼",
 	};
 	for (mtmp = fmon; mtmp; mtmp = mtmp->nmon)
 	    if ((mtmp->msleep || is_animal(mtmp->data)) &&
@@ -266,9 +266,9 @@ dosounds()
 /*JP		    "someone cursing shoplifters.",
 		    "the chime of a cash register.",
 		    "Neiman and Marcus arguing!",*/
-	      "Ã¯¤«¤¬Å¥ËÀ¤ò¤Î¤Î¤·¤ëÀ¼¤òÊ¹¤¤¤¿¡¥",
-	      "¥ì¥¸¤Î¥Á¡¼¥ó¤È¤¤¤¦²»¤òÊ¹¤¤¤¿¡¥",
-	      "¥¤¥È¡¼¤È¥è¡¼¥«¥É¡¼¤ÎµÄÏÀ¤òÊ¹¤¤¤¿¡ª",
+	      "èª°ã‹ãŒæ³¥æ£’ã‚’ã®ã®ã—ã‚‹å£°ã‚’èã„ãŸï¼",
+	      "ãƒ¬ã‚¸ã®ãƒãƒ¼ãƒ³ã¨ã„ã†éŸ³ã‚’èã„ãŸï¼",
+	      "ã‚¤ãƒˆãƒ¼ã¨ãƒ¨ãƒ¼ã‚«ãƒ‰ãƒ¼ã®è­°è«–ã‚’èã„ãŸï¼",
 	    };
 	    You_hear(shop_msg[rn2(2)+hallu]);
 	}
@@ -289,11 +289,11 @@ dosounds()
 		    "someone say \"No more woodchucks!\"",
 		    "a loud ZOT!"		/* both rec.humor.oracle */
 #endif /*JP*/
-		"´ñÌ¯¤ÊÉ÷¤Î²»¤òÊ¹¤¤¤¿¡¥",
-		"È¾¶¸Íğ¤ÎÀ¼¤òÊ¹¤¤¤¿¡¥",
-		"¼Ø¤ÎÒöÓ¬¤òÊ¹¤¤¤¿¡¥",
-		"Ã¯¤«¤¬¡Ö¤â¤¦¥¦¥Ã¥É¥Á¥ã¥Ã¥¯¤Ï¤¤¤é¤Ê¤¤¡×¤È¸À¤Ã¤Æ¤¤¤ëÀ¼¤òÊ¹¤¤¤¿¡¥",
-		"Âç¤­¤Ê£Ú£Ï£Ô¤òÊ¹¤¤¤¿¡ª"
+		"å¥‡å¦™ãªé¢¨ã®éŸ³ã‚’èã„ãŸï¼",
+		"åŠç‹‚ä¹±ã®å£°ã‚’èã„ãŸï¼",
+		"è›‡ã®å’†å“®ã‚’èã„ãŸï¼",
+		"èª°ã‹ãŒã€Œã‚‚ã†ã‚¦ãƒƒãƒ‰ãƒãƒ£ãƒƒã‚¯ã¯ã„ã‚‰ãªã„ã€ã¨è¨€ã£ã¦ã„ã‚‹å£°ã‚’èã„ãŸï¼",
+		"å¤§ããªï¼ºï¼¯ï¼´ã‚’èã„ãŸï¼"
 	    };
 	    You_hear(ora_msg[rn2(3)+hallu*2]);
 	}
@@ -307,10 +307,10 @@ dosounds()
 static const char *h_sounds[] = {
 /*JP    "beep", "boing", "sing", "belche", "creak", "cough", "rattle",
     "ululate", "pop", "jingle", "sniffle", "tinkle", "eep"*/
-    "¥Ô¡¼¥Ã¤ÈÌÄ¤¤¤¿","Áû¤®¤¿¤Æ¤¿","²Î¤Ã¤¿","¥­¡¼¥­¡¼¤ÈÌÄ¤¤¤¿",
-    "¤»¤­¹ş¤ó¤À","¥´¥í¥´¥íÌÄ¤Ã¤¿","¥Û¡¼¥Û¡¼ÌÄ¤¤¤¿","¥İ¥ó¤ÈÌÄ¤¤¤¿",
-    "¥¬¥é¥ó¥¬¥é¥ó¤ÈÌÄ¤¤¤¿","¥¯¥ó¥¯¥óÌÄ¤¤¤¿","¥Á¥ê¥ó¥Á¥ê¥ó¤ÈÌÄ¤¤¤¿",
-    "¥¤¡¼¥Ã¤ÈÌÄ¤¤¤¿"
+    "ãƒ”ãƒ¼ãƒƒã¨é³´ã„ãŸ","é¨’ããŸã¦ãŸ","æ­Œã£ãŸ","ã‚­ãƒ¼ã‚­ãƒ¼ã¨é³´ã„ãŸ",
+    "ã›ãè¾¼ã‚“ã ","ã‚´ãƒ­ã‚´ãƒ­é³´ã£ãŸ","ãƒ›ãƒ¼ãƒ›ãƒ¼é³´ã„ãŸ","ãƒãƒ³ã¨é³´ã„ãŸ",
+    "ã‚¬ãƒ©ãƒ³ã‚¬ãƒ©ãƒ³ã¨é³´ã„ãŸ","ã‚¯ãƒ³ã‚¯ãƒ³é³´ã„ãŸ","ãƒãƒªãƒ³ãƒãƒªãƒ³ã¨é³´ã„ãŸ",
+    "ã‚¤ãƒ¼ãƒƒã¨é³´ã„ãŸ"
 };
 
 const char *
@@ -323,44 +323,44 @@ register struct monst *mtmp;
 	case MS_MEW:
 	case MS_HISS:
 /*JP	    ret = "hiss";*/
-	    ret = "¥·¡¼¥Ã¤ÈÌÄ¤¤¤¿";
+	    ret = "ã‚·ãƒ¼ãƒƒã¨é³´ã„ãŸ";
 	    break;
 	case MS_BARK:
 	case MS_GROWL:
 /*JP	    ret = "growl";*/
-	    ret = "¤Ï¤²¤·¤¯ËÊ¤¨¤¿";
+	    ret = "ã¯ã’ã—ãå ãˆãŸ";
 	    break;
 	case MS_ROAR:
 /*JP	    ret = "roar";*/
-	    ret = "ËÊ¤¨¤¿";
+	    ret = "å ãˆãŸ";
 	    break;
 	case MS_BUZZ:
 /*JP	    ret = "buzz";*/
-	    ret = "¥Ö¡¼¥Ã¤ÈÌÄ¤¤¤¿";
+	    ret = "ãƒ–ãƒ¼ãƒƒã¨é³´ã„ãŸ";
 	    break;
 	case MS_SQEEK:
 /*JP	    ret = "squeal";*/
-	    ret = "¥­¡¼¥­¡¼ÌÄ¤¤¤¿";
+	    ret = "ã‚­ãƒ¼ã‚­ãƒ¼é³´ã„ãŸ";
 	    break;
 	case MS_SQAWK:
 /*JP	    ret = "screech";*/
-	    ret = "¶âÀÚ¤êÀ¼¤òÎ©¤Æ¤¿";
+	    ret = "é‡‘åˆ‡ã‚Šå£°ã‚’ç«‹ã¦ãŸ";
 	    break;
 	case MS_NEIGH:
 /*JP	    ret = "neigh";*/
-	    ret = "¤¤¤Ê¤Ê¤¤¤¿";
+	    ret = "ã„ãªãªã„ãŸ";
 	    break;
 	case MS_WAIL:
 /*JP	    ret = "wail";*/
-	    ret = "Èá¤·¤¯ÌÄ¤¤¤¿";
+	    ret = "æ‚²ã—ãé³´ã„ãŸ";
 	    break;
 	case MS_SILENT:
 /*JP		ret = "commotion";*/
-		ret = "¶½Ê³¤·¤¿";
+		ret = "èˆˆå¥®ã—ãŸ";
 		break;
 	default:
 /*JP		ret = "scream";*/
-		ret = "¶âÀÚ¤êÀ¼¤ò¤¢¤²¤¿";
+		ret = "é‡‘åˆ‡ã‚Šå£°ã‚’ã‚ã’ãŸ";
 	}
 	return ret;
 }
@@ -381,7 +381,7 @@ register struct monst *mtmp;
 	growl_verb = growl_sound(mtmp);
     if (growl_verb) {
 /*JP	pline("%s %s!", Monnam(mtmp), makeplural(growl_verb));*/
-	pline("%s¤Ï%s¡ª", Monnam(mtmp), makeplural(growl_verb));
+	pline("%sã¯%sï¼", Monnam(mtmp), makeplural(growl_verb));
 	if(flags.run) nomul(0);
 	wake_nearto(mtmp->mx, mtmp->my, mtmp->data->mlevel * 18);
     }
@@ -402,33 +402,33 @@ register struct monst *mtmp;
     else switch (mtmp->data->msound) {
 	case MS_MEW:
 /*JP	    yelp_verb = "yowl";*/
-	    yelp_verb = "Èá¤·¤¯ÌÄ¤¤¤¿";
+	    yelp_verb = "æ‚²ã—ãé³´ã„ãŸ";
 	    break;
 	case MS_BARK:
 	case MS_GROWL:
 /*JP	    yelp_verb = "yelp";*/
-	    yelp_verb = "¥­¥ã¥ó¥­¥ã¥óÌÄ¤¤¤¿";
+	    yelp_verb = "ã‚­ãƒ£ãƒ³ã‚­ãƒ£ãƒ³é³´ã„ãŸ";
 	    break;
 	case MS_ROAR:
 /*JP	    yelp_verb = "snarl";*/
-	    yelp_verb = "¤¦¤Ê¤Ã¤¿";
+	    yelp_verb = "ã†ãªã£ãŸ";
 	    break;
 	case MS_SQEEK:
 /*JP	    yelp_verb = "squeal";*/
-	    yelp_verb = "¥­¡¼¥­¡¼ÌÄ¤¤¤¿";
+	    yelp_verb = "ã‚­ãƒ¼ã‚­ãƒ¼é³´ã„ãŸ";
 	    break;
 	case MS_SQAWK:
 /*JP	    yelp_verb = "screak";*/
-	    yelp_verb = "¶âÀÚ¤êÀ¼¤òÎ©¤Æ¤¿";
+	    yelp_verb = "é‡‘åˆ‡ã‚Šå£°ã‚’ç«‹ã¦ãŸ";
 	    break;
 	case MS_WAIL:
 /*JP	    yelp_verb = "wail";*/
-	    yelp_verb = "Èá¤·¤¯ÌÄ¤¤¤¿";
+	    yelp_verb = "æ‚²ã—ãé³´ã„ãŸ";
 	    break;
     }
     if (yelp_verb) {
 /*JP	pline("%s %ss!", Monnam(mtmp), yelp_verb);*/
-	pline("%s¤Ï%s¡ª", Monnam(mtmp), yelp_verb);
+	pline("%sã¯%sï¼", Monnam(mtmp), yelp_verb);
 	if(flags.run) nomul(0);
 	wake_nearto(mtmp->mx, mtmp->my, mtmp->data->mlevel * 12);
     }
@@ -450,20 +450,20 @@ register struct monst *mtmp;
 	case MS_MEW:
 	case MS_GROWL:
 /*JP	    whimper_verb = "whimper";*/
-	    whimper_verb = "¥¯¥ó¥¯¥óÌÄ¤¤¤¿";
+	    whimper_verb = "ã‚¯ãƒ³ã‚¯ãƒ³é³´ã„ãŸ";
 	    break;
 	case MS_BARK:
 /*JP	    whimper_verb = "whine";*/
-	    whimper_verb = "¥¯¡¼¥ó¤ÈÌÄ¤¤¤¿";
+	    whimper_verb = "ã‚¯ãƒ¼ãƒ³ã¨é³´ã„ãŸ";
 	    break;
 	case MS_SQEEK:
 /*JP	    whimper_verb = "squeal";*/
-	    whimper_verb = "¥­¡¼¥­¡¼ÌÄ¤¤¤¿";
+	    whimper_verb = "ã‚­ãƒ¼ã‚­ãƒ¼é³´ã„ãŸ";
 	    break;
     }
     if (whimper_verb) {
 /*JP	pline("%s %ss.", Monnam(mtmp), whimper_verb);*/
-	pline("%s¤Ï%s¡¥", Monnam(mtmp), whimper_verb);
+	pline("%sã¯%sï¼", Monnam(mtmp), whimper_verb);
 	if(flags.run) nomul(0);
 	wake_nearto(mtmp->mx, mtmp->my, mtmp->data->mlevel * 6);
     }
@@ -480,7 +480,7 @@ register struct monst *mtmp;
     if (mtmp->data->msound != MS_SILENT && mtmp->data->msound <= MS_ANIMAL)
 	(void) domonnoise(mtmp);
     else if (mtmp->data->msound >= MS_HUMANOID)
-	verbalize("¤Ï¤é¤Ú¤³¤À¡¥");
+	verbalize("ã¯ã‚‰ãºã“ã ï¼");
 }
 
 static int
@@ -516,36 +516,36 @@ register struct monst *mtmp;
 /*JP		pline("%s throws back %s head and lets out a blood curdling %s!",
 		      Monnam(mtmp), his[pronoun_gender(mtmp)],
 		      ptr == &mons[PM_HUMAN_WERERAT] ? "shriek" : "howl");*/
-		pline("%s¤ÏÆ¬¤ò¤Î¤±¤¾¤é¤·ÇØ¶Ú¤¬É¹¤ë¤è¤¦¤Ê%s¤ò¤¢¤²¤¿¡ª",
+		pline("%sã¯é ­ã‚’ã®ã‘ãã‚‰ã—èƒŒç­‹ãŒæ°·ã‚‹ã‚ˆã†ãª%sã‚’ã‚ã’ãŸï¼",
 		      Monnam(mtmp),
-		      ptr == &mons[PM_HUMAN_WERERAT] ? "¶âÀÚ¤êÀ¼" : "ÒöÓ¬");
+		      ptr == &mons[PM_HUMAN_WERERAT] ? "é‡‘åˆ‡ã‚Šå£°" : "å’†å“®");
 		wake_nearto(mtmp->mx, mtmp->my, 11*11);
 	    }else
 /*JP		pline_msg =
 		     "whispers inaudibly.  All you can make out is \"moon\".";*/
-	      pline_msg = "Ê¹¤­¤È¤ì¤Ê¤¤¤è¤¦¤ÊÀ¼¤Ç¤µ¤µ¤ä¤¤¤¿¡¥¤«¤í¤¦¤¸¤Æ¡Ø·î¡Ù¤È¤¤¤¦¸ÀÍÕ¤À¤±¤¬Ê¹¤­¤È¤ì¤¿¡¥";
+	      pline_msg = "èãã¨ã‚Œãªã„ã‚ˆã†ãªå£°ã§ã•ã•ã‚„ã„ãŸï¼ã‹ã‚ã†ã˜ã¦ã€æœˆã€ã¨ã„ã†è¨€è‘‰ã ã‘ãŒèãã¨ã‚ŒãŸï¼";
 	    break;
 	case MS_SILENT:
 	    break;
 	case MS_BARK:
 	    if (flags.moonphase == FULL_MOON && night()) {
 /*JP		pline_msg = "howls.";*/
-		pline_msg = "ËÊ¤¨¤¿¡¥";
+		pline_msg = "å ãˆãŸï¼";
 	    } else if (mtmp->mpeaceful) {
 		if (mtmp->mtame &&
 			(mtmp->mconf || mtmp->mflee || mtmp->mtrapped ||
 			 moves > EDOG(mtmp)->hungrytime || mtmp->mtame < 5))
 /*JP		    pline_msg = "whines.";*/
-		    pline_msg = "¥¯¥ó¥¯¥óÌÄ¤¤¤¿¡¥";
+		    pline_msg = "ã‚¯ãƒ³ã‚¯ãƒ³é³´ã„ãŸï¼";
 		else if (mtmp->mtame && EDOG(mtmp)->hungrytime > moves + 1000)
 /*JP		    pline_msg = "yips.";*/
-		    pline_msg = "¥­¥ã¥ó¥­¥ã¥óÌÄ¤¤¤¿¡¥";
+		    pline_msg = "ã‚­ãƒ£ãƒ³ã‚­ãƒ£ãƒ³é³´ã„ãŸï¼";
 		else
 /*JP		    pline_msg = "barks.";*/
-		    pline_msg = "¥ï¥ó¥ï¥óËÊ¤¨¤¿¡¥";
+		    pline_msg = "ãƒ¯ãƒ³ãƒ¯ãƒ³å ãˆãŸï¼";
 	    } else {
 /*JP		pline_msg = "growls.";*/
-		pline_msg = "·ã¤·¤¯ËÊ¤¨¤¿¡¥";
+		pline_msg = "æ¿€ã—ãå ãˆãŸï¼";
 	    }
 	    break;
 	case MS_MEW:
@@ -553,122 +553,122 @@ register struct monst *mtmp;
 		if (mtmp->mconf || mtmp->mflee || mtmp->mtrapped ||
 			mtmp->mtame < 5)
 /*JP		    pline_msg = "yowls.";*/
-		    pline_msg = "Èá¤·¤¯ÌÄ¤¤¤¿¡¥";
+		    pline_msg = "æ‚²ã—ãé³´ã„ãŸï¼";
 		else if (moves > EDOG(mtmp)->hungrytime)
 /*JP		    pline_msg = "miaos.";*/
-		    pline_msg = "¥Ë¥ã¡¼¥ó¤ÈÌÄ¤¤¤¿¡¥";
+		    pline_msg = "ãƒ‹ãƒ£ãƒ¼ãƒ³ã¨é³´ã„ãŸï¼";
 		else if (EDOG(mtmp)->hungrytime > moves + 1000)
 /*JP		    pline_msg = "purrs.";*/
-		    pline_msg = "¥´¥í¥´¥í¤ÈÌÄ¤¤¤¿¡¥";
+		    pline_msg = "ã‚´ãƒ­ã‚´ãƒ­ã¨é³´ã„ãŸï¼";
 		else
 /*JP		    pline_msg = "mews.";*/
-		    pline_msg = "¥Ë¥ã¡¼¥Ë¥ã¡¼ÌÄ¤¤¤¿¡¥";
+		    pline_msg = "ãƒ‹ãƒ£ãƒ¼ãƒ‹ãƒ£ãƒ¼é³´ã„ãŸï¼";
 		break;
 	    } /* else FALLTHRU */
 	case MS_GROWL:
 /*JP	    pline_msg = mtmp->mpeaceful ? "snarls." : "growls!";*/
-	    pline_msg = mtmp->mpeaceful ? "¤¦¤Ê¤Ã¤¿¡¥" : "·ã¤·¤¯ËÊ¤¨¤¿¡¥";
+	    pline_msg = mtmp->mpeaceful ? "ã†ãªã£ãŸï¼" : "æ¿€ã—ãå ãˆãŸï¼";
 	    break;
 	case MS_ROAR:
 /*JP	    pline_msg = mtmp->mpeaceful ? "snarls." : "roars!";*/
-	    pline_msg = mtmp->mpeaceful ? "¤¦¤Ê¤Ã¤¿¡¥" : "¤È¤Æ¤â·ã¤·¤¯ËÊ¤¨¤¿¡¥";
+	    pline_msg = mtmp->mpeaceful ? "ã†ãªã£ãŸï¼" : "ã¨ã¦ã‚‚æ¿€ã—ãå ãˆãŸï¼";
 	    break;
 	case MS_SQEEK:
 /*JP	    pline_msg = "squeaks.";*/
-	    pline_msg = "¥­¡¼¥­¡¼ÌÄ¤¤¤¿¡¥";
+	    pline_msg = "ã‚­ãƒ¼ã‚­ãƒ¼é³´ã„ãŸï¼";
 	    break;
 	case MS_SQAWK:
 /*JP	    pline_msg = "squawks.";*/
-	    pline_msg = "¥­¡¼¥­¡¼ÌÄ¤¤¤¿¡¥";
+	    pline_msg = "ã‚­ãƒ¼ã‚­ãƒ¼é³´ã„ãŸï¼";
 	    break;
 	case MS_HISS:
 	    if (!mtmp->mpeaceful)
 /*JP		pline_msg = "hisses!";*/
-		pline_msg = "¥·¡¼¥Ã¤ÈÌÄ¤¤¤¿¡ª";
+		pline_msg = "ã‚·ãƒ¼ãƒƒã¨é³´ã„ãŸï¼";
 	    else return 0;	/* no sound */
 	    break;
 	case MS_BUZZ:
 /*JP	    pline_msg = mtmp->mpeaceful ? "drones." : "buzzes angrily.";*/
-	    pline_msg = mtmp->mpeaceful ? "¤Ö¡¼¤ó¤ÈÌÄ¤Ã¤¿¡¥" : "¤Ö¤ó¤Ö¤óÌÄ¤Ã¤¿¡¥";
+	    pline_msg = mtmp->mpeaceful ? "ã¶ãƒ¼ã‚“ã¨é³´ã£ãŸï¼" : "ã¶ã‚“ã¶ã‚“é³´ã£ãŸï¼";
 	    break;
 	case MS_GRUNT:
 /*JP	    pline_msg = "grunts.";*/
-	    pline_msg = "¤Ö¡¼¤Ö¡¼ÌÄ¤¤¤¿¡¥";
+	    pline_msg = "ã¶ãƒ¼ã¶ãƒ¼é³´ã„ãŸï¼";
 	    break;
 	case MS_NEIGH:
 	    if (mtmp->mtame < 5)
 /*JP		pline_msg = "neighs.";*/
-	        pline_msg = "¤¤¤Ê¤Ê¤¤¤¿¡¥";
+	        pline_msg = "ã„ãªãªã„ãŸï¼";
 	    else if (moves > EDOG(mtmp)->hungrytime)
 /*JP		pline_msg = "whinnies.";*/
-		pline_msg = "¥Ò¥Ò¡¼¥ó¤ÈÌÄ¤¤¤¿¡¥";
+		pline_msg = "ãƒ’ãƒ’ãƒ¼ãƒ³ã¨é³´ã„ãŸï¼";
 	    else
 /*JP		pline_msg = "whickers.";*/
-		pline_msg = "¥Ò¥Ò¥Ò¡¼¥ó¤ÈÌÄ¤¤¤¿¡¥";
+		pline_msg = "ãƒ’ãƒ’ãƒ’ãƒ¼ãƒ³ã¨é³´ã„ãŸï¼";
 	    break;
 	case MS_WAIL:
 /*JP	    pline_msg = "wails mournfully.";*/
-	    pline_msg = "Èá¤·¤²¤ËÌÄ¤¤¤¿¡¥";
+	    pline_msg = "æ‚²ã—ã’ã«é³´ã„ãŸï¼";
 	    break;
 	case MS_GURGLE:
 /*JP	    pline_msg = "gurgles.";*/
-	    pline_msg = "¤´¤í¤´¤í¹¢¤òÌÄ¤é¤·¤¿¡¥";
+	    pline_msg = "ã”ã‚ã”ã‚å–‰ã‚’é³´ã‚‰ã—ãŸï¼";
 	    break;
 	case MS_BURBLE:
 /*JP	    pline_msg = "burbles.";*/
-	    pline_msg = "¤Ú¤Á¤ã¤¯¤Á¤ã¤·¤ã¤Ù¤Ã¤¿¡¥";
+	    pline_msg = "ãºã¡ã‚ƒãã¡ã‚ƒã—ã‚ƒã¹ã£ãŸï¼";
 	    break;
 	case MS_SHRIEK:
 /*JP	    pline_msg = "shrieks.";*/
-	    pline_msg = "¶âÀÚ¤êÀ¼¤ò¤¢¤²¤¿¡¥";
+	    pline_msg = "é‡‘åˆ‡ã‚Šå£°ã‚’ã‚ã’ãŸï¼";
 	    aggravate();
 	    break;
 	case MS_IMITATE:
 /*JP	    pline_msg = "imitates you.";*/
-	    pline_msg = "¤¢¤Ê¤¿¤Î¿¿»÷¤ò¤·¤¿¡¥";
+	    pline_msg = "ã‚ãªãŸã®çœŸä¼¼ã‚’ã—ãŸï¼";
 	    break;
 	case MS_BONES:
 /*JP	    pline("%s rattles noisily.", Monnam(mtmp));
 	    You("freeze for a moment.");*/
-	    pline("%s¤Ï¥¬¥¿¥¬¥¿¤ÈÁû¤®¤À¤·¤¿¡¥",Monnam(mtmp));
-	    You("¤·¤Ğ¤é¤¯Æ°¤±¤Ê¤¤¡¥");
+	    pline("%sã¯ã‚¬ã‚¿ã‚¬ã‚¿ã¨é¨’ãã ã—ãŸï¼",Monnam(mtmp));
+	    You("ã—ã°ã‚‰ãå‹•ã‘ãªã„ï¼");
 	    nomul(-2);
 	    break;
 	case MS_LAUGH:
 	    {
 		static const char *laugh_msg[4] = {
 /*JP		    "giggles.", "chuckles.", "snickers.", "laughs.",*/
-		    "¤¯¤¹¤¯¤¹¾Ğ¤Ã¤¿¡¥", "¤¯¤¹¤Ã¤¹¤È¾Ğ¤Ã¤¿¡¥",
-		    "¤Ğ¤«¤Ë¤·¤¿¤è¤¦¤Ë¾Ğ¤Ã¤¿¡¥", "¾Ğ¤Ã¤¿¡¥",
+		    "ãã™ãã™ç¬‘ã£ãŸï¼", "ãã™ã£ã™ã¨ç¬‘ã£ãŸï¼",
+		    "ã°ã‹ã«ã—ãŸã‚ˆã†ã«ç¬‘ã£ãŸï¼", "ç¬‘ã£ãŸï¼",
 		};
 		pline_msg = laugh_msg[rn2(4)];
 	    }
 	    break;
 	case MS_MUMBLE:
 /*JP	    pline_msg = "mumbles incomprehensibly.";*/
-	    pline_msg = "ÉÔ²Ä²ò¤Ê¸ÀÍÕ¤ò¤Ä¤Ö¤ä¤¤¤¿¡¥";
+	    pline_msg = "ä¸å¯è§£ãªè¨€è‘‰ã‚’ã¤ã¶ã‚„ã„ãŸï¼";
 	    break;
 	case MS_DJINNI:
 /*JP	    if (mtmp->mtame) verbl_msg = "Thank you for freeing me!";
 	    else if (mtmp->mpeaceful) verbl_msg = "I'm free!";
 	    else verbl_msg = "This will teach you not to disturb me!";*/
-	    if (mtmp->mtame) verbl_msg = "»ä¤ò½õ¤±¤Æ¤¯¤ì¤¿¤³¤È¤ò´¶¼Õ¤¹¤ë¡ª";
-	    else if (mtmp->mpeaceful) verbl_msg = "¤ä¤Ã¤È¼«Í³¤Ë¤Ê¤Ã¤¿¡ª";
-	    else verbl_msg = "¤¸¤ã¤Ş¤ò¤·¤Ê¤¤¤Ç¤¯¤ì¡ª";
+	    if (mtmp->mtame) verbl_msg = "ç§ã‚’åŠ©ã‘ã¦ãã‚ŒãŸã“ã¨ã‚’æ„Ÿè¬ã™ã‚‹ï¼";
+	    else if (mtmp->mpeaceful) verbl_msg = "ã‚„ã£ã¨è‡ªç”±ã«ãªã£ãŸï¼";
+	    else verbl_msg = "ã˜ã‚ƒã¾ã‚’ã—ãªã„ã§ãã‚Œï¼";
 	    break;
 	case MS_BOAST:	/* giants */
 	    if (!mtmp->mpeaceful) {
 		switch (rn2(4)) {
 /*JP		case 0: pline("%s boasts about %s gem collection.",
 			      Monnam(mtmp), his[pronoun_gender(mtmp)]);*/
-		case 0: pline("%s¤Ï¼«Ê¬¤ÎÊõÀĞ¤Î¥³¥ì¥¯¥·¥ç¥ó¤ò¼«Ëı¤·¤¿¡¥",
+		case 0: pline("%sã¯è‡ªåˆ†ã®å®çŸ³ã®ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã‚’è‡ªæ…¢ã—ãŸï¼",
 			      Monnam(mtmp));
 			break;
 /*JP		case 1: pline_msg = "complains about a diet of mutton.";*/
-		case 1: pline_msg = "ÍÓ¤Î¥À¥¤¥¨¥Ã¥È¤Ë¤Ä¤¤¤Æ¤ÎÉÔËş¤ò½Ò¤Ù¤¿¡¥";
+		case 1: pline_msg = "ç¾Šã®ãƒ€ã‚¤ã‚¨ãƒƒãƒˆã«ã¤ã„ã¦ã®ä¸æº€ã‚’è¿°ã¹ãŸï¼";
 			break;
 /*JP	       default: pline_msg = "shouts \"Fee Fie Foe Foo!\" and guffaws.";*/
-	       default: pline_msg = "¡Ø¤ï¤Ã¤Ï¤Ã¤Ï¤Ã¤Ï¡ª¡Ù¤È¤Ğ¤«¾Ğ¤¤¤·¤¿¡¥";
+	       default: pline_msg = "ã€ã‚ã£ã¯ã£ã¯ã£ã¯ï¼ã€ã¨ã°ã‹ç¬‘ã„ã—ãŸï¼";
 			wake_nearto(mtmp->mx, mtmp->my, 7*7);
 			break;
 		}
@@ -687,60 +687,60 @@ register struct monst *mtmp;
 	    /* Generic peaceful humanoid behaviour. */
 	    if (mtmp->mflee)
 /*JP		pline_msg = "wants nothing to do with you.";*/
-		pline_msg = "¤¢¤Ê¤¿¤È´Ø·¸¤ò»ı¤Á¤¿¤¯¤Ê¤¤¤è¤¦¤À¡¥";
+		pline_msg = "ã‚ãªãŸã¨é–¢ä¿‚ã‚’æŒã¡ãŸããªã„ã‚ˆã†ã ï¼";
 	    else if (mtmp->mhp < mtmp->mhpmax/4)
 /*JP		pline_msg = "moans.";*/
-		pline_msg = "¤¦¤á¤­À¼¤ò¤¢¤²¤¿¡¥";
+		pline_msg = "ã†ã‚ãå£°ã‚’ã‚ã’ãŸï¼";
 	    else if (mtmp->mconf || mtmp->mstun)
 /*JP		verbl_msg = !rn2(3) ? "Huh?" : rn2(2) ? "What?" : "Eh?";*/
-		verbl_msg = !rn2(3) ? "¤Ø¡©" : rn2(2) ? "²¿¡©" : "¤¨¡©";
+		verbl_msg = !rn2(3) ? "ã¸ï¼Ÿ" : rn2(2) ? "ä½•ï¼Ÿ" : "ãˆï¼Ÿ";
 	    else if (!mtmp->mcansee)
 /*JP		verbl_msg = "I can't see!";*/
-		verbl_msg = "²¿¤â¸«¤¨¤Ê¤¤¡ª";
+		verbl_msg = "ä½•ã‚‚è¦‹ãˆãªã„ï¼";
 	    else if (mtmp->mtrapped)
 /*JP		verbl_msg = "I'm trapped!";*/
-	        verbl_msg = "æ«¤Ë¤Ï¤Ş¤Ã¤Æ¤·¤Ş¤Ã¤¿¡ª";
+	        verbl_msg = "ç½ ã«ã¯ã¾ã£ã¦ã—ã¾ã£ãŸï¼";
 	    else if (mtmp->mhp < mtmp->mhpmax/2)
 /*JP		pline_msg = "asks for a potion of healing.";*/
-		pline_msg = "²óÉü¤ÎÌô¤ò»ı¤Ã¤Æ¤Ê¤¤¤«¿Ò¤Í¤¿¡¥";
+		pline_msg = "å›å¾©ã®è–¬ã‚’æŒã£ã¦ãªã„ã‹å°‹ã­ãŸï¼";
 	    else if (mtmp->mtame && moves > EDOG(mtmp)->hungrytime)
 /*JP		verbl_msg = "I'm hungry.";*/
-		verbl_msg = "Ê¢¤¬¸º¤Ã¤¿¤Ê¡¥";
+		verbl_msg = "è…¹ãŒæ¸›ã£ãŸãªï¼";
 	    /* Specific monsters' interests */
 	    else if (is_elf(ptr))
 /*JP		pline_msg = "curses orcs.";*/
-		pline_msg = "¥ª¡¼¥¯¤ò¼ö¤Ã¤¿¡¥";
+		pline_msg = "ã‚ªãƒ¼ã‚¯ã‚’å‘ªã£ãŸï¼";
 	    else if (is_dwarf(ptr))
 /*JP		pline_msg = "talks about mining.";*/
-		pline_msg = "ºÎ·¡¤Ë¤Ä¤¤¤ÆÏÃ¤·¤¿¡¥";
+		pline_msg = "æ¡æ˜ã«ã¤ã„ã¦è©±ã—ãŸï¼";
 	    else if (likes_magic(ptr))
 /*JP		pline_msg = "talks about spellcraft.";*/
-		pline_msg = "ËâÎÏ¤Ë¤Ä¤¤¤ÆÏÃ¤·¤¿¡¥";
+		pline_msg = "é­”åŠ›ã«ã¤ã„ã¦è©±ã—ãŸï¼";
 	    else if (ptr->mlet == S_CENTAUR)
 /*JP		pline_msg = "discusses hunting.";*/
-		pline_msg = "ÎÄ¤Ë¤Ä¤¤¤ÆµÄÏÀ¤·¤¿¡¥";
+		pline_msg = "çŒŸã«ã¤ã„ã¦è­°è«–ã—ãŸï¼";
 
 	    else switch (monsndx(ptr)) {
 		case PM_HOBBIT:
 		    pline_msg = (mtmp->mhpmax - mtmp->mhp >= 10) ?
 /*JP				"complains about unpleasant dungeon conditions."
 				: "asks you about the One Ring.";*/
-				"ÉÔÌû²÷¤ÊÌÂµÜ¤Î¾õÂÖ¤Ë¤Ä¤¤¤ÆÉÔËş¤ò½Ò¤Ù¤¿¡¥"
-				: "¡Ö°ì¤Ä¤Î»ØÎØ¡×¤Ë¤Ä¤¤¤Æ¿Ò¤Í¤¿¡¥";
+				"ä¸æ„‰å¿«ãªè¿·å®®ã®çŠ¶æ…‹ã«ã¤ã„ã¦ä¸æº€ã‚’è¿°ã¹ãŸï¼"
+				: "ã€Œä¸€ã¤ã®æŒ‡è¼ªã€ã«ã¤ã„ã¦å°‹ã­ãŸï¼";
 		    break;
 		case PM_ARCHEOLOGIST:
 /*JP    pline_msg = "describes a recent article in \"Spelunker Today\" magazine.";*/
-		    pline_msg = "¡ÖÆü´©Æ¶·¢¡×¤ÎºÇ¿·¤Îµ­»ö¤ò¼¹É®¤·¤Æ¤¤¤ë¡¥";
+		    pline_msg = "ã€Œæ—¥åˆŠæ´çªŸã€ã®æœ€æ–°ã®è¨˜äº‹ã‚’åŸ·ç­†ã—ã¦ã„ã‚‹ï¼";
 		    break;
 #ifdef TOURIST
 		case PM_TOURIST:
 /*JP		    verbl_msg = "Aloha.";*/
-		    verbl_msg = "¥¢¥í¡¼¥Ï¡¥";
+		    verbl_msg = "ã‚¢ãƒ­ãƒ¼ãƒï¼";
 		    break;
 #endif
 		default:
 /*JP		    pline_msg = "discusses dungeon exploration.";*/
-		    pline_msg = "ÌÂµÜÃµ¸¡¤Ë¤Ä¤¤¤ÆµÄÏÀ¤·¤¿¡¥";
+		    pline_msg = "è¿·å®®æ¢æ¤œã«ã¤ã„ã¦è­°è«–ã—ãŸï¼";
 		    break;
 	    }
 	    break;
@@ -759,23 +759,23 @@ register struct monst *mtmp;
 /*JP			verbl_msg = "Hello, sailor.";*/
 			switch(poly_gender()){
 			case 0:	      
-			  verbl_msg = "¤³¤ó¤Ë¤Á¤Ï¡¥¤¢¤é¤¤¤¤ÃË¤Í¡¥";
+			  verbl_msg = "ã“ã‚“ã«ã¡ã¯ï¼ã‚ã‚‰ã„ã„ç”·ã­ï¼";
 			  break;
 			case 1:
-			  verbl_msg = "¤³¤ó¤Ë¤Á¤Ï¡¤¤ª¾î¤µ¤ó¡¥";
+			  verbl_msg = "ã“ã‚“ã«ã¡ã¯ï¼ŒãŠå¬¢ã•ã‚“ï¼";
 			  break;
 			default:
-			  verbl_msg = "¤³¤ó¤Ë¤Á¤Ï¡¥";
+			  verbl_msg = "ã“ã‚“ã«ã¡ã¯ï¼";
 			  break;
 			}
 			break;
 		case 1:
 /*JP			pline_msg = "comes on to you.";*/
-			pline_msg = "¤¢¤Ê¤¿¤Î¤Û¤¦¤Ø¤ä¤Ã¤Æ¤­¤¿¡¥";
+			pline_msg = "ã‚ãªãŸã®ã»ã†ã¸ã‚„ã£ã¦ããŸï¼";
 			break;
 		default:
 /*JP			pline_msg = "cajoles you.";*/
-			pline_msg = "¤¢¤Ê¤¿¤ò¤ª¤À¤Æ¤¿¡¥";
+			pline_msg = "ã‚ãªãŸã‚’ãŠã ã¦ãŸï¼";
 	    }
 	    break;
 #ifdef KOPS
@@ -783,16 +783,16 @@ register struct monst *mtmp;
 	    if (mtmp->mpeaceful)
 /*JP		verbalize("Just the facts, %s.",
 		      flags.female ? "Ma'am" : "Sir");*/
-		verbalize("¤³¤ì¤¬¸½¼Â¤À¤è%s¡¥",
-		      flags.female ? "¤ª¾î¤µ¤ó" : "¤­¤ß");
+		verbalize("ã“ã‚ŒãŒç¾å®Ÿã ã‚ˆ%sï¼",
+		      flags.female ? "ãŠå¬¢ã•ã‚“" : "ãã¿");
 	    else {
 		static const char *arrest_msg[3] = {
 /*JP		    "Anything you say can be used against you.",
 		    "You're under arrest!",
 		    "Stop in the name of the Law!",*/
-		    "¤ª¤Ş¤¨¤Î¸À¤¦¤³¤È¤Ï¤ª¤Ş¤¨¤Ë¤È¤Ã¤ÆÉÔÍø¤Ê¾Úµò¤È¤Ê¤ë¤³¤È¤¬¤¢¤ë¡ª",
-		    "¤ª¤Ş¤¨¤òÂáÊá¤¹¤ë¡ª",
-		    "Ë¡¤ÎÌ¾¤Î¤â¤ÈÄ¾¤Á¤ËÃæ»ß¤»¤è¡ª",
+		    "ãŠã¾ãˆã®è¨€ã†ã“ã¨ã¯ãŠã¾ãˆã«ã¨ã£ã¦ä¸åˆ©ãªè¨¼æ‹ ã¨ãªã‚‹ã“ã¨ãŒã‚ã‚‹ï¼",
+		    "ãŠã¾ãˆã‚’é€®æ•ã™ã‚‹ï¼",
+		    "æ³•ã®åã®ã‚‚ã¨ç›´ã¡ã«ä¸­æ­¢ã›ã‚ˆï¼",
 		};
 		verbl_msg = arrest_msg[rn2(3)];
 	    }
@@ -811,33 +811,33 @@ register struct monst *mtmp;
 	case MS_SPELL:
 	    /* deliberately vague, since it's not actually casting any spell */
 /*JP	    pline_msg = "seems to mutter a cantrip.";*/
-	    pline_msg = "¤Ö¤Ä¤Ö¤Ä¤È¤Ä¤Ö¤ä¤¤¤Æ¤¤¤ë¡¥";
+	    pline_msg = "ã¶ã¤ã¶ã¤ã¨ã¤ã¶ã‚„ã„ã¦ã„ã‚‹ï¼";
 	    break;
 	case MS_NURSE:
 	    if (uwep && (uwep->oclass == WEAPON_CLASS || is_weptool(uwep)))
 /*JP		verbl_msg = "Put that weapon away before you hurt someone!";*/
-		verbl_msg = "Éğ´ï¤ò¤ª¤µ¤á¤Ê¤µ¤¤¡ª¤½¤ì¤Ï¿Í¤ò½ı¤Ä¤±¤ë¤â¤Î¤è¡ª";
+		verbl_msg = "æ­¦å™¨ã‚’ãŠã•ã‚ãªã•ã„ï¼ãã‚Œã¯äººã‚’å‚·ã¤ã‘ã‚‹ã‚‚ã®ã‚ˆï¼";
 	    else if (uarmc || uarm || uarmh || uarms || uarmg || uarmf)
 		verbl_msg = Role_is('H') ?
 /*JP			  "Doc, I can't help you unless you cooperate." :
 			  "Please undress so I can examine you.";*/
-			  "ÀèÀ¸¡¤¤¢¤Ê¤¿¤Î¶¨ÎÏ¤Ê¤·¤Ç¤Ï¤É¤¦¤·¤è¤¦¤â¤¢¤ê¤Ş¤»¤ó¤ï¡¥" :
-			  "Éş¤òÃ¦¤¤¤Ç¤¯¤À¤µ¤¤¡¥¤¢¤Ê¤¿¤ò¿Ç»¡¤·¤Ş¤¹¤ï¡¥";
+			  "å…ˆç”Ÿï¼Œã‚ãªãŸã®å”åŠ›ãªã—ã§ã¯ã©ã†ã—ã‚ˆã†ã‚‚ã‚ã‚Šã¾ã›ã‚“ã‚ï¼" :
+			  "æœã‚’è„±ã„ã§ãã ã•ã„ï¼ã‚ãªãŸã‚’è¨ºå¯Ÿã—ã¾ã™ã‚ï¼";
 #ifdef TOURIST
 	    else if (uarmu)
 /*JP		verbl_msg = "Take off your shirt, please.";*/
-		verbl_msg = "¥·¥ã¥Ä¤òÃ¦¤¤¤Ç¤¯¤À¤µ¤¤¡¥";
+		verbl_msg = "ã‚·ãƒ£ãƒ„ã‚’è„±ã„ã§ãã ã•ã„ï¼";
 #endif
 /*JP	    else verbl_msg = "Relax, this won't hurt a bit.";*/
-	    else verbl_msg = "¤ª¤Á¤Ä¤¤¤Æ¡¥¤Á¤Ã¤È¤âÄË¤¯¤Ê¤¤¤ï¤è¡¥";
+	    else verbl_msg = "ãŠã¡ã¤ã„ã¦ï¼ã¡ã£ã¨ã‚‚ç—›ããªã„ã‚ã‚ˆï¼";
 	    break;
 	case MS_GUARD:
 	    if (u.ugold)
 /*JP		verbl_msg = "Please drop that gold and follow me.";*/
- 		verbl_msg = "¶â¤òÃÖ¤¤¤Æ¤Ä¤¤¤Æ¤³¤¤¡¥";
+ 		verbl_msg = "é‡‘ã‚’ç½®ã„ã¦ã¤ã„ã¦ã“ã„ï¼";
 	    else
 /*JP		verbl_msg = "Please follow me.";*/
-		verbl_msg = "¤Ä¤¤¤Æ¤³¤¤¡¥";
+		verbl_msg = "ã¤ã„ã¦ã“ã„ï¼";
 	    break;
 	case MS_SOLDIER:
 	    {
@@ -845,16 +845,16 @@ register struct monst *mtmp;
 /*JP		    "Resistance is useless!",
 		    "You're dog meat!",
 		    "Surrender!",*/
-		    "Äñ¹³¤Ï¤ä¤á¤í¡ª",
-		    "¸¤¤Ë¶ô¤ï¤ì¤Á¤Ş¤¨¡ª",
-		    "¹ßÉú¤·¤í¡ª",
+		    "æŠµæŠ—ã¯ã‚„ã‚ã‚ï¼",
+		    "çŠ¬ã«å–°ã‚ã‚Œã¡ã¾ãˆï¼",
+		    "é™ä¼ã—ã‚ï¼",
 		},		  *soldier_pax_msg[3] = {
 /*JP		    "What lousy pay we're getting here!",
 		    "The food's not fit for Orcs!",
 		    "My feet hurt, I've been on them all day!",*/
-		    "¤¿¤Ã¤×¤ê¶â¤òÃÖ¤¤¤Æ¤æ¤±¡ª",
-		    "¤Ê¤ó¤À¤¤¡©¥ª¡¼¥¯¤Ç¤â¶ô¤¨¤Í¤§¤¼¡ª",
- 		    "Â­¤ò²ø²æ¤·¤¿¡¤¤É¤¦¤·¤Æ¤¯¤ì¤ë¡ª",
+		    "ãŸã£ã·ã‚Šé‡‘ã‚’ç½®ã„ã¦ã‚†ã‘ï¼",
+		    "ãªã‚“ã ã„ï¼Ÿã‚ªãƒ¼ã‚¯ã§ã‚‚å–°ãˆã­ã‡ãœï¼",
+ 		    "è¶³ã‚’æ€ªæˆ‘ã—ãŸï¼Œã©ã†ã—ã¦ãã‚Œã‚‹ï¼",
 		};
 		verbl_msg = mtmp->mpeaceful ? soldier_pax_msg[rn2(3)]
 					    : soldier_foe_msg[rn2(3)];
@@ -863,14 +863,14 @@ register struct monst *mtmp;
 	case MS_RIDER:
 	    if (ptr == &mons[PM_DEATH] && mtmp->mpeaceful)
 /*JP		pline_msg = "is busy reading a copy of Sandman #9.";*/
-		pline_msg = "Sandman¤Î9¾Ï¤òÆÉ¤à¤Î¤ËË»¤·¤¤";
+		pline_msg = "Sandmanã®9ç« ã‚’èª­ã‚€ã®ã«å¿™ã—ã„";
 /*JP	    else verbl_msg = "Who do you think you are, War?";*/
-	    else verbl_msg = "¼«Ê¬¤¬²¿Êª¤«¹Í¤¨¤¿¤³¤È¤¬¤¢¤ë¤«¡©";
+	    else verbl_msg = "è‡ªåˆ†ãŒä½•ç‰©ã‹è€ƒãˆãŸã“ã¨ãŒã‚ã‚‹ã‹ï¼Ÿ";
 	    break;
     }
 
 /*JP    if (pline_msg) pline("%s %s", Monnam(mtmp), pline_msg);*/
-    if (pline_msg) pline("%s¤Ï%s", Monnam(mtmp), pline_msg);
+    if (pline_msg) pline("%sã¯%s", Monnam(mtmp), pline_msg);
     else if (verbl_msg) verbalize(verbl_msg);
     return(1);
 }
@@ -896,22 +896,22 @@ dochat()
 
     if (uasmon->msound == MS_SILENT) {
 /*JP	pline("As %s, you cannot speak.", an(uasmon->mname));*/
-	pline("¤¢¤Ê¤¿¤Ï%s¤Ê¤Î¤Ç¡¤ÏÃ¤¹¤³¤È¤¬¤Ç¤­¤Ê¤¤¡¥", jtrns_mon(uasmon->mname, flags.female));
+	pline("ã‚ãªãŸã¯%sãªã®ã§ï¼Œè©±ã™ã“ã¨ãŒã§ããªã„ï¼", jtrns_mon(uasmon->mname, flags.female));
 	return(0);
     }
     if (Strangled) {
 /*JP	You_cant("speak.  You're choking!");*/
-	You("ÏÃ¤»¤Ê¤¤¡¥¤¢¤Ê¤¿¤Ï¼ó¤ò¹Ê¤á¤é¤ì¤Æ¤¤¤ë¡ª");
+	You("è©±ã›ãªã„ï¼ã‚ãªãŸã¯é¦–ã‚’çµã‚ã‚‰ã‚Œã¦ã„ã‚‹ï¼");
 	return(0);
     }
     if (u.uswallow) {
 /*JP	pline("They won't hear you out there.");*/
-        You("³°¤Ø¸ş¤Ã¤ÆÏÃ¤ò¤·¤¿¤¬¡¤Ã¯¤âÊ¹¤­¤¤¤ì¤Ê¤«¤Ã¤¿¡¥");
+        You("å¤–ã¸å‘ã£ã¦è©±ã‚’ã—ãŸãŒï¼Œèª°ã‚‚èãã„ã‚Œãªã‹ã£ãŸï¼");
 	return(0);
     }
     if (Underwater) {
 /*JP	Your("speech is unintelligible underwater.");*/
-	pline("¿åÌÌ²¼¤Ç¤Ï¡¤¤¢¤Ê¤¿¤ÎÏÃ¤Ï¤í¤¯¤ËÍı²ò¤µ¤ì¤Ê¤¤¡¥");
+	pline("æ°´é¢ä¸‹ã§ã¯ï¼Œã‚ãªãŸã®è©±ã¯ã‚ãã«ç†è§£ã•ã‚Œãªã„ï¼");
 	return(0);
     }
 
@@ -928,12 +928,12 @@ dochat()
     }
 
 /*JP    (void) getdir("Talk to whom? [in what direction]");*/
-    (void) getdir("Ã¯¤ÈÏÃ¤·¤Ş¤¹¤«¡©[¤É¤ÎÊı¸ş]");
+    (void) getdir("èª°ã¨è©±ã—ã¾ã™ã‹ï¼Ÿ[ã©ã®æ–¹å‘]");
 
     if (u.dz) {
 /*JP	pline("They won't hear you %s there.", u.dz < 0 ? "up" : "down");*/
-	pline("%s¸ş¤Ã¤ÆÏÃ¤ò¤·¤Æ¤â°ÕÌ£¤¬¤Ê¤¤¡¥",
-	      u.dz < 0 ? "¾å¤Ø" : "²¼¤Ø");
+	pline("%så‘ã£ã¦è©±ã‚’ã—ã¦ã‚‚æ„å‘³ãŒãªã„ï¼",
+	      u.dz < 0 ? "ä¸Šã¸" : "ä¸‹ã¸");
 	return(0);
     }
 
@@ -944,12 +944,12 @@ dochat()
  * etc...  --KAA
 	if (u.umonnum == PM_ETTIN) {
 JP	    You("discover that your other head makes boring conversation.");
-	    You("Â¾¤ÎÆ¬¤¬²ñÏÃ¤ò¤·¤Æ¤¤¤ë¤Î¤Ëµ¤¤¬¤Ä¤¤¤¿¡¥");
+	    You("ä»–ã®é ­ãŒä¼šè©±ã‚’ã—ã¦ã„ã‚‹ã®ã«æ°—ãŒã¤ã„ãŸï¼");
 	    return(1);
 	}
 */
 /*JP	pline("Talking to yourself is a bad habit for a dungeoneer.");*/
-	pline("ÌÂµÜÃµ¸¡¼Ô¤Ë¤È¤Ã¤Æ°ì¿Í¸À¤Ï°­¤¤ÊÊ¤À¡¥");
+	pline("è¿·å®®æ¢æ¤œè€…ã«ã¨ã£ã¦ä¸€äººè¨€ã¯æ‚ªã„ç™–ã ï¼");
 	return(0);
     }
 
@@ -959,19 +959,19 @@ JP	    You("discover that your other head makes boring conversation.");
 		mtmp->m_ap_type == M_AP_FURNITURE ||
 		mtmp->m_ap_type == M_AP_OBJECT) {
 /*JP	pline("I see nobody there.");*/
-	pline("¤½¤³¤Ë¤Ï²¿¤â¤Ê¤¤¡¥");
+	pline("ãã“ã«ã¯ä½•ã‚‚ãªã„ï¼");
 	return(0);
     }
     /* sleeping monsters won't talk, except priests (who wake up) */
     if ((!mtmp->mcanmove || mtmp->msleep) && !mtmp->ispriest) {
 /*JP	pline("%s seems not to notice you.", Monnam(mtmp));*/
-	pline("%s¤Ï¤¢¤Ê¤¿¤Ëµ¤¤¬¤Ä¤¤¤Æ¤¤¤Ê¤¤¤è¤¦¤À¡¥", Monnam(mtmp));
+	pline("%sã¯ã‚ãªãŸã«æ°—ãŒã¤ã„ã¦ã„ãªã„ã‚ˆã†ã ï¼", Monnam(mtmp));
 	return(0);
     }
 
     if (mtmp->mtame && mtmp->meating) {
 /*JP	pline("%s is eating noisily.", Monnam(mtmp));*/
-	pline("%s¤Ï¥Ğ¥ê¥Ğ¥ê¤ÈÊª¤ò¿©¤Ù¤Æ¤¤¤ë¡¥", Monnam(mtmp));
+	pline("%sã¯ãƒãƒªãƒãƒªã¨ç‰©ã‚’é£Ÿã¹ã¦ã„ã‚‹ï¼", Monnam(mtmp));
 	return (0);
     }
 

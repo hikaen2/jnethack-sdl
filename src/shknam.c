@@ -39,7 +39,7 @@ static const char *shkliquors[] = {
     "Flims", "Vals", "Schuls", "Zum Loch",
 #endif
 /*JP*/
-    "…Õ≈ƒ", "_Œ”∏∂",
+    "ÊµúÁî∞", "_ÊûóÂéü",
     0
 };
 
@@ -54,7 +54,7 @@ static const char *shkbooks[] = {
     "Culdaff", "Dunfanaghy", "Inishbofin", "Kesh",
 #endif
 /*JP*/
-    "æ¬≈ƒ", "_√Ê¿Ó",
+    "Ê≤ºÁî∞", "_‰∏≠Â∑ù",
     0
 };
 
@@ -69,7 +69,7 @@ static const char *shkarmors[] = {
     "Birecik", "Kirikkale", "Alaca", "Polatli", "Nallihan",
 #endif
 /*JP*/
-    "∆£ªﬁ", "_¿æ∏∂",
+    "Ëó§Êûù", "_Ë•øÂéü",
     0
 };
 
@@ -87,7 +87,7 @@ static const char *shkwands[] = {
     "Kyleakin", "Dunvegan",
 #endif
 /*JP*/
-    "µ‹≤º", "_∑¨≈Á",
+    "ÂÆÆ‰∏ã", "_Ê°ëÂ≥∂",
     0
 };
 
@@ -104,7 +104,7 @@ static const char *shkrings[] = {
     "Lulea", "Gellivare", "Oeloe", "Kajaani", "Fauske",
 #endif
 /*JP*/
-    "∏≈æÏ", "_√∞≤º",
+    "Âè§Â†¥", "_‰∏π‰∏ã",
     0
 };
 
@@ -120,7 +120,7 @@ static const char *shkfoods[] = {
     "Makin", "Tipor", "Semai", "Berhala", "Tegal", "Samoe",
 #endif
 /*JP*/
-    "¡∞≈ƒ", "_¿Ó¿°",
+    "ÂâçÁî∞", "_Â∑ùÊæÑ",
     0
 };
 
@@ -135,7 +135,7 @@ static const char *shkweapons[] = {
     "Eymoutiers", "Eygurande", "Eauze", "Labouheyre",
 #endif
 /*JP*/
-    "≥ﬁ∏∂", "_µ◊¿Ó",
+    "Á¨†Âéü", "_‰πÖÂ∑ù",
     0
 };
 
@@ -167,7 +167,7 @@ static const char *shktools[] = {
 #endif
 #endif
 /*JP*/
-    "∞¿ƒ≈", "_ª∞¿–",
+    "Á≤üÊ¥•", "_‰∏âÁü≥",
     0
 };
 
@@ -183,7 +183,7 @@ static const char *shklight[] = {
     "Troyan", "Lovech", "Sliven",
 #endif
 /*JP*/
-    "«Ú¿–", "_…πæÂ",
+    "ÁôΩÁü≥", "_Ê∞∑‰∏ä",
     0
 };
 
@@ -205,7 +205,7 @@ static const char *shkgeneral[] = {
     "Holmavik",
 #endif
 /*JP*/
-    "Kunedog", "_»”ƒÕ",
+    "Kunedog", "_È£ØÂ°ö",
     0
 };
 
@@ -227,48 +227,48 @@ static const char *shkgeneral[] = {
 
 const struct shclass shtypes[] = {
 /*JP	{"general store", RANDOM_CLASS, 44,*/
-	{"ª®≤ﬂ≤∞", RANDOM_CLASS, 44,
+	{"ÈõëË≤®Â±ã", RANDOM_CLASS, 44,
 	    D_SHOP, {{100, RANDOM_CLASS}, {0, 0}, {0, 0}}, shkgeneral},
 /*JP	{"used armor dealership", ARMOR_CLASS, 14,*/
-	{"√Ê∏≈≥ªæ¶≤Ò", ARMOR_CLASS, 14,
+	{"‰∏≠Âè§ÈéßÂïÜ‰ºö", ARMOR_CLASS, 14,
 	    D_SHOP, {{90, ARMOR_CLASS}, {10, WEAPON_CLASS}, {0, 0}},
 	     shkarmors},
 /*JP	{"second-hand bookstore", SCROLL_CLASS, 10, D_SHOP,*/
-	{"¥¨ ™≤∞", SCROLL_CLASS, 10, D_SHOP,
+	{"Â∑ªÁâ©Â±ã", SCROLL_CLASS, 10, D_SHOP,
 	    {{90, SCROLL_CLASS}, {10, SPBOOK_CLASS}, {0, 0}}, shkbooks},
 /*JP	{"liquor emporium", POTION_CLASS, 10, D_SHOP,*/
-	{"§™ºÚ§Œ…¥≤ﬂ≈π", POTION_CLASS, 10, D_SHOP,
+	{"„ÅäÈÖí„ÅÆÁôæË≤®Â∫ó", POTION_CLASS, 10, D_SHOP,
 	    {{100, POTION_CLASS}, {0, 0}, {0, 0}}, shkliquors},
 /*JP	{"antique weapons outlet", WEAPON_CLASS, 5, D_SHOP,*/
-	{"∏≈…¥Ô¿ÏÃÁæÆ«‰≈π", WEAPON_CLASS, 5, D_SHOP,
+	{"Âè§Ê≠¶Âô®Â∞ÇÈñÄÂ∞èÂ£≤Â∫ó", WEAPON_CLASS, 5, D_SHOP,
 	    {{90, WEAPON_CLASS}, {10, ARMOR_CLASS}, {0, 0}}, shkweapons},
 /*JP	{"delicatessen", FOOD_CLASS, 5, D_SHOP,*/
-	{"ø©… ≈π", FOOD_CLASS, 5, D_SHOP,
+	{"È£üÂìÅÂ∫ó", FOOD_CLASS, 5, D_SHOP,
 	    {{95, FOOD_CLASS}, {5, POTION_CLASS}, {0, 0}}, shkfoods},
 /*JP	{"jewelers", RING_CLASS, 3, D_SHOP,*/
-	{" ı¿–≈π", RING_CLASS, 3, D_SHOP,
+	{"ÂÆùÁü≥Â∫ó", RING_CLASS, 3, D_SHOP,
 	    {{85, RING_CLASS}, {10, GEM_CLASS}, {5, AMULET_CLASS}, {0, 0}},
 	    shkrings},
 /*JP	{"quality apparel and accessories", WAND_CLASS, 3, D_SHOP,*/
-	{"§™•∑•„•Ï§ ÕŒ… ≈π", WAND_CLASS, 3, D_SHOP,
+	{"„Åä„Ç∑„É£„É¨„Å™Ê¥ãÂìÅÂ∫ó", WAND_CLASS, 3, D_SHOP,
 	    {{90, WAND_CLASS}, {5, -LEATHER_GLOVES}, {5, -ELVEN_CLOAK}, {0, 0}},
 	     shkwands},
 /*JP	{"hardware store", TOOL_CLASS, 3, D_SHOP,*/
-	{"∆ª∂Ò≤∞", TOOL_CLASS, 3, D_SHOP,
+	{"ÈÅìÂÖ∑Â±ã", TOOL_CLASS, 3, D_SHOP,
 	    {{100, TOOL_CLASS}, {0, 0}, {0, 0}}, shktools},
 	/* Actually shktools is ignored; the code specifically chooses a
 	 * random implementor name (along with candle shops having
 	 * random shopkeepers)
 	 */
 /*JP	{"rare books", SPBOOK_CLASS, 3, D_SHOP,*/
-	{"∏∏§ŒÀ‹≤∞", SPBOOK_CLASS, 3, D_SHOP,
+	{"Âπª„ÅÆÊú¨Â±ã", SPBOOK_CLASS, 3, D_SHOP,
 	    {{90, SPBOOK_CLASS}, {10, SCROLL_CLASS}, {0, 0}}, shkbooks},
 	/* Shops below this point are "unique".  That is they must all have a
 	 * probability of zero.  They are only created via the special level
 	 * loader.
 	 */
 /*JP	{"lighting store", TOOL_CLASS, 0, D_SHOP,*/
-	{"æ»Ã¿≈π", TOOL_CLASS, 0, D_SHOP,
+	{"ÁÖßÊòéÂ∫ó", TOOL_CLASS, 0, D_SHOP,
 	    {{32, -WAX_CANDLE}, {50, -TALLOW_CANDLE},
 	     {5, -BRASS_LANTERN}, {10, -OIL_LAMP}, {3, -MAGIC_LAMP}}, shklight},
 	{(char *)0, 0, 0, 0, {{0, 0}, {0, 0}, {0, 0}}, 0}
@@ -537,7 +537,7 @@ register struct mkroom *sroom;
 	    if(inside_shop(sx,sy+1)) n--;
 	    else if(inside_shop(sx,sy-1)) n++;
 /*JP	    Sprintf(buf, "Closed for inventory");*/
-	    Sprintf(buf, "√™≤∑§∑§Œ§ø§· ƒ≈π");
+	    Sprintf(buf, "Ê£öÂç∏„Åó„ÅÆ„Åü„ÇÅÈñâÂ∫ó");
 	    make_engr_at(m, n, buf, 0L, DUST);
     }
 

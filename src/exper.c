@@ -115,7 +115,7 @@ losexp()		/* hit by drain life attack */
 
 	if(u.ulevel > 1) {
 /*JP		pline("Goodbye level %d.", u.ulevel--);*/
-		pline("¤µ¤è¤¦¤Ê¤é¥ì¥Ù¥ë%d¡¥", u.ulevel--);
+		pline("ã•ã‚ˆã†ãªã‚‰ãƒ¬ãƒ™ãƒ«%dï¼", u.ulevel--);
 		/* remove intrinsic abilities */
 		adjabil(u.ulevel + 1, u.ulevel);
 		reset_rndmonst(NON_PM);	/* new monster selection */
@@ -149,7 +149,7 @@ newexplevel()
 		u.ulevel++;
 		if (u.uexp >= newuexp(u.ulevel)) u.uexp = newuexp(u.ulevel) - 1;
 /*JP		pline("Welcome to experience level %d.", u.ulevel);*/
-		pline("¥ì¥Ù¥ë%d¤Ë¤è¤¦¤³¤½¡¥", u.ulevel);
+		pline("ãƒ¬ãƒ™ãƒ«%dã«ã‚ˆã†ã“ãï¼", u.ulevel);
 		/* give new intrinsics */
 		adjabil(u.ulevel - 1, u.ulevel);
 		reset_rndmonst(NON_PM);	/* new monster selection */
@@ -169,7 +169,7 @@ pluslvl()
 	register int num;
 
 /*JP	You_feel("more experienced.");*/
-	You("¤è¤ê·Ğ¸³¤ò¤Ä¤ó¤À¤è¤¦¤Êµ¤¤¬¤·¤¿¡¥");
+	You("ã‚ˆã‚ŠçµŒé¨“ã‚’ã¤ã‚“ã ã‚ˆã†ãªæ°—ãŒã—ãŸï¼");
 	num = newhp();
 	u.uhpmax += num;
 	u.uhp += num;
@@ -179,7 +179,7 @@ pluslvl()
 	if(u.ulevel < MAXULEV) {
 		u.uexp = newuexp(u.ulevel);
 /*JP		pline("Welcome to experience level %d.", ++u.ulevel);*/
-		pline("¥ì¥Ù¥ë%d¤Ë¤è¤¦¤³¤½¡¥", ++u.ulevel);
+		pline("ãƒ¬ãƒ™ãƒ«%dã«ã‚ˆã†ã“ãï¼", ++u.ulevel);
 		adjabil(u.ulevel - 1, u.ulevel);
 		reset_rndmonst(NON_PM);	/* new monster selection */
 	}

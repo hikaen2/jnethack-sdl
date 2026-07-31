@@ -175,9 +175,9 @@ MONSTER:'Z',random,random
 #
 ALTAR:(10,04),chaos,altar
 #
-ENGRAVING:(21,04),engrave,"ÂÎ°éÍÑ¶ñ¼¼"
-ENGRAVING:(13,11),engrave,"Íı²Ê¼¼"
-ENGRAVING:(55,11),engrave,"Ï­²¼¤ÏÀÅ¤«¤Ë"
+ENGRAVING:(21,04),engrave,"ä½“è‚²ç”¨å…·å®¤"
+ENGRAVING:(13,11),engrave,"ç†ç§‘å®¤"
+ENGRAVING:(55,11),engrave,"å»Šä¸‹ã¯é™ã‹ã«"
 #
 OBJECT:'!',random,(2,13)
 OBJECT:'!',random,(3,13)

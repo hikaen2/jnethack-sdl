@@ -27,18 +27,18 @@ cursetxt(mtmp)
 				(mtmp->mux != u.ux || mtmp->muy != u.uy))
 			|| u.usym == S_MIMIC_DEF || u.uundetected)
 /*JP		pline("%s points and curses in your general direction.",*/
-		pline("%s¤Ï¤¢¤Ê¤¿¤Î¤¤¤ë¤¢¤¿¤ê¤ò»Øº¹¤·¡¤¼ö¤¤¤ò¤«¤±¤¿¡¥",
+		pline("%sã¯ã‚ãªãŸã®ã„ã‚‹ã‚ãŸã‚Šã‚’æŒ‡å·®ã—ï¼Œå‘ªã„ã‚’ã‹ã‘ãŸï¼",
 				Monnam(mtmp));
 	    else if (Displaced && (mtmp->mux != u.ux || mtmp->muy != u.uy))
 /*JP		pline("%s points and curses at your displaced image.",*/
-		pline("%s¤Ï¤¢¤Ê¤¿¸¸±Æ¤ò»Øº¹¤·¡¤¼ö¤¤¤ò¤«¤±¤¿¡¥",
+		pline("%sã¯ã‚ãªãŸå¹»å½±ã‚’æŒ‡å·®ã—ï¼Œå‘ªã„ã‚’ã‹ã‘ãŸï¼",
 				Monnam(mtmp));
 	    else
 /*JP		pline("%s points at you, then curses.", Monnam(mtmp));*/
-		pline("%s¤Ï¤¢¤Ê¤¿¤ò»Øº¹¤·¡¤¼ö¤¤¤ò¤«¤±¤¿¡¥", Monnam(mtmp));
+		pline("%sã¯ã‚ãªãŸã‚’æŒ‡å·®ã—ï¼Œå‘ªã„ã‚’ã‹ã‘ãŸï¼", Monnam(mtmp));
 	} else if((!(moves%4) || !rn2(4)) && flags.soundok)
 /*JP		Norep("You hear a mumbled curse.");*/
-		Norep("¼ö¤¤¤Î¸ÀÍÕ¤ò¤Ä¤Ö¤ä¤¯À¼¤òÊ¹¤¤¤¿¡¥");
+		Norep("å‘ªã„ã®è¨€è‘‰ã‚’ã¤ã¶ã‚„ãå£°ã‚’èã„ãŸï¼");
 }
 
 #endif /* OVL0 */
@@ -59,7 +59,7 @@ castmu(mtmp, mattk)	/* monster casts spell at you */
 	    if(rn2(ml*10) < (mtmp->mconf ? 100 : 20)) {	/* fumbled attack */
 		if (canseemon(mtmp) && flags.soundok)
 /*JP		    pline_The("air crackles around %s.", mon_nam(mtmp));*/
-		    pline("%s¤Î²ó¤ê¤Î¶õµ¤¤Ï¥Ô¥ê¥Ô¥ê¤·¤Æ¤¤¤ë¡¥", mon_nam(mtmp));
+		    pline("%sã®å›ã‚Šã®ç©ºæ°—ã¯ãƒ”ãƒªãƒ”ãƒªã—ã¦ã„ã‚‹ï¼", mon_nam(mtmp));
 		return(0);
 	    }
 	}
@@ -76,31 +76,31 @@ castmu(mtmp, mattk)	/* monster casts spell at you */
 
 	    case AD_FIRE:
 /*JP		pline("You're enveloped in flames.");*/
-		You("±ê¤Ë¤Ä¤Ä¤Ş¤ì¤¿¡¥");
+		You("ç‚ã«ã¤ã¤ã¾ã‚ŒãŸï¼");
 		if(Fire_resistance) {
 			shieldeff(u.ux, u.uy);
 /*JP			pline("But you resist the effects.");*/
-			pline("¤·¤«¤·¡¤¤¢¤Ê¤¿¤Ï±Æ¶Á¤ò¼õ¤±¤Ê¤¤¡¥");
+			pline("ã—ã‹ã—ï¼Œã‚ãªãŸã¯å½±éŸ¿ã‚’å—ã‘ãªã„ï¼");
 			dmg = 0;
 		}
 		break;
 	    case AD_COLD:
 /*JP		pline("You're covered in frost.");*/
-		You("É¹¤ËÊ¤¤ï¤ì¤¿¡¥");
+		You("æ°·ã«è¦†ã‚ã‚ŒãŸï¼");
 		if(Cold_resistance) {
 			shieldeff(u.ux, u.uy);
 /*JP			pline("But you resist the effects.");*/
-			pline("¤·¤«¤·¡¤¤¢¤Ê¤¿¤Ï±Æ¶Á¤ò¼õ¤±¤Ê¤¤¡¥");
+			pline("ã—ã‹ã—ï¼Œã‚ãªãŸã¯å½±éŸ¿ã‚’å—ã‘ãªã„ï¼");
 			dmg = 0;
 		}
 		break;
 	    case AD_MAGM:
 /*JP		You("are hit by a shower of missiles!");*/
-		You("ËâË¡¤ÎÌğ¤ò¤¯¤é¤Ã¤¿¡ª");
+		You("é­”æ³•ã®çŸ¢ã‚’ãã‚‰ã£ãŸï¼");
 		if(Antimagic) {
 			shieldeff(u.ux, u.uy);
 /*JP			pline_The("missiles bounce off!");*/
-			pline("ËâË¡¤ÎÌğ¤ÏÈ¿¼Í¤·¤¿¡ª");
+			pline("é­”æ³•ã®çŸ¢ã¯åå°„ã—ãŸï¼");
 			dmg = 0;
 		} else dmg = d((int)mtmp->m_lev/2 + 1,6);
 		break;
@@ -117,26 +117,26 @@ castmu(mtmp, mattk)	/* monster casts spell at you */
 				  ? (mtmp->female ? "she" : "he")
 				  : "it"
 			     );*/
-			pline("¤Ê¤ó¤Æ¤³¤Ã¤¿¤¤¡¤%s¤Ï»à¤ÎÀë¹ğ¤ò»È¤Ã¤Æ¤¤¤ë¡ª",
+			pline("ãªã‚“ã¦ã“ã£ãŸã„ï¼Œ%sã¯æ­»ã®å®£å‘Šã‚’ä½¿ã£ã¦ã„ã‚‹ï¼",
 			      Monnam(mtmp));
 			if (nonliving(uasmon) || is_demon(uasmon))
 /*JP			    You("seem no deader than before.");*/
-			    You("»à¤Ê¤Ê¤¤ÂÎ¤Î¤è¤¦¤À¡¥");
+			    You("æ­»ãªãªã„ä½“ã®ã‚ˆã†ã ï¼");
 			else if (!Antimagic && rn2(ml) > 12) {
 
 			    if(Hallucination)
 /*JP				You("have an out of body experience.");*/
-				You("Í©ÂÎÎ¥Ã¦¤ÎÂÎ¸³¤ò¤·¤¿¡¥");
+				You("å¹½ä½“é›¢è„±ã®ä½“é¨“ã‚’ã—ãŸï¼");
 			    else  {
 				killer_format = KILLED_BY_AN;
 /*JP				killer = "touch of death";*/
-				killer = "»à¤ÎÀë¹ğ¤Ç";
+				killer = "æ­»ã®å®£å‘Šã§";
 				done(DIED);
 			    }
 			} else {
 				if(Antimagic) shieldeff(u.ux, u.uy);
 /*JP				pline("Lucky for you, it didn't work!");*/
-				pline("±¿¤Î¤è¤¤¤³¤È¤Ë¤Ê¤ó¤È¤â¤Ê¤«¤Ã¤¿¡ª");
+				pline("é‹ã®ã‚ˆã„ã“ã¨ã«ãªã‚“ã¨ã‚‚ãªã‹ã£ãŸï¼");
 			}
 			dmg = 0;
 			break;
@@ -144,7 +144,7 @@ castmu(mtmp, mattk)	/* monster casts spell at you */
 		    case 18:
 			if(mtmp->iswiz && flags.no_of_wizards == 1) {
 /*JP				pline("Double Trouble...");*/
-				pline("Æó½Å¶ì¤À¡¥¡¥¡¥");
+				pline("äºŒé‡è‹¦ã ï¼ï¼ï¼");
 				clonewiz();
 				dmg = 0;
 				break;
@@ -154,7 +154,7 @@ castmu(mtmp, mattk)	/* monster casts spell at you */
 		    case 15:
 			if(mtmp->iswiz)
 /*JP			    verbalize("Destroy the thief, my pets!");*/
-			    verbalize("ÅğÂ±¤ò»¦¤»¡ª²¼ËÍ¤è¡ª");
+			    verbalize("ç›—è³Šã‚’æ®ºã›ï¼ä¸‹åƒ•ã‚ˆï¼");
 			nasty(mtmp);	/* summon something nasty */
 			/* fall into the next case */
 		    case 14:		/* aggravate all monsters */
@@ -173,10 +173,10 @@ castmu(mtmp, mattk)	/* monster casts spell at you */
 			if (Antimagic) {
 				shieldeff(u.ux, u.uy);
 /*JP				pline("A field of force surrounds you!");*/
-				pline("ÉÔ»×µÄ¤ÊÎÏ¤¬¤¢¤Ê¤¿¤ò¤È¤ê¤«¤³¤ó¤À¡ª");
+				pline("ä¸æ€è­°ãªåŠ›ãŒã‚ãªãŸã‚’ã¨ã‚Šã‹ã“ã‚“ã ï¼");
 			} else if(!destroy_arm(some_armor()))
 /*JP				Your("skin itches.");*/
-				Your("ÈéÉæ¤Ï¥à¥º¥à¥º¤·¤¿¡¥");
+				Your("çš®è†šã¯ãƒ ã‚ºãƒ ã‚ºã—ãŸï¼");
 			dmg = 0;
 			break;
 		    case 7:
@@ -184,10 +184,10 @@ castmu(mtmp, mattk)	/* monster casts spell at you */
 			if(Antimagic) {
 			    shieldeff(u.ux, u.uy);
 /*JP			    You_feel("momentarily weakened.");*/
-			    You("°ì½Ö¼å¤¯¤Ê¤Ã¤¿¤è¤¦¤Êµ¤¤¬¤·¤¿¡¥");
+			    You("ä¸€ç¬å¼±ããªã£ãŸã‚ˆã†ãªæ°—ãŒã—ãŸï¼");
 			} else {
 /*JP			    You("suddenly feel weaker!");*/
-			    You("ÆÍÁ³¼å¤¯¤Ê¤Ã¤¿¤è¤¦¤Êµ¤¤¬¤·¤¿¡¥");
+			    You("çªç„¶å¼±ããªã£ãŸã‚ˆã†ãªæ°—ãŒã—ãŸï¼");
 			    dmg = ml - 6;
 			    if(Half_spell_damage) dmg = (dmg+1) / 2;
 			    losestr(rnd(dmg));
@@ -201,7 +201,7 @@ castmu(mtmp, mattk)	/* monster casts spell at you */
 			if (!mtmp->minvis && !mtmp->invis_blkd) {
 			    if(canseemon(mtmp) && !See_invisible)
 /*JP				pline("%s suddenly disappears!", Monnam(mtmp));*/
-				pline("%s¤ÏÆÍÁ³¾Ã¤¨¤¿¡ª", Monnam(mtmp));
+				pline("%sã¯çªç„¶æ¶ˆãˆãŸï¼", Monnam(mtmp));
 			    mon_set_minvis(mtmp);
 			    dmg = 0;
 			    break;
@@ -211,15 +211,15 @@ castmu(mtmp, mattk)	/* monster casts spell at you */
 			    shieldeff(u.ux, u.uy);
 			    if(!Stunned)
 /*JP				You_feel("momentarily disoriented.");*/
-				You("°ì½ÖÊı¸ş´¶³Ğ¤ò¼º¤Ã¤¿¡¥");
+				You("ä¸€ç¬æ–¹å‘æ„Ÿè¦šã‚’å¤±ã£ãŸï¼");
 			    make_stunned(1L, FALSE);
 			} else {
 			    if (Stunned)
 /*JP				You("struggle to keep your balance.");*/
-				You("¥Ğ¥é¥ó¥¹¤ò¼è¤í¤¦¤È¤â¤¬¤¤¤¿¡¥");
+				You("ãƒãƒ©ãƒ³ã‚¹ã‚’å–ã‚ã†ã¨ã‚‚ãŒã„ãŸï¼");
 			    else
 /*JP				You("reel...");*/
-				You("¤è¤í¤á¤¤¤¿¡¥¡¥¡¥");
+				You("ã‚ˆã‚ã‚ã„ãŸï¼ï¼ï¼");
 			    dmg = d(ACURR(A_DEX) < 12 ? 6 : 4, 4);
 			    if(Half_spell_damage) dmg = (dmg+1) / 2;
 			    make_stunned(HStun + dmg, FALSE);
@@ -242,14 +242,14 @@ castmu(mtmp, mattk)	/* monster casts spell at you */
 			if(Antimagic) {
 			    shieldeff(u.ux, u.uy);
 /*JP			    You("get a slight %sache.",body_part(HEAD));*/
-			    You("¤Á¤ç¤Ã¤È%sÄË¤¬¤·¤¿¡¥",body_part(HEAD));
+			    You("ã¡ã‚‡ã£ã¨%sç—›ãŒã—ãŸï¼",body_part(HEAD));
 			    dmg = 1;
 			} else {
 			    if (dmg <= 10)
 /*JP				Your("brain is on fire!");*/
-			      You("ÅÜ¤ê¤Ë¤Ä¤Ä¤Ş¤ì¤¿¡ª");
+			      You("æ€’ã‚Šã«ã¤ã¤ã¾ã‚ŒãŸï¼");
 /*JP			    else Your("%s suddenly aches!", body_part(HEAD));*/
-			    else Your("%s¤ÏÆÍÁ³ÄË¤ß¤ò´¶¤¸¤¿¡ª", body_part(HEAD));
+			    else Your("%sã¯çªç„¶ç—›ã¿ã‚’æ„Ÿã˜ãŸï¼", body_part(HEAD));
 			}
 			break;
 		}
@@ -267,7 +267,7 @@ castmu(mtmp, mattk)	/* monster casts spell at you */
 			if(Antimagic) {
 			    shieldeff(u.ux, u.uy);
 /*JP			    You_feel("momentarily dizzy.");*/
-			    You("°ì½Ö¤á¤Ş¤¤¤¬¤·¤¿¡¥");
+			    You("ä¸€ç¬ã‚ã¾ã„ãŒã—ãŸï¼");
 			} else {
 			    dmg = (int)mtmp->m_lev;
 			    if(Half_spell_damage) dmg = (dmg+1) / 2;
@@ -306,7 +306,7 @@ castmu(mtmp, mattk)	/* monster casts spell at you */
 			/* note: resists_blnd() doesn't apply here */
 			if (!Blinded) {
 /*JP			    pline("Scales cover your eyes!");*/
-			    pline("ÎÚ¤¬¤¢¤Ê¤¿¤ÎÌÜ¤òÊ¤¤Ã¤¿¡ª");
+			    pline("é±—ãŒã‚ãªãŸã®ç›®ã‚’è¦†ã£ãŸï¼");
 			    make_blinded(Half_spell_damage ? 100L:200L, FALSE);
 			    dmg = 0;
 			    break;
@@ -316,11 +316,11 @@ castmu(mtmp, mattk)	/* monster casts spell at you */
 			if(Antimagic) {
 			    shieldeff(u.ux, u.uy);
 /*JP			    Your("skin itches badly for a moment.");*/
-			    Your("ÈéÉæ¤Ï°ì½Ö¡¤¥à¥¹¥à¥¹¤Ã¤È¤·¤¿¡¥");
+			    Your("çš®è†šã¯ä¸€ç¬ï¼Œãƒ ã‚¹ãƒ ã‚¹ã£ã¨ã—ãŸï¼");
 			    dmg = 0;
 			} else {
 /*JP			    pline("Wounds appear on your body!");*/
-			    pline("½ı¤¬¤¢¤Ê¤¿¤ÎÂÎ¤Ë½ĞÍè¤¿¡ª");
+			    pline("å‚·ãŒã‚ãªãŸã®ä½“ã«å‡ºæ¥ãŸï¼");
 			    dmg = d(2,8) + 1;
 			    if (Half_spell_damage) dmg = (dmg+1) / 2;
 			}
@@ -330,12 +330,12 @@ castmu(mtmp, mattk)	/* monster casts spell at you */
 			    shieldeff(u.ux, u.uy);
 			    if(multi >= 0)
 /*JP				You("stiffen briefly.");*/
-				You("°ì½Ö¹ÅÄ¾¤·¤¿¡¥");
+				You("ä¸€ç¬ç¡¬ç›´ã—ãŸï¼");
 			    nomul(-1);
 			} else {
 			    if (multi >= 0)
 /*JP				You("are frozen in place!");*/
-				You("¤½¤Î¾ì¤ÇÆ°¤±¤Ê¤¯¤Ê¤Ã¤¿¡ª");
+				You("ãã®å ´ã§å‹•ã‘ãªããªã£ãŸï¼");
 			    dmg = 4 + (int)mtmp->m_lev;
 			    if (Half_spell_damage) dmg = (dmg+1) / 2;
 			    nomul(-dmg);
@@ -376,7 +376,7 @@ buzzmu(mtmp, mattk)		/* monster uses spell (ranged) */
 	    if(mattk->adtyp && (mattk->adtyp < 11)) { /* no cf unsigned >0 */
 		if(canseemon(mtmp))
 /*JP		    pline("%s zaps you with a %s!", Monnam(mtmp),*/
-		    pline("%s¤Ï%s¤ò¤¢¤Ê¤¿¤Ë¸ş¤±¤ÆÊü¤Ã¤¿¡¥", Monnam(mtmp),
+		    pline("%sã¯%sã‚’ã‚ãªãŸã«å‘ã‘ã¦æ”¾ã£ãŸï¼", Monnam(mtmp),
 			  flash_types[ad_to_typ(mattk->adtyp)]);
 		buzz(-ad_to_typ(mattk->adtyp), (int)mattk->damn,
 		     mtmp->mx, mtmp->my, sgn(tbx), sgn(tby));

@@ -12,6 +12,7 @@
 #include "hack.h"
 #include "mbchar.h"
 #include "jiscode.h"
+#include "utf8.h"
 
 #ifdef SDL_GRAPHICS
 /*
@@ -25,18 +26,41 @@
 #define EUC	0
 #define SJIS	1
 #define JIS	2
+#define UTF8    3
 
-/* internal kcode */
-/* IC=0 EUC */
-/* IC=1 SJIS */
-#define IC ((unsigned char)("¥¡"[0])==0x8a)
+/*
+**	The internal code.
+**
+**      This used to be worked out at compile time from the first byte of a
+**      kanji literal -- 0x8a meant the file had been converted to
+**      Shift-JIS, anything else meant EUC-JP.  That trick only distinguishes
+**      two encodings, and only because their lead bytes happen to differ; it
+**      says nothing at all once the literals are UTF-8.  The build decides
+**      now, in include/config.h.
+*/
+#ifdef JP_INTERNAL_UTF8
+# define IC     UTF8
+#else
+# define IC     EUC
+#endif
 
+/*
+**      Defaults for the outside world.
+**
+**      The internal code is the default in both directions now, so a
+**      terminal that agrees with the build needs no conversion at all and
+**      the common case costs nothing.  A player on an EUC-JP or Shift-JIS
+**      terminal still says so with the -k option, as always.
+**
+**      This is a change of default: it used to be EUC-JP regardless, which
+**      was the internal code then as well.
+*/
 /* default input kcode */
 #ifndef INPUT_KCODE
 # ifdef MSDOS
 #  define INPUT_KCODE SJIS
 # else
-#  define INPUT_KCODE EUC
+#  define INPUT_KCODE IC
 # endif
 #endif
 
@@ -45,7 +69,7 @@
 # ifdef MSDOS
 #  define OUTPUT_KCODE SJIS
 # else
-#  define OUTPUT_KCODE EUC
+#  define OUTPUT_KCODE IC
 # endif
 #endif
 
@@ -75,9 +99,9 @@ setkcode(c)
   /*
   ** The SDL backend does not emit bytes at all; it takes characters and
   ** puts code points in cells.  An output encoding is therefore not a
-  ** thing it can have, and the byte pairs the tty_*putc2() hooks below
-  ** hand to sdl_puteuc() have to still be in the internal code.  Pinning
-  ** output_kcode to IC keeps jbuffer() from converting them on the way.
+  ** thing it can have, and the characters jbuffer() hands to sdl_putcp()
+  ** have to still be in the internal code.  Pinning output_kcode to IC
+  ** keeps jbuffer() from converting them on the way.
   */
   output_kcode = input_kcode = IC;
   return;
@@ -88,6 +112,8 @@ setkcode(c)
     output_kcode = JIS;
   else if(c == 'S' || c == 's')
     output_kcode = SJIS;
+  else if(c == 'U' || c == 'u')
+    output_kcode = UTF8;
   else if(c == 'I' || c == 'i')
 #ifdef MSDOS
     output_kcode = SJIS;
@@ -146,30 +172,28 @@ sj2e(s)
 /*
 **	translate string to internal kcode
 */
-const char *
-str2ic(s)
+/*
+**      Convert a string from input_kcode to the internal code.
+**
+**      Every route goes by way of EUC-JP: Shift-JIS and JIS both have a
+**      byte-level mapping to it and nothing else, and EUC-JP has one to
+**      Unicode through japanese/jiscode.c.  Under an EUC-JP build the
+**      second leg is nothing at all, which is why this used to look like
+**      one conversion rather than two.
+*/
+static const char *
+jto_euc(s)
      const char *s;
 {
   static unsigned char buf[1024];
-  const unsigned char *up;
   unsigned char *p, *pp;
   int kin;
 
-  if(!s)
-    return s;
-
-  buf[0] = '\0';
-
-  if( IC==input_kcode ){
-    strcpy((char *)buf, s);
-    return (char *)buf;
-  }
-
   p = buf;
-  if( IC==EUC && input_kcode == SJIS ){
+
+  if( input_kcode == SJIS ){
     while(*s){
-      up = s;
-      if(is_kanji(*up)){
+      if(is_kanji(*(const unsigned char *)s)){
 	pp = sj2e((unsigned char *)s);
 	*(p++) = pp[0];
 	*(p++) = pp[1];
@@ -179,7 +203,7 @@ str2ic(s)
 	*(p++) = (unsigned char)*(s++);
     }
   }
-  else if( IC==EUC && input_kcode == JIS ){
+  else if( input_kcode == JIS ){
     kin = 0;
     while(*s){
       if(s[0] == 033 && s[1] == '$' && (s[2] == 'B' || s[3] == '@')){
@@ -196,13 +220,58 @@ str2ic(s)
 	*(p++) = *(s++);
     }
   }
-  else{
+  else {                        /* already EUC-JP */
     strcpy((char *)buf, s);
     return (char *)buf;
   }
 
-  *(p++) = '\0';
+  *p = '\0';
   return (char *)buf;
+}
+
+const char *
+str2ic(s)
+     const char *s;
+{
+  static unsigned char buf[1024];
+
+  if(!s)
+    return s;
+
+  if( IC==input_kcode ){
+    strcpy((char *)buf, s);
+    return (char *)buf;
+  }
+
+#ifdef JP_INTERNAL_UTF8
+  {
+    const char *e = jto_euc(s);
+    char *p = (char *)buf;
+    int n, m;
+
+    while(*e){
+      long cp = euc_to_ucs(e, &n);
+
+      if(!n){                   /* not EUC-JP: drop the byte rather than
+                                   letting it into a UTF-8 string */
+        ++e;
+        continue;
+      }
+      e += n;
+      m = utf8_encode(cp, p, MB_MAXBYTES);
+      p += m;
+    }
+    *p = '\0';
+    return (char *)buf;
+  }
+#else
+  if( input_kcode == SJIS || input_kcode == JIS ){
+    strcpy((char *)buf, jto_euc(s));
+    return (char *)buf;
+  }
+  strcpy((char *)buf, s);
+  return (char *)buf;
+#endif
 }
 
 #ifdef MSDOS
@@ -613,12 +682,31 @@ cbuffer(
   n = (int)buf[0];
   buf[0] = 0;
 
+#ifdef SDL_GRAPHICS
+  /*
+  ** As in jbuffer(): the backend takes characters, and a single byte is
+  ** the one case that must not be treated as one, because between
+  ** graph_on() and graph_off() it names a line-drawing glyph rather than
+  ** the character of that value.  sdl_putbyte() -- reached through f1 --
+  ** is the layer that knows which graphics set is in effect.
+  */
+  {
+    char in[MB_MAXBYTES + 1];
+
+    for(i = 0; i < n; ++i)
+      in[i] = (char)buf[2 + i];
+    in[n] = '\0';
+    sdl_putcp((int) mb_decode(in));
+  }
+  return n;
+#else
   if(n == 2)
     f2(buf[2], buf[3]);
   else
     for(i = 0; i < n; ++i)
       f1(buf[2 + i]);
   return n;
+#endif
 }
 
 void
@@ -700,10 +788,10 @@ isspace_8(c)
 **      that the widths below come from the literals instead of a hardcoded 2.
 */
 static const char *const jsplit_close[] = {
-  "°œ", "°À", "°—", 0           /* pulled back into the first half */
+  "ÔºΩ", "Ôºâ", "ÔΩù", 0           /* pulled back into the first half */
 };
 static const char *const jsplit_nostart[] = {
-  "°™", "°©", "°¢", "°£", "°§", "°•", 0 /* may not begin the second half */
+  "ÔºÅ", "Ôºü", "„ÄÅ", "„ÄÇ", "Ôºå", "Ôºé", 0 /* may not begin the second half */
 };
 
 /*
@@ -801,8 +889,8 @@ split_japanese( str, str1, str2, pos )
       b = k + 1;                /* the space stays in the first half */
       break;
     }
-    if(is_kanji1(str,k) && !strncmp(str+k,"°°",sizeof("°°")-1)){
-      b = k + sizeof("°°")-1;   /* likewise the ideographic space */
+    if(is_kanji1(str,k) && !strncmp(str+k,"„ÄÄ",sizeof("„ÄÄ")-1)){
+      b = k + sizeof("„ÄÄ")-1;   /* likewise the ideographic space */
       break;
     }
   }
@@ -887,16 +975,16 @@ split_japanese( str, str1, str2, pos )
 **      UTF8-PLAN.md converts the table and nothing else has to change.
 */
 static const char *const jnumeral_tab[] = {
-  "∞Ï", "∆Û", "ª∞", "ªÕ", "∏ﬁ", "œª", "º∑", "»¨", "∂Â", "ΩΩ", 0
+  "‰∏Ä", "‰∫å", "‰∏â", "Âõõ", "‰∫î", "ÂÖ≠", "‰∏É", "ÂÖ´", "‰πù", "ÂçÅ", 0
 };
 
 /*
-**      Counter words, in the order readobjnam() tested them.  "§Œ" is last
+**      Counter words, in the order readobjnam() tested them.  "„ÅÆ" is last
 **      because it is the bare particle -- the fallback when no counter is
 **      given -- and the others all end in it.
 */
 static const char *const jcounter_tab[] = {
-  "∫˝§Œ", "À‹§Œ", "√Â§Œ", "∏ƒ§Œ", "ÀÁ§Œ", "§ƒ§Œ", "§Œ", 0
+  "ÂÜä„ÅÆ", "Êú¨„ÅÆ", "ÁùÄ„ÅÆ", "ÂÄã„ÅÆ", "Êûö„ÅÆ", "„Å§„ÅÆ", "„ÅÆ", 0
 };
 
 /*
@@ -1054,27 +1142,27 @@ const char **joshi;
 {
   static char buf[BUFSZ];
 
-  *joshi = "§Ú";
+  *joshi = "„Çí";
 
   if(otmp->oclass == RING_CLASS){
-    Sprintf(buf, "%s§´§È§œ§∫§π", body_part(FINGER));
+    Sprintf(buf, "%s„Åã„Çâ„ÅØ„Åö„Åô", body_part(FINGER));
     return buf;
   }
   if( otmp->oclass == AMULET_CLASS){
-    return "§œ§∫§π";
+    return "„ÅØ„Åö„Åô";
   }
   else if(is_helmet(otmp))
-    return "ºË§Î";
+    return "Âèñ„Çã";
   else if(is_gloves(otmp))
-    return "§œ§∫§π";
+    return "„ÅØ„Åö„Åô";
   else if(otmp->oclass == WEAPON_CLASS||is_shield(otmp)){
-    *joshi = "§Œ";
-    return "¡ı»˜§Ú≤Ú§Ø";
+    *joshi = "„ÅÆ";
+    return "Ë£ÖÂÇô„ÇíËß£„Åè";
   }
   else if(is_suit(otmp))
-    return "√¶§∞";
+    return "ËÑ±„Åê";
   else
-    return "§œ§∫§π";
+    return "„ÅØ„Åö„Åô";
 }
 
 const char *
@@ -1084,30 +1172,30 @@ const char **joshi;
 {
   static char buf[BUFSZ];
 
-  *joshi = "§Ú";
+  *joshi = "„Çí";
 
   if(otmp->oclass == RING_CLASS){
-    Sprintf(buf, "%s§À§œ§·§Î", body_part(FINGER));
+    Sprintf(buf, "%s„Å´„ÅØ„ÇÅ„Çã", body_part(FINGER));
     return buf;
   }
   else if(otmp->oclass == AMULET_CLASS)
-    return "ø»§À§ƒ§±§Î";
+    return "Ë∫´„Å´„Å§„Åë„Çã";
   else if(is_gloves(otmp))
-    return "ø»§À§ƒ§±§Î";
+    return "Ë∫´„Å´„Å§„Åë„Çã";
   else if(is_shield(otmp)){
-    *joshi = "§«";
-    return "ø»§ÚºÈ§Î";
+    *joshi = "„Åß";
+    return "Ë∫´„ÇíÂÆà„Çã";
   }
   else if(is_helmet(otmp))
-    return "§´§÷§Î";
+    return "„Åã„Å∂„Çã";
   else if(otmp->oclass == WEAPON_CLASS){
-    Sprintf(buf, "%s§À§π§Î", body_part(HAND));
+    Sprintf(buf, "%s„Å´„Åô„Çã", body_part(HAND));
     return buf;
   }
   else if(is_boots(otmp))
-    return "Õ˙§Ø";
+    return "Â±•„Åè";
   else if(is_suit(otmp))
-    return "√Â§Î";
+    return "ÁùÄ„Çã";
   else
-    return "ø»§À§ƒ§±§Î";
+    return "Ë∫´„Å´„Å§„Åë„Çã";
 }

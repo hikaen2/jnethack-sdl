@@ -35,14 +35,14 @@ STATIC_OVL NEARDATA const char *breathwep[] = {
 				"acid",
 				"strange breath #8",
 				"strange breath #9"*/
-				"ÇËÊÒ",
-				"±ê",
-				"Îäµ¤",
-				"¿çÌ²¥¬¥¹",
-				"»à¤Î¸÷Àş",
-				"°ğºÊ",
-				"ÆÇ¤ÎÂ©",
-				"»À",
+				"ç ´ç‰‡",
+				"ç‚",
+				"å†·æ°—",
+				"ç¡çœ ã‚¬ã‚¹",
+				"æ­»ã®å…‰ç·š",
+				"ç¨²å¦»",
+				"æ¯’ã®æ¯",
+				"é…¸",
 				"strange breath #8",
 				"strange breath #9"
 };
@@ -60,32 +60,32 @@ thitu(tlev, dam, obj, name)	/* u is hit by sth, but not a monster */
 
 	if(u.uac + tlev <= rnd(20)) {
 /*JP		if(Blind || !flags.verbose) pline("It misses.");*/
-		if(Blind || !flags.verbose) pline("¤½¤ì¤Ï¤Ï¤º¤ì¤¿¡¥");
+		if(Blind || !flags.verbose) pline("ãã‚Œã¯ã¯ãšã‚ŒãŸï¼");
 /*JP		else You("are almost hit by %s!", onm);*/
-		else pline("¤â¤¦¾¯¤·¤Ç%s¤ËÌ¿Ãæ¤¹¤ë¤È¤³¤í¤À¤Ã¤¿¡ª",onm);
+		else pline("ã‚‚ã†å°‘ã—ã§%sã«å‘½ä¸­ã™ã‚‹ã¨ã“ã‚ã ã£ãŸï¼",onm);
 		return(0);
 	} else {
 /*JP		if(Blind || !flags.verbose) You("are hit!");
 		else You("are hit by %s!", onm);*/
-		if(Blind || !flags.verbose) pline("²¿¤«¤¬¤¢¤Ê¤¿¤ËÌ¿Ãæ¤·¤¿¡ª");
-		else pline("%s¤¬¤¢¤Ê¤¿¤ËÌ¿Ãæ¤·¤¿¡ª", onm);
+		if(Blind || !flags.verbose) pline("ä½•ã‹ãŒã‚ãªãŸã«å‘½ä¸­ã—ãŸï¼");
+		else pline("%sãŒã‚ãªãŸã«å‘½ä¸­ã—ãŸï¼", onm);
 
 		if (obj && objects[obj->otyp].oc_material == SILVER
 				&& hates_silver(uasmon)) {
 			dam += rnd(20);
 /*JP			pline_The("silver sears your flesh!");*/
-			pline("¤¢¤Ê¤¿¤ÎÂÎ¤Ï¶ä¤Ç¾Æ¤«¤ì¤¿¡ª");
+			pline("ã‚ãªãŸã®ä½“ã¯éŠ€ã§ç„¼ã‹ã‚ŒãŸï¼");
 			exercise(A_CON, FALSE);
 		}
 		if (is_acid && resists_acid(&youmonst))
 /*JP			pline("It doesn't seem to hurt you.");*/
-			pline("¤¢¤Ê¤¿¤Ï½ı¤Ä¤«¤Ê¤«¤Ã¤¿¡¥");
+			pline("ã‚ãªãŸã¯å‚·ã¤ã‹ãªã‹ã£ãŸï¼");
 		else {
 /*JP			if (is_acid) pline("It burns!");*/
-			if (is_acid) pline("»À¤Ç¾Æ¤«¤ì¤¿¡ª");
+			if (is_acid) pline("é…¸ã§ç„¼ã‹ã‚ŒãŸï¼");
 			if (Half_physical_damage) dam = (dam+1) / 2;
 			Strcpy(jbuf, name);
-			Strcat(jbuf, "¤Ç");
+			Strcat(jbuf, "ã§");
 /*JP			losehp(dam, name, (obj && obj_is_pname(obj)) ?*/
 			losehp(dam, jbuf, (obj && obj_is_pname(obj)) ?
 			       KILLED_BY : KILLED_BY_AN);
@@ -129,7 +129,7 @@ int x,y;
 			objgone = ship_object(obj, x, y, FALSE);
 		if (!objgone) {
 /*JP			if (!flooreffects(obj,x,y,"fall")) {*/ /* don't double-dip on damage */
-			if (!flooreffects(obj,x,y,"Íî¤Á¤ë")) { /* don't double-dip on damage */
+			if (!flooreffects(obj,x,y,"è½ã¡ã‚‹")) { /* don't double-dip on damage */
 			    place_object(obj, x, y);
 			    stackobj(obj);
 			    retvalu = 0;
@@ -165,7 +165,7 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 	    if (!ismimic) {
 		if (vis) miss(distant_name(otmp, xname), mtmp);
 /*JP		else if (verbose) pline("It is missed.");*/
-		else if (verbose) pline("²¿¤«¤¬¤«¤¹¤á¤¿¡¥");
+		else if (verbose) pline("ä½•ã‹ãŒã‹ã™ã‚ãŸï¼");
 	    }
 	    if (!range) { /* Last position; object drops */
 		(void) drop_throw(otmp, 0, mtmp->mx, mtmp->my);
@@ -185,19 +185,19 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 	    mtmp->msleep = 0;
 	    if (vis) hit(distant_name(otmp,xname), mtmp, exclam(damage));
 /*JP	    else if (verbose) pline("It is hit%s", exclam(damage));*/
-	    else if (verbose) pline("²¿¤«¤¬Ì¿Ãæ¤·¤¿%s", exclam(damage));
+	    else if (verbose) pline("ä½•ã‹ãŒå‘½ä¸­ã—ãŸ%s", exclam(damage));
 
 	    if (otmp->opoisoned) {
 		if (resists_poison(mtmp)) {
 /*JP		    if (vis) pline_The("poison doesn't seem to affect %s.",*/
-		    if (vis) pline("%s¤ÏÆÇ¤Î±Æ¶Á¤ò¼õ¤±¤Ê¤¤¡¥",
+		    if (vis) pline("%sã¯æ¯’ã®å½±éŸ¿ã‚’å—ã‘ãªã„ï¼",
 				   mon_nam(mtmp));
 		} else {
 		    if (rn2(30)) {
 			damage += rnd(6);
 		    } else {
 /*JP			if (vis) pline_The("poison was deadly...");*/
-			if (vis) pline("ÆÇ¤ÏÃ×»àÎÌ¤À¤Ã¤¿¡¥¡¥¡¥");
+			if (vis) pline("æ¯’ã¯è‡´æ­»é‡ã ã£ãŸï¼ï¼ï¼");
 			damage = mtmp->mhp;
 		    }
 		}
@@ -205,22 +205,22 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 	    if (objects[otmp->otyp].oc_material == SILVER &&
 		    hates_silver(mtmp->data)) {
 /*JP		if (vis) pline_The("silver sears %s flesh!",*/
-	        if (vis) pline("%s¤ÎÂÎ¤Ï¶ä¤Ç¾Æ¤«¤ì¤¿¡ª",
+	        if (vis) pline("%sã®ä½“ã¯éŠ€ã§ç„¼ã‹ã‚ŒãŸï¼",
 				s_suffix(mon_nam(mtmp)));
 /*JP		else if (verbose) pline("Its flesh is seared!");*/
-		else if (verbose) pline("²¿¼Ô¤«¤ÎÂÎ¤Ï¾Æ¤«¤ì¤¿¡ª");
+		else if (verbose) pline("ä½•è€…ã‹ã®ä½“ã¯ç„¼ã‹ã‚ŒãŸï¼");
 	    }
 	    if (otmp->otyp == ACID_VENOM && cansee(mtmp->mx,mtmp->my)) {
 		if (resists_acid(mtmp)) {
 		    if (vis || verbose)
 /*JP			pline("%s is unaffected.", Monnam(mtmp));*/
-			pline("%s¤Ï±Æ¶Á¤ò¼õ¤±¤Ê¤¤¡¥", Monnam(mtmp));
+			pline("%sã¯å½±éŸ¿ã‚’å—ã‘ãªã„ï¼", Monnam(mtmp));
 		    damage = 0;
 		} else {
 /*JP		    if (vis) pline_The("acid burns %s!", mon_nam(mtmp));
 		    else if (verbose) pline("It is burned!");*/
-		    if (vis) pline("%s¤Ï»À¤Ç¾Æ¤«¤ì¤¿¡ª", mon_nam(mtmp));
-		    else if (verbose) pline("²¿Êª¤«¤Ï¾Æ¤«¤ì¤¿¡ª");
+		    if (vis) pline("%sã¯é…¸ã§ç„¼ã‹ã‚ŒãŸï¼", mon_nam(mtmp));
+		    else if (verbose) pline("ä½•ç‰©ã‹ã¯ç„¼ã‹ã‚ŒãŸï¼");
 		}
 	    }
 	    mtmp->mhp -= damage;
@@ -229,9 +229,9 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 /*JP		    pline("%s is %s!", Monnam(mtmp),
 			(nonliving(mtmp->data) || !vis)
 			? "destroyed" : "killed");*/
-		    pline("%s¤Ï%s¡ª", Monnam(mtmp),
+		    pline("%sã¯%sï¼", Monnam(mtmp),
 			(nonliving(mtmp->data) || !vis)
-			? "Åİ¤µ¤ì¤¿" : "»à¤ó¤À");
+			? "å€’ã•ã‚ŒãŸ" : "æ­»ã‚“ã ");
 		mondied(mtmp);
 	    }
 
@@ -240,7 +240,7 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 		/* note: resists_blnd() doesn't apply here */
 /*JP		if (vis) pline("%s is blinded by %s.",
 				Monnam(mtmp), the(xname(otmp)));*/
-		if (vis) pline("%s¤Ï%s¤Ë¤è¤Ã¤ÆÌÜ¤¬¸«¤¨¤Ê¤¯¤Ê¤Ã¤¿¡¥",
+		if (vis) pline("%sã¯%sã«ã‚ˆã£ã¦ç›®ãŒè¦‹ãˆãªããªã£ãŸï¼",
 				Monnam(mtmp), the(xname(otmp)));
 		mtmp->mcansee = 0;
 		tmp = (int)mtmp->mblinded + rnd(25) + 20;
@@ -305,10 +305,10 @@ m_throw(mon, x, y, dx, dy, range, obj)
 						singleobj->oclass == GEM_CLASS)
 		   && objects[singleobj->otyp].w_propellor)
 /*JP		    pline("%s misfires!", Monnam(mon));*/
-		    pline("%s¤Ï¤Ï¤º¤·¤¿¡ª", Monnam(mon));
+		    pline("%sã¯ã¯ãšã—ãŸï¼", Monnam(mon));
 		else
 /*JP		    pline("%s slips as %s throws it!",*/
-		    pline("%s¤¬Åê¤²¤è¤¦¤È¤·¤¿¤È¤¿¤ó%s¤¬³ê¤Ã¤¿¡ª",
+		    pline("%sãŒæŠ•ã’ã‚ˆã†ã¨ã—ãŸã¨ãŸã‚“%sãŒæ»‘ã£ãŸï¼",
 			  mon_nam(mon),The(xname(singleobj)));
 	    }
 	    dx = rn2(3)-1;
@@ -342,21 +342,21 @@ m_throw(mon, x, y, dx, dy, range, obj)
 			    && u.usym == S_UNICORN) {
 			if (singleobj->otyp > LAST_GEM) {
 /*JP			    You("catch the %s.", xname(singleobj));*/
-			    You("%s¤ò¤Ä¤«¤Ş¤¨¤¿¡¥", xname(singleobj));
+			    You("%sã‚’ã¤ã‹ã¾ãˆãŸï¼", xname(singleobj));
 /*JP			    You("are not interested in %s junk.",*/
-			    You("%s¤Î¥¬¥é¥¯¥¿¤Ë¶½Ì£¤Ï¤Ê¤¤¡¥",
+			    You("%sã®ã‚¬ãƒ©ã‚¯ã‚¿ã«èˆˆå‘³ã¯ãªã„ï¼",
 				s_suffix(mon_nam(mon)));
 			    makeknown(singleobj->otyp);
 			    dropy(singleobj);
 			} else {
 /*JP			    You("accept %s gift in the spirit in which it was intended.",*/
-			    You("¤³¤ì¤¬Íß¤·¤«¤Ã¤¿¤ó¤À¤È»×¤¤¤Ê¤¬¤é%s¤ÎÂ£¤êÊª¤ò¼õ¤±¤È¤Ã¤¿¡¥",
+			    You("ã“ã‚ŒãŒæ¬²ã—ã‹ã£ãŸã‚“ã ã¨æ€ã„ãªãŒã‚‰%sã®è´ˆã‚Šç‰©ã‚’å—ã‘ã¨ã£ãŸï¼",
 				s_suffix(mon_nam(mon)));
 			    (void)hold_another_object(singleobj,
 /*JP				"You catch, but drop, %s.", xname(singleobj),
 				"You catch:");*/
-				"¤¢¤Ê¤¿¤Ï%s¤ò¤Ä¤«¤Ş¤¨¤¿¤¬¡¤Íî¤·¤¿¡¥", xname(singleobj),
-				"¤ò¤Ä¤«¤Ş¤¨¤¿");
+				"ã‚ãªãŸã¯%sã‚’ã¤ã‹ã¾ãˆãŸãŒï¼Œè½ã—ãŸï¼", xname(singleobj),
+				"ã‚’ã¤ã‹ã¾ãˆãŸ");
 			}
 			break;
 		    }
@@ -396,7 +396,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 			char *singlename = xname(singleobj);
 */
 			char singlename[BUFSZ];
-/*JP			Sprintf(singlename, "%s¤Î", xname(singleobj));*/
+/*JP			Sprintf(singlename, "%sã®", xname(singleobj));*/
 			Sprintf(singlename, "%s", xname(singleobj));
 			poisoned(singlename, A_STR, singlename, 10);
 		    }
@@ -407,19 +407,19 @@ m_throw(mon, x, y, dx, dy, range, obj)
 /*JP
 			    if(!Blind) pline("Yecch!  You've been creamed.");
 */
-			    if(!Blind) pline("¥¦¥§¡¼¡¥¥¯¥ê¡¼¥à¤ò¤«¤Ö¤Ã¤¿¡¥");
+			    if(!Blind) pline("ã‚¦ã‚§ãƒ¼ï¼ã‚¯ãƒªãƒ¼ãƒ ã‚’ã‹ã¶ã£ãŸï¼");
 /*JP
 			    else	pline("There's %s sticky all over your %s.",
 					    something,
 */
-			    else	pline("¤¢¤Ê¤¿¤Ï%s¤Ë¤Ù¤È¤Ä¤¯¤â¤Î¤ò´¶¤¸¤¿¡¥",
+			    else	pline("ã‚ãªãŸã¯%sã«ã¹ã¨ã¤ãã‚‚ã®ã‚’æ„Ÿã˜ãŸï¼",
 					    body_part(FACE));
 			} else {	/* venom in the eyes */
 			    if(Blindfolded) /* nothing */ ;
 /*JP			    else if(!Blind) pline_The("venom blinds you.");*/
-			    else if(!Blind) pline("ÆÇ¤ÇÌÜ¤¬¸«¤¨¤Ê¤¯¤Ê¤Ã¤¿¡¥");
+			    else if(!Blind) pline("æ¯’ã§ç›®ãŒè¦‹ãˆãªããªã£ãŸï¼");
 /*JP			    else	Your("%s sting.",*/
-			    else	Your("%s¤Ï¤Á¤¯¤Á¤¯¤·¤¿¡¥",
+			    else	Your("%sã¯ã¡ãã¡ãã—ãŸï¼",
 				    makeplural(body_part(EYE)));
 			}
 		    }
@@ -505,16 +505,16 @@ register struct monst *mtmp;
 		   !rn2(BOLT_LIM-distmin(x,y,mtmp->mux,mtmp->muy)))
 		{
 /*JP		    const char *verb = "throws";*/
-		    const char *verb = "Åê¤²¤¿";
+		    const char *verb = "æŠ•ã’ãŸ";
 
 		    if (otmp->otyp == ARROW
 			|| otmp->otyp == ELVEN_ARROW
 			|| otmp->otyp == ORCISH_ARROW
 /*JP			|| otmp->otyp == CROSSBOW_BOLT) verb = "shoots";*/
-			|| otmp->otyp == CROSSBOW_BOLT) verb = "·â¤Ã¤¿";
+			|| otmp->otyp == CROSSBOW_BOLT) verb = "æ’ƒã£ãŸ";
 		    if (canseemon(mtmp)) {
 /*JP			pline("%s %s %s!", Monnam(mtmp), verb,*/
-			pline("%s¤Ï%s¤ò%s¡ª", Monnam(mtmp), 
+			pline("%sã¯%sã‚’%sï¼", Monnam(mtmp), 
 			      obj_is_pname(otmp) ?
 			      the(singular(otmp, xname)) :
 			      an(singular(otmp, xname)),verb);
@@ -542,7 +542,7 @@ register struct attack *mattk;
 
 	    if(flags.soundok)
 /*JP		pline("A dry rattle comes from %s throat",*/
-		pline("¥¬¥é¥¬¥éÀ¼¤¬%s¤Î¹¢¤«¤éÊ¹¤³¤¨¤¿",
+		pline("ã‚¬ãƒ©ã‚¬ãƒ©å£°ãŒ%sã®å–‰ã‹ã‚‰èã“ãˆãŸ",
 		                      s_suffix(mon_nam(mtmp)));
 	    return 0;
 	}
@@ -562,7 +562,7 @@ register struct attack *mattk;
 		if(!rn2(BOLT_LIM-distmin(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy))) {
 		    if (canseemon(mtmp))
 /*JP			pline("%s spits venom!", Monnam(mtmp));*/
-			pline("%s¤ÏÆÇ¤òÅÇ¤¤¤¿¡ª", Monnam(mtmp));
+			pline("%sã¯æ¯’ã‚’åã„ãŸï¼", Monnam(mtmp));
 		    m_throw(mtmp, mtmp->mx, mtmp->my, sgn(tbx), sgn(tby),
 			distmin(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy), otmp);
 		    nomul(0);
@@ -589,10 +589,10 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 		if(flags.soundok) {
 		    if(canseemon(mtmp))
 /*JP			pline("%s coughs.", Monnam(mtmp));*/
-			pline("%s¤Ï¤»¤­¤ò¤·¤¿¡¥", Monnam(mtmp));
+			pline("%sã¯ã›ãã‚’ã—ãŸï¼", Monnam(mtmp));
 		    else
 /*JP			You_hear("a cough.");*/
-			You("¤»¤­¤Î²»¤òÊ¹¤¤¤¿¡¥");
+			You("ã›ãã®éŸ³ã‚’èã„ãŸï¼");
 		}
 		return(0);
 	    }
@@ -602,7 +602,7 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 
 		    if(canseemon(mtmp))
 /*JP			pline("%s breathes %s!", Monnam(mtmp),*/
-			pline("%s¤Ï%s¤òÅÇ¤¤¤¿¡ª", Monnam(mtmp),
+			pline("%sã¯%sã‚’åã„ãŸï¼", Monnam(mtmp),
 			      breathwep[typ-1]);
 		    buzz((int) (-20 - (typ-1)), (int)mattk->damn,
 			 mtmp->mx, mtmp->my, sgn(tbx), sgn(tby));

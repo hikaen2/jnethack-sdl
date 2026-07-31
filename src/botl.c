@@ -23,11 +23,11 @@ const char *enc_stat[] = {
 	"Overtaxed",
 	"Overloaded"*/
 	"",
-	"¤è¤í¤á¤­",
-	"°µÇ÷",
-	"¸Â³¦",
-	"²Ù½Å",
-	"Ä¶²á"
+	"ã‚ˆã‚ã‚ã",
+	"åœ§è¿«",
+	"é™ç•Œ",
+	"è·é‡",
+	"è¶…éŽ"
 };
 
 static void NDECL(bot1);
@@ -91,15 +91,15 @@ struct class_ranks all_classes[] = {
 	{"Collector",	0},
 	{"Curator",	0}
 #endif
-	{"¹Û°÷",	0},
-	{"Ï«Æ¯¼Ô",      0},
-	{"Ä´ºº¼Ô",      0},
-	{"È¯·¡¼Ô",	0},
-	{"·¡ºï¼Ô",	0},
-	{"Ãµ¸¡¼Ô",	0},
-	{"Æ¶·¢³Ø¼Ô",    0},
-	{"Èþ½Ñ¼ý½¸¼Ô",	0},
-	{"´ÛÄ¹",	0}
+	{"é‰±å“¡",	0},
+	{"åŠ´åƒè€…",      0},
+	{"èª¿æŸ»è€…",      0},
+	{"ç™ºæŽ˜è€…",	0},
+	{"æŽ˜å‰Šè€…",	0},
+	{"æŽ¢æ¤œè€…",	0},
+	{"æ´žçªŸå­¦è€…",    0},
+	{"ç¾Žè¡“åŽé›†è€…",	0},
+	{"é¤¨é•·",	0}
   } },
   {					'B',0,	PM_BARBARIAN, {
 /*JP*/
@@ -114,15 +114,15 @@ struct class_ranks all_classes[] = {
 	{"Chieftain",	"Chieftainess"},
 	{"Conqueror",	"Conqueress"}
 #endif
-	{"ÅðÂ±",	"½÷ÅðÂ±"},
-	{"Î¬Ã¥¼Ô",	0},
-	{"°­´Á",	0},
-	{"»³Â±",	0},
-	{"¿¯Î¬¼Ô",	0},
-	{"¶¯Åð",	0},
-	{"»¦Ù¤¼Ô",	0},
-	{"¼óÎÎ",	"½÷¼óÎÎ"},
-	{"À¬Éþ¼Ô",	0}
+	{"ç›—è³Š",	"å¥³ç›—è³Š"},
+	{"ç•¥å¥ªè€…",	0},
+	{"æ‚ªæ¼¢",	0},
+	{"å±±è³Š",	0},
+	{"ä¾µç•¥è€…",	0},
+	{"å¼·ç›—",	0},
+	{"æ®ºæˆ®è€…",	0},
+	{"é¦–é ˜",	"å¥³é¦–é ˜"},
+	{"å¾æœè€…",	0}
   } },
   {					'C',0,	PM_CAVEMAN, {
 /*JP*/
@@ -137,15 +137,15 @@ struct class_ranks all_classes[] = {
 	{"Rover",	0},
 	{"Pioneer",	0}
 #endif
-	{"·êµï¿Í",	0},
-	{"¸¶½»Ì±",	0},
-	{"ÊüÏ²¼Ô",	0},
-	{"ÉâÏ²¼Ô",	0},
-	{"Î¹¹Ô¼Ô",	0},
-	{"ÊüÍ·¼Ô",	0},
-	{"Í·ËÒÌ±",	0},
-	{"Î®Ï²¼Ô",	0},
-	{"Àè¶î¼Ô",	0}
+	{"ç©´å±…äºº",	0},
+	{"åŽŸä½æ°‘",	0},
+	{"æ”¾æµªè€…",	0},
+	{"æµ®æµªè€…",	0},
+	{"æ—…è¡Œè€…",	0},
+	{"æ”¾éŠè€…",	0},
+	{"éŠç‰§æ°‘",	0},
+	{"æµæµªè€…",	0},
+	{"å…ˆé§†è€…",	0}
   } },
   {					'E',0,	PM_ELF, {
 /*JP*/
@@ -162,29 +162,29 @@ struct class_ranks all_classes[] = {
 	{"Ernil",	"Elentariel"},	/* prince (S.), elf-maiden (Q.) */
 	{"Elentar",	"Elentari"}	/* Star-king, -queen (Q.) */
 #endif
-	{"¥¨¥ë¥Õ",	"¥¨¥ì¥¹"},
-	{"¥¨¥ë¥Õ",	"¥¨¥ì¥¹"},	/* elf-maid */
-	{"¥¨¥ë¥Õ¤ÎÀï»Î",	"¥¨¥ì¥¹¤Î½÷Àï»Î"},	/* warrior */
-	{"¥¨¥ë¥Õ¤Î»Ø´ø¼Ô",			/* commander (Q.) ['a] */
-			"¥¨¥ì¥¹¤Î»Ø´ø¼Ô"}, /* educated guess, until further research- SAC */
-	{"²¦¤Î½¾¼Ô",		  /* king's servant, minister (Q.) - guess */
-			"²¦¤Î»ø½÷"},	/* educated guess */
-	{"¥¨¥ë¥Õ¤Î·¯¼ç",	"¥¨¥ì¥¹¤ÎÉ±"},	/* lord, lady (S.) ['ir] */
-	{"¹âµ®¤Ê¥¨¥ë¥Õ",	"¹âµ®¤Ê¥¨¥ì¥¹"},	/* noble elf, maiden (S.) */
-	{"¥¨¥ë¥Õ¤Î²¦»Ò",	"¥¨¥ì¥¹¤Î²¦½÷"},	/* prince (S.), elf-maiden (Q.) */
-	{"À±¤Î²¦",	"À±¤ÎÈÞ"}	/* Star-king, -queen (Q.) */
+	{"ã‚¨ãƒ«ãƒ•",	"ã‚¨ãƒ¬ã‚¹"},
+	{"ã‚¨ãƒ«ãƒ•",	"ã‚¨ãƒ¬ã‚¹"},	/* elf-maid */
+	{"ã‚¨ãƒ«ãƒ•ã®æˆ¦å£«",	"ã‚¨ãƒ¬ã‚¹ã®å¥³æˆ¦å£«"},	/* warrior */
+	{"ã‚¨ãƒ«ãƒ•ã®æŒ‡æ®è€…",			/* commander (Q.) ['a] */
+			"ã‚¨ãƒ¬ã‚¹ã®æŒ‡æ®è€…"}, /* educated guess, until further research- SAC */
+	{"çŽ‹ã®å¾“è€…",		  /* king's servant, minister (Q.) - guess */
+			"çŽ‹ã®ä¾å¥³"},	/* educated guess */
+	{"ã‚¨ãƒ«ãƒ•ã®å›ä¸»",	"ã‚¨ãƒ¬ã‚¹ã®å§«"},	/* lord, lady (S.) ['ir] */
+	{"é«˜è²´ãªã‚¨ãƒ«ãƒ•",	"é«˜è²´ãªã‚¨ãƒ¬ã‚¹"},	/* noble elf, maiden (S.) */
+	{"ã‚¨ãƒ«ãƒ•ã®çŽ‹å­",	"ã‚¨ãƒ¬ã‚¹ã®çŽ‹å¥³"},	/* prince (S.), elf-maiden (Q.) */
+	{"æ˜Ÿã®çŽ‹",	"æ˜Ÿã®å¦ƒ"}	/* Star-king, -queen (Q.) */
   } },
 #ifdef FIGHTER
   {					'F',0,	PM_FIGHTER, {
-	{"¥Þ¡¼¥­¥å¥ê¡¼",	0},
-	{"¥Ó¡¼¥Ê¥¹",	0},
-	{"¥Þ¡¼¥º",	0},
-	{"¥¸¥å¥Ô¥¿¡¼",	0},
-	{"¥µ¥¿¡¼¥ó",	0},
-	{"¥¦¥é¥Ì¥¹",	0},
-	{"¥Í¥×¥Á¥å¡¼¥ó",	0},
-	{"¥×¥ë¡¼¥È",	0},
-	{"¥à¡¼¥ó",	0}
+	{"ãƒžãƒ¼ã‚­ãƒ¥ãƒªãƒ¼",	0},
+	{"ãƒ“ãƒ¼ãƒŠã‚¹",	0},
+	{"ãƒžãƒ¼ã‚º",	0},
+	{"ã‚¸ãƒ¥ãƒ”ã‚¿ãƒ¼",	0},
+	{"ã‚µã‚¿ãƒ¼ãƒ³",	0},
+	{"ã‚¦ãƒ©ãƒŒã‚¹",	0},
+	{"ãƒãƒ—ãƒãƒ¥ãƒ¼ãƒ³",	0},
+	{"ãƒ—ãƒ«ãƒ¼ãƒˆ",	0},
+	{"ãƒ ãƒ¼ãƒ³",	0}
   } },
 #endif
   {					'H',0,	PM_HEALER, {
@@ -200,15 +200,15 @@ struct class_ranks all_classes[] = {
 	{"Physician",	0},
 	{"Chirurgeon",	0}
 #endif
-	{"¸«½¬¤¤",      0},
-	{"°å»Õ¸«½¬¤¤",	0},
-	{"´Ç¸î»Õ",	"´Ç¸îÉØ"},
-	{"°å»Õ½õ¼ê",	0},
-	{"ÌôÊª¼çÇ¤",	0},
-	{"°å»Õ¼çÇ¤",	"´Ç¸î¼çÇ¤"},
-	{"´ÁÊý°å",	0},
-	{"Æâ²Ê°å",	0},
-	{"³°²Ê°å",	0}
+	{"è¦‹ç¿’ã„",      0},
+	{"åŒ»å¸«è¦‹ç¿’ã„",	0},
+	{"çœ‹è­·å¸«",	"çœ‹è­·å©¦"},
+	{"åŒ»å¸«åŠ©æ‰‹",	0},
+	{"è–¬ç‰©ä¸»ä»»",	0},
+	{"åŒ»å¸«ä¸»ä»»",	"çœ‹è­·ä¸»ä»»"},
+	{"æ¼¢æ–¹åŒ»",	0},
+	{"å†…ç§‘åŒ»",	0},
+	{"å¤–ç§‘åŒ»",	0}
   } },
   {					'K',0,	PM_KNIGHT, {
 /*JP*/
@@ -223,15 +223,15 @@ struct class_ranks all_classes[] = {
 	{"Seignieur",	0},
 	{"Paladin",	0}
 #endif
-	{"¸«½¬¤¤",	0},
-	{"ÊâÊ¼",	0},
-	{"Àï»Î",	"½÷Àï»Î"},
-	{"µ³Ê¼",	0},
-	{"½ÅÀï»Î",	0},
-	{"µ³»Î",	0},
-	{"½Åµ³»Î",	0},
-	{"·®µ³»Î",	0},
-	{"À»µ³»Î",	0}
+	{"è¦‹ç¿’ã„",	0},
+	{"æ­©å…µ",	0},
+	{"æˆ¦å£«",	"å¥³æˆ¦å£«"},
+	{"é¨Žå…µ",	0},
+	{"é‡æˆ¦å£«",	0},
+	{"é¨Žå£«",	0},
+	{"é‡é¨Žå£«",	0},
+	{"å‹²é¨Žå£«",	0},
+	{"è–é¨Žå£«",	0}
   } },
   {					'P',0,	PM_PRIEST, {
 /*JP*/
@@ -246,15 +246,15 @@ struct class_ranks all_classes[] = {
 	{"Patriarch",	"Matriarch"},
 	{"High Priest", "High Priestess"}
 #endif
-	{"½¤Æ»¼Ô",	"½¤Æ»½÷"},
-	{"»ø¼Ô",	0},
-	{"»øº×",	0},
-	{"ÁÎÎ·",	"ÆôÁÎ"},
-	{"½õÇ¤»Êº×",	0},
-	{"À»¼Ô",	"À»½÷"},
-	{"»Ê¶µ",	0},
-	{"Âç»Ê¶µ",	0},
-	{"ÂçÁÎ¾å",      0}
+	{"ä¿®é“è€…",	"ä¿®é“å¥³"},
+	{"ä¾è€…",	0},
+	{"ä¾ç¥­",	0},
+	{"åƒ§ä¾¶",	"å°¼åƒ§"},
+	{"åŠ©ä»»å¸ç¥­",	0},
+	{"è–è€…",	"è–å¥³"},
+	{"å¸æ•™",	0},
+	{"å¤§å¸æ•™",	0},
+	{"å¤§åƒ§ä¸Š",      0}
   } },
   {					'R',0,	PM_ROGUE, {
 /*JP*/
@@ -269,15 +269,15 @@ struct class_ranks all_classes[] = {
 	{"Magsman",	"Magswoman"},
 	{"Thief",	0}
 #endif
-	{"ÄÉ¤¤¤Ï¤®",	0},
-	{"¤Ò¤Ã¤¿¤¯¤ê",	0},
-	{"¥¹¥ê",	0},
-	{"¤´¤í¤Ä¤­",	0},
-	{"¤³¤½¤É¤í",	0},
-	{"¶õÁã",	0},
-	{"Å¥ËÀ",	"½÷Å¥ËÀ"},
-	{"¶¯Åð",	0},
-	{"ÂçÅ¥ËÀ",	0}
+	{"è¿½ã„ã¯ãŽ",	0},
+	{"ã²ã£ãŸãã‚Š",	0},
+	{"ã‚¹ãƒª",	0},
+	{"ã”ã‚ã¤ã",	0},
+	{"ã“ãã©ã‚",	0},
+	{"ç©ºå·£",	0},
+	{"æ³¥æ£’",	"å¥³æ³¥æ£’"},
+	{"å¼·ç›—",	0},
+	{"å¤§æ³¥æ£’",	0}
   } },
   {					'S',0,	PM_SAMURAI, {
 /*JP*/
@@ -292,15 +292,15 @@ struct class_ranks all_classes[] = {
 	{"Kuge",	0},  /* Noble of the Court */
 	{"Shogun",	0}   /* supreme commander, warlord */
 #endif
-	{"´úËÜ",	0},  /* Banner Knight */
-	{"Ï²¿Í",	0},  /* no allegiance */
-	{"Ç¦¼Ô",	"¤¯¥Î°ì"},  /* secret society */
-	{"¾ë¼ç",	0},  /* heads a castle */
-	{"ÎÎ¼ç",	0},  /* has a territory */
-	{"¹ñ¼ç",	0},  /* heads a province */
-	{"ÂçÌ¾",	"¹ø¸µ"},  /* a samurai lord */
-	{"¸ø²È",	0},  /* Noble of the Court */
-	{"¾­·³",	"Âç±ü"}   /* supreme commander, warlord */
+	{"æ——æœ¬",	0},  /* Banner Knight */
+	{"æµªäºº",	0},  /* no allegiance */
+	{"å¿è€…",	"ããƒŽä¸€"},  /* secret society */
+	{"åŸŽä¸»",	0},  /* heads a castle */
+	{"é ˜ä¸»",	0},  /* has a territory */
+	{"å›½ä¸»",	0},  /* heads a province */
+	{"å¤§å",	"è…°å…ƒ"},  /* a samurai lord */
+	{"å…¬å®¶",	0},  /* Noble of the Court */
+	{"å°†è»",	"å¤§å¥¥"}   /* supreme commander, warlord */
   } },
 #ifdef TOURIST
   {					'T',0,	PM_TOURIST, {
@@ -316,15 +316,15 @@ struct class_ranks all_classes[] = {
 	{"Explorer",	0},
 	{"Adventurer",	0}
 #endif
-	{"¥×¡¼ÂÀÏº",	"¥×¡¼»Ò"},
-	{"´Ñ¸÷µÒ",	0},
-	{"¼þÍ·Î¹¹Ô¼Ô",  0},
-	{"Ê×Îò¼Ô",      0},
-	{"Î¹¹Ô¼Ô",	0},
-	{"Î¹¿Í",	0},
-	{"¹Ò³¤¼Ô",	0},
-	{"Ãµ¸¡²È",	0},
-	{"ËÁ¸±¼Ô",	0}
+	{"ãƒ—ãƒ¼å¤ªéƒŽ",	"ãƒ—ãƒ¼å­"},
+	{"è¦³å…‰å®¢",	0},
+	{"å‘¨éŠæ—…è¡Œè€…",  0},
+	{"éæ­´è€…",      0},
+	{"æ—…è¡Œè€…",	0},
+	{"æ—…äºº",	0},
+	{"èˆªæµ·è€…",	0},
+	{"æŽ¢æ¤œå®¶",	0},
+	{"å†’é™ºè€…",	0}
   } },
 #endif
   {					'V',0,	PM_VALKYRIE, {
@@ -339,15 +339,15 @@ struct class_ranks all_classes[] = {
 	{"Champion",	0},
 	{"Lord",	"Lady"}
 #endif
-	{"¸«½¬¤¤",	0},
-	{"ÊâÊ¼",	0},
-	{"Àï»Î",	"½÷Àï»Î"},
-	{"µ³Ê¼",      "½÷½Åµ³Ê¼"},
-	{"ÀïÆ®Ê¼",	0},
-	{"¹¶·âÊ¼",      0},
-	{"±ÑÍº",	0},
-	{"Æ®»Î",	"½÷Æ®»Î"},
-	{"Çì¼ß",	"½÷Çì¼ß"}
+	{"è¦‹ç¿’ã„",	0},
+	{"æ­©å…µ",	0},
+	{"æˆ¦å£«",	"å¥³æˆ¦å£«"},
+	{"é¨Žå…µ",      "å¥³é‡é¨Žå…µ"},
+	{"æˆ¦é—˜å…µ",	0},
+	{"æ”»æ’ƒå…µ",      0},
+	{"è‹±é›„",	0},
+	{"é—˜å£«",	"å¥³é—˜å£«"},
+	{"ä¼¯çˆµ",	"å¥³ä¼¯çˆµ"}
   } },
   {					'W',0,	PM_WIZARD, {
 /*JP*/
@@ -362,15 +362,15 @@ struct class_ranks all_classes[] = {
 	{"Wizard",	0},
 	{"Mage",	0}
 #endif
-	{"¼êÉÊ»Õ",	0},
-	{"´ñ½Ñ»Õ",	0},
-	{"Àê¤¤»Õ",	0},
-	{"Îî´¶»Õ",	0},
-	{"¾¤´­»Õ",	0},
-	{"ÍÅ½Ñ»Õ",      0},
-        {"Ëâ½Ñ»Õ",      0},
-	{"ËâË¡»È¤¤",	"Ëâ½÷"},
-	{"ÂçËâË¡»È¤¤",	0}
+	{"æ‰‹å“å¸«",	0},
+	{"å¥‡è¡“å¸«",	0},
+	{"å ã„å¸«",	0},
+	{"éœŠæ„Ÿå¸«",	0},
+	{"å¬å–šå¸«",	0},
+	{"å¦–è¡“å¸«",      0},
+        {"é­”è¡“å¸«",      0},
+	{"é­”æ³•ä½¿ã„",	"é­”å¥³"},
+	{"å¤§é­”æ³•ä½¿ã„",	0}
   } },
 };
 
@@ -556,28 +556,28 @@ bot1()
 	if (ACURR(A_STR) > 18) {
 		if (ACURR(A_STR) > 118)
 /*JP		    Sprintf(nb = eos(nb),"St:%2d ",ACURR(A_STR)-100);*/
-		    Sprintf(nb = eos(nb),"¶¯:%2d ",ACURR(A_STR)-100);
+		    Sprintf(nb = eos(nb),"å¼·:%2d ",ACURR(A_STR)-100);
 		else if (ACURR(A_STR) < 118)
 /*JP		    Sprintf(nb = eos(nb), "St:18/%02d ",ACURR(A_STR)-18);*/
-		    Sprintf(nb = eos(nb), "¶¯:18/%02d ",ACURR(A_STR)-18);
+		    Sprintf(nb = eos(nb), "å¼·:18/%02d ",ACURR(A_STR)-18);
 		else
 /*JP		    Sprintf(nb = eos(nb),"St:18/ ** ");*/
-		    Sprintf(nb = eos(nb),"¶¯:18/** ");
+		    Sprintf(nb = eos(nb),"å¼·:18/** ");
 	} else
 /*JP		Sprintf(nb = eos(nb), "St:%-1d ",ACURR(A_STR));*/
-		Sprintf(nb = eos(nb), "¶¯:%-1d ",ACURR(A_STR));
+		Sprintf(nb = eos(nb), "å¼·:%-1d ",ACURR(A_STR));
 	Sprintf(nb = eos(nb),
 /*JP		"Dx:%-1d Co:%-1d In:%-1d Wi:%-1d Ch:%-1d",*/
-		"Áá:%-1d ÂÑ:%-1d ÃÎ:%-1d ¸­:%-1d Ì¥:%-1d",
+		"æ—©:%-1d è€:%-1d çŸ¥:%-1d è³¢:%-1d é­…:%-1d",
 		ACURR(A_DEX), ACURR(A_CON), ACURR(A_INT), ACURR(A_WIS), ACURR(A_CHA));
 /*JP	Sprintf(nb = eos(nb), (u.ualign.type == A_CHAOTIC) ? "  Chaotic" :
 			(u.ualign.type == A_NEUTRAL) ? "  Neutral" : "  Lawful");*/
-	Sprintf(nb = eos(nb), (u.ualign.type == A_CHAOTIC) ? "  º®ÆÙ" :
-			(u.ualign.type == A_NEUTRAL) ? "  ÃæÎ©" : "  Ãá½ø");
+	Sprintf(nb = eos(nb), (u.ualign.type == A_CHAOTIC) ? "  æ··æ²Œ" :
+			(u.ualign.type == A_NEUTRAL) ? "  ä¸­ç«‹" : "  ç§©åº");
 #ifdef SCORE_ON_BOTL
 	if (flags.showscore)
 /*JP	    Sprintf(nb = eos(nb), " S:%ld", botl_score());*/
-	    Sprintf(nb = eos(nb), " ÅÀ:%ld", botl_score());
+	    Sprintf(nb = eos(nb), " ç‚¹:%ld", botl_score());
 #endif
 	curs(WIN_STATUS, 1, 0);
 	putstr(WIN_STATUS, 0, newbot1);
@@ -605,23 +605,23 @@ bot2()
 /*JP
 		Sprintf(newbot2, "Home %d ", dunlev(&u.uz));
 */
-		Sprintf(newbot2, "¸Î¶¿ %d ", dunlev(&u.uz));
+		Sprintf(newbot2, "æ•…éƒ· %d ", dunlev(&u.uz));
 	else if (In_endgame(&u.uz))
 		Sprintf(newbot2,
 /*JP
 			Is_astralevel(&u.uz) ? "Astral Plane " : "End Game ");
 */
-			Is_astralevel(&u.uz) ? "ÀºÎî³¦ " : "ºÇ½ª»îÎý ");
+			Is_astralevel(&u.uz) ? "ç²¾éœŠç•Œ " : "æœ€çµ‚è©¦ç·´ ");
 	else
 /*JP
 		Sprintf(newbot2, "Dlvl:%-2d ", depth(&u.uz));
 */
-		Sprintf(newbot2, "ÃÏ²¼:%-2d ", depth(&u.uz));
+		Sprintf(newbot2, "åœ°ä¸‹:%-2d ", depth(&u.uz));
 	Sprintf(nb = eos(newbot2),
 /*JP
 		"%c:%-2ld HP:%d(%d) Pw:%d(%d) AC:%-2d", oc_syms[GOLD_CLASS],
 */
-		"%c:%-2ld ÂÎ:%d(%d) Ëâ:%d(%d) ³»:%-2d", oc_syms[GOLD_CLASS],
+		"%c:%-2ld ä½“:%d(%d) é­”:%d(%d) éŽ§:%-2d", oc_syms[GOLD_CLASS],
 		u.ugold, hp, hpmax, u.uen, u.uenmax, u.uac);
 
 	if (Upolyd)
@@ -631,19 +631,19 @@ bot2()
 /*JP
 		Sprintf(nb = eos(nb), " Xp:%u/%-1ld", u.ulevel,u.uexp);
 */
-		Sprintf(nb = eos(nb), " ·Ð¸³:%u/%-1ld", u.ulevel,u.uexp);
+		Sprintf(nb = eos(nb), " çµŒé¨“:%u/%-1ld", u.ulevel,u.uexp);
 #endif
 	else
 /*JP
 		Sprintf(nb = eos(nb), " Exp:%u", u.ulevel);
 */
-		Sprintf(nb = eos(nb), " ·Ð¸³:%u", u.ulevel);
+		Sprintf(nb = eos(nb), " çµŒé¨“:%u", u.ulevel);
 
 	if(flags.time)
 /*JP
 	    Sprintf(nb = eos(nb), " T:%ld", moves);
 */
-	    Sprintf(nb = eos(nb), " Êâ:%ld", moves);
+	    Sprintf(nb = eos(nb), " æ­©:%ld", moves);
 	if(strcmp(hu_stat[u.uhs], "        ")) {
 		Sprintf(nb = eos(nb), " ");
 		Strcat(newbot2, hu_stat[u.uhs]);
@@ -660,18 +660,18 @@ bot2()
 	if(Stunned)	   Sprintf(nb = eos(nb), " Stun");
 	if(Hallucination)  Sprintf(nb = eos(nb), " Hallu");
 #endif
-	if(Confusion)	   Sprintf(nb = eos(nb), " º®Íð");
+	if(Confusion)	   Sprintf(nb = eos(nb), " æ··ä¹±");
 	if(Sick) {
 		if (u.usick_type & SICK_VOMITABLE)
-			   Sprintf(nb = eos(nb), " ¿©ÆÇ");
+			   Sprintf(nb = eos(nb), " é£Ÿæ¯’");
 		if (u.usick_type & SICK_NONVOMITABLE)
-			   Sprintf(nb = eos(nb), " ÉÂµ¤");
+			   Sprintf(nb = eos(nb), " ç—…æ°—");
 	}
-	if(Blind)	   Sprintf(nb = eos(nb), " ÌÕÌÜ");
-	if(Stunned)	   Sprintf(nb = eos(nb), " âÁÚô");
-	if(Hallucination)  Sprintf(nb = eos(nb), " ¸¸³Ð");
+	if(Blind)	   Sprintf(nb = eos(nb), " ç›²ç›®");
+	if(Stunned)	   Sprintf(nb = eos(nb), " çœ©æšˆ");
+	if(Hallucination)  Sprintf(nb = eos(nb), " å¹»è¦š");
 #ifdef JPEXTENSION
-	if(Totter)	   Sprintf(nb = eos(nb), " ÀéÄ»Â­");
+	if(Totter)	   Sprintf(nb = eos(nb), " åƒé³¥è¶³");
 #endif
 	if(cap > UNENCUMBERED)
 		Sprintf(nb = eos(nb), " %s", enc_stat[cap]);

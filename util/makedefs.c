@@ -869,7 +869,7 @@ do_options(void)
 /* internal kcode */
 /* IC=0 EUC */
 /* IC=1 SJIS */
-#define IC ((unsigned char)("´Á"[0])==0x8a)
+#define IC ((unsigned char)("æ¼¢"[0])==0x8a)
 
 	Fprintf(ofp,"\n\nInternal Kanji Code:\n\n");
 	Fprintf(ofp,"%s%s\n", indent, IC ? "SJIS" : "EUC");
@@ -1048,15 +1048,15 @@ static const char *special_oracle[] = {
 	"currently available will not suffice for proving that P != NP or          ",
 	"that P == NP.\"  [Garey and Johnson, p. 185.]"
 */
-	"¡Ö¼¡¤ÎÄêÍı[Baker, Gill, and Solovay, 1975]¤ËÄ¾ÌÌ¤¹¤ë¤³¤È¤Ï",
-	"¤à¤·¤íº¤ÏÇ¤¹¤ë¤³¤È¤Ç¤¢¤ë¡¥",
+	"ã€Œæ¬¡ã®å®šç†[Baker, Gill, and Solovay, 1975]ã«ç›´é¢ã™ã‚‹ã“ã¨ã¯",
+	"ã‚€ã—ã‚å›°æƒ‘ã™ã‚‹ã“ã¨ã§ã‚ã‚‹ï¼",
 	"",
-	"ÄêÍı 7.18 ¼¡¤Î¤è¤¦¤ÊºÆµ¢Åª¸À¸ì A¡¤B¤¬Â¸ºß¤¹¤ë",
-	"  (1)  P(A) == NP(A)¡¤¤«¤Ä",
+	"å®šç† 7.18 æ¬¡ã®ã‚ˆã†ãªå†å¸°çš„è¨€èª Aï¼ŒBãŒå­˜åœ¨ã™ã‚‹",
+	"  (1)  P(A) == NP(A)ï¼Œã‹ã¤",
 	"  (2)  P(B) != NP(B)",
 	"",
-	"¤³¤ì¤Ï¸½ºß P != NP¤Ç¤¢¤ë¤«¤Ş¤¿¤Ï P == NP¤Ç¤¢¤ë¤«¤ò¾ÚÌÀ¤¹¤ë",
-        "Í­¸ú¤Ê¼êË¡¤¬¤Ê¤¤¤³¤È¤ò¶¯¤¯¼¨¤·¤Æ¤¤¤ë¡¥¡×",
+	"ã“ã‚Œã¯ç¾åœ¨ P != NPã§ã‚ã‚‹ã‹ã¾ãŸã¯ P == NPã§ã‚ã‚‹ã‹ã‚’è¨¼æ˜ã™ã‚‹",
+        "æœ‰åŠ¹ãªæ‰‹æ³•ãŒãªã„ã“ã¨ã‚’å¼·ãç¤ºã—ã¦ã„ã‚‹ï¼ã€",
         "[Garey and Johnson, p. 185.]"
 };
 

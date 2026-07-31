@@ -304,33 +304,33 @@ static struct X_status_value shown_stats[NUM_STATS] = {
     { "Hallucinating",	SV_NAME,  (Widget) 0,  0, 0, FALSE, TRUE },
     { "",		SV_NAME,  (Widget) 0,  0, 0, FALSE, TRUE }, /*encumbr*/
 #endif
-    { "∂Ø§µ",	SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },	/* 0*/
-    { "¡«¡·§µ",	SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },
-    { "¬—µ◊Œœ",	SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },
-    { "√ŒŒœ",	SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },
-    { "∏≠§µ",	SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },
-    { "Ã•Œœ",	SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },	/* 5*/
+    { "Âº∑„Åï",	SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },	/* 0*/
+    { "Á¥†Êó©„Åï",	SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },
+    { "ËÄê‰πÖÂäõ",	SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },
+    { "Áü•Âäõ",	SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },
+    { "Ë≥¢„Åï",	SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },
+    { "È≠ÖÂäõ",	SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },	/* 5*/
 
     { "",		SV_LABEL, (Widget) 0, -1, 0, FALSE, FALSE }, /* name */
     { "",		SV_LABEL, (Widget) 0, -1, 0, FALSE, FALSE }, /* dlvl */
-    { "∂‚",		SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },
-    { "¬ŒŒœ",		SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },
-    { "∫«¬Á¬ŒŒœ",	SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },	/*10*/
-    { "À‚Œœ",		SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },
-    { "∫«¬ÁÀ‚Œœ",	SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },
-    { "≥ª",		SV_VALUE, (Widget) 0,256, 0, FALSE, FALSE },
-    { "•Ï•Ÿ•Î",		SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },
-    { "∑–∏≥",		SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },	/*15*/
-    { "¬∞¿≠",		SV_VALUE, (Widget) 0, -2, 0, FALSE, FALSE },
-    { "ª˛¥÷",		SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },
-    { "•π•≥•¢",		SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },
+    { "Èáë",		SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },
+    { "‰ΩìÂäõ",		SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },
+    { "ÊúÄÂ§ß‰ΩìÂäõ",	SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },	/*10*/
+    { "È≠îÂäõ",		SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },
+    { "ÊúÄÂ§ßÈ≠îÂäõ",	SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },
+    { "Èéß",		SV_VALUE, (Widget) 0,256, 0, FALSE, FALSE },
+    { "„É¨„Éô„É´",		SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },
+    { "ÁµåÈ®ì",		SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },	/*15*/
+    { "Â±ûÊÄß",		SV_VALUE, (Widget) 0, -2, 0, FALSE, FALSE },
+    { "ÊôÇÈñì",		SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },
+    { "„Çπ„Ç≥„Ç¢",		SV_VALUE, (Widget) 0, -1, 0, FALSE, FALSE },
 
     { "",		SV_NAME,  (Widget) 0, -1, 0, FALSE, TRUE }, /* hunger*/
-    { "°°∫ÆÕ°°",	SV_NAME,  (Widget) 0,  0, 0, FALSE, TRUE },	/*20*/
-    { "°°…¬µ§°°",	SV_NAME,  (Widget) 0,  0, 0, FALSE, TRUE },
-    { "°°Ã’Ã‹°°",	SV_NAME,  (Widget) 0,  0, 0, FALSE, TRUE },
-    { "  ‚¡⁄Ù  ",	SV_NAME,  (Widget) 0,  0, 0, FALSE, TRUE },
-    { "°°∏∏≥–°°",	SV_NAME,  (Widget) 0,  0, 0, FALSE, TRUE },
+    { "„ÄÄÊ∑∑‰π±„ÄÄ",	SV_NAME,  (Widget) 0,  0, 0, FALSE, TRUE },	/*20*/
+    { "„ÄÄÁóÖÊ∞ó„ÄÄ",	SV_NAME,  (Widget) 0,  0, 0, FALSE, TRUE },
+    { "„ÄÄÁõ≤ÁõÆ„ÄÄ",	SV_NAME,  (Widget) 0,  0, 0, FALSE, TRUE },
+    { "  Áú©Êöà  ",	SV_NAME,  (Widget) 0,  0, 0, FALSE, TRUE },
+    { "„ÄÄÂπªË¶ö„ÄÄ",	SV_NAME,  (Widget) 0,  0, 0, FALSE, TRUE },
     { "",		SV_NAME,  (Widget) 0,  0, 0, FALSE, TRUE }, /*encumbr*/
 };
 
@@ -420,12 +420,12 @@ update_val(attr_rec, new_value)
 	} else if (attr_rec == &shown_stats[F_DLEVEL]) {
 	    if (In_endgame(&u.uz)) {
 /*JP		Strcpy(buf, (Is_astralevel(&u.uz) ? "Astral Plane":"End Game"));*/
-		Strcpy(buf, (Is_astralevel(&u.uz) ? "¿∫ŒÓ≥¶":"∫«Ω™ªÓŒ˝"));
+		Strcpy(buf, (Is_astralevel(&u.uz) ? "Á≤æÈúäÁïå":"ÊúÄÁµÇË©¶Á∑¥"));
 	    } else {
 /*JP		Strcpy(buf, dungeons[u.uz.dnum].dname);*/
 		Strcpy(buf, jtrns_obj('d',dungeons[u.uz.dnum].dname));
 /*JP		Sprintf(eos(buf), ", level %d", depth(&u.uz));*/
-		Sprintf(eos(buf), " √œ≤º%d≥¨", depth(&u.uz));
+		Sprintf(eos(buf), " Âú∞‰∏ã%dÈöé", depth(&u.uz));
 	    }
 	} else {
 	    impossible("update_val: unknown label type \"%s\"",
@@ -456,12 +456,12 @@ update_val(attr_rec, new_value)
 	    if (Sick) {
 		if (u.usick_type & SICK_VOMITABLE)
 /*JP		    Strcat(buf, "FoodPois");*/
-		    Strcat(buf, "ø©∆«");
+		    Strcat(buf, "È£üÊØí");
 		if (u.usick_type & SICK_NONVOMITABLE) {
 		    if (u.usick_type & SICK_VOMITABLE)
 			Strcat(buf, " ");
 /*JP		    Strcat(buf, "Ill");*/
-		    Strcat(buf, "…¬µ§");
+		    Strcat(buf, "ÁóÖÊ∞ó");
 		}
 	    }
 	    XtSetArg(args[0], XtNlabel, buf);
@@ -592,9 +592,9 @@ update_val(attr_rec, new_value)
 /*JP	    Strcpy(buf, (new_value == A_CHAOTIC) ? "Chaotic" :
 			(new_value == A_NEUTRAL) ? "Neutral" :
 						   "Lawful"  );*/
-	    Strcpy(buf, (new_value == A_CHAOTIC) ? "∫Æ∆Ÿ" :
-			(new_value == A_NEUTRAL) ? "√ÊŒ©" :
-						   "√·Ω¯"  );
+	    Strcpy(buf, (new_value == A_CHAOTIC) ? "Ê∑∑Ê≤å" :
+			(new_value == A_NEUTRAL) ? "‰∏≠Á´ã" :
+						   "Áß©Â∫è"  );
 	} else {
 	    Sprintf(buf, "%ld", new_value);
 	}

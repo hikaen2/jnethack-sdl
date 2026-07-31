@@ -457,7 +457,7 @@ static NEARDATA const char *trap_engravings[TRAPNUM] = {
 			(char *)0, (char *)0, (char *)0, (char *)0,
 			/* 14..16: trapdoor, teleport, level-teleport */
 /*JP			"Vlad was here", "ad aerarium", "ad aerarium",*/
-			"¥ô¥é¥É¤Ï¤³¤³¤Ë¤¤¤ë", "ad aerarium", "ad aerarium",
+			"ãƒ´ãƒ©ãƒ‰ã¯ã“ã“ã«ã„ã‚‹", "ad aerarium", "ad aerarium",
 			(char *)0, (char *)0, (char *)0, (char *)0, (char *)0,
 			(char *)0,
 };
@@ -1373,8 +1373,8 @@ mkinvokearea()
     pline_The("floor shakes violently under you!");
     pline_The("walls around you begin to bend and crumble!");
 */
-    pline("¤¢¤Ê¤¿¤Î²¼¤Î¾²¤¬ÆÍÁ³ÍÉ¤ì¤¿¡ª");
-    pline("¤½¤·¤Æ¤Ş¤ï¤ê¤ÎÊÉ¤¬¤Í¤¸¤ì¡¤ºÕ¤±¤¿¡ª");
+    pline("ã‚ãªãŸã®ä¸‹ã®åºŠãŒçªç„¶æºã‚ŒãŸï¼");
+    pline("ãã—ã¦ã¾ã‚ã‚Šã®å£ãŒã­ã˜ã‚Œï¼Œç •ã‘ãŸï¼");
 
     display_nhwindow(WIN_MESSAGE, TRUE);
 
@@ -1403,7 +1403,7 @@ mkinvokearea()
     }
 
 /*JP    You("are standing at the top of a stairwell leading down!");*/
-    You("²¼¤ËÂ³¤¯¿á¤­È´¤±³¬ÃÊ¤Î¾å¤ËÎ©¤Ã¤Æ¤¤¤ë¡ª");
+    You("ä¸‹ã«ç¶šãå¹ãæŠœã‘éšæ®µã®ä¸Šã«ç«‹ã£ã¦ã„ã‚‹ï¼");
     mkstairs(u.ux, u.uy, 0, (struct mkroom *)0); /* down */
     newsym(u.ux, u.uy);
     vision_full_recalc = 1;	/* everything changed */

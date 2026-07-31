@@ -354,7 +354,7 @@ XtPointer	data;
 			   DefaultVisual(dpy, screen),
 			   AllocNone);
     /*
-      ¼êÈ´¤­
+      æ‰‹æŠœã
      */
     black.red = 0;
     black.green = 0;
@@ -962,7 +962,7 @@ static XtResource resources[] = {
       XtOffset(AppResources *,tombtext_dx), XtRString, "0" },
     { "tombtext_dy", "Tombtext_dy", XtRInt, sizeof(int),
       XtOffset(AppResources *,tombtext_dy), XtRString, "13" },
-#ifdef RADAR	/* µ¡Ç½¤·¤Æ¤Ş¤»¤ó */
+#ifdef RADAR	/* æ©Ÿèƒ½ã—ã¦ã¾ã›ã‚“ */
     { "radar", "Radar", XtRBoolean, sizeof(Boolean),
       XtOffset(AppResources *, radar), XtRString, "True" },
 #endif
@@ -982,7 +982,7 @@ char** argv;
 	COPYRIGHT_BANNER_C,
 	"",
 /*JP*/
-	"NetHack[ÆüËÜ¸ìÈÇ], Copyright 1993, 1994",
+	"NetHack[æ—¥æœ¬èªç‰ˆ], Copyright 1993, 1994",
 	"         By I. Numata , S. Miyashita and N. Hamada.",
 	"",
 	0

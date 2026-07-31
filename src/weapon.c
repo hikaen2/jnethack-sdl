@@ -44,7 +44,7 @@ STATIC_OVL NEARDATA const char *odd_skill_names[] = {
 
 static NEARDATA const char may_advance_msg[] =
 /*JP				"feel more confident in your fighting skills.";*/
-				"Àï¤¤¤Îµ»ÎÌ¤ò¹â¤á¤ë¼«¿®¤¬Í¯¤¤¤Æ¤­¤¿¡¥";
+				"æˆ¦ã„ã®æŠ€é‡ã‚’é«˜ã‚ã‚‹è‡ªä¿¡ãŒæ¹§ã„ã¦ããŸï¼";
 
 #endif	/* OVLB */
 
@@ -441,7 +441,7 @@ register struct monst *mon;
 		stackobj(obj);
 		if (cansee(mon->mx, mon->my)) {
 /*JP			pline("%s drops %s.", Monnam(mon),*/
-			pline("%s¤Ï%s¤òÃÖ¤¤¤¿¡¥", Monnam(mon),
+			pline("%sã¯%sã‚’ç½®ã„ãŸï¼", Monnam(mon),
 				distant_name(obj, doname));
 			newsym(mon->mx, mon->my);
 		}
@@ -509,25 +509,25 @@ register struct monst *mon;
 				(mw_tmp->quan == 1L) ? "is" : "are",
 				his[pronoun_gender(mon)],
 				objects[mw_tmp->otyp].oc_bimanual ? "s" : "");*/
-			Sprintf(welded_buf, "¼ê¤Ë");
+			Sprintf(welded_buf, "æ‰‹ã«");
 
 			if (obj->otyp == PICK_AXE) {
 /*JP			    pline("Since %s weapon%s %s,",
 				  s_suffix(mon_nam(mon)),
 				  plur(mw_tmp->quan), welded_buf);*/
-			    pline("%s¤ÏÉğ´ï¤ò%s¤·¤è¤¦¤È¤·¤¿¤¬¡¤",
+			    pline("%sã¯æ­¦å™¨ã‚’%sã—ã‚ˆã†ã¨ã—ãŸãŒï¼Œ",
 				  mon_nam(mon), welded_buf);
 /*JP			    pline("%s cannot wield that %s.",*/
-			    pline("%s¤Ï%s¤òÁõÈ÷¤Ç¤­¤Ê¤«¤Ã¤¿¡¥",
+			    pline("%sã¯%sã‚’è£…å‚™ã§ããªã‹ã£ãŸï¼",
 				mon_nam(mon), xname(obj));
 			} else {
 /*JP			    pline("%s tries to wield %s.", Monnam(mon),*/
-			    pline("%s¤Ï%s¤òÁõÈ÷¤·¤è¤¦¤È¤·¤¿¡¥", Monnam(mon),
+			    pline("%sã¯%sã‚’è£…å‚™ã—ã‚ˆã†ã¨ã—ãŸï¼", Monnam(mon),
 				doname(obj));
 /*JP			    pline("%s %s %s!",
 				  s_suffix(Monnam(mon)),
 				  xname(mw_tmp), welded_buf);*/
-			    pline("%s¤Ï%s¤ò%s¤·¤¿¡ª",
+			    pline("%sã¯%sã‚’%sã—ãŸï¼",
 				  Monnam(mon),
 				  xname(mw_tmp), welded_buf);
 			}
@@ -541,14 +541,14 @@ register struct monst *mon;
 		mon->weapon_check = NEED_WEAPON;
 		if (canseemon(mon)) {
 /*JP			pline("%s wields %s!", Monnam(mon), doname(obj));*/
-			pline("%s¤Ï%s¤òÁõÈ÷¤·¤¿¡ª", Monnam(mon), doname(obj));
+			pline("%sã¯%sã‚’è£…å‚™ã—ãŸï¼", Monnam(mon), doname(obj));
 			if (obj->cursed && obj->otyp != CORPSE) {
 /*JP				pline("%s %s to %s hand!",
 					The(xname(obj)),
 					(obj->quan == 1L) ? "welds itself"
 					    : "weld themselves",
 					s_suffix(mon_nam(mon)));*/
-				pline("%s¤Ï¾¡¼ê¤Ë%s¤Î¼ê¤ËÁõÈ÷¤µ¤ì¤¿¡ª",
+				pline("%sã¯å‹æ‰‹ã«%sã®æ‰‹ã«è£…å‚™ã•ã‚ŒãŸï¼",
 					The(xname(obj)),
 					mon_nam(mon));
 				obj->bknown = 1;
@@ -627,14 +627,14 @@ char *buf;
 	case P_GRAND_MASTER: ptr = "Grand Master"; break;
 	default:	     ptr = "Unknown";	break;
 #endif
-	case P_UNSKILLED:    ptr = "½é¿´¼Ô"; break;
-	case P_BASIC:	     ptr = "ÆşÌç¼Ô";     break;
-	case P_SKILLED:	     ptr = "½ÏÎı¼Ô";   break;
-	case P_EXPERT:	     ptr = "¥¨¥­¥¹¥Ñ¡¼¥È";    break;
+	case P_UNSKILLED:    ptr = "åˆå¿ƒè€…"; break;
+	case P_BASIC:	     ptr = "å…¥é–€è€…";     break;
+	case P_SKILLED:	     ptr = "ç†Ÿç·´è€…";   break;
+	case P_EXPERT:	     ptr = "ã‚¨ã‚­ã‚¹ãƒ‘ãƒ¼ãƒˆ";    break;
 	/* these are for unarmed combat/martial arts only */
-	case P_MASTER:	     ptr = "¥Ş¥¹¥¿¡¼";    break;
-	case P_GRAND_MASTER: ptr = "¥°¥é¥ó¥É¥Ş¥¹¥¿¡¼"; break;
-	default:	     ptr = "ÉÔÌÀ";	break;
+	case P_MASTER:	     ptr = "ãƒã‚¹ã‚¿ãƒ¼";    break;
+	case P_GRAND_MASTER: ptr = "ã‚°ãƒ©ãƒ³ãƒ‰ãƒã‚¹ã‚¿ãƒ¼"; break;
+	default:	     ptr = "ä¸æ˜";	break;
     }
     Strcpy(buf, ptr);
     return buf;
@@ -691,9 +691,9 @@ int skill;
     	P_SKILL(skill) >= P_MAX_SKILL(skill) ? "most" : "more",
     	P_NAME(skill));
 */
-    Your("%s¤Îµ»ÎÌ¤ò%s¹â¤á¤¿¡¥", 
+    Your("%sã®æŠ€é‡ã‚’%sé«˜ã‚ãŸï¼", 
     	jtrns_obj(')', P_NAME(skill)),
-	P_SKILL(skill) >= P_MAX_SKILL(skill) ? "ºÇ¹â¤Ë" : "¤µ¤é¤Ë");
+	P_SKILL(skill) >= P_MAX_SKILL(skill) ? "æœ€é«˜ã«" : "ã•ã‚‰ã«");
 }
 
 /*
@@ -753,7 +753,7 @@ enhance_weapon_skill()
 /*JP
     Strcpy(buf, to_advance ? "Pick a skill to advance:" : "Current skills:");
 */
-    Strcpy(buf, to_advance ? "µ»ÎÌ¤ò¹â¤á¤ëÉğ´ï¤òÁªÂò¤·¤Æ¤¯¤À¤µ¤¤¡§" : "¸½ºß¤Îµ»ÎÌ¡§");
+    Strcpy(buf, to_advance ? "æŠ€é‡ã‚’é«˜ã‚ã‚‹æ­¦å™¨ã‚’é¸æŠã—ã¦ãã ã•ã„ï¼š" : "ç¾åœ¨ã®æŠ€é‡ï¼š");
 #ifdef WIZARD
     if (wizard) Sprintf(eos(buf), "  (%d slot%s available)",
 			u.weapon_slots, plur(u.weapon_slots));
@@ -769,7 +769,7 @@ enhance_weapon_skill()
 	for (i = 0; i < P_NUM_SKILLS; i++) {
 	    if (can_advance(i)) {
 /*JP		You("feel you could be more dangerous!");*/
-		You("¤µ¤é¤Ëµ»ÎÌ¤ò¹â¤á¤ë¤³¤È¤¬¤Ç¤­¤½¤¦¤Êµ¤¤¬¤·¤¿¡ª");
+		You("ã•ã‚‰ã«æŠ€é‡ã‚’é«˜ã‚ã‚‹ã“ã¨ãŒã§ããã†ãªæ°—ãŒã—ãŸï¼");
 		break;
 	    }
 	}

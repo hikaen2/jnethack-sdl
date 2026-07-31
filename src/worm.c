@@ -376,7 +376,7 @@ cutworm(worm, x, y, weap)
     /* Sometimes the tail end dies. */
     if (rn2(3) || !(new_wnum = get_wormno())) {
 /*JP	You("cut part of the tail off of %s.", mon_nam(worm));*/
-	You("%s¤Î¿¬Èø¤Î°ìÉôÊ¬¤òÀÚ¤Ã¤¿¡¥", mon_nam(worm));
+	You("%sã®å°»å°¾ã®ä¸€éƒ¨åˆ†ã‚’åˆ‡ã£ãŸï¼", mon_nam(worm));
 	toss_wsegs(new_tail, TRUE);
 	if (worm->mhp > 1) worm->mhp /= 2;
 	return;
@@ -434,7 +434,7 @@ cutworm(worm, x, y, weap)
 #endif
 
 /*JP    You("cut %s in half.", mon_nam(worm));*/
-    You("%s¤ò¿¿¤Ã¤×¤¿¤Ä¤Ë¤·¤¿¡¥", mon_nam(worm));
+    You("%sã‚’çœŸã£ã·ãŸã¤ã«ã—ãŸï¼", mon_nam(worm));
 }
 
 

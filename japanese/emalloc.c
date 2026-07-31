@@ -23,7 +23,7 @@ extern	void _movepause(void);
 extern	void _moveresume(void);
 #endif
 
-/* Àµµ¬²½¤µ¤ì¤¿¥İ¥¤¥ó¥¿¤òºîÀ®¤¹¤ë */
+/* æ­£è¦åŒ–ã•ã‚ŒãŸãƒã‚¤ãƒ³ã‚¿ã‚’ä½œæˆã™ã‚‹ */
 static	void *mk_fp(unsigned int seg, unsigned int off)
 {
 	unsigned long temp;
@@ -32,7 +32,7 @@ static	void *mk_fp(unsigned int seg, unsigned int off)
 	return (void *)(((temp & 0xffff0L) << 12) + (temp & 0x0000fL));
 }
 
-/* ¥×¥í¥°¥é¥à½ªÎ»»ş¤Ë¸Æ¤Ğ¤ì¡¢EMS ¤ò³«Êü¤¹¤ë */
+/* ãƒ—ãƒ­ã‚°ãƒ©ãƒ çµ‚äº†æ™‚ã«å‘¼ã°ã‚Œã€EMS ã‚’é–‹æ”¾ã™ã‚‹ */
 void	done_ems(void)
 {
 	union REGS inregs, outregs;
@@ -45,67 +45,67 @@ void	done_ems(void)
 	inregs.x.bx = 0xffff;
 	for (i = 0; i < 4; i++)
 	{
-		/* ¥Ú¡¼¥¸¤ò¥¢¥ó¥Ş¥Ã¥×¤¹¤ë */
+		/* ãƒšãƒ¼ã‚¸ã‚’ã‚¢ãƒ³ãƒãƒƒãƒ—ã™ã‚‹ */
 		inregs.h.al = i;
 		int86(EMS_VECT, &inregs, &outregs);
 		if (outregs.h.ah != 0) fprintf(stderr,
-			"·Ù¹ğ: EMS ¤ò¥¢¥ó¥Ş¥Ã¥×½ĞÍè¤Ş¤»¤ó (%04x)¡£\n",
+			"è­¦å‘Š: EMS ã‚’ã‚¢ãƒ³ãƒãƒƒãƒ—å‡ºæ¥ã¾ã›ã‚“ (%04x)ã€‚\n",
 			outregs.h.ah & (i << 8));
 	}
 
-	/* ¥Ú¡¼¥¸¤ò³«Êü¤¹¤ë */
+	/* ãƒšãƒ¼ã‚¸ã‚’é–‹æ”¾ã™ã‚‹ */
 	inregs.h.ah = 0x45;
 	inregs.x.dx = ems_handle;
 	int86(EMS_VECT, &inregs, &outregs);
 	if (outregs.h.ah != 0)
 	{
-		fprintf(stderr, "·Ù¹ğ: EMS ¤ò³«Êü½ĞÍè¤Ş¤»¤ó (%04x)¡£\n",
+		fprintf(stderr, "è­¦å‘Š: EMS ã‚’é–‹æ”¾å‡ºæ¥ã¾ã›ã‚“ (%04x)ã€‚\n",
 			outregs.h.ah);
 		return;
 	}
-/*	fprintf(stderr, "EMS ¤Ï %ud ¥Ğ¥¤¥È»ÈÍÑ¤µ¤ì¤Ş¤·¤¿¡£\n", emalloc_ptr); */
+/*	fprintf(stderr, "EMS ã¯ %ud ãƒã‚¤ãƒˆä½¿ç”¨ã•ã‚Œã¾ã—ãŸã€‚\n", emalloc_ptr); */
 	isems = 0;
 }
 
-/* EMS ¤ò½é´ü²½¤¹¤ë */
+/* EMS ã‚’åˆæœŸåŒ–ã™ã‚‹ */
 int	detect_ems(void)
 {
 	union REGS inregs, outregs;
 	char *vect;
 	int i;
 
-	/* EMS ¥É¥é¥¤¥Ğ¤òÃµ¤¹ */
+	/* EMS ãƒ‰ãƒ©ã‚¤ãƒã‚’æ¢ã™ */
 	vect = (char *)_dos_getvect(EMS_VECT);
 	vect = mk_fp(FP_SEG(vect), 0x000a);
 	if (memcmp(vect, EMS_STR, 8) != 0)
 	{
-		fprintf(stderr, "EMS ¤¬Â¸ºß¤·¤Ş¤»¤ó¡£\n");
+		fprintf(stderr, "EMS ãŒå­˜åœ¨ã—ã¾ã›ã‚“ã€‚\n");
 		return 0;
 	}
 
 #ifdef MOVERLAY
-	/* MOVERLAY ¤¬¼èÆÀ¤·¤Æ¤¤¤ë EMS ¤ò³«Êü¤µ¤»¤ë */
+	/* MOVERLAY ãŒå–å¾—ã—ã¦ã„ã‚‹ EMS ã‚’é–‹æ”¾ã•ã›ã‚‹ */
         _movefpause |= MOVE_PAUSE_CACHE;
 	_movepause();
 #endif
-	/* ¥Ï¡¼¥É¥¦¥§¥¢¤¬Àµ¾ï¤«¤É¤¦¤«³ÎÇ§¤¹¤ë */
+	/* ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ãŒæ­£å¸¸ã‹ã©ã†ã‹ç¢ºèªã™ã‚‹ */
 	inregs.h.ah = 0x40;
 	int86(EMS_VECT, &inregs, &outregs);
 	if (outregs.h.ah != 0)
 	{
-		fprintf(stderr, "EMS ¤¬°Û¾ï¤Ç¤¹ (%04x)¡£\n", outregs.h.ah);
+		fprintf(stderr, "EMS ãŒç•°å¸¸ã§ã™ (%04x)ã€‚\n", outregs.h.ah);
 #ifdef MOVERLAY
 		_moveresume();
 #endif
 		return 0;
 	}
 
-	/* £´¥Ú¡¼¥¸¤Î¶õ¤­¤¬¤¢¤ë¤«³ÎÇ§¤¹¤ë */
+	/* ï¼”ãƒšãƒ¼ã‚¸ã®ç©ºããŒã‚ã‚‹ã‹ç¢ºèªã™ã‚‹ */
 	inregs.h.ah = 0x42;
 	int86(EMS_VECT, &inregs, &outregs);
 	if (outregs.x.bx < 4)
 	{
-		fprintf(stderr, "EMS ¤Î¥Õ¥ì¡¼¥à¤¬Â­¤ê¤Ş¤»¤ó (%04x)¡£\n",
+		fprintf(stderr, "EMS ã®ãƒ•ãƒ¬ãƒ¼ãƒ ãŒè¶³ã‚Šã¾ã›ã‚“ (%04x)ã€‚\n",
 			outregs.x.cx);
 #ifdef MOVERLAY
 		_moveresume();
@@ -113,28 +113,28 @@ int	detect_ems(void)
 		return 0;
 	}
 
-	/* ¥Ú¡¼¥¸¥Õ¥ì¡¼¥à¤¬£´¤Ä°Ê¾å¤¢¤ë¤«¤É¤¦¤«³ÎÇ§¤¹¤ë */
+	/* ãƒšãƒ¼ã‚¸ãƒ•ãƒ¬ãƒ¼ãƒ ãŒï¼”ã¤ä»¥ä¸Šã‚ã‚‹ã‹ã©ã†ã‹ç¢ºèªã™ã‚‹ */
 	inregs.x.ax = 0x5801;
 	int86(EMS_VECT, &inregs, &outregs);
 	if (outregs.x.cx < 4)
 	{
-		fprintf("stderr, EMS ¤Î¥Õ¥ì¡¼¥à¤¬Â­¤ê¤Ş¤»¤ó (%04x)¡£\n", outregs.x.cx);
+		fprintf("stderr, EMS ã®ãƒ•ãƒ¬ãƒ¼ãƒ ãŒè¶³ã‚Šã¾ã›ã‚“ (%04x)ã€‚\n", outregs.x.cx);
 		_moveresume();
 		return 0;
 	}
 
-	/* ¥Ú¡¼¥¸¥Õ¥ì¡¼¥à¤ÎÀèÆ¬¥¢¥É¥ì¥¹¤òÆÀ¤ë */
+	/* ãƒšãƒ¼ã‚¸ãƒ•ãƒ¬ãƒ¼ãƒ ã®å…ˆé ­ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å¾—ã‚‹ */
 	inregs.h.ah = 0x41;
 	int86(EMS_VECT, &inregs, &outregs);
 	ems_frame = outregs.x.bx;
 
-	/* £´¥Ú¡¼¥¸¤Î¥á¥â¥ê¤ò³ÎÊİ¤¹¤ë */
+	/* ï¼”ãƒšãƒ¼ã‚¸ã®ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹ */
 	inregs.h.ah = 0x43;
 	inregs.x.bx = 4;
 	int86(EMS_VECT, &inregs, &outregs);
 	if (outregs.h.ah != 0)
 	{
-		fprintf(stderr, "EMS ¤¬¼èÆÀ½ĞÍè¤Ş¤»¤ó (%04x)¡£\n",
+		fprintf(stderr, "EMS ãŒå–å¾—å‡ºæ¥ã¾ã›ã‚“ (%04x)ã€‚\n",
 			outregs.h.ah);
 #ifdef MOVERLAY
 		_moveresume();
@@ -144,7 +144,7 @@ int	detect_ems(void)
 	}
 	ems_handle = outregs.x.dx;
 
-	/* ¥Ú¡¼¥¸¤ò¥Ş¥Ã¥×¤¹¤ë */
+	/* ãƒšãƒ¼ã‚¸ã‚’ãƒãƒƒãƒ—ã™ã‚‹ */
 	inregs.h.ah = 0x44;
 	inregs.x.dx = ems_handle;
 	for (i = 0; i < 4; i++)
@@ -154,7 +154,7 @@ int	detect_ems(void)
 		int86(EMS_VECT, &inregs, &outregs);
 		if (outregs.h.ah != 0)
 		{
-			fprintf(stderr, "EMS ¤ò¥Ş¥Ã¥×½ĞÍè¤Ş¤»¤ó (%04x)¡£\n",
+			fprintf(stderr, "EMS ã‚’ãƒãƒƒãƒ—å‡ºæ¥ã¾ã›ã‚“ (%04x)ã€‚\n",
 				outregs.h.ah & (i << 8));
 			inregs.h.ah = 0x45;
 			inregs.x.dx = ems_handle;
@@ -167,36 +167,36 @@ int	detect_ems(void)
 	}
 
 #ifdef MOVERLAY
-	/* MOVERLAY ¤Î¥­¥ã¥Ã¥·¥å¤òºÆ¤ÓÍ­¸ú¤Ë¤¹¤ë */
+	/* MOVERLAY ã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã‚’å†ã³æœ‰åŠ¹ã«ã™ã‚‹ */
 	_moveresume();
 #endif
-	/* ¥×¥í¥°¥é¥à½ªÎ»»ş¤Ë¼«Æ°Åª¤Ë¸Æ¤Ó½Ğ¤¹ */
+	/* ãƒ—ãƒ­ã‚°ãƒ©ãƒ çµ‚äº†æ™‚ã«è‡ªå‹•çš„ã«å‘¼ã³å‡ºã™ */
 	atexit(done_ems);
 
-	fprintf(stderr, "\nEMS ¤ò¥Ç¡¼¥¿ÎÎ°è¤È¤·¤Æ»ÈÍÑ¤·¤Ş¤¹¡£\n");
+	fprintf(stderr, "\nEMS ã‚’ãƒ‡ãƒ¼ã‚¿é ˜åŸŸã¨ã—ã¦ä½¿ç”¨ã—ã¾ã™ã€‚\n");
 	isems = 1;
 	return 1;
 }
 
-/* EMS ÎÎ°è¤«¤éÍ¥Àè¤·¤Æ¥á¥â¥ê¤ò³ÎÊİ¤¹¤ë */
+/* EMS é ˜åŸŸã‹ã‚‰å„ªå…ˆã—ã¦ãƒ¡ãƒ¢ãƒªã‚’ç¢ºä¿ã™ã‚‹ */
 void	*emalloc(unsigned int size)
 {
 	void *ptr;
 
-	/* EMS ¤¬»ÈÍÑ²ÄÇ½¤Ê¤é */
+	/* EMS ãŒä½¿ç”¨å¯èƒ½ãªã‚‰ */
 	if (isems != 0)
 	{
-		/* EMS ¤Ë¶õ¤­¤¬¤¢¤ì¤Ğ */
+		/* EMS ã«ç©ºããŒã‚ã‚Œã° */
 		if ((emalloc_ptr + ((unsigned long)size)) <= 0xffffL)
 		{
-			/* ¥İ¥¤¥ó¥¿¤òºî¤Ã¤ÆÊÖ¤¹ */
+			/* ãƒã‚¤ãƒ³ã‚¿ã‚’ä½œã£ã¦è¿”ã™ */
 			ptr = mk_fp(ems_frame, emalloc_ptr);
 			emalloc_ptr += size;
 			memset(ptr, 0, size);
 			return ptr;
 		}
 	}
-	/* EMS ¤«¤é¥á¥â¥ê¤¬¼èÆÀ½ĞÍè¤Ê¤±¤ì¤Ğ¡¢¥Ò¡¼¥×¤ò»È¤¦ */
+	/* EMS ã‹ã‚‰ãƒ¡ãƒ¢ãƒªãŒå–å¾—å‡ºæ¥ãªã‘ã‚Œã°ã€ãƒ’ãƒ¼ãƒ—ã‚’ä½¿ã† */
 	ptr = alloc(size);
 	memset(ptr, 0, size);
 	return ptr;

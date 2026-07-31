@@ -180,8 +180,8 @@ static struct qt_matrix {
 	  0, PM_HUMAN_MUMMY, S_SNAKE, S_MUMMY,
 	  ART_ORB_OF_DETECTION },
 #endif
-/* A */ { "е╚еые╞е├еп▓жд╬╩ш",
-	  "╣═╕┼│╪┬ч│╪",
+/* A */ { "уГИуГлуГЖуГГуВпчОЛуБохвУ",
+	  "шАГхПдхнжхдзхнж",
 	  PM_LORD_CARNARVON, PM_MINION_OF_HUHETOTL, PM_STUDENT,
 	  0, PM_HUMAN_MUMMY, S_SNAKE, S_MUMMY,
 	  ART_ORB_OF_DETECTION },
@@ -193,8 +193,8 @@ static struct qt_matrix {
 	  PM_OGRE, PM_TROLL, S_OGRE, S_TROLL,
 	  ART_HEART_OF_AHRIMAN },
 #endif
-/* B */ { "е┬ехевеъд╬екеве╖е╣",
-	  "е┬ехевеъ┬▓д╬енеуеєе╫",
+/* B */ { "уГВуГеуВвуГкуБоуВкуВвуВ╖уВ╣",
+	  "уГВуГеуВвуГкцЧПуБоуВнуГгуГ│уГЧ",
 	  PM_PELIAS, PM_THOTH_AMON, PM_CHIEFTAIN,
 	  PM_OGRE, PM_TROLL, S_OGRE, S_TROLL,
 	  ART_HEART_OF_AHRIMAN },
@@ -206,8 +206,8 @@ static struct qt_matrix {
 	  PM_BUGBEAR, PM_HILL_GIANT, S_HUMANOID, S_GIANT,
 	  ART_SCEPTRE_OF_MIGHT },
 #endif
-/* C */ { "╬╡д╬▒гдь▓╚",
-	  "┬└╕┼д╬╞╢╖в",
+/* C */ { "члЬуБощЪауВМхо╢",
+	  "хдкхПдуБоц┤ЮчкЯ",
 	  PM_SHAMAN_KARNOV, PM_CHROMATIC_DRAGON, PM_NEANDERTHAL,
 	  PM_BUGBEAR, PM_HILL_GIANT, S_HUMANOID, S_GIANT,
 	  ART_SCEPTRE_OF_MIGHT },
@@ -219,8 +219,8 @@ static struct qt_matrix {
 	  PM_URUK_HAI, PM_OGRE, S_ORC, S_OGRE,
 	  ART_PALANTIR_OF_WESTERNESSE },
 #endif
-/* E */ { "е┤е╓еъеєд╬╞╢╖в",
-	  "еиевеьеєе╟егеыд╬░╬┬чд╩ды├╧",
+/* E */ { "уВ┤уГЦуГкуГ│уБоц┤ЮчкЯ",
+	  "уВиуВвуГмуГ│уГЗуВгуГлуБохБЙхдзуБкуВЛхЬ░",
 	  PM_EARENDIL, PM_GOBLIN_KING, PM_HIGH_ELF,
 	  PM_URUK_HAI, PM_OGRE, S_ORC, S_OGRE,
 	  ART_PALANTIR_OF_WESTERNESSE },
@@ -232,14 +232,14 @@ static struct qt_matrix {
 	  PM_URUK_HAI, PM_OGRE, S_ORC, S_OGRE,
 	  ART_PALANTIR_OF_WESTERNESSE },
 #endif
-/* E */ { "е┤е╓еъеєд╬╞╢╖в",
-	  "еиеыежегеєд╬░╬┬чд╩ды├╧",
+/* E */ { "уВ┤уГЦуГкуГ│уБоц┤ЮчкЯ",
+	  "уВиуГлуВжуВгуГ│уБохБЙхдзуБкуВЛхЬ░",
 	  PM_ELWING, PM_GOBLIN_KING, PM_HIGH_ELF,
 	  PM_URUK_HAI, PM_OGRE, S_ORC, S_OGRE,
 	  ART_PALANTIR_OF_WESTERNESSE },
 #ifdef FIGHTER
-/* F */ { "├╧╡х",
-	  "╖юд╬╡▄┼┬",
+/* F */ { "хЬ░чРГ",
+	  "цЬИуБохооцо┐",
 	  PM_PRINCESS_OF_MOON, PM_JEDEITE, PM_PLANETARY_FIGHTER,
 	  S_SNAKE, S_ZOMBIE, S_SNAKE, S_ZOMBIE,
 	  ART_SILVER_CRYSTAL },
@@ -252,8 +252,8 @@ static struct qt_matrix {
 	  PM_GIANT_RAT, PM_SNAKE, S_RODENT, S_YETI,
 	  ART_STAFF_OF_AESCULAPIUS },
 #endif
-/* H */ { "е│еке╣╗√▒б",
-	  "еие╘е└ежеще╣╗√▒б",
+/* H */ { "уВ│уВкуВ╣хп║щЩв",
+	  "уВиуГФуГАуВжуГйуВ╣хп║щЩв",
 	  PM_HIPPOCRATES, PM_CYCLOPS, PM_ATTENDANT,
 	  PM_GIANT_RAT, PM_SNAKE, S_RODENT, S_YETI,
 	  ART_STAFF_OF_AESCULAPIUS },
@@ -265,8 +265,8 @@ static struct qt_matrix {
 	  PM_QUASIT, PM_OCHRE_JELLY, S_IMP, S_JELLY,
 	  ART_MAGIC_MIRROR_OF_MERLIN },
 #endif
-/* K */ { "емеще╣д╬┼ч",
-	  "енеуесеэе├е╚╛ы",
+/* K */ { "уВмуГйуВ╣уБох│╢",
+	  "уВнуГгуГбуГнуГГуГИхЯО",
 	  PM_KING_ARTHUR, PM_IXOTH, PM_PAGE,
 	  PM_QUASIT, PM_OCHRE_JELLY, S_IMP, S_JELLY,
 	  ART_MAGIC_MIRROR_OF_MERLIN },
@@ -278,8 +278,8 @@ static struct qt_matrix {
 	  PM_HUMAN_ZOMBIE, PM_WRAITH, S_ZOMBIE, S_WRAITH,
 	  ART_MITRE_OF_HOLINESS },
 #endif
-/* P */ { "е╩еые╛еп╗√▒б",
-	  "░╬┬чд╩ды╗√▒б",
+/* P */ { "уГКуГлуВ╛уВпхп║щЩв",
+	  "хБЙхдзуБкуВЛхп║щЩв",
 	  PM_ARCH_PRIEST, PM_NALZOK, PM_ACOLYTE,
 	  PM_HUMAN_ZOMBIE, PM_WRAITH, S_ZOMBIE, S_WRAITH,
 	  ART_MITRE_OF_HOLINESS },
@@ -291,8 +291,8 @@ static struct qt_matrix {
 	  PM_LEPRECHAUN, PM_GUARDIAN_NAGA, S_NYMPH, S_NAGA,
 	  ART_MASTER_KEY_OF_THIEVERY },
 #endif
-/* R */ { "░┼╗ж╝╘д╬еоеые╔",
-	  "┼Ё┬▒д╬еоеые╔",
+/* R */ { "цЪЧцо║шАЕуБоуВоуГлуГЙ",
+	  "чЫЧш│КуБоуВоуГлуГЙ",
 	  PM_MASTER_OF_THIEVES, PM_MASTER_ASSASSIN, PM_THUG,
 	  PM_LEPRECHAUN, PM_GUARDIAN_NAGA, S_NYMPH, S_NAGA,
 	  ART_MASTER_KEY_OF_THIEVERY },
@@ -304,8 +304,8 @@ static struct qt_matrix {
 	  PM_WOLF, PM_STALKER, S_DOG, S_STALKER,
 	  ART_TSURUGI_OF_MURAMASA },
 #endif
-/* S */ { "╛н╖│д╬╛ы",
-	  "┬└╧║░ь┬▓д╬╛ы",
+/* S */ { "х░Жш╗НуБохЯО",
+	  "хдкщГОф╕АцЧПуБохЯО",
 	  PM_LORD_SATO, PM_ASHIKAGA_TAKAUJI, PM_NINJA,
 	  PM_WOLF, PM_STALKER, S_DOG, S_STALKER,
 	  ART_TSURUGI_OF_MURAMASA },
@@ -319,8 +319,8 @@ static struct qt_matrix {
 	  PM_GIANT_SPIDER, PM_FOREST_CENTAUR, S_SPIDER, S_CENTAUR,
 	  ART_YENDORIAN_EXPRESS_CARD },
 #endif
-/* T */ { "┼Ё┬▒д╬еоеые╔",
-	  "╬╣╣╘е╚еще╓еые╗еєе┐б╝",
+/* T */ { "чЫЧш│КуБоуВоуГлуГЙ",
+	  "цЧЕшбМуГИуГйуГЦуГлуВ╗уГ│уВ┐уГ╝",
 	  PM_TWOFLOWER, PM_MASTER_OF_THIEVES, PM_GUIDE,
 	  PM_GIANT_SPIDER, PM_FOREST_CENTAUR, S_SPIDER, S_CENTAUR,
 	  ART_YENDORIAN_EXPRESS_CARD },
@@ -333,8 +333,8 @@ static struct qt_matrix {
 	  PM_FIRE_ANT, PM_FIRE_GIANT, S_ANT, S_GIANT,
 	  ART_ORB_OF_FATE },
 #endif
-/* V */ { "е╡б╝е┐б╝д╬╞╢╖в",
-	  "▒┐╠┐д╬└╗╞▓",
+/* V */ { "уВ╡уГ╝уВ┐уГ╝уБоц┤ЮчкЯ",
+	  "щБЛхС╜уБошБЦхаВ",
 	  PM_NORN, PM_LORD_SURTUR, PM_WARRIOR,
 	  PM_FIRE_ANT, PM_FIRE_GIANT, S_ANT, S_GIANT,
 	  ART_ORB_OF_FATE },
@@ -346,8 +346,8 @@ static struct qt_matrix {
 	  PM_VAMPIRE_BAT, PM_XORN, S_BAT, S_WRAITH,
 	  ART_EYE_OF_THE_AETHIOPICA },
 #endif
-/* W */ { "░┼╣їд╬┼у",
-	  "─┤╧┬д╬┼у",
+/* W */ { "цЪЧщ╗ТуБохбФ",
+	  "шк┐хТМуБохбФ",
 	  PM_WIZARD_OF_BALANCE, PM_DARK_ONE, PM_APPRENTICE,
 	  PM_VAMPIRE_BAT, PM_XORN, S_BAT, S_WRAITH,
 	  ART_EYE_OF_THE_AETHIOPICA },
@@ -515,10 +515,10 @@ char c;
 							  flags.female);
 			break;
 /*JP	    case 's':	str = (flags.female) ? "sister" : "brother";*/
-	    case 's':	str = (flags.female) ? "╦х" : "─я";
+	    case 's':	str = (flags.female) ? "хж╣" : "х╝Я";
 			break;
 /*JP	    case 'S':	str = (flags.female) ? "daughter" : "son";*/
-	    case 'S':	str = (flags.female) ? "╠╝" : "┬й╗╥";
+	    case 'S':	str = (flags.female) ? "хиШ" : "цБпхнР";
 			break;
 	    case 'l':	str = ldrname();
 			break;
@@ -544,16 +544,16 @@ char c;
 	    case 'D':	str = align_gname(A_LAWFUL);
 			break;
 /*JP	    case 'C':	str = "chaotic";*/
-	    case 'C':	str = "║о╞┘";	        
+	    case 'C':	str = "ц╖╖ц▓М";	        
 			break;
 /*JP	    case 'N':	str = "neutral";*/
-	    case 'N':	str = "├ц╬й";	        
+	    case 'N':	str = "ф╕нчлЛ";	        
 			break;
 /*JP	    case 'L':	str = "lawful";*/
-	    case 'L':	str = "├с╜°";	        
+	    case 'L':	str = "чзйх║П";	        
 			break;
 /*JP	    case 'x':	str = Blind ? "sense" : "see";*/
-	    case 'x':	str = Blind ? "┤╢д╕" : "╕л";
+	    case 'x':	str = Blind ? "цДЯуБШ" : "шжЛ";
 			break;
 	    case '%':	str = "%";
 			break;

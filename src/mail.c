@@ -260,9 +260,9 @@ static NEARDATA const char *mail_text[] = {
 /*JP    "Gangway!",
     "Look out!",
     "Pardon me!"*/
-    "¤É¤¤¤¿¤É¤¤¤¿¡ª",
-    "µ¤¤ò¤Ä¤±¤í¡ª",
-    "¤¸¤ã¤Ş¤¹¤ë¤è¡ª"
+    "ã©ã„ãŸã©ã„ãŸï¼",
+    "æ°—ã‚’ã¤ã‘ã‚ï¼",
+    "ã˜ã‚ƒã¾ã™ã‚‹ã‚ˆï¼"
 };
 #define md_exclamations()	(mail_text[rn2(3)])
 
@@ -323,7 +323,7 @@ md_rush(md,tx,ty)
 	    verbalize(md_exclamations());
 	else if (fx == u.ux && fy == u.uy)
 /*JP	    verbalize("Excuse me.");*/
-	    verbalize("¤Á¤ç¤Ã¤È¤·¤Ä¤ì¤¤¡¥");
+	    verbalize("ã¡ã‚‡ã£ã¨ã—ã¤ã‚Œã„ï¼");
 
 	place_monster(md,fx,fy);	/* put md down */
 	newsym(fx,fy);			/* see it */
@@ -349,7 +349,7 @@ md_rush(md,tx,ty)
 	place_monster(md, fx, fy);	/* display md with text below */
 	newsym(fx, fy);
 /*JP	verbalize("This place's too crowded.  I'm outta here.");*/
-	verbalize("¤³¤³¤Ïº®¤ß¤¹¤®¡¥¤³¤³¤ÇÂÔ¤Ã¤Æ¤ë¤è¡¥");
+	verbalize("ã“ã“ã¯æ··ã¿ã™ãï¼ã“ã“ã§å¾…ã£ã¦ã‚‹ã‚ˆï¼");
 
 	if ((mon->mx != fx) || (mon->my != fy))	/* put mon back */
 	    place_worm_seg(mon, fx, fy);
@@ -388,13 +388,13 @@ struct mail_info *info;
 
     message_seen = TRUE;
 /*JP    verbalize("Hello, %s!  %s.", plname, info->display_txt);*/
-    verbalize("¤ä¤¡%s!%s¡¥", plname, info->display_txt);
+    verbalize("ã‚„ã%s!%sï¼", plname, info->display_txt);
 
     if (info->message_typ) {
 	struct obj *obj = mksobj(SCR_MAIL, FALSE, FALSE);
 	if (distu(md->mx,md->my) > 2)
 /*JP	    verbalize("Catch!");*/
-	    verbalize("¤Û¤é¤è¡ª");
+	    verbalize("ã»ã‚‰ã‚ˆï¼");
 	display_nhwindow(WIN_MESSAGE, FALSE);
 	if (info->object_nam) {
 	    obj = oname(obj, info->object_nam);
@@ -408,7 +408,7 @@ struct mail_info *info;
 	    }
 	}
 /*JP	obj = hold_another_object(obj, "Oops!",*/
-	obj = hold_another_object(obj, "¤ª¤Ã¤È¡ª",
+	obj = hold_another_object(obj, "ãŠã£ã¨ï¼",
 				  (const char *)0, (const char *)0);
     }
 
@@ -420,7 +420,7 @@ go_back:
 give_up:
     if (!message_seen && info->message_typ == MSG_OTHER)
 /*JP	pline("Hark!  \"%s.\"", info->display_txt);*/
-	pline("¡Ö%s¡¥¡×¤È¸À¤¦¤³¤È¤À¡ª", info->display_txt);
+	pline("ã€Œ%sï¼ã€ã¨è¨€ã†ã“ã¨ã ï¼", info->display_txt);
 }
 
 # if !defined(UNIX) && !defined(VMS)
@@ -438,7 +438,7 @@ ckmailstatus()
 	if (--mustgetmail <= 0) {
 		static struct mail_info
 /*JP			deliver = {MSG_MAIL,"I have some mail for you",0,0};*/
-			deliver = {MSG_MAIL,"¥á¥¤¥ë¤ò»ı¤Ã¤Æ¤­¤¿¤è",0,0};
+			deliver = {MSG_MAIL,"ãƒ¡ã‚¤ãƒ«ã‚’æŒã£ã¦ããŸã‚ˆ",0,0};
 		newmail(&deliver);
 		mustgetmail = -1;
 	}
@@ -454,8 +454,8 @@ struct obj *otmp;
 	"Please disregard previous letter.",
 	"Welcome to NetHack 3.2.3!",
 */
-	"Á°¤Î¥á¡¼¥ë¤ÏËº¤ì¤Æ¤¯¤À¤µ¤¤¡¥",
-	"NetHack 3.2.2¤Ø¤è¤¦¤³¤½¡ª",
+	"å‰ã®ãƒ¡ãƒ¼ãƒ«ã¯å¿˜ã‚Œã¦ãã ã•ã„ï¼",
+	"NetHack 3.2.2ã¸ã‚ˆã†ã“ãï¼",
 #ifdef AMIGA
 	"Only Amiga makes it possible.",
 	"CATS have all the answers.",
@@ -463,19 +463,19 @@ struct obj *otmp;
 /*JP
 	"Report bugs to <nethack-bugs@nethack.org>"
 */
-	"¥Ğ¥°¥ì¥İ¡¼¥È¤Ï jnethack-bugs@jnethack.org ¤Ø"
+	"ãƒã‚°ãƒ¬ãƒãƒ¼ãƒˆã¯ jnethack-bugs@jnethack.org ã¸"
 	};
 
     if (Blind)
 /*JP
 	pline("Unfortunately you cannot see what it says.");
 */
-	pline("ÉÔ¹¬¤Ë¤â²¿¤È½ñ¤¤¤Æ¤¢¤ë¤Î¤«¸«¤ë¤³¤È¤¬¤Ç¤­¤Ê¤¤¡¥");
+	pline("ä¸å¹¸ã«ã‚‚ä½•ã¨æ›¸ã„ã¦ã‚ã‚‹ã®ã‹è¦‹ã‚‹ã“ã¨ãŒã§ããªã„ï¼");
     else
 /*JP
 	pline("It reads:  \"%s\"", junk[rn2(SIZE(junk))]);
 */
-	pline("¤½¤ì¤òÆÉ¤ó¤À¡§\"%s\"", junk[rn2(SIZE(junk))]);
+	pline("ãã‚Œã‚’èª­ã‚“ã ï¼š\"%s\"", junk[rn2(SIZE(junk))]);
 }
 
 # endif /* !UNIX && !VMS */
@@ -505,11 +505,11 @@ ckmailstatus()
 		    static struct mail_info deliver = {
 #  ifndef NO_MAILREADER
 /*JP			MSG_MAIL, "I have some mail for you",*/
-			MSG_MAIL, "¥á¥¤¥ë¤ò»ı¤Ã¤Æ¤­¤¿¤è",
+			MSG_MAIL, "ãƒ¡ã‚¤ãƒ«ã‚’æŒã£ã¦ããŸã‚ˆ",
 #  else
 			/* suppress creation and delivery of scroll of mail */
 /*JP			MSG_OTHER, "You have some mail in the outside world",*/
-			MSG_OTHER, "³°¤ÎÀ¤³¦¤«¤é¤Î¥á¡¼¥ë¤À",
+			MSG_OTHER, "å¤–ã®ä¸–ç•Œã‹ã‚‰ã®ãƒ¡ãƒ¼ãƒ«ã ",
 #  endif
 			0, 0
 		    };

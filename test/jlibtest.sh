@@ -140,6 +140,13 @@ if grep -Uq '^LOSSY' "$work/out.utf8"; then
     exit 1
 fi
 
+# and it must break between characters, never through one
+if grep -Uq '^SPLITCHAR' "$work/out.utf8"; then
+    echo "jlibtest: FAIL -- split_japanese cut a character in half"
+    grep -U '^SPLITCHAR' "$work/out.utf8" | head -20
+    exit 1
+fi
+
 # jrndm_replace() must never leave something that is not a character.
 if grep -Uq '^NOTACHAR' "$work/out.utf8"; then
     echo "jlibtest: FAIL -- jrndm_replace produced a non-character"

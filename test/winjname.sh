@@ -31,9 +31,10 @@ mkdir -p "$work"
 
 fail=0
 
-# EUC-JP: あか, きく, あき.  The third shares its first character with the
-# first, which is what a byte-wise prefix bug would hide.
-names='\244\242\244\253 \244\255\244\257 \244\242\244\255'
+# UTF-8: あか, きく, あき.  The third shares its first character with the
+# first, which is what a byte-wise prefix bug would hide.  Three bytes each
+# now rather than two, which is the point of running this at all.
+names='\343\201\202\343\201\213 \343\201\215\343\201\217 \343\201\202\343\201\215'
 
 for oct in $names; do
     nm=$(printf "$oct")
@@ -69,9 +70,27 @@ for oct in $names; do
 
     # wine stores the name the program passed to CreateFile after its own
     # ANSI->UTF-16->UTF-8 round trip, so compare against that rather than
-    # against the raw EUC-JP bytes.
+    # against the bytes the game handed it.
+    #
+    # The ANSI code page is cp1252, not Latin-1, and the two differ over
+    # 0x80..0x9F -- 0x82 is U+201A there, not U+0082.  It did not matter
+    # while the name was EUC-JP, because every byte of that was 0xA1 or
+    # above, where the two agree.  UTF-8 Japanese is full of bytes in the
+    # range where they do not.  The five positions cp1252 leaves undefined
+    # are mapped to the code point of the same value, which is what
+    # Windows does with them.
     got=$(basename "$1" .sav)
-    want=$(printf '%s' "$nm" | iconv -f iso-8859-1 -t utf-8)
+    want=$(printf '%s' "$nm" | python3 -c '
+import sys
+b = sys.stdin.buffer.read()
+out = []
+for c in b:
+    try:
+        out.append(bytes([c]).decode("cp1252"))
+    except UnicodeDecodeError:
+        out.append(chr(c))
+sys.stdout.buffer.write("".join(out).encode("utf-8"))
+')
     if [ "$got" != "$want" ]; then
         echo "winjname $hex: FAIL (save file is '$got', wanted '$want')"
         echo "    got : $(printf '%s' "$got" | od -An -tx1 | tr -d ' \n')"

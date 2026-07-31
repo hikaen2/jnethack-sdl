@@ -525,11 +525,11 @@ static const char *fly[2]	= { "fly", "Fly" };
 static const char *slither[2]	= { "slither", "Slither" };
 static const char *ooze[2]	= { "ooze", "Ooze" };
 static const char *crawl[2]	= { "crawl", "Crawl" };*/
-static const char *levitate[2]	= { "Éâ¤¯", "Éâ¤¯" };
-static const char *fly[2]	= { "Èô¤Ö", "Èô¤Ö" };
-static const char *slither[2]	= { "³ê¤ë", "³ê¤ë" };
-static const char *ooze[2]	= { "¤Ë¤¸¤ß½Ğ¤ë", "¤Ë¤¸¤ß½Ğ¤ë" };
-static const char *crawl[2]	= { "¤Ï¤¤¤º¤ë", "¤Ï¤¤¤º¤ë" };
+static const char *levitate[2]	= { "æµ®ã", "æµ®ã" };
+static const char *fly[2]	= { "é£›ã¶", "é£›ã¶" };
+static const char *slither[2]	= { "æ»‘ã‚‹", "æ»‘ã‚‹" };
+static const char *ooze[2]	= { "ã«ã˜ã¿å‡ºã‚‹", "ã«ã˜ã¿å‡ºã‚‹" };
+static const char *crawl[2]	= { "ã¯ã„ãšã‚‹", "ã¯ã„ãšã‚‹" };
 
 const char *
 locomotion(ptr, def)
@@ -549,11 +549,11 @@ const char *def;
 
 }
 /*JP*/
-static const char *levitate2	= "Éâ¤±";
-static const char *fly2		= "Èô¤Ù";
-static const char *slither2	= "³ê¤í";
-static const char *ooze2	= "¤Ë¤¸¤ß½Ğ¤í";
-static const char *crawl2	= "¤Ï¤¤¤º¤ì";
+static const char *levitate2	= "æµ®ã‘";
+static const char *fly2		= "é£›ã¹";
+static const char *slither2	= "æ»‘ã‚";
+static const char *ooze2	= "ã«ã˜ã¿å‡ºã‚";
+static const char *crawl2	= "ã¯ã„ãšã‚Œ";
 
 const char *
 locomotion2(ptr, def)

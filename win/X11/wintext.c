@@ -560,7 +560,7 @@ calculate_rip_text(int how, XFontSet fontset)
 	    len = strlen(ss);
 	    while(1){
 	      XmbTextExtents(fontset, ss, len, &ink_ext, &lgc_ext);
-	      if(lgc_ext.width < 96) /* ÊèÉ¸¤ÎÉý */
+	      if(lgc_ext.width < 96) /* å¢“æ¨™ã®å¹… */
 		break;
 	      --len;
 	    }

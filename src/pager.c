@@ -53,7 +53,7 @@ append_str(buf, new_str)
 
     space_left = BUFSZ - strlen(buf) - 1;
 /*JP    (void) strncat(buf, " or ", space_left);*/
-    (void) strncat(buf, "¤Ş¤¿¤Ï", space_left);
+    (void) strncat(buf, "ã¾ãŸã¯", space_left);
     (void) strncat(buf, new_str, space_left - 4);
     return 1;
 }
@@ -84,8 +84,8 @@ lookat(x, y, buf, buf2)
 		Invis ? "invisible " : "",
 		u.mtimedone ? mons[u.umonnum].mname : player_mon()->mname,
 		plname);*/
-	Sprintf(buf, "%s%s¤È¤¤¤¦Ì¾¤Î%s",
-		Invis ? "»Ñ¤Î¸«¤¨¤Ê¤¤" : "",
+	Sprintf(buf, "%s%sã¨ã„ã†åã®%s",
+		Invis ? "å§¿ã®è¦‹ãˆãªã„" : "",
 		plname,
 		u.mtimedone ? jtrns_mon(mons[u.umonnum].mname, flags.female) : 
 		jtrns_mon(player_mon()->mname, flags.female));
@@ -96,8 +96,8 @@ lookat(x, y, buf, buf2)
 	/* all locations when swallowed other than the hero are the monster */
 /*JP	Sprintf(buf, "interior of %s",
 				    Blind ? "a monster" : a_monnam(u.ustuck));*/
-	Sprintf(buf, "%s¤ÎÆâÉô",
-				    Blind ? "²øÊª" : a_monnam(u.ustuck));
+	Sprintf(buf, "%sã®å†…éƒ¨",
+				    Blind ? "æ€ªç‰©" : a_monnam(u.ustuck));
 	Strcpy(buf2, Blind ? "a monster" : a_monnam(u.ustuck));
     }
     else if (glyph_is_monster(glyph)) {
@@ -116,21 +116,21 @@ lookat(x, y, buf, buf2)
 		                                          "peaceful " : "",
 		    (hp ? "high priest" : l_monnam(mtmp)));*/
 	    Sprintf(buf, "%s%s%s",
-		    (!hp && mtmp->mtame && !Hallucination) ? "¼ê¤Ê¤º¤±¤é¤ì¤¿" :
+		    (!hp && mtmp->mtame && !Hallucination) ? "æ‰‹ãªãšã‘ã‚‰ã‚ŒãŸ" :
 		    (!hp && mtmp->mpeaceful && !Hallucination) ?
-		                                          "Í§¹¥Åª¤Ê" : "",
-		    (hp ? "¹âÁÎ" : l_monnam(mtmp)),
+		                                          "å‹å¥½çš„ãª" : "",
+		    (hp ? "é«˜åƒ§" : l_monnam(mtmp)),
 		    (mtmp->mx != x || mtmp->my != y) ?
 			((mtmp->isshk && !Hallucination)
-				? "¤Î¿¬Èø" : "¤Î¿¬Èø") : "");
+				? "ã®å°»å°¾" : "ã®å°»å°¾") : "");
 	    if (u.ustuck == mtmp)
 /*JP		Strcat(buf, (Upolyd && sticks(uasmon)) ?
 			", being held" : ", holding you");*/
 		Strcat(buf, (Upolyd && sticks(uasmon)) ?
-			"¡¤¤¢¤Ê¤¿¤¬ÄÏ¤Ş¤¨¤Æ¤¤¤ë" : "¡¤¤¢¤Ê¤¿¤òÄÏ¤Ş¤¨¤Æ¤¤¤ë");
+			"ï¼Œã‚ãªãŸãŒæ´ã¾ãˆã¦ã„ã‚‹" : "ï¼Œã‚ãªãŸã‚’æ´ã¾ãˆã¦ã„ã‚‹");
 	    if (mtmp->mleashed)
 /*JP		Strcat(buf, ", leashed to you");*/
-		Strcat(buf, "¡¤É³¤Ç·ë¤Ğ¤ì¤Æ¤¤¤ë");
+		Strcat(buf, "ï¼Œç´ã§çµã°ã‚Œã¦ã„ã‚‹");
 	    Strcpy(buf2, mtmp->data->mname);
 	}
     }
@@ -160,19 +160,19 @@ lookat(x, y, buf, buf2)
 
 	if (levl[x][y].typ == STONE || levl[x][y].typ == SCORR)
 /*JP	    Strcat(buf, " embedded in stone");*/
-	    Strcat(buf, "¡¤´ä¤ËËä¤á¤³¤Ş¤ì¤Æ¤¤¤ë");
+	    Strcat(buf, "ï¼Œå²©ã«åŸ‹ã‚ã“ã¾ã‚Œã¦ã„ã‚‹");
 	else if (IS_WALL(levl[x][y].typ) || levl[x][y].typ == SDOOR)
 /*JP	    Strcat(buf, " embedded in a wall");*/
-	    Strcat(buf, "¡¤ÊÉ¤ËËä¤á¤³¤Ş¤ì¤Æ¤¤¤ë");
+	    Strcat(buf, "ï¼Œå£ã«åŸ‹ã‚ã“ã¾ã‚Œã¦ã„ã‚‹");
 	else if (closed_door(x,y))
 /*JP	    Strcat(buf, " embedded in a door");*/
-	    Strcat(buf, "¡¤Èâ¤ËËä¤á¤³¤Ş¤ì¤Æ¤¤¤ë");
+	    Strcat(buf, "ï¼Œæ‰‰ã«åŸ‹ã‚ã“ã¾ã‚Œã¦ã„ã‚‹");
 	else if (is_pool(x,y))
 /*JP	    Strcat(buf, " in water");*/
-	    Strcat(buf, "¡¤¿åÃæ¤Ë¤¤¤ë");
+	    Strcat(buf, "ï¼Œæ°´ä¸­ã«ã„ã‚‹");
 	else if (is_lava(x,y))
 /*JP	    Strcat(buf, " in molten lava");*/	/* [can this ever happen?] */
-	    Strcat(buf, "¡¤ÍÏ´ä¤ÎÃæ¤Ë¤¤¤ë");	/* [can this ever happen?] */
+	    Strcat(buf, "ï¼Œæº¶å²©ã®ä¸­ã«ã„ã‚‹");	/* [can this ever happen?] */
     }
     else if (glyph_is_trap(glyph)) {
 	int tnum = glyph_to_trap(glyph);
@@ -181,31 +181,31 @@ lookat(x, y, buf, buf2)
     }
     else if(!glyph_is_cmap(glyph))
 /*JP	Strcpy(buf,"dark part of a room");*/
-	Strcpy(buf,"Éô²°¤Î°Å¤¤ÉôÊ¬");
+	Strcpy(buf,"éƒ¨å±‹ã®æš—ã„éƒ¨åˆ†");
     else switch(glyph_to_cmap(glyph)) {
     case S_altar:
 	if(!In_endgame(&u.uz))
 /*JP	    Sprintf(buf, "%s altar",
 		align_str(Amask2align(levl[x][y].altarmask & ~AM_SHRINE)));*/
-	    Sprintf(buf, "%s¤Îº×ÃÅ",
+	    Sprintf(buf, "%sã®ç¥­å£‡",
 		align_str(Amask2align(levl[x][y].altarmask & ~AM_SHRINE)));
 /*JP	else Sprintf(buf, "aligned altar");*/
-	else Sprintf(buf, "Â°À­¤Îº×ÃÅ");
+	else Sprintf(buf, "å±æ€§ã®ç¥­å£‡");
 	break;
     case S_ndoor:
 	if (is_drawbridge_wall(x, y) >= 0)
 /*JP	    Strcpy(buf,"open drawbridge portcullis");*/
-	    Strcpy(buf,"¹ß¤ê¤Æ¤¤¤ëÄ·¤Í¶¶");
+	    Strcpy(buf,"é™ã‚Šã¦ã„ã‚‹è·³ã­æ©‹");
 	else if ((levl[x][y].doormask & ~D_TRAPPED) == D_BROKEN)
 /*JP	    Strcpy(buf,"broken door");*/
-	    Strcpy(buf,"²õ¤ì¤¿Èâ");
+	    Strcpy(buf,"å£Šã‚ŒãŸæ‰‰");
 	else
 /*JP	    Strcpy(buf,"doorway");*/
-	    Strcpy(buf,"ÄÌÏ©");
+	    Strcpy(buf,"é€šè·¯");
 	break;
     case S_cloud:
 /*JP	Strcpy(buf, Is_airlevel(&u.uz) ? "cloudy area" : "fog/vapor cloud");*/
-	Strcpy(buf, Is_airlevel(&u.uz) ? "ÆŞ¤Ã¤Æ¤¤¤ë¾ì½ê" : "Ì¸/¾øµ¤¤Î±À");
+	Strcpy(buf, Is_airlevel(&u.uz) ? "æ›‡ã£ã¦ã„ã‚‹å ´æ‰€" : "éœ§/è’¸æ°—ã®é›²");
 	break;
     default:
 /*JP	Strcpy(buf,defsyms[glyph_to_cmap(glyph)].explanation);*/
@@ -341,7 +341,7 @@ bad_data_file:	impossible("'data' file in wrong format");
 	}
 
 /*JP	if (user_typed_name || yn("More info?") == 'y') {*/
-	if (user_typed_name || yn("¾ÜºÙ¤ò¸«¤ë¡©") == 'y') {
+	if (user_typed_name || yn("è©³ç´°ã‚’è¦‹ã‚‹ï¼Ÿ") == 'y') {
 	    winid datawin;
 
 	    if (dlb_fseek(fp, txt_offset + entry_offset, SEEK_SET) < 0) {
@@ -361,7 +361,7 @@ bad_data_file:	impossible("'data' file in wrong format");
 	}
     } else if (user_typed_name)
 /*JP	pline("I don't have any information on those things.");*/
-	pline("¤½¤ó¤ÊÌ¾Á°¤ÏÊ¹¤¤¤¿¤³¤È¤¬¤Ê¤¤¡¥");
+	pline("ãã‚“ãªåå‰ã¯èã„ãŸã“ã¨ãŒãªã„ï¼");
 
     (void) dlb_fclose(fp);
 }
@@ -386,13 +386,13 @@ do_look(quick)
     boolean hit_trap;		/* true if found trap explanation */
     int skipped_venom = 0;	/* non-zero if we ignored "splash of venom" */
 /*JP    static const char *mon_interior = "the interior of a monster";*/
-    static const char *mon_interior = "²øÊª¤ÎÆâÉô";
+    static const char *mon_interior = "æ€ªç‰©ã®å†…éƒ¨";
 
     if (quick) {
 	from_screen = TRUE;	/* yes, we want to use the cursor */
     } else {
 /*JP	i = ynq("Specify unknown object by cursor?");*/
-	i = ynq("¥«¡¼¥½¥ë¤ÇÊªÂÎ¤ò»ØÄê¤¹¤ë¡©");
+	i = ynq("ã‚«ãƒ¼ã‚½ãƒ«ã§ç‰©ä½“ã‚’æŒ‡å®šã™ã‚‹ï¼Ÿ");
 	if (i == 'q') return 0;
 	from_screen = (i == 'y');
     }
@@ -403,7 +403,7 @@ do_look(quick)
 	sym = 0;		/* gcc -Wall lint */
     } else {
 /*JP	getlin("Specify what? (type the word)", out_str);*/
-	getlin("²¿¤òÄ´¤Ù¤ë¡©(Ê¸»ú¤òÆş¤ì¤Æ¤Í)", out_str);
+	getlin("ä½•ã‚’èª¿ã¹ã‚‹ï¼Ÿ(æ–‡å­—ã‚’å…¥ã‚Œã¦ã­)", out_str);
 	if (out_str[0] == '\0' || out_str[0] == '\033')
 	    return 0;
 
@@ -431,13 +431,13 @@ do_look(quick)
 
 	    if (flags.verbose)
 /*JP		pline("Please move the cursor to an unknown object.");*/
-		pline("¥«¡¼¥½¥ë¤òÊªÂÎ¤Ë°ÜÆ°¤·¤Æ¤¯¤À¤µ¤¤¡¥");
+		pline("ã‚«ãƒ¼ã‚½ãƒ«ã‚’ç‰©ä½“ã«ç§»å‹•ã—ã¦ãã ã•ã„ï¼");
 	    else
 /*JP		pline("Pick an object.");*/
-		pline("ÊªÂÎ¤ò»ØÄê¤·¤Æ¤¯¤À¤µ¤¤¡¥");
+		pline("ç‰©ä½“ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ï¼");
 
 /*JP	    getpos(&cc, FALSE, "an unknown object");*/
-	    getpos(&cc, FALSE, "ÊªÂÎ");
+	    getpos(&cc, FALSE, "ç‰©ä½“");
 	    if (cc.x < 0) {
 		flags.verbose = save_verbose;
 		return 0;	/* done */
@@ -541,7 +541,7 @@ do_look(quick)
 		if (!found) {
 		    if (is_cmap_trap(i)) {
 /*JP			Sprintf(out_str, "%c       a trap", sym);*/
-			Sprintf(out_str, "%c       æ«", sym);
+			Sprintf(out_str, "%c       ç½ ", sym);
 			hit_trap = TRUE;
 		    } else {
 /*JP			Sprintf(out_str, "%c       %s", sym,
@@ -614,7 +614,7 @@ do_look(quick)
 	    }
 	} else {
 /*JP	    pline("I've never heard of such things.");*/
-	    pline("¤½¤ó¤ÊÌ¾Á°¤ÏÊ¹¤¤¤¿¤³¤È¤¬¤Ê¤¤¡¥");
+	    pline("ãã‚“ãªåå‰ã¯èã„ãŸã“ã¨ãŒãªã„ï¼");
 	}
 
     } while (from_screen && !quick);
@@ -664,14 +664,14 @@ doidtrap()
 			  (tt == HOLE || tt == PIT) ? " dug" : " set",
 		      !trap->madeby_u ? "" : " by you");
 #endif
-		pline("¤½¤ì¤Ï%s%s¤À¡¥",
-		      !trap->madeby_u ? "" : (tt == WEB) ? "¤¢¤Ê¤¿¤¬Ä¥¤Ã¤¿" :
-			  (tt == HOLE || tt == PIT) ? "¤¢¤Ê¤¿¤¬·¡¤Ã¤¿" : "¤¢¤Ê¤¿¤¬»Å³İ¤±¤¿",
+		pline("ãã‚Œã¯%s%sã ï¼",
+		      !trap->madeby_u ? "" : (tt == WEB) ? "ã‚ãªãŸãŒå¼µã£ãŸ" :
+			  (tt == HOLE || tt == PIT) ? "ã‚ãªãŸãŒæ˜ã£ãŸ" : "ã‚ãªãŸãŒä»•æ›ã‘ãŸ",
 		      jtrns_obj('^', defsyms[trap_to_defsym(tt)].explanation));
 		return 0;
 	    }
 /*JP	pline("I can't see a trap there.");*/
-	pline("¤½¤³¤Ë¤Ïæ«¤Ï¤Ê¤¤¡¥");
+	pline("ãã“ã«ã¯ç½ ã¯ãªã„ï¼");
 	return 0;
 }
 
@@ -692,7 +692,7 @@ dowhatdoes()
 	introff();
 #endif
 /*JP	q = yn_function("What command?", (char *)0, '\0');*/
-	q = yn_function("¤É¤¦¤¤¤¦¥³¥Ş¥ó¥É¡©", (char *)0, '\0');
+	q = yn_function("ã©ã†ã„ã†ã‚³ãƒãƒ³ãƒ‰ï¼Ÿ", (char *)0, '\0');
 #if defined(UNIX) || defined(VMS)
 	intron();
 #endif
@@ -722,7 +722,7 @@ dowhatdoes()
 		return 0;
 	    }
 /*JP	pline("I've never heard of such commands.");*/
-	pline("¤½¤ó¤Ê¥³¥Ş¥ó¥É¤ÏÃÎ¤é¤Ê¤¤¡¥");
+	pline("ãã‚“ãªã‚³ãƒãƒ³ãƒ‰ã¯çŸ¥ã‚‰ãªã„ï¼");
 	(void) dlb_fclose(fp);
 	return 0;
 }
@@ -750,26 +750,26 @@ static const char *help_menu_items[] = {
 	"List of wizard-mode commands.",
 #endif
 #endif
-/* 0*/	"¥²¡¼¥à¤ª¤è¤Ó¥³¥Ş¥ó¥É¤Î²òÀâ¡¥(Ä¹Ê¸)",
-/* 1*/	"¥³¥Ş¥ó¥É°ìÍ÷¡¥",
-/* 2*/	"NetHack¤Î´ÊÃ±¤ÊÎò»Ë¡¥",
-/*	"JNetHack¤Î´ÊÃ±¤ÊÎò»Ë¡¥",*/
-/* 3*/	"²èÌÌ¤ËÉ½¼¨¤µ¤ì¤ëÊ¸»ú¤ÎÀâÌÀ¡¥",
-/* 4*/	"¤³¤Î¥­¡¼¤¬²¿¤ò°ÕÌ£¤¹¤ë¤«¤ÎÀâÌÀ¡¥",
-/* 5*/	"¥²¡¼¥à¤Î¥ª¥×¥·¥ç¥ó°ìÍ÷¡¥",
-/* 6*/	"¥²¡¼¥à¤Î¥ª¥×¥·¥ç¥ó°ìÍ÷¡¥(Ä¹Ê¸)",
-/* 7*/	"³ÈÄ¥¥³¥Ş¥ó¥É°ìÍ÷¡¥",
-/* 8*/	"NetHack¤Î¥é¥¤¥»¥ó¥¹¡¥",
-/* 9*/	"±ÑÌ¾-ÏÂÌ¾¤ÎÉ½¡¥",
+/* 0*/	"ã‚²ãƒ¼ãƒ ãŠã‚ˆã³ã‚³ãƒãƒ³ãƒ‰ã®è§£èª¬ï¼(é•·æ–‡)",
+/* 1*/	"ã‚³ãƒãƒ³ãƒ‰ä¸€è¦§ï¼",
+/* 2*/	"NetHackã®ç°¡å˜ãªæ­´å²ï¼",
+/*	"JNetHackã®ç°¡å˜ãªæ­´å²ï¼",*/
+/* 3*/	"ç”»é¢ã«è¡¨ç¤ºã•ã‚Œã‚‹æ–‡å­—ã®èª¬æ˜ï¼",
+/* 4*/	"ã“ã®ã‚­ãƒ¼ãŒä½•ã‚’æ„å‘³ã™ã‚‹ã‹ã®èª¬æ˜ï¼",
+/* 5*/	"ã‚²ãƒ¼ãƒ ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ä¸€è¦§ï¼",
+/* 6*/	"ã‚²ãƒ¼ãƒ ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ä¸€è¦§ï¼(é•·æ–‡)",
+/* 7*/	"æ‹¡å¼µã‚³ãƒãƒ³ãƒ‰ä¸€è¦§ï¼",
+/* 8*/	"NetHackã®ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ï¼",
+/* 9*/	"è‹±å-å’Œåã®è¡¨ï¼",
 #ifdef PORT_HELP
-	"%s¤ËÊ¬Îà¤µ¤ì¤ë¥Ø¥ë¥×¤ª¤è¤Ó¥³¥Ş¥ó¥É¡¥",
+	"%sã«åˆ†é¡ã•ã‚Œã‚‹ãƒ˜ãƒ«ãƒ—ãŠã‚ˆã³ã‚³ãƒãƒ³ãƒ‰ï¼",
 #define PORT_HELP_ID 100
 #define WIZHLP_SLOT 11
 #else
 #define WIZHLP_SLOT 10
 #endif
 #ifdef WIZARD
-	"¥¦¥£¥¶¡¼¥É¥â¡¼¥É¤Î¥³¥Ş¥ó¥É°ìÍ÷¡¥",
+	"ã‚¦ã‚£ã‚¶ãƒ¼ãƒ‰ãƒ¢ãƒ¼ãƒ‰ã®ã‚³ãƒãƒ³ãƒ‰ä¸€è¦§ï¼",
 #endif
 	"",
 	(char *)0
@@ -809,7 +809,7 @@ help_menu(sel)
 			ATR_NONE, help_menu_items[i], MENU_UNSELECTED);
 	    }
 /*JP	end_menu(tmpwin, "Select one item:");*/
-	end_menu(tmpwin, "Áª¤ó¤Ç¤¯¤À¤µ¤¤¡§");
+	end_menu(tmpwin, "é¸ã‚“ã§ãã ã•ã„ï¼š");
 	n = select_menu(tmpwin, PICK_ONE, &selected);
 	destroy_nhwindow(tmpwin);
 	if (n > 0) {

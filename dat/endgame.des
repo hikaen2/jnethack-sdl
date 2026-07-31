@@ -21,9 +21,9 @@ FLAGS: noteleport,hardfloor,shortsighted
 #MESSAGE: "Well done, mortal!"
 #MESSAGE: "But now thou must face the final Test..."
 #MESSAGE: "Prove thyself worthy or perish!"
-MESSAGE: "¤è¤¯¤ä¤Ã¤¿¡¤¿Í´Ö¤è¡ª"
-MESSAGE: "¤·¤«¤·¡¤Æò¤ÏºÇ¸å¤Î»îÎı¤ËÄ¾ÌÌ¤·¤Æ¤¤¤ë¡¥¡¥¡¥"
-MESSAGE: "Æò¼«¿È²ÁÃÍ¤¢¤ë¤â¤Î¤«Èİ¤«¤ò¼¨¤»¡ª"
+MESSAGE: "ã‚ˆãã‚„ã£ãŸï¼Œäººé–“ã‚ˆï¼"
+MESSAGE: "ã—ã‹ã—ï¼Œæ±ã¯æœ€å¾Œã®è©¦ç·´ã«ç›´é¢ã—ã¦ã„ã‚‹ï¼ï¼ï¼"
+MESSAGE: "æ±è‡ªèº«ä¾¡å€¤ã‚ã‚‹ã‚‚ã®ã‹å¦ã‹ã‚’ç¤ºã›ï¼"
 
 GEOMETRY:center,center
 # The player lands, upon arrival, in the
@@ -141,8 +141,8 @@ FLAGS: noteleport,hardfloor,shortsighted
 #JP
 #MESSAGE: "What a strange feeling!"
 #MESSAGE: "You notice that there is no gravity here."
-MESSAGE: "¤Ê¤ó¤È´ñÌ¯¤Êµ¤»ı¤À¡ª"
-MESSAGE: "¤¢¤Ê¤¿¤Ï¤³¤³¤Ë¤Ï½ÅÎÏ¤¬¤Ê¤¤¤³¤È¤Ëµ¤¤¬¤Ä¤¤¤¿¡¥"
+MESSAGE: "ãªã‚“ã¨å¥‡å¦™ãªæ°—æŒã ï¼"
+MESSAGE: "ã‚ãªãŸã¯ã“ã“ã«ã¯é‡åŠ›ãŒãªã„ã“ã¨ã«æ°—ãŒã¤ã„ãŸï¼"
 GEOMETRY:center,center
 # The player lands, upon arrival, in the
 # lower-left area.  The location of the
@@ -387,7 +387,7 @@ OBJECT:'`',"boulder",random
 MAZE:"water",' '
 FLAGS: noteleport,hardfloor,shortsighted
 #MESSAGE: "You find yourself suspended in an air bubble surrounded by water."
-MESSAGE: "¤¢¤Ê¤¿¤Ï¿åÃæ¤Î¶õµ¤¤ÎË¢¤Î¤Ê¤«¤ËÉâÍ·¤·¤Æ¤¤¤ë¡¥"
+MESSAGE: "ã‚ãªãŸã¯æ°´ä¸­ã®ç©ºæ°—ã®æ³¡ã®ãªã‹ã«æµ®éŠã—ã¦ã„ã‚‹ï¼"
 GEOMETRY:center,center
 # The player lands upon arrival to an air bubble
 # within the leftmost third of the level.  The
@@ -480,9 +480,9 @@ FLAGS: noteleport,hardfloor,nommap,shortsighted
 #MESSAGE: "You arrive on the Astral Plane!"
 #MESSAGE: "Here the High Temples of the aligned gods are located."
 #MESSAGE: "You sense alarm, hostility, and excitement in the air!"
-MESSAGE: "¤¢¤Ê¤¿¤ÏÀºÎî³¦¤ËÅşÃå¤·¤¿¡ª"
-MESSAGE: "¤³¤³¤Ë¤Ï¤¢¤Ê¤¿¤Î¿À¤ÎÂç¿ÀÅÂ¤¬¤¢¤ë¡¥"
-MESSAGE: "¤¢¤Ê¤¿¤Ï´í¸±¤ò´¶¤¸¡¤¶½Ê³¤·¤¿¡¥"
+MESSAGE: "ã‚ãªãŸã¯ç²¾éœŠç•Œã«åˆ°ç€ã—ãŸï¼"
+MESSAGE: "ã“ã“ã«ã¯ã‚ãªãŸã®ç¥ã®å¤§ç¥æ®¿ãŒã‚ã‚‹ï¼"
+MESSAGE: "ã‚ãªãŸã¯å±é™ºã‚’æ„Ÿã˜ï¼Œèˆˆå¥®ã—ãŸï¼"
 GEOMETRY:center,center
 MAP
                               ---------------                              

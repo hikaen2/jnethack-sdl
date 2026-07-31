@@ -55,8 +55,8 @@ lock_action()
 	/* "unlocking"+2 == "locking" */
 	static const char *actions[] = {
 /* 
-** ±Ñ¸ì¤Ï un ¤ò¤Ä¤±¤ë¤À¤±¤ÇµÕ¤Î°ÕÌ£¤Ë¤Ê¤ë¤¬¡¤ÆüËÜ¸ì¤Ï¤½¤¦¤Ï¤¤¤«¤Ê¤¤¡¥
-** Ã¯¤À¡©¤³¤ó¤Ê¿ô¥Ğ¥¤¥È¤±¤Á¤ë¥³¡¼¥É½ñ¤¤¤¿¤ä¤Ä¤Ï¡©
+** è‹±èªã¯ un ã‚’ã¤ã‘ã‚‹ã ã‘ã§é€†ã®æ„å‘³ã«ãªã‚‹ãŒï¼Œæ—¥æœ¬èªã¯ãã†ã¯ã„ã‹ãªã„ï¼
+** èª°ã ï¼Ÿã“ã‚“ãªæ•°ãƒã‚¤ãƒˆã‘ã¡ã‚‹ã‚³ãƒ¼ãƒ‰æ›¸ã„ãŸã‚„ã¤ã¯ï¼Ÿ
 */
 #if 0 /*JP*/
 		/* [0] */	"unlocking the door",
@@ -64,19 +64,19 @@ lock_action()
 		/* [2] */	"unlocking the box",
 		/* [3] */	"picking the lock"
 #endif /*JP*/
-		/* [0] */	"Èâ¤Î¸°¤ò¤Ï¤º¤¹", 
-		/* [1] */	"ÊõÈ¢¤Î¸°¤ò¤Ï¤º¤¹",
-		/* [2] */	"È¢¤Î¸°¤ò¤Ï¤º¤¹",  
-		/* [3] */	"¸°¤ò¤Ï¤º¤¹"    
+		/* [0] */	"æ‰‰ã®éµã‚’ã¯ãšã™", 
+		/* [1] */	"å®ç®±ã®éµã‚’ã¯ãšã™",
+		/* [2] */	"ç®±ã®éµã‚’ã¯ãšã™",  
+		/* [3] */	"éµã‚’ã¯ãšã™"    
 	};
 
 	/* if the target is currently unlocked, we're trying to lock it now */
 	if (xlock.door && !(xlock.door->doormask & D_LOCKED))
 /*JP		return actions[0]+2;*/	/* "locking the door" */
-		return "Èâ¤Ë¸°¤ò¤«¤±¤ë";
+		return "æ‰‰ã«éµã‚’ã‹ã‘ã‚‹";
 	else if (xlock.box && !xlock.box->olocked)
 /*JP		return xlock.box->otyp == CHEST ? actions[1]+2 : actions[2]+2;*/
-		return xlock.box->otyp == CHEST ? "ÊõÈ¢¤Ë¸°¤ò¤«¤±¤ë" : "È¢¤Ë¸°¤ò¤«¤±¤ë";
+		return xlock.box->otyp == CHEST ? "å®ç®±ã«éµã‚’ã‹ã‘ã‚‹" : "ç®±ã«éµã‚’ã‹ã‘ã‚‹";
 	/* otherwise we're trying to unlock it */
 	else if (xlock.picktyp == LOCK_PICK)
 		return actions[3];	/* "picking the lock" */
@@ -108,22 +108,22 @@ picklock()	/* try to open/close a lock */
 	    switch (xlock.door->doormask) {
 		case D_NODOOR:
 /*JP		    pline("This doorway has no door.");*/
-		    pline("½ĞÆş¸ı¤Ë¤ÏÈâ¤¬¤Ê¤¤¡¥");
+		    pline("å‡ºå…¥å£ã«ã¯æ‰‰ãŒãªã„ï¼");
 		    return((xlock.usedtime = 0));
 		case D_ISOPEN:
 /*JP		    You("cannot lock an open door.");*/
-		    pline("³«¤¤¤Æ¤ëÈâ¤Ë¸°¤ò¤«¤±¤é¤ì¤Ê¤¤¡¥");
+		    pline("é–‹ã„ã¦ã‚‹æ‰‰ã«éµã‚’ã‹ã‘ã‚‰ã‚Œãªã„ï¼");
 		    return((xlock.usedtime = 0));
 		case D_BROKEN:
 /*JP		    pline("This door is broken.");*/
-		    pline("Èâ¤Ï²õ¤ì¤Æ¤¤¤ë");
+		    pline("æ‰‰ã¯å£Šã‚Œã¦ã„ã‚‹");
 		    return((xlock.usedtime = 0));
 	    }
 	}
 
 	if (xlock.usedtime++ >= 50 || nohands(uasmon)) {
 /*JP	    You("give up your attempt at %s.", lock_action());*/
-	    pline("%s¤Î¤ò¤¢¤­¤é¤á¤¿¡¥", lock_action());
+	    pline("%sã®ã‚’ã‚ãã‚‰ã‚ãŸï¼", lock_action());
 	    exercise(A_DEX, TRUE);	/* even if you don't succeed */
 	    return((xlock.usedtime = 0));
 	}
@@ -131,11 +131,11 @@ picklock()	/* try to open/close a lock */
 	if(rn2(100) > xlock.chance) return(1);		/* still busy */
 
 /*JP	You("succeed in %s.", lock_action());*/
-	You("%s¤Î¤ËÀ®¸ù¤·¤¿¡¥", lock_action());
+	You("%sã®ã«æˆåŠŸã—ãŸï¼", lock_action());
 	if (xlock.door) {
 	    if(xlock.door->doormask & D_TRAPPED) {
 /*JP		    b_trapped("door", FINGER);*/
-		    b_trapped("Èâ", FINGER);
+		    b_trapped("æ‰‰", FINGER);
 		    xlock.door->doormask = D_NODOOR;
 		    unblock_point(u.ux+u.dx, u.uy+u.dy);
 		    if (*in_rooms(u.ux+u.dx, u.uy+u.dy, SHOPBASE))
@@ -165,7 +165,7 @@ forcelock()	/* try to force a locked chest */
 
 	if (xlock.usedtime++ >= 50 || !uwep || nohands(uasmon)) {
 /*JP	    You("give up your attempt to force the lock.");*/
-	    pline("¸°¤ò¤³¤¸³«¤±¤ë¤Î¤ò¤¢¤­¤é¤á¤¿¡¥");
+	    pline("éµã‚’ã“ã˜é–‹ã‘ã‚‹ã®ã‚’ã‚ãã‚‰ã‚ãŸï¼");
 	    if(xlock.usedtime >= 50)		/* you made the effort */
 	      exercise((xlock.picktyp) ? A_DEX : A_STR, TRUE);
 	    return((xlock.usedtime = 0));
@@ -182,10 +182,10 @@ forcelock()	/* try to force a locked chest */
 		pline("%sour %s broke!",
 		      (uwep->quan > 1L) ? "One of y" : "Y", xname(uwep));
 */
-	        pline("¤¢¤Ê¤¿¤Î%s¤Ï²õ¤ì¤Æ¤·¤Ş¤Ã¤¿¡ª",xname(uwep));
+	        pline("ã‚ãªãŸã®%sã¯å£Šã‚Œã¦ã—ã¾ã£ãŸï¼",xname(uwep));
 		useup(uwep);
 /*JP		You("give up your attempt to force the lock.");*/
-		pline("¸°¤ò¤³¤¸³«¤±¤ë¤Î¤ò¤¢¤­¤é¤á¤¿¡¥");
+		pline("éµã‚’ã“ã˜é–‹ã‘ã‚‹ã®ã‚’ã‚ãã‚‰ã‚ãŸï¼");
 		exercise(A_DEX, TRUE);
 		return((xlock.usedtime = 0));
 	    }
@@ -195,7 +195,7 @@ forcelock()	/* try to force a locked chest */
 	if(rn2(100) > xlock.chance) return(1);		/* still busy */
 
 /*JP	You("succeed in forcing the lock.");*/
-	pline("¸°¤ò¤³¤¸³«¤±¤¿¡¥");
+	pline("éµã‚’ã“ã˜é–‹ã‘ãŸï¼");
 	xlock.box->olocked = 0;
 	xlock.box->obroken = 1;
 	if(!xlock.picktyp && !rn2(3)) {
@@ -208,7 +208,7 @@ forcelock()	/* try to force a locked chest */
 
 /*JP	    pline("In fact, you've totally destroyed %s.",
 		  the(xname(xlock.box)));*/
-	    pline("%s¤ò´°Á´¤Ë²õ¤·¤Æ¤·¤Ş¤Ã¤¿¡¥",
+	    pline("%sã‚’å®Œå…¨ã«å£Šã—ã¦ã—ã¾ã£ãŸï¼",
 		  the(xname(xlock.box)));
 
 	    /* Put the contents on ground at the hero's feet. */
@@ -237,7 +237,7 @@ forcelock()	/* try to force a locked chest */
 		loss += stolen_value(xlock.box, u.ux, u.uy,
 					     (boolean)shkp->mpeaceful, TRUE);
 /*JP	    if(loss) You("owe %ld zorkmids for objects destroyed.", loss);*/
-	    if(loss) You("´ïÊªÇËÂ»¤Ç%ld¥´¡¼¥ë¥É¤Î¼Ú¤ê¤ò¤Ä¤¯¤Ã¤¿¡¥", loss);
+	    if(loss) You("å™¨ç‰©ç ´æã§%ldã‚´ãƒ¼ãƒ«ãƒ‰ã®å€Ÿã‚Šã‚’ã¤ãã£ãŸï¼", loss);
 	    delobj(xlock.box);
 	}
 	exercise((xlock.picktyp) ? A_DEX : A_STR, TRUE);
@@ -272,28 +272,28 @@ pick_lock(pick) /* pick a lock with a given object */
 	/* check whether we're resuming an interrupted previous attempt */
 	if (xlock.usedtime && picktyp == xlock.picktyp) {
 /*JP	    static char no_longer[] = "Unfortunately, you can no longer %s %s.";*/
-	    static char no_longer[] = "ÉÔ¹¬¤Ë¤â¡¤¤¢¤Ê¤¿¤Ï%s%s";
+	    static char no_longer[] = "ä¸å¹¸ã«ã‚‚ï¼Œã‚ãªãŸã¯%s%s";
 
 	    if (nohands(uasmon)) {
 /*JP		const char *what = (picktyp == LOCK_PICK) ? "pick" : "key";*/
-		const char *what = (picktyp == LOCK_PICK) ? "¸°³«¤±´ï¶ñ" : "¸°";
+		const char *what = (picktyp == LOCK_PICK) ? "éµé–‹ã‘å™¨å…·" : "éµ";
 #ifdef TOURIST
 /*JP		if (picktyp == CREDIT_CARD) what = "card";*/
-		if (picktyp == CREDIT_CARD) what = "¥«¡¼¥É";
+		if (picktyp == CREDIT_CARD) what = "ã‚«ãƒ¼ãƒ‰";
 #endif
 /*JP		pline(no_longer, "hold the", what);*/
-		pline(no_longer, what, "¤ò¤Ä¤«¤á¤Ê¤¤");
+		pline(no_longer, what, "ã‚’ã¤ã‹ã‚ãªã„");
 		reset_pick();
 		return 0;
 	    } else if (xlock.box && !can_reach_floor()) {
 /*JP		pline(no_longer, "reach the", "lock");*/
-		pline(no_longer, "¸°¤Ë", "ÆÏ¤«¤Ê¤¤");
+		pline(no_longer, "éµã«", "å±Šã‹ãªã„");
 		reset_pick();
 		return 0;
 	    } else {
 		const char *action = lock_action();
 /*JP		You("resume your attempt at %s.", action);*/
-		pline("%s¤òºÆ³«¤·¤¿¡¥", action);
+		pline("%sã‚’å†é–‹ã—ãŸï¼", action);
 		set_occupation(picklock, action, 0);
 		return(1);
 	    }
@@ -301,7 +301,7 @@ pick_lock(pick) /* pick a lock with a given object */
 
 	if(nohands(uasmon)) {
 /*JP		You_cant("hold %s -- you have no hands!", doname(pick));*/
-		You("%s¤ò¤Ä¤«¤à¤³¤È¤¬¤Ç¤­¤Ê¤¤¡ª--¤¢¤Ê¤¿¤Ë¤Ï¼ê¤¬¤Ê¤¤¡ª", xname(pick));
+		You("%sã‚’ã¤ã‹ã‚€ã“ã¨ãŒã§ããªã„ï¼--ã‚ãªãŸã«ã¯æ‰‹ãŒãªã„ï¼", xname(pick));
 		return(0);
 	}
 
@@ -326,17 +326,17 @@ pick_lock(pick) /* pick a lock with a given object */
 	    if (u.dz < 0) {
 /*JP		pline("There isn't any sort of lock up %s.",
 		      Levitation ? "here" : "there");*/
-		pline("%s¤Ë¤Ï¸°¤ò¤«¤±¤ë¤è¤¦¤ÊÊª¤Ï¤Ê¤¤¡¥",
-		      Levitation ? "¤³¤³" : "²¼Êı");
+		pline("%sã«ã¯éµã‚’ã‹ã‘ã‚‹ã‚ˆã†ãªç‰©ã¯ãªã„ï¼",
+		      Levitation ? "ã“ã“" : "ä¸‹æ–¹");
 		return 0;
 	    } else if (is_lava(u.ux, u.uy)) {
 /*JP		pline("Doing that would probably melt your %s.",*/
-		pline("¤½¤ó¤Ê¤³¤È¤ò¤·¤¿¤é%s¤¬ÍÏ¤±¤Æ¤·¤Ş¤¦¡¥",
+		pline("ãã‚“ãªã“ã¨ã‚’ã—ãŸã‚‰%sãŒæº¶ã‘ã¦ã—ã¾ã†ï¼",
 		      xname(pick));
 		return 0;
 	    } else if (is_pool(u.ux, u.uy) && !Underwater) {
 /*JP		pline_The("water has no lock.");*/
-		pline("¿å¤Ë¾ûÁ°¤Ï¤Ê¤¤");
+		pline("æ°´ã«éŒ å‰ã¯ãªã„");
 		return 0;
 	    }
 
@@ -347,7 +347,7 @@ pick_lock(pick) /* pick a lock with a given object */
 		    ++count;
 		    if (!can_reach_floor()) {
 /*JP			You_cant("reach %s from up here.", the(xname(otmp)));*/
-			You("¤³¤³¤Ë¤¢¤ë%s¤ËÆÏ¤«¤Ê¤¤¡¥", the(xname(otmp)));
+			You("ã“ã“ã«ã‚ã‚‹%sã«å±Šã‹ãªã„ï¼", the(xname(otmp)));
 			return 0;
 		    }
 		    it = 0;
@@ -357,14 +357,14 @@ pick_lock(pick) /* pick a lock with a given object */
 		    else if (picktyp != LOCK_PICK) verb = "unlock", it = 1;
 		    else verb = "pick";
 #endif /*JP*/
-		    if (otmp->obroken) verb = "½¤Éü¤¹¤ë";
-		    else if (!otmp->olocked) verb = "¸°¤ò¤«¤±¤ë", it = 1;
-		    else if (picktyp != LOCK_PICK) verb = "¸°¤ò¤Ï¤º¤¹", it = 1;
-		    else verb = "¤³¤¸¤¢¤±¤ë";
+		    if (otmp->obroken) verb = "ä¿®å¾©ã™ã‚‹";
+		    else if (!otmp->olocked) verb = "éµã‚’ã‹ã‘ã‚‹", it = 1;
+		    else if (picktyp != LOCK_PICK) verb = "éµã‚’ã¯ãšã™", it = 1;
+		    else verb = "ã“ã˜ã‚ã‘ã‚‹";
 /*JP		    Sprintf(qbuf, "There is %s here, %s %s?",
 			    doname(otmp), verb, it ? "it" : "its lock");*/
-		    Sprintf(qbuf, "¤³¤³¤Ë¤Ï%s¤¬¤¢¤ë¡¥%s¡©",
-			    doname(otmp), jconj(verb,"¤Ş¤¹¤«"));
+		    Sprintf(qbuf, "ã“ã“ã«ã¯%sãŒã‚ã‚‹ï¼%sï¼Ÿ",
+			    doname(otmp), jconj(verb,"ã¾ã™ã‹"));
 
 		    c = ynq(qbuf);
 		    if(c == 'q') return(0);
@@ -372,14 +372,14 @@ pick_lock(pick) /* pick a lock with a given object */
 
 		    if (otmp->obroken) {
 /*JP			You_cant("fix its broken lock with %s.", doname(pick));*/
-			You("²õ¤ì¤¿¸°¤ò%s¤Ç½¤Éü¤Ç¤­¤Ê¤¤¡¥", doname(pick));
+			You("å£Šã‚ŒãŸéµã‚’%sã§ä¿®å¾©ã§ããªã„ï¼", doname(pick));
 			return 0;
 		    }
 #ifdef TOURIST
 		    else if (picktyp == CREDIT_CARD && !otmp->olocked) {
 			/* credit cards are only good for unlocking */
 /*JP			You_cant("do that with %s.", doname(pick));*/
-			pline("%s¤¸¤ã¤½¤ó¤Ê¤³¤È¤Ï¤Ç¤­¤Ê¤¤¡¥", doname(pick));
+			pline("%sã˜ã‚ƒãã‚“ãªã“ã¨ã¯ã§ããªã„ï¼", doname(pick));
 			return 0;
 		    }
 #endif
@@ -407,7 +407,7 @@ pick_lock(pick) /* pick a lock with a given object */
 	    if (c != 'y') {
 		if (!count)
 /*JP		    pline("There doesn't seem to be any sort of lock here.");*/
-		    pline("¤³¤³¤Ë¤Ï¸°¤ò¤«¤±¤ë¤è¤¦¤ÊÊª¤Ï¤Ê¤¤¤è¤¦¤À¡¥");
+		    pline("ã“ã“ã«ã¯éµã‚’ã‹ã‘ã‚‹ã‚ˆã†ãªç‰©ã¯ãªã„ã‚ˆã†ã ï¼");
 		return(0);		/* decided against all boxes */
 	    }
 	} else {			/* pick the lock in a door */
@@ -421,56 +421,56 @@ pick_lock(pick) /* pick a lock with a given object */
 		if (picktyp == CREDIT_CARD &&
 		    (mtmp->isshk || mtmp->data == &mons[PM_ORACLE]))
 /*JP		    verbalize("No checks, no credit, no problem.");*/
-		    verbalize("¤¤¤Ä¤â¥Ë¥³¥Ë¥³¸½¶âÊ§¤¤¡¥");
+		    verbalize("ã„ã¤ã‚‚ãƒ‹ã‚³ãƒ‹ã‚³ç¾é‡‘æ‰•ã„ï¼");
 		else
 #endif
 /*JP		    pline("I don't think %s would appreciate that.", mon_nam(mtmp));*/
-		    pline("%s¤¬¤½¤Î²ÁÃÍ¤òÇ§¤á¤ë¤È¤Ï»×¤¨¤Ê¤¤¡¥", mon_nam(mtmp));
+		    pline("%sãŒãã®ä¾¡å€¤ã‚’èªã‚ã‚‹ã¨ã¯æ€ãˆãªã„ï¼", mon_nam(mtmp));
 		return(0);
 	    }
 	    if(!IS_DOOR(door->typ)) {
 		if (is_drawbridge_wall(x,y) >= 0)
 /*JP		    You("%s no lock on the drawbridge.",
 				Blind ? "feel" : "see");*/
-		    pline("Ä·¤Í¶¶¤Ë¤Ï¸°¤¬¤Ê¤¤%s¡¥",
-				Blind ? "¤è¤¦¤À" : "¤è¤¦¤Ë¸«¤¨¤ë");
+		    pline("è·³ã­æ©‹ã«ã¯éµãŒãªã„%sï¼",
+				Blind ? "ã‚ˆã†ã " : "ã‚ˆã†ã«è¦‹ãˆã‚‹");
 		else
 /*JP		    You("%s no door there.",
 				Blind ? "feel" : "see");*/
-		    pline("¤³¤³¤Ë¤ÏÈâ¤¬¤Ê¤¤%s¡¥",
-				Blind ? "¤è¤¦¤À" : "¤è¤¦¤Ë¸«¤¨¤ë");
+		    pline("ã“ã“ã«ã¯æ‰‰ãŒãªã„%sï¼",
+				Blind ? "ã‚ˆã†ã " : "ã‚ˆã†ã«è¦‹ãˆã‚‹");
 		return(0);
 	    }
 	    switch (door->doormask) {
 		case D_NODOOR:
 /*JP		    pline("This doorway has no door.");*/
-	            pline("½ĞÆş¸ı¤Ë¤ÏÈâ¤¬¤Ê¤¤¡¥");
+	            pline("å‡ºå…¥å£ã«ã¯æ‰‰ãŒãªã„ï¼");
 		    return(0);
 		case D_ISOPEN:
 /*JP		    You("cannot lock an open door.");*/
-		    pline("³«¤¤¤Æ¤ëÈâ¤Ë¸°¤ò¤«¤±¤ì¤Ê¤¤¡¥");
+		    pline("é–‹ã„ã¦ã‚‹æ‰‰ã«éµã‚’ã‹ã‘ã‚Œãªã„ï¼");
 		    return(0);
 		case D_BROKEN:
 /*JP		    pline("This door is broken.");*/
-		    pline("Èâ¤Ï²õ¤ì¤Æ¤¤¤ë");
+		    pline("æ‰‰ã¯å£Šã‚Œã¦ã„ã‚‹");
 		    return(0);
 		default:
 #ifdef TOURIST
 		    /* credit cards are only good for unlocking */
 		    if(picktyp == CREDIT_CARD && !(door->doormask & D_LOCKED)) {
 /*JP			You_cant("lock a door with a credit card.");*/
-		        You("¥¯¥ì¥¸¥Ã¥È¥«¡¼¥É¤Ç¸°¤ò¤«¤±¤ë¤³¤È¤Ï¤Ç¤­¤Ê¤¤¡¥");
+		        You("ã‚¯ãƒ¬ã‚¸ãƒƒãƒˆã‚«ãƒ¼ãƒ‰ã§éµã‚’ã‹ã‘ã‚‹ã“ã¨ã¯ã§ããªã„ï¼");
 			return(0);
 		    }
 #endif
 
 /*JP
-	¤³¤ì¤³¤½¿¿¤ËÍøÍÑ²ÁÃÍ¤Î¤Ê¤¤¥Æ¥¯¥Ë¥«¥ë¤Ê¥³¡¼¥Ç¥£¥ó¥°¤À¡ª
+	ã“ã‚Œã“ãçœŸã«åˆ©ç”¨ä¾¡å€¤ã®ãªã„ãƒ†ã‚¯ãƒ‹ã‚«ãƒ«ãªã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã ï¼
 							--issei
 		    Sprintf(qbuf,"%sock it?",
 			(door->doormask & D_LOCKED) ? "Unl" : "L" );*/
-		    Sprintf(qbuf,"%s¡©",
-			(door->doormask & D_LOCKED) ? "¤Ï¤º¤·¤Ş¤¹¤«" : "¤«¤±¤Ş¤¹¤«" );
+		    Sprintf(qbuf,"%sï¼Ÿ",
+			(door->doormask & D_LOCKED) ? "ã¯ãšã—ã¾ã™ã‹" : "ã‹ã‘ã¾ã™ã‹" );
 
 
 		    c = yn(qbuf);
@@ -523,17 +523,17 @@ doforce()		/* try to force a chest with your weapon */
 	  ) {
 /*JP	    You_cant("force anything without a %sweapon.",
 		  (uwep) ? "proper " : "");*/
-	    pline("%sÉğ´ï¤Ê¤·¤Ç¸°¤ò¤³¤¸¤¢¤±¤ë¤³¤È¤Ï¤Ç¤­¤Ê¤¤¡¥",
-		  (uwep) ? "Å¬ÀÚ¤Ê" : "");
+	    pline("%sæ­¦å™¨ãªã—ã§éµã‚’ã“ã˜ã‚ã‘ã‚‹ã“ã¨ã¯ã§ããªã„ï¼",
+		  (uwep) ? "é©åˆ‡ãª" : "");
 	    return(0);
 	}
 
 	picktyp = is_blade(uwep);
 	if(xlock.usedtime && xlock.box && picktyp == xlock.picktyp) {
 /*JP	    You("resume your attempt to force the lock.");*/
-	    pline("¸°¤ò¤³¤¸¤¢¤±¤ë¤Î¤òºÆ³«¤·¤¿¡¥");
+	    pline("éµã‚’ã“ã˜ã‚ã‘ã‚‹ã®ã‚’å†é–‹ã—ãŸï¼");
 /*JP	    set_occupation(forcelock, "forcing the lock", 0);*/
-	    set_occupation(forcelock, "¸°¤ò¤³¤¸¤¢¤±¤ë", 0);
+	    set_occupation(forcelock, "éµã‚’ã“ã˜ã‚ã‘ã‚‹", 0);
 	    return(1);
 	}
 
@@ -543,12 +543,12 @@ doforce()		/* try to force a chest with your weapon */
 	    if(Is_box(otmp)) {
 		if (otmp->obroken || !otmp->olocked) {
 /*JP		    pline("There is %s here, but its lock is already %s.",*/
-		    pline("¤³¤³¤Ë¤Ï%s¤¬¤¢¤ë¡¤¤·¤«¤·¤½¤Î¸°¤Ï¤â¤¦%s¡¥",
-			  doname(otmp), otmp->obroken ? "²õ¤ì¤Æ¤¤¤ë" : "¤Ï¤º¤µ¤ì¤Æ¤¤¤ë");
+		    pline("ã“ã“ã«ã¯%sãŒã‚ã‚‹ï¼Œã—ã‹ã—ãã®éµã¯ã‚‚ã†%sï¼",
+			  doname(otmp), otmp->obroken ? "å£Šã‚Œã¦ã„ã‚‹" : "ã¯ãšã•ã‚Œã¦ã„ã‚‹");
 		    continue;
 		}
 /*JP		Sprintf(qbuf,"There is %s here, force its lock?", doname(otmp));*/
-		Sprintf(qbuf,"¤³¤³¤Ë¤Ï%s¤¬¤¢¤ë¡¤¸°¤ò¤³¤¸¤¢¤±¤Ş¤¹¤«¡©", doname(otmp));
+		Sprintf(qbuf,"ã“ã“ã«ã¯%sãŒã‚ã‚‹ï¼Œéµã‚’ã“ã˜ã‚ã‘ã¾ã™ã‹ï¼Ÿ", doname(otmp));
 
 		c = ynq(qbuf);
 		if(c == 'q') return(0);
@@ -556,10 +556,10 @@ doforce()		/* try to force a chest with your weapon */
 
 		if(picktyp)
 /*JP		    You("force your %s into a crack and pry.", xname(uwep));*/
-		    You("%s¤ò¸°·ê¤ËÆş¤ì¤Æ¥«¥Á¥ã¥«¥Á¥ã¤·¤¿¡¥",xname(uwep));
+		    You("%sã‚’éµç©´ã«å…¥ã‚Œã¦ã‚«ãƒãƒ£ã‚«ãƒãƒ£ã—ãŸï¼",xname(uwep));
 		else
 /*JP		    You("start bashing it with your %s.", xname(uwep));*/
-		    pline("%s¤Ç²¥¤ê¤Ä¤±¤¿¡¥", xname(uwep));
+		    pline("%sã§æ®´ã‚Šã¤ã‘ãŸï¼", xname(uwep));
 		xlock.box = otmp;
 		xlock.chance = objects[otmp->otyp].oc_wldam * 2;
 		xlock.picktyp = picktyp;
@@ -569,8 +569,8 @@ doforce()		/* try to force a chest with your weapon */
 
 /*JP	if(xlock.box)	set_occupation(forcelock, "forcing the lock", 0);
 	else		You("decide not to force the issue.");*/
-	if(xlock.box)	set_occupation(forcelock, "¸°¤ò¤³¤¸¤¢¤±¤ë", 0);
-	else		pline("¤½¤ì¤ÏÌµ°ÕÌ£¤Ê¹Ô°Ù¤À¡¥");
+	if(xlock.box)	set_occupation(forcelock, "éµã‚’ã“ã˜ã‚ã‘ã‚‹", 0);
+	else		pline("ãã‚Œã¯ç„¡æ„å‘³ãªè¡Œç‚ºã ï¼");
 	return(1);
 }
 
@@ -583,7 +583,7 @@ doopen()		/* try to open a door */
 
 	if (u.utrap && u.utraptype == TT_PIT) {
 /*JP	    You_cant("reach over the edge of the pit.");*/
-	    pline("Íî¤··ê¤ÎÃæ¤«¤éÆÏ¤«¤Ê¤¤¡¥");
+	    pline("è½ã—ç©´ã®ä¸­ã‹ã‚‰å±Šã‹ãªã„ï¼");
 	    return 0;
 	}
 #ifdef NEWBIE
@@ -613,15 +613,15 @@ doopen()		/* try to open a door */
 /*JP
 		    pline("There is no obvious way to open the drawbridge.");
 */
-		    pline("¼«ÌÀ¤ÊÊıË¡¤¸¤ãÄ·¤Í¶¶¤Ï¹ß¤ê¤Ê¤¤¡¥");
+		    pline("è‡ªæ˜ãªæ–¹æ³•ã˜ã‚ƒè·³ã­æ©‹ã¯é™ã‚Šãªã„ï¼");
 		    return(0);
 		}
 /*JP
 		You("%s no door there.",
 				Blind ? "feel" : "see");
 */
-		pline("¤½¤³¤Ë¤ÏÈâ¤Ï¤Ê¤¤%s¡¥",
-				Blind ? "¤è¤¦¤À" : "¤è¤¦¤Ë¸«¤¨¤ë");
+		pline("ãã“ã«ã¯æ‰‰ã¯ãªã„%sï¼",
+				Blind ? "ã‚ˆã†ã " : "ã‚ˆã†ã«è¦‹ãˆã‚‹");
 		return(0);
 	}
 
@@ -640,23 +640,23 @@ doopen()		/* try to open a door */
 */
 	    switch(door->doormask) {
 		case D_BROKEN:
-		  pline("Èâ¤Ï²õ¤ì¤Æ¤¤¤ë¡¥"); 
+		  pline("æ‰‰ã¯å£Šã‚Œã¦ã„ã‚‹ï¼"); 
 		  break;
 		case D_NODOOR:
-		  pline("½ĞÆş¸ı¤Ë¤ÏÈâ¤¬¤Ê¤¤¡¥");
+		  pline("å‡ºå…¥å£ã«ã¯æ‰‰ãŒãªã„ï¼");
 		  break;
 		case D_ISOPEN:
-		  pline("Èâ¤Ï¤â¤¦³«¤¤¤Æ¤¤¤ë¡¥");
+		  pline("æ‰‰ã¯ã‚‚ã†é–‹ã„ã¦ã„ã‚‹ï¼");
 		  break;
 		default:
-		  pline("Èâ¤Ë¤Ï¸°¤¬³İ¤«¤Ã¤Æ¤¤¤ë"); 
+		  pline("æ‰‰ã«ã¯éµãŒæ›ã‹ã£ã¦ã„ã‚‹"); 
 #ifdef NEWBIE 
 		  ++newbie.try_open;
 		  if(newbie.try_open == 10){
-		       pline("¥Ò¥ó¥È: ¸°¤ò³«¤±¤ë¤Î¤Ë»È¤¨¤½¤¦¤ÊÊª¤òÃµ¤½¤¦¡£'a'¤Ç»È¤¨¤ë¡¥");
+		       pline("ãƒ’ãƒ³ãƒˆ: éµã‚’é–‹ã‘ã‚‹ã®ã«ä½¿ãˆãã†ãªç‰©ã‚’æ¢ãã†ã€‚'a'ã§ä½¿ãˆã‚‹ï¼");
 		  }
 		  if(newbie.try_open == 30){
-		       pline("¥Ò¥ó¥È: ºÇ¸å¤Î¼êÃÊ¤È¤·¤Æ'C-d'¤Ç½³¤ê¤ä¤Ö¤ì¡ª");
+		       pline("ãƒ’ãƒ³ãƒˆ: æœ€å¾Œã®æ‰‹æ®µã¨ã—ã¦'C-d'ã§è¹´ã‚Šã‚„ã¶ã‚Œï¼");
 		  }
 #endif
 		  break;
@@ -669,7 +669,7 @@ doopen()		/* try to open a door */
 /*JP
 	    pline("You're too small to pull the door open.");
 */
-	    You("¾®¤µ¤¹¤®¤ÆÈâ¤ò³«¤±¤é¤ì¤Ê¤¤¡¥");
+	    You("å°ã•ã™ãã¦æ‰‰ã‚’é–‹ã‘ã‚‰ã‚Œãªã„ï¼");
 	    return(0);
 	}
 
@@ -678,12 +678,12 @@ doopen()		/* try to open a door */
 /*JP
 	    pline_The("door opens.");
 */
-	    pline("Èâ¤Ï³«¤¤¤¿¡¥");
+	    pline("æ‰‰ã¯é–‹ã„ãŸï¼");
 	    if(door->doormask & D_TRAPPED) {
 /*JP
 		b_trapped("door", FINGER);
 */
-		b_trapped("Èâ", FINGER);
+		b_trapped("æ‰‰", FINGER);
 		door->doormask = D_NODOOR;
 		if (*in_rooms(x, y, SHOPBASE)) add_damage(x, y, 0L);
 	    } else
@@ -696,7 +696,7 @@ doopen()		/* try to open a door */
 	} else {
 	    exercise(A_STR, TRUE);
 /*JP	    pline_The("door resists!");*/
-	    pline("¤Ê¤«¤Ê¤«³«¤«¤Ê¤¤¡ª");
+	    pline("ãªã‹ãªã‹é–‹ã‹ãªã„ï¼");
 	}
 
 	return(1);
@@ -713,13 +713,13 @@ register int x, y;
 		if (mtmp->m_ap_type == M_AP_OBJECT) goto objhere;
 /*JP		pline("%s stands in the way!", Blind ?
 			"Some creature" : Monnam(mtmp));*/
-		pline("%s¤¬Î©¤Á¤Õ¤µ¤¬¤Ã¤Æ¤¤¤ë¡¥", Blind ?
-			"²¿¼Ô¤«" : Monnam(mtmp));
+		pline("%sãŒç«‹ã¡ãµã•ãŒã£ã¦ã„ã‚‹ï¼", Blind ?
+			"ä½•è€…ã‹" : Monnam(mtmp));
 		return(TRUE);
 	}
 	if (OBJ_AT(x, y)) {
 /*JPobjhere:	pline("%s's in the way.", Something);*/
-objhere:	pline("²¿¤«½ĞÆş¸ı¤Ë¤¢¤ë¡¥");
+objhere:	pline("ä½•ã‹å‡ºå…¥å£ã«ã‚ã‚‹ï¼");
 		return(TRUE);
 	}
 	return(FALSE);
@@ -734,7 +734,7 @@ doclose()		/* try to close a door */
 
 	if (u.utrap && u.utraptype == TT_PIT) {
 /*JP	    You_cant("reach over the edge of the pit.");*/
-	    pline("Íî¤··ê¤ÎÃæ¤«¤éÆÏ¤«¤Ê¤¤¡¥");
+	    pline("è½ã—ç©´ã®ä¸­ã‹ã‚‰å±Šã‹ãªã„ï¼");
 	    return 0;
 	}
 
@@ -744,7 +744,7 @@ doclose()		/* try to close a door */
 	y = u.uy + u.dy;
 	if((x == u.ux) && (y == u.uy)) {
 /*JP		You("are in the way!");*/
-		pline("¤¢¤Ê¤¿¤¬½ĞÆş¸ı¤Ë¤¤¤ë¤Î¤ÇÊÄ¤Ş¤é¤Ê¤¤¡¥");
+		pline("ã‚ãªãŸãŒå‡ºå…¥å£ã«ã„ã‚‹ã®ã§é–‰ã¾ã‚‰ãªã„ï¼");
 		return(1);
 	}
 
@@ -763,18 +763,18 @@ doclose()		/* try to close a door */
 	if(!IS_DOOR(door->typ)) {
 		if (door->typ == DRAWBRIDGE_DOWN)
 /*JP		    pline("There is no obvious way to close the drawbridge.");*/
-		    pline("¼«ÌÀ¤ÊÊıË¡¤¸¤ãÄ·¤Í¶¶¤Ï¾å¤¬¤é¤¤¡¥");
+		    pline("è‡ªæ˜ãªæ–¹æ³•ã˜ã‚ƒè·³ã­æ©‹ã¯ä¸ŠãŒã‚‰ã„ï¼");
 		else
 /*JP		    You("%s no door there.",
 				Blind ? "feel" : "see");*/
-		    pline("¤½¤³¤ËÈâ¤Ï¤Ê¤¤%s¡¥",
-				Blind ? "¤è¤¦¤À" : "¤è¤¦¤Ë¸«¤¨¤ë");
+		    pline("ãã“ã«æ‰‰ã¯ãªã„%sï¼",
+				Blind ? "ã‚ˆã†ã " : "ã‚ˆã†ã«è¦‹ãˆã‚‹");
 		return(0);
 	}
 
 	if(door->doormask == D_NODOOR) {
 /*JP	    pline("This doorway has no door.");*/
-	    pline("½ĞÆş¸ı¤Ë¤ÏÈâ¤¬¤Ê¤¤¡¥");
+	    pline("å‡ºå…¥å£ã«ã¯æ‰‰ãŒãªã„ï¼");
 	    return(0);
 	}
 
@@ -782,25 +782,25 @@ doclose()		/* try to close a door */
 
 	if(door->doormask == D_BROKEN) {
 /*JP	    pline("This door is broken.");*/
-	    pline("Èâ¤Ï²õ¤ì¤Æ¤¤¤ë¡¥");
+	    pline("æ‰‰ã¯å£Šã‚Œã¦ã„ã‚‹ï¼");
 	    return(0);
 	}
 
 	if(door->doormask & (D_CLOSED | D_LOCKED)) {
 /*JP	    pline("This door is already closed.");*/
-	    pline("Èâ¤Ï¤â¤¦ÊÄ¤¸¤Æ¤¤¤ë¡¥");
+	    pline("æ‰‰ã¯ã‚‚ã†é–‰ã˜ã¦ã„ã‚‹ï¼");
 	    return(0);
 	}
 
 	if(door->doormask == D_ISOPEN) {
 	    if(verysmall(uasmon)) {
 /*JP		 pline("You're too small to push the door closed.");*/
-		 You("¾®¤µ¤¹¤®¤ÆÈâ¤òÊÄ¤á¤é¤ì¤Ê¤¤¡¥");
+		 You("å°ã•ã™ãã¦æ‰‰ã‚’é–‰ã‚ã‚‰ã‚Œãªã„ï¼");
 		 return(0);
 	    }
 	    if (rn2(25) < (ACURRSTR+ACURR(A_DEX)+ACURR(A_CON))/3) {
 /*JP		pline_The("door closes.");*/
-		pline("Èâ¤ÏÊÄ¤¸¤¿¡¥");
+		pline("æ‰‰ã¯é–‰ã˜ãŸï¼");
 		door->doormask = D_CLOSED;
 		if (Blind)
 		    feel_location(x,y);	/* the hero knows she closed it */
@@ -811,7 +811,7 @@ doclose()		/* try to close a door */
 	    else {
 	        exercise(A_STR, TRUE);
 /*JP	        pline_The("door resists!");*/
-	        pline("¤Ê¤«¤Ê¤«ÊÄ¤Ş¤é¤Ê¤¤¡ª");
+	        pline("ãªã‹ãªã‹é–‰ã¾ã‚‰ãªã„ï¼");
 	    }
 	}
 
@@ -829,7 +829,7 @@ register struct obj *obj, *otmp;	/* obj *is* a box */
 	case SPE_WIZARD_LOCK:
 	    if (!obj->olocked) {	/* lock it; fix if broken */
 /*JP		pline("Klunk!");*/
-		pline("¥«¥Á¡ª");
+		pline("ã‚«ãƒï¼");
 		obj->olocked = 1;
 		obj->obroken = 0;
 		res = 1;
@@ -839,7 +839,7 @@ register struct obj *obj, *otmp;	/* obj *is* a box */
 	case SPE_KNOCK:
 	    if (obj->olocked) {		/* unlock; couldn't be broken */
 /*JP		pline("Klick!");*/
-		pline("¥³¥ó¥³¥ó¡ª");
+		pline("ã‚³ãƒ³ã‚³ãƒ³ï¼");
 		obj->olocked = 0;
 		res = 1;
 	    } else			/* silently fix if broken */
@@ -867,8 +867,8 @@ int x, y;
 	const char *msg = (const char *)0;
 /*JP	const char *dustcloud = "A cloud of dust";
 	const char *quickly_dissipates = "quickly dissipates";*/
-	const char *dustcloud = "¤Û¤³¤ê";
-	const char *quickly_dissipates = "¤¢¤Ã¤È¸À¤¦¤Ş¤ËÈô¤Ó»¶¤Ã¤¿";
+	const char *dustcloud = "ã»ã“ã‚Š";
+	const char *quickly_dissipates = "ã‚ã£ã¨è¨€ã†ã¾ã«é£›ã³æ•£ã£ãŸ";
 	
 	if (door->typ == SDOOR) {
 	    switch (otmp->otyp) {
@@ -880,7 +880,7 @@ int x, y;
 		door->doormask = D_CLOSED | (door->doormask & D_TRAPPED);
 		newsym(x,y);
 /*JP		if (cansee(x,y)) pline("A door appears in the wall!");*/
-		if (cansee(x,y)) pline("ÊÉ¤Î°ìÉô¤¬³«¤¤¤¿¡ª");
+		if (cansee(x,y)) pline("å£ã®ä¸€éƒ¨ãŒé–‹ã„ãŸï¼");
 		if (otmp->otyp == WAN_OPENING || otmp->otyp == SPE_KNOCK)
 		    return TRUE;
 		break;		/* striking: continue door handling below */
@@ -898,17 +898,17 @@ int x, y;
 	    if (Is_rogue_level(&u.uz)) {
 		/* Can't have real locking in Rogue, so just hide doorway */
 /*JP		pline("%s springs up in the older, more primitive doorway.",*/
-		pline("¸Å¤¯¤µ¤¤¡¤¸¶»ÏÅª¤Ê½ĞÆş¸ı¤Ë%s¤¬Î©¤Á¤³¤á¤¿¡¥",
+		pline("å¤ãã•ã„ï¼ŒåŸå§‹çš„ãªå‡ºå…¥å£ã«%sãŒç«‹ã¡ã“ã‚ãŸï¼",
 			dustcloud);
 		if (obstructed(x,y)) {
 /*JP			pline_The("cloud %s.",quickly_dissipates);*/
-			pline("¤Û¤³¤ê¤Ï%s¡¥",quickly_dissipates);
+			pline("ã»ã“ã‚Šã¯%sï¼",quickly_dissipates);
 			return FALSE;
 		}
 		block_point(x, y);
 		door->typ = SDOOR;
 /*JP		if (cansee(x,y)) pline_The("doorway vanishes!");*/
-		if (cansee(x,y)) pline("½ĞÆş¸ı¤Ï¾Ã¤¨¤¿¡ª");
+		if (cansee(x,y)) pline("å‡ºå…¥å£ã¯æ¶ˆãˆãŸï¼");
 		newsym(x,y);
 		return TRUE;
 	    }
@@ -920,7 +920,7 @@ int x, y;
 		/* maketrap() clears doormask, so it should be NODOOR */
 		pline(
 /*JP		"%s springs up in the doorway, but %s.",*/
-		"%s¤¬½ĞÆş¸ı¤ËÎ©¤Á¤³¤á¤¿¡¤¤·¤«¤·%s",
+		"%sãŒå‡ºå…¥å£ã«ç«‹ã¡ã“ã‚ãŸï¼Œã—ã‹ã—%s",
 		dustcloud, quickly_dissipates);
 		return FALSE;
 	    }
@@ -928,20 +928,20 @@ int x, y;
 	    switch (door->doormask & ~D_TRAPPED) {
 	    case D_CLOSED:
 /*JP		msg = "The door locks!";*/
-	        msg = "Èâ¤Ë¸°¤¬¤«¤«¤Ã¤¿¡ª";
+	        msg = "æ‰‰ã«éµãŒã‹ã‹ã£ãŸï¼";
 		break;
 	    case D_ISOPEN:
 /*JP		msg = "The door swings shut, and locks!";*/
-		msg = "Èâ¤ÏÀª¤¤¤è¤¯ÊÄ¤Ş¤ê¡¤¸°¤¬¤«¤«¤Ã¤¿¡ª";
+		msg = "æ‰‰ã¯å‹¢ã„ã‚ˆãé–‰ã¾ã‚Šï¼ŒéµãŒã‹ã‹ã£ãŸï¼";
 		break;
 	    case D_BROKEN:
 /*JP		msg = "The broken door reassembles and locks!";*/
-		msg = "²õ¤ì¤¿Èâ¤¬½¸¤Ş¤Ã¤Æ¡¤¸°¤¬¤«¤«¤Ã¤¿¡ª";
+		msg = "å£Šã‚ŒãŸæ‰‰ãŒé›†ã¾ã£ã¦ï¼ŒéµãŒã‹ã‹ã£ãŸï¼";
 		break;
 	    case D_NODOOR:
 		msg =
 /*JP		"A cloud of dust springs up and assembles itself into a door!";*/
-		"¤Û¤³¤ê¤¬¤¿¤Á¤³¤á¡¤½¸¤Ş¤Ã¤ÆÈâ¤Ë¤Ê¤Ã¤¿¡ª";
+		"ã»ã“ã‚ŠãŒãŸã¡ã“ã‚ï¼Œé›†ã¾ã£ã¦æ‰‰ã«ãªã£ãŸï¼";
 		break;
 	    default:
 		res = FALSE;
@@ -955,7 +955,7 @@ int x, y;
 	case SPE_KNOCK:
 	    if (door->doormask & D_LOCKED) {
 /*JP		msg = "The door unlocks!";*/
-		msg = "Èâ¤Î¸°¤Ï¤Ï¤º¤ì¤¿¡ª";
+		msg = "æ‰‰ã®éµã¯ã¯ãšã‚ŒãŸï¼";
 		door->doormask = D_CLOSED | (door->doormask & D_TRAPPED);
 	    } else res = FALSE;
 	    break;
@@ -968,10 +968,10 @@ int x, y;
 		    else if (flags.verbose) {
 			if (cansee(x,y))
 /*JP			    pline("KABOOM!!  You see a door explode.");*/
-			    pline("¤Á¤å¤É¡¼¤ó¡ª¤¢¤Ê¤¿¤ÏÈâ¤¬ÇúÈ¯¤·¤¿¤Î¤ò¸«¤¿¡¥");
+			    pline("ã¡ã‚…ã©ãƒ¼ã‚“ï¼ã‚ãªãŸã¯æ‰‰ãŒçˆ†ç™ºã—ãŸã®ã‚’è¦‹ãŸï¼");
 			else if (flags.soundok)
 /*JP			    You_hear("a distant explosion.");*/
-			    You_hear("±ó¤¯¤ÎÇúÈ¯²»¤òÊ¹¤¤¤¿¡¥");
+			    You_hear("é ãã®çˆ†ç™ºéŸ³ã‚’èã„ãŸï¼");
 		    }
 		    door->doormask = D_NODOOR;
 		    unblock_point(x,y);
@@ -983,10 +983,10 @@ int x, y;
 		if (flags.verbose) {
 		    if (cansee(x,y))
 /*JP			pline_The("door crashes open!");*/
-			pline("Èâ¤Ï²õ¤ì³«¤¤¤¿¡ª");
+			pline("æ‰‰ã¯å£Šã‚Œé–‹ã„ãŸï¼");
 		    else if (flags.soundok)
 /*JP			You_hear("a crashing sound.");*/
-			You_hear("²¿¤«¤¬²õ¤ì¤ë²»¤òÊ¹¤¤¤¿¡¥");
+			You_hear("ä½•ã‹ãŒå£Šã‚Œã‚‹éŸ³ã‚’èã„ãŸï¼");
 		}
 		unblock_point(x,y);
 		newsym(x,y);
@@ -1022,7 +1022,7 @@ struct obj *otmp;
 
 	if (otmp->oclass == POTION_CLASS) {
 /*JP		You("%s a flask shatter!", Blind ? "hear" : "see");*/
-		You("ÌôÉÓ¤¬³ä¤ì¤ë%s¡ª", Blind ? "²»¤òÊ¹¤¤¤¿" : "¤Î¤ò¸«¤¿");
+		You("è–¬ç“¶ãŒå‰²ã‚Œã‚‹%sï¼", Blind ? "éŸ³ã‚’èã„ãŸ" : "ã®ã‚’è¦‹ãŸ");
 		potionbreathe(otmp);
 		return;
 	}
@@ -1034,29 +1034,29 @@ struct obj *otmp;
 	Blinded = save_Blinded;
 	switch (objects[otmp->otyp].oc_material) {
 /*JP	case PAPER:	disposition = "is torn to shreds";*/
-	case PAPER:	disposition = "¤ÏÀ£ÃÇ¤µ¤ì¤¿";
+	case PAPER:	disposition = "ã¯å¯¸æ–­ã•ã‚ŒãŸ";
 		break;
 /*JP	case WAX:	disposition = "is crushed";*/
-	case WAX:	disposition = "¤ò¾²¤Ë¤Ö¤Á¤Ş¤±¤¿";
+	case WAX:	disposition = "ã‚’åºŠã«ã¶ã¡ã¾ã‘ãŸ";
 		break;
 /*JP	case VEGGY:	disposition = "is pulped";*/
-	case VEGGY:	disposition = "¤Ï¤É¤í¤É¤í¤Ë¤Ê¤Ã¤¿";
+	case VEGGY:	disposition = "ã¯ã©ã‚ã©ã‚ã«ãªã£ãŸ";
 		break;
 /*JP	case FLESH:	disposition = "is mashed";*/
-	case FLESH:	disposition = "¤Ï¤É¤í¤É¤í¤Ë¤Ê¤Ã¤¿";
+	case FLESH:	disposition = "ã¯ã©ã‚ã©ã‚ã«ãªã£ãŸ";
 		break;
 /*JP	case GLASS:	disposition = "shatters";*/
-	case GLASS:	disposition = "¤Ï³ä¤ì¤¿";
+	case GLASS:	disposition = "ã¯å‰²ã‚ŒãŸ";
 		break;
 /*JP	case WOOD:	disposition = "splinters to fragments";*/
-	case WOOD:	disposition = "¤Ï¤«¤±¤é¤Ë¤Ê¤Ã¤¿";
+	case WOOD:	disposition = "ã¯ã‹ã‘ã‚‰ã«ãªã£ãŸ";
 		break;
 /*JP	default:	disposition = "is destroyed";*/
-	default:	disposition = "¤Ï²õ¤ì¤¿";
+	default:	disposition = "ã¯å£Šã‚ŒãŸ";
 		break;
 	}
 /*JP	pline("%s %s %s!", article, thing, disposition);*/
-	pline("%s%s¡ª", thing, disposition);
+	pline("%s%sï¼", thing, disposition);
 }
 
 #endif /* OVLB */

@@ -272,7 +272,7 @@ register struct monst *mtmp;
 		return FALSE;
 	    } else {
 /*JP		Your("leash goes slack.");*/
-		Your("É³¤Ï¤¿¤ë¤ó¤À¡¥");
+		Your("ç´ã¯ãŸã‚‹ã‚“ã ï¼");
  release_it:
 		m_unleash(mtmp);
 		return TRUE;
@@ -292,7 +292,7 @@ tele()
 		if (!wizard) {
 #endif
 /*JP		    pline("A mysterious force prevents you from teleporting!");*/
-		    pline("´ñÌ¯¤ÊÎÏ¤¬½Ö´Ö°ÜÆ°¤òËÉ¤¤¤À¡ª");
+		    pline("å¥‡å¦™ãªåŠ›ãŒç¬é–“ç§»å‹•ã‚’é˜²ã„ã ï¼");
 		    return;
 #ifdef WIZARD
 		}
@@ -304,7 +304,7 @@ tele()
 
 	if ((u.uhave.amulet || On_W_tower_level(&u.uz)) && !rn2(3)) {
 /*JP	    You_feel("disoriented for a moment.");*/
-	    You("°ì½ÖÊı¸ş´¶³Ğ¤ò¼º¤Ã¤¿¤è¤¦¤Êµ¤¤¬¤·¤¿¡¥");
+	    You("ä¸€ç¬æ–¹å‘æ„Ÿè¦šã‚’å¤±ã£ãŸã‚ˆã†ãªæ°—ãŒã—ãŸï¼");
 	    return;
 	}
 	if (Teleport_control
@@ -314,10 +314,10 @@ tele()
 					) {
 	    if (unconscious()) {
 /*JP		pline("Being unconscious, you cannot control your teleport.");*/
-		pline("°Õ¼±¤¬¤Ê¤¤¤Î¤Ç¡¤¤¢¤Ê¤¿¤Ï½Ö´Ö°ÜÆ°¤òÀ©¸æ¤Ç¤­¤Ê¤¤¡¥");
+		pline("æ„è­˜ãŒãªã„ã®ã§ï¼Œã‚ãªãŸã¯ç¬é–“ç§»å‹•ã‚’åˆ¶å¾¡ã§ããªã„ï¼");
 	    } else {
 /*JP		    pline("To what position do you want to be teleported?");*/
-		    pline("¤É¤Î°ÌÃÖ¤Ë½Ö´Ö°ÜÆ°¤·¤Ş¤¹¤«¡©");
+		    pline("ã©ã®ä½ç½®ã«ç¬é–“ç§»å‹•ã—ã¾ã™ã‹ï¼Ÿ");
 		    cc.x = u.ux;
 		    cc.y = u.uy;
 		    getpos(&cc, TRUE, "the desired position");/* force valid*/
@@ -329,7 +329,7 @@ tele()
 			return;
 		    }
 /*JP		    pline("Sorry...");*/
-		    pline("¤ª¤Ã¤È¡¥¡¥¡¥");
+		    pline("ãŠã£ã¨ï¼ï¼ï¼");
 		}
 	}
 
@@ -348,9 +348,9 @@ dotele()
 	if (trap) {
 		if (trap->once) {
 /*JP			pline("This is a vault teleport, usable once only.");*/
-			pline("°ìÅÙ¤«¤®¤ê¤ÎÁÒ¸Ë¤Ø¤Î½Ö´Ö°ÜÆ°¤Îæ«¤À¡¥");
+			pline("ä¸€åº¦ã‹ãã‚Šã®å€‰åº«ã¸ã®ç¬é–“ç§»å‹•ã®ç½ ã ï¼");
 /*JP			if (yn("Jump in?") == 'n')*/
-			if (yn("Èô¤Ó¹ş¤à¡©") == 'n')
+			if (yn("é£›ã³è¾¼ã‚€ï¼Ÿ") == 'n')
 				trap = 0;
 			else {
 				deltrap(trap);
@@ -363,9 +363,9 @@ dotele()
 /*JP
 			You("%s onto the teleportation trap.",
 			    locomotion(uasmon, "jump"));*/
-		    Sprintf(buf,jconj(locomotion(uasmon,"Èô¤Ö"),"¤Ş"));
+		    Sprintf(buf,jconj(locomotion(uasmon,"é£›ã¶"),"ã¾"));
 		    buf[strlen(buf)-2] = '\0';
-			You("½Ö´Ö°ÜÆ°¤Îæ«¤Ë%s¤³¤ó¤À¡¥",buf);
+			You("ç¬é–“ç§»å‹•ã®ç½ ã«%sã“ã‚“ã ï¼",buf);
 		  }
 	}
 	if (!trap) {
@@ -387,9 +387,9 @@ dotele()
 		    if (!castit) {
 			if (!Teleportation)
 /*JP			    You("don't know that spell.");*/
-			    You("¤½¤ó¤ÊËâË¡¤ÏÃÎ¤é¤Ê¤¤¡¥");
+			    You("ãã‚“ãªé­”æ³•ã¯çŸ¥ã‚‰ãªã„ï¼");
 /*JP			else You("are not able to teleport at will.");*/
-			else You("¼«Ê¬¤Î°Õ»×¤Ç½Ö´Ö°ÜÆ°¤Ç¤­¤Ê¤¤¡¥");
+			else You("è‡ªåˆ†ã®æ„æ€ã§ç¬é–“ç§»å‹•ã§ããªã„ï¼");
 			return(0);
 		    }
 #ifdef WIZARD
@@ -403,8 +403,8 @@ dotele()
 #endif
 /*JP			You("lack the strength %s.",
 			    castit ? "for a teleport spell" : "to teleport");*/
-			You("%s¤À¤±¤ÎÎÏ¤¬¤Ê¤¤¡¥",
-			    castit ? "½Ö´Ö°ÜÆ°¤ÎËâË¡¤ò¾§¤¨¤ë" : "½Ö´Ö°ÜÆ°¤¹¤ë");
+			You("%sã ã‘ã®åŠ›ãŒãªã„ï¼",
+			    castit ? "ç¬é–“ç§»å‹•ã®é­”æ³•ã‚’å”±ãˆã‚‹" : "ç¬é–“ç§»å‹•ã™ã‚‹");
 
 			return 1;
 #ifdef WIZARD
@@ -422,15 +422,15 @@ dotele()
 		{
 /*JP			You("lack the energy %s.",
 			    castit ? "for a teleport spell" : "to teleport");*/
-			You("%s¤À¤±¤Î¥¨¥Í¥ë¥®¡¼¤¬¤Ê¤¤¡¥",
-			    castit ? "½Ö´Ö°ÜÆ°¤ÎËâË¡¤ò¾§¤¨¤ë" : "½Ö´Ö°ÜÆ°¤¹¤ë");
+			You("%sã ã‘ã®ã‚¨ãƒãƒ«ã‚®ãƒ¼ãŒãªã„ï¼",
+			    castit ? "ç¬é–“ç§»å‹•ã®é­”æ³•ã‚’å”±ãˆã‚‹" : "ç¬é–“ç§»å‹•ã™ã‚‹");
 			return 1;
 		}
 	    }
 
 	    if (check_capacity(
 /*JP			"Your concentration falters from carrying so much."))*/
-			"Âô»³¤â¤Î¤ò»ı¤Á¤¹¤®¤Æ¡¤¤¢¤Ê¤¿¤Ï½¸Ãæ¤Ç¤­¤Ê¤¤¡¥"))
+			"æ²¢å±±ã‚‚ã®ã‚’æŒã¡ã™ãã¦ï¼Œã‚ãªãŸã¯é›†ä¸­ã§ããªã„ï¼"))
 		return 1;
 
 	    if (castit) {
@@ -473,7 +473,7 @@ level_tele()
 #endif
 							) {
 /*JP	    You_feel("very disoriented for a moment.");*/
-	    You("°ì½ÖÊı¸ş´¶³Ğ¤òÂç¤­¤¯¼º¤Ã¤¿¤è¤¦¤Êµ¤¤¬¤·¤¿¡¥");
+	    You("ä¸€ç¬æ–¹å‘æ„Ÿè¦šã‚’å¤§ããå¤±ã£ãŸã‚ˆã†ãªæ°—ãŒã—ãŸï¼");
 	    return;
 	}
 	if (Teleport_control
@@ -485,10 +485,10 @@ level_tele()
 	    int trycnt = 0;
 
 	    Strcpy(qbuf, "To what level do you want to teleport?");
-	    Strcpy(qbuf, "²¿³¬¤Ë°ÜÆ°¤·¤Ş¤¹¤«¡©");
+	    Strcpy(qbuf, "ä½•éšã«ç§»å‹•ã—ã¾ã™ã‹ï¼Ÿ");
 	    do {
 /*JP		if (++trycnt == 2) Strcat(qbuf, " [type a number]");*/
-		if (++trycnt == 2) Strcat(qbuf, "[¿ô»ú¤ò¤¤¤ì¤Æ¤Í]");
+		if (++trycnt == 2) Strcat(qbuf, "[æ•°å­—ã‚’ã„ã‚Œã¦ã­]");
 		getlin(qbuf, buf);
 		if (!strcmp(buf,"\033"))	/* cancelled */
 		    return;
@@ -504,16 +504,16 @@ level_tele()
 		if (trycnt >= 10)
 		    goto random_levtport;
 /*JP		if (ynq("Go to Nowhere.  Are you sure?") != 'y') return;*/
-	        if(ynq("¤É¤³¤È¤âÃÎ¤ì¤Ì¾ì½ê¤Ë¹Ô¤­¤Ş¤¹¡©¤è¤í¤·¤¤¤Ç¤¹¤«¡©") != 'y') return;
+	        if(ynq("ã©ã“ã¨ã‚‚çŸ¥ã‚Œã¬å ´æ‰€ã«è¡Œãã¾ã™ï¼Ÿã‚ˆã‚ã—ã„ã§ã™ã‹ï¼Ÿ") != 'y') return;
 /*JP		You("scream in agony as your body begins to warp...");*/
-	        You("ÂÎ¤¬°ÜÆ°¤·¤Ï¤¸¤á¤ë¤È¡¤¶ì¤·¤ß¤Î¤¢¤¨¤®À¼¤ò½Ğ¤·¤¿¡¥¡¥¡¥");
+	        You("ä½“ãŒç§»å‹•ã—ã¯ã˜ã‚ã‚‹ã¨ï¼Œè‹¦ã—ã¿ã®ã‚ãˆãå£°ã‚’å‡ºã—ãŸï¼ï¼ï¼");
 		display_nhwindow(WIN_MESSAGE, FALSE);
 /*JP	        You("cease to exist.");*/
-	        You("È´¤±¤ì¤Ê¤«¤Ã¤¿¡¥");
+	        You("æŠœã‘ã‚Œãªã‹ã£ãŸï¼");
 /*JP		killer_format = NO_KILLER_PREFIX;*/
 		killer_format = KILLED_BY;
 /*JP		killer = "committed suicide";*/
-		killer = "¸¥¿ÈÅª¼«»¦¹Ô°Ù¤Ç";
+		killer = "çŒ®èº«çš„è‡ªæ®ºè¡Œç‚ºã§";
 		done(DIED);
 		return;
 	    }
@@ -554,7 +554,7 @@ level_tele()
 
 	    if (newlev >= 0 || newlev <= -llimit) {
 /*JP		You("can't get there from here.");*/
-		You("¤³¤³¤«¤é¤Ï¹Ô¤±¤Ê¤¤¡¥");
+		You("ã“ã“ã‹ã‚‰ã¯è¡Œã‘ãªã„ï¼");
 		return;
 	    }
 	    newlevel.dnum = u.uz.dnum;
@@ -567,33 +567,33 @@ level_tele()
 	if (newlev < 0) {
 		if (newlev <= -10) {
 /*JP			You("arrive in heaven.");*/
-			You("Å·¹ñ¤ËÃ©¤ê¤Ä¤¤¤¿¡¥");
+			You("å¤©å›½ã«è¾¿ã‚Šã¤ã„ãŸï¼");
 /*JP			verbalize("Thou art early, but we'll admit thee.");*/
-			verbalize("Æò¡¤»à¤Ì¤Ë¤ÏÁá¤¹¤®¤ë¤¬¤½¤ì¤â¤è¤«¤í¤¦¡¥");
+			verbalize("æ±ï¼Œæ­»ã¬ã«ã¯æ—©ã™ãã‚‹ãŒãã‚Œã‚‚ã‚ˆã‹ã‚ã†ï¼");
 /*JP			killer_format = NO_KILLER_PREFIX;*/
 			killer_format = KILLED_BY;
 /*JP			killer = "went to heaven prematurely";*/
-			killer = "¼ã¤¯¤·¤ÆÅ·¹ñ¤Ë¹Ô¤­";
+			killer = "è‹¥ãã—ã¦å¤©å›½ã«è¡Œã";
 			done(DIED);
 			return;
 		} else if (newlev == -9) {
 /*JP			You_feel("deliriously happy. ");*/
-			You("¶¸¤Ã¤¿¤è¤¦¤Ê¹¬¤»¤ò´¶¤¸¤¿¡¥");
+			You("ç‹‚ã£ãŸã‚ˆã†ãªå¹¸ã›ã‚’æ„Ÿã˜ãŸï¼");
 /*JP			pline("(In fact, you're on Cloud 9!) ");*/
-			pline("(ËÜÅö¤Ë¶ì¤ò¾è¤ê±Û¤¨¤¿¾ì½ê¤Ë¤¤¤ë¡ª) ");
+			pline("(æœ¬å½“ã«è‹¦ã‚’ä¹—ã‚Šè¶ŠãˆãŸå ´æ‰€ã«ã„ã‚‹ï¼) ");
 			display_nhwindow(WIN_MESSAGE, FALSE);
 		} else
 /*JP			You("are now high above the clouds...");*/
-			You("±À¤ÎÍÚ¤«¾å¤Ë¤¤¤ë¡¥¡¥¡¥");
+			You("é›²ã®é¥ã‹ä¸Šã«ã„ã‚‹ï¼ï¼ï¼");
 
 		if (Levitation || is_floater(uasmon)) {
 /*JP		    You("float gently down to earth.");*/
-		    You("¤æ¤Ã¤¯¤êÃÏÌÌ¤Ë¹ß¤ê¤¿¡¥");
+		    You("ã‚†ã£ãã‚Šåœ°é¢ã«é™ã‚ŠãŸï¼");
 		    u.uz.dnum = 0; /* he might have been in another dgn */
 		    newlev = 1;
 		} else if (is_flyer(uasmon)) {
 /*JP		    You("fly down to earth.");*/
-		    You("ÃÏÌÌ¤Ë¹ß¤ê¤¿¡¥");
+		    You("åœ°é¢ã«é™ã‚ŠãŸï¼");
 		    u.uz.dnum = 0; /* he might have been in another dgn */
 		    newlev = 1;
 		} else {
@@ -602,15 +602,15 @@ level_tele()
 		    assign_level(&save_dlevel, &u.uz);
 /*JP		    pline("Unfortunately, you don't know how to fly.");
 		    You("plummet a few thousand feet to your death.");*/
-		    pline("ÉÔ¹¬¤Ë¤â¡¤¤¢¤Ê¤¿¤ÏÈô¤Ó¤«¤¿¤òÃÎ¤é¤Ê¤¤¡¥");
-		    pline("¿ôÀé¥Õ¥£¡¼¥È¤Î»à¤Î¥À¥¤¥Ó¥ó¥°¤À¡ª");
+		    pline("ä¸å¹¸ã«ã‚‚ï¼Œã‚ãªãŸã¯é£›ã³ã‹ãŸã‚’çŸ¥ã‚‰ãªã„ï¼");
+		    pline("æ•°åƒãƒ•ã‚£ãƒ¼ãƒˆã®æ­»ã®ãƒ€ã‚¤ãƒ“ãƒ³ã‚°ã ï¼");
 		    u.uz.dnum = 0;
 		    u.uz.dlevel = 0;
 /*JP		    killer_format = NO_KILLER_PREFIX;*/
 		    killer_format = KILLED_BY;
 		    killer =
 /*JP    self_pronoun("teleported out of the dungeon and fell to %s death","his");*/
-		    "ÌÂµÜ¤òÈô¤Ó¤À¤·»à¤Î¥À¥¤¥Ó¥ó¥°¤Ç";
+		    "è¿·å®®ã‚’é£›ã³ã ã—æ­»ã®ãƒ€ã‚¤ãƒ“ãƒ³ã‚°ã§";
 		    done(DIED);
 		    assign_level(&u.uz, &save_dlevel);
 		    flags.botl = 1;
@@ -633,7 +633,7 @@ level_tele()
 		newlev = dungeons[u.uz.dnum].depth_start +
 					dunlevs_in_dungeon(&u.uz) - 2;
 /*JP		pline("Sorry...");*/
-		pline("¤ª¤Ã¤È¡¥¡¥¡¥");
+		pline("ãŠã£ã¨ï¼ï¼ï¼");
 	    }
 	    /* no teleporting out of quest dungeon */
 	    if (In_quest(&u.uz) && newlev < depth(&qstart_level))
@@ -663,7 +663,7 @@ register struct trap *ttmp;
 	if (!on_level(&u.uz, &u.uz0)) return;
 
 /*JP	You("activated a magic portal!");*/
-	pline("ËâË¡¤ÎÆş¸ı¤¬Æ°¤­¤À¤·¤¿¡ª");
+	pline("é­”æ³•ã®å…¥å£ãŒå‹•ãã ã—ãŸï¼");
 
 	/* prevent the poor shnook, whose amulet was stolen while in
 	 * the endgame, from accidently triggering the portal to the
@@ -671,14 +671,14 @@ register struct trap *ttmp;
 	 */
 	if (In_endgame(&u.uz) && !u.uhave.amulet) {
 /*JP	    You_feel("dizzy for a moment, but nothing happens...");*/
-	    You("°ì½Ö¤á¤Ş¤¤¤ò´¶¤¸¤¿¡¤¤·¤«¤·²¿¤âµ¯¤­¤Ê¤«¤Ã¤¿¡¥¡¥¡¥");
+	    You("ä¸€ç¬ã‚ã¾ã„ã‚’æ„Ÿã˜ãŸï¼Œã—ã‹ã—ä½•ã‚‚èµ·ããªã‹ã£ãŸï¼ï¼ï¼");
 	    return;
 	}
 
 	target_level = ttmp->dst;
 	schedule_goto(&target_level, FALSE, FALSE, 1,
 /*JP		      "You feel dizzy for a moment, but the sensation passes.",*/
-		      "°ì½Ö¤á¤Ş¤¤¤ò´¶¤¸¤¿¡¤¤·¤«¤·¤½¤Î´¶³Ğ¤Ï¾Ã¤¨¤¿¡¥",
+		      "ä¸€ç¬ã‚ã¾ã„ã‚’æ„Ÿã˜ãŸï¼Œã—ã‹ã—ãã®æ„Ÿè¦šã¯æ¶ˆãˆãŸï¼",
 		      (char *)0);
 }
 
@@ -690,7 +690,7 @@ struct trap *trap;
 		if (Antimagic)
 			shieldeff(u.ux, u.uy);
 /*JP		You_feel("a wrenching sensation.");*/
-		You("¤Í¤¸¤é¤ì¤¿¤è¤¦¤Ê´¶³Ğ¤ò´¶¤¸¤¿¡¥");
+		You("ã­ã˜ã‚‰ã‚ŒãŸã‚ˆã†ãªæ„Ÿè¦šã‚’æ„Ÿã˜ãŸï¼");
 	} else if (!next_to_u()) {
 		You(shudder_for_moment);
 	} else if (trap->once) {
@@ -708,23 +708,23 @@ struct trap *trap;
 /*JP	You("%s onto a level teleport trap!",
 		      Levitation ? (const char *)"float" :
 				  locomotion(uasmon, "step"));*/
-	You("ÊÌ¤Î³¬¤Ø¤Î½Ö´Ö°ÜÆ°¤Îæ«¤ò%s¡ª",
-		      Levitation ? (const char *)"¸«²¼¤í¤·¤¿" :
-				  jconj(locomotion(uasmon, "Æ§¤à"), "¤¿"));
+	You("åˆ¥ã®éšã¸ã®ç¬é–“ç§»å‹•ã®ç½ ã‚’%sï¼",
+		      Levitation ? (const char *)"è¦‹ä¸‹ã‚ã—ãŸ" :
+				  jconj(locomotion(uasmon, "è¸ã‚€"), "ãŸ"));
 	if (Antimagic) {
 	    shieldeff(u.ux, u.uy);
 	}
 	if (Antimagic || In_endgame(&u.uz)) {
 /*JP	    You_feel("a wrenching sensation.");*/
-	    You("¤Í¤¸¤é¤ì¤¿¤è¤¦¤Ê´¶³Ğ¤ò´¶¤¸¤¿¡¥");
+	    You("ã­ã˜ã‚‰ã‚ŒãŸã‚ˆã†ãªæ„Ÿè¦šã‚’æ„Ÿã˜ãŸï¼");
 	    return;
 	}
 	if (!Blind)
 /*JP	    You("are momentarily blinded by a flash of light.");*/
-	    You("¤Ş¤Ğ¤æ¤¤¸÷¤Ç°ì½ÖÌÜ¤¬¤¯¤é¤ó¤À¡¥");
+	    You("ã¾ã°ã‚†ã„å…‰ã§ä¸€ç¬ç›®ãŒãã‚‰ã‚“ã ï¼");
 	else
 /*JP	    You("are momentarily disoriented.");*/
-	    You("°ì½ÖÊı¸ş´¶³Ğ¤ò¼º¤Ã¤¿¡¥");
+	    You("ä¸€ç¬æ–¹å‘æ„Ÿè¦šã‚’å¤±ã£ãŸï¼");
 	deltrap(trap);
 	newsym(u.ux,u.uy);	/* get rid of trap symbol */
 	level_tele();
@@ -891,7 +891,7 @@ struct monst *mon;
 		if (canseemon(mon))
 /*JP		    pline("A mysterious force prevents %s from teleporting!",
 			mon_nam(mon));*/
-		    pline("´ñÌ¯¤ÊÎÏ¤¬%s¤Î½Ö´Ö°ÜÆ°¤òËÉ¤¤¤À¡ª",
+		    pline("å¥‡å¦™ãªåŠ›ãŒ%sã®ç¬é–“ç§»å‹•ã‚’é˜²ã„ã ï¼",
 			mon_nam(mon));
 
 		return TRUE;
@@ -922,10 +922,10 @@ int in_sight;
 	    if (in_sight) {
 		if (canseemon(mtmp))
 /*JP		    pline("%s seems disoriented.", monname);*/
-		    pline("%s¤Ï°ì½ÖÊı¸ş´Ö³Ö¤ò¼º¤Ã¤¿¤è¤¦¤À¡¥", monname);
+		    pline("%sã¯ä¸€ç¬æ–¹å‘é–“éš”ã‚’å¤±ã£ãŸã‚ˆã†ã ï¼", monname);
 		else
 /*JP		    pline("%s suddenly disappears!", monname);*/
-		    pline("%s¤ÏÆÍÁ³¾Ã¤¨¤¿¡ª", monname);
+		    pline("%sã¯çªç„¶æ¶ˆãˆãŸï¼", monname);
 		seetrap(trap);
 	    }
 	}
@@ -954,8 +954,8 @@ int in_sight;
 		    if (in_sight && trap->tseen)
 /*JP			pline("%s avoids the %s.", Monnam(mtmp),
 			(tt == HOLE) ? "hole" : "trap");*/
-			pline("%s¤Ï%s¤ò²óÈò¤·¤¿¡¥", Monnam(mtmp),
-			(tt == HOLE) ? "·ê" : "æ«");
+			pline("%sã¯%sã‚’å›é¿ã—ãŸï¼", Monnam(mtmp),
+			(tt == HOLE) ? "ç©´" : "ç½ ");
 		    return 0;
 		} else {
 		    get_level(&tolevel, depth(&u.uz) + 1);
@@ -965,7 +965,7 @@ int in_sight;
 		    (mon_has_amulet(mtmp) || is_home_elemental(mptr))) {
 		    if (in_sight && mptr->mlet != S_ELEMENTAL) {
 /*JP			pline("%s seems to shimmer for a moment.",*/
-		        pline("%s¤¬°ì½Öµ±¤¤¤¿¤è¤¦¤Ë¸«¤¨¤¿",
+		        pline("%sãŒä¸€ç¬è¼ã„ãŸã‚ˆã†ã«è¦‹ãˆãŸ",
 							Monnam(mtmp));
 			seetrap(trap);
 		    }
@@ -980,7 +980,7 @@ int in_sight;
 		if (mon_has_amulet(mtmp) || In_endgame(&u.uz)) {
 		    if (in_sight)
 /*JP			pline("%s seems very disoriented for a moment.",*/
-			pline("%s¤Ï°ì½ÖÊı¸ş´¶³Ğ¤òÂç¤­¤¯¼º¤Ã¤¿¤è¤¦¤À¡¥",
+			pline("%sã¯ä¸€ç¬æ–¹å‘æ„Ÿè¦šã‚’å¤§ããå¤±ã£ãŸã‚ˆã†ã ï¼",
 				Monnam(mtmp));
 		    return 0;
 		}
@@ -988,7 +988,7 @@ int in_sight;
 		if (nlev == depth(&u.uz)) {
 		    if (in_sight)
 /*JP			pline("%s shudders for a moment.", Monnam(mtmp));*/
-			pline("%s¤Ï°ì½Ö¿Ì¤¨¤¿¡¥", Monnam(mtmp));
+			pline("%sã¯ä¸€ç¬éœ‡ãˆãŸï¼", Monnam(mtmp));
 		    return 0;
 		}
 		get_level(&tolevel, nlev);
@@ -996,7 +996,7 @@ int in_sight;
 
 	    if (in_sight) {
 /*JP		pline("Suddenly, %s disappears out of sight.", mon_nam(mtmp));*/
-		pline("ÆÍÁ³%s¤¬»ë³¦¤«¤é¾Ã¤¨¤¿¡¥", mon_nam(mtmp));
+		pline("çªç„¶%sãŒè¦–ç•Œã‹ã‚‰æ¶ˆãˆãŸï¼", mon_nam(mtmp));
 		seetrap(trap);
 	    }
 	    migrate_to_level(mtmp, ledger_no(&tolevel),
@@ -1033,7 +1033,7 @@ register struct obj *obj;
 						dndest.nhx, dndest.nhy)))));
 
 /*JP	if (flooreffects(obj, tx, ty, "fall")) {*/
-	if (flooreffects(obj, tx, ty, "Íî¤Á¤ë")) {
+	if (flooreffects(obj, tx, ty, "è½ã¡ã‚‹")) {
 	    return;
 	} else if (otx == 0 && oty == 0) {
 	    ;	/* fell through a trapdoor; no update of old loc needed */

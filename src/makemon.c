@@ -896,32 +896,32 @@ register int	mmflags;
 	if(ptr == &mons[PM_PLANETARY_FIGHTER]){
 	  static int uniq_num = 0;
 	  const char *cn;
-/*Àï»Î¤ÏÁ´¤Æ½÷À­¤ÇÏÇÀ±¤ÎÌ¾Á°¤ò»ı¤Ä*/
+/*æˆ¦å£«ã¯å…¨ã¦å¥³æ€§ã§æƒ‘æ˜Ÿã®åå‰ã‚’æŒã¤*/
 	  mtmp->female = 1;
 	  switch(uniq_num){
 	  case 0:
-	    cn = "¥Ş¡¼¥­¥å¥ê¡¼";
+	    cn = "ãƒãƒ¼ã‚­ãƒ¥ãƒªãƒ¼";
 	    break;
 	  case 1:
-	    cn = "¥ô¥£¡¼¥Ê¥¹";
+	    cn = "ãƒ´ã‚£ãƒ¼ãƒŠã‚¹";
 	    break;
 	  case 2:
-	    cn = "¥Ş¡¼¥º";
+	    cn = "ãƒãƒ¼ã‚º";
 	    break;
 	  case 3:
-	    cn = "¥¸¥å¥Ô¥¿¡¼";
+	    cn = "ã‚¸ãƒ¥ãƒ”ã‚¿ãƒ¼";
 	    break;
 	  case 4:
-	    cn = "¥¦¥é¥Ì¥¹";
+	    cn = "ã‚¦ãƒ©ãƒŒã‚¹";
 	    break;
 	  case 5:
-	    cn = "¥Í¥×¥Á¥å¡¼¥ó";
+	    cn = "ãƒãƒ—ãƒãƒ¥ãƒ¼ãƒ³";
 	    break;
 	  case 6:
-	    cn = "¥×¥ë¡¼¥È";
+	    cn = "ãƒ—ãƒ«ãƒ¼ãƒˆ";
 	    break;
 	  default:
-	    cn = "¥µ¥¿¡¼¥ó";
+	    cn = "ã‚µã‚¿ãƒ¼ãƒ³";
 	    break;
 	  }
 	  ++uniq_num;
@@ -1281,10 +1281,10 @@ struct monst *mtmp, *victim;
 /*JP		pline("As %s grows up into %s, %s %s!", mon_nam(mtmp),
 			an(ptr->mname), he[pronoun_gender(mtmp)],
 			nonliving(ptr) ? "expires" : "dies");*/
-	        pline("%s¤¬À®Ä¹¤·¤Æ%s¤Ë¤Ê¤ë¤È%s¡ª",
+	        pline("%sãŒæˆé•·ã—ã¦%sã«ãªã‚‹ã¨%sï¼",
 		      mon_nam(mtmp),
 		      jtrns_mon(ptr->mname, mtmp->female),
-		      nonliving(ptr) ? "¾Ã¤¨¤Æ¤·¤Ş¤Ã¤¿" : "»à¤ó¤Ç¤·¤Ş¤Ã¤¿");
+		      nonliving(ptr) ? "æ¶ˆãˆã¦ã—ã¾ã£ãŸ" : "æ­»ã‚“ã§ã—ã¾ã£ãŸ");
 
 		set_mon_data(mtmp, ptr, -1);	/* keep mvitals[] accurate */
 		mondied(mtmp);

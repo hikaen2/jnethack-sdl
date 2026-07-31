@@ -139,14 +139,14 @@ boolean cookie;
 {
 	static const char fortune_msg[] =
 /*JP		"This cookie has a scrap of paper inside.";*/
-		"¤³¤Î¥¯¥Ã¥­¡¼¤Ë¤Ï»æÀÚ¤¬Æş¤Ã¤Æ¤¤¤ë¡¥";
+		"ã“ã®ã‚¯ãƒƒã‚­ãƒ¼ã«ã¯ç´™åˆ‡ãŒå…¥ã£ã¦ã„ã‚‹ï¼";
 	const char *line;
 	char buf[BUFSZ];
 
 	if (cookie && Blind) {
 		pline(fortune_msg);
 /*JP		pline("What a pity that you cannot read it!");*/
-		pline("¤½¤ì¤òÆÉ¤á¤Ê¤¤¤Ê¤ó¤Æµ¤¤ÎÆÇ¤Ê¡ª");
+		pline("ãã‚Œã‚’èª­ã‚ãªã„ãªã‚“ã¦æ°—ã®æ¯’ãªï¼");
 		return;
 	}
 	line = getrumor(truth, buf);
@@ -155,15 +155,15 @@ boolean cookie;
 	if (cookie) {
 		pline(fortune_msg);
 /*JP		pline("It reads:");*/
-		pline("¤½¤ì¤òÆÉ¤ó¤À:");
-		pline("¡Ø%s¡Ù", line);
+		pline("ãã‚Œã‚’èª­ã‚“ã :");
+		pline("ã€%sã€", line);
 	} else {	/* if the Oracle is the only alternative */
 /*JP		pline("True to her word, the Oracle %ssays: ",
 		(!rn2(4) ? "offhandedly " : (!rn2(3) ? "casually " :
 		(rn2(2) ? "nonchalantly " : ""))));*/
-		pline("¿¿¼Â¤Ï¸ÀÍÕ¤Ë¤¢¤ê¡¤¸­¼Ô¤Ï%s½Ò¤Ù¤¿:",
-		(!rn2(4) ? "ÌµÂ¤ºî¤Ë" : (!rn2(3) ? "²¿µ¤¤Ê¤¯" :
-		(rn2(2) ? "ÌµÆÜÃå¤Ë" : ""))));
+		pline("çœŸå®Ÿã¯è¨€è‘‰ã«ã‚ã‚Šï¼Œè³¢è€…ã¯%sè¿°ã¹ãŸ:",
+		(!rn2(4) ? "ç„¡é€ ä½œã«" : (!rn2(3) ? "ä½•æ°—ãªã" :
+		(rn2(2) ? "ç„¡é “ç€ã«" : ""))));
 		verbalize("%s", line);
 		exercise(A_WIS, TRUE);
 	}
@@ -254,8 +254,8 @@ boolean special;
 		putstr(tmpwin, 0, special ?
 /*JP		      "The Oracle scornfully takes all your money and says:" :
 		      "The Oracle meditates for a moment and then intones:");*/
-		      "¸­¼Ô¤Ï·ÚÊÎ¤·¤¿¤è¤¦¤Ë¤¢¤Ê¤¿¤ÎÁ´¤Æ¤Î¤ª¶â¤ò¼õ¤±¤È¤ê¡¤½Ò¤Ù¤¿¡§" :
-		      "¸­¼Ô¤Ï¤·¤Ğ¤é¤¯Ì½ÁÛ¤·¡¤±Ó¾§¤·¤¿¡§");
+		      "è³¢è€…ã¯è»½è”‘ã—ãŸã‚ˆã†ã«ã‚ãªãŸã®å…¨ã¦ã®ãŠé‡‘ã‚’å—ã‘ã¨ã‚Šï¼Œè¿°ã¹ãŸï¼š" :
+		      "è³¢è€…ã¯ã—ã°ã‚‰ãå†¥æƒ³ã—ï¼Œè© å”±ã—ãŸï¼š");
 		putstr(tmpwin, 0, "");
 
 		while(dlb_fgets(line, COLNO, oracles) && strcmp(line,"---\n")) {
@@ -283,21 +283,21 @@ register struct monst *oracl;
 
 	if (!oracl) {
 /*JP		pline("There is no one here to consult.");*/
-		pline("¤³¤³¤Ë¤Ï¿®Â÷¤ò½Ò¤Ù¤ë¿Í¤Ï¤¤¤Ê¤¤¡¥");
+		pline("ã“ã“ã«ã¯ä¿¡è¨—ã‚’è¿°ã¹ã‚‹äººã¯ã„ãªã„ï¼");
 		return 0;
 	} else if (!oracl->mpeaceful) {
 /*JP		pline("%s is in no mood for consultations.", Monnam(oracl));*/
-		pline("¸­¼Ô¤Ï¿®Â÷¤ò¹ğ¤²¤Æ¤¯¤ì¤ëÊ·°Ïµ¤¤Ç¤Ï¤Ê¤¤¡¥");
+		pline("è³¢è€…ã¯ä¿¡è¨—ã‚’å‘Šã’ã¦ãã‚Œã‚‹é›°å›²æ°—ã§ã¯ãªã„ï¼");
 		return 0;
 	} else if (!u.ugold) {
 /*JP		You("have no money.");*/
-		You("¤ª¶â¤¬¤Ê¤¤¡¥");
+		You("ãŠé‡‘ãŒãªã„ï¼");
 		return 0;
 	}
 
 	Sprintf(qbuf,
 /*JP		"\"Wilt thou settle for a minor consultation?\" (%d zorkmids)",*/
-		"¡ÖÆò¡¤Äã°Ì¤Î¿®Â÷¤ò¼õ¤±¤ë¤«¡©¡×(%d¥´¡¼¥ë¥É)",
+		"ã€Œæ±ï¼Œä½ä½ã®ä¿¡è¨—ã‚’å—ã‘ã‚‹ã‹ï¼Ÿã€(%dã‚´ãƒ¼ãƒ«ãƒ‰)",
 		minor_cost);
 	switch (ynq(qbuf)) {
 	    default:
@@ -306,7 +306,7 @@ register struct monst *oracl;
 	    case 'y':
 		if (u.ugold < (long)minor_cost) {
 /*JP		    You("don't even have enough money for that!");*/
-		    You("½½Ê¬¤Ê¤ª¶â¤ò»ı¤Ã¤Æ¤¤¤Ê¤¤¡ª");
+		    You("ååˆ†ãªãŠé‡‘ã‚’æŒã£ã¦ã„ãªã„ï¼");
 		    return 0;
 		}
 		u_pay = minor_cost;
@@ -316,7 +316,7 @@ register struct monst *oracl;
 		    (oracle_cnt == 1 || oracle_flg < 0)) return 0;
 		Sprintf(qbuf,
 /*JP			"\"Then dost thou desire a major one?\" (%d zorkmids)",*/
-			"¡ÖÆò¡¤¹â°Ì¤Î¿®Â÷¤ò¼õ¤±¤ë¤«¡©¡×(%d¥´¡¼¥ë¥É)",
+			"ã€Œæ±ï¼Œé«˜ä½ã®ä¿¡è¨—ã‚’å—ã‘ã‚‹ã‹ï¼Ÿã€(%dã‚´ãƒ¼ãƒ«ãƒ‰)",
 			major_cost);
 		if (yn(qbuf) != 'y') return 0;
 		u_pay = (u.ugold < (long)major_cost ? (int)u.ugold

@@ -25,7 +25,7 @@ ballfall()
 		    ((uwep == uball)? FALSE : (boolean)rn2(5)));
 	if (carried(uball)) {
 /*JP		pline("Startled, you drop the iron ball.");*/
-		pline("¶Ã¤¤¤Æ¤¢¤Ê¤¿¤ÏÅ´µå¤òÍî¤·¤¿¡¥");
+		pline("é©šã„ã¦ã‚ãªãŸã¯é‰„çƒã‚’è½ã—ãŸï¼");
 		if (uwep == uball)
 			setuwep((struct obj *)0);
 		if (uwep != uball)
@@ -34,20 +34,20 @@ ballfall()
 	if(gets_hit){
 		int dmg = rn1(7,25);
 /*JP		pline_The("iron ball falls on your %s.",*/
-		pline("Å´µå¤Ï¤¢¤Ê¤¿¤Î%s¤Î¾å¤ËÍî¤Á¤¿¡¥",
+		pline("é‰„çƒã¯ã‚ãªãŸã®%sã®ä¸Šã«è½ã¡ãŸï¼",
 			body_part(HEAD));
 		if (uarmh){
 		    if(is_metallic(uarmh)) {
 /*JP			pline("Fortunately, you are wearing a hard helmet.");*/
-			pline("¹¬±¿¤Ë¤â¡¤¤¢¤Ê¤¿¤Ï¸Ç¤¤³õ¤ò¿È¤Ë¤Ä¤±¤Æ¤¤¤¿¡¥");
+			pline("å¹¸é‹ã«ã‚‚ï¼Œã‚ãªãŸã¯å›ºã„å…œã‚’èº«ã«ã¤ã‘ã¦ã„ãŸï¼");
 			dmg = 3;
 		    } else if (flags.verbose)
 /*JP			Your("%s does not protect you.", xname(uarmh));*/
-			Your("%s¤Ï¤¢¤Ê¤¿¤ò¼é¤ì¤­¤ì¤Ê¤«¤Ã¤¿¡¥", xname(uarmh));
+			Your("%sã¯ã‚ãªãŸã‚’å®ˆã‚Œãã‚Œãªã‹ã£ãŸï¼", xname(uarmh));
 		}
 /*JP		losehp(dmg, "Crunched in the head by an iron ball",
 			NO_KILLER_PREFIX);*/
-		losehp(dmg, "Å´µå¤ÇÆ¬¤òÂÇ¤Ã¤Æ",
+		losehp(dmg, "é‰„çƒã§é ­ã‚’æ‰“ã£ã¦",
 			KILLED_BY);
 	}
 }
@@ -404,8 +404,8 @@ boolean *cause_delay;
 	if (near_capacity() > SLT_ENCUMBER) {
 /*JP	    You("cannot %sdrag the heavy iron ball.",
 			    invent ? "carry all that and also " : "");*/
-	    You("½Å¤¤Å´µå¤ò%s°ú¤­¤º¤Ã¤ÆÊâ¤±¤Ê¤¤¡¥",
-			    invent ? "»ı¤Á¤¢¤²¤Æ¡¤¤«¤Ä" : "");
+	    You("é‡ã„é‰„çƒã‚’%så¼•ããšã£ã¦æ­©ã‘ãªã„ï¼",
+			    invent ? "æŒã¡ã‚ã’ã¦ï¼Œã‹ã¤" : "");
 	    nomul(0);
 	    return FALSE;
 	}
@@ -423,13 +423,13 @@ boolean *cause_delay;
 
 	    if (Levitation) {
 /*JP		You_feel("a tug from the iron ball.");*/
-		You("Å´µå¤Ë°ú¤Ã¤Ñ¤é¤ì¤¿¡¥");
+		You("é‰„çƒã«å¼•ã£ã±ã‚‰ã‚ŒãŸï¼");
 		if (t) t->tseen = 1;
 	    } else {
 		struct monst *victim;
 
 /*JP		You("are jerked back by the iron ball!");*/
-		You("Å´µå¤Ë¤°¤¤¤È°ú¤Ã¤Ñ¤é¤ì¤¿¡ª");
+		You("é‰„çƒã«ãã„ã¨å¼•ã£ã±ã‚‰ã‚ŒãŸï¼");
 		if ((victim = m_at(uchain->ox, uchain->oy)) != 0) {
 		    int tmp;
 
@@ -502,38 +502,38 @@ xchar x, y;
     if (x != u.ux || y != u.uy) {
 	struct trap *t;
 /*JP	const char *pullmsg = "The ball pulls you out of the %s!";*/
-	const char *pullmsg = "Å´µå¤Ï%s¤«¤é¤¢¤Ê¤¿¤ò°ú¤Ã¤Ñ¤ê½Ğ¤·¤¿¡ª";
+	const char *pullmsg = "é‰„çƒã¯%sã‹ã‚‰ã‚ãªãŸã‚’å¼•ã£ã±ã‚Šå‡ºã—ãŸï¼";
 
 	if (u.utrap && u.utraptype != TT_INFLOOR) {
 	    switch(u.utraptype) {
 	    case TT_PIT:
 /*JP		pline(pullmsg, "pit");*/
-		pline(pullmsg, "Íî¤··ê");
+		pline(pullmsg, "è½ã—ç©´");
 		break;
 	    case TT_WEB:
 /*JP		pline(pullmsg, "web");*/
-		pline(pullmsg, "ÃØéá¤ÎÁã");
+		pline(pullmsg, "èœ˜è››ã®å·£");
 /*JP		pline_The("web is destroyed!");*/
-		pline("ÃØéá¤ÎÁã¤Ï¤³¤Ê¤´¤Ê¤Ë¤Ê¤Ã¤¿¡ª");
+		pline("èœ˜è››ã®å·£ã¯ã“ãªã”ãªã«ãªã£ãŸï¼");
 		deltrap(t_at(u.ux,u.uy));
 		break;
 	    case TT_LAVA:
 /*JP		pline(pullmsg, "lava");*/
-		pline(pullmsg, "ÍÏ´ä");
+		pline(pullmsg, "æº¶å²©");
 		break;
 	    case TT_BEARTRAP: {
 		register long side = rn2(3) ? LEFT_SIDE : RIGHT_SIDE;
 /*JP		pline(pullmsg, "bear trap");*/
-		pline(pullmsg, "·§¤Îæ«");
+		pline(pullmsg, "ç†Šã®ç½ ");
 /*JP		Your("%s %s is severely damaged.",
 					(side == LEFT_SIDE) ? "left" : "right",
 					body_part(LEG));*/
-		Your("%s%s¤ÏÃ×Ì¿Åª¤Ê½ı¤òÉé¤Ã¤¿¡¥",
-					(side == LEFT_SIDE) ? "º¸" : "±¦",
+		Your("%s%sã¯è‡´å‘½çš„ãªå‚·ã‚’è² ã£ãŸï¼",
+					(side == LEFT_SIDE) ? "å·¦" : "å³",
 					body_part(LEG));
 		set_wounded_legs(side, rn1(1000, 500));
 /*JP		losehp(2, "leg damage from being pulled out of a bear trap",*/
-		losehp(2, "·§¤Îæ«¤«¤éÈ´¤±¤è¤¦¤ÈÂ­¤ò°ú¤Ã¤Ñ¤Ã¤Æ",
+		losehp(2, "ç†Šã®ç½ ã‹ã‚‰æŠœã‘ã‚ˆã†ã¨è¶³ã‚’å¼•ã£ã±ã£ã¦",
 					KILLED_BY);
 		break;
 	      }
@@ -590,7 +590,7 @@ litter()
 			if ((otmp != uwep) && (canletgo(otmp, ""))) {
 /*JP				Your("%s you down the stairs.",
 				     aobjnam(otmp, "follow"));*/
-				You("%s¤È°ì½ï¤Ë³¬ÃÊ¤ò¹ß¤ê¤¿¡¥",
+				You("%sã¨ä¸€ç·’ã«éšæ®µã‚’é™ã‚ŠãŸï¼",
 				     xname(otmp));
 				dropx(otmp);
 			}
@@ -618,33 +618,33 @@ drag_down()
 
 	if (carried(uball))
 /*JP		You("lose your grip on the iron ball.");*/
-		You("Å´µå¤ò¼ê¤«¤éÍî¤·¤Æ¤·¤Ş¤Ã¤¿¡¥");
+		You("é‰„çƒã‚’æ‰‹ã‹ã‚‰è½ã—ã¦ã—ã¾ã£ãŸï¼");
 
 	if (forward) {
 		if(rn2(6)) {
 /*JP			pline_The("iron ball drags you downstairs!");*/
-			You("Å´µå¤Ë¤è¤Ã¤Æ³¬ÃÊ¤ò¤³¤í¤¬¤êÍî¤Á¤¿¡ª");
+			You("é‰„çƒã«ã‚ˆã£ã¦éšæ®µã‚’ã“ã‚ãŒã‚Šè½ã¡ãŸï¼");
 /*JP			losehp(rnd(6), "dragged downstairs by an iron ball",
 				NO_KILLER_PREFIX);*/
-			losehp(rnd(6), "Å´µå¤Ë¤è¤ê³¬ÃÊ¤ò¤³¤í¤¬¤êÍî¤Á¤Æ",
+			losehp(rnd(6), "é‰„çƒã«ã‚ˆã‚Šéšæ®µã‚’ã“ã‚ãŒã‚Šè½ã¡ã¦",
 				KILLED_BY);
 			litter();
 		}
 	} else {
 		if(rn2(2)) {
 /*JP			pline_The("iron ball smacks into you!");*/
-			pline("Å´µå¤Ï¤¢¤Ê¤¿¤Ë¥¬¥·¥ã¡¼¥ó¤È¤Ö¤Ä¤«¤Ã¤¿¡ª");
+			pline("é‰„çƒã¯ã‚ãªãŸã«ã‚¬ã‚·ãƒ£ãƒ¼ãƒ³ã¨ã¶ã¤ã‹ã£ãŸï¼");
 /*JP			losehp(rnd(20), "iron ball collision", KILLED_BY_AN);*/
-			losehp(rnd(20), "Å´µå¤Î¾×ÆÍ¤Ç", KILLED_BY_AN);
+			losehp(rnd(20), "é‰„çƒã®è¡çªã§", KILLED_BY_AN);
 			exercise(A_STR, FALSE);
 			dragchance -= 2;
 		}
 		if( (int) dragchance >= rnd(6)) {
 /*JP			pline_The("iron ball drags you downstairs!");*/
-			You("Å´µå¤Ë¤è¤Ã¤Æ³¬ÃÊ¤ò¤³¤í¤¬¤êÍî¤Á¤¿¡ª");
+			You("é‰„çƒã«ã‚ˆã£ã¦éšæ®µã‚’ã“ã‚ãŒã‚Šè½ã¡ãŸï¼");
 /*JP			losehp(rnd(3), "dragged downstairs by an iron ball",
 				NO_KILLER_PREFIX);*/
-			losehp(rnd(3), "Å´µå¤Ë¤è¤ê³¬ÃÊ¤ò¤³¤í¤¬¤êÍî¤Á¤Æ",
+			losehp(rnd(3), "é‰„çƒã«ã‚ˆã‚Šéšæ®µã‚’ã“ã‚ãŒã‚Šè½ã¡ã¦",
 				KILLED_BY);
 			exercise(A_STR, FALSE);
 			litter();

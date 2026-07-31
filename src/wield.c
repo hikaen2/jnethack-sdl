@@ -81,7 +81,7 @@ dowield()
 /*JP
 	    pline("Don't be ridiculous!");
 */
-	    pline("¤Ğ¤«¤Ğ¤«¤·¤¤¡ª");
+	    pline("ã°ã‹ã°ã‹ã—ã„ï¼");
 	    return(0);
 	}
 /*JP
@@ -93,7 +93,7 @@ dowield()
 /*JP
 	    You("are already wielding that!");
 */
-	    You("¤â¤¦¤½¤ì¤ò%s¤Ë¤·¤Æ¤¤¤ë¡ª", body_part(HAND));
+	    You("ã‚‚ã†ãã‚Œã‚’%sã«ã—ã¦ã„ã‚‹ï¼", body_part(HAND));
 	    if (is_weptool(wep)) unweapon = FALSE;	/* [see setuwep()] */
 	} else if (welded(uwep)) {
 	    weldmsg(uwep);
@@ -102,12 +102,12 @@ dowield()
 /*JP
 		You("are already empty %s.", body_part(HANDED));
 */
-		You("²¿¤â%s¤Ë¤·¤Æ¤¤¤Ê¤¤¡ª", body_part(HAND));
+		You("ä½•ã‚‚%sã«ã—ã¦ã„ãªã„ï¼", body_part(HAND));
 	    else  {
 /*JP
 		You("are empty %s.", body_part(HANDED));
 */
-	        You("%s¤ò¶õ¤±¤¿¡¥", body_part(HAND));
+	        You("%sã‚’ç©ºã‘ãŸï¼", body_part(HAND));
 		setuwep((struct obj *) 0);
 		res++;
 	    }
@@ -119,23 +119,23 @@ dowield()
 			makeplural(body_part(HAND)));
 	    instapetrify("cockatrice corpse");
 */
-	    You("¥³¥«¥È¥ê¥¹¤Î»àÂÎ¤ò%s¤Ë¤·¤¿¡¥",
+	    You("ã‚³ã‚«ãƒˆãƒªã‚¹ã®æ­»ä½“ã‚’%sã«ã—ãŸï¼",
 			makeplural(body_part(HAND)));
-	    instapetrify("¥³¥«¥È¥ê¥¹¤Î»àÂÎ¤Ë¿¨¤ì¤Æ");
+	    instapetrify("ã‚³ã‚«ãƒˆãƒªã‚¹ã®æ­»ä½“ã«è§¦ã‚Œã¦");
 	} else if (uarms && bimanual(wep))
 /*JP
 	    You("cannot wield a two-handed %s while wearing a shield.",
 		is_sword(wep) ? "sword" :
 		    wep->otyp == BATTLE_AXE ? "axe" : "weapon");
 */
-	    pline("½â¤òÁõÈ÷¤·¤Æ¤¤¤ë¤È¤­¤ËÎ¾¼ê»ı¤Á¤Î%s¤òÁõÈ÷¤Ç¤­¤Ê¤¤¡¥",
-		is_sword(wep) ? "·õ" :
-		    wep->otyp == BATTLE_AXE ? "Éà" : "Éğ´ï");
+	    pline("ç›¾ã‚’è£…å‚™ã—ã¦ã„ã‚‹ã¨ãã«ä¸¡æ‰‹æŒã¡ã®%sã‚’è£…å‚™ã§ããªã„ï¼",
+		is_sword(wep) ? "å‰£" :
+		    wep->otyp == BATTLE_AXE ? "æ–§" : "æ­¦å™¨");
 	else if (wep->owornmask & (W_ARMOR | W_RING | W_AMUL | W_TOOL))
 /*JP
 	    You("cannot wield that!");
 */
-	    You("¤½¤ì¤òÁõÈ÷¤Ç¤­¤Ê¤¤¡ª");
+	    You("ãã‚Œã‚’è£…å‚™ã§ããªã„ï¼");
 	else if (wep->oartifact && !touch_artifact(wep, &youmonst))
 	    res++;	/* takes a turn even though it doesn't get wielded */
 	else {
@@ -149,7 +149,7 @@ dowield()
 		      tmp, aobjnam(wep, "weld"),
 		      (wep->quan == 1L) ? "itself" : "themselves", / * a3 * /
 		      body_part(HAND));*/
-	        pline("%s¤Ï¾¡¼ê¤Ë¤¢¤Ê¤¿¤Î%s¤ËÁõÈ÷¤µ¤ì¤¿¡¥",
+	        pline("%sã¯å‹æ‰‹ã«ã‚ãªãŸã®%sã«è£…å‚™ã•ã‚ŒãŸï¼",
 		      xname(wep), 
 		      body_part(HAND));
 		wep->bknown = TRUE;
@@ -172,7 +172,7 @@ dowield()
 		if ((this_shkp = shop_keeper(inside_shop(u.ux, u.uy))) !=
 		    (struct monst *)0) {
 /*JP		    pline("%s says \"You be careful with my %s!\"",*/
-		    pline("%s¤Ï½Ò¤Ù¤¿¡Ö%s¤Î°·¤¤¤Ïµ¤¤ò¤Ä¤±¤Æ¤¯¤ì¤è¡ª¡×",
+		    pline("%sã¯è¿°ã¹ãŸã€Œ%sã®æ‰±ã„ã¯æ°—ã‚’ã¤ã‘ã¦ãã‚Œã‚ˆï¼ã€",
 			  shkname(this_shkp),
 			  xname(wep));
 		}
@@ -197,7 +197,7 @@ boolean acid_dmg;
 /*JP
 		    Your("%s not affected.", aobjnam(uwep, "are"));
 */
-		    Your("%s¤Ï±Æ¶Á¤ò¼õ¤±¤Ê¤¤¡¥", xname(uwep));
+		    Your("%sã¯å½±éŸ¿ã‚’å—ã‘ãªã„ï¼", xname(uwep));
 		if (uwep->oerodeproof) uwep->rknown = TRUE;
 	} else if (uwep->oeroded < MAX_ERODE) {
 /*JP
@@ -205,10 +205,10 @@ boolean acid_dmg;
 		     uwep->oeroded+1 == MAX_ERODE ? " completely" :
 		     uwep->oeroded ? " further" : "");
 */
-		Your("%s¤Ï%s%s¡ª", xname(uwep),
-		     uwep->oeroded+1 == MAX_ERODE ? "´°Á´¤Ë" :
-		     uwep->oeroded ? "¤µ¤é¤Ë" : "",
-		     acid_dmg ? "Éå¿©¤·¤¿" : "»¬¤Ó¤¿");
+		Your("%sã¯%s%sï¼", xname(uwep),
+		     uwep->oeroded+1 == MAX_ERODE ? "å®Œå…¨ã«" :
+		     uwep->oeroded ? "ã•ã‚‰ã«" : "",
+		     acid_dmg ? "è…é£Ÿã—ãŸ" : "éŒ†ã³ãŸ");
 		uwep->oeroded++;
 	} else {
 		if (flags.verbose)
@@ -217,10 +217,10 @@ boolean acid_dmg;
 			 aobjnam(uwep, Blind ? "feel" : "look"),
 			 acid_dmg ? "corroded" : "rusty");
 */
-		    Your("%s¤Ï´°Á´¤Ë%s%s¡¥",
+		    Your("%sã¯å®Œå…¨ã«%s%sï¼",
 			 xname(uwep),
-			 acid_dmg ? "Éå¿©¤·¤¿" : "»¬¤Ó¤¿",
-			 Blind ? "¤è¤¦¤À" : "¤è¤¦¤Ë¸«¤¨¤ë");
+			 acid_dmg ? "è…é£Ÿã—ãŸ" : "éŒ†ã³ãŸ",
+			 Blind ? "ã‚ˆã†ã " : "ã‚ˆã†ã«è¦‹ãˆã‚‹");
 	}
 }
 
@@ -237,8 +237,8 @@ register int amount;
 
 /*JP		Sprintf(buf, "Your %s %s.", makeplural(body_part(HAND)),
 			(amount >= 0) ? "twitch" : "itch");*/
-		Sprintf(buf, "¤¢¤Ê¤¿¤Î%s¤Ï%s¡¥", makeplural(body_part(HAND)),
-			(amount >= 0) ? "¤Ò¤­¤Ä¤Ã¤¿" : "¥à¥º¥à¥º¤·¤¿");
+		Sprintf(buf, "ã‚ãªãŸã®%sã¯%sï¼", makeplural(body_part(HAND)),
+			(amount >= 0) ? "ã²ãã¤ã£ãŸ" : "ãƒ ã‚ºãƒ ã‚ºã—ãŸ");
 		strange_feeling(otmp, buf);
 		exercise(A_DEX, (boolean) (amount >= 0));
 		return(0);
@@ -247,7 +247,7 @@ register int amount;
 	if(uwep->otyp == WORM_TOOTH && amount >= 0) {
 		uwep->otyp = CRYSKNIFE;
 /*JP		Your("weapon seems sharper now.");*/
-		Your("Éğ´ï¤Ï¤è¤ê±Ô¤µ¤òÁı¤·¤¿¤è¤¦¤À¡¥");
+		Your("æ­¦å™¨ã¯ã‚ˆã‚Šé‹­ã•ã‚’å¢—ã—ãŸã‚ˆã†ã ï¼");
 		uwep->cursed = 0;
 		return(1);
 	}
@@ -255,14 +255,14 @@ register int amount;
 	if(uwep->otyp == CRYSKNIFE && amount < 0) {
 		uwep->otyp = WORM_TOOTH;
 /*JP		Your("weapon seems duller now.");*/
-		Your("Éğ´ï¤Ï¤è¤êÆß¤¯¤Ê¤Ã¤¿¤è¤¦¤À¡¥");
+		Your("æ­¦å™¨ã¯ã‚ˆã‚Šéˆããªã£ãŸã‚ˆã†ã ï¼");
 		return(1);
 	}
 
 	if (amount < 0 && uwep->oartifact && restrict_name(uwep, ONAME(uwep))) {
 	    if (!Blind)
 /*JP		Your("%s %s.", aobjnam(uwep, "faintly glow"), color);*/
-		Your("%s¤Ï¤ï¤º¤«¤Ë%sµ±¤¤¤¿¡¥", xname(uwep),jconj_adj(color));
+		Your("%sã¯ã‚ãšã‹ã«%sè¼ã„ãŸï¼", xname(uwep),jconj_adj(color));
 	    return(1);
 	}
 	/* there is a (soft) upper and lower limit to uwep->spe */
@@ -272,11 +272,11 @@ register int amount;
 /*JP	    Your("%s %s for a while and then evaporate%s.",
 		 aobjnam(uwep, "violently glow"), color,
 		 uwep->quan == 1L ? "s" : "");*/
-	    Your("%s¤Ï¤·¤Ğ¤é¤¯·ã¤·¤¯%sµ±¤­¡¤¾øÈ¯¤·¤¿¡¥",
+	    Your("%sã¯ã—ã°ã‚‰ãæ¿€ã—ã%sè¼ãï¼Œè’¸ç™ºã—ãŸï¼",
 		 xname(uwep), jconj_adj(color));
 	    else
 /*JP		Your("%s.", aobjnam(uwep, "evaporate"));*/
-		Your("%s¤Ï¾øÈ¯¤·¤¿", xname(uwep));
+		Your("%sã¯è’¸ç™ºã—ãŸ", xname(uwep));
 
 	    while(uwep)		/* let all of them disappear */
 				/* note: uwep->quan = 1 is nogood if unpaid */
@@ -285,13 +285,13 @@ register int amount;
 	}
 	if (!Blind) {
 /*JP	    xtime = (amount*amount == 1) ? "moment" : "while";*/
-	    xtime = (amount*amount == 1) ? "°ì½Ö" : "¤·¤Ğ¤é¤¯¤Î´Ö";
+	    xtime = (amount*amount == 1) ? "ä¸€ç¬" : "ã—ã°ã‚‰ãã®é–“";
 /*JP	    Your("%s %s for a %s.",
 		 aobjnam(uwep, amount == 0 ? "violently glow" : "glow"),
 		 color, xtime);*/
-	    Your("%s¤Ï%s%s%sµ±¤¤¤¿¡¥",
+	    Your("%sã¯%s%s%sè¼ã„ãŸï¼",
 		 xname(uwep), xtime, jconj_adj(color), 
-		 amount == 0 ? "·ã¤·¤¯" : "");
+		 amount == 0 ? "æ¿€ã—ã" : "");
 	}
 	uwep->spe += amount;
 	if(amount > 0) uwep->cursed = 0;
@@ -305,9 +305,9 @@ register int amount;
 /*JP		Your("right %s %sches!",
 			body_part(HAND),
 			(((amount > 1) && (uwep->spe > 1)) ? "flin" : "it"));*/
-		Your("±¦%s¤Ï%s¡ª",
+		Your("å³%sã¯%sï¼",
 			body_part(HAND),
-			(((amount > 1) && (uwep->spe > 1)) ? "¤Ò¤ê¤Ò¤ê¤·¤¿" : "¥à¥º¥à¥º¤·¤¿"));
+			(((amount > 1) && (uwep->spe > 1)) ? "ã²ã‚Šã²ã‚Šã—ãŸ" : "ãƒ ã‚ºãƒ ã‚ºã—ãŸ"));
 	}
 
 	/* an elven magic clue, cookie@keebler */
@@ -315,7 +315,7 @@ register int amount;
 		&& (is_elven_weapon(uwep) || uwep->oartifact || !rn2(7)))
 /*JP	    Your("%s unexpectedly.",
 		aobjnam(uwep, "suddenly vibrate"));*/
-	    Your("%s¤ÏÆÍÁ³¿Ì¤¨¤À¤·¤¿¡¥",
+	    Your("%sã¯çªç„¶éœ‡ãˆã ã—ãŸï¼",
 		xname(uwep));
 
 	return(1);
@@ -345,7 +345,7 @@ register struct obj *obj;
 		bimanual(obj) ? (const char *)makeplural(body_part(HAND))
 				: body_part(HAND));
 */
-	You("%s¤ò%s¤Ë¹½¤¨¤¿¡ª", 
+	You("%sã‚’%sã«æ§‹ãˆãŸï¼", 
 		xname(obj), body_part(HAND));
 	obj->owornmask = savewornmask;
 }
