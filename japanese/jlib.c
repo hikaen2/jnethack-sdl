@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include "hack.h"
+#include "mbchar.h"
 
 #ifdef SDL_GRAPHICS
 /*
@@ -512,50 +513,39 @@ jputs(s)
   jputchar('\n');
 }
 
+/*
+**      Is byte offset pos inside a character rather than at its start?
+**
+**      The old body walked the string two bytes at a time on seeing a high
+**      bit and reported whether it had overshot pos.  That is exactly
+**      "pos is not a character boundary" with EUC-JP's widths hardcoded, so
+**      it becomes a call to mb_is_boundary() and stops caring how wide a
+**      character is.  See include/mbchar.h and UTF8-PLAN.md.
+**
+**      Both of these keep their names.  There are fourteen call sites and
+**      the surrounding code reads in terms of them; renaming would make the
+**      Phase 1 diff impossible to review for no gain, and the names stay
+**      accurate enough -- "is this the trailing part of a wide character".
+*/
 int is_kanji2(s,pos)
 const char *s;
 int pos;
 {
-  unsigned char *str;
-
-  str = (unsigned char *)s;
-  while(*str && pos>0){
-    if(is_kanji(*str)){
-      str+=2;
-      pos-=2;
-    }
-    else{
-      ++str;
-      --pos;
-    }
-  }
-  if(pos<0)
-    return 1;
-  else
-    return 0;
+  return !mb_is_boundary(s, pos);
 }
 
+/*
+**      Does a character wider than one byte start at offset pos?
+**
+**      Used before truncating: if the byte about to be cut off is the start
+**      of a wide character, the caller blanks or drops it rather than
+**      leaving half behind.
+*/
 int is_kanji1(s,pos)
 const char *s;
 int pos;
 {
-  unsigned char *str;
-
-  str = (unsigned char *)s;
-  while(*str && pos>0){
-    if(is_kanji(*str)){
-      str+=2;
-      pos-=2;
-    }
-    else{
-      ++str;
-      --pos;
-    }
-  }
-  if(!pos && is_kanji(*str))
-    return 1;
-  else
-    return 0;
+  return mb_is_boundary(s, pos) && mb_seqlen(s + pos) > 1;
 }
 
 /*
@@ -574,6 +564,57 @@ isspace_8(c)
 ** split string(str) including japanese before pos and return to
 ** str1, str2.
 */
+/*
+**      Kinsoku sets.  Given as strings rather than byte pairs so that they
+**      convert with the rest of the tree in Phase 3 of UTF8-PLAN.md, and so
+**      that the widths below come from the literals instead of a hardcoded 2.
+*/
+static const char *const jsplit_close[] = {
+  "］", "）", "｝", 0           /* pulled back into the first half */
+};
+static const char *const jsplit_nostart[] = {
+  "！", "？", "、", "。", "，", "．", 0 /* may not begin the second half */
+};
+
+/*
+**      Does one of tab's entries start at s, on a character boundary?
+**      Returns its length in bytes, or 0.
+*/
+static int
+jmatch( str, at, tab )
+     const char *str;
+     int at;
+     const char *const *tab;
+{
+  int i;
+
+  if(!mb_is_boundary(str, at))
+    return 0;
+
+  for( i=0 ; tab[i] ; ++i ){
+    int n = strlen(tab[i]);
+
+    if(!strncmp(str + at, tab[i], n))
+      return n;
+  }
+  return 0;
+}
+
+/*
+** split string(str) including japanese before pos and return to
+** str1, str2.
+*/
+/*
+**      Rewritten for Phase 1 of UTF8-PLAN.md.  The logic is unchanged --
+**      test/jlib.golden pins every break position of every test string --
+**      but it now tracks the break offset directly instead of counting bytes
+**      backwards from pos, and every step is the width of an actual
+**      character rather than a literal 2.
+**
+**      The old form made the arithmetic hard to follow as well as wrong for
+**      UTF-8: "j -= 2" meant "move the break two bytes later", so the sign
+**      was inverted relative to the position it computed.
+*/
 void
 split_japanese( str, str1, str2, pos )
      char *str;
@@ -581,11 +622,11 @@ split_japanese( str, str1, str2, pos )
      char *str2;
      int pos;
 {
-  int len, i, j, k, mlen;
+  int len, i, b, k, n, lowest;
   char *pstr;
   char *pnstr;
 
-  len = strlen((char *)str);
+  len = strlen(str);
 
   if( len < pos ){
     strcpy(str1,str);
@@ -593,85 +634,107 @@ split_japanese( str, str1, str2, pos )
     return;
   }
 
-  if(pos > 20)
-    mlen = 20;
-  else
-    mlen = pos;
-
+  /*
+  **    Align to a character boundary.  This was "--i", which stepped back
+  **    exactly one byte -- right for EUC-JP, one byte short of the start
+  **    of a three-byte UTF-8 character.
+  */
   i = pos;
-  if(is_kanji2(str, i))
-    --i;
+  if(!mb_is_boundary(str, i))
+    i = (int)(mb_prev(str, str + i) - str);
+
+  /*
+  **    How far back the search may reach.  Measured from i and not from
+  **    pos: the original counted j upwards from the aligned i, so a window
+  **    of mlen bytes ends at i-mlen however far the alignment moved i.
+  */
+  lowest = i - ((pos > 20) ? 20 : pos);
+
+  /*
+  **    The loops below stop at lowest+1, so lowest may be -1: offset 0 is
+  **    a position the original examined and clamping to 0 would skip it.
+  **    It must not go further, though.  The original could, once the
+  **    alignment above moved i by more than one byte -- impossible under
+  **    EUC-JP, routine under UTF-8 -- and then indexed the string with a
+  **    negative subscript.
+  */
+  if(lowest < -1)
+    lowest = -1;
+
+  b = -1;
 
 /* 1:
 ** search space character
 */
-  j = 0;
-  while( j<mlen ){
-    if(isspace_8(str[i-j])){
-/*    str[i-j] = '\0';*/
-      --j;
-      goto found;
+  for( k=i ; k>lowest ; --k ){
+    if(isspace_8(str[k])){
+      b = k + 1;                /* the space stays in the first half */
+      break;
     }
-    else if(is_kanji1(str,i-j)){
-      if(!strncmp(str+i-j,"　",2)){
-/*	str[i-j] = '\0'; */
-	j -= 2;
-	goto found;
-      }
+    if(is_kanji1(str,k) && !strncmp(str+k,"　",sizeof("　")-1)){
+      b = k + sizeof("　")-1;   /* likewise the ideographic space */
+      break;
     }
-    ++j;
   }
-/* 2:
-** search end of japanese
-*/
-#if 0
-  j = 0;
-  while( j<mlen ){
-    if((is_kanji1(str,i-j) && !is_kanji2(str,i-j-1))||
-       (is_kanji2(str,i-j-1) && !is_kanji1(str,i-j))){
-      goto found;
-    }
-    ++j;
-  }
-#endif
-/* 3:
-** search second bytes of japanese
-*/
-  j = 0;
-  while( j<mlen ){
-    if(is_kanji1(str,i-j)){
-      goto found;
-    }
-    ++j;
-  }
- found:
 
+/* 2:
+** search end of japanese -- disabled long before this rewrite
+*/
+
+/* 3:
+** search the start of a wide character
+*/
+  if(b < 0)
+    for( k=i ; k>lowest ; --k )
+      if(is_kanji1(str,k)){
+	b = k;
+        break;
+      }
+
+  if(b < 0)
+    b = lowest;
+  if(b < 0)
+    b = 0;                      /* the copy below treats -1 as 0 anyway */
+
+  /*
+  **    The window's lower bound is a byte count, so nothing so far
+  **    guarantees it lands between characters.  It did not: splitting
+  **    "xxx...KANJI...xxx" at 47 cut the second kanji in half and handed
+  **    the caller two strings that were not valid text.  Both halves went
+  **    on to the screen and, for topten.c, into the record file.
+  **
+  **    This is older than the UTF-8 work -- the original computed the same
+  **    offset -- but it is worth fixing here rather than carrying forward,
+  **    because under UTF-8 the broken halves would reach a decoder that now
+  **    rejects them, turning a display glitch into a string of U+FFFD.
+  */
+  if(!mb_is_boundary(str, b))
+    b = (int)(mb_prev(str, str + b) - str);
+
+  /*
+  **    Kinsoku.  A closing bracket may not begin the second half, so the
+  **    break moves past it; a full stop or comma may not either, so the
+  **    break moves back over the character before it.
+  */
   while(1){
-    if(j>0 && 
-       (str[i-j] == ']' ||
-	str[i-j] == ')' ||
-	str[i-j] == '}'))
-      --j;
-    else if(j>1 &&
-	    ((!strncmp(str+i-j, "］", 2)) ||
-	     (!strncmp(str+i-j, "）", 2)) ||
-	     (!strncmp(str+i-j, "｝", 2))))
-      j-=2;
+    if(b < i &&
+       (str[b] == ']' ||
+	str[b] == ')' ||
+	str[b] == '}'))
+      ++b;
+    else if(b < i-1 && (n = jmatch(str, b, jsplit_close)) != 0)
+      b += n;
     else
       break;
   }
-  while(!strncmp(str+i-j,"！",2) ||
-	!strncmp(str+i-j,"？",2) ||
-	!strncmp(str+i-j,"、",2) ||
-	!strncmp(str+i-j,"。",2) ||
-	!strncmp(str+i-j,"，",2) ||
-	!strncmp(str+i-j,"．",2))
-    j+=2;
+
+  while(b > 0 && jmatch(str, b, jsplit_nostart))
+    b = (int)(mb_prev(str, str + b) - str);
 
   pstr = str;
 
   pnstr = str1;
-  for( k=0 ; k<i-j ; ++k )
+  for( k=0 ; k<b ; ++k )
     *(pnstr++) = *(pstr++);
   *(pnstr++) = '\0';
 

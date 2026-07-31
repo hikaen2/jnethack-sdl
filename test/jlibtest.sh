@@ -43,6 +43,13 @@ abc漢字def漢字ghi
 短い
 a
 これは、とても、長い、日本語の、文章、です。
+abcdefghijklmnopqrstuvwxyz0123456789nospaceatallinthisverylongline
+一二三四五六七八九十一二三四五六七八九十一二三四五六七八九十
+あ、い。う！え？お，か．き
+xxxxxxxxxxxxxxxxxxxxxxxx漢字xxxxxxxxxxxxxxxxxxxx
+[a](b){c}［あ］（い）｛う｝
+　全角空白ではじまる行　のあいだ
+ab　cd漢字ef　gh
 EOF
 
 # Individual characters for jrndm_replace: one per JIS row the function
