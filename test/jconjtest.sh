@@ -22,11 +22,6 @@ work=${TMPDIR:-/tmp}/jnh-jconjtest.$$
 golden="$top/test/jconj.golden"
 
 CC=${CC:-gcc}
-# -O2 matters: jconj.c calls e2sj()/sj2e(), which are static in jlib.h and so
-# are not linkable from here.  Every call sits behind "if (!IC)", and IC is a
-# compile-time constant, so the optimiser drops those branches and with them
-# the references.  At -O0 this would fail to link -- which is a fair signal
-# that the Shift-JIS half of jconj.c has been dead code for a long time.
 CFLAGS=${CFLAGS:--O2 -std=gnu89 -fcommon}
 
 mkdir -p "$work"

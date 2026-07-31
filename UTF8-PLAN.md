@@ -46,7 +46,7 @@ Phase 1 で `hack.h` に引き上げる形にすると 250 余りのソース全
 
 ## 2. 現状
 
-内部コードは EUC-JP。`japanese/jlib.h:22` がソース自身のリテラルのバイトを見て EUC か SJIS かを判定している:
+内部コードは EUC-JP。`japanese/jlib.c:31` がソース自身のリテラルのバイトを見て EUC か SJIS かを判定している:
 
 ```c
 #define IC ((unsigned char)("漢"[0])==0x8a)
@@ -71,7 +71,6 @@ UTF-8 化すると常に 0（EUC 扱い）になるため、この仕組み自�
 |---|---|
 | `src/objnam.c` | 35 |
 | `japanese/jconj.c` | 13 |
-| `japanese/jlib.h` | 13 |
 | `japanese/jlib.c` | 10 |
 | `src/topten.c` | 7 |
 | `src/invent.c` | 4 |
@@ -270,7 +269,7 @@ Phase 4 でどのみち版を上げるため実害はないが、「プレイヤ
 
 ### Phase 2 — 入出力の境界
 
-9. `japanese/jlib.h:22` の `IC` マクロを廃止し、内部コードを UTF-8 固定に。`output_kcode`/`input_kcode` は「外部との変換先」の意味に純化
+9. `japanese/jlib.c:31` の `IC` マクロを廃止し、内部コードを UTF-8 固定に。`output_kcode`/`input_kcode` は「外部との変換先」の意味に純化
 10. `sdl_queue_text()` は**変換ではなく検証のみ**に。不正バイト列だけ弾き、コードポイントの範囲では絞らない（方針B）
 11. tty(termcap) 経路: UTF-8 端末は素通し。EUC/SJIS/JIS 出力オプションは `jis0208.h` の逆引きで実装。`sdlterm.c:903-920` の線形探索版は8836要素を毎文字なめるので**ソート済み逆引きテーブルに置換**。非BMP文字は表現できないので**代替文字に落として出力**（無音で消さない）
 12. `src/files.c:1295` の `str2ic`（config 読み込み）、`isspace_8`（`files.c:1057,1073`）を確認
