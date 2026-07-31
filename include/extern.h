@@ -2124,6 +2124,7 @@ E  int FDECL(jcounter, (const char *));
 
 /* ### mbchar.c ### */
 E  int FDECL(mb_complete, (const char *));
+E  int FDECL(mb_cpwidth, (long));
 
 E  unsigned char *FDECL(e2sj, (unsigned char *));
 E  unsigned char *FDECL(sj2e, (unsigned char *));

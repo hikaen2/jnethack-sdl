@@ -137,7 +137,8 @@ const char *s;
 
     if (!*s) return 0;
     (void) utf8_decode(s, &cp);
-    return utf8_cpwidth(cp);
+
+    return mb_cpwidth(cp);
 }
 
 long
@@ -165,6 +166,28 @@ int n;
 #endif /* JP_INTERNAL_UTF8 */
 
 /* --- encoding independent, given the two above --------------------- */
+
+int
+mb_cpwidth(cp)
+long cp;
+{
+    int w, row, cell;
+
+    w = utf8_cpwidth(cp);
+    if (w != 1) return w;               /* settled: wide, or zero-width */
+
+    /*
+     * East Asian Ambiguous.  See the note in include/mbchar.h for why
+     * membership of JIS X 0208 is the test, and why the graphics character
+     * sets must not come through here.
+     *
+     * The lookup only runs for code points utf8_cpwidth() called narrow,
+     * so kana and kanji have already returned above.
+     */
+    if (ucs_to_jis(cp, &row, &cell)) return 2;
+
+    return 1;
+}
 
 int
 mb_colwidth(s)

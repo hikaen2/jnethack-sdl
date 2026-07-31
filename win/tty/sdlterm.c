@@ -45,6 +45,7 @@
 #include "termcap.h"
 #include "jiscode.h"
 #include "utf8.h"
+#include "mbchar.h"
 
 #ifndef C       /* this matches src/cmd.c and win/tty/topl.c */
 #define C(c)    (0x1f & (c))
@@ -1725,12 +1726,26 @@ int w;
     grid_dirty = TRUE;
 }
 
-/* Place one code point, taking its width from the code point itself. */
+/*
+ * Place one code point of *text*.
+ *
+ * mb_cpwidth() rather than sdl_cp_width(), and the difference matters.
+ * sdl_cp_width() answers the plain Unicode question, which is what
+ * sdl_putbyte() needs: a byte written between graph_on() and graph_off()
+ * becomes a box-drawing code point like U+2500, and that is one cell of
+ * map, not a wide character.  Text goes by the rule in include/mbchar.h,
+ * where the 232 JIS X 0208 code points Unicode calls Ambiguous stay two
+ * columns as they were when the encoding decided it.
+ *
+ * Reaching this with a box-drawing code point through the text path would
+ * put a line on the map in two cells and shift the rest of the row, which
+ * is exactly the drift the cell grid exists to prevent.
+ */
 void
 sdl_putcp(cp)
 int cp;
 {
-    sdl_put_wide((long) cp, sdl_cp_width((long) cp));
+    sdl_put_wide((long) cp, mb_cpwidth((long) cp));
 }
 
 /*

@@ -21,6 +21,7 @@
 
 #include "hack.h"
 #include "mbchar.h"
+#include "jiscode.h"
 
 static int failures = 0;
 static int checks = 0;
@@ -174,6 +175,82 @@ main()
 
     ok(mb_trunc_cols(mixed, 3) == 1 + KANJI_BYTES,
        "a + one kanji is three columns");
+
+    /* --- East Asian Ambiguous -------------------------------------- */
+    /*
+     * The 232 code points JIS X 0208 holds that Unicode calls Ambiguous or
+     * Narrow.  They were two bytes in EUC-JP and the port laid them out as
+     * two columns; under UTF-8 nothing about the bytes says so, and if
+     * mb_width() reported 1 the status line and every menu would shift.
+     *
+     * Both modes are checked with the same expectation, which is the point
+     * -- the EUC-JP side gets it from the byte count and the UTF-8 side
+     * from the JIS X 0208 lookup, and they have to agree.
+     */
+    {
+        static const struct { const char *euc, *utf8; const char *what; } amb[] = {
+            { "\246\241", "\316\221", "U+0391 GREEK CAPITAL ALPHA" },
+            { "\247\241", "\320\220", "U+0410 CYRILLIC CAPITAL A" },
+            { "\241\335", "\342\206\222", "U+2192 RIGHTWARDS ARROW" },
+            { "\241\361", "\302\261", "U+00B1 PLUS-MINUS" },
+            { "\241\366", "\302\260", "U+00B0 DEGREE" },
+            { "\250\241", "\342\224\200", "U+2500 BOX DRAWINGS LIGHT HORIZONTAL" },
+            { "\241\370", "\342\204\203", "U+2103 DEGREE CELSIUS" },
+            { "\241\274", "\342\200\225", "U+2015 HORIZONTAL BAR" },
+            { 0, 0, 0 }
+        };
+        int i;
+
+        for (i = 0; amb[i].what; i++) {
+#ifdef JP_INTERNAL_UTF8
+            const char *t = amb[i].utf8;
+#else
+            const char *t = amb[i].euc;
+#endif
+            if (mb_width(t) != 2) {
+                (void) printf("    FAIL: %s is %d columns, want 2\n",
+                              amb[i].what, mb_width(t));
+                failures++;
+            }
+            checks++;
+        }
+    }
+
+    /*
+     * And exhaustively: every character JIS X 0208 assigns must come out
+     * the same width in both encodings.  Spot checks would not have caught
+     * a rule that covered the arrows but missed the maths.
+     */
+    {
+        int row, cell, checked = 0, bad = 0;
+
+        for (row = 1; row <= JIS_ROWS; row++)
+            for (cell = 1; cell <= JIS_CELLS; cell++) {
+                long cp = jis_to_ucs(row, cell);
+                char enc[MB_MAXBYTES + 1];
+                int n;
+
+                if (!cp) continue;
+                n = mb_encode(cp, enc, MB_MAXBYTES);
+                if (!n) {
+                    /* every JIS X 0208 character must be encodable in both */
+                    if (bad++ < 5)
+                        (void) printf("    FAIL: U+%04lX has no form\n", cp);
+                    continue;
+                }
+                enc[n] = '\0';
+                checked++;
+                if (mb_width(enc) != 2) {
+                    if (bad++ < 5)
+                        (void) printf("    FAIL: U+%04lX (%d,%d) is %d columns,"
+                                      " want 2\n", cp, row, cell, mb_width(enc));
+                }
+            }
+        checks++;
+        if (bad) failures++;
+        (void) printf("  %d JIS X 0208 characters, %d not two columns\n",
+                      checked, bad);
+    }
 
     /* --- code points, and replacement ------------------------------ */
     /*

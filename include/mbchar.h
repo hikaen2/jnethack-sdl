@@ -64,6 +64,27 @@ extern int FDECL(mb_complete, (const char *));
 /* Display width of the character at s, in terminal columns: 0, 1 or 2. */
 extern int FDECL(mb_width, (const char *));
 
+/*
+ * The same question about a code point rather than a character.
+ *
+ * This is the *text* width, and deliberately not the same thing as the
+ * Unicode East Asian Width: the 232 code points JIS X 0208 holds that
+ * Unicode files under Ambiguous or Narrow -- Greek and Cyrillic letters,
+ * arrows, box drawing, maths -- were two bytes in EUC-JP and the port laid
+ * them out as two columns.  Under UTF-8 nothing about the bytes says so,
+ * so the rule is stated here instead: a code point JIS X 0208 contains is
+ * two columns.  That reproduces the old layout exactly, which matters
+ * because the status line, the menus and split_japanese() were all written
+ * against it.
+ *
+ * It must not be used for the graphics character sets.  A byte written
+ * between graph_on() and graph_off() also becomes a box-drawing code point
+ * such as U+2500, and that one occupies a single cell -- it is a line on
+ * the map, not text.  win/tty/sdlterm.c keeps its own sdl_cp_width() for
+ * that path, which answers the plain Unicode question.
+ */
+extern int FDECL(mb_cpwidth, (long));
+
 /* Total display width of the whole string. */
 extern int FDECL(mb_colwidth, (const char *));
 
