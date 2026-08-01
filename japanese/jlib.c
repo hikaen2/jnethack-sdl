@@ -380,12 +380,11 @@ tty_cputc(unsigned int c)
 static void
 tty_cputc2(unsigned int c, unsigned int c2)
 {
-#ifdef SDL_GRAPHICS
-  /* Both bytes of one character, still in the internal code. */
-  kmode = 0;
-  sdl_puteuc((int)c, (int)c2);
-  return;
-#endif
+  /*
+  ** Not reached in an SDL build: cbuffer() emits through sdl_putcp() and
+  ** returns without calling f2 at all.  It is still named as the default
+  ** f2 above, so it has to exist.
+  */
   kmode = 1;
 
 #if defined(NO_TERMS) && defined(MSDOS)
@@ -429,13 +428,7 @@ tty_jputc(unsigned int c)
 static void
 tty_jputc2(unsigned int c, unsigned int c2)
 {
-#ifdef SDL_GRAPHICS
-  /* As tty_cputc2(): setkcode() pinned output_kcode to IC, so jbuffer()
-  ** has not touched these bytes. */
-  kmode = 0;
-  sdl_puteuc((int)c, (int)c2);
-  return;
-#endif
+  /* As tty_cputc2(): not reached in an SDL build. */
   if(!kmode && output_kcode==JIS ){
     putchar(033);
     putchar('$');
@@ -618,11 +611,11 @@ jbuffer(
   ** cell and takes the width from mb_cpwidth().  setkcode() pinned
   ** output_kcode to the internal code, so nothing is converted on the way.
   **
-  ** This replaces a call to sdl_puteuc(), which decided the width from the
-  ** fact that two bytes had arrived.  That was right for kanji and wrong
-  ** for the SS2 half-width katakana, which are two bytes of EUC-JP and one
-  ** column -- the tty side has always drawn them in one, so the two
-  ** backends disagreed.  Going through the code point settles it.
+  ** This replaced a call to sdl_puteuc(), since deleted, which decided the
+  ** width from the fact that two bytes had arrived.  That was right for
+  ** kanji and wrong for the SS2 half-width katakana, which are two bytes of
+  ** EUC-JP and one column -- the tty side has always drawn them in one, so
+  ** the two backends disagreed.  Going through the code point settles it.
   */
   sdl_putcp((int) mb_decode(in));
   return n;

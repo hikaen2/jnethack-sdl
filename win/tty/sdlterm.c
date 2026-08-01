@@ -224,7 +224,6 @@ static void FDECL(sdl_scroll_up, (int));
 static void NDECL(sdl_wrap_now);
 static int FDECL(sdl_cp_width, (long));
 static void FDECL(sdl_put_wide, (long, int));
-static long FDECL(sdl_euc_to_ucs, (int, int));
 static void NDECL(sdl_open_font);
 static void NDECL(sdl_repaint);
 static void NDECL(sdl_pump);
@@ -442,8 +441,8 @@ static boolean alt_charset = FALSE;
  * UAX #11; Ambiguous (A) is deliberately treated as narrow, which is what
  * makes the walls line up regardless of $LANG.
  *
- * Characters that arrived as an EUC-JP pair do not come through here at
- * all -- see sdl_puteuc().
+ * Text does not come through here at all -- see sdl_putcp(), which asks
+ * mb_cpwidth() instead.
  */
 static int
 sdl_cp_width(cp)
@@ -469,34 +468,6 @@ long cp;
         return 2;
 
     return 1;
-}
-
-/* ---------------------------------------------------------------- */
-/* EUC-JP -> Unicode                                                    */
-/* ---------------------------------------------------------------- */
-
-/*
- * JNetHack's internal encoding on Unix is EUC-JP, and jlib.c has already
- * collected the two bytes of a character before this is reached (see
- * jbuffer() there).  All that is left is to name the code point.
- *
- * The table comes from japanese/mkjis0208.py by way of japanese/jiscode.c,
- * so nothing here depends on
- * iconv, on a locale being installed, or on what the C library thinks
- * EUC-JP means.
- */
-static long
-sdl_euc_to_ucs(b1, b2)
-int b1, b2;
-{
-    char pair[3];
-    int n;
-
-    pair[0] = (char) b1;
-    pair[1] = (char) b2;
-    pair[2] = '\0';
-
-    return euc_to_ucs(pair, &n);
 }
 
 /* ---------------------------------------------------------------- */
@@ -1094,8 +1065,11 @@ int b;
     kq_tail = nxt;
 }
 
+#ifndef JP_INTERNAL_UTF8
 /*
- * Unicode -> EUC-JP, for the way back in.
+ * Unicode -> EUC-JP, for the way back in.  Only an EUC-JP build needs it:
+ * when the internal code is UTF-8 the bytes SDL delivers are already the
+ * bytes the game wants, and sdl_queue_text() passes them through.
  *
  * The forward table is the only data; the reverse direction is a scan of
  * it.  That is 8836 comparisons per character, which sounds bad until you
@@ -1118,6 +1092,7 @@ int *b1, *b2;
     *b2 = (unsigned char) buf[1];
     return 1;
 }
+#endif /* !JP_INTERNAL_UTF8 */
 
 static void
 sdl_queue_text(s)
@@ -1764,57 +1739,19 @@ int w;
  * Reaching this with a box-drawing code point through the text path would
  * put a line on the map in two cells and shift the rest of the row, which
  * is exactly the drift the cell grid exists to prevent.
+ *
+ * Asking the code point is also what keeps the half-width katakana of JIS
+ * X 0201 in one column.  The backend used to be handed the bytes and take
+ * the width from there being two of them, which was right for kanji and
+ * wrong for these -- a name typed on an IME's half-width kana setting came
+ * out spaced, "A I U E O".  mb_cpwidth() has no such trouble, because a
+ * code point is not a byte count.
  */
 void
 sdl_putcp(cp)
 int cp;
 {
     sdl_put_wide((long) cp, mb_cpwidth((long) cp));
-}
-
-/*
- * Place one EUC-JP two-byte character.
- *
- * The width is 2 because the character *arrived as two bytes*, and not
- * because of anything about the code point it maps to.  This is the whole
- * of the port's answer to the East Asian Ambiguous width problem that
- * UTF8-PLAN.md section 4.1 wrestled with.
- *
- * It matters concretely.  JIS row 1 contains characters whose Unicode
- * code points are Ambiguous in UAX #11 -- U+00B1 (plus-minus), U+00D7
- * (multiplication), U+2212 (minus), U+00A7 (section) and a good many
- * more.  On a terminal, whether each of those takes one column or two is
- * decided by the user's locale, and JNetHack's layout code has already
- * decided it takes two: the multibyte layer in include/mbchar.h reports
- * two columns for it and split_japanese() in japanese/jlib.c breaks lines
- * on that basis, as topl.c folds them.  Consulting sdl_cp_width() here would make the
- * backend disagree with the port about where the next column is, which is
- * exactly the drift the cell grid exists to prevent.
- *
- * So the rule is: the encoding decides the width, not the glyph.  The
- * happy consequence is that there is nothing for the user to configure
- * and nothing that can differ between machines.
- *
- * The one exception is the half-width katakana of JIS X 0201, which EUC-JP
- * writes as SS2 (0x8E) plus one byte.  Those arrive as two bytes but are
- * one column wide -- that is the whole point of them, and every terminal
- * draws them so.  Taking the pair at face value gave the spaced-out
- * "A I U E O" of a name typed on an IME's half-width kana setting.  The
- * lead byte says which of the two rules applies, so no glyph property is
- * consulted here either.
- *
- * jlib.c's is_kanji() calls SS2 a lead byte, so the port still counts such
- * a character as two columns when it folds lines.  That errs towards short
- * lines rather than towards overrun, and it is what a real terminal does
- * with JNetHack too.
- */
-void
-sdl_puteuc(b1, b2)
-int b1, b2;
-{
-    int w = ((b1 & 0xFF) == 0x8E) ? 1 : 2;
-
-    sdl_put_wide(sdl_euc_to_ucs(b1, b2), w);
 }
 
 /*
@@ -1846,9 +1783,9 @@ int b;
 
 /*
  * xputc() and xputs() go through jlib.c's accumulator, exactly as
- * win/tty/termcap.c's versions do, so that a string containing EUC-JP
- * reaches sdl_puteuc() as characters rather than as loose bytes.  There
- * are no capability strings to worry about: those died with termcap.c.
+ * win/tty/termcap.c's versions do, so that a multibyte string reaches
+ * sdl_putcp() as characters rather than as loose bytes.  There are no
+ * capability strings to worry about: those died with termcap.c.
  */
 void
 xputc(c)
@@ -2212,11 +2149,12 @@ sdl_dump_if_asked()
  * The double-width drawing test.  Runs instead of the game when
  * NH_SDL_WIDTHTEST is set, and writes its verdict to stdout.
  *
- * Text is fed in as EUC-JP bytes through jputchar(), so what is being
- * tested is the whole path the game uses -- jlib.c's byte accumulator,
- * sdl_puteuc(), the table, and the grid -- and not just the last step.
+ * Text is fed in a byte at a time through jputchar(), in the internal
+ * code, so what is being tested is the whole path the game uses --
+ * jlib.c's accumulator, mb_cpwidth(), sdl_putcp() and the grid -- and not
+ * just the last step.
  *
- *   1. a two-byte character at column x occupies x and x+1, and x+2
+ *   1. a two-column character at column x occupies x and x+1, and x+2
  *      onward is undisturbed;
  *   2. writing a one-cell character over the right half of a two-cell
  *      character does not leave a stray left half behind, whether it is

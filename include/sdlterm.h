@@ -34,21 +34,21 @@
 #include <signal.h>
 
 /*
- * Three entry points, deliberately separated by what they know:
+ * Two entry points, deliberately separated by what they know:
  *
  *   sdl_putbyte()  one byte, interpreted through whichever graphics
  *                  character set the game has selected.
- *   sdl_puteuc()   one EUC-JP two-byte sequence -> one code point.  The
- *                  cell width of the result is decided by the bytes it
- *                  arrived as -- two cells for a JIS X 0208 pair, one for
- *                  an SS2 half-width katakana -- and not by any property
- *                  of the code point; see the comment on the function.
- *   sdl_putcp()    a Unicode code point, straight into a cell.
+ *   sdl_putcp()    one code point of text, straight into a cell, as wide
+ *                  as include/mbchar.h says it is.
+ *
+ * There was a third, sdl_puteuc(), taking the two bytes of an EUC-JP
+ * character.  jlib.c stopped calling it once its accumulator collected
+ * whole characters rather than byte pairs, and a byte pair cannot describe
+ * the internal code any more in any case.
  */
 /* Spelled "extern" rather than the tree's usual E, because japanese/jlib.c
    includes this header outside the block in wintty.h where E is defined. */
 extern void FDECL(sdl_putbyte, (int));
-extern void FDECL(sdl_puteuc, (int, int));
 extern void FDECL(sdl_putcp, (int));
 extern int FDECL(sdl_putchar, (int));
 extern void FDECL(sdl_puts, (const char *));

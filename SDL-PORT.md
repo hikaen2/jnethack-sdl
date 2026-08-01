@@ -37,21 +37,19 @@ HACKDIR=~/jnhdir ./src/jnethack.sdl -u あなたの名前
 実験の H3 は「セルグリッドなら East Asian Ambiguous 幅問題が消える」だった。
 JNetHack に持ち込むと、この主張は**より強い形**になる。
 
-`sdl_puteuc()` は幅を**届いたバイト列だけから決める**。コードポイントを見ない。
+`sdl_putcp()` は幅を **`mb_cpwidth()` に訊く**。グリフを見ない。
 
 ```c
 void
-sdl_puteuc(b1, b2)
-int b1, b2;
+sdl_putcp(cp)
+int cp;
 {
-    int w = ((b1 & 0xFF) == 0x8E) ? 1 : 2;
-
-    sdl_put_wide(sdl_euc_to_ucs(b1, b2), w);
+    sdl_put_wide((long) cp, mb_cpwidth((long) cp));
 }
 ```
 
-理由は「JIS X 0208 の 2 バイトで届いたから」である。
-`sdl_cp_width()` を呼んではいけない。
+`sdl_cp_width()` を呼んではいけない —— あれは素の Unicode の答えを返すので、
+グラフィクス文字（`sdl_putbyte()` の経路）専用である。
 
 JIS X 0208 の第 1 区には、Unicode のコードポイントが UAX #11 で
 **Ambiguous** に分類される文字が並んでいる —— `±`(U+00B1)、`×`(U+00D7)、
@@ -75,20 +73,17 @@ width test の case 4 がこの 1 点だけを検証している。
 `sdl_cp_width()` がこれらを 1 と答えることも同時に確認しており、
 「コードポイントだけを見る実装なら間違える」ことを固定している。
 
-### 1-1. 例外は SS2 の半角カナだけ
+### 1-1. バイト数を幅だと思うと半角カナで転ぶ
 
-EUC-JP は JIS X 0201 の半角カナを SS2（`0x8E`）＋ 1 バイトで書く。
-これも 2 バイトで届くが、**1 桁**である —— それが半角カナの存在理由であり、
-どの端末もそう描く。素朴に 2 桁として扱うと、IME を半角カナにして
-入力した名前が `ｱ ｲ ｳ ｴ ｵ` と間延びして出た。
+かつてこの層は `sdl_puteuc(b1, b2)` で、幅を「2 バイトで届いたから 2」と
+決めていた。漢字には正しく、**JIS X 0201 の半角カナには誤り**である ——
+EUC-JP はこれを SS2（`0x8E`）＋ 1 バイトで書くので 2 バイトで届くが、
+桁は 1 だからだ。IME を半角カナにして入力した名前が `ｱ ｲ ｳ ｴ ｵ` と
+間延びして出た。
 
-区別はすべて先頭バイトが持っている（`0x8E` か否か）ので、
-ここでもグリフの性質は参照しない。**幅を決めるのはやはりエンコーディングである。**
-
-なお `jlib.c` の `is_kanji()` は `0x8E` も「上位ビットが立っている」として
-先頭バイト扱いにするため、ポート側の折り返しは半角カナを 2 桁と数え続ける。
-ずれる向きは「行が短くなる」側で、はみ出しは起きない。
-これは JNetHack を本物の端末で動かしたときも同じである。
+コードポイントを渡すようにした今、この誤りは起こりようがない。
+`mb_cpwidth()` はバイト数を数えないし、内部コードが UTF-8 になった以上
+2 バイトという概念自体がない。`sdl_puteuc()` と `sdl_euc_to_ucs()` は削除済み。
 
 width test の case 6 がこれを検証している。
 
@@ -113,24 +108,28 @@ width test の case 6 がこれを検証している。
 | jlib.c の関数 | SDL では |
 |---|---|
 | `tty_cputc(c)` / `tty_jputc(c)` | `sdl_putbyte(c)` |
-| `tty_cputc2(c1,c2)` / `tty_jputc2(c1,c2)` | `sdl_puteuc(c1,c2)` |
+| `tty_cputc2(c1,c2)` / `tty_jputc2(c1,c2)` | 使わない（下記） |
 
 3 層構造は実験と同じで、真ん中に 1 段増えただけ:
 
 | 層 | 役割 |
 |---|---|
-| `jbuffer()` / `cbuffer()` | バイト列 → 文字（EUC-JP の対を組む）。**既存** |
+| `jbuffer()` / `cbuffer()` | バイト列 → 1 文字ぶんのバイト列。**既存** |
 | `sdl_putbyte(b)` | 1 バイト → コードポイント。文字集合（DEC / CP437）の解決 |
-| `sdl_puteuc(b1,b2)` | EUC-JP の対 → コードポイント。幅 2 で確定 |
-| `sdl_putcp(cp)` | コードポイントをセルに置く |
+| `sdl_putcp(cp)` | コードポイントを、`mb_cpwidth()` の幅でセルに置く |
+
+`f2` は SDL ビルドでは使われない。`jbuffer()` / `cbuffer()` は 1 文字ぶん
+溜まった時点で `mb_decode()` してから `sdl_putcp()` を呼び、`f2` に触れずに
+return する。既定値として名前が要るだけなので `tty_cputc2()` /
+`tty_jputc2()` は tty 用の中身のまま残してある。
 
 ### `setkcode()` を IC に固定した
 
 `jbuffer()` は `f2` を呼ぶ**前に**内部コード → `output_kcode` の変換をする。
 SDL の窓に「出力エンコーディング」は存在しないので、
 `setkcode()` は SDL ビルドでは常に `output_kcode = IC` にする。
-これで `tty_jputc2()` に届くバイト対は内部コードのまま、
-`sdl_puteuc()` が期待する形になる。
+これで `jbuffer()` が溜めたバイト列は内部コードのまま `mb_decode()` に渡り、
+`sdl_putcp()` が期待するコードポイントになる。
 
 ---
 
@@ -164,13 +163,13 @@ width test の case 5 が 6,879 文字すべての往復を検証している。
 | EUC-JP | 扱い |
 |---|---|
 | `0xA1..0xFE` × 2 | JIS X 0208。表を引く。幅 2 |
-| `0x8E` + `0xA1..0xDF` | 半角カタカナ → U+FF61..U+FF9F。**幅 2**（後述） |
-| `0x8F` + 2 バイト | JIS X 0212。`jbuffer()` が 3 バイトを渡せないので U+FFFD |
+| `0x8E` + `0xA1..0xDF` | 半角カタカナ → U+FF61..U+FF9F。**幅 1**（§1-1） |
+| `0x8F` + 2 バイト | JIS X 0212 |
 
-半角カタカナを幅 2 にしているのは、`is_kanji1()`/`is_kanji2()` が
-2 バイト = 2 桁として数えているからである（§1 と同じ理由）。
-グリフは半角なので見た目は間になるが、**桁は合う**。
-なお JNetHack のソースとデータには 1 箇所も現れないので実際には起きない。
+半角カタカナが幅 1 なのは §1-1 のとおりで、`mb_width()` も同じ答えを返すため
+ポート側の折り返しとバックエンドの描画が一致する。
+ゲーム自身のデータには 1 箇所も現れないが、利用者が IME を半角カナにして
+名前を入力すれば出る。
 
 ---
 
@@ -186,11 +185,11 @@ BS の処理が、集めたバッファに対して `is_kanji2()` を呼び、
 `SDL_SetTextInputRect()` でカーソル位置を IME に伝えているので、
 変換候補ウィンドウが入力行を覆わない。
 
-width test の case 6 が `sdl_queue_text("日本語")` の UTF-8 を入れて、
-キューに `C6 FC CB DC B8 EC` が並ぶことを直接確認している。
+width test の case 7 が `sdl_queue_text("日本語")` の UTF-8 を入れて、
+キューに内部コードのバイトが並ぶことを直接確認している。
 
 **実 IME での確認は未了。** この環境に IME が入っていないため、
-変換そのもの（case 6）と、SDL のイベント経路が本物のキーイベントで動くこと
+変換そのもの（case 7）と、SDL のイベント経路が本物のキーイベントで動くこと
 （`test/xdrive.py`）は別々に検証したが、両者を通した確認はしていない。
 
 ### 4-1. Alt はメタ —— 上位ビットを立てるのは移植側の仕事
@@ -460,17 +459,17 @@ Poc 見習い             強:16 早:13 耐:18 知:10 賢:7 魅:11  中立
 
 ### `NH_SDL_WIDTHTEST=1` —— 幅と変換（7 ケース）
 
-ゲームの代わりに走る。テキストは `jputchar()` に EUC-JP バイトで入れるので、
-**jlib.c の蓄積器から表・グリッドまで経路全体**が対象になる。
+ゲームの代わりに走る。テキストは `jputchar()` に内部コードのバイトで入れるので、
+**jlib.c の蓄積器から `mb_cpwidth()`・グリッドまで経路全体**が対象になる。
 
 ```
-    case 1 (occupancy, no drift): PASS          2 バイト文字が x と x+1 を占め、桁がずれない
+    case 1 (occupancy, no drift): PASS          2 桁の文字が x と x+1 を占め、桁がずれない
     case 2 (half overwrite, cl_end): PASS       片割れが残らない（直接上書き / cl_end 経由）
     case 3 (locale independence): PASS          LANG を 5 種変えても不変
     case 4 (Ambiguous width from encoding): PASS §1。wcwidth 実装なら落ちる
-    case 5 (round trip, 6879 characters): PASS  EUC → Unicode → EUC
-    case 6 (half-width katakana, 1 cell): PASS  §1 の例外。SS2 は 2 バイトだが 1 桁
-    case 7 (UTF-8 input -> EUC-JP pairs): PASS  §4
+    case 5 (round trip, 6879 characters): PASS  内部コード → コードポイント → 内部コード
+    case 6 (half-width katakana, 1 cell): PASS  §1-1
+    case 7 (UTF-8 input, no conversion): PASS   §4
 ```
 
 ### `test/walls.sh` —— 罫線の壁
