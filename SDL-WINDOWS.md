@@ -182,7 +182,7 @@ Rand = lrand48()                      （sys/share/rand48.c）
 |---|---|
 | 先頭 | `#ifdef WIN32 #define SDL_MAIN_HANDLED`。`tty_startup()` で `SDL_SetMainReady()`。`main()` は `pcmain.c` のものを使い続ける |
 | `sdl_pump()` | `#ifdef SIGHUP` があれば `raise(SIGHUP)`、無ければ **`hangup(0)` を直接呼ぶ**（下記） |
-| `SDL_CreateWindow` | `SIGWINCH && CLIPPING` のときだけ `SDL_WINDOW_RESIZABLE`。Windows では固定ウィンドウ（§8） |
+| `SDL_CreateWindow` | 常に `SDL_WINDOW_RESIZABLE`。リサイズは桁数ではなくフォントサイズを変えるので、`SIGWINCH` の無い Windows でも再レイアウトが要らない（`SDL-PORT.md` §10） |
 | `font_candidates[]` | `C:\Windows\Fonts\msgothic.ttc:0` ほかを `#ifdef WIN32` で先頭に。`sdl_try_font()` の `strrchr(':')` はドライブレターと衝突しない（コロンの次が数字かを見る）ことを実測で確認 |
 | `sdl_dump_grid()` | `fopen(path, "w")` → `"wb"`。テキストモードでは `\n` が CRLF になり Linux 側ダンプとの diff が全行不一致になる |
 | `sdl_width_test()` | `setlocale()` に渡すロケール名を Windows CRT のものに（`Japanese_Japan.932` 等）。POSIX 名は全部拒否されるので、放置すると case 3 が何も証明せずに PASS する |
@@ -407,11 +407,12 @@ diff は表示したうえで FAIL にはしない扱いにした。
 
 ## 8. やっていないこと
 
-- **ウィンドウのリサイズ** — `wintty.c:190` の `winch()` は
+- **桁数の変わるリサイズ** — `wintty.c:190` の `winch()` は
   `#if defined(SIGWINCH) && defined(CLIPPING)` の中にあり、`SIGWINCH` の無い
-  Windows では再レイアウトを依頼する経路が無い。ウィンドウ固定で割り切った。
-  やるなら `winch()` を `tty_relayout()` として公開して `sdlterm.c` から呼ぶ形だが、
-  それは `SDL-PORT.md` H1 を崩す。
+  Windows では再レイアウトを依頼する経路が無い。`winch()` を
+  `tty_relayout()` として公開して `sdlterm.c` から呼ぶ形もあるが、それは
+  `SDL-PORT.md` H1 を崩す。ウィンドウのリサイズ自体はグリッドを固定した
+  ままフォントサイズを変える形で対応した（`SDL-PORT.md` §10）。
 - **`-u 日本語名` / 環境変数の日本語** — 実 Windows の `main()` は argv を
   ANSI（CP932）で受けるので、`plname` に SJIS が入って EUC-JP 前提の
   `is_kanji2()`（`src/do_name.c:202`）や `regularize()` が誤動作する。
@@ -427,7 +428,7 @@ diff は表示したうえで FAIL にはしない扱いにした。
   同梱するならライセンス文（OFL）も要る。
 - **`recover.exe`** — クラッシュ後のレベルファイル復旧ユーティリティ。
   `util/Makefile` に `recover` ターゲットがあるのでクロスは容易だが未同梱。
-- **実 IME での日本語入力** — `SDL-PORT.md` §4 / §10 のまま未了。Windows で
+- **実 IME での日本語入力** — `SDL-PORT.md` §4 / §11 のまま未了。Windows で
   配ることを目的にするなら、これは本移植より優先度が高い。
 - **多重起動の検出** — `pcmain.c` に `getlock()` 相当が無い（§2）。
 - **`NH_EXTENSION_REPORT`** — `extension/nhinet.c` は `-lwsock32` でビルド・

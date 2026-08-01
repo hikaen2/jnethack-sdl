@@ -61,6 +61,8 @@
 #define SDL_MAX_COLS    400
 #define SDL_MAX_ROWS    200
 #define SDL_DEF_PTSIZE  18
+#define SDL_MIN_PTSIZE  6               /* the floor the window cannot go below */
+#define SDL_MAX_PTSIZE  96
 
 /* Blank border, in pixels, between the window edge and the character grid.
    Windows rounds the corners of a window and eats a few pixels of the
@@ -146,6 +148,15 @@ static SDL_Window *sdl_win = 0;
 static SDL_Renderer *sdl_ren = 0;
 static TTF_Font *font_norm = 0, *font_bold = 0;
 static int cell_w = 8, cell_h = 16;
+
+/* The face that opened, and the size it is currently open at.  A resize
+   reopens this same face at another size, so the two are kept together. */
+static char font_spec[BUFSZ] = "";
+static int font_ptsize = SDL_DEF_PTSIZE;
+
+/* Top-left pixel of the grid within the window: the grid is centred in
+   whatever the chosen point size did not use up. */
+static int org_x = SDL_MARGIN, org_y = SDL_MARGIN;
 
 /* Palette, indexed by NetHack CLR_*.  NO_COLOR (8) is the default
    foreground rather than a real colour, so it gets the light grey the
@@ -641,6 +652,83 @@ int ptsize;
     return f;
 }
 
+/* The cell is sized from an ASCII advance.  Everything else on screen
+   is placed as a multiple of it, so glyph metrics never influence
+   where a character lands. */
+static void
+sdl_cell_size(f, cw, ch)
+TTF_Font *f;
+int *cw, *ch;
+{
+    int minx, maxx, miny, maxy, adv;
+
+    if (TTF_GlyphMetrics32(f, (Uint32) 'M',
+                           &minx, &maxx, &miny, &maxy, &adv) == 0 && adv > 0)
+        *cw = adv;
+    else
+        *cw = TTF_FontHeight(f) / 2;
+    *ch = TTF_FontHeight(f);
+    if (*cw < 1) *cw = 1;
+    if (*ch < 1) *ch = 1;
+}
+
+/* What one cell would measure with font_spec at ptsize, without disturbing
+   the font that is in use. */
+static boolean
+sdl_measure(ptsize, cw, ch)
+int ptsize, *cw, *ch;
+{
+    TTF_Font *f = sdl_try_font(font_spec, ptsize);
+
+    if (!f) return FALSE;
+    sdl_cell_size(f, cw, ch);
+    TTF_CloseFont(f);
+    return TRUE;
+}
+
+/* Reopen font_spec at ptsize.  On failure the old font stays in use, so a
+   size the face cannot supply costs nothing but the attempt. */
+static boolean
+sdl_load_font(ptsize)
+int ptsize;
+{
+    TTF_Font *nrm, *bld;
+
+    nrm = sdl_try_font(font_spec, ptsize);
+    if (!nrm) return FALSE;
+
+    /*
+     * Bold is synthesised rather than loaded from a second file: it only
+     * has to be distinguishable, and a separate face risks a different
+     * advance width, which would break the grid.
+     */
+    bld = sdl_try_font(font_spec, ptsize);
+    if (bld) TTF_SetFontStyle(bld, TTF_STYLE_BOLD);
+
+    /* The cache holds glyphs rendered at the size being replaced. */
+    sdl_free_glyphs();
+    if (font_bold) TTF_CloseFont(font_bold);
+    if (font_norm) TTF_CloseFont(font_norm);
+    font_norm = nrm;
+    font_bold = bld;
+    font_ptsize = ptsize;
+    sdl_cell_size(font_norm, &cell_w, &cell_h);
+    return TRUE;
+}
+
+/* Copied by hand rather than with strncpy(): a spec that filled the buffer
+   exactly would come out unterminated, and the compiler warns about it. */
+static void
+sdl_set_spec(s)
+const char *s;
+{
+    unsigned n = strlen(s);
+
+    if (n > sizeof font_spec - 1) n = sizeof font_spec - 1;
+    (void) memcpy(font_spec, s, n);
+    font_spec[n] = '\0';
+}
+
 static void
 sdl_open_font()
 {
@@ -649,45 +737,54 @@ sdl_open_font()
     const char *spec = getenv("NETHACK_SDL_FONT");
     const char *szs = getenv("NETHACK_SDL_FONTSIZE");
     int ptsize;
-    int minx, maxx, miny, maxy, adv;
     int i;
 
     if (!spec || !*spec) spec = sdl_cnf_font[0] ? sdl_cnf_font : 0;
     ptsize = szs ? atoi(szs) : sdl_cnf_ptsize;
-    if (ptsize < 6) ptsize = SDL_DEF_PTSIZE;
-
-    if (spec && *spec) {
-        font_norm = sdl_try_font(spec, ptsize);
-        if (!font_norm) sdl_die("cannot open the font named by NETHACK_SDL_FONT or SDLFONT");
-    } else {
-        for (i = 0; font_candidates[i] && !font_norm; i++)
-            font_norm = sdl_try_font(font_candidates[i], ptsize);
-        if (!font_norm) sdl_die("no usable monospace font found");
-    }
+    if (ptsize < SDL_MIN_PTSIZE) ptsize = SDL_DEF_PTSIZE;
 
     /*
-     * Bold is synthesised rather than loaded from a second file: it only
-     * has to be distinguishable, and a separate face risks a different
-     * advance width, which would break the grid.
+     * Whichever spec opens is remembered, because a resize reopens it at
+     * another point size.  Walking the candidate list again there could
+     * land on a different face, and a different face means a different
+     * advance width -- the one thing the grid cannot survive.
      */
-    if (spec && *spec)
-        font_bold = sdl_try_font(spec, ptsize);
-    else
-        for (i = 0; font_candidates[i] && !font_bold; i++)
-            font_bold = sdl_try_font(font_candidates[i], ptsize);
-    if (font_bold) TTF_SetFontStyle(font_bold, TTF_STYLE_BOLD);
+    if (spec && *spec) {
+        sdl_set_spec(spec);
+        if (!sdl_load_font(ptsize))
+            sdl_die("cannot open the font named by NETHACK_SDL_FONT or SDLFONT");
+        return;
+    }
+    for (i = 0; font_candidates[i]; i++) {
+        sdl_set_spec(font_candidates[i]);
+        if (sdl_load_font(ptsize)) return;
+    }
+    font_spec[0] = '\0';
+    sdl_die("no usable monospace font found");
+}
 
-    /* The cell is sized from an ASCII advance.  Everything else on screen
-       is placed as a multiple of it, so glyph metrics never influence
-       where a character lands. */
-    if (TTF_GlyphMetrics32(font_norm, (Uint32) 'M',
-                           &minx, &maxx, &miny, &maxy, &adv) == 0 && adv > 0)
-        cell_w = adv;
-    else
-        cell_w = TTF_FontHeight(font_norm) / 2;
-    cell_h = TTF_FontHeight(font_norm);
-    if (cell_w < 1) cell_w = 1;
-    if (cell_h < 1) cell_h = 1;
+/* The largest point size whose grid still fits in a w x h area.  Cell
+   metrics are near enough proportional to the point size that the first
+   guess is right or one step out; the loops are the correction, not a
+   search. */
+static int
+sdl_fit_ptsize(w, h)
+int w, h;
+{
+    int pt, px, py, cw, ch;
+
+    px = font_ptsize * w / (cell_w * grid_cols);
+    py = font_ptsize * h / (cell_h * grid_rows);
+    pt = (px < py) ? px : py;
+    if (pt > SDL_MAX_PTSIZE) pt = SDL_MAX_PTSIZE;
+    if (pt < SDL_MIN_PTSIZE) pt = SDL_MIN_PTSIZE;
+
+#define SDL_PT_FITS(p) \
+    (sdl_measure(p, &cw, &ch) && cw * grid_cols <= w && ch * grid_rows <= h)
+    while (pt > SDL_MIN_PTSIZE && !SDL_PT_FITS(pt)) pt--;
+    while (pt < SDL_MAX_PTSIZE && SDL_PT_FITS(pt + 1)) pt++;
+#undef SDL_PT_FITS
+    return pt;
 }
 
 /* ---------------------------------------------------------------- */
@@ -862,8 +959,8 @@ int x, y;
         t = fb; fb = bb; bb = t;
     }
 
-    box.x = SDL_MARGIN + x * cell_w;
-    box.y = SDL_MARGIN + y * cell_h;
+    box.x = org_x + x * cell_w;
+    box.y = org_y + y * cell_h;
     box.w = cell_w * span;
     box.h = cell_h;
 
@@ -911,8 +1008,8 @@ sdl_repaint()
             sdl_draw_cell(x, y);
 
     if (cur_x >= 0 && cur_x < grid_cols && cur_y >= 0 && cur_y < grid_rows) {
-        cur.x = SDL_MARGIN + cur_x * cell_w;
-        cur.y = SDL_MARGIN + cur_y * cell_h + cell_h - 2;
+        cur.x = org_x + cur_x * cell_w;
+        cur.y = org_y + cur_y * cell_h + cell_h - 2;
         cur.w = cell_w;
         cur.h = 2;
         SDL_SetRenderDrawColor(sdl_ren, 220, 220, 100, 255);
@@ -924,6 +1021,22 @@ sdl_repaint()
     grid_dirty = FALSE;
 }
 
+/* Place the grid in the middle of the window.  Whatever the point size
+   could not use becomes an even border; since the size was chosen to fit
+   inside SDL_MARGIN, every side keeps at least that many pixels. */
+static void
+sdl_center()
+{
+    int w, h;
+
+    if (!sdl_ren) return;
+    SDL_GetRendererOutputSize(sdl_ren, &w, &h);
+    org_x = (w - grid_cols * cell_w) / 2;
+    org_y = (h - grid_rows * cell_h) / 2;
+    if (org_x < 0) org_x = 0;
+    if (org_y < 0) org_y = 0;
+}
+
 /* Tell the IME where the text it is composing will appear, so its
    candidate window does not sit on top of the line being typed. */
 static void
@@ -932,8 +1045,8 @@ sdl_place_ime()
     SDL_Rect r;
 
     if (!sdl_win) return;
-    r.x = SDL_MARGIN + cur_x * cell_w;
-    r.y = SDL_MARGIN + cur_y * cell_h;
+    r.x = org_x + cur_x * cell_w;
+    r.y = org_y + cur_y * cell_h;
     r.w = cell_w;
     r.h = cell_h;
     SDL_SetTextInputRect(&r);
@@ -1150,56 +1263,31 @@ SDL_Keysym *ks;
     }
 }
 
+/*
+ * The window resizes; the grid does not.  Dragging a corner picks a new
+ * point size rather than a new number of columns, which is what a player
+ * reaching for the corner is really after -- and it leaves CO and LI alone,
+ * so the layout wintty.c computed at startup stays valid and no re-layout
+ * (which only SIGWINCH could ask for anyway) is ever needed.
+ */
 static void
-sdl_resize(w, h)
-int w, h;
+sdl_rescale()
 {
-    int cols = (w - 2 * SDL_MARGIN) / cell_w;
-    int rows = (h - 2 * SDL_MARGIN) / cell_h;
+    int w, h, pt;
 
-    if (cols < SDL_MIN_COLS) cols = SDL_MIN_COLS;
-    if (rows < SDL_MIN_ROWS) rows = SDL_MIN_ROWS;
+    if (!sdl_ren) return;
+    SDL_GetRendererOutputSize(sdl_ren, &w, &h);
+    w -= 2 * SDL_MARGIN;
+    h -= 2 * SDL_MARGIN;
+    if (w < 1 || h < 1) return;         /* minimised */
+
+    pt = sdl_fit_ptsize(w, h);
     if (getenv("NH_SDL_DEBUG"))
-        fprintf(stderr, "sdl_resize %dx%d px -> %dx%d cells (was %dx%d) ttyDisplay=%p\n",
-                w, h, cols, rows, grid_cols, grid_rows, (void*)ttyDisplay);
-    if (cols == grid_cols && rows == grid_rows) return;
-
-    /* Keep whatever is still on screen, the way a terminal emulator does.
-       Without this the window goes blank until the game next repaints,
-       which for a game waiting on a keypress can be a long time. */
-    {
-        struct sdl_cell *old = grid;
-        int oldc = grid_cols, oldr = grid_rows;
-        int x, y, ncols, nrows;
-
-        grid = 0;
-        sdl_alloc_grid(cols, rows);
-        ncols = (oldc < grid_cols) ? oldc : grid_cols;
-        nrows = (oldr < grid_rows) ? oldr : grid_rows;
-        for (y = 0; y < nrows; y++)
-            for (x = 0; x < ncols; x++)
-                CELL(x, y) = old[y * oldc + x];
-        free((genericptr_t) old);
-    }
-
-    if (cur_x >= grid_cols) cur_x = grid_cols - 1;
-    if (cur_y >= grid_rows) cur_y = grid_rows - 1;
-    wrap_pending = FALSE;
-
-    /*
-     * Deliberately leave CO and LI alone here.  wintty.c's winch() saves
-     * them, calls getwindowsz() to refresh them, and only re-lays-out if
-     * they changed -- so publishing the new size early would make it
-     * decide nothing had happened.  getwindowsz() reaches get_scr_size()
-     * below, which is where the new size becomes visible.
-     */
-#if defined(SIGWINCH) && defined(CLIPPING)
-    if (ttyDisplay) (void) raise(SIGWINCH);
-    else { CO = grid_cols; LI = grid_rows; }
-#else
-    CO = grid_cols;
-    LI = grid_rows;
-#endif
+        fprintf(stderr, "sdl_rescale %dx%d px -> %dpt (was %dpt)\n",
+                w, h, pt, font_ptsize);
+    if (pt != font_ptsize) (void) sdl_load_font(pt);
+    sdl_center();
+    grid_dirty = TRUE;
 }
 
 static void
@@ -1221,7 +1309,7 @@ sdl_pump()
             break;
         case SDL_WINDOWEVENT:
             if (ev.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
-                sdl_resize(ev.window.data1, ev.window.data2);
+                sdl_rescale();
             else if (ev.window.event == SDL_WINDOWEVENT_EXPOSED)
                 grid_dirty = TRUE;
             break;
@@ -1340,19 +1428,19 @@ int *wid, *hgt;
                                SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
                                cols * cell_w + 2 * SDL_MARGIN,
                                rows * cell_h + 2 * SDL_MARGIN,
-                               /* A resize has to reach wintty.c's winch() to
-                                  re-lay-out, and winch() is compiled only
-                                  #if defined(SIGWINCH) && defined(CLIPPING).
-                                  Where there is no SIGWINCH there is no way
-                                  to ask for the re-layout, so do not offer
-                                  the resize either. */
-#if defined(SIGWINCH) && defined(CLIPPING)
-                               SDL_WINDOW_RESIZABLE
-#else
-                               0
-#endif
-                               );
+                               SDL_WINDOW_RESIZABLE);
     if (!sdl_win) sdl_die(SDL_GetError());
+
+    /* The grid has to stay whole, so the smallest legible font is also the
+       smallest window: below this there would be nowhere to put the last
+       rows.  SDL enforces it, so the drag simply stops there. */
+    {
+        int cw, ch;
+
+        if (sdl_measure(SDL_MIN_PTSIZE, &cw, &ch))
+            SDL_SetWindowMinimumSize(sdl_win, cw * cols + 2 * SDL_MARGIN,
+                                     ch * rows + 2 * SDL_MARGIN);
+    }
 
     sdl_ren = SDL_CreateRenderer(sdl_win, -1, SDL_RENDERER_ACCELERATED);
     if (!sdl_ren) sdl_ren = SDL_CreateRenderer(sdl_win, -1, 0);
@@ -1360,6 +1448,7 @@ int *wid, *hgt;
     SDL_SetRenderDrawBlendMode(sdl_ren, SDL_BLENDMODE_BLEND);
 
     sdl_alloc_grid(cols, rows);
+    sdl_center();
 
     /* Load the scripted key stream, if the harness asked for one. */
     if ((env = getenv("NH_SDL_KEYS")) != 0) {
