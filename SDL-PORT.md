@@ -25,7 +25,7 @@ HACKDIR=~/jnhdir ./src/jnethack.sdl -u あなたの名前
 | テスト | 結果 |
 |---|---|
 | `test/compare.sh`（termcap 版と SDL 版の画面一致、17 ケース） | **17/17 PASS** |
-| `NH_SDL_WIDTHTEST=1`（2 セル幅・幅の由来・往復変換、6 ケース） | **6/6 PASS** |
+| `NH_SDL_WIDTHTEST=1`（2 セル幅・幅の由来・往復変換、7 ケース） | **7/7 PASS** |
 | `test/walls.sh`（罫線の壁） | **PASS** |
 | `test/stalelock.sh`（古いロックの扱い、stdin なし） | **3/3 PASS** |
 | `test/xdrive.py`（本物の X キーイベントでの操作・セーブ・リストア） | **動作確認済み** |
@@ -37,18 +37,21 @@ HACKDIR=~/jnhdir ./src/jnethack.sdl -u あなたの名前
 実験の H3 は「セルグリッドなら East Asian Ambiguous 幅問題が消える」だった。
 JNetHack に持ち込むと、この主張は**より強い形**になる。
 
-`sdl_puteuc()` は幅を **2 に固定する**。コードポイントを見ない。
+`sdl_puteuc()` は幅を**届いたバイト列だけから決める**。コードポイントを見ない。
 
 ```c
 void
 sdl_puteuc(b1, b2)
 int b1, b2;
 {
-    sdl_put_wide(sdl_euc_to_ucs(b1, b2), 2);
+    int w = ((b1 & 0xFF) == 0x8E) ? 1 : 2;
+
+    sdl_put_wide(sdl_euc_to_ucs(b1, b2), w);
 }
 ```
 
-理由は「2 バイトで届いたから」である。`sdl_cp_width()` を呼んではいけない。
+理由は「JIS X 0208 の 2 バイトで届いたから」である。
+`sdl_cp_width()` を呼んではいけない。
 
 JIS X 0208 の第 1 区には、Unicode のコードポイントが UAX #11 で
 **Ambiguous** に分類される文字が並んでいる —— `±`(U+00B1)、`×`(U+00D7)、
@@ -71,6 +74,23 @@ JIS X 0208 の第 1 区には、Unicode のコードポイントが UAX #11 で
 width test の case 4 がこの 1 点だけを検証している。
 `sdl_cp_width()` がこれらを 1 と答えることも同時に確認しており、
 「コードポイントだけを見る実装なら間違える」ことを固定している。
+
+### 1-1. 例外は SS2 の半角カナだけ
+
+EUC-JP は JIS X 0201 の半角カナを SS2（`0x8E`）＋ 1 バイトで書く。
+これも 2 バイトで届くが、**1 桁**である —— それが半角カナの存在理由であり、
+どの端末もそう描く。素朴に 2 桁として扱うと、IME を半角カナにして
+入力した名前が `ｱ ｲ ｳ ｴ ｵ` と間延びして出た。
+
+区別はすべて先頭バイトが持っている（`0x8E` か否か）ので、
+ここでもグリフの性質は参照しない。**幅を決めるのはやはりエンコーディングである。**
+
+なお `jlib.c` の `is_kanji()` は `0x8E` も「上位ビットが立っている」として
+先頭バイト扱いにするため、ポート側の折り返しは半角カナを 2 桁と数え続ける。
+ずれる向きは「行が短くなる」側で、はみ出しは起きない。
+これは JNetHack を本物の端末で動かしたときも同じである。
+
+width test の case 6 がこれを検証している。
 
 > **`UTF8-PLAN.md` §4.1 への回答**: Ambiguous 幅対策 A（端末設定を利用者に強いる）
 > と C（wcwidth フォールバック）は、SDL 経路では不要どころか**有害**である。
@@ -438,7 +458,7 @@ Poc 見習い             強:16 早:13 耐:18 知:10 賢:7 魅:11  中立
 > （§1 のとおり、JNetHack のレイアウト側が 2 と数えている）。
 > 17 ケースにはそういう文字が出ないので全部通る。
 
-### `NH_SDL_WIDTHTEST=1` —— 幅と変換（6 ケース）
+### `NH_SDL_WIDTHTEST=1` —— 幅と変換（7 ケース）
 
 ゲームの代わりに走る。テキストは `jputchar()` に EUC-JP バイトで入れるので、
 **jlib.c の蓄積器から表・グリッドまで経路全体**が対象になる。
@@ -449,7 +469,8 @@ Poc 見習い             強:16 早:13 耐:18 知:10 賢:7 魅:11  中立
     case 3 (locale independence): PASS          LANG を 5 種変えても不変
     case 4 (Ambiguous width from encoding): PASS §1。wcwidth 実装なら落ちる
     case 5 (round trip, 6879 characters): PASS  EUC → Unicode → EUC
-    case 6 (UTF-8 input -> EUC-JP pairs): PASS  §4
+    case 6 (half-width katakana, 1 cell): PASS  §1 の例外。SS2 は 2 バイトだが 1 桁
+    case 7 (UTF-8 input -> EUC-JP pairs): PASS  §4
 ```
 
 ### `test/walls.sh` —— 罫線の壁

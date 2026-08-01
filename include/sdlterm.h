@@ -39,9 +39,10 @@
  *   sdl_putbyte()  one byte, interpreted through whichever graphics
  *                  character set the game has selected.
  *   sdl_puteuc()   one EUC-JP two-byte sequence -> one code point.  The
- *                  cell width of the result is decided by the fact that
- *                  it *arrived as two bytes*, not by any property of the
- *                  code point; see the comment on the function.
+ *                  cell width of the result is decided by the bytes it
+ *                  arrived as -- two cells for a JIS X 0208 pair, one for
+ *                  an SS2 half-width katakana -- and not by any property
+ *                  of the code point; see the comment on the function.
  *   sdl_putcp()    a Unicode code point, straight into a cell.
  */
 /* Spelled "extern" rather than the tree's usual E, because japanese/jlib.c

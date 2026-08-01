@@ -1591,12 +1591,27 @@ int cp;
  * So the rule is: the encoding decides the width, not the glyph.  The
  * happy consequence is that there is nothing for the user to configure
  * and nothing that can differ between machines.
+ *
+ * The one exception is the half-width katakana of JIS X 0201, which EUC-JP
+ * writes as SS2 (0x8E) plus one byte.  Those arrive as two bytes but are
+ * one column wide -- that is the whole point of them, and every terminal
+ * draws them so.  Taking the pair at face value gave the spaced-out
+ * "A I U E O" of a name typed on an IME's half-width kana setting.  The
+ * lead byte says which of the two rules applies, so no glyph property is
+ * consulted here either.
+ *
+ * jlib.c's is_kanji() calls SS2 a lead byte, so the port still counts such
+ * a character as two columns when it folds lines.  That errs towards short
+ * lines rather than towards overrun, and it is what a real terminal does
+ * with JNetHack too.
  */
 void
 sdl_puteuc(b1, b2)
 int b1, b2;
 {
-    sdl_put_wide(sdl_euc_to_ucs(b1, b2), 2);
+    int w = ((b1 & 0xFF) == 0x8E) ? 1 : 2;
+
+    sdl_put_wide(sdl_euc_to_ucs(b1, b2), w);
 }
 
 /*
@@ -2007,7 +2022,10 @@ sdl_dump_if_asked()
  *      gets wrong, and it is why sdl_puteuc() does not consult
  *      sdl_cp_width();
  *   5. every character in the table survives EUC -> Unicode -> EUC, so
- *      what is typed in an IME is what the game stores.
+ *      what is typed in an IME is what the game stores;
+ *   6. half-width katakana takes one cell, even though it too arrives as
+ *      two bytes -- the exception rule 4 is stated against;
+ *   7. UTF-8 from the keyboard reaches the queue as EUC-JP pairs.
  */
 void
 sdl_width_test()
@@ -2025,6 +2043,14 @@ sdl_width_test()
     static const char ambig_euc[] = "\241\336\241\337\241\340\241\370\241\353";
     static const long ambig_ucs[] =
         { 0x00B1L, 0x00D7L, 0x00F7L, 0x00A7L, 0x00B0L };
+    /*
+     * Half-width katakana A I U E O, U+FF71..U+FF75.  SS2 pairs: they
+     * arrive as two bytes each but take one cell each.
+     */
+    static const char kana_euc[] =
+        "\216\261\216\262\216\263\216\264\216\265";
+    static const long kana_ucs[] =
+        { 0xFF71L, 0xFF72L, 0xFF73L, 0xFF74L, 0xFF75L };
     int i, x, fail = 0;
     const char *lang = getenv("LANG");
 
@@ -2193,7 +2219,51 @@ sdl_width_test()
                           fail - before, checked);
     }
 
-    /* --- case 6: the input path, UTF-8 in -> EUC-JP in the queue -- */
+    /* --- case 6: half-width katakana is one cell ---------------- */
+    {
+        int before = fail;
+
+        clear_screen();
+        cmov(0, 0);
+        xputs("[");
+        xputs(kana_euc);
+        xputs("]END");
+
+        /* '[' at 0, five 1-cell characters at 1..5, ']' at 6 */
+        for (i = 0; i < 5; i++) {
+            x = 1 + i;
+            if (CELL(x, 0).ch != kana_ucs[i] ||
+                CELL(x, 0).wide != SW_NARROW) {
+                (void) printf("    FAIL: U+%04lX is not one cell at column %d"
+                              " (got U+%04lX wide=%d)\n",
+                              kana_ucs[i], x, CELL(x, 0).ch,
+                              (int) CELL(x, 0).wide);
+                fail++;
+            }
+        }
+        if (CELL(6, 0).ch != ']' || CELL(7, 0).ch != 'E') {
+            (void) printf("    FAIL: text after the half-width run drifted\n");
+            fail++;
+        }
+        /* and it survives the way back, so an IME's half-width kana is
+           stored as the SS2 pair the game reads */
+        {
+            int b1, b2;
+
+            for (i = 0; i < 5; i++)
+                if (!sdl_ucs_to_euc(kana_ucs[i], &b1, &b2) ||
+                    b1 != 0x8E ||
+                    b2 != (unsigned char) kana_euc[i * 2 + 1]) {
+                    (void) printf("    FAIL: U+%04lX does not round trip to"
+                                  " SS2\n", kana_ucs[i]);
+                    fail++;
+                }
+        }
+        if (fail == before)
+            (void) printf("    case 6 (half-width katakana, 1 cell): PASS\n");
+    }
+
+    /* --- case 7: the input path, UTF-8 in -> EUC-JP in the queue -- */
     {
         int before = fail, n = 0;
         /* U+65E5 U+672C U+8A9E as UTF-8, which is what SDL_TEXTINPUT
@@ -2225,7 +2295,7 @@ sdl_width_test()
         }
         kq_head = kq_tail = 0;
         if (fail == before)
-            (void) printf("    case 6 (UTF-8 input -> EUC-JP pairs): PASS\n");
+            (void) printf("    case 7 (UTF-8 input -> EUC-JP pairs): PASS\n");
     }
 
     /* leave something on screen for the screenshot */
@@ -2240,6 +2310,10 @@ sdl_width_test()
     xputs("|");
     xputs(ambig_euc);
     xputs("|<- Ambiguous, still 2 cells each");
+    cmov(0, 3);
+    xputs("|");
+    xputs(kana_euc);
+    xputs("|<- half-width katakana, 1 cell each");
     sdl_dump_grid();
     sdl_repaint();
 
