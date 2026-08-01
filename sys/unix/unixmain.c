@@ -46,6 +46,20 @@ static void NDECL(wd_message);
 static boolean wiz_error_flag = FALSE;
 #endif
 
+/*
+ * The directory the player was standing in when they typed the command.
+ * chdirx() below moves the process to the playground before the window
+ * system starts, so anything that has to resolve a relative path the
+ * player wrote -- on the command line or in the environment -- has to
+ * resolve it against this and not against the current directory.
+ * win/tty/sdlterm.c uses it for NETHACK_SDL_FONT.
+ *
+ * sys/share/pcmain.c has carried the same variable, under the same name,
+ * since 3.2; this is the Unix half of it.  Empty if getcwd() failed, and
+ * every user is expected to treat that as "no second place to look".
+ */
+char orgdir[PATHLEN];
+
 int
 main(argc,argv)
 int argc;
@@ -60,6 +74,10 @@ char *argv[];
 	hname = argv[0];
 	hackpid = getpid();
 	(void) umask(0777 & ~FCMASK);
+
+	/* Before any chdir(); see the comment on orgdir[] above. */
+	if (!getcwd(orgdir, sizeof orgdir))
+		orgdir[0] = '\0';
 
 	choose_windows(DEFAULT_WINDOW_SYS);
 

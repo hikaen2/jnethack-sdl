@@ -241,11 +241,20 @@ int cols, rows;
     sdl_blank_grid();
 }
 
+/*
+ * grid_cols/grid_rows carry their defaults from the moment the program
+ * starts, but grid itself is not allocated until sdl_alloc_grid().  Any
+ * failure in between -- sdl_open_font() is the one that happens in
+ * practice -- reaches sdl_die() -> error() -> settty() -> tty_end_screen()
+ * -> clear_screen() -> here, which would then blank 80x24 cells starting
+ * at NULL and turn a one-line diagnostic into a SIGSEGV.
+ */
 static void
 sdl_blank_grid()
 {
     register int i, n = grid_cols * grid_rows;
 
+    if (!grid) return;
     for (i = 0; i < n; i++) {
         grid[i].ch = ' ';
         grid[i].attr = 0;
@@ -551,15 +560,44 @@ int bold;
     return g;
 }
 
-/* "path" or "path:index" */
+/* Is this a path the filesystem will resolve on its own, whatever the
+   current directory happens to be? */
+static boolean
+sdl_abs_path(p)
+const char *p;
+{
+    if (*p == '/') return TRUE;
+#ifdef WIN32
+    if (*p == '\\') return TRUE;
+    if (((*p >= 'A' && *p <= 'Z') || (*p >= 'a' && *p <= 'z')) && p[1] == ':')
+        return TRUE;
+#endif
+    return FALSE;
+}
+
+/*
+ * "path" or "path:index".
+ *
+ * A relative path is tried twice.  main() chdir()s to the playground long
+ * before the window system starts, so "./foo.ttf" on the command line
+ * reaches us meaning HACKDIR/foo.ttf -- never what the player typed it
+ * for.  The second try resolves it against orgdir, the directory they
+ * were actually in.  The playground is still tried first, so a font
+ * shipped alongside the data files keeps working.
+ *
+ * A forward slash joins the two halves even on Windows: the Win32 API
+ * accepts it everywhere, and SDL_ttf passes the name straight through.
+ */
 static TTF_Font *
 sdl_try_font(spec, ptsize)
 const char *spec;
 int ptsize;
 {
-    char buf[BUFSZ];
+    extern char orgdir[];       /* sys/unix/unixmain.c, sys/share/pcmain.c */
+    char buf[BUFSZ], alt[PATHLEN + BUFSZ];
     char *colon;
     long idx = 0;
+    TTF_Font *f;
 
     (void) strncpy(buf, spec, sizeof buf - 1);
     buf[sizeof buf - 1] = '\0';
@@ -568,7 +606,21 @@ int ptsize;
         idx = atol(colon + 1);
         *colon = '\0';
     }
-    return TTF_OpenFontIndex(buf, ptsize, idx);
+    f = TTF_OpenFontIndex(buf, ptsize, idx);
+    if (!f && !sdl_abs_path(buf) && orgdir[0]) {
+        /* Joined by hand rather than with Sprintf(): orgdir is an
+           incomplete type here, so the compiler cannot see that the length
+           test below bounds the result, and warns about every write. */
+        unsigned dlen = strlen(orgdir), blen = strlen(buf);
+
+        if (dlen + 1 + blen < sizeof alt) {
+            (void) memcpy(alt, orgdir, dlen);
+            alt[dlen] = '/';
+            (void) memcpy(alt + dlen + 1, buf, blen + 1);
+            f = TTF_OpenFontIndex(alt, ptsize, idx);
+        }
+    }
+    return f;
 }
 
 static void

@@ -200,6 +200,13 @@
 
 #define FCMASK	0660	/* file creation mask */
 
+/* The PC ports have had this since 3.2 (see include/ntconf.h); the Unix
+   port never needed it because nothing here kept the directory the player
+   started in.  unixmain.c now does, for orgdir[].  PATH_MAX would be the
+   obvious spelling, but it is not guaranteed to be a compile-time
+   constant, and this only has to be generous. */
+#define PATHLEN		1024	/* maximum pathlength */
+
 
 /*
  * The remainder of the file should not need to be changed.
