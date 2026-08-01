@@ -1144,6 +1144,27 @@ char		*tmp_levels;
 	    /* monsyms[0] is unused */
 	    (void) get_uchars(fp, buf, bufp, &(monsyms[1]),
 					MAXMCLASSES-1, "MONSTERS");
+#ifdef SDL_GRAPHICS
+	/*
+	 * The SDL backend otherwise takes its font from NETHACK_SDL_FONT.
+	 * That is no use to the Windows zip, which is unpacked and
+	 * double-clicked: NetHack.cnf beside the .exe is the only place its
+	 * player can be expected to edit.  The environment still wins; see
+	 * sdl_open_font() in win/tty/sdlterm.c.
+	 *
+	 * SDLFONTSIZE has to be tested first -- the tests here match on a
+	 * prefix, so a shorter "SDLFONT" would swallow it.
+	 */
+	} else if (!strncmpi(buf, "SDLFONTSIZE", 11)) {
+	    extern int sdl_cnf_ptsize;
+
+	    sdl_cnf_ptsize = atoi(bufp);
+	} else if (!strncmpi(buf, "SDLFONT", 7)) {
+	    extern char sdl_cnf_font[];
+
+	    (void) strncpy(sdl_cnf_font, bufp, BUFSZ - 1);
+	    sdl_cnf_font[BUFSZ - 1] = '\0';
+#endif /* SDL_GRAPHICS */
 #ifdef AMIGA
 	} else if (!strncmpi(buf, "FONT", 4)) {
 		char *t;

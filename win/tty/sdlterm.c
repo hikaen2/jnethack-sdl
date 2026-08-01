@@ -120,6 +120,19 @@ static boolean sdl_up = FALSE;          /* SDL is initialized */
 static boolean grid_dirty = TRUE;
 static boolean want_quit = FALSE;
 
+/*
+ * SDLFONT / SDLFONTSIZE from the configuration file.  Filled in by
+ * parse_config_line() in src/files.c, which runs from initoptions() --
+ * well before init_nhwindows() reaches sdl_open_font().  Not static:
+ * files.c is the only writer.
+ *
+ * These exist because the Windows zip has nowhere to set an environment
+ * variable: the player unpacks it and double-clicks the .exe, and
+ * NetHack.cnf beside it is the one place they can be expected to edit.
+ */
+char sdl_cnf_font[BUFSZ] = "";
+int sdl_cnf_ptsize = 0;
+
 /* ---------------------------------------------------------------- */
 /* SDL objects                                                          */
 /* ---------------------------------------------------------------- */
@@ -626,17 +639,21 @@ int ptsize;
 static void
 sdl_open_font()
 {
+    /* The environment wins over the configuration file: it is the more
+       specific of the two, set for one run rather than for the install. */
     const char *spec = getenv("NETHACK_SDL_FONT");
     const char *szs = getenv("NETHACK_SDL_FONTSIZE");
-    int ptsize = szs ? atoi(szs) : SDL_DEF_PTSIZE;
+    int ptsize;
     int minx, maxx, miny, maxy, adv;
     int i;
 
+    if (!spec || !*spec) spec = sdl_cnf_font[0] ? sdl_cnf_font : 0;
+    ptsize = szs ? atoi(szs) : sdl_cnf_ptsize;
     if (ptsize < 6) ptsize = SDL_DEF_PTSIZE;
 
     if (spec && *spec) {
         font_norm = sdl_try_font(spec, ptsize);
-        if (!font_norm) sdl_die("cannot open the font named by NETHACK_SDL_FONT");
+        if (!font_norm) sdl_die("cannot open the font named by NETHACK_SDL_FONT or SDLFONT");
     } else {
         for (i = 0; font_candidates[i] && !font_norm; i++)
             font_norm = sdl_try_font(font_candidates[i], ptsize);

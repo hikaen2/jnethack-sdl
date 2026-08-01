@@ -31,6 +31,16 @@ for dll in SDL2.dll SDL2_ttf.dll; do
         echo "missing $sdlroot/bin/$dll -- set SDLROOT" >&2; exit 1; }
 done
 
+# The zip carries its own font rather than relying on the player's Windows
+# having MS Gothic.  M PLUS 1 Code is a monospace face whose kanji advance
+# is exactly twice its ASCII one, which is what the cell grid wants; it
+# passes NH_SDL_WIDTHTEST.  Redistributing it under the SIL OFL means the
+# licence has to travel with it, hence MPLUS1Code-OFL.txt.
+font=MPLUS1Code-Regular.ttf
+for f in "$font" MPLUS1Code-OFL.txt; do
+    [ -f "$f" ] || { echo "missing $f in the tree root" >&2; exit 1; }
+done
+
 # The version the game itself reports, so the zip cannot disagree with it.
 ver=$(LC_ALL=C sed -n 's/.*JNetHack Version \([0-9.]*\).*/\1/p' include/date.h | head -1)
 [ -n "$ver" ] || { echo "cannot read the version from include/date.h" >&2; exit 1; }
@@ -60,6 +70,8 @@ fi
 # sys/unix/Makefile.top) so that it can be read without the game.
 cp -f datwin/dat/nhdat datwin/dat/license "$stage/"
 
+cp -f "$font" MPLUS1Code-OFL.txt "$stage/"
+
 : >"$stage/record"
 : >"$stage/logfile"
 
@@ -80,7 +92,17 @@ sed 's/$/\r/' doc/nethack.txt >"$stage/NetHack.txt"
     cat <<'CNF'
 # JNetHack (SDL2) additions to the stock Windows NT configuration file.
 #
-# Fonts are chosen with environment variables rather than from this file:
+# The font.  MPLUS1Code-Regular.ttf is in this folder; the game runs with
+# this folder as its current directory, so the bare name finds it.
+SDLFONT=MPLUS1Code-Regular.ttf
+#
+# Point it at any other TrueType/OpenType face by full path if you prefer:
+#SDLFONT=C:\Windows\Fonts\msgothic.ttc
+#
+# Point size.  Omitted means 18.
+#SDLFONTSIZE=24
+#
+# Both are overridden, for one run, by the environment:
 #
 #   set NETHACK_SDL_FONT=C:\Windows\Fonts\msgothic.ttc
 #   set NETHACK_SDL_FONTSIZE=24
@@ -119,37 +141,56 @@ JNetHack VERSION_PLACEHOLDER  SDL2 版 (64-bit Windows)
 ■ 必要なもの
 
   * 64-bit の Windows
-  * 日本語の等幅フォント
 
-フォントは C:\Windows\Fonts\msgothic.ttc (MS ゴシック) を最初に探します。
-これは Windows に標準で入っているフォントです。見つからない場合は
-游ゴシック、メイリオ、Consolas を順に試します。
+フォントは同梱しているので別途用意する必要はありません。
 
-別のフォントを使いたいときは環境変数で指定できます。
+
+■ フォント
+
+このフォルダの MPLUS1Code-Regular.ttf を使います。指定しているのは同じ
+フォルダの NetHack.cnf の次の行です。
+
+    SDLFONT=MPLUS1Code-Regular.ttf
+
+別のフォントを使いたいときはこの行を書き換えてください。フルパスでも
+指定できます。
+
+    SDLFONT=C:\Windows\Fonts\msgothic.ttc
+
+大きさは SDLFONTSIZE で変えられます (省略時は 18)。
+
+    SDLFONTSIZE=24
+
+一時的に変えたいだけなら環境変数のほうが強く、そちらが優先されます。
 
     set NETHACK_SDL_FONT=C:\Windows\Fonts\msgothic.ttc
     set NETHACK_SDL_FONTSIZE=24
     jnethack.exe
 
-漢字が ASCII のちょうど 2 倍の幅である等幅フォントを選んでください。
-プロポーショナルなフォントでも桁はずれは起きませんが (レイアウトは
-フォントではなく内部の文字グリッドが決めます)、見た目が窮屈になります。
+自分でフォントを選ぶ場合は、漢字が ASCII のちょうど 2 倍の幅である等幅
+フォントにしてください。プロポーショナルなフォントでも桁はずれは起きま
+せんが (レイアウトはフォントではなく内部の文字グリッドが決めます)、
+見た目が窮屈になります。
 
-フォントが 1 つも見つからないときはエラーダイアログが出ます。
+SDLFONT で指定したフォントが開けないときはエラーになります。この行を
+消すと、Windows 標準の MS ゴシック、游ゴシック、メイリオ、Consolas を
+順に探します。
 
 
 ■ 同梱ファイル
 
-    jnethack.exe      本体
-    SDL2.dll          SDL2 ランタイム
-    SDL2_ttf.dll      SDL2_ttf ランタイム
-    nhdat             ゲームデータ (地図・ヘルプ・格言などをまとめたもの)
-    NetHack.cnf       設定ファイル
-    README.txt        このファイル
-    NetHack.txt       NetHack の概要 (英語)
-    jGuidebook.txt    日本語版ガイドブック (遊びかたの詳しい説明)
-    license           ライセンス
-    save/             セーブデータの置き場所
+    jnethack.exe            本体
+    SDL2.dll                SDL2 ランタイム
+    SDL2_ttf.dll            SDL2_ttf ランタイム
+    nhdat                   ゲームデータ (地図・ヘルプ・格言などをまとめたもの)
+    MPLUS1Code-Regular.ttf  表示に使うフォント (M PLUS 1 Code)
+    MPLUS1Code-OFL.txt      そのフォントのライセンス
+    NetHack.cnf             設定ファイル
+    README.txt              このファイル
+    NetHack.txt             NetHack の概要 (英語)
+    jGuidebook.txt          日本語版ガイドブック (遊びかたの詳しい説明)
+    license                 ライセンス
+    save/                   セーブデータの置き場所
 
 
 ■ 設定
@@ -184,12 +225,16 @@ EUC-JP で保存できず、コマンドラインは Shift_JIS で渡される�
 
 ■ ライセンス
 
-同じフォルダの license を参照してください。NetHack General Public
-License です。SDL2 および SDL2_ttf は zlib ライセンスです。
+ゲーム本体は同じフォルダの license を参照してください。NetHack General
+Public License です。SDL2 および SDL2_ttf は zlib ライセンスです。
 
-  NetHack   https://www.nethack.org/
-  JNetHack  http://www.jnethack.org/
-  SDL       https://www.libsdl.org/
+同梱のフォント M PLUS 1 Code は SIL Open Font License 1.1 で、その本文は
+同じフォルダの MPLUS1Code-OFL.txt にあります。
+
+  NetHack       https://www.nethack.org/
+  JNetHack      http://www.jnethack.org/
+  SDL           https://www.libsdl.org/
+  M PLUS FONTS  https://github.com/coz-m/MPLUS_FONTS
 
 
 ■ 遊びかたを詳しく知りたいときは
