@@ -62,6 +62,11 @@
 #define SDL_MAX_ROWS    200
 #define SDL_DEF_PTSIZE  18
 
+/* Blank border, in pixels, between the window edge and the character grid.
+   Windows rounds the corners of a window and eats a few pixels of the
+   client area with them, which without this clips the bottom-left cell. */
+#define SDL_MARGIN      4
+
 /* Fonts tried in order when NETHACK_SDL_FONT is unset.  The first entry
    is a genuine monospace CJK face: its CJK advance is exactly twice its
    ASCII advance, which is what the double-width test needs. */
@@ -857,8 +862,8 @@ int x, y;
         t = fb; fb = bb; bb = t;
     }
 
-    box.x = x * cell_w;
-    box.y = y * cell_h;
+    box.x = SDL_MARGIN + x * cell_w;
+    box.y = SDL_MARGIN + y * cell_h;
     box.w = cell_w * span;
     box.h = cell_h;
 
@@ -906,8 +911,8 @@ sdl_repaint()
             sdl_draw_cell(x, y);
 
     if (cur_x >= 0 && cur_x < grid_cols && cur_y >= 0 && cur_y < grid_rows) {
-        cur.x = cur_x * cell_w;
-        cur.y = cur_y * cell_h + cell_h - 2;
+        cur.x = SDL_MARGIN + cur_x * cell_w;
+        cur.y = SDL_MARGIN + cur_y * cell_h + cell_h - 2;
         cur.w = cell_w;
         cur.h = 2;
         SDL_SetRenderDrawColor(sdl_ren, 220, 220, 100, 255);
@@ -927,8 +932,8 @@ sdl_place_ime()
     SDL_Rect r;
 
     if (!sdl_win) return;
-    r.x = cur_x * cell_w;
-    r.y = cur_y * cell_h;
+    r.x = SDL_MARGIN + cur_x * cell_w;
+    r.y = SDL_MARGIN + cur_y * cell_h;
     r.w = cell_w;
     r.h = cell_h;
     SDL_SetTextInputRect(&r);
@@ -1149,8 +1154,8 @@ static void
 sdl_resize(w, h)
 int w, h;
 {
-    int cols = w / cell_w;
-    int rows = h / cell_h;
+    int cols = (w - 2 * SDL_MARGIN) / cell_w;
+    int rows = (h - 2 * SDL_MARGIN) / cell_h;
 
     if (cols < SDL_MIN_COLS) cols = SDL_MIN_COLS;
     if (rows < SDL_MIN_ROWS) rows = SDL_MIN_ROWS;
@@ -1333,7 +1338,8 @@ int *wid, *hgt;
 
     sdl_win = SDL_CreateWindow("JNetHack (SDL)",
                                SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                               cols * cell_w, rows * cell_h,
+                               cols * cell_w + 2 * SDL_MARGIN,
+                               rows * cell_h + 2 * SDL_MARGIN,
                                /* A resize has to reach wintty.c's winch() to
                                   re-lay-out, and winch() is compiled only
                                   #if defined(SIGWINCH) && defined(CLIPPING).
