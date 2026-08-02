@@ -1860,7 +1860,7 @@ char		*tmp_levels;
 	/*
 	 * The SDL backend otherwise takes its font from NETHACK_SDL_FONT.
 	 * That is no use to the Windows zip, which is unpacked and
-	 * double-clicked: NetHack.cnf beside the .exe is the only place its
+	 * double-clicked: defaults.nh beside the .exe is the only place its
 	 * player can be expected to edit.  The environment still wins; see
 	 * sdl_open_font() in win/tty/sdlterm.c.
 	 *
