@@ -10,6 +10,15 @@
 
 /* main.c - MSDOS, OS/2, ST, Amiga, and NT NetHack */
 
+#if defined(WIN32) || defined(_WIN32)	/* config.h has not been read yet */
+/* Ahead of hack.h: <windows.h> has parameters named Protection, Warning
+   and Confusion, which include/youprop.h turns into u.uprops[...]
+   expressions. */
+#include "win32api.h"
+#undef TRUE		/* include/global.h defines its own, unguarded */
+#undef FALSE
+#endif
+
 #include "hack.h"
 #include "dlb.h"
 
@@ -19,17 +28,17 @@
 
 #include <ctype.h>
 
-#if !defined(AMIGA) && !defined(GNUDOS)
+/* MinGW-w64 takes the portable spelling, and the backslash form does not
+   survive a cross build on a case-sensitive host filesystem anyway. */
+#if !defined(AMIGA) && !defined(GNUDOS) && !defined(__MINGW32__)
 #include <sys\stat.h>
 #else
-# ifdef GNUDOS
+# if defined(GNUDOS) || defined(__MINGW32__)
 #include <sys/stat.h>
 # endif
 #endif
 
-#ifdef WIN32
-#include "win32api.h"			/* for GetModuleFileName */
-#endif
+/* win32api.h is included at the top of this file, ahead of hack.h */
 
 #ifdef __DJGPP__
 #include <unistd.h>			/* for getcwd() prototype */

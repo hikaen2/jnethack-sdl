@@ -41,6 +41,14 @@ VARDAT = data jrumors quest.dat joracles $(OPTFILE)
 # into the library.  Same list as DATHELP in sys/unix/Makefile.top.
 DATHELP = jhelp jhh jcmdhelp jhistory jopthelp jwizhelp
 
+# include/ntconf.h defines PORT_HELP, which puts one more entry in the ?
+# menu; src/pager.c answers it with display_file(PORT_HELP), and that finds
+# nothing unless the file is in the library.  It lives under sys/winnt
+# rather than in dat/, so copy it in.
+ifeq ($(MINGW),1)
+DATHELP += porthelp
+endif
+
 all:	$(VARDAT) spec_levs quest_levs dungeon nhdat
 
 ../util/makedefs$(X):
@@ -181,12 +189,15 @@ dungeon: dungeon.def ../util/makedefs$(X) ../util/dgn_comp$(X)
 # include/config.h defines DLB, so this is what the game actually reads;
 # with it missing dlb_fopen() finds nothing at all, loose copies of the
 # same files included.  Same contents as DATDLB in sys/unix/Makefile.top.
+porthelp: ../sys/winnt/porthelp
+	cp -f ../sys/winnt/porthelp porthelp
+
 nhdat:	$(VARDAT) spec_levs quest_levs dungeon $(DATHELP) ../util/dlb$(X)
 	$(RUN) ../util/dlb$(X) cf nhdat $(DATHELP) dungeon $(VARDAT) *.lev
 
 spotless:
 	-rm -f spec_levs quest_levs *.lev $(VARDAT) dungeon dungeon.pdf nhdat
-	-rm -f options ttyoptions
+	-rm -f options ttyoptions porthelp
 	-rm -f nhdat x11tiles beostiles pet_mark.xbm rip.xpm mapbg.xpm
 	-rm -f rip.img GEM_RSC.RSC title.img nh16.img NetHack.ad
 	-rm -f ../include/jdata.h

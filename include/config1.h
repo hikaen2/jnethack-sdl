@@ -108,6 +108,13 @@
 /*
  * Windows NT Autodetection
  */
+
+/* MinGW-w64 (and every other modern Windows compiler) defines _WIN32 but
+   not the bare WIN32 that this tree tests for everywhere. */
+#if defined(_WIN32) && !defined(WIN32)
+# define WIN32
+#endif
+
 #ifdef _WIN32_WCE
 #define WIN_CE
 # ifndef WIN32

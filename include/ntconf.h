@@ -7,6 +7,10 @@
 
 /* #define SHELL	/* nt use of pcsys routines caused a hang */
 
+/* Stock.  MinGW's CRT has no random(3), so this pulls in
+   sys/share/random.c.  The Unix build does not define RANDOM -- it has
+   glibc's random() -- so the two platforms run the same generator seeded
+   differently; see SDL-WINDOWS.md 1-3. */
 #define RANDOM		/* have Berkeley random(3) */
 #define TEXTCOLOR	/* Color text */
 
@@ -23,7 +27,15 @@
 
 #define SELF_RECOVER		/* Allow the game itself to recover from an aborted game */
 
+/*
+ * Not for the SDL build: play_usersound() comes from sys/winnt/nttty.c,
+ * which is not compiled here, and the Unix SDL build has no sound either
+ * (tty_nhbell() flashes the window).  Keeping the two configurations the
+ * same is what lets test/wincompare.sh diff one against the other.
+ */
+#ifndef SDL_GRAPHICS
 #define USER_SOUNDS
+#endif
 /*
  * -----------------------------------------------------------------
  *  The remaining code shouldn't need modification.
@@ -40,7 +52,25 @@
 				   Allow paths to be specified for HACKDIR,
 				   LEVELDIR, SAVEDIR, BONESDIR, DATADIR,
 				   SCOREDIR, LOCKDIR, CONFIGDIR, and TROUBLEDIR */
+/*
+ * NO_TERMS is not for the SDL build.  It means "this port draws the screen
+ * without a termcap-style layer", and win/tty/sdlterm.c *is* that layer --
+ * it replaces win/tty/termcap.c function for function and supplies nh_CM
+ * and ul_hack through tc_lcl_data for the very code NO_TERMS would switch
+ * off.
+ *
+ * Defining it here would silently change win/tty/wintty.c's behaviour
+ * relative to the Unix SDL build, which is the thing the port is verified
+ * against.  Concretely: wintty.c includes tcap.h only #ifndef NO_TERMS,
+ * tcap.h is where ASCIIGRAPH comes from, and g_putch() needs
+ * ASCIIGRAPH && !NO_TERMS to strip bit 7 off the dec_graphics[] bytes and
+ * call graph_on().  Without it those bytes reach jlib.c's jbuffer() with
+ * the high bit set, get paired up as EUC-JP, and the map walls come out as
+ * kanji.  It also loses the tty_shutdown() call in tty_exit_nhwindows().
+ */
+#ifndef SDL_GRAPHICS
 #define NO_TERMS
+#endif
 #define ASCIIGRAPH
 
 #ifdef OPTIONS_USED
@@ -66,13 +96,17 @@ extern void FDECL(interject_assistance, (int,int,genericptr_t,genericptr_t));
 extern void FDECL(interject, (int));
 
 /* The following is needed for prototypes of certain functions */
-#if defined(_MSC_VER)
+#if defined(_MSC_VER) || defined(__MINGW32__)
 #include <process.h>	/* Provides prototypes of exit(), spawn()      */
 #endif
 
 #include <string.h>	/* Provides prototypes of strncmpi(), etc.     */
 #ifdef STRNCMPI
+# ifdef __MINGW32__
+#define strncmpi(a,b,c) _strnicmp(a,b,c)	/* strnicmp is the deprecated name */
+# else
 #define strncmpi(a,b,c) strnicmp(a,b,c)
+# endif
 #endif
 
 #include <sys/types.h>
@@ -103,6 +137,11 @@ extern void FDECL(interject, (int));
 #ifdef RANDOM
 /* Use the high quality random number routines. */
 #define Rand()	random()
+/* include/system.h declares these, but nothing on this platform includes it
+   (include/unixconf.h does; this file does not), and an implicit
+   declaration would give random() an int return. */
+extern long random();
+extern void srandom();
 #else
 #define Rand()	rand()
 #endif
@@ -177,6 +216,14 @@ int  _RTLENTRY _EXPFUNC read  (int __handle, void _FAR *__buf, unsigned __len);
 #ifndef REDO
 #undef	Getchar
 #define Getchar nhgetch
+#endif
+
+#ifdef SDL_GRAPHICS
+/* The entire input hook: keys come from the window, not from the console.
+   Same as include/unixconf.h.  Without this tgetch() would have to come
+   from sys/winnt/nttty.c, which the SDL build does not compile. */
+extern int sdl_getch(void);
+#define tgetch sdl_getch
 #endif
 
 #ifdef _MSC_VER

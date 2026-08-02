@@ -10,13 +10,24 @@
  */
 
 #define NEED_VARARGS
+#if defined(WIN32) || defined(_WIN32)	/* config.h has not been read yet */
+/* Ahead of hack.h: <windows.h> has parameters named Protection, Warning
+   and Confusion, which include/youprop.h turns into u.uprops[...]
+   expressions. */
+#include "win32api.h"
+#undef TRUE		/* include/global.h defines its own, unguarded */
+#undef FALSE
+#endif
+
 #include "hack.h"
-#include <dos.h>
+#ifndef __MINGW32__
+#include <dos.h>	/* MinGW has it, but nothing here needs it */
+#endif
 #ifndef __BORLANDC__
 #include <direct.h>
 #endif
 #include <ctype.h>
-#include "win32api.h"
+/* win32api.h is included at the top of this file, ahead of hack.h */
 #ifdef WIN32CON
 #include "wintty.h"
 #endif
@@ -197,7 +208,14 @@ return &szFullPath[0];
 }
 # endif
 
-#ifndef WIN32CON
+/*
+ * SDL_GRAPHICS brings its own error(), in win/tty/sdlterm.c: this one
+ * reaches the player through msmsg(), which lives in sys/winnt/nttty.c and
+ * is not compiled for that build -- and a GUI-subsystem binary has no
+ * console to write to in any case, so the SDL version puts the message in
+ * a box.
+ */
+#if !defined(WIN32CON) && !defined(SDL_GRAPHICS)
 /* fatal error */
 /*VARARGS1*/
 void
