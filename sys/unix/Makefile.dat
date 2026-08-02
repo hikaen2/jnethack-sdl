@@ -1,22 +1,59 @@
 #	NetHack Makefile.
 #	SCCS Id: @(#)Makefile.dat	3.4	1992/09/18
 
+# Set MINGW=1 to build the data files for the Windows binary.  They cannot
+# be shared with the host build: the level files and the dungeon are raw
+# struct dumps, and Windows is LLP64 where Linux is LP64 (sizeof(long) 4
+# against 8), which src/version.c rejects as "Configuration incompatability
+# for file ...".  The utilities are cross-compiled by ../util and run here
+# under wine.
+#
+# Run this in a directory of its own -- test/build.sh stages one from the
+# sources in dat/ -- or it overwrites the host build's data files.
+MINGW =
+X =
+RUN =
+ifeq ($(MINGW),1)
+X = .exe
+RUN = wine
+endif
+
+MAKEDEFS = $(RUN) ../util/makedefs$(X)
+LEV_COMP = $(RUN) ../util/lev_comp$(X)
+DGN_COMP = $(RUN) ../util/dgn_comp$(X)
+
 # for Atari
 # SHELL=E:/GEMINI2/MUPFEL.TTP
 # UUDECODE=uudecode
 
-VARDAT = data jrumors quest.dat joracles options
+# makedefs -v writes the compile-time option list under whatever name the
+# build it was compiled for reads it back as: include/global.h calls that
+# "options", but include/ntconf.h renames it to "ttyoptions" (OPTIONS_USED,
+# so that a GUI and a tty build can sit in one directory).
+OPTFILE = options
+ifeq ($(MINGW),1)
+OPTFILE = ttyoptions
+endif
 
-all:	$(VARDAT) spec_levs quest_levs dungeon
+VARDAT = data jrumors quest.dat joracles $(OPTFILE)
 
-../util/makedefs:
-	(cd ../util ; make makedefs)
+# The help files are shipped as-is rather than built, but they still go
+# into the library.  Same list as DATHELP in sys/unix/Makefile.top.
+DATHELP = jhelp jhh jcmdhelp jhistory jopthelp jwizhelp
 
-../util/dgn_comp:
-	(cd ../util ; make dgn_comp)
+all:	$(VARDAT) spec_levs quest_levs dungeon nhdat
 
-../util/lev_comp:
-	(cd ../util ; make lev_comp)
+../util/makedefs$(X):
+	(cd ../util ; $(MAKE) makedefs$(X))
+
+../util/dgn_comp$(X):
+	(cd ../util ; $(MAKE) dgn_comp$(X))
+
+../util/lev_comp$(X):
+	(cd ../util ; $(MAKE) lev_comp$(X))
+
+../util/dlb$(X):
+	(cd ../util ; $(MAKE) dlb$(X))
 
 ../util/tile2x11:
 	(cd ../util ; make tile2x11)
@@ -82,67 +119,74 @@ GEM_RSC.RSC:
 	$(UUDECODE) ../win/gem/gem_rsc.uu
 
 
-data:	data.base ../util/makedefs
-	../util/makedefs -d
+data:	data.base ../util/makedefs$(X)
+	$(MAKEDEFS) -d
 
-#rumors:	rumors.tru rumors.fal ../util/makedefs
-jrumors:	jrumors.tru jrumors.fal ../util/makedefs
-	../util/makedefs -r
+#rumors:	rumors.tru rumors.fal ../util/makedefs$(X)
+jrumors:	jrumors.tru jrumors.fal ../util/makedefs$(X)
+	$(MAKEDEFS) -r
 
-quest.dat:	quest.txt ../util/makedefs
-	../util/makedefs -q
+quest.dat:	quest.txt ../util/makedefs$(X)
+	$(MAKEDEFS) -q
 
 # by issei 1994/2/5
-#oracles:	oracles.txt ../util/makedefs
-joracles:	joracles.txt ../util/makedefs
-	../util/makedefs -h
+#oracles:	oracles.txt ../util/makedefs$(X)
+joracles:	joracles.txt ../util/makedefs$(X)
+	$(MAKEDEFS) -h
 
-# note: 'options' should have already been made when include/date.h was created
-options:	../util/makedefs
-	../util/makedefs -v
+# note: this should have already been made when include/date.h was created
+$(OPTFILE):	../util/makedefs$(X)
+	$(MAKEDEFS) -v
 
 
-spec_levs: ../util/lev_comp \
+spec_levs: ../util/lev_comp$(X) \
 	bigroom.des castle.des endgame.des gehennom.des knox.des medusa.des \
 	mines.des oracle.des sokoban.des tower.des yendor.des
-	../util/lev_comp bigroom.des
-	../util/lev_comp castle.des
-	../util/lev_comp endgame.des
-	../util/lev_comp gehennom.des
-	../util/lev_comp knox.des
-	../util/lev_comp medusa.des
-	../util/lev_comp mines.des
-	../util/lev_comp oracle.des
-	../util/lev_comp sokoban.des
-	../util/lev_comp tower.des
-	../util/lev_comp yendor.des
+	$(LEV_COMP) bigroom.des
+	$(LEV_COMP) castle.des
+	$(LEV_COMP) endgame.des
+	$(LEV_COMP) gehennom.des
+	$(LEV_COMP) knox.des
+	$(LEV_COMP) medusa.des
+	$(LEV_COMP) mines.des
+	$(LEV_COMP) oracle.des
+	$(LEV_COMP) sokoban.des
+	$(LEV_COMP) tower.des
+	$(LEV_COMP) yendor.des
 	touch spec_levs
 
-quest_levs: ../util/lev_comp \
+quest_levs: ../util/lev_comp$(X) \
 	Arch.des Barb.des Caveman.des Healer.des Knight.des Monk.des \
 	Priest.des Ranger.des Rogue.des Samurai.des Tourist.des Valkyrie.des \
 	Wizard.des
-	../util/lev_comp Arch.des
-	../util/lev_comp Barb.des
-	../util/lev_comp Caveman.des
-	../util/lev_comp Healer.des
-	../util/lev_comp Knight.des
-	../util/lev_comp Monk.des
-	../util/lev_comp Priest.des
-	../util/lev_comp Ranger.des
-	../util/lev_comp Rogue.des
-	../util/lev_comp Samurai.des
-	../util/lev_comp Tourist.des
-	../util/lev_comp Valkyrie.des
-	../util/lev_comp Wizard.des
+	$(LEV_COMP) Arch.des
+	$(LEV_COMP) Barb.des
+	$(LEV_COMP) Caveman.des
+	$(LEV_COMP) Healer.des
+	$(LEV_COMP) Knight.des
+	$(LEV_COMP) Monk.des
+	$(LEV_COMP) Priest.des
+	$(LEV_COMP) Ranger.des
+	$(LEV_COMP) Rogue.des
+	$(LEV_COMP) Samurai.des
+	$(LEV_COMP) Tourist.des
+	$(LEV_COMP) Valkyrie.des
+	$(LEV_COMP) Wizard.des
 	touch quest_levs
 
-dungeon: dungeon.def ../util/makedefs ../util/dgn_comp
-	../util/makedefs -e
-	../util/dgn_comp dungeon.pdf
+dungeon: dungeon.def ../util/makedefs$(X) ../util/dgn_comp$(X)
+	$(MAKEDEFS) -e
+	$(DGN_COMP) dungeon.pdf
+
+# include/config.h defines DLB, so this is what the game actually reads;
+# with it missing dlb_fopen() finds nothing at all, loose copies of the
+# same files included.  Same contents as DATDLB in sys/unix/Makefile.top.
+nhdat:	$(VARDAT) spec_levs quest_levs dungeon $(DATHELP) ../util/dlb$(X)
+	$(RUN) ../util/dlb$(X) cf nhdat $(DATHELP) dungeon $(VARDAT) *.lev
 
 spotless:
-	-rm -f spec_levs quest_levs *.lev $(VARDAT) dungeon dungeon.pdf
+	-rm -f spec_levs quest_levs *.lev $(VARDAT) dungeon dungeon.pdf nhdat
+	-rm -f options ttyoptions
 	-rm -f nhdat x11tiles beostiles pet_mark.xbm rip.xpm mapbg.xpm
 	-rm -f rip.img GEM_RSC.RSC title.img nh16.img NetHack.ad
 	-rm -f ../include/jdata.h

@@ -89,8 +89,26 @@ CC = gcc
 # flags for debugging:
 # CFLAGS = -g -I../include
 
-CFLAGS = -O -I../include
+# -std=gnu89 for the same reason as in Makefile.src.
+CFLAGS = -O2 -I../include -std=gnu89
 LFLAGS =
+
+# Set MINGW=1 to cross-compile the utilities for Windows with MinGW-w64.
+# They have to be crossed rather than reused because what lev_comp and
+# dgn_comp emit is raw struct dumps, and Windows is LLP64 where Linux is
+# LP64: sizeof(long) is 4 against 8.  src/version.c compares the resulting
+# struct sizes and rejects the mismatch with "Configuration incompatability
+# for file ...".  The cross-built utilities are then run under wine ($(RUN)).
+MINGW =
+MINGW_PREFIX = x86_64-w64-mingw32-
+X =
+RUN =
+ifeq ($(MINGW),1)
+CC = $(MINGW_PREFIX)gcc
+CFLAGS += -DWIN32 -I../sys/winnt
+X = .exe
+RUN = wine
+endif
 
 LIBS =
  
@@ -174,8 +192,8 @@ YACCDIST =
 
 #	dependencies for makedefs
 #
-makedefs:	$(MAKEOBJS)
-	$(CC) $(LFLAGS) -o makedefs $(MAKEOBJS)
+makedefs$(X):	$(MAKEOBJS)
+	$(CC) $(LFLAGS) -o makedefs$(X) $(MAKEOBJS)
 
 makedefs.o: makedefs.c $(CONFIG_H) ../include/permonst.h \
 		../include/objclass.h ../include/monsym.h \
@@ -183,16 +201,16 @@ makedefs.o: makedefs.c $(CONFIG_H) ../include/permonst.h \
 		../include/monst.h ../include/you.h ../include/flag.h \
 		../include/dlb.h ../include/patchlevel.h ../include/qtext.h
 
-../include/onames.h: makedefs
-	./makedefs -o
-../include/pm.h: makedefs
-	./makedefs -p
-../src/monstr.c: makedefs
-	./makedefs -m
-../include/vis_tab.h: makedefs
-	./makedefs -z
-../include/jdata.h: makedefs ../dat/jtrnsmon.dat ../dat/jtrnsobj.dat
-	./makedefs -j
+../include/onames.h: makedefs$(X)
+	$(RUN) ./makedefs$(X) -o
+../include/pm.h: makedefs$(X)
+	$(RUN) ./makedefs$(X) -p
+../src/monstr.c: makedefs$(X)
+	$(RUN) ./makedefs$(X) -m
+../include/vis_tab.h: makedefs$(X)
+	$(RUN) ./makedefs$(X) -z
+../include/jdata.h: makedefs$(X) ../dat/jtrnsmon.dat ../dat/jtrnsobj.dat
+	$(RUN) ./makedefs$(X) -j
 # makedefs -z makes both vis_tab.h and vis_tab.c, but writes the .h first
 ../src/vis_tab.c: ../include/vis_tab.h
 
@@ -211,8 +229,8 @@ panic.o:     panic.c $(CONFIG_H)
 
 #	dependencies for lev_comp
 #
-lev_comp:  $(SPLEVOBJS)
-	$(CC) $(LFLAGS) -o lev_comp $(SPLEVOBJS) $(LIBS)
+lev_comp$(X):  $(SPLEVOBJS)
+	$(CC) $(LFLAGS) -o lev_comp$(X) $(SPLEVOBJS) $(LIBS)
 
 lev_yacc.o:  lev_yacc.c $(HACK_H) ../include/sp_lev.h
 lev_main.o:  lev_main.c $(HACK_H) ../include/sp_lev.h ../include/tcap.h \
@@ -244,8 +262,8 @@ lintlev:
 
 #	dependencies for dgn_comp
 #
-dgn_comp:  $(DGNCOMPOBJS)
-	$(CC) $(LFLAGS) -o dgn_comp $(DGNCOMPOBJS) $(LIBS)
+dgn_comp$(X):  $(DGNCOMPOBJS)
+	$(CC) $(LFLAGS) -o dgn_comp$(X) $(DGNCOMPOBJS) $(LIBS)
 
 dgn_yacc.o:  dgn_yacc.c $(CONFIG_H) ../include/dgn_file.h ../include/date.h
 dgn_main.o:  dgn_main.c $(CONFIG_H) ../include/dlb.h
@@ -275,16 +293,16 @@ lintdgn:
 
 #	dependencies for recover
 #
-recover: $(RECOVOBJS)
-	$(CC) $(LFLAGS) -o recover $(RECOVOBJS) $(LIBS)
+recover$(X): $(RECOVOBJS)
+	$(CC) $(LFLAGS) -o recover$(X) $(RECOVOBJS) $(LIBS)
 
 recover.o: recover.c $(CONFIG_H) ../include/date.h
 
 
 #	dependencies for dlb
 #
-dlb:	$(DLBOBJS)
-	$(CC) $(LFLAGS) -o dlb $(DLBOBJS) $(LIBS)
+dlb$(X):	$(DLBOBJS)
+	$(CC) $(LFLAGS) -o dlb$(X) $(DLBOBJS) $(LIBS)
 
 dlb_main.o: dlb_main.c $(CONFIG_H) ../include/dlb.h ../include/date.h
 	$(CC) $(CFLAGS) -c dlb_main.c

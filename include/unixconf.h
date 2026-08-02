@@ -37,7 +37,30 @@
 #define NETWORK		/* if running on a networked system */
 			/* e.g. Suns sharing a playground through NFS */
 /* #define SUNOS4 */	/* SunOS 4.x */
-/* #define LINUX */	/* Another Unix clone */
+/*
+ * Defined, where the stock file leaves it commented out.  It is what
+ * selects random() over lrand48() a hundred lines down, and random() is
+ * the better generator for what NetHack asks of it: rn2(x) is Rand() % x,
+ * so rn2(2) and rn2(4) read the low bits of the result, and that is where
+ * an LCG is weakest.  Measured -- the low bit of lrand48() repeats every
+ * 262144 draws (2^18: lrand48() returns the top 31 bits of a 2^48 modulus,
+ * so the bit reaching rn2() is state bit 17), which a long game does
+ * reach; glibc's random() shows no period below 2^25 in the same test and
+ * discards its own lowest bit by design.
+ *
+ * This is glibc's random(), not sys/share/random.c's -- RANDOM stays off,
+ * so that file is not compiled here.  The two are the same generator but
+ * seed differently, so the Windows build (include/ntconf.h defines RANDOM)
+ * draws a different sequence; see SDL-WINDOWS.md 1-3.
+ *
+ * Nothing else this switch reaches is live in this configuration: the
+ * msleep() and unixres.c blocks need TIMED_DELAY and GETRES_SUPPORT, and
+ * the <bsd/sgtty.h> include in ioctl.c sits under BSD_JOB_CONTROL.  What
+ * does take effect is sys/share/unixtty.c pulling in <sys/ioctl.h> and
+ * <curses.h>, and include/system.h leaving random()'s declaration to the
+ * C library.
+ */
+#define LINUX		/* Another Unix clone */
 /* #define CYGWIN32 */	/* Unix on Win32 -- use with case sensitive defines */
 /* #define GENIX */	/* Yet Another Unix Clone */
 /* #define HISX */	/* Bull Unix for XPS Machines */
