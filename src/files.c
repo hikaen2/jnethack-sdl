@@ -48,7 +48,9 @@ extern int errno;
 #endif
 
 #if defined(MSDOS) || defined(OS2) || defined(TOS) || defined(WIN32)
-# ifndef GNUDOS
+/* MinGW-w64 takes the portable spelling, and the backslash form does not
+   survive a cross build on a case-sensitive host filesystem anyway. */
+# if !defined(GNUDOS) && !defined(__MINGW32__)
 #include <sys\stat.h>
 # else
 #include <sys/stat.h>
@@ -1854,6 +1856,28 @@ char		*tmp_levels;
 	    /* monsyms[0] is unused */
 	    (void) get_uchars(fp, buf, bufp, &(monsyms[1]), TRUE,
 					MAXMCLASSES-1, "MONSTERS");
+#ifdef SDL_GRAPHICS
+	/*
+	 * The SDL backend otherwise takes its font from NETHACK_SDL_FONT.
+	 * That is no use to the Windows zip, which is unpacked and
+	 * double-clicked: NetHack.cnf beside the .exe is the only place its
+	 * player can be expected to edit.  The environment still wins; see
+	 * sdl_open_font() in win/tty/sdlterm.c.
+	 *
+	 * Both names are spelled out in full as the minimum abbreviation:
+	 * match_varname() compares only as far as what the user wrote, so a
+	 * shorter minimum for SDLFONT would let it swallow SDLFONTSIZE.
+	 */
+	} else if (match_varname(buf, "SDLFONT", 7)) {
+	    extern char sdl_cnf_font[];
+
+	    (void) strncpy(sdl_cnf_font, bufp, BUFSZ - 1);
+	    sdl_cnf_font[BUFSZ - 1] = '\0';
+	} else if (match_varname(buf, "SDLFONTSIZE", 11)) {
+	    extern int sdl_cnf_ptsize;
+
+	    sdl_cnf_ptsize = atoi(bufp);
+#endif /* SDL_GRAPHICS */
 	} else if (match_varname(buf, "WARNINGS", 5)) {
 	    (void) get_uchars(fp, buf, bufp, translate, FALSE,
 					WARNCOUNT, "WARNINGS");

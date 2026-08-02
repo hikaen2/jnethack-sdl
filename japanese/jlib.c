@@ -11,6 +11,15 @@
 #include <ctype.h>
 #include "hack.h"
 
+#ifdef SDL_GRAPHICS
+/*
+** This file's whole job is to put bytes on the screen, so it keeps the
+** real stdio and calls the backend by name.  See include/sdlterm.h.
+*/
+# define SDLTERM_KEEP_STDIO
+# include "sdlterm.h"
+#endif
+
 int xputc(CHAR_P);
 int xputc2(int, int);
 
@@ -71,6 +80,17 @@ void
 setkcode(c)
      int c;
 {
+#ifdef SDL_GRAPHICS
+    /*
+    ** The SDL backend does not emit bytes at all; it takes characters and
+    ** puts code points in cells.  An output encoding is therefore not a
+    ** thing it can have, and the byte pairs the tty_*putc2() hooks below
+    ** hand to sdl_puteuc() have to still be in the internal code.  Pinning
+    ** output_kcode to IC keeps jbuffer() from converting them on the way.
+    */
+    output_kcode = input_kcode = IC;
+    return;
+#else
     if(c == 'E' || c == 'e' )
       output_kcode = EUC;
     else if(c == 'J' || c == 'j')
@@ -87,6 +107,7 @@ setkcode(c)
 	output_kcode = IC;
     }
     input_kcode = output_kcode;
+#endif /* SDL_GRAPHICS */
 }
 /*
 **	EUC->SJIS
@@ -245,6 +266,11 @@ static int kmode;	/* 0: Kanji out */
 static void
 tty_reset()
 {
+#ifdef SDL_GRAPHICS
+    /* No shift state to leave: the grid holds code points, not bytes. */
+    kmode = 0;
+    return;
+#endif
     if(kmode && output_kcode==JIS ){
 	putchar(033);
 	putchar('(');
@@ -265,6 +291,17 @@ tty_reset()
 static void
 tty_cputc(unsigned int c)
 {
+#ifdef SDL_GRAPHICS
+    /*
+    ** A single byte, which the backend still has to interpret: between
+    ** graph_on() and graph_off() it means a line-drawing character rather
+    ** than the ASCII of the same value.  sdl_putbyte() is the layer that
+    ** knows which graphics set is in effect.
+    */
+    kmode = 0;
+    sdl_putbyte((int)c);
+    return;
+#endif
     if(kmode && output_kcode==JIS ){
 	putchar(033);
 	putchar('(');
@@ -283,6 +320,12 @@ tty_cputc(unsigned int c)
 static void
 tty_cputc2(unsigned int c, unsigned int c2)
 {
+#ifdef SDL_GRAPHICS
+    /* Both bytes of one character, still in the internal code. */
+    kmode = 0;
+    sdl_puteuc((int)c, (int)c2);
+    return;
+#endif
     kmode = 1;
 
 #if defined(NO_TERMS) && (defined(MSDOS) || defined(WIN32CON))
@@ -297,6 +340,17 @@ tty_cputc2(unsigned int c, unsigned int c2)
 static void
 tty_jputc(unsigned int c)
 {
+#ifdef SDL_GRAPHICS
+    /*
+    ** A single byte, which the backend still has to interpret: between
+    ** graph_on() and graph_off() it means a line-drawing character rather
+    ** than the ASCII of the same value.  sdl_putbyte() is the layer that
+    ** knows which graphics set is in effect.
+    */
+    kmode = 0;
+    sdl_putbyte((int)c);
+    return;
+#endif
     if(kmode && output_kcode==JIS ){
 	putchar(033);
 	putchar('(');
@@ -315,6 +369,13 @@ tty_jputc(unsigned int c)
 static void
 tty_jputc2(unsigned int c, unsigned int c2)
 {
+#ifdef SDL_GRAPHICS
+    /* As tty_cputc2(): setkcode() pinned output_kcode to IC, so jbuffer()
+    ** has not touched these bytes. */
+    kmode = 0;
+    sdl_puteuc((int)c, (int)c2);
+    return;
+#endif
     if(!kmode && output_kcode==JIS ){
 	putchar(033);
 	putchar('$');

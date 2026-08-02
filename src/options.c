@@ -69,13 +69,20 @@ static struct Bool_Opt
 	{"checkspace", (boolean *)0, FALSE, SET_IN_FILE},
 #endif
 	{"cmdassist", &iflags.cmdassist, TRUE, SET_IN_GAME},
-# if defined(MICRO) || defined(WIN32)
+# if defined(MICRO) || defined(WIN32) || defined(SDL_GRAPHICS)
+	/* SDL draws into its own window with its own palette, so the "the
+	   terminal might be monochrome" caveat below does not apply. */
 	{"color",         &iflags.wc_color,TRUE, SET_IN_GAME},		/*WC*/
 # else	/* systems that support multiple terminals, many monochrome */
 	{"color",         &iflags.wc_color, FALSE, SET_IN_GAME},	/*WC*/
 # endif
 	{"confirm",&flags.confirm, TRUE, SET_IN_GAME},
-#if defined(TERMLIB) && !defined(MAC_GRAPHICS_ENV)
+/* SDL_GRAPHICS wants the DEC line-drawing table too, and not as a terminal
+   feature: win/tty/sdlterm.c maps the bytes dec_graphics[] selects to
+   Unicode box-drawing characters and draws them itself.  The Windows
+   build has no TERMLIB -- include/ntconf.h sets NO_TERMS -- so gating on
+   TERMLIB alone would leave its map walls as plain - and |. */
+#if (defined(TERMLIB) || defined(SDL_GRAPHICS)) && !defined(MAC_GRAPHICS_ENV)
 	{"DECgraphics", &iflags.DECgraphics, FALSE, SET_IN_GAME},
 #else
 	{"DECgraphics", (boolean *)0, FALSE, SET_IN_FILE},
@@ -729,13 +736,34 @@ initoptions()
 	for (i = 0; i < NUM_DISCLOSURE_OPTIONS; i++)
 		flags.end_disclose[i] = DISCLOSE_PROMPT_DEFAULT_NO;
 	switch_graphics(ASCII_GRAPHICS);	/* set default characters */
-#if defined(UNIX) && defined(TTY_GRAPHICS)
+#ifdef SDL_GRAPHICS
+	/*
+	 * The SDL backend translates the line-drawing bytes this selects
+	 * into Unicode box-drawing characters and draws them itself, so the
+	 * walls come out as real lines instead of - and |.  Unlike on a
+	 * terminal there is nothing to detect and nothing that can go
+	 * wrong, so it is simply on.  Being here, before NETHACKOPTIONS is
+	 * read, leaves "!DECgraphics" available to anyone who wants the
+	 * plain look.
+	 *
+	 * DEC rather than IBM because dec_graphics[] leaves corridors as
+	 * '#'; ibm_graphics[] would make them shaded blocks.  It also keeps
+	 * the bytes below 0x80, which matters here: jlib.c's cbuffer()
+	 * treats any byte with the high bit set as the first half of an
+	 * EUC-JP pair, so a code page 437 map byte would be swallowed.
+	 */
+	switch_graphics(DEC_GRAPHICS);
+#endif
+#if defined(UNIX) && defined(TTY_GRAPHICS) && !defined(SDL_GRAPHICS)
 	/*
 	 * Set defaults for some options depending on what we can
 	 * detect about the environment's capabilities.
 	 * This has to be done after the global initialization above
 	 * and before reading user-specific initialization via
 	 * config file/environment variable below.
+	 *
+	 * Skipped for SDL_GRAPHICS: $TERM describes the terminal the game
+	 * was launched from, which is not where it draws.
 	 */
 	/* this detects the IBM-compatible console on most 386 boxes */
 	if ((opts = nh_getenv("TERM")) && !strncmp(opts, "AT", 2)) {
@@ -746,7 +774,7 @@ initoptions()
 	}
 #endif /* UNIX && TTY_GRAPHICS */
 #if defined(UNIX) || defined(VMS)
-# ifdef TTY_GRAPHICS
+# if defined(TTY_GRAPHICS) && !defined(SDL_GRAPHICS)
 	/* detect whether a "vt" terminal can handle alternate charsets */
 	if ((opts = nh_getenv("TERM")) &&
 	    !strncmpi(opts, "vt", 2) && AS && AE &&
@@ -2370,9 +2398,9 @@ goodfruit:
 
 			duplicate_opt_detection(boolopt[i].name, 0);
 
-#if defined(TERMLIB) || defined(ASCIIGRAPH) || defined(MAC_GRAPHICS_ENV)
+#if defined(TERMLIB) || defined(SDL_GRAPHICS) || defined(ASCIIGRAPH) || defined(MAC_GRAPHICS_ENV)
 			if (FALSE
-# ifdef TERMLIB
+# if defined(TERMLIB) || defined(SDL_GRAPHICS)
 				 || (boolopt[i].addr) == &iflags.DECgraphics
 # endif
 # ifdef ASCIIGRAPH
@@ -2387,7 +2415,7 @@ goodfruit:
 				assign_rogue_graphics(FALSE);
 # endif
 			    need_redraw = TRUE;
-# ifdef TERMLIB
+# if defined(TERMLIB) || defined(SDL_GRAPHICS)
 			    if ((boolopt[i].addr) == &iflags.DECgraphics)
 				switch_graphics(iflags.DECgraphics ?
 						DEC_GRAPHICS : ASCII_GRAPHICS);
@@ -2407,7 +2435,7 @@ goodfruit:
 				assign_rogue_graphics(TRUE);
 # endif
 			}
-#endif /* TERMLIB || ASCIIGRAPH || MAC_GRAPHICS_ENV */
+#endif /* TERMLIB || SDL_GRAPHICS || ASCIIGRAPH || MAC_GRAPHICS_ENV */
 
 			/* only do processing below if setting with doset() */
 			if (initial) return;

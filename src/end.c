@@ -1232,12 +1232,21 @@ int status;
 
 #if 1 /*JP*/
 	jputchar('\0');	/* reset terminal */
+#ifndef SDL_GRAPHICS
+	/*
+	** Restore the terminal's G1 character set on the way out.  Skipped
+	** under SDL_GRAPHICS: this file does not include wintty.h, so its
+	** putchar() is the real one, and the escape sequence would go to
+	** whatever terminal launched the game rather than to the window --
+	** where it is meaningless, and visible as "$)B" in the shell.
+	*/
 	if (iflags.DECgraphics){
 	  putchar(033);
 	  putchar('$');
 	  putchar(')');
 	  putchar('B');
 	}
+#endif
 #endif
 	nethack_exit(status);
 }

@@ -4,6 +4,13 @@
 
 #include "hack.h"
 #ifdef TTY_GRAPHICS
+/*
+ * def_raw_print() below is the raw_print in force before a window port has
+ * been chosen, so it has to reach the terminal the game was started from --
+ * there is no window yet to put anything in.  Keep the real stdio; see
+ * include/sdlterm.h.
+ */
+#define SDLTERM_KEEP_STDIO
 #include "wintty.h"
 #endif
 #ifdef X11_GRAPHICS
