@@ -127,6 +127,24 @@ static boolean sdl_up = FALSE;          /* SDL is initialized */
 static boolean grid_dirty = TRUE;
 static boolean want_quit = FALSE;
 
+#ifdef UNIX
+/*
+ * The process that created the window.  NetHack forks -- to run the
+ * compressor over a save file (src/files.c), and for the '!' command
+ * (sys/unix/unixunix.c) -- and a forked child inherits the X connection
+ * but none of SDL's threads, so drawing from it deadlocks the child on a
+ * mutex nobody is left to release, and writes a second stream of X
+ * requests down the one connection.  The child is only ever on its way to
+ * an exec(), so the honest answer to any drawing it asks for is to do
+ * nothing.  Both call sites are meant to keep the child away from here on
+ * their own; this is the backstop that makes a missed one harmless.
+ */
+static pid_t sdl_owner_pid = 0;
+#define sdl_forked_child()      (sdl_owner_pid && getpid() != sdl_owner_pid)
+#else
+#define sdl_forked_child()      FALSE
+#endif
+
 /*
  * SDLFONT / SDLFONTSIZE from the configuration file.  Filled in by
  * parse_config_line() in src/files.c, which runs from initoptions() --
@@ -998,7 +1016,7 @@ sdl_repaint()
     int x, y;
     SDL_Rect cur;
 
-    if (!sdl_ren) return;
+    if (!sdl_ren || sdl_forked_child()) return;
 
     SDL_SetRenderDrawColor(sdl_ren, BG_R, BG_G, BG_B, 255);
     SDL_RenderClear(sdl_ren);
@@ -1295,7 +1313,7 @@ sdl_pump()
 {
     SDL_Event ev;
 
-    if (!sdl_up) return;
+    if (!sdl_up || sdl_forked_child()) return;
     while (SDL_PollEvent(&ev)) {
         switch (ev.type) {
         case SDL_QUIT:
@@ -1341,6 +1359,10 @@ int
 sdl_getch()
 {
     int c;
+
+    /* A forked child has no window to read from; without this the loop
+       below would spin on a queue only the parent can ever fill. */
+    if (sdl_forked_child()) return EOF;
 
     sdl_dump_if_asked();
     if (grid_dirty) sdl_repaint();
@@ -1413,6 +1435,9 @@ int *wid, *hgt;
 #endif
     if (SDL_Init(SDL_INIT_VIDEO) != 0) sdl_die(SDL_GetError());
     sdl_up = TRUE;
+#ifdef UNIX
+    sdl_owner_pid = getpid();   /* see sdl_forked_child() */
+#endif
     if (TTF_Init() != 0) sdl_die(TTF_GetError());
 
     sdl_open_font();

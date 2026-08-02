@@ -1067,6 +1067,27 @@ char** saved;
 
 #ifdef COMPRESS
 
+#if defined(SDL_GRAPHICS) && defined(UNIX)
+/*
+ * docompress_file() forks, and everything the child does before its execv()
+ * runs in a copy of a process that owns an SDL window, an X connection and
+ * SDL's own threads -- and fork() copies neither the threads nor the locks
+ * they were holding.  So the child must touch none of it:
+ *
+ *   - terminate() would run exit_nhwindows(), taking the parent's window
+ *     and X connection down while the parent is still using them;
+ *   - anything that draws blocks forever on an SDL mutex whose owning
+ *     thread the fork left behind, and the parent's wait() below then never
+ *     returns.  That is what made restoring a saved game hang.
+ *
+ * The child gets out of the way instead.  redirect() is only ever called
+ * from the child, so it uses this too.
+ */
+#define compress_child_exit(st)	_exit(st)
+#else
+#define compress_child_exit(st)	terminate(st)
+#endif
+
 STATIC_OVL void
 redirect(filename, mode, stream, uncomp)
 const char *filename, *mode;
@@ -1076,7 +1097,7 @@ boolean uncomp;
 	if (freopen(filename, mode, stream) == (FILE *)0) {
 		(void) fprintf(stderr, "freopen of %s for %scompress failed\n",
 			filename, uncomp ? "un" : "");
-		terminate(EXIT_FAILURE);
+		compress_child_exit(EXIT_FAILURE);
 	}
 }
 
@@ -1151,11 +1172,18 @@ boolean uncomp;
 # endif
 	f = fork();
 	if (f == 0) {	/* child */
-# ifdef TTY_GRAPHICS
+# if defined(TTY_GRAPHICS) && !defined(SDL_GRAPHICS)
 		/* any error messages from the compression must come out after
 		 * the first line, because the more() to let the user read
 		 * them will have to clear the first line.  This should be
 		 * invisible if there are no error messages.
+		 *
+		 * Not under SDL_GRAPHICS: raw_print() there ends in
+		 * sdl_repaint() and SDL_PollEvent(), which is exactly the
+		 * drawing from a forked child that compress_child_exit()
+		 * above describes -- it wedges the child on an SDL mutex and
+		 * puts a second writer on the X connection, which the server
+		 * answers by dropping it ("X connection to :0 broken").
 		 */
 		if (istty)
 		    raw_print("");
@@ -1181,7 +1209,7 @@ boolean uncomp;
 		perror((char *)0);
 		(void) fprintf(stderr, "Exec to %scompress %s failed.\n",
 			uncomp ? "un" : "", filename);
-		terminate(EXIT_FAILURE);
+		compress_child_exit(EXIT_FAILURE);
 	} else if (f == -1) {
 		perror((char *)0);
 		pline("Fork to %scompress %s failed.",
