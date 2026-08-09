@@ -60,7 +60,7 @@ name=jnethack-$ver-sdl-win64
 stage=dist/$name
 
 rm -rf "$stage" "dist/$name.zip"
-mkdir -p "$stage/save"
+mkdir -p "$stage"
 
 cp -f src/JNetHack.exe "$stage/"
 cp -f "$sdlroot/bin/SDL2.dll" "$sdlroot/bin/SDL2_ttf.dll" "$stage/"
