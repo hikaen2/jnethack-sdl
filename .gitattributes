@@ -1,1 +1,4 @@
 *.ttf -text
+
+# Shipped in the Windows zip verbatim, so it is CRLF in the tree already.
+sys/winnt/defaults.nh -text

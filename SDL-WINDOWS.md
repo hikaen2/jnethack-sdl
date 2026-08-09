@@ -538,9 +538,11 @@ Windows の `nhdat` に入れてある（`sys/unix/Makefile.dat`）。入れな�
   起動し、`C:\Windows\Fonts\msgothic.ttc` が見つかって日本語が正しく出ることを
   スクリーンショットで確認した。それ以外（長時間のプレイ、セーブ／ロード、
   IME、二重起動）は wine でしか見ていない。
-- **フォントの同梱** — `C:\Windows\Fonts\msgothic.ttc` に頼っている。
-  リポジトリ直下の `MPLUS1Code-Regular.ttf` はまだコードから参照されておらず、
-  同梱するならライセンス文（OFL）も要る。
+- **同梱フォントの実機確認** — zip は `MPLUS9800-Regular.ttf` を同梱し、
+  `defaults.nh` の `SDLFONT` / `SDLFONTSIZE` で既定にしている（wine 上の
+  `NH_SDL_WIDTHTEST` は 24pt・12x24px セルで 7/7 PASS）。実機 Windows で
+  見たのは `msgothic.ttc` のスクリーンショットだけで、同梱フォントのほうは
+  未確認。
 - **`recover.exe`** — クラッシュ後のレベルファイル復旧ユーティリティ。
   `util/Makefile` に `recover` ターゲットがあるのでクロスは容易だが未同梱。
 - **実 IME での日本語入力** — `SDL-PORT.md` §4 / §11 のまま未了。Windows で
@@ -577,15 +579,23 @@ record  logfile  save/
 - `nhdat` の中身は `.lev` なので **LP64 と LLP64 で別物**（§1-2）。
   `util/dlb` も MinGW でクロスし、`datwin/dat` 用を wine で作る。
 
-同梱する `defaults.nh` は原版の `NetHack.cnf`（この木の `sys/winnt/winnt.cnf` と同一）
-だが、`OPTIONS=IBMgraphics` の 1 行だけコメントアウトしてある。この移植は
-DECgraphics を既定で使って罫線を自前で描くし、そもそも CP437 と EUC-JP は
-両立しない（0x80 以上のマップバイトが 2 バイト文字の 1 バイト目と解釈される）。
+同梱する `defaults.nh` は `sys/winnt/defaults.nh` の `cp` そのもの。**この木では
+このファイルだけ CRLF で持っている** — 変換を挟まずに済ませるためで、git が
+LF に正規化しないよう `.gitattributes` で `-text` にしてある。原版から変えたのは
+2 点:
+
+- 先頭に `SDLFONT` / `SDLFONTSIZE` の節を足し、既定を同梱のフォントにした。
+- `OPTIONS=IBMgraphics` をコメントアウト。この移植は DECgraphics を既定で
+  使って罫線を自前で描くし、そもそも CP437 と EUC-JP は両立しない
+  （0x80 以上のマップバイトが 2 バイト文字の 1 バイト目と解釈される）。
+
+`OPTIONS=kcode:` の行は落とした。SDL バックエンドはセルにコードポイントを
+置くだけでバイトを出さないので、選ぶべき出力エンコーディングが無い。
 
 `doc/jGuidebook.txt` はこの木では EUC-JP なので、UTF-8 + BOM + CRLF に変換して
-入れる（原版は Shift_JIS だった）。`defaults.nh` は原版どおり ASCII のみに
-してある — 日本語コメントを入れると EUC-JP で保存する必要があり、Windows の
-テキストエディタでは書き戻せなくなるため。
+入れる（原版は Shift_JIS だった）。`defaults.nh` はこの変換の対象外なので、
+原版どおり ASCII のみにしてある — 日本語コメントを入れると EUC-JP のまま
+配布物に出てしまう。
 
 libsdl.org の `SDL2_ttf.dll` は 68MB（FreeType と HarfBuzz を静的リンクした
 うえでシンボル未除去）なので、ステージング先のコピーだけ strip する。

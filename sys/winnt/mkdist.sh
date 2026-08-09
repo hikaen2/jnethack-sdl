@@ -32,12 +32,14 @@ for dll in SDL2.dll SDL2_ttf.dll; do
 done
 
 # The zip carries its own font rather than relying on the player's Windows
-# having MS Gothic.  M PLUS 1 Code is a monospace face whose kanji advance
-# is exactly twice its ASCII one, which is what the cell grid wants; it
-# passes NH_SDL_WIDTHTEST.  Redistributing it under the SIL OFL means the
-# licence has to travel with it, hence MPLUS1Code-OFL.txt.
-font=MPLUS1Code-Regular.ttf
-for f in "$font" MPLUS1Code-OFL.txt; do
+# having MS Gothic.  M PLUS 9800 is a monospace face built from M+ whose
+# advances are 500/1000 units per em for ASCII and 1000/1000 for kanji --
+# exactly the 1:2 the cell grid wants -- and it passes NH_SDL_WIDTHTEST at
+# the size defaults.nh asks for (24, giving 12x24 px cells).  Redistributing
+# it under the SIL OFL means the licence has to travel with it, hence
+# MPLUS9800-OFL.txt.
+font=MPLUS9800-Regular.ttf
+for f in "$font" MPLUS9800-OFL.txt; do
     [ -f "$f" ] || { echo "missing $f in the tree root" >&2; exit 1; }
 done
 
@@ -79,7 +81,7 @@ fi
 # sys/unix/Makefile.top) so that it can be read without the game.
 cp -f datwin/dat/nhdat datwin/dat/license "$stage/"
 
-cp -f "$font" MPLUS1Code-OFL.txt "$stage/"
+cp -f "$font" MPLUS9800-OFL.txt "$stage/"
 
 : >"$stage/record"
 : >"$stage/logfile"
@@ -93,51 +95,13 @@ sed 's/$/\r/' doc/nethack.txt >"$stage/NetHack.txt"
   iconv -f EUC-JP -t UTF-8 doc/jGuidebook.txt | sed 's/$/\r/'
 } >"$stage/jGuidebook.txt"
 
-# The stock Windows configuration file (sys/winnt/defaults.nh in this
-# tree), with two lines commented out and a short section added.  ASCII
-# only, like the original: a Japanese comment here would have to be EUC-JP,
-# which no Windows editor will save back.
+# The configuration file, verbatim: it is ASCII with CRLF in the tree
+# already (see .gitattributes), which is what Windows wants.  Unlike the
+# documentation above it is not converted to UTF-8, so it has to stay ASCII.
 #
 # Named defaults.nh, not NetHack.cnf: 3.4 renamed it (src/files.c:1482) and
 # the old name is only tried under MSDOS, never on WIN32.
-{
-    cat <<'CNF'
-# JNetHack (SDL2) additions to the stock Windows NT configuration file.
-#
-# The font.  MPLUS1Code-Regular.ttf is in this folder; the game runs with
-# this folder as its current directory, so the bare name finds it.
-SDLFONT=MPLUS1Code-Regular.ttf
-#
-# Point it at any other TrueType/OpenType face by full path if you prefer:
-#SDLFONT=C:\Windows\Fonts\msgothic.ttc
-#
-# Point size.  Omitted means 18.
-#SDLFONTSIZE=24
-#
-# Both are overridden, for one run, by the environment:
-#
-#   set NETHACK_SDL_FONT=C:\Windows\Fonts\msgothic.ttc
-#   set NETHACK_SDL_FONTSIZE=24
-#
-# A Japanese name cannot be set with "OPTIONS=name:" below.  Type it at the
-# prompt the game gives you instead; see README.txt.
-#
-# Two lines of the stock file below are commented out.
-#
-# IBMGraphics: this build draws the map with box-drawing lines already (the
-# DECgraphics option, on by default), and code page 437 cannot be used at
-# the same time as EUC-JP -- a map byte over 0x80 would be taken for the
-# first half of a two-byte character.
-#
-# kcode: the SDL backend puts code points in cells and emits no bytes, so
-# it has no output encoding to choose.  japanese/jlib.c pins setkcode() to
-# the internal code for this build, and the option would only mislead.
-
-CNF
-    sed -e 's/^OPTIONS=IBMGraphics$/#OPTIONS=IBMGraphics\t# see above/' \
-        -e 's/^OPTIONS=kcode:/#OPTIONS=kcode:/' \
-        sys/winnt/defaults.nh
-} | sed 's/$/\r/' >"$stage/defaults.nh"
+cp sys/winnt/defaults.nh "$stage/defaults.nh"
 
 sed 's/$/\r/' >"$stage/README.txt" <<'DOC'
 JNetHack VERSION_PLACEHOLDER  SDL2 版 (64-bit Windows)
@@ -165,19 +129,18 @@ JNetHack VERSION_PLACEHOLDER  SDL2 版 (64-bit Windows)
 
 ■ フォント
 
-このフォルダの MPLUS1Code-Regular.ttf を使います。指定しているのは同じ
-フォルダの defaults.nh の次の行です。
+このフォルダの MPLUS9800-Regular.ttf を使います。指定しているのは同じ
+フォルダの defaults.nh の次の 2 行です。
 
-    SDLFONT=MPLUS1Code-Regular.ttf
+    SDLFONT=MPLUS9800-Regular.ttf
+    SDLFONTSIZE=24
 
-別のフォントを使いたいときはこの行を書き換えてください。フルパスでも
+別のフォントを使いたいときは SDLFONT を書き換えてください。フルパスでも
 指定できます。
 
     SDLFONT=C:\Windows\Fonts\msgothic.ttc
 
-大きさは SDLFONTSIZE で変えられます (省略時は 18)。
-
-    SDLFONTSIZE=24
+大きさは SDLFONTSIZE で変えられます (行ごと消すと 18)。
 
 一時的に変えたいだけなら環境変数のほうが強く、そちらが優先されます。
 
@@ -201,8 +164,8 @@ SDLFONT で指定したフォントが開けないときはエラーになりま
     SDL2.dll                SDL2 ランタイム
     SDL2_ttf.dll            SDL2_ttf ランタイム
     nhdat                   ゲームデータ (地図・ヘルプ・格言などをまとめたもの)
-    MPLUS1Code-Regular.ttf  表示に使うフォント (M PLUS 1 Code)
-    MPLUS1Code-OFL.txt      そのフォントのライセンス
+    MPLUS9800-Regular.ttf   表示に使うフォント (M PLUS 9800)
+    MPLUS9800-OFL.txt       そのフォントのライセンス
     defaults.nh             設定ファイル
     README.txt              このファイル
     NetHack.txt             NetHack の概要 (英語)
@@ -246,8 +209,8 @@ EUC-JP で保存できず、コマンドラインは Shift_JIS で渡される�
 ゲーム本体は同じフォルダの license を参照してください。NetHack General
 Public License です。SDL2 および SDL2_ttf は zlib ライセンスです。
 
-同梱のフォント M PLUS 1 Code は SIL Open Font License 1.1 で、その本文は
-同じフォルダの MPLUS1Code-OFL.txt にあります。
+同梱のフォント M PLUS 9800 は M+ FONTS から作られたもので、SIL Open Font
+License 1.1 です。その本文は同じフォルダの MPLUS9800-OFL.txt にあります。
 
   NetHack       https://www.nethack.org/
   JNetHack      http://www.jnethack.org/
