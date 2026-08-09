@@ -558,13 +558,13 @@ Windows の `nhdat` に入れてある（`sys/unix/Makefile.dat`）。入れな�
 
 `./sys/winnt/mkdist.sh` が `dist/jnethack-<ver>-sdl-win64.zip` を作る。展開して
 `JNetHack.exe` を起動するだけで動く（`pcmain.c` が `HACKDIR` を
-`exepath(argv[0])` から取るのでフラット配置でよい）。中身は 14 ファイル:
+`exepath(argv[0])` から取るのでフラット配置でよい）。中身は 13 ファイル:
 
 ```
 JNetHack.exe  SDL2.dll  SDL2_ttf.dll
 nhdat  license  defaults.nh
 MPLUS9800-Regular.ttf  MPLUS9800-OFL.txt
-README.txt  NetHack.txt  jGuidebook.txt
+NetHack.txt  jGuidebook.txt
 record  logfile  save/
 ```
 
@@ -594,10 +594,10 @@ LF に正規化しないよう `.gitattributes` で `-text` にしてある。�
 `OPTIONS=kcode:` の行は落とした。SDL バックエンドはセルにコードポイントを
 置くだけでバイトを出さないので、選ぶべき出力エンコーディングが無い。
 
-`doc/jGuidebook.txt` はこの木では EUC-JP なので、UTF-8 + BOM + CRLF に変換して
-入れる（原版は Shift_JIS だった）。`defaults.nh` はこの変換の対象外なので、
-原版どおり ASCII のみにしてある — 日本語コメントを入れると EUC-JP のまま
-配布物に出てしまう。
+`doc/jGuidebook.txt` はこの木では EUC-JP なので、UTF-8 + CRLF に変換して
+入れる（原版は Shift_JIS だった）。BOM は付けない。`defaults.nh` はこの変換の
+対象外なので、原版どおり ASCII のみにしてある — 日本語コメントを入れると
+EUC-JP のまま配布物に出てしまう。
 
 libsdl.org の `SDL2_ttf.dll` は 68MB（FreeType と HarfBuzz を静的リンクした
 うえでシンボル未除去）なので、ステージング先のコピーだけ strip する。
