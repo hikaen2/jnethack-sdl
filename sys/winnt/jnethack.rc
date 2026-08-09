@@ -1,0 +1,22 @@
+/*	Resources for the SDL backend's Windows build.  See SDL-WINDOWS.md.	*/
+/*	NetHack may be freely redistributed.  See license for details.		*/
+
+/*
+ * The icon, and nothing else.
+ *
+ * sys/winnt/console.rc is the stock script and would have done, but its
+ * VERSIONINFO block calls the program "NetHack for Windows - TTY Interface"
+ * and names the file NetHack.exe.  Neither is true of JNetHack.exe, and the
+ * version numbers in it are written out by hand, which would be one more
+ * place to disagree with include/date.h.  So this file takes the one
+ * resource that is the same for both.
+ *
+ * NetHack.ico is the icon every Windows NetHack has used since 3.1.  The
+ * tree ships it uuencoded as sys/winnt/nhico.uu; sys/unix/Makefile.src
+ * decodes it next to this file before calling windres.
+ *
+ * Resource id 1: Windows shows the numerically lowest icon in a binary as
+ * the application's icon, which is why the stock scripts use it too
+ * (sys/winnt/console.rc, win/win32/winhack.rc).
+ */
+1 ICON "NetHack.ico"

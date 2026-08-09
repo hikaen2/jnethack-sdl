@@ -603,6 +603,38 @@ libsdl.org の `SDL2_ttf.dll` は 68MB（FreeType と HarfBuzz を静的リン�
 うえでシンボル未除去）なので、ステージング先のコピーだけ strip する。
 zip 全体で 2.7MB。
 
+### 9-1. アイコン
+
+`JNetHack.exe` には **`NetHack.ico` が埋め込んである** —— NetHack 3.1 以降の
+Windows 版がずっと使ってきた、鎖帷子模様の盾に剣を交差させたあの紋章である。
+`win/X11/nh_icon.xpm` や `win/Qt/qt_win.cpp:216` にあるのと同じ絵柄で、
+X11 版が WM に渡す `win/X11/nh72icon` はその白黒 72×72 版にあたる。
+
+木はこれを uuencode した `sys/winnt/nhico.uu` の形で持っている。純正の
+Makefile は自前でビルドした uudecode で展開し（`sys/winnt/Makefile.gcc:691`）
+`windres` で `sys/winnt/console.rc` を焼き込む（同 `:572`）が、
+`sys/unix/Makefile.src` の MinGW 経路にはその手順が無く、**移植当初の
+`JNetHack.exe` はアイコン無しだった**。次の 3 つを足して揃えた。
+
+- `sys/winnt/jnethack.rc` — アイコンだけの資源スクリプト。純正の
+  `console.rc` をそのまま使わなかったのは、その `VERSIONINFO` が
+  "NetHack for Windows - TTY Interface" と名乗り `OriginalFilename` を
+  `NetHack.exe` と書いているからで、どちらも `JNetHack.exe` については
+  真ではない。版番号も手書きなので `include/date.h` と食い違う場所が
+  1 つ増える。資源 ID は純正と同じ `1` —— Windows は番号が最小の
+  アイコンをアプリケーションのアイコンとして使う。
+- `sys/unix/Makefile.src` の `$(NHICO)` と `nhres.o` の規則。
+  uudecode は sharutils が現代の Linux に入っていないので python で行う
+  （この木は `japanese/mkjis0208.py` で既に python を使う）。
+  Windows 側の makefile と違ってホストのファイルシステムは大文字小文字を
+  区別するので、出力名は `.rc` の綴りと厳密に合わせて `NetHack.ico`。
+- `HOBJ` の末尾に `$(WINRESOBJ)`。`RANDOBJ` と同じく `MINGW=1` のときだけ
+  中身が入り、Linux ビルドでは空のまま。
+
+検証は `.rsrc` を取り出して元の `.ico` と突き合わせる形で行った。32×32 と
+16×16 の 2 面がバイト単位で一致し、`mkdist.sh` の `strip --strip-unneeded`
+を通した zip 内の `JNetHack.exe` でも一致する（`strip` は `.rsrc` を落とさない）。
+
 ---
 
 ## 10. ついでに直したもの

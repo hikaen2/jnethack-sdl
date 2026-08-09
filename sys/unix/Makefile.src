@@ -396,6 +396,9 @@ GAME     = jnethack
 # RANDOBJ = random.o
 RANDOBJ =
 
+# compiled Windows resources; empty everywhere else
+WINRESOBJ =
+
 ifeq ($(MINGW),1)
 # Capitalised: this is the name the player double-clicks, and Windows shows
 # it as typed.  The filesystem there is case-insensitive, so nothing breaks
@@ -404,6 +407,9 @@ GAME = JNetHack.exe
 # include/ntconf.h defines RANDOM: MinGW's CRT has no random(3).  The Unix
 # build uses glibc's and leaves this empty.
 RANDOBJ = random.o
+# The icon Explorer, the taskbar and Alt-Tab show.  Without it the player
+# gets the generic executable icon.  See the rules further down.
+WINRESOBJ = nhres.o
 endif
 
 
@@ -497,7 +503,7 @@ HOBJ = $(FIRSTOBJ) allmain.o alloc.o apply.o artifact.o attrib.o ball.o \
 	steal.o steed.o teleport.o timeout.o topten.o track.o trap.o u_init.o \
 	uhitm.o vault.o vision.o vis_tab.o weapon.o were.o wield.o windows.o \
 	wizard.o worm.o worn.o write.o zap.o \
-	$(RANDOBJ) $(JOBJ) $(SYSOBJ) $(WINOBJ) version.o
+	$(RANDOBJ) $(JOBJ) $(SYSOBJ) $(WINOBJ) $(WINRESOBJ) version.o
 # the .o files from the HACKCSRC, SYSSRC, and WINSRC lists
 
 $(GAME):	$(SYSTEM)
@@ -583,6 +589,29 @@ objects.o:
 	$(CC) $(CFLAGS) -c objects.c
 	@$(MAKEDEFS_STALE)
 
+# The Windows icon.  Built only when MINGW=1, since nothing else links
+# $(WINRESOBJ).
+#
+# The tree ships the icon uuencoded, as every NetHack has; the stock Windows
+# makefiles decode it with a uudecode they build themselves for the purpose
+# (sys/winnt/Makefile.gcc:691).  Cross-compiling, the host does it, and
+# sharutils' uudecode is no longer installed on modern Linux -- so python
+# does it, which this tree already builds with (japanese/mkjis0208.py).
+#
+# The name is spelled as sys/winnt/jnethack.rc spells it: windres resolves
+# it through --include-dir on a case-sensitive filesystem, unlike the
+# Windows makefiles this is modelled on.
+NHICO = ../sys/winnt/NetHack.ico
+
+# The first line of a uuencoded file is "begin", the last is "end", and the
+# one before it is the zero-length "`" that a2b_uu returns nothing for.
+$(NHICO): ../sys/winnt/nhico.uu
+	python3 -c 'import binascii,sys; ls=open(sys.argv[1]).read().splitlines(); sys.stdout.buffer.write(b"".join(binascii.a2b_uu(l) for l in ls[1:] if l and l != "end"))' $< >$@
+
+nhres.o: ../sys/winnt/jnethack.rc $(NHICO)
+	$(MINGW_PREFIX)windres --include-dir ../sys/winnt \
+	    -i ../sys/winnt/jnethack.rc -o $@
+
 # Qt windowport meta-object-compiler output
 qt_kde0.moc: ../include/qt_kde0.h
 	$(QTDIR)/bin/moc -o qt_kde0.moc ../include/qt_kde0.h
@@ -654,6 +683,7 @@ spotless: clean
 	-rm -f ../include/date.h ../include/onames.h ../include/pm.h
 	-rm -f monstr.c ../include/vis_tab.h vis_tab.c tile.c *.moc
 	-rm -f ../win/gnome/gn_rip.h
+	-rm -f $(NHICO)
 
 
 depend: ../sys/unix/depend.awk \
