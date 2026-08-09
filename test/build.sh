@@ -4,16 +4,16 @@
 #   ./test/build.sh          # everything, including the Windows cross build
 #   ./test/build.sh tty      # src/jnethack.tty only
 #   ./test/build.sh sdl      # src/jnethack.sdl only
-#   ./test/build.sh win      # src/jnethack.exe only (MinGW-w64 cross)
+#   ./test/build.sh win      # src/JNetHack.exe only (MinGW-w64 cross)
 #
 # Produces:
 #   src/jnethack.tty   stock termcap backend (the screen-comparison reference)
 #   src/jnethack.sdl   win/tty/sdlterm.c backend
-#   src/jnethack.exe   the same backend cross-compiled for Windows
+#   src/JNetHack.exe   the same backend cross-compiled for Windows
 #   dat/*.lev etc.     shared by the two host binaries; they agree on
 #                      VERSION_FEATURES because SDL_GRAPHICS is not one of
 #                      makedefs' feature bits
-#   datwin/dat/*.lev   the same data rebuilt for jnethack.exe, which cannot
+#   datwin/dat/*.lev   the same data rebuilt for JNetHack.exe, which cannot
 #                      read dat/ -- see the note atop sys/unix/Makefile.dat
 #
 # The Windows phase runs last.  util/makedefs and util/lev_comp link objects
@@ -109,7 +109,7 @@ if [ "$what" = all ] || [ "$what" = win ]; then
     # Last on purpose: from here on src/*.o and util/*.o are Windows
     # objects, which the host makedefs and lev_comp cannot be linked from.
     echo "=== building Windows (MinGW-w64) SDL backend ==="
-    rm -f src/*.o util/*.o src/jnethack.exe
+    rm -f src/*.o util/*.o src/JNetHack.exe
     rm -f util/makedefs.exe util/lev_comp.exe util/dgn_comp.exe
     # include/date.h carries VERSION_FEATURES and the struct sizes, so it
     # has to come from a makedefs built for the target before src is built.
@@ -128,4 +128,4 @@ if [ "$what" = all ] || [ "$what" = win ]; then
 fi
 
 rm -f src/*.o
-ls -l src/jnethack.tty src/jnethack.sdl src/jnethack.exe 2>/dev/null || true
+ls -l src/jnethack.tty src/jnethack.sdl src/JNetHack.exe 2>/dev/null || true

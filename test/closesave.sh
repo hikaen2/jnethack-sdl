@@ -4,7 +4,7 @@
 #   ./test/closesave.sh [workdir] [target]
 #
 #   target: sdl (default) = src/jnethack.sdl
-#           win           = src/jnethack.exe under wine
+#           win           = src/JNetHack.exe under wine
 #
 # sdl_pump() in win/tty/sdlterm.c answers SDL_QUIT the same way losing the
 # terminal is answered: on Unix with raise(SIGHUP), which src/save.c's
@@ -42,16 +42,16 @@ if [ "$target" = sdl ]; then
         python3 test/xdrive.py --keys 'n v h l SPACE SPACE' --close \
             -- src/jnethack.sdl -u poc
 else
-    [ -x src/jnethack.exe ] || { echo "missing src/jnethack.exe -- run test/build.sh win" >&2; exit 1; }
+    [ -x src/JNetHack.exe ] || { echo "missing src/JNetHack.exe -- run test/build.sh win" >&2; exit 1; }
     sdlroot=${SDLROOT:-$HOME/opt/mingw-sdl2}
     ./test/mkplaydir.sh "$d" datwin/dat >/dev/null
-    cp -f src/jnethack.exe "$sdlroot/bin/SDL2.dll" "$sdlroot/bin/SDL2_ttf.dll" "$d/"
+    cp -f src/JNetHack.exe "$sdlroot/bin/SDL2.dll" "$sdlroot/bin/SDL2_ttf.dll" "$d/"
     # No Japanese font is installed in the wine prefix; point at the host's
     # through wine's Z: mapping of /.
     NETHACKOPTIONS=color WINEDEBUG=${WINEDEBUG:--all} \
         NETHACK_SDL_FONT=${NETHACK_SDL_FONT:-'Z:\usr\share\fonts\opentype\noto\NotoSansCJK-Regular.ttc:5'} \
         python3 test/xdrive.py --keys 'n v h l SPACE SPACE' --close \
-            --cwd "$d" -- wine ./jnethack.exe -u poc
+            --cwd "$d" -- wine ./JNetHack.exe -u poc
 fi
 
 # Windows writes <user>-<plname>.NetHack-saved-game into HACKDIR, MICRO

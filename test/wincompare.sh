@@ -1,5 +1,5 @@
 #!/bin/sh
-# Compare src/jnethack.exe (run under wine) against src/jnethack.tty.
+# Compare src/JNetHack.exe (run under wine) against src/jnethack.tty.
 #
 #   ./test/wincompare.sh [workdir]
 #
@@ -13,7 +13,7 @@
 # runs here -- so this compares the Windows build against the *Linux tty*
 # build.  That is the point: it is the layout the port has to reproduce.
 #
-# The two sides read different data files.  jnethack.exe cannot read dat/
+# The two sides read different data files.  JNetHack.exe cannot read dat/
 # (LLP64 struct layout; see sys/unix/Makefile.dat), so its playdir is
 # staged from datwin/dat.  Both were compiled from the same .des sources by
 # the same makedefs.
@@ -69,7 +69,7 @@ expect_diff="options helpmenu
 	startup map inventory redraw menu_page kickprompt spellmsg
 	topline_more extcmd_echo escape_menu walkabout quit endgame"
 
-for bin in src/jnethack.tty src/jnethack.exe; do
+for bin in src/jnethack.tty src/JNetHack.exe; do
     [ -x "$bin" ] || { echo "missing $bin -- run test/build.sh" >&2; exit 1; }
 done
 [ -f datwin/dat/dungeon ] || {
@@ -133,7 +133,7 @@ echo "$cases" | while IFS='|' read -r name keys; do
 
     ./test/mkplaydir.sh "$work/tty" >/dev/null
     ./test/mkplaydir.sh "$work/win" datwin/dat >/dev/null
-    cp -f src/jnethack.exe "$sdlroot/bin/SDL2.dll" "$sdlroot/bin/SDL2_ttf.dll" \
+    cp -f src/JNetHack.exe "$sdlroot/bin/SDL2.dll" "$sdlroot/bin/SDL2_ttf.dll" \
           "$work/win/"
 
     HACKDIR="$work/tty" NETHACKOPTIONS=$opts \
@@ -148,7 +148,7 @@ echo "$cases" | while IFS='|' read -r name keys; do
       NETHACKOPTIONS=$opts \
         NH_SDL_KEYS="$(expand "$keys")" NH_SDL_DUMP=dump.txt \
         SDL_VIDEODRIVER=${SDL_VIDEODRIVER:-dummy} WINEDEBUG=${WINEDEBUG:--all} \
-            timeout 120 wine ./jnethack.exe -u poc >/dev/null 2>&1 || true )
+            timeout 120 wine ./JNetHack.exe -u poc >/dev/null 2>&1 || true )
     cp -f "$work/win/dump.txt" "$work/$name.win" 2>/dev/null || : >"$work/$name.win"
 
     for side in tty win; do

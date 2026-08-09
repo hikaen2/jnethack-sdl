@@ -2,7 +2,7 @@
 # Build a throwaway HACKDIR from the compiled dat/ directory.
 #
 #   ./test/mkplaydir.sh /path/to/playdir            # from dat/
-#   ./test/mkplaydir.sh /path/to/playdir datwin/dat # for src/jnethack.exe
+#   ./test/mkplaydir.sh /path/to/playdir datwin/dat # for src/JNetHack.exe
 #
 # The Windows binary needs the second form: its level files are laid out
 # for LLP64 and dat/ holds LP64 ones.  See sys/unix/Makefile.dat.

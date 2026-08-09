@@ -4,7 +4,7 @@
 #   ./test/walls.sh [workdir] [target]
 #
 #   target: sdl (default) = src/jnethack.sdl
-#           win           = src/jnethack.exe under wine, playdir from datwin/dat
+#           win           = src/JNetHack.exe under wine, playdir from datwin/dat
 #
 # The SDL build selects DECgraphics by default and translates the VT100
 # line-drawing bytes it produces into Unicode box-drawing characters,
@@ -60,16 +60,16 @@ if [ "$target" = sdl ]; then
 else
     # The Windows binary needs its own data files (LLP64 struct layout; see
     # sys/unix/Makefile.dat) and the DLLs beside the .exe.
-    [ -x src/jnethack.exe ] || { echo "missing src/jnethack.exe -- run test/build.sh win" >&2; exit 1; }
+    [ -x src/JNetHack.exe ] || { echo "missing src/JNetHack.exe -- run test/build.sh win" >&2; exit 1; }
     sdlroot=${SDLROOT:-$HOME/opt/mingw-sdl2}
     ./test/mkplaydir.sh "$work/sdl" datwin/dat >/dev/null
-    cp -f src/jnethack.exe "$sdlroot/bin/SDL2.dll" "$sdlroot/bin/SDL2_ttf.dll" \
+    cp -f src/JNetHack.exe "$sdlroot/bin/SDL2.dll" "$sdlroot/bin/SDL2_ttf.dll" \
           "$work/sdl/"
     ( cd "$work/sdl" &&
       NETHACKOPTIONS=color \
         NH_SDL_KEYS="$sdlkeys" NH_SDL_DUMP=dump.txt \
         SDL_VIDEODRIVER=${SDL_VIDEODRIVER:-dummy} WINEDEBUG=${WINEDEBUG:--all} \
-            timeout 120 wine ./jnethack.exe -u poc >/dev/null 2>&1 || true )
+            timeout 120 wine ./JNetHack.exe -u poc >/dev/null 2>&1 || true )
     cp -f "$work/sdl/dump.txt" "$work/sdl.txt" 2>/dev/null || : >"$work/sdl.txt"
 fi
 

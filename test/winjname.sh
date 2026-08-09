@@ -21,8 +21,8 @@ set -e
 cd "$(dirname "$0")/.."
 work=${1:-/tmp/jnh-winjname}
 
-[ -x src/jnethack.exe ] || {
-    echo "missing src/jnethack.exe -- run test/build.sh win" >&2; exit 1; }
+[ -x src/JNetHack.exe ] || {
+    echo "missing src/JNetHack.exe -- run test/build.sh win" >&2; exit 1; }
 [ -f datwin/dat/dungeon ] || {
     echo "missing datwin/dat -- run test/build.sh win" >&2; exit 1; }
 
@@ -42,7 +42,7 @@ for oct in $names; do
     d=$work/$hex
 
     ./test/mkplaydir.sh "$d" datwin/dat >/dev/null
-    cp -f src/jnethack.exe "$sdlroot/bin/SDL2.dll" "$sdlroot/bin/SDL2_ttf.dll" \
+    cp -f src/JNetHack.exe "$sdlroot/bin/SDL2.dll" "$sdlroot/bin/SDL2_ttf.dll" \
           "$d/"
     { printf 'OPTIONS=color\n'
       printf 'OPTIONS=name:'; printf '%s' "$nm"; printf '\n'
@@ -54,7 +54,7 @@ for oct in $names; do
     ( cd "$d" &&
       NH_SDL_KEYS="nvhl  Sy" NH_SDL_DUMP=dump.txt \
         SDL_VIDEODRIVER=${SDL_VIDEODRIVER:-dummy} WINEDEBUG=${WINEDEBUG:--all} \
-            timeout 120 wine ./jnethack.exe >/dev/null 2>&1 || true )
+            timeout 120 wine ./JNetHack.exe >/dev/null 2>&1 || true )
 
     # The WIN32 name is "<user>-<plname>.NetHack-saved-game", in HACKDIR.
     set -- "$d"/*.NetHack-saved-game

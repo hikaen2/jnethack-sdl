@@ -18,7 +18,7 @@ $ ./test/build.sh
 === building data files ===
 === building Windows (MinGW-w64) SDL backend ===
 === building Windows data files ===
-src/jnethack.exe   src/jnethack.sdl   src/jnethack.tty
+src/JNetHack.exe   src/jnethack.sdl   src/jnethack.tty
 ```
 
 ---
@@ -418,7 +418,7 @@ wine  : getenv: 3f 3f 3f 3f   argv[1]: 3f 3f 3f 3f
 ツールチェーン接頭辞だけで済む（700 行の Makefile を複製せずに済む）。
 
 ```
-./test/build.sh          # 3 つとも: jnethack.tty / jnethack.sdl / jnethack.exe
+./test/build.sh          # 3 つとも: jnethack.tty / jnethack.sdl / JNetHack.exe
 ./test/build.sh win      # Windows のみ
 ```
 
@@ -455,7 +455,7 @@ tty 版が出したダンプをそのまま使う。** ただし §1-3 のとお
 だけである。
 
 ```
-./test/wincompare.sh WORK      # 20 ケースの画面 diff（tty 版 vs jnethack.exe）
+./test/wincompare.sh WORK      # 20 ケースの画面 diff（tty 版 vs JNetHack.exe）
 ./test/walls.sh WORK win       # DEC 罫線の Unicode 変換（pyte が独立実装の基準）
 ./test/winjname.sh WORK        # 日本語名 → セーブファイル名
 ./test/closesave.sh WORK win   # WM_DELETE_WINDOW → 保存して終了
@@ -556,11 +556,11 @@ Windows の `nhdat` に入れてある（`sys/unix/Makefile.dat`）。入れな�
 ## 9. 配布
 
 `./sys/winnt/mkdist.sh` が `dist/jnethack-<ver>-sdl-win64.zip` を作る。展開して
-`jnethack.exe` を起動するだけで動く（`pcmain.c` が `HACKDIR` を
+`JNetHack.exe` を起動するだけで動く（`pcmain.c` が `HACKDIR` を
 `exepath(argv[0])` から取るのでフラット配置でよい）。中身は 12 ファイル:
 
 ```
-jnethack.exe  SDL2.dll  SDL2_ttf.dll
+JNetHack.exe  SDL2.dll  SDL2_ttf.dll
 nhdat  license  defaults.nh
 README.txt  NetHack.txt  jGuidebook.txt
 record  logfile  save/

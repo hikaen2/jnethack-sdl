@@ -397,7 +397,10 @@ GAME     = jnethack
 RANDOBJ =
 
 ifeq ($(MINGW),1)
-GAME = jnethack.exe
+# Capitalised: this is the name the player double-clicks, and Windows shows
+# it as typed.  The filesystem there is case-insensitive, so nothing breaks
+# if something still says jnethack.exe.
+GAME = JNetHack.exe
 # include/ntconf.h defines RANDOM: MinGW's CRT has no random(3).  The Unix
 # build uses glibc's and leaves this empty.
 RANDOBJ = random.o

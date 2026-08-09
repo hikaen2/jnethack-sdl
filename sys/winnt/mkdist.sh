@@ -4,7 +4,7 @@
 #   ./sys/winnt/mkdist.sh          # dist/jnethack-<ver>-sdl-win64.zip
 #   ./sys/winnt/mkdist.sh --build  # run test/build.sh first
 #
-# Build src/jnethack.exe and datwin/dat with test/build.sh before running
+# Build src/JNetHack.exe and datwin/dat with test/build.sh before running
 # this; the data files here have to be the datwin/dat ones, since the ones
 # in dat/ are laid out for LP64 and the .exe rejects them (see the note at
 # the top of sys/unix/Makefile.dat).
@@ -20,8 +20,8 @@ if [ "$1" = --build ]; then
     ./test/build.sh
 fi
 
-[ -x src/jnethack.exe ] || {
-    echo "missing src/jnethack.exe -- run ./test/build.sh win" >&2; exit 1; }
+[ -x src/JNetHack.exe ] || {
+    echo "missing src/JNetHack.exe -- run ./test/build.sh win" >&2; exit 1; }
 [ -f datwin/dat/dungeon ] || {
     echo "missing datwin/dat -- run ./test/build.sh win" >&2; exit 1; }
 
@@ -62,7 +62,7 @@ stage=dist/$name
 rm -rf "$stage" "dist/$name.zip"
 mkdir -p "$stage/save"
 
-cp -f src/jnethack.exe "$stage/"
+cp -f src/JNetHack.exe "$stage/"
 cp -f "$sdlroot/bin/SDL2.dll" "$sdlroot/bin/SDL2_ttf.dll" "$stage/"
 
 # libsdl.org ships SDL2_ttf.dll unstripped, with FreeType and HarfBuzz
@@ -70,7 +70,7 @@ cp -f "$sdlroot/bin/SDL2.dll" "$sdlroot/bin/SDL2_ttf.dll" "$stage/"
 # copies here, never the originals under $sdlroot.
 strip=${MINGW_PREFIX:-x86_64-w64-mingw32-}strip
 if command -v "$strip" >/dev/null; then
-    "$strip" --strip-unneeded "$stage/jnethack.exe" \
+    "$strip" --strip-unneeded "$stage/JNetHack.exe" \
                               "$stage/SDL2.dll" "$stage/SDL2_ttf.dll"
 else
     echo "warning: $strip not found; the zip will be much larger" >&2
@@ -113,7 +113,7 @@ JNetHack VERSION_PLACEHOLDER  SDL2 版 (64-bit Windows)
 
 ■ 遊びかた
 
-このフォルダの jnethack.exe をダブルクリックしてください。
+このフォルダの JNetHack.exe をダブルクリックしてください。
 インストールは不要です。フォルダごとどこに置いても動きます。
 
 セーブデータ・スコア・記録はこのフォルダの中に作られます。
@@ -146,7 +146,7 @@ JNetHack VERSION_PLACEHOLDER  SDL2 版 (64-bit Windows)
 
     set NETHACK_SDL_FONT=C:\Windows\Fonts\msgothic.ttc
     set NETHACK_SDL_FONTSIZE=24
-    jnethack.exe
+    JNetHack.exe
 
 自分でフォントを選ぶ場合は、漢字が ASCII のちょうど 2 倍の幅である等幅
 フォントにしてください。プロポーショナルなフォントでも桁はずれは起きま
@@ -160,7 +160,7 @@ SDLFONT で指定したフォントが開けないときはエラーになりま
 
 ■ 同梱ファイル
 
-    jnethack.exe            本体
+    JNetHack.exe            本体
     SDL2.dll                SDL2 ランタイム
     SDL2_ttf.dll            SDL2_ttf ランタイム
     nhdat                   ゲームデータ (地図・ヘルプ・格言などをまとめたもの)

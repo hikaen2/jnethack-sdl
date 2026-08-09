@@ -15,7 +15,7 @@
 /src/jnethack
 /src/jnethack.tty
 /src/jnethack.sdl
-/src/jnethack.exe
+/src/JNetHack.exe
 /src/Sys*
 /util/makedefs
 /util/lev_comp
