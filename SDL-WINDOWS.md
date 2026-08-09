@@ -28,11 +28,12 @@ src/JNetHack.exe   src/jnethack.sdl   src/jnethack.tty
 | 検証 | 結果 |
 |---|---|
 | `test/wincompare.sh` — Linux tty 版との画面 diff 20 ケース | **5 PASS / 15 EXPECTED-DIFF**（§7-4。うち 13 は乱数を揃えるのをやめた代償） |
-| `test/walls.sh WORK win` — DEC 罫線の Unicode 変換 | **PASS**（角丸 4 個、pyte と一致） |
+| `test/walls.sh WORK win` — DEC 罫線の Unicode 変換 | **FAIL**（差分 5〜12 行、実行ごとに変動）。§1-3 で種を外したので画面全体の diff は原理的に成立しない。罫線が出ていること自体（`╭│─` の存在）は通る |
 | `NH_SDL_WIDTHTEST=1` — 全角セル 7 ケース | **PASS**（6879 文字の往復含む） |
 | `test/winjname.sh` — 日本語名のセーブファイル分離 | **PASS**（3 名 → 3 ファイル） |
 | `test/closesave.sh WORK win` — ウィンドウを閉じたら保存 | **PASS** |
-| Linux 側の退行（`compare.sh` / `walls.sh` / `stalelock.sh` / `closesave.sh`） | **すべて PASS** |
+| Linux 側の退行（`stalelock.sh` / `closesave.sh`） | **PASS**（3/3 と 1/1） |
+| Linux 側の退行（`compare.sh` / `walls.sh`） | **6/20 PASS** と **FAIL**。どちらも種を外した代償で、`wincompare.sh` と違い EXPECTED-DIFF の判定を入れていないため FAIL と出る |
 
 実ウィンドウ（wine の windows ドライバ）でも日本語・色・罫線が正しく出ることを
 1.1.5 の移植時にスクリーンショットで確認しており、**実機 Windows 11 でも
@@ -557,11 +558,12 @@ Windows の `nhdat` に入れてある（`sys/unix/Makefile.dat`）。入れな�
 
 `./sys/winnt/mkdist.sh` が `dist/jnethack-<ver>-sdl-win64.zip` を作る。展開して
 `JNetHack.exe` を起動するだけで動く（`pcmain.c` が `HACKDIR` を
-`exepath(argv[0])` から取るのでフラット配置でよい）。中身は 12 ファイル:
+`exepath(argv[0])` から取るのでフラット配置でよい）。中身は 14 ファイル:
 
 ```
 JNetHack.exe  SDL2.dll  SDL2_ttf.dll
 nhdat  license  defaults.nh
+MPLUS9800-Regular.ttf  MPLUS9800-OFL.txt
 README.txt  NetHack.txt  jGuidebook.txt
 record  logfile  save/
 ```

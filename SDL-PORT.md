@@ -25,9 +25,9 @@ HACKDIR=~/jnhdir ./src/jnethack.sdl -u あなたの名前
 
 | テスト | 結果 |
 |---|---|
-| `test/compare.sh`（termcap 版と SDL 版の画面一致、20 ケース） | **20/20 PASS** |
+| `test/compare.sh`（termcap 版と SDL 版の画面一致、20 ケース） | **6/20 PASS**（下の「重要な限界」。残り 14 は種を固定できないことによる） |
 | `NH_SDL_WIDTHTEST=1`（2 セル幅・幅の由来・往復変換、7 ケース） | **7/7 PASS** |
-| `test/walls.sh`（罫線の壁） | **PASS** |
+| `test/walls.sh`（罫線の壁） | **FAIL**（同上。差分 9〜12 行、実行ごとに変動） |
 | `test/stalelock.sh`（古いロックの扱い、stdin なし） | **3/3 PASS** |
 | `test/xdrive.py`（本物の X キーイベントでの操作・セーブ・リストア） | **動作確認済み** |
 
@@ -479,19 +479,24 @@ tty 版と SDL 版の警告の差分は **−1 件**（SDL 版のほうが 1 件
 
 > **重要な限界。** 種を固定する手段が無い（ゲームに手を入れない方針のため）
 > ので、2 つのビルドは**別のダンジョンを遊ぶ**。地図・ステータス行・
-> 振り値・初期持ち物が写る画面は原理的に一致しない。
-> **下の一覧は種を外す前に測ったものである。** 外したあとで測り直して
-> いないので、失敗したケースは「そのケースがダンジョンに依存している」
-> と読むこと。
+> 振り値・初期持ち物が写る画面は原理的に一致しない。以下は種を外した
+> あとに測り直した結果で、**FAIL の 14 件はすべてダンジョン依存**である。
+> `test/wincompare.sh` は同じ事情を EXPECTED-DIFF として表示するが、
+> `compare.sh` にはその判定を入れていないので FAIL と出る。
 
 ```
-compare startup: PASS          compare options: PASS
-compare rolemenu: PASS         compare escape_menu: PASS
-compare racemenu: PASS         compare walkabout: PASS
-compare alignmenu: PASS        compare quit: PASS
-compare map: PASS              compare endgame: PASS
-compare inventory: PASS        ...
+compare startup: FAIL (10)     compare options: PASS
+compare rolemenu: PASS         compare escape_menu: FAIL (14)
+compare racemenu: PASS         compare walkabout: FAIL (18)
+compare alignmenu: PASS        compare quit: FAIL (20)
+compare map: FAIL (18)         compare endgame: FAIL (20)
+compare inventory: FAIL (22)   ...
+compare guidebook: PASS        overview_page2: PASS
 ```
+
+通るのはダンジョンに依存しない 6 件 —— 職業／種族／属性のメニュー、
+オプション画面、ガイドブック、概観の 2 ページ目 —— だけである。
+差分行数は実行ごとに変わる。
 
 キー列は 1.1.5 の `n V y` ではなく **`n v h l`**（職業=ワルキューレ /
 種族=人間 / 属性=秩序）である。3.4.3 の職業選択はメニューになっていて、
@@ -539,9 +544,17 @@ Poc 見習い             強:18 早:14 耐:18 知:7 賢:10 魅:8 秩序
 `dec_special[]` の 5 エントリ（角丸 4 種 + 床の `.`）を
 pyte 側にも適用して比較する。
 
+比較対象が地図そのものなので、`compare.sh` 以上に種の影響を受ける。
+種を外した現在は**通らない**:
+
 ```
-walls: PASS (4 rounded corners, DEC mapping agrees with pyte)
+walls: FAIL (9 differing lines)     ← 実行ごとに 9〜12 行で変動
 ```
+
+残っている検査は「SDL 側の画面に罫線文字（`╭│─`）が 1 つも無ければ FAIL」
+（`test/walls.sh:97`）だけで、これは通る。DEC → Unicode の対応表そのものは
+種が固定できていた時点で pyte と一致することを確認しており、そのときの
+出力が下である。`dec_special[]` はその後変えていない。
 
 ```
                       ╭──.───╮
