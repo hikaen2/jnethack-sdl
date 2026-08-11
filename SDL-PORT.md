@@ -285,7 +285,7 @@ width test の case 6 が `sdl_queue_text("日本語")` の UTF-8 を入れて�
 `cputchar()` を経由するのは、EUC-JP の対を `putchar()` で 1 バイトずつ
 書く場所があるため（`tty_askname()` の日本語プレイヤー名のエコー）。
 
-### 5-2. `src/end.c` が起動元の端末にエスケープシーケンスを書いていた
+### 5-2. `src/end.c` が起動元の端末にエスケープシーケンスを書いていた（解消済み）
 
 終了時、DECgraphics なら `ESC $ ) B` を出して端末の G1 集合を戻す（`src/end.c:1235`）:
 
@@ -296,11 +296,15 @@ width test の case 6 が `sdl_queue_text("日本語")` の UTF-8 を入れて�
 ```
 
 `end.c` は `wintty.h` を読まないので、この `putchar` は**本物**である。
-SDL 版が DECgraphics を既定にしていた頃は毎回発火し、
-シェルに `$)B` が残っていた。現在の SDL 版は DECgraphics を
-オプションとして提供しないので `iflags.DECgraphics` が立つことは無いが、
-`putchar` が起動元の端末に出てしまう構造自体は変わらないので
-`#ifndef SDL_GRAPHICS` は残す。
+SDL 版が DECgraphics を既定にしていた頃は毎回発火し、シェルに `$)B` が残っていた。
+当時は `#ifndef SDL_GRAPHICS` で囲って回避していた。
+
+**現在は囲っていない。** SDL ビルドで `iflags.DECgraphics` が真になる経路が
+無くなったからである —— オプションは `boolopt[]` のプレースホルダ（`addr` が 0）
+なので `parseoptions()` が書き込めず、`$TERM` からの自動検出は別のガードで
+落ちており、`switch_graphics(DEC_GRAPHICS)` の呼び出しも無く、
+`iflags` はセーブファイルに入らない（`src/save.c` に `&iflags` の `bwrite` が無い）
+ので復元もされない。おかげで **`src/end.c` は上流と 1 バイトも違わない。**
 
 `wintty.h` を読むファイルは `win/tty/` の 4 つ以外に
 **`src/windows.c` があった**（`#ifdef TTY_GRAPHICS` の下）。
