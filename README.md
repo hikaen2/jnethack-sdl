@@ -1,7 +1,7 @@
 # JNetHack 3.4.3 SDL
 
-JNetHack 3.4.3-0.11のSDLポーティングです。
-LinuxとWindowsで動きます。
+JNetHackは文字コードがEUC-JPであるため長らくモダンなLinuxコンソールで動かしにくい状況でした。
+本プロジェクトではJNetHackにSDL2を導入することで、LinuxとWindowsでプレイを可能にしました。
 
 ![](screenshots/jnethack-sdl-linux.png)
 
