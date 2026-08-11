@@ -2734,6 +2734,13 @@ tty_print_glyph(window, x, y, glyph)
       xputg(glyph,ch,special);
     else
 #endif
+#ifdef SDL_GRAPHICS
+    /* The walls are drawn as lines rather than printed; everything else,
+       and every other caller, goes on printing the character.  This is the
+       last place that still knows a '-' is a wall and not an open door --
+       see win/tty/sdlterm.c. */
+    if (!sdl_put_wall(glyph))
+#endif
 	g_putch(ch);		/* print the character */
 
     if (reverse_on) {

@@ -13,7 +13,8 @@
 ウィンドウポートは増やしていない。**tty ポートの下にある端末を、
 自前のセルグリッドに置き換えた**だけである。
 
-`wintty.c` / `topl.c` / `getline.c` は無改造。
+`topl.c` / `getline.c` は無改造。`wintty.c` も 1 箇所の例外を除いて無改造で、
+その 1 箇所は壁を線で描くための 6 行である（§2-1）。
 
 ```sh
 ./test/build.sh                    # src/jnethack.tty と src/jnethack.sdl
@@ -25,9 +26,9 @@ HACKDIR=~/jnhdir ./src/jnethack.sdl -u あなたの名前
 
 | テスト | 結果 |
 |---|---|
-| `test/compare.sh`（termcap 版と SDL 版の画面一致、20 ケース） | **6/20 PASS**（下の「重要な限界」。残り 14 は種を固定できないことによる） |
+| `test/compare.sh`（termcap 版と SDL 版の画面一致、20 ケース） | **5/20 PASS**（下の「重要な限界」。残りは種を固定できないことと、地図の壁が意図的に違うことによる） |
 | `NH_SDL_WIDTHTEST=1`（2 セル幅・幅の由来・往復変換、7 ケース） | **7/7 PASS** |
-| `test/walls.sh`（罫線の壁） | **FAIL**（同上。差分 9〜12 行、実行ごとに変動） |
+| `test/walls.sh`（角丸の壁と、壁以外がデフォルト文字であること） | **PASS**（画面の内容ではなく文字種を見るので種に依存しない） |
 | `test/stalelock.sh`（古いロックの扱い、stdin なし） | **3/3 PASS** |
 | `test/xdrive.py`（本物の X キーイベントでの操作・セーブ・リストア） | **動作確認済み** |
 
@@ -122,9 +123,41 @@ width test の case 6 がこれを検証している。
 | 層 | 役割 |
 |---|---|
 | `jbuffer()` / `cbuffer()` | バイト列 → 文字（EUC-JP の対を組む）。**既存** |
-| `sdl_putbyte(b)` | 1 バイト → コードポイント。文字集合（DEC / CP437）の解決 |
+| `sdl_putbyte(b)` | 1 バイト → コードポイント。バイトは見たままの文字（文字集合は無い） |
 | `sdl_puteuc(b1,b2)` | EUC-JP の対 → コードポイント。幅 2 で確定 |
 | `sdl_putcp(cp)` | コードポイントをセルに置く |
+
+### 2-1. 壁だけは glyph から描く
+
+バイトだけを見ていては壁を線にできない。地図の `-` は横壁でもあり、角でもあり、
+開いた扉でもあり、爆発の上辺でもある。`|` は縦壁でもあり、墓でもあり、光線でもある。
+`src/drawing.c` が選んだ文字がバイトになった時点で、その区別は失われている。
+
+区別が残っている最後の場所は `win/tty/wintty.c` の `tty_print_glyph()` で、
+ここには `glyph` がそのまま渡る。そこに 6 行だけ足した:
+
+```c
+#ifdef SDL_GRAPHICS
+    if (!sdl_put_wall(glyph))
+#endif
+	g_putch(ch);		/* print the character */
+```
+
+`sdl_put_wall()`（`win/tty/sdlterm.c`）は 11 個の壁シンボルだけを表に持ち、
+それ以外の glyph には FALSE を返す。FALSE が返れば従来どおり文字が印字される。
+つまり**壁以外はすべてデフォルトの文字**で、打ち消しリストは存在しない。
+角丸 4 種を含む罫線は `sdl_draw_box()` がベクタで描くので、
+フォントに U+256D..U+2570 が無くても結果は変わらない。
+
+ロゴレベル（Rogue 階）は除外する。`assign_rogue_graphics()` が
+その階のために記号を組み替えており、素の見た目が意図だからである。
+
+**文字集合は持たない。** DEC も CP437 も `sdlterm.c` から削除した。
+JNetHack は `switch_graphics()` の IBM 分岐を `#if 0 /*JP*/` で落としているので
+CP437 のバイトは元から発生せず、DECgraphics は
+「代替文字集合を持たない」という理由で SDL ビルドではオプションに出さない
+（`src/options.c`、`AS`/`AE` が null であることと同じ主張）。
+`graph_on()` / `graph_off()` は `g_putch()` が呼ぶので空の関数として残っている。
 
 ### `setkcode()` を IC に固定した
 
@@ -263,8 +296,11 @@ width test の case 6 が `sdl_queue_text("日本語")` の UTF-8 を入れて�
 ```
 
 `end.c` は `wintty.h` を読まないので、この `putchar` は**本物**である。
-SDL 版は DECgraphics を既定にしたので毎回発火し、
-シェルに `$)B` が残っていた。`#ifndef SDL_GRAPHICS` で囲んだ。
+SDL 版が DECgraphics を既定にしていた頃は毎回発火し、
+シェルに `$)B` が残っていた。現在の SDL 版は DECgraphics を
+オプションとして提供しないので `iflags.DECgraphics` が立つことは無いが、
+`putchar` が起動元の端末に出てしまう構造自体は変わらないので
+`#ifndef SDL_GRAPHICS` は残す。
 
 `wintty.h` を読むファイルは `win/tty/` の 4 つ以外に
 **`src/windows.c` があった**（`#ifdef TTY_GRAPHICS` の下）。
@@ -479,24 +515,29 @@ tty 版と SDL 版の警告の差分は **−1 件**（SDL 版のほうが 1 件
 
 > **重要な限界。** 種を固定する手段が無い（ゲームに手を入れない方針のため）
 > ので、2 つのビルドは**別のダンジョンを遊ぶ**。地図・ステータス行・
-> 振り値・初期持ち物が写る画面は原理的に一致しない。以下は種を外した
-> あとに測り直した結果で、**FAIL の 14 件はすべてダンジョン依存**である。
+> 振り値・初期持ち物が写る画面は原理的に一致しない。
 > `test/wincompare.sh` は同じ事情を EXPECTED-DIFF として表示するが、
 > `compare.sh` にはその判定を入れていないので FAIL と出る。
+>
+> **2 つ目の限界（後から増えた）。** SDL 版は壁を線で描くので、
+> 地図が写る画面は種を固定できたとしても一致しない。壁そのものの検査は
+> `test/walls.sh` の担当で、`compare.sh` が地図の画面で見ているのは
+> 壁の**まわり**のレイアウトである。
 
 ```
-compare startup: FAIL (10)     compare options: PASS
-compare rolemenu: PASS         compare escape_menu: FAIL (14)
-compare racemenu: PASS         compare walkabout: FAIL (18)
-compare alignmenu: PASS        compare quit: FAIL (20)
-compare map: FAIL (18)         compare endgame: FAIL (20)
-compare inventory: FAIL (22)   ...
+compare startup: FAIL (2)      compare options: FAIL (24)
+compare rolemenu: PASS         compare escape_menu: FAIL (16)
+compare racemenu: PASS         compare walkabout: FAIL (16)
+compare alignmenu: PASS        compare quit: FAIL (16)
+compare map: FAIL (14)         compare endgame: FAIL (14)
+compare inventory: FAIL (10)   ...
 compare guidebook: PASS        overview_page2: PASS
 ```
 
-通るのはダンジョンに依存しない 6 件 —— 職業／種族／属性のメニュー、
-オプション画面、ガイドブック、概観の 2 ページ目 —— だけである。
-差分行数は実行ごとに変わる。
+通るのはダンジョンにも地図にも依存しない 5 件 ——
+職業／種族／属性のメニュー、ガイドブック、概観の 2 ページ目 —— である。
+どのケースが通るかと差分行数は実行ごとに変わる（画面の隅に地図が
+写り込むかどうかが、そのときのダンジョン次第だからである）。
 
 キー列は 1.1.5 の `n V y` ではなく **`n v h l`**（職業=ワルキューレ /
 種族=人間 / 属性=秩序）である。3.4.3 の職業選択はメニューになっていて、
@@ -506,7 +547,8 @@ compare guidebook: PASS        overview_page2: PASS
 なければ意味がない。3.4.3 でメニューが 3 枚に増えたぶん、
 `rolemenu` / `racemenu` / `alignmenu` の 3 ケースを足した。
 
-一致例（`map` ケース。両者バイト単位で同一）:
+種を固定できていた頃の一致例（`map` ケース。両者バイト単位で同一）。
+現在は SDL 側の壁が `╭─│╯` になるので、この形での一致は起こらない:
 
 ```
                              -------
@@ -539,31 +581,31 @@ Poc 見習い             強:18 早:14 耐:18 知:7 賢:10 魅:8 秩序
     case 7 (UTF-8 input -> EUC-JP pairs): PASS  §4
 ```
 
-### `test/walls.sh` —— 罫線の壁
+### `test/walls.sh` —— 角丸の壁
 
-`dec_special[]` の 5 エントリ（角丸 4 種 + 床の `.`）を
-pyte 側にも適用して比較する。
+参照実行も種の固定も要らない。画面の**内容**ではなく**文字種**を見る:
 
-比較対象が地図そのものなので、`compare.sh` 以上に種の影響を受ける。
-種を外した現在は**通らない**:
+1. 角丸（`╭╮╰╯`）と線（`│─`）が出ていること
+2. 罫線ブロック（U+2500..U+257F）に、許した 11 種以外が現れないこと
+3. ASCII と日本語以外の文字が、その 11 種を除いて 1 つも無いこと
 
-```
-walls: FAIL (9 differing lines)     ← 実行ごとに 9〜12 行で変動
-```
+3 が「壁以外はデフォルト文字」の回帰テストである。水が `◆` になる、
+扉が `▒` になる、といった置換はすべてここに引っかかる。
 
-残っている検査は「SDL 側の画面に罫線文字（`╭│─`）が 1 つも無ければ FAIL」
-（`test/walls.sh:97`）だけで、これは通る。DEC → Unicode の対応表そのものは
-種が固定できていた時点で pyte と一致することを確認しており、そのときの
-出力が下である。`dec_special[]` はその後変えていない。
+dlvl 1 の部屋は必ず照明付きなので、キーを 1 つも押さないうちに
+開始部屋の四隅が画面に出る。どのダンジョンでも成立する検査なので、
+種を固定できない現状でも**通る**:
 
 ```
-                      ╭──.───╮
-                      │......│
-                      .d{....│
-                      │.@....+
-                      │......│
-                      ╰──────╯
-Poc 見習い             強:17 早:13 耐:18 知:7 賢:13 魅:7 秩序
+walls: PASS (4 rounded corners, nothing else redrawn)
+```
+
+```
+                            ╭────╮
+                            │....│
+                            │$.d.│
+                            │...@│
+                            ╰────╯
 ```
 
 ### `test/stalelock.sh` —— 古いロックの扱い（§5-3 の回帰テスト）
@@ -743,7 +785,7 @@ Windows では移植側が用意する前提で、コンソール版は `sys/win
 - **タイル描画** — セルにビットマップを置く拡張は自明だが手を付けていない
 - **macOS** — 手を付けていない
 - **Windows** — 移植した。[`SDL-WINDOWS.md`](SDL-WINDOWS.md) を参照。
-  MinGW-w64 クロスビルド + wine で検証済みで、`wintty.c` は無改造のまま。
+  MinGW-w64 クロスビルド + wine で検証済み。
   `-u 日本語名` は未対応（設定ファイルの `OPTIONS=name:` を使う）。
   **実機 Windows での再確認はしていない**（1.1.5 では確認済み）
 - **Windows と Linux は違うダンジョンを作る** — 乱数を分けたので設計どおり

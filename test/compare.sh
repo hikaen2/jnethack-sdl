@@ -27,10 +27,18 @@ set -e
 cd "$(dirname "$0")/.."
 work=${1:-/tmp/jnh-compare}
 
-# This measures whether the two backends lay the screen out identically, so
-# both sides run with the same symbol set.  The SDL build turns DECgraphics
-# on by default (its walls are Unicode box-drawing); turning it off here
-# keeps the comparison about layout rather than about which glyph a wall is.
+# This measures whether the two backends lay the screen out identically.
+#
+# The map is where they are allowed to differ, and now always do: the SDL
+# build draws the eleven wall symbols as lines with rounded corners (see
+# sdl_put_wall() in win/tty/sdlterm.c), which is the port's look and not
+# something the termcap side can be asked for.  Cases that show the map
+# therefore differ by design as well as by dungeon.  What is being compared
+# on those screens is the layout around the walls, not the walls.
+#
+# !DECgraphics is left here for the termcap side, which does offer it; the
+# SDL build has no character sets at all any more.  test/walls.sh is what
+# checks the walls themselves.
 opts=color,!DECgraphics
 
 mkdir -p "$work"

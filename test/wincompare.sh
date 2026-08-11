@@ -32,8 +32,10 @@ set -e
 cd "$(dirname "$0")/.."
 work=${1:-/tmp/jnethack-wincompare}
 
-# Matches test/compare.sh: the SDL backend defaults DECgraphics on, and this
-# is about layout, not about which glyph a wall is.
+# Matches test/compare.sh.  The SDL build has no character sets any more --
+# !DECgraphics is for the termcap side, which does -- and it draws the map
+# walls as lines, so map screens differ by design here too.  Those cases are
+# in expect_diff already, for the dungeon reason below.
 opts=color,!DECgraphics
 
 

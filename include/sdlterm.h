@@ -44,12 +44,20 @@
  *                  an SS2 half-width katakana -- and not by any property
  *                  of the code point; see the comment on the function.
  *   sdl_putcp()    a Unicode code point, straight into a cell.
+ *
+ * And one that is not about text at all:
+ *
+ *   sdl_put_wall() a map glyph.  Draws the walls as lines and refuses
+ *                  everything else; win/tty/wintty.c calls it from
+ *                  tty_print_glyph() because that is the last place
+ *                  where a '-' is still known to be a wall.
  */
 /* Spelled "extern" rather than the tree's usual E, because japanese/jlib.c
    includes this header outside the block in wintty.h where E is defined. */
 extern void FDECL(sdl_putbyte, (int));
 extern void FDECL(sdl_puteuc, (int, int));
 extern void FDECL(sdl_putcp, (int));
+extern boolean FDECL(sdl_put_wall, (int));
 extern int FDECL(sdl_putchar, (int));
 extern void FDECL(sdl_puts, (const char *));
 extern void FDECL(sdl_fputs, (const char *, FILE *));

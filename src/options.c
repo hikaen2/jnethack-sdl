@@ -77,12 +77,11 @@ static struct Bool_Opt
 	{"color",         &iflags.wc_color, FALSE, SET_IN_GAME},	/*WC*/
 # endif
 	{"confirm",&flags.confirm, TRUE, SET_IN_GAME},
-/* SDL_GRAPHICS wants the DEC line-drawing table too, and not as a terminal
-   feature: win/tty/sdlterm.c maps the bytes dec_graphics[] selects to
-   Unicode box-drawing characters and draws them itself.  The Windows
-   build has no TERMLIB -- include/ntconf.h sets NO_TERMS -- so gating on
-   TERMLIB alone would leave its map walls as plain - and |. */
-#if (defined(TERMLIB) || defined(SDL_GRAPHICS)) && !defined(MAC_GRAPHICS_ENV)
+/* Not under SDL_GRAPHICS: that backend has no alternate character set to
+   put the VT100 bytes through -- it leaves AS and AE null, which is how
+   the test below decides a terminal cannot do it either.  Its walls are
+   drawn from the glyph instead; see sdl_put_wall() in win/tty/sdlterm.c. */
+#if defined(TERMLIB) && !defined(MAC_GRAPHICS_ENV) && !defined(SDL_GRAPHICS)
 	{"DECgraphics", &iflags.DECgraphics, FALSE, SET_IN_GAME},
 #else
 	{"DECgraphics", (boolean *)0, FALSE, SET_IN_FILE},
@@ -736,24 +735,6 @@ initoptions()
 	for (i = 0; i < NUM_DISCLOSURE_OPTIONS; i++)
 		flags.end_disclose[i] = DISCLOSE_PROMPT_DEFAULT_NO;
 	switch_graphics(ASCII_GRAPHICS);	/* set default characters */
-#ifdef SDL_GRAPHICS
-	/*
-	 * The SDL backend translates the line-drawing bytes this selects
-	 * into Unicode box-drawing characters and draws them itself, so the
-	 * walls come out as real lines instead of - and |.  Unlike on a
-	 * terminal there is nothing to detect and nothing that can go
-	 * wrong, so it is simply on.  Being here, before NETHACKOPTIONS is
-	 * read, leaves "!DECgraphics" available to anyone who wants the
-	 * plain look.
-	 *
-	 * DEC rather than IBM because dec_graphics[] leaves corridors as
-	 * '#'; ibm_graphics[] would make them shaded blocks.  It also keeps
-	 * the bytes below 0x80, which matters here: jlib.c's cbuffer()
-	 * treats any byte with the high bit set as the first half of an
-	 * EUC-JP pair, so a code page 437 map byte would be swallowed.
-	 */
-	switch_graphics(DEC_GRAPHICS);
-#endif
 #if defined(UNIX) && defined(TTY_GRAPHICS) && !defined(SDL_GRAPHICS)
 	/*
 	 * Set defaults for some options depending on what we can
@@ -2398,9 +2379,9 @@ goodfruit:
 
 			duplicate_opt_detection(boolopt[i].name, 0);
 
-#if defined(TERMLIB) || defined(SDL_GRAPHICS) || defined(ASCIIGRAPH) || defined(MAC_GRAPHICS_ENV)
+#if defined(TERMLIB) || defined(ASCIIGRAPH) || defined(MAC_GRAPHICS_ENV)
 			if (FALSE
-# if defined(TERMLIB) || defined(SDL_GRAPHICS)
+# ifdef TERMLIB
 				 || (boolopt[i].addr) == &iflags.DECgraphics
 # endif
 # ifdef ASCIIGRAPH
@@ -2415,7 +2396,7 @@ goodfruit:
 				assign_rogue_graphics(FALSE);
 # endif
 			    need_redraw = TRUE;
-# if defined(TERMLIB) || defined(SDL_GRAPHICS)
+# ifdef TERMLIB
 			    if ((boolopt[i].addr) == &iflags.DECgraphics)
 				switch_graphics(iflags.DECgraphics ?
 						DEC_GRAPHICS : ASCII_GRAPHICS);
@@ -2435,7 +2416,7 @@ goodfruit:
 				assign_rogue_graphics(TRUE);
 # endif
 			}
-#endif /* TERMLIB || SDL_GRAPHICS || ASCIIGRAPH || MAC_GRAPHICS_ENV */
+#endif /* TERMLIB || ASCIIGRAPH || MAC_GRAPHICS_ENV */
 
 			/* only do processing below if setting with doset() */
 			if (initial) return;

@@ -215,7 +215,7 @@ OPTIONS=!autopickup
 
 Windows の defaults.nh は ASCII + CRLF だが、こちらは **UTF-8 + LF、BOM なし**。
 `OPTIONS=IBMGraphics` に相当する行は入れない——このバックエンドは罫線を
-自前で描くので（`sdlterm.c:813-821`）不要であり、Windows 版でも無効にしてある。
+自前で描くので（`sdlterm.c:808-818`）不要であり、Windows 版でも無効にしてある。
 
 ## 5. jnethack.desktop
 

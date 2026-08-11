@@ -28,7 +28,7 @@ src/JNetHack.exe   src/jnethack.sdl   src/jnethack.tty
 | 検証 | 結果 |
 |---|---|
 | `test/wincompare.sh` — Linux tty 版との画面 diff 20 ケース | **5 PASS / 15 EXPECTED-DIFF**（§7-4。うち 13 は乱数を揃えるのをやめた代償） |
-| `test/walls.sh WORK win` — DEC 罫線の Unicode 変換 | **FAIL**（差分 5〜12 行、実行ごとに変動）。§1-3 で種を外したので画面全体の diff は原理的に成立しない。罫線が出ていること自体（`╭│─` の存在）は通る |
+| `test/walls.sh WORK win` — DEC 罫線の Unicode 変換 | **FAIL**（差分 5〜12 行、実行ごとに変動）。§1-3 で種を外したので画面全体の diff は原理的に成立しない。罫線が出ていること自体（`┌│─` の存在）は通る |
 | `NH_SDL_WIDTHTEST=1` — 全角セル 7 ケース | **PASS**（6879 文字の往復含む） |
 | `test/winjname.sh` — 日本語名のセーブファイル分離 | **PASS**（3 名 → 3 ファイル） |
 | `test/closesave.sh WORK win` — ウィンドウを閉じたら保存 | **PASS** |
@@ -72,19 +72,25 @@ src/JNetHack.exe   src/jnethack.sdl   src/jnethack.tty
     }
 ```
 
-が `g_putch()` の中で **DEC 罫線バイトの第 8 ビットを落として
-`graph_on()` を呼ぶ唯一の場所**になっている。
+が `g_putch()` の中で **高位ビット付きのバイトの第 8 ビットを落とす
+唯一の場所**になっている。
 
-`src/drawing.c` の `dec_graphics[]` は `0xf8`（縦線）`0xf1`（横線）のように
-**高位ビット付き**で罫線を表す。この strip が行われないと、そのバイトが
+移植当時、SDL 版は DECgraphics で壁を描いていた。`src/drawing.c` の
+`dec_graphics[]` は `0xf8`（縦線）`0xf1`（横線）のように**高位ビット付き**で
+罫線を表すので、この strip が行われないとそのバイトが
 `japanese/jlib.c` の `jbuffer()` に届き、`is_kanji()` が真になって
-**EUC-JP の 2 バイト対として組まれ、地図の壁が漢字になる。**
+**EUC-JP の 2 バイト対として組まれ、地図の壁が漢字になった。**
 
 ```
 NO_TERMS ありのとき                NO_TERMS なしのとき（正しい）
    跣髑髑驪                          ╭──────╮
    ...%.                             │...%..│
 ```
+
+現在の SDL 版は文字集合を使わず、壁を glyph から描く（`SDL-PORT.md` §2-1）ので
+高位ビット付きのバイトは発生せず、この経路は通らない。それでも `NO_TERMS` を
+定義しないままにするのは、`tty_exit_nhwindows()` の `tty_shutdown()` 呼び出しが
+同じフラグで消えてしまうからである（`include/ntconf.h:71` の注記）。
 
 そこで `include/ntconf.h` は
 
@@ -100,7 +106,8 @@ NO_TERMS ありのとき                NO_TERMS なしのとき（正しい）
 供給している）なのだから、定義しないのが正しい。
 
 副産物として `SDL-PORT.md` の H1（`wintty.c` / `topl.c` / `getline.c` 無改造）が
-**Windows でも完全に成立した。** `wintty.c` は 1 行も触っていない。
+**Windows でも完全に成立した。** `wintty.c` に後から入った例外は
+壁を線で描く 6 行だけで（`SDL-PORT.md` §2-1）、それも両プラットフォーム共通である。
 
 ### 1-2. データファイルは共有できない（LLP64）
 
@@ -392,20 +399,23 @@ wine  : getenv: 3f 3f 3f 3f   argv[1]: 3f 3f 3f 3f
 
 ---
 
-## 6. DECgraphics を Windows で使えるようにした
+## 6. DECgraphics と Windows
 
-`iflags.DECgraphics` と `dec_graphics[]` は `TERMLIB` で囲まれていた。
-`TERMLIB` は `include/termcap.h:11` の `#ifndef MICRO` で決まるので、
-**`MICRO` を定義する Windows では立たない。** そのままだと
+`iflags.DECgraphics` と `dec_graphics[]` は `TERMLIB` で囲まれている。
+`TERMLIB` は `include/tcap.h:11` の `#ifndef MICRO` で決まり、
+`include/ntconf.h:46` が `MICRO` を `#undef` するので、**Windows でも立つ**。
+プリプロセッサで確認済み（`x86_64-w64-mingw32-gcc -DSDL_GRAPHICS -E`）。
 
-- `src/options.c:79` の `boolopt[]` で `DECgraphics` が読み取り専用の
-  プレースホルダになり、オプションとして設定できない
-- `src/options.c:460` の SDL 用デフォルト ON が効かない
-- `src/drawing.c:401` の `dec_graphics[]` 自体が存在しない
+したがってガードを広げる必要はなく、DECgraphics は両プラットフォームで
+上流どおりの普通のオプションとして使える。かつてここには
+`defined(TERMLIB) || defined(SDL_GRAPHICS)` に広げた 6 箇所のガードと
+SDL 用のデフォルト ON があったが、いずれも撤去した。ポートの見た目を
+文字集合オプションに載せるのをやめたためで、経緯は SDL-PORT.md を参照。
 
-となり、地図の壁が `-` と `|` のままになる。SDL では DEC は端末機能ではなく
-「`sdlterm.c` が Unicode 罫線に読み替えるバイト表」なので、6 箇所のガードを
-`defined(TERMLIB) || defined(SDL_GRAPHICS)` に広げた（`drawing.c` 2、`options.c` 4）。
+Windows 側で必要だったのは `NO_TERMS` の方である（§1-3 と `include/ntconf.h:71`）。
+`g_putch()` が高位ビットを落として `graph_on()` を呼ぶ経路は
+`ASCIIGRAPH && !NO_TERMS` で決まり、これが無いと DEC のバイトが
+そのまま `jlib.c` に届いて EUC-JP の対として組み立てられてしまう。
 
 ---
 

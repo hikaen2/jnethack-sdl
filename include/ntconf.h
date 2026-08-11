@@ -63,10 +63,8 @@
  * relative to the Unix SDL build, which is the thing the port is verified
  * against.  Concretely: wintty.c includes tcap.h only #ifndef NO_TERMS,
  * tcap.h is where ASCIIGRAPH comes from, and g_putch() needs
- * ASCIIGRAPH && !NO_TERMS to strip bit 7 off the dec_graphics[] bytes and
- * call graph_on().  Without it those bytes reach jlib.c's jbuffer() with
- * the high bit set, get paired up as EUC-JP, and the map walls come out as
- * kanji.  It also loses the tty_shutdown() call in tty_exit_nhwindows().
+ * ASCIIGRAPH && !NO_TERMS to take its usual path.  It also loses the
+ * tty_shutdown() call in tty_exit_nhwindows().
  */
 #ifndef SDL_GRAPHICS
 #define NO_TERMS

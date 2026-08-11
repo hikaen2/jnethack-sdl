@@ -371,82 +371,71 @@ sdl_wrap_now()
 }
 
 /* ---------------------------------------------------------------- */
-/* byte -> code point: the graphics character sets                      */
+/* map symbols -> line drawing                                          */
 /* ---------------------------------------------------------------- */
 
 /*
- * The port hands the backend bytes, not characters.  What a byte in
- * 0x80..0xff means depends on which graphics set the game has selected
- * (see src/drawing.c): with IBMgraphics it is a code page 437 byte, with
- * DECgraphics it is a VT100 line-drawing character that arrives with its
- * high bit stripped between graph_on()/graph_off().
+ * The port hands the backend bytes, and every one of them means what it
+ * says: this backend has no alternate character set.  It tells the game
+ * so at startup, where AS and AE are left null, and DECgraphics is not
+ * offered as an option because of it (see src/options.c).
  *
- * A terminal resolves this by being configured for the right code page,
- * or by switching fonts.  We resolve it by translating to Unicode here,
- * which is why the walls can be drawn with proper box-drawing glyphs --
- * and, since we choose the code point, with rounded corners.
+ * That leaves one thing a byte cannot say.  In the map, '-' is a
+ * horizontal wall, a corner, an open door and the top of an explosion;
+ * '|' is a vertical wall, a grave and a zap.  Drawing lines for the walls
+ * therefore cannot be decided from the byte -- it has to be decided where
+ * the glyph is still known, which is tty_print_glyph() in
+ * win/tty/wintty.c.  That is what sdl_put_wall() below is for.
+ *
+ * Walls, and nothing else: everything the port does not name here keeps
+ * the character src/drawing.c chose for it.
  */
-
-/* Code page 437, low half: the symbols a PC console shows for control
-   bytes.  Only reachable under IBMgraphics; the entries NetHack actually
-   uses are the card pips for rogue-level traps.  Bytes that steer the
-   cursor (BEL, BS, HT, LF, CR) are left out on purpose. */
-static const unsigned short cp437_low[32] = {
-    0x0000, 0x263A, 0x263B, 0x2665, 0x2666, 0x2663, 0x2660, 0x0007,
-    0x0008, 0x0009, 0x000A, 0x2642, 0x2640, 0x000D, 0x266B, 0x263C,
-    0x25BA, 0x25C4, 0x2195, 0x203C, 0x00B6, 0x00A7, 0x25AC, 0x21A8,
-    0x2191, 0x2193, 0x2192, 0x2190, 0x221F, 0x2194, 0x25B2, 0x25BC
-};
-
-/* Code page 437, high half. */
-static const unsigned short cp437_high[128] = {
-    0x00C7, 0x00FC, 0x00E9, 0x00E2, 0x00E4, 0x00E0, 0x00E5, 0x00E7,
-    0x00EA, 0x00EB, 0x00E8, 0x00EF, 0x00EE, 0x00EC, 0x00C4, 0x00C5,
-    0x00C9, 0x00E6, 0x00C6, 0x00F4, 0x00F6, 0x00F2, 0x00FB, 0x00F9,
-    0x00FF, 0x00D6, 0x00DC, 0x00A2, 0x00A3, 0x00A5, 0x20A7, 0x0192,
-    0x00E1, 0x00ED, 0x00F3, 0x00FA, 0x00F1, 0x00D1, 0x00AA, 0x00BA,
-    0x00BF, 0x2310, 0x00AC, 0x00BD, 0x00BC, 0x00A1, 0x00AB, 0x00BB,
-    0x2591, 0x2592, 0x2593, 0x2502, 0x2524, 0x2561, 0x2562, 0x2556,
-    0x2555, 0x2563, 0x2551, 0x2557, 0x255D, 0x255C, 0x255B, 0x2510,
-    0x2514, 0x2534, 0x252C, 0x251C, 0x2500, 0x253C, 0x255E, 0x255F,
-    0x255A, 0x2554, 0x2569, 0x2566, 0x2560, 0x2550, 0x256C, 0x2567,
-    0x2568, 0x2564, 0x2565, 0x2559, 0x2558, 0x2552, 0x2553, 0x256B,
-    0x256A, 0x2518, 0x250C, 0x2588, 0x2584, 0x258C, 0x2590, 0x2580,
-    0x03B1, 0x00DF, 0x0393, 0x03C0, 0x03A3, 0x03C3, 0x00B5, 0x03C4,
-    0x03A6, 0x0398, 0x03A9, 0x03B4, 0x221E, 0x03C6, 0x03B5, 0x2229,
-    0x2261, 0x00B1, 0x2265, 0x2264, 0x2320, 0x2321, 0x00F7, 0x2248,
-    0x00B0, 0x2219, 0x00B7, 0x221A, 0x207F, 0x00B2, 0x25A0, 0x00A0
+static const struct wallsym {
+    int cmap;                           /* S_* index, see include/rm.h */
+    int cp;                             /* what to draw there */
+} wallsyms[] = {
+    { S_vwall,  0x2502 },
+    { S_hwall,  0x2500 },
+    { S_tlcorn, 0x256D },               /* rounded */
+    { S_trcorn, 0x256E },               /* rounded */
+    { S_blcorn, 0x2570 },               /* rounded */
+    { S_brcorn, 0x256F },               /* rounded */
+    { S_crwall, 0x253C },
+    { S_tuwall, 0x2534 },
+    { S_tdwall, 0x252C },
+    { S_tlwall, 0x2524 },
+    { S_trwall, 0x251C }
 };
 
 /*
- * VT100 "special graphics" set, 0x5f..0x7e, used while graph_on() is in
- * effect.  This is what DECgraphics sends after g_putch() strips the
- * high bit, and DECgraphics is what the SDL build selects by default.
+ * Draw this glyph as a line, if it is one of the walls above.
  *
- * Five entries deliberately differ from the VT100 standard, marked
- * below.  This is where the backend's look is decided: the port asked
- * for a corner and a floor, and we choose which character goes in the
- * cell.  Nothing else in the file knows about it, and the rounded
- * corners do not depend on the font, because sdl_draw_box() draws them.
+ * Returns FALSE for everything else, and the caller then prints the
+ * character the game asked for, exactly as it would without this file.
  *
- * test/walls_compare.sh applies the same five substitutions to its
- * reference, so a change here without a change there will fail.
+ * The rogue level is left alone: it is meant to look the way Rogue
+ * looked, and assign_rogue_graphics() in src/drawing.c resets the map
+ * symbols for it.
  */
-static const unsigned short dec_special[32] = {
-    0x00A0, 0x25C6, 0x2592, 0x2409, 0x240C, 0x240D, 0x240A, 0x00B0,
-/*                       j:U+256F  k:U+256E  l:U+256D  m:U+2570 <- rounded */
-    0x00B1, 0x2424, 0x240B, 0x256F, 0x256E, 0x256D, 0x2570, 0x253C,
-    0x23BA, 0x23BB, 0x2500, 0x23BC, 0x23BD, 0x251C, 0x2524, 0x2534,
-    0x252C, 0x2502, 0x2264, 0x2265, 0x03C0, 0x2260, 0x00A3, 0x002E
-/*                                                          ~:'.' not U+00B7 */
-};
+boolean
+sdl_put_wall(glyph)
+int glyph;
+{
+    int i, cmap;
 
-/* Code page 437 above stays faithful: IBMgraphics is the "as a PC
-   console would show it" option, so it keeps square corners and the
-   centred dot. */
+    if (!glyph_is_cmap(glyph)) return FALSE;
+#ifdef REINCARNATION
+    if (Is_rogue_level(&u.uz)) return FALSE;
+#endif
 
-/* TRUE while the port has asked for the alternate character set. */
-static boolean alt_charset = FALSE;
+    cmap = glyph_to_cmap(glyph);
+    for (i = 0; i < SIZE(wallsyms); i++)
+        if (wallsyms[i].cmap == cmap) {
+            sdl_putcp(wallsyms[i].cp);
+            return TRUE;
+        }
+    return FALSE;
+}
 
 /*
  * How many cells does this code point occupy, when all we know about it
@@ -1804,30 +1793,21 @@ int b1, b2;
 }
 
 /*
- * Take one byte off the port, work out which character it stands for
- * under the graphics set now in effect, and place it.
+ * Take one byte off the port and place it.
+ *
+ * There is nothing to decide: no graphics set is in effect, so a byte is
+ * the character it looks like.  Bytes above 0x7f do not reach here -- the
+ * Japanese ones are collected into pairs by jlib.c and arrive through
+ * sdl_puteuc(), and no map symbol has the high bit set now that the
+ * character sets are gone.  One that did would be drawn as Latin-1.
  */
 void
 sdl_putbyte(b)
 int b;
 {
-    long cp;
-
     b &= 0xFF;
 
-    if (alt_charset && b >= 0x5F && b <= 0x7E) {
-        cp = dec_special[b - 0x5F];
-#ifdef ASCIIGRAPH
-    } else if (iflags.IBMgraphics && b >= 0x80) {
-        cp = cp437_high[b - 0x80];
-    } else if (iflags.IBMgraphics && b < 0x20) {
-        cp = cp437_low[b];              /* leaves BEL/BS/HT/LF/CR alone */
-#endif
-    } else {
-        cp = b;
-    }
-
-    sdl_put_wide(cp, sdl_cp_width(cp));
+    sdl_put_wide((long) b, sdl_cp_width((long) b));
 }
 
 /*
@@ -2022,25 +2002,25 @@ int color;
 #ifdef ASCIIGRAPH
 /*
  * On a terminal these swap the font in and out of an alternate character
- * set, and the terminal then has its own opinion about how wide the
- * result is -- box-drawing characters are East Asian Ambiguous, so that
- * opinion depends on the user's locale.  That is the H3 problem in
- * miniature.
+ * set.  This backend has none -- AS and AE are left null in
+ * sdl_startup(), and the walls are drawn from the glyph instead of from
+ * a swapped-in byte, see sdl_put_wall() -- so there is nothing to swap.
  *
- * Here they only record which table sdl_putbyte() should read the next
- * bytes through.  No font is switched, and the width is a property of
- * the resulting code point, so the ambiguity never arises.
+ * They stay because g_putch() calls them for any byte with the high bit
+ * set, and it is compiled from win/tty/wintty.c unchanged.  No such byte
+ * can occur here: JNetHack disables IBMgraphics in switch_graphics() and
+ * this build does not offer DECgraphics.
  */
 void
 graph_on()
 {
-    alt_charset = TRUE;
+    return;
 }
 
 void
 graph_off()
 {
-    alt_charset = FALSE;
+    return;
 }
 
 #ifdef WIN32

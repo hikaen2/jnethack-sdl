@@ -428,12 +428,7 @@ static uchar ibm_graphics[MAXPCHARS] = {
 #endif
 #endif  /* ASCIIGRAPH */
 
-/* SDL_GRAPHICS wants the DEC line-drawing table too, and not as a terminal
-   feature: win/tty/sdlterm.c maps the bytes dec_graphics[] selects to
-   Unicode box-drawing characters and draws them itself.  The Windows
-   build has no TERMLIB -- include/ntconf.h sets NO_TERMS -- so gating on
-   TERMLIB alone would leave its map walls as plain - and |. */
-#if defined(TERMLIB) || defined(SDL_GRAPHICS)
+#ifdef TERMLIB
 void NDECL((*decgraphics_mode_callback)) = 0;  /* set in tty_start_screen() */
 
 static uchar dec_graphics[MAXPCHARS] = {
@@ -530,7 +525,7 @@ static uchar dec_graphics[MAXPCHARS] = {
 /*90*/	0xf3,	/* S_explode8:	meta-s, low horizontal line */
 	g_FILLER(S_explode9)
 };
-#endif  /* TERMLIB || SDL_GRAPHICS */
+#endif  /* TERMLIB */
 
 #ifdef MAC_GRAPHICS_ENV
 static uchar mac_graphics[MAXPCHARS] = {
@@ -705,7 +700,7 @@ int gr_set_flag;
 	    break;
 #endif /* ASCIIGRAPH */
 #endif /*JP*/
-#if defined(TERMLIB) || defined(SDL_GRAPHICS)
+#ifdef TERMLIB
 	case DEC_GRAPHICS:
 /*
  * Use the VT100 line drawing character set.
@@ -713,22 +708,9 @@ int gr_set_flag;
 	    iflags.DECgraphics = TRUE;
 	    iflags.IBMgraphics = FALSE;
 	    assign_graphics(dec_graphics, SIZE(dec_graphics), MAXPCHARS, 0);
-#ifdef SDL_GRAPHICS
-	    /*
-	     * dec_graphics[] gives both open doors the same byte, so the
-	     * shaded block it draws cannot say which way a door faces --
-	     * and the backend cannot tell them apart either, because the
-	     * byte that reaches it is the same.  Keep the ASCII symbols,
-	     * which can.  This has to sit here rather than at the call
-	     * site: toggling the option re-enters switch_graphics(), and
-	     * anything done outside it is undone.
-	     */
-	    showsyms[S_vodoor] = defsyms[S_vodoor].sym;
-	    showsyms[S_hodoor] = defsyms[S_hodoor].sym;
-#endif
 	    if (decgraphics_mode_callback) (*decgraphics_mode_callback)();
 	    break;
-#endif /* TERMLIB || SDL_GRAPHICS */
+#endif /* TERMLIB */
 #ifdef MAC_GRAPHICS_ENV
 	case MAC_GRAPHICS:
 	    assign_graphics(mac_graphics, SIZE(mac_graphics), MAXPCHARS, 0);
