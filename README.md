@@ -1,7 +1,7 @@
 # JNetHack 3.4.3 SDL
 
 JNetHackは文字コードがEUC-JPであるため長らくモダンなLinuxコンソールで動かしにくい状況でした。
-本プロジェクトではJNetHackにSDL2を導入することで、LinuxとWindowsでプレイを可能にしました。
+本プロジェクトではSDL2で文字を描画することで、LinuxとWindowsでプレイ可能にしました。
 
 ![](screenshots/jnethack-sdl-linux.png)
 
